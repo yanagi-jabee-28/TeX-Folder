@@ -1,0 +1,3 @@
+# 除外するフォルダ
+.tmp.driveupload/
+.tmp.drivedownload/
