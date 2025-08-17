@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% 数式フォント設定
+\setmathfont{XITS Math}
+
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% ヘッダー設定
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  制御工学 安定判別問題 \\
+  長野高専 電気電子工学科 5年 XX番 氏名 \\
+  2025年7月17日
+}
+\setlength{\headheight}{34.832pt}
+
+\begin{document}
+
+\title{制御工学における安定判別問題}
+\author{長野高専 電気電子工学科 5年 XX番 氏名}
+\date{2025年7月17日}
+\maketitle
+\thispagestyle{fancy}
+
+\section{問題1：極による安定判別}
+
+以下の伝達関数の安定性を，極を求めて判定せよ．
+
+\subsection{問題1(1)}
+\begin{equation}
+\frac{1}{s^2 - 2s + 3}
+\end{equation}
+
+\subsection{問題1(2)}
+\begin{equation}
+\frac{1}{s^3 + 4s^2 + 7s + 6}
+\end{equation}
+
+\section{問題2：ラウスの安定判別法}
+
+特性方程式が以下の式で与えられる伝達関数の安定性を，ラウスの安定判別法から判定せよ．ただし，不安定の場合は不安定極の数も求めよ．
+
+\subsection{問題2(1)}
+\begin{equation}
+s^4 + 3s^3 + 4s^2 + 3s + 2 = 0
+\end{equation}
+
+\subsection{問題2(2)}
+\begin{equation}
+2s^4 + 4s^3 + s^2 + 2s + 3 = 0
+\end{equation}
+
+\subsection{問題2(3)}
+\begin{equation}
+2s^4 + s^3 + 4s^2 + s + 2 = 0
+\end{equation}
+
+\section{問題3：フルビッツの安定判別法}
+
+特性方程式が以下の式で与えられる伝達関数の安定性を，フルビッツの安定判別法から判定せよ．
+
+\subsection{問題3(1)}
+\begin{equation}
+s^3 + 7s^2 + 4s + 6 = 0
+\end{equation}
+
+\subsection{問題3(2)}
+\begin{equation}
+3s^4 + s^3 + 5s^2 + 2s + 6 = 0
+\end{equation}
+
+\end{document}

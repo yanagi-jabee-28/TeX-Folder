@@ -1,0 +1,85 @@
+\documentclass{ltjarticle}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{luatexja}
+\usepackage{booktabs} % 表の罫線をきれいにするため
+
+\geometry{a4paper, margin=25mm}
+
+\title{実験報告書：抵抗の測定}
+\author{国立長野高専 1年1組1番 電気電子 太郎}
+\date{\today}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic} % ページ番号を開始
+
+\section{目的}
+本実験は、既知の抵抗および未知の抵抗の抵抗値をデジタルマルチメータを用いて測定し、抵抗器のカラーコードの読み方、および測定値の誤差について理解することを目的に実施した。
+
+\section{原理}
+\subsection{抵抗カラーコード}
+炭素皮膜抵抗などの抵抗器には、抵抗値と誤差の許容範囲（公差）を示す色の帯が印刷されている。本実験で用いる4本帯の抵抗では、第1色帯と第2色帯が抵抗値の最初の2桁の数値を、第3色帯が乗数を、第4色帯が公差を表す。
+
+\subsection{測定誤差}
+測定値と真の値との差を誤差という。本報告書では、公称値を真の値とみなし、測定値とのずれを評価するために相対誤差を用いる。相対誤差は式(\ref{eq:relative_error})で算出される。
+\begin{equation}
+    \text{相対誤差} [\%] = \frac{|\text{測定値} - \text{公称値}|}{\text{公称値}} \times 100
+    \label{eq:relative_error}
+\end{equation}
+
+\section{実験方法}
+まず、用意された3本の抵抗器について、カラーコードからそれぞれの公称値と公差を読み取った。次に、デジタルマルチメータを用いて各抵抗器の抵抗値を3回測定し、その測定値の平均を算出した。最後に、式(\ref{eq:relative_error})を用いて、測定値の平均と公称値との間の相対誤差を計算した。
+
+\section{使用機器}
+本実験で使用した機器を、表\ref{tab:equipment}にまとめる。
+\begin{table}[h]
+    \centering
+    \caption{使用機器一覧}
+    \label{tab:equipment}
+    \begin{tabular}{llll}
+        \toprule
+        機器名 & メーカー名 & 型番 & 備品番号 \\
+        \midrule
+        デジタルマルチメータ & HIOKI & DT4256 & E-123 \\
+        抵抗器セット & (不明) & (不明) & (なし) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{結果および考察}
+表\ref{tab:results}に、抵抗値の測定結果を示す。この表には、カラーコードから読み取った公称値、3回の測定値とその平均値、そして公称値に対する相対誤差をまとめた。
+
+\begin{table}[h]
+    \centering
+    \caption{抵抗値の測定結果}
+    \label{tab:results}
+    \begin{tabular}{crrrrrr}
+        \toprule
+        抵抗器 & 公称値 [k$\Omega$] & 測定値1 [k$\Omega$] & 測定値2 [k$\Omega$] & 測定値3 [k$\Omega$] & 平均値 [k$\Omega$] & 相対誤差 [\%] \\
+        \midrule
+        R1 & 1.0 & 1.01 & 1.02 & 1.01 & 1.01 & 1.00 \\
+        R2 & 4.7 & 4.68 & 4.69 & 4.68 & 4.68 & 0.43 \\
+        R3 & 10 & 10.2 & 10.1 & 10.1 & 10.1 & 1.00 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+測定された3本の抵抗器の相対誤差は、すべて公称値の公差である$\pm 5\%$の範囲内に収まっており、測定は正しく行われたと考えられる。測定値のばらつきは小さく、デジタルマルチメータによる測定が安定していることがわかる。誤差の主な原因としては、抵抗器自体の製造公差が考えられる。
+
+\section{報告事項}
+\subsection{抵抗のカラーコードの読み方について説明する}
+抵抗のカラーコードは、抵抗値と公差を色の帯で示したものである。例えば、本実験で用いた抵抗R1のカラーコードは「茶黒赤金」であった。これはそれぞれ数値の1、0、乗数$10^2$、公差$\pm 5\%$に対応する。したがって、抵抗値は $10 \times 10^2 = 1000\Omega = 1.0\text{k}\Omega$、公差は$\pm 5\%$と読み取ることができる。
+
+\subsection{なぜ測定を複数回行う必要があるのか考察する}
+測定には常に誤差が伴う可能性がある。測定を複数回行い、その平均値をとることで、偶然誤差の影響を低減し、より信頼性の高い測定値を得ることができる。また、測定値のばらつき（標準偏差など）を評価することで、測定の安定性を評価することも可能となる。
+
+\begin{thebibliography}{9}
+    \bibitem{manual} 国立長野高専 電気電子工学科, 実験報告書の書き方 詳細分析, 平成30年12月版.
+    \bibitem{web} アールエスコンポーネンツ, 抵抗器のカラーコード, \url{https://jp.rs-online.com/web/generalDisplay.html?id=ideas-and-advice/resistor-colour-code-guide} (2025年7月7日閲覧).
+\end{thebibliography}
+
+\end{document}

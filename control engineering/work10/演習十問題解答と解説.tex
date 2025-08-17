@@ -1,0 +1,216 @@
+\documentclass[11pt,a4paper]{ltjsarticle} % LuaLaTeX-ja用の日本語対応クラス（A4・11pt）
+\usepackage{luatexja} % LuaLaTeXで日本語を扱うための基本パッケージ
+\usepackage{luatexja-fontspec} % LuaLaTeXで日本語フォントを指定するための拡張
+\usepackage{amsmath,amssymb} % 数式環境・記号の拡張
+\usepackage{geometry} % 余白などページレイアウトの調整
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm} % ページ余白の具体的な設定
+\usepackage{graphicx} % 画像の挿入
+\usepackage{booktabs} % 表の罫線を美しくする
+\usepackage{siunitx} % SI単位系の表記を統一・自動調整
+\sisetup{detect-all,detect-weight=true,detect-family=true} % siunitxの細かい設定（フォント検出など）
+\usepackage[
+  unicode,bookmarks=true,bookmarksnumbered=true,hypertexnames=false,breaklinks=true,linktocpage=true,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdfborder={0 0 0},pdfpagelabels=false
+]{hyperref} % PDFの目次やリンクを有効化・色付け
+\usepackage{url} % URLを自動でリンク化
+\usepackage{fancyhdr} % ヘッダー・フッターのカスタマイズ
+\usepackage{fontspec} % 欧文フォントの指定（LuaLaTeX用）
+\usepackage{unicode-math} % 数式フォントの指定（LuaLaTeX用）
+
+% 欧文フォント設定（例: Times New Roman）
+\setmainfont{Times New Roman} % 本文の欧文フォント
+\setsansfont{Arial} % 欧文のサンセリフ体
+\setmonofont{Consolas} % 欧文の等幅フォント
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho} % 本文の和文明朝体
+\setsansjfont{Yu Gothic} % 和文ゴシック体
+
+% 数式フォントもTimes系に統一
+\setmathfont{XITS Math} % 数式用フォント（Times系互換）
+
+\pagestyle{fancy} % ヘッダー・フッターのカスタムを有効化
+\fancyhead{} % 既存のヘッダーをクリア
+\fancyhead[R]{\footnotesize
+  制御工学 周波数応答演習問題解答 \\
+  長野高専 電気電子工学科 5年 34番 栁原魁人 \\
+  2025年7月14日
+} % 右上ヘッダーに情報を表示
+% ヘッダー高さ警告の対策
+\setlength{\headheight}{34.832pt} % ヘッダー高さを警告値に合わせて調整
+
+\begin{document}
+
+\section{周波数応答演習問題（第6章 5, 6, 7, 11）解答と解説}
+
+\subsection{基礎理論}
+周波数応答解析では，複素変数$s$を$j\omega$に置換することで，伝達関数$G(s)$を周波数伝達関数$G(j\omega)$として表現する．ボード線図では，ゲイン（$|G(j\omega)|$）と位相（$\angle G(j\omega)$）を対数周波数に対してプロットし，システムの特性を視覚的に解析する．
+
+\begin{table}[htbp]
+  \caption{基本伝達要素の漸近ボード線図特性}
+  \label{tbl:bode_elements}
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    要素 & 伝達関数 $G(s)$ & ゲイン線図の傾き & 位相特性 \\
+    \midrule
+    比例 & $K$ & 0 dB/dec & $0°$ \\
+    積分 & $1/s$ & $-20$ dB/dec & $-90°$ \\
+    微分 & $s$ & $+20$ dB/dec & $+90°$ \\
+    1次遅れ & $\frac{1}{1+Ts}$ & $\omega<1/T$: 0, $\omega>1/T$: $-20$ & $0°$から$-90°$ \\
+    1次進み & $1+Ts$ & $\omega<1/T$: 0, $\omega>1/T$: $+20$ & $0°$から$+90°$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{問題5の解答}
+図6-16に示されるゲイン線図の解析を行う．
+
+\subsection{ステップ1：ボード線図の観察}
+\begin{itemize}
+\item 低周波域：ゲインが一定値（23 dB）
+\item 高周波域：$-20$ dB/decの傾きで減少
+\item 折点角周波数：$\omega_c = 20$ rad/s
+\end{itemize}
+
+この特徴から，1次遅れ系 $G(s) = \frac{K}{1+Ts}$ と判断される．
+
+\subsection{ステップ2：DCゲイン（$K$）の決定}
+低周波域の漸近線の値から：
+\begin{align}
+20\log_{10}(K) &= 23 \text{ dB} \\
+K &= 10^{23/20} = 10^{1.15} \approx 14.1
+\end{align}
+
+\subsection{ステップ3：時定数（$T$）の決定}
+1次遅れ要素の折点角周波数と時定数の関係：
+\begin{align}
+\omega_c &= \frac{1}{T} = 20 \text{ rad/s} \\
+T &= \frac{1}{20} = 0.05 \text{ s}
+\end{align}
+
+\subsection{ステップ4：伝達関数の確定}
+\begin{equation}
+G(s) = \frac{14.1}{1+0.05s}
+\end{equation}
+
+\section{問題6の解答}
+図6-17に示されるゲイン線図の解析を行う．
+
+\subsection{ステップ1：ボード線図の観察}
+\begin{itemize}
+\item 初期傾き：$-20$ dB/dec
+\item 第1折点：$\omega_{c1} = 0.1$ rad/s で傾きが $-20 \rightarrow -40$ dB/dec
+\item 第2折点：$\omega_{c2} = 2$ rad/s で傾きが $-40 \rightarrow -60$ dB/dec
+\end{itemize}
+
+\subsection{ステップ2：システム構造の特定}
+初期傾きから積分要素 $\frac{1}{s}$ の存在を確認：
+\begin{itemize}
+\item 基本構造：$G(s) = \frac{K}{s \cdot (\text{他の要素})}$
+\item 第1折点 → 極：$T_1 = \frac{1}{\omega_{c1}} = \frac{1}{0.1} = 10$ s
+\item 第2折点 → 極：$T_2 = \frac{1}{\omega_{c2}} = \frac{1}{2} = 0.5$ s
+\end{itemize}
+
+仮定される伝達関数：$G(s) = \frac{K}{s(1+10s)(1+0.5s)}$
+
+\subsection{ステップ3：ゲイン定数（$K$）の決定}
+低周波域（$\omega < 0.1$ rad/s）では，$(1+10s) \approx 1$，$(1+0.5s) \approx 1$ より：
+\begin{equation}
+G(j\omega) \approx \frac{K}{j\omega}
+\end{equation}
+
+ゲイン線図上の点 $(\omega = 0.1 \text{ rad/s}, \text{ゲイン} = 4 \text{ dB})$ を使用：
+\begin{align}
+20\log_{10}\left|\frac{K}{j \cdot 0.1}\right| &= 4 \\
+20\log_{10}(K) - 20\log_{10}(0.1) &= 4 \\
+20\log_{10}(K) - 20(-1) &= 4 \\
+20\log_{10}(K) + 20 &= 4 \\
+20\log_{10}(K) &= -16 \\
+K &= 10^{-16/20} = 10^{-0.8} \approx 0.158
+\end{align}
+
+\subsection{ステップ4：伝達関数の確定}
+\begin{equation}
+G(s) = \frac{0.158}{s(1+10s)(1+0.5s)}
+\end{equation}
+
+このシステムは1型システムであり，ステップ入力に対して定常偏差ゼロで応答する．
+
+\section{問題7の解答}
+図6-18に示されるゲイン線図の解析を行う．
+
+\subsection{ステップ1：ボード線図の観察}
+\begin{itemize}
+\item 低周波域：ゲインが一定値（$-10$ dB）
+\item 中周波域：$+20$ dB/decの傾きで増加
+\item 高周波域：再び一定値（0 dBの傾き）
+\item 第1折点：$\omega_{z} = 0.2$ rad/s（傾き：$0 \rightarrow +20$ dB/dec）
+\item 第2折点：$\omega_{p} = 1.0$ rad/s（傾き：$+20 \rightarrow 0$ dB/dec）
+\end{itemize}
+
+\subsection{ステップ2：システム構造の特定}
+傾きの変化から零点と極の存在を確認：
+\begin{itemize}
+\item 第1折点（傾き増加）→ 零点：$T_z = \frac{1}{\omega_z} = \frac{1}{0.2} = 5$ s
+\item 第2折点（傾き減少）→ 極：$T_p = \frac{1}{\omega_p} = \frac{1}{1.0} = 1$ s
+\end{itemize}
+
+仮定される伝達関数：$G(s) = K \cdot \frac{1+T_z s}{1+T_p s} = K \cdot \frac{1+5s}{1+s}$
+
+\subsection{ステップ3：DCゲイン（$K$）の決定}
+低周波域（$\omega \rightarrow 0$）では，$(1+5s) \rightarrow 1$，$(1+s) \rightarrow 1$ より：
+\begin{equation}
+G(0) = K
+\end{equation}
+
+低周波域のゲインが $-10$ dB より：
+\begin{align}
+20\log_{10}(K) &= -10 \\
+K &= 10^{-10/20} = 10^{-0.5} = \frac{1}{\sqrt{10}}
+\end{align}
+
+\subsection{ステップ4：伝達関数の確定と検証}
+\begin{equation}
+G(s) = \frac{1}{\sqrt{10}} \cdot \frac{1+5s}{1+s}
+\end{equation}
+
+検証：
+\begin{itemize}
+\item DC応答：$G(0) = \frac{1}{\sqrt{10}} \rightarrow 20\log_{10}\left(\frac{1}{\sqrt{10}}\right) = -10$ dB ✓
+\item 零点周波数：$\omega_z = \frac{1}{5} = 0.2$ rad/s ✓
+\item 極周波数：$\omega_p = \frac{1}{1} = 1.0$ rad/s ✓
+\end{itemize}
+
+この形式は位相進み補償器として制御系の安定性改善に使用される．
+
+\section{問題11の解答}
+むだ時間要素 $G(s) = e^{-Ls}$ のボード線図を描く．
+
+\subsection{周波数特性}
+$s = j\omega$ を代入すると：
+\begin{align}
+G(j\omega) &= e^{-jL\omega} \\
+|G(j\omega)| &= 1 \quad \text{（全周波数で一定）} \\
+\angle G(j\omega) &= -L\omega \text{ rad} = -L\omega \cdot \frac{180}{\pi} \text{ 度}
+\end{align}
+
+\subsection{ボード線図の特徴}
+\begin{itemize}
+\item ゲイン線図：全周波数にわたって 0 dB の水平線
+\item 位相線図：原点を通り，角周波数に正比例して負の方向に無限に増大する直線
+\end{itemize}
+
+むだ時間要素の位相遅れは周波数とともに際限なく増大するため，制御系の安定性に深刻な影響を与える可能性がある．
+
+\section{まとめ}
+本演習問題を通じて，ボード線図からシステム同定を行う体系的手法を習得した：
+\begin{enumerate}
+\item 低周波域の傾きからシステムタイプを識別
+\item 折点角周波数で極・零点を特定
+\item ゲイン定数を算出
+\end{enumerate}
+
+これらの解法は，複雑なシステムを基本要素に分解し，個々の特性を組み合わせてシステム全体の挙動を理解する制御工学の基本原則に基づいている．
+
+\end{document}

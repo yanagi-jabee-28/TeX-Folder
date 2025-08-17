@@ -1,0 +1,199 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% \欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% \日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% \数式フォント設定
+\setmathfont{XITS Math}
+
+% \参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% \ヘッダー設定例（タイトル・学籍情報・日付を適宜変更）
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  制御工学の問題解説 \\
+  長野高専 電気電子工学科 5年 XX番 氏名 \\
+  2025年8月4日
+}
+\setlength{\headheight}{34.832pt}
+
+\begin{document}
+
+\title{制御工学における安定判別問題}
+\author{長野高専 \\電気電子工学科 5年 XX番 氏名}
+\date{2025年8月4日}
+\maketitle
+\thispagestyle{fancy}
+
+\section{問題2の解説}
+\textbf{開ループ伝達関数が $G(s)=\frac{K}{s(1+sT)}$ で与えられる閉ループ系について、入力 $r(t)=1+t \, (t \ge 0)$ に対する定常偏差を 0.1、減衰率 $\zeta=0.5$ にする $K$ と $T$ を求めよ。}
+
+\subsection{閉ループ伝達関数の導出}
+まず，この系の閉ループ伝達関数 $W(s)$ を求めます．
+\begin{equation*}
+    W(s) = \frac{G(s)}{1+G(s)} = \frac{\frac{K}{s(1+sT)}}{1+\frac{K}{s(1+sT)}} = \frac{K}{s(1+sT)+K} = \frac{K}{s^2T+s+K}
+\end{equation*}
+標準的な2次系の形式に合わせるため，分母分子を $T$ で割ります．
+\begin{equation*}
+    W(s) = \frac{K/T}{s^2 + \frac{1}{T}s + \frac{K}{T}}
+\end{equation*}
+
+\subsection{特性方程式と減衰率の関係}
+2次遅れ系の標準形は $W(s) = \frac{\omega_n^2}{s^2+2\zeta\omega_n s + \omega_n^2}$ です．
+ここで，$\zeta$ は減衰率，$\omega_n$ は固有角周波数です．
+手順1で求めた閉ループ伝達関数の分母（特性方程式）と比較します．
+\begin{equation*}
+    s^2 + \frac{1}{T}s + \frac{K}{T} = s^2+2\zeta\omega_n s + \omega_n^2
+\end{equation*}
+係数を比較すると，以下の関係が得られます．
+\begin{align}
+    \omega_n^2 &= \frac{K}{T} \\
+    2\zeta\omega_n &= \frac{1}{T}
+\end{align}
+問題の条件より $\zeta=0.5$ なので，これを(2)式に代入します．
+\begin{align*}
+    2 \times 0.5 \times \omega_n &= \frac{1}{T} \\
+    \omega_n &= \frac{1}{T}
+\end{align*}
+この $\omega_n = \frac{1}{T}$ を(1)式に代入します．
+\begin{align*}
+    \left(\frac{1}{T}\right)^2 &= \frac{K}{T} \\
+    \frac{1}{T^2} &= \frac{K}{T}
+\end{align*}
+両辺に $T^2$ を掛けると（$T \neq 0$），
+\begin{equation*}
+    1 = KT
+\end{equation*}
+これにより，$K$ と $T$ の関係式が得られました．
+
+\subsection{定常偏差の計算}
+入力 $r(t)=1+t$ は，ステップ入力 $r_1(t)=1$ とランプ入力 $r_2(t)=t$ の和です．
+この系の偏差 $E(s)$ は，最終値の定理を用いて定常偏差 $e_{ss}$ を求めることで計算できます．
+\begin{equation*}
+    e_{ss} = \lim_{t \to \infty} e(t) = \lim_{s \to 0} sE(s)
+\end{equation*}
+この制御系は1型（開ループ伝達関数 $G(s)$ が $s$ を1つ分母に持つ）であるため，
+\begin{itemize}
+    \item ステップ入力 $r_1(t)=1$ に対する定常位置偏差は $\mathbf{0}$ となります．
+    \item ランプ入力 $r_2(t)=t$ に対する定常速度偏差 $e_v$ は，$e_v = \frac{1}{K_v}$ で与えられます．
+\end{itemize}
+速度偏差定数 $K_v$ は次のように計算されます．
+\begin{equation*}
+    K_v = \lim_{s \to 0} sG(s) = \lim_{s \to 0} s \cdot \frac{K}{s(1+sT)} = \lim_{s \to 0} \frac{K}{1+sT} = K
+\end{equation*}
+したがって，定常速度偏差は $e_v = \frac{1}{K}$ となります．
+入力全体 $r(t)=1+t$ に対する定常偏差 $e_{ss}$ は，それぞれの入力に対する定常偏差の和になるので，
+\begin{equation*}
+    e_{ss} = 0 + \frac{1}{K} = \frac{1}{K}
+\end{equation*}
+
+\subsection{KとTの値を決定}
+問題の条件より，定常偏差は $0.1$ なので，
+\begin{equation*}
+    e_{ss} = \frac{1}{K} = 0.1
+\end{equation*}
+よって，$K = \frac{1}{0.1} = 10$．
+手順2で求めた関係式 $1=KT$ に $K=10$ を代入します．
+\begin{align*}
+    1 &= 10 \cdot T \\
+    \text{よって，} T &= \frac{1}{10} = 0.1
+\end{align*}
+\textbf{答え: $K=10, T=0.1$}
+
+\section{問題3の解説}
+\textbf{右図の制御系で安定かつ定常速度偏差が0.05以下であるためのゲイン定数Kを求めよ。ただし $A(s)=\frac{K(1+0.65s)}{1+2s}, B(s)=\frac{5}{s(1+s)}$}
+
+\subsection{開ループ伝達関数の導出}
+この系の開ループ伝達関数 $G(s)$ は，$A(s)$ と $B(s)$ の積で与えられます．
+\begin{equation*}
+    G(s) = A(s)B(s) = \frac{K(1+0.65s)}{1+2s} \cdot \frac{5}{s(1+s)} = \frac{5K(1+0.65s)}{s(1+s)(1+2s)}
+\end{equation*}
+
+\subsection{安定性の条件（ラウス・フルビッツの安定判別法）}
+閉ループ系が安定であるためには，特性方程式 $1+G(s)=0$ のすべての根の実部が負である必要があります．
+\begin{align*}
+    1 + \frac{5K(1+0.65s)}{s(1+s)(1+2s)} &= 0 \\
+    s(1+s)(1+2s) + 5K(1+0.65s) &= 0 \\
+    s(1+3s+2s^2) + 5K+3.25Ks &= 0 \\
+    2s^3+3s^2+s+5K+3.25Ks &= 0
+\end{align*}
+$s$ の次数で整理します．
+\begin{equation*}
+    2s^3+3s^2+(1+3.25K)s+5K=0
+\end{equation*}
+この特性方程式からラウス配列を作成します．
+\[
+\begin{array}{c|cc}
+s^3 & 2 & 1+3.25K \\
+s^2 & 3 & 5K \\
+s^1 & b_1 & 0 \\
+s^0 & c_1 & 0 \\
+\end{array}
+\]
+ここで，$b_1$ と $c_1$ を計算します．
+\begin{align*}
+    b_1 &= \frac{3(1+3.25K) - 2(5K)}{3} = \frac{3+9.75K-10K}{3} = \frac{3-0.25K}{3} \\
+    c_1 &= \frac{b_1(5K) - 3(0)}{b_1} = 5K
+\end{align*}
+系が安定であるためには，ラウス配列の第1列の要素がすべて正である必要があります．
+\begin{enumerate}
+    \item $2 > 0$ (OK)
+    \item $3 > 0$ (OK)
+    \item $b_1 > 0 \Rightarrow \frac{3-0.25K}{3} > 0 \Rightarrow 3-0.25K > 0 \Rightarrow 3 > 0.25K \Rightarrow 12 > K$
+    \item $c_1 > 0 \Rightarrow 5K > 0 \Rightarrow K > 0$
+\end{enumerate}
+したがって，系が安定であるための $K$ の範囲は $0 < K < 12$ となります．
+
+\subsection{定常速度偏差の条件}
+定常速度偏差 $e_{ss}$ は，速度偏差定数 $K_v$ を用いて $e_{ss} = \frac{1}{K_v}$ と表されます．
+\begin{align*}
+    K_v &= \lim_{s \to 0} sG(s) = \lim_{s \to 0} s \cdot \frac{5K(1+0.65s)}{s(1+s)(1+2s)} = \lim_{s \to 0} \frac{5K(1+0.65s)}{(1+s)(1+2s)} \\
+    s=0 \text{ を代入すると，} \\
+    K_v &= \frac{5K(1+0)}{(1+0)(1+0)} = 5K
+\end{align*}
+定常速度偏差は $e_{ss} = \frac{1}{5K}$ となります．
+問題の条件より，定常速度偏差が $0.05$ 以下である必要があるので，
+\begin{align*}
+    \frac{1}{5K} &\le 0.05 \\
+    \frac{1}{5K} &\le \frac{5}{100} = \frac{1}{20}
+\end{align*}
+逆数をとると不等号の向きが変わります．
+\begin{align*}
+    5K &\ge 20 \\
+    K &\ge 4
+\end{align*}
+
+\subsection{最終的なKの範囲}
+求めるゲイン定数 $K$ は，安定性の条件と定常速度偏差の条件の両方を満たす必要があります．
+\begin{itemize}
+    \item 安定性の条件: $0 < K < 12$
+    \item 定常速度偏差の条件: $K \ge 4$
+\end{itemize}
+この2つの条件の共通範囲を求めます．\\
+\textbf{答え: $4 \le K < 12$}
+
+\end{document}

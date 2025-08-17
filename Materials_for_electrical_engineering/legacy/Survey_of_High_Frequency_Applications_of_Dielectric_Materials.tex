@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+\usepackage{fancyhdr}
+\setlength{\headheight}{30.832pt}
+
+% 参考文献番号を上付きにするコマンドを追加
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% fancyhdr ヘッダー設定
+\pagestyle{fancy}
+\fancyhf{}
+% ヘッダーを右揃え3行構成に
+\fancyhead[R]{\footnotesize
+  高周波誘電体材料の革新と応用 \\[-2pt]
+  長野高専 電気電子工学科 5年 栁原魁人 \\[-2pt]
+  2025年7月10日
+}
+\fancyhead[C]{}
+\fancyhead[L]{}
+% ヘッダー下の罫線を消す
+\renewcommand{\headrulewidth}{0pt}
+% ページ番号は下中央
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+% \maketitle を削除
+
+\section{はじめに}
+本稿は，高周波伝送技術における物理的課題とその解決策，ならびに株式会社TOTOKUの高性能同軸ケーブル「RUOTA」の技術的特徴と応用事例を調査・要約することを目的とする．
+
+\section{高周波伝送の課題}
+高周波信号の伝送品質は主に誘電損失と導体損失によって制限される．\\
+誘電損失は，誘電体に高周波交流電場を印加した際，分子分極の追従遅れによってエネルギーの一部が熱として失われる現象である．この損失の度合いは材料固有の比誘電率（$\varepsilon_{\mathrm{r}}$）および誘電正接（$\tan\delta$）によって決まり，周波数が高くなるほど増大する．\\
+導体損失は，表皮効果により高周波電流が導体表面に集中し，有効断面積が減少することで交流抵抗が増大し，損失が増加する現象である．\\
+したがって，高周波用途では低$\varepsilon_{\mathrm{r}}$・低$\tan\delta$の材料および表皮効果を抑制する構造が不可欠である．
+
+\section{材料・構造の革新}
+\subsection{低損失材料の採用：フッ素樹脂}
+高周波特性に優れた材料として，PTFE（ポリテトラフルオロエチレン）やFEP（フッ化エチレンプロピレン）などのフッ素樹脂が広く採用されている．フッ素樹脂は分子構造の対称性が高く，高周波領域で損失の主因となる双極子分極が起こりにくいため，他の高分子材料に比べて格段に低い比誘電率（$\varepsilon_{\mathrm{r}}\approx2.1$）と誘電正接（$\tan\delta\approx0.0002$）を示す\supcite{ref12}．
+
+\subsection{構造的革新：TOTOKUの「中空構造」技術}
+フッ素樹脂にも物理的な性能限界が存在するが，株式会社TOTOKUは独自の「中空構造（hollow structure）」技術によりこの限界を突破した\supcite{ref13}．\\
+この技術は，フッ素樹脂絶縁体の内部に長手方向に均一な空気層を設けるものであり，空気（$\varepsilon_{\mathrm{r}}\approx1.0$）を構造体の一部として取り込むことで，ケーブル全体の実効比誘電率をフッ素樹脂単体よりも低下させる．微細な中空構造を長尺ケーブルで均一に形成するには高度な製造技術が必要であり，これが同社の競争力の源泉となっている\supcite{ref14}．
+
+この構造の利点は以下の3点である．
+\begin{enumerate}
+  \item \textbf{低損失化}：実効比誘電率の低下により誘電損失が直接的に低減される．
+  \item \textbf{細径化・軽量化}：同じ特性インピーダンスを維持しつつケーブル全体の直径を小さくでき，機器の小型化に貢献する．
+  \item \textbf{優れた位相安定性}：温度変化による物理的伸縮や比誘電率変化の影響を受けにくく，信号の位相変動が極めて小さい．
+\end{enumerate}
+
+\section{応用事例}
+「RUOTA」は5G/6G通信，半導体テスト装置，医療機器などの分野で不可欠な役割を果たしている．たとえば5G基地局ではビームフォーミング技術のために高い位相安定性が要求され，RUOTAの中空構造が通信品質と省電力性能を支えている．また，半導体検査装置では信号反射の抑制や高密度実装への対応，医療機器では細径・軽量・高画質伝送による操作性と診断精度の向上に寄与している．
+
+\section{結論}
+本稿では，高周波伝送技術の課題とその解決に向けた材料・構造の革新，ならびに株式会社TOTOKUの「RUOTA」の応用事例について概説した．今後も材料科学と構造工学の融合による技術革新が，情報通信・医療・半導体分野の発展を支える基盤となることが期待される．
+
+\begin{thebibliography}{99}
+  \bibitem{ref10} 株式会社TOTOKU: 「高周波ケーブルとは？種類と性能評価指標を分かりやすく解説」, \url{https://www.totoku.co.jp/special-contents/column/coaxial_13/} (参照 2025年7月10日).
+  \bibitem{ref12} 住友電工: 「フッ素樹脂基板 高周波FPC」, \url{https://sei.co.jp/fluorocuit/} (参照 2025年7月10日).
+  \bibitem{ref13} totoku inc.: "RUOTA Equipment Lead Cable｜Product Information", \url{https://www.totoku.co.jp/product/coaxial-lead/} (参照 2025年7月10日).
+  \bibitem{ref14} 株式会社TOTOKU: "High performance Coaxial Cable", \url{https://www.totoku.co.jp/wp/wp-content/themes/totoku/assets/doc/en-RUOTA.pdf} (参照 2025年7月10日).
+  \bibitem{ref18} Shibata Co., Ltd.: "High Performance Coaxial Cable (RUOTA)", \url{https://www.shibata.co.jp/products/ruota} (参照 2025年7月10日).
+  \bibitem{ref30} 株式会社プロテリアル: 「低静電容量の医療機器用極細同軸ケーブルを開発」, \url{https://www.proterial.com/press/backnumber/2015/pdf/20150928.pdf} (参照 2025年7月10日).
+\end{thebibliography}
+
+\end{document}

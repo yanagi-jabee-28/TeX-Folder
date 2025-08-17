@@ -1,0 +1,347 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+% \usepackage{pxjahyper} % LuaLaTeXでは不要
+
+
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% 数式フォント設定
+\setmathfont{XITS Math}
+
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% ヘッダー設定例（タイトル・学籍情報・日付を適宜変更）
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  材料科学 期末試験対策資料（要点整理＆穴埋め問題） \\
+  長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人\\
+  \today
+}
+\setlength{\headheight}{35pt} % 値を調整
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={材料科学 期末試験対策総合資料},
+    pdfpagemode=FullScreen,
+    }
+
+\title{材料科学 期末試験対策資料\\（要点整理＆穴埋め問題）}
+\author{長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人}
+\date{\today}
+
+% 空欄用のコマンド
+\newcommand{\blank}[1][3cm]{\underline{\hspace{#1}}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+\clearpage
+
+\section{オプトエレクトロニクス材料}
+
+\subsection{要点まとめ}
+LED（発光ダイオード）は、\textbf{pn接合}を持つ半導体デバイスである。
+\begin{enumerate}
+    \item pn接合に\textbf{順バイアス}電圧を印加する。
+    \item n型半導体中の\textbf{電子}とp型半導体中の\textbf{正孔}（ホール）が接合部に向かって移動する。
+    \item 接合部で両者が\textbf{再結合}する際に、その半導体材料の\textbf{バンドギャップ}エネルギーに相当するエネルギーを\textbf{光子}として放出する。これがLEDの発光原理である。
+    \item 発光する光の波長（色）はバンドギャップエネルギーの大きさで決まる。バンドギャップエネルギー $E_g$ と発光波長 $\lambda$ の間には、近似的に次の関係がある。
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=バンドギャップと波長の関係式]
+    \[ \lambda (\si{\nano\meter}) \approx \frac{1240}{E_g (\si{\electronvolt})} \]
+    \end{tcolorbox}
+    \begin{itemize}
+        \item[\textbf{式の説明:}] この式は、半導体のバンドギャップエネルギー $E_g$（単位: エレクトロンボルト, eV）から、発光する光の波長 $\lambda$（単位: ナノメートル, nm）を概算するためのものである。定数1240は、プランク定数と光速から導出される値である。
+        \item[\textbf{色の波長について:}] 光の色は波長によって決まる。可視光の場合、波長が長いと赤っぽく、短いと青紫色に見える。
+        \begin{itemize}
+            \item 赤色光: 約 620～750 nm $\rightarrow$ 小さい $E_g$ (例: 約1.8 eV)
+            \item 緑色光: 約 495～570 nm
+            \item 青色光: 約 450～495 nm $\rightarrow$ 大きい $E_g$ (例: 約2.7 eV)
+        \end{itemize}
+        これにより、目的の色のLEDを作るためには、対応するバンドギャップを持つ材料を選ぶ必要があることがわかる。
+    \end{itemize}
+\end{enumerate}
+
+\subsection{穴埋め練習問題}
+LEDは、(\blank)を持つ半導体デバイスである。このpn接合に(\blank[2cm])電圧をかけると、n型領域の(\blank[1.5cm])とp型領域の(\blank[1.5cm])が接合部で(\blank[2cm])する。このとき、物質固有の(\blank)エネルギーに相当するエネルギーが光子として放出され、発光する。
+
+\subsection{レーザー（LASER）}
+\subsubsection{要点まとめ}
+レーザーは「\textbf{誘導放出}による光の増幅」を意味する英語の頭字語（LASER）です。特定の性質を持つ、強力な光を生成します。
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=レーザーの基本原理]
+\begin{description}
+    \item[誘導放出] 励起状態（高いエネルギー状態）の原子に光子を当てると、その光子に刺激されて、\textbf{同じ性質（周波数・位相）を持つ光子}がもう1つ放出されます。これにより、光が1個から2個、2個から4個へと雪だるま式に増幅されます。
+    \item[反転分布] 誘導放出を効率よく起こすには、励起状態の原子が多数派である特殊な状態（\textbf{反転分布}）を、ポンピング（外部からのエネルギー供給）によって作り出す必要があります。
+    \item[光共振器] 2枚の鏡で誘導放出された光を何度も往復させ、増幅を繰り返すことで、強力なレーザー光が生成されます。
+\end{description}
+\end{tcolorbox}
+
+
+
+\subsubsection{レーザー光の主な特徴}
+\begin{description}
+    \item[単色性] 波長がほぼ単一で、非常に純粋な色の光です。
+    \item[指向性] まっすぐ進み、ほとんど広がりません。
+    \item[干渉性（コヒーレンス）] 波の位相がそろっており、干渉しやすい性質を持ちます。
+    \item[高輝度] エネルギーを非常に小さな面積に集中できます。
+\end{description}
+
+\subsubsection{レーザーの種類と特徴}
+レーザーは、光を増幅する「媒質」によって分類されます。
+\begin{description}
+    \item[固体レーザー] 非常に大きなピーク出力を得られます。（例: YAGレーザー）
+    \item[液体レーザー] 発振する光の波長を変化させることが可能です。（例: 色素レーザー）
+    \item[気体レーザー] 安定した出力が得られます。（例: CO₂レーザー、He-Neレーザー）
+    \item[半導体レーザー] pn接合を利用し、小型・軽量で効率が良いのが特徴です。光通信やディスクの読み書きに広く使われます。
+\end{description}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=表7.2 主なレーザー材料と特性]
+\begin{tblr}{
+  width=\linewidth,
+  colspec = {Q[c,m] X[l,m] X[l,m] X[c,m]},
+  row{1} = {c,font=\bfseries},
+  vlines, hlines,
+}
+種類 & 名称 & 材料 & {発振波長 \relax[\unit{\micro\meter}]} \\
+\SetCell[r=3]{m} 気体レーザー & ヘリウムネオンレーザ & He, Ne & 0.63, 1.15, 3.39 \\
+& アルゴンレーザ & Ar & 0.5145, 0.4880, ... \\
+& 炭酸ガスレーザ & He, N$_2$, CO$_2$ & 10.6 \\
+\SetCell[r=2]{m} 固体レーザー & ルビーレーザ & Al$_2$O$_3$, Cr$_3$ & 0.694 \\
+& YAGレーザ & Y$_3$Al$_5$O$_{12}$, Nd$^{3+}$ & 1.064 \\
+液体レーザー & 色素レーザ & 色素 & 広範囲 \\
+\SetCell[r=3]{m} 半導体レーザー & InGaAsP系レーザ & InGaAsP & 1.15--1.65 \\
+& AlGaAs系レーザ & AlGaAs & 0.68--0.89 \\
+& InGaAlP系レーザ & InGaAlP & 0.58--0.65 \\
+\end{tblr}
+
+\end{tcolorbox}
+
+\subsubsection{穴埋め練習問題}
+レーザーは、(\blank[2.5cm])という現象を利用して光を増幅する。このためには、外部からのエネルギー供給により、原子を(\blank[2cm])状態にし、さらにその数を基底状態より多くする(\blank[2.5cm])を形成する必要がある。2枚の鏡で光を往復させる装置は(\blank[2cm])と呼ばれる。
+
+レーザー光の性質には、波長が単一である(\blank[2cm])、まっすぐ進む(\blank[2cm])、波の位相がそろう(\blank[2.5cm])などがある。
+
+小型・軽量で効率が良く、光通信などに用いられるのは(\blank[2.5cm])レーザーである。
+
+\section{磁性材料}
+\subsection{要点まとめ}
+\begin{itemize}
+    \item \textbf{磁性の起源}: なぜ物質は磁石にくっついたり、反発したりするのでしょうか？その根源は、物質を構成する原子の中にある電子の振る舞いにあります。電子は「\textbf{スピン}」という自転のような性質と、「\textbf{軌道運動}」という原子核の周りを回る運動をしています。これらの動きが、原子一つひとつを小さな磁石（\textbf{磁気モーメント}）にしています。
+    \item \textbf{磁性の種類}: 個々の原子が持つ磁気モーメントが、物質全体としてどのように振る舞うかによって、磁性はいくつかの種類に分けられます。
+        \begin{description}
+            \item[常磁性 (Paramagnetism)]
+            普段は原子の磁気モーメントがバラバラな向きを向いているため、磁性を示しません。しかし、外部から磁石を近づける（磁場をかける）と、磁気モーメントが磁場の向きに少しだけそろい、弱く引き付けられます。磁場を取り除くと元のバラバラな状態に戻ります。
+
+            \textit{例: アルミニウム (Al)、白金 (Pt)、酸素 (O$_2$)}
+            \item[反磁性 (Diamagnetism)]
+            すべての物質が持つ非常に弱い磁性です。外部から磁場をかけると、その磁場を打ち消す向きに磁化され、磁石に弱く反発します。
+
+            \textit{例: 水 (H$_2$O)、銅 (Cu)、炭素 (C)、ビスマス (Bi)}
+            \item[強磁性 (Ferromagnetism)]
+            原子の磁気モーメントが、まるで小さな磁石が整列するように、自発的に同じ向きに強くそろっています。このため、外部に磁場がなくても強い磁石の性質（\textbf{自発磁化}）を示します。ただし、高温になると（\textbf{キュリー温度}以上）、この整列が乱れ、常磁性体になります。
+
+            \textit{例: 鉄 (Fe)、コバルト (Co)、ニッケル (Ni)、ネオジム磁石}
+            \item[反強磁性 (Antiferromagnetism)]
+            隣り合う原子の磁気モーメントが、互いに逆向きに整列しているため、全体の磁性が打ち消されてしまいます。外部から見ると磁石の性質を示しません。この秩序は、特定の温度（\textbf{ネール温度} $T_N$）以上になると熱ゆらぎによって乱れ、常磁性体へと変化します。
+
+            \textit{例: 酸化マンガン (MnO)、酸化ニッケル (NiO)}
+            \item[フェリ磁性 (Ferrimagnetism)]
+            反強磁性と同様に、隣り合う磁気モーメントが逆向きに整列していますが、その大きさが異なります。そのため、磁性が完全に打ち消されず、正味の自発磁化が残ります。強磁性よりは弱いですが、磁石としての性質を示します。
+
+            \textit{例: フェライト（Fe$_3$O$_4$, MnFe$_2$O$_4$など）、ガーネット}
+        \end{description}
+    \item \textbf{ヒステリシス曲線（B-H曲線）}: 強磁性体やフェリ磁性体に加える外部磁場（H）の強さと、それによって物質内に生じる磁束密度（B）または磁化（M）の関係を示したグラフです。磁性材料の「履歴」特性がわかります。
+        \begin{itemize}
+            \item \textbf{残留磁化 ($B_r$ or $M_r$)}: 磁場を強くかけて一度磁化した後、磁場をゼロに戻しても残っている磁気の強さ。「どれだけ磁化を記憶できるか」を示します。
+            \item \textbf{保磁力 ($H_c$)}: 残留磁化を完全に消去するために必要な、逆向きの磁場の強さ。「どれだけ磁化が消えにくいか」を示します。
+        \end{itemize}
+    \item \textbf{磁性材料の応用分類}:
+        \begin{description}
+            \item[軟質磁性材料（ソフトマグネット）]
+            \textbf{保磁力が小さい}材料。弱い磁場で簡単に磁化でき、磁場がなくなるとすぐに磁化を失います。電気エネルギーと磁気エネルギーの変換が効率的に行えるため、変圧器（トランス）の鉄心やモーターコアなどに使われます。
+
+            \textit{例: 純鉄、ケイ素鋼、パーマロイ}
+            \item[硬質磁性材料（ハードマグネット）]
+            \textbf{保磁力が大きい}材料。一度強く磁化されると、その磁気を長期間安定して保持し続けます。いわゆる「永久磁石」として、モーター、スピーカー、ハードディスクなどに広く使われます。
+
+            \textit{例: フェライト磁石、アルニコ磁石、ネオジム磁石（Nd-Fe-B系）}
+        \end{description}
+\end{itemize}
+
+\subsection{穴埋め練習問題}
+物質の磁性は、原子内の電子が持つ(\blank[1.5cm])と(\blank[2cm])という2つの運動に由来する\textbf{磁気モーメント}によって生じる。
+
+普段は磁性を示さないが、磁場をかけると弱く引き付けられる性質を(\blank[2cm])といい、アルミニウムなどがその例である。すべての物質が持つ、磁場に弱く反発する性質は(\blank[2cm])と呼ばれる。
+
+鉄やコバルトのように、外部磁場がなくても自発的に磁気モーメントが整列し、強い磁化を示す物質を(\blank[2cm])体と呼ぶ。この性質は、ある温度（(\blank[2.5cm])）以上になると失われる。
+
+隣り合う磁気モーメントが逆向きに打ち消しあうのが(\blank[2.5cm])で、逆向きの磁気モーメントの大きさが異なるために正味の磁化が残るのが(\blank[2.5cm])である。後者の代表例が(\blank[2cm])である。
+
+強磁性体の磁気特性は(\blank[2.5cm])曲線で評価される。磁場をゼロにしても残る磁化を(\blank[2.5cm])、それを消すために必要な逆向きの磁場の強さを(\blank[2.5cm])と呼ぶ。
+
+保磁力が(\blank[1.5cm])材料は、変圧器の鉄心などに使われる軟質磁性材料（ソフトマグネット）であり、保磁力が(\blank[1.5cm])材料は、永久磁石として使われる硬質磁性材料（ハードマグネット）である。
+
+\section{超伝導材料}
+\subsection{要点まとめ}
+超伝導とは、特定の金属や化合物を極低温まで冷却した際に、電気抵抗が完全にゼロになる現象です。
+この驚異的な性質は、以下の3つの条件（臨界値）が満たされる範囲でのみ現れます。
+\begin{itemize}
+    \item \textbf{臨界温度 ($T_c$)}: この温度以下でのみ超伝導状態になります。
+    \item \textbf{臨界磁場 ($H_c$)}: この磁場の強さ以下でないと、超伝導状態は壊れてしまいます。
+    \item \textbf{臨界電流密度 ($J_c$)}: この電流密度以下でないと、超伝導状態を維持できません。
+\end{itemize}
+
+超伝導が起こるメカニズムと、その特徴的な振る舞いは以下の通りです。
+
+\begin{description}
+    \item[BCS理論]
+    超伝導のメカニズムを説明する標準的な理論です。通常、電子同士はマイナスの電荷を持つため反発し合いますが、極低温の結晶格子中では、電子が通過する際に格子をわずかに歪ませ（格子振動＝フォノン）、その歪みを通じて別の電子との間に引力が働きます。この引力によって電子が2個1組のペア「\textbf{クーパー対}」を形成します。クーパー対は、結晶格子との間でエネルギーのやり取り（散乱）をすることなく、抵抗ゼロで流れることができます。
+
+    \item[マイスナー効果（完全反磁性）]
+    超伝導体のもう一つの重要な特徴です。超伝導体を臨界温度以下に冷却すると、外部からかけられた磁力線が物質の内部から完全に排除されます。これにより、超伝導体は磁石に対して強く反発する「\textbf{完全反磁性}」を示します。磁石の上で超伝導体が浮上する現象は、この効果によるものです。
+
+    \item[超伝導体の種類]
+    磁場に対する振る舞いの違いから、2つのタイプに分類されます。
+    \begin{itemize}
+        \item \textbf{第一種超伝導体}:
+        単一の臨界磁場 $H_c$ を持ちます。外部磁場が $H_c$ を超えると、マイスナー効果が破れ、超伝導状態から常伝導状態へ急激に転移します。主に純粋な金属（鉛、水銀など）に見られます。
+
+        \item \textbf{第二種超伝導体}:
+        下部臨界磁場 $H_{c1}$ と上部臨界磁界 $H_{c2}$ という2つの臨界磁場を持ちます。
+        \begin{itemize}
+            \item $H < H_{c1}$: 磁場は完全に排除されます（マイスナー状態）。
+            \item $H_{c1} < H < H_{c2}$: 磁場が「\textbf{磁束量子}」という糸のような形で部分的に内部へ侵入した「\textbf{混合状態}」になります。この状態でも電気抵抗ゼロは維持されます。
+            \item $H > H_{c2}$: 超伝導状態が完全に壊れます。
+        \end{itemize}
+        $H_{c2}$ が非常に高いため、強力な磁石（MRIなど）や高電流を扱う応用に不可欠です。混合状態において、不純物などが磁束の動きを妨げる「\textbf{ピン止め効果}」が強いほど、高い臨界電流密度を実現できます。多くの実用的な超伝導材料（ニオブチタン合金、高温超伝導体など）はこちらに分類されます。
+    \end{itemize}
+\end{description}
+
+\subsection{穴埋め練習問題}
+特定の物質を(\blank[2cm])以下に冷却すると、電気抵抗がゼロになる現象を超伝導という。この状態は、強い(\blank[1.5cm])や大きな(\blank[2cm])を流すことでも破れてしまう。
+
+超伝導のメカニズムは、電子が格子振動を介してペアを組んだ(\blank[2.5cm])を形成することで説明される(\blank[1.5cm])理論によって説明される。
+また、超伝導体は外部磁場を内部から完全に排除する(\blank[2.5cm])効果を示し、(\blank[2.5cm])として振る舞う。
+
+超伝導体は磁場に対する振る舞いから2種類に分類される。(\blank[2.5cm])は単一の臨界磁界しか持たないが、(\blank[2.5cm])は2つの臨界磁界($H_{c1}, H_{c2}$)を持ち、その間の(\blank[2cm])と呼ばれる状態で高い磁場に耐えることができる。このため、MRIなどの強力な磁石には後者が用いられる。
+
+
+\section{炭素材料}
+\subsection{要点まとめ}
+炭素原子の電子軌道が混じり合って新しい軌道を作ることを\textbf{混成軌道}という。
+\begin{itemize}
+    \item \textbf{sp³混成軌道}: 1つのs軌道と3つのp軌道から成り、正四面体の頂点方向を向く。この結合が三次元的に広がることで、非常に硬い\textbf{ダイヤモンド}の構造が形成される。
+    \item \textbf{sp²混成軌道}: 1つのs軌道と2つのp軌道から成り、同一平面上で120°の角度をなす。この結合を持つ炭素原子が六角形の網目状平面（グラフェンシート）を作り、これが積層したものが\textbf{グラファイト}である。
+\end{itemize}
+
+\subsection{穴埋め練習問題}
+炭素材料の多様性は、電子軌道の(\blank)に起因する。
+炭素原子が4つの等価な(\blank[2cm])混成軌道を形成すると、それらは正四面体構造をとる。この結合様式によって作られる非常に硬い材料が(\blank)である。
+一方、3つの等価な(\blank[2cm])混成軌道を形成すると、炭素原子は平面的な六角形網目構造を作る。このシートが層状に重なったものが(\blank)である。
+
+\section{材料解析}\subsection{要点まとめ}物質の特性を理解するためには、その構造を様々なスケールで観察・分析する必要があります。ここでは代表的な分析手法を解説します。\begin{description}    \item[X線回折 (XRD - X-ray Diffraction)]        \begin{itemize}            \item \textbf{原理}: 結晶のように原子が規則正しく並んだ物質にX線を照射すると、特定の角度でX線が強く反射される「回折」という現象が起こります。この回折パターンは、原子の並び方（結晶構造）に固有のものであるため、指紋のように物質を特定できます。この現象は\textbf{ブラッグの法則}に基づいています。            \item \textbf{わかること}: \textbf{結晶構造の同定}（その物質が何であるか）、格子定数（原子間の距離）の精密な測定、結晶性の良し悪し、結晶の大きさなど、\textbf{物質全体の平均的な構造情報}が得られます。            \item \textbf{特徴・使い分け}: 物質が結晶質か非晶質（アモルファス）かの判断や、未知の結晶性粉末の同定に絶大な効果を発揮します。表面の形ではなく、原子レベルの規則性を知りたい場合に第一選択となる手法です。        \end{itemize}    \item[走査型電子顕微鏡 (SEM - Scanning Electron Microscope)]        \begin{itemize}            \item \textbf{原理}: 細く絞った電子線を試料の表面に照射し、そこから放出される\textbf{二次電子}や反射電子を検出します。電子線を走査（スキャン）しながら各点からの信号の強弱を画像にすることで、\textbf{表面の凹凸（形態）}を観察します。立体的に見えるのはこのためです。            \item \textbf{わかること}: 試料\textbf{表面のミクロな形状}、凹凸、組織の状態。数マイクロメートルから数ナノメートルのスケールでの観察が得意です。            \item \textbf{特徴・使い分け}: 試料を薄く加工する必要がなく、比較的大きな試料でもそのまま観察できます。金属の破断面や、半導体デバイスの回路パターンなど、\textbf{表面の形を見たい}場合に用います。原則として、試料には導電性が必要です。        \end{itemize}    \item[透過型電子顕微鏡 (TEM - Transmission Electron Microscope)]        \begin{itemize}            \item \textbf{原理}: SEMが表面を見るのに対し、TEMは試料を\textbf{透過}してきた電子線を利用して、内部の構造を拡大して観察します。レントゲン写真のように、物質の内部を透かして見るイメージです。            \item \textbf{わかること}: \textbf{試料の内部構造}。原子の配列の様子や、結晶中の欠陥（転位など）、微小な析出物の分布などを\textbf{直接観察}できます。            \item \textbf{特徴・使い分け}: SEMよりもはるかに高い分解能を持ち、原子の姿を直接捉えることが可能です。その代わり、電子線が透過できるほど\textbf{試料を極めて薄く（通常100nm以下）}する必要があります。材料内部のナノスケールの構造や欠陥を解析したい場合に不可欠です。        \end{itemize}    \item[原子間力顕微鏡 (AFM - Atomic Force Microscope)]        \begin{itemize}            \item \textbf{原理}: 先端が原子レベルで尖った探針（プローブ）で、試料の表面を優しくなぞります。このとき、探針と試料表面の原子の間に働く非常に弱い力（\textbf{原子間力}）を検出し、その力の変化から表面の\textbf{三次元的な凹凸形状}を精密に測定します。目隠しをした人が杖で地面を探りながら形を認識するイメージに近いです。            \item \textbf{わかること}: ナノメートルオーダーの極めて高い分解能での\textbf{表面の3D形状}。高さ方向の測定精度が非常に高いのが特徴です。            \item \textbf{特徴・使い分け}: SEMと異なり、\textbf{試料に導電性が不要}です。また、真空中だけでなく\textbf{大気中や液中でも測定可能}なため、生体分子など、自然な状態に近い環境で観察したい場合に非常に強力なツールとなります。        \end{itemize}\end{description}
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=分析手法の比較まとめ]
+\begin{tblr}{
+  width=\linewidth,
+  colspec = {Q[c,m] X[l,m] X[l,m] X[l,m]},
+  row{1} = {c,font=\bfseries},
+  vlines, hlines,
+}
+\textbf{手法} & \textbf{主な原理} & \textbf{何を見るか} & \textbf{特徴} \\
+XRD & X線の回折 & 結晶構造（原子の規則的な並び） & 物質全体の平均情報、粉末OK \\
+SEM & 二次電子の検出 & 表面の凹凸・形態 & 立体的な画像、広い視野、導電性必要 \\
+TEM & 透過電子の検出 & 内部の構造・欠陥 & 高分解能（原子が見える）、試料を薄くする必要あり \\
+AFM & 原子間力 & 表面の3D形状 & 導電性不要、大気中・液中OK、高さ精度が高い \\
+\end{tblr}
+\end{tcolorbox}
+
+\subsection{計算問題対策：ブラッグの法則}
+X線回折において、回折が起こる条件は\textbf{ブラッグの法則}で与えられる。
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=ブラッグの法則]
+$n\lambda = 2d\sin\theta$
+\end{tcolorbox}
+\begin{itemize}
+    \item $n$: 整数 (通常は1)
+    \item $\lambda$: X線の波長
+    \item $d$: 結晶の面間隔
+    \item $\theta$: X線の入射角（ブラッグ角）
+\end{itemize}
+\textbf{例題}: 波長が0.154 nmのX線を用いてある結晶を測定したところ、回折角($2\theta$)が30°の位置にピークが観測された。この結晶の面間隔$d$を求めよ。
+\textbf{解法}: $2\theta = 30°$より、ブラッグ角$\theta = 15°$である。$n=1$としてブラッグの法則に代入すると、
+$1 \times 0.154\text{ nm} = 2 \times d \times \sin(15°)$
+$d = \frac{0.154}{2 \sin(15°)} \approx \frac{0.154}{2 \times 0.2588} \approx 0.297\text{ nm}$
+
+\subsection{穴埋め練習問題}
+\begin{enumerate}
+    \item 未知の結晶性粉末が何であるかを特定したい場合、第一選択となる分析手法は(\blank)である。これは、結晶格子によるX線の(\blank)現象を利用し、物質固有のパターンを測定するものである。
+    \item 金属の破断面のような、試料の(\blank[2.5cm])を立体的に観察したい場合には(\blank[1.5cm])が適している。この手法は、電子線を試料表面に当てた際に放出される(\blank[2.5cm])を検出して画像化する。
+    \item 材料の内部にある原子の配列や、転位などの結晶欠陥を直接観察したい場合は、非常に高い分解能を持つ(\blank[1.5cm])を用いる。ただし、この手法では電子線が透過できるように、試料を(\blank[2.5cm])する必要がある。
+    \item 探針と試料の間に働く(\blank[2.5cm])を検出することで、表面の三次元形状を測定する顕微鏡は(\blank)である。この手法の大きな利点は、試料に(\blank[2.5cm])がなくても測定でき、(\blank[2.5cm])や液中でも観察可能である点だ。
+\end{enumerate}
+
+\clearpage
+\section{穴埋め練習問題 解答}
+
+\subsection*{1. オプトエレクトロニクス材料}
+\textbf{LED:} pn接合, 順バイアス, 電子, 正孔, 再結合, バンドギャップ
+
+\textbf{レーザー:} 誘導放出, 励起, 反転分布, 光共振器, 単色性, 指向性, 干渉性（コヒーレンス）, 半導体
+
+\subsection*{2. 磁性材料}
+スピン, 軌道運動, 常磁性, 反磁性, 強磁性, キュリー温度, 反強磁性, フェリ磁性, フェライト, ヒステリシス, 残留磁化, 保磁力, 小さい, 大きい
+
+\subsection*{3. 超伝導材料}
+臨界温度, 磁場, 電流, クーパー対, BCS, マイスナー, 完全反磁性体, 第一種超伝導体, 第二種超伝導体, 混合状態
+
+\subsection*{4. 炭素材料}
+混成軌道, sp³, ダイヤモンド, sp², グラファイト
+
+\subsection*{5. 材料解析}
+1. X線回折 (XRD), 回折
+2. 表面の凹凸形状（形態）, 走査型電子顕微鏡 (SEM), 二次電子
+3. 透過型電子顕微鏡 (TEM), 極めて薄くする
+4. 原子間力, 原子間力顕微鏡 (AFM), 導電性, 大気中
+
+\begin{thebibliography}{9}
+\bibitem{ref1} R7期末の範囲スライド.pdf
+\end{thebibliography}
+
+\end{document}

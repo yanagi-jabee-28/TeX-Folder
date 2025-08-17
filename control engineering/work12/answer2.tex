@@ -1,0 +1,418 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  制御工学における安定判別法の演習 \\
+  長野高専 電気電子工学科 5年 34番 栁原魁人 \\
+  2025年7月22日
+}
+\setlength{\headheight}{34.832pt}
+
+\begin{document}
+\title{制御工学における安定判別法の演習}
+\author{長野高専 電気電子工学科 5年 34番 栁原魁人}
+\date{2025年7月22日}
+\maketitle
+\thispagestyle{fancy}
+
+\section{伝達関数の極に基づく安定判別}
+
+\subsection{問題1(1) の解答と解説}
+
+\textbf{問題:} 以下の伝達関数の安定性を，極を求めて判定せよ．
+
+$$\frac{1}{s^2-2s+3}$$
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item 特性方程式の特定:\\
+伝達関数の分母多項式をゼロとおくことで，特性方程式を得る．
+$$s^2-2s+3=0$$
+
+\item 極の計算:\\
+この2次方程式を解の公式 $s=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ を用いて解く．
+$$s = \frac{-(-2) \pm \sqrt{(-2)^2 - 4 \cdot 1 \cdot 3}}{2 \cdot 1}$$
+$$s = \frac{2 \pm \sqrt{4 - 12}}{2} = \frac{2 \pm \sqrt{-8}}{2}$$
+$$s = \frac{2 \pm j2\sqrt{2}}{2} = 1 \pm j\sqrt{2}$$
+
+\item 極の配置と安定性の判定:\\
+得られた極は $s_1=1+j\sqrt{2}$ と $s_2=1-j\sqrt{2}$ である．\\
+これらの極の実数部は共に $\mathrm{Re}(s)=+1$ であり，正の値である．\\
+これは，極が複素$s$平面の右半平面（RHP）に存在することを示す．
+\end{enumerate}
+
+\textbf{結論:}\\
+右半平面に極が存在するため，このシステムは不安定である．
+
+\subsection{問題1(2) の解答と解説}
+
+\textbf{問題:} 以下の伝達関数の安定性を，極を求めて判定せよ．
+
+$$\frac{1}{s^3+4s^2+7s+6}$$
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item 特性方程式の特定:\\
+特性方程式は以下のようになる．
+$$P(s)=s^3+4s^2+7s+6=0$$
+
+\item 極の計算（高次方程式の因数分解）:\\
+3次以上の方程式では，まず有理根定理などを用いて整数の根を探すのが一般的である．定数項6の約数（$\pm1,\pm2,\pm3,\pm6$）を候補として代入する．
+\begin{itemize}
+\item $s=-1$ を試す: $P(-1)=(-1)^3+4(-1)^2+7(-1)+6=-1+4-7+6=2\neq0$
+\item $s=-2$ を試す: $P(-2)=(-2)^3+4(-2)^2+7(-2)+6=-8+16-14+6=0$
+\end{itemize}
+$s=-2$ が根であることがわかったため，$(s+2)$ が $P(s)$ の因数であることがわかる．次に，多項式の割り算（組立除法など）を行い，残りの因子を求める．
+
+$$(s^3+4s^2+7s+6)\div(s+2)=s^2+2s+3$$
+
+これにより，特性方程式は次のように因数分解できる．
+$$(s+2)(s^2+2s+3)=0$$
+
+\item すべての極の導出:\\
+各因数がゼロとなる条件から，すべての極を求める．
+\begin{itemize}
+\item 第1の因子から: $s+2=0\Rightarrow s_1=-2$
+\item 第2の因子から: $s^2+2s+3=0$ を解の公式で解く．
+$$s = \frac{-2 \pm \sqrt{2^2 - 4 \cdot 1 \cdot 3}}{2 \cdot 1} = \frac{-2 \pm \sqrt{4 - 12}}{2} = \frac{-2 \pm \sqrt{-8}}{2}$$
+$$s = \frac{-2 \pm j2\sqrt{2}}{2} = -1 \pm j\sqrt{2}$$
+\end{itemize}
+
+したがって，3つの極は $s_1=-2$, $s_2=-1+j\sqrt{2}$, $s_3=-1-j\sqrt{2}$ となる．
+
+\item 極の配置と安定性の判定:\\
+各極の実数部を確認する．
+\begin{itemize}
+\item $\mathrm{Re}(s_1)=-2$ （負）
+\item $\mathrm{Re}(s_2)=-1$ （負）
+\item $\mathrm{Re}(s_3)=-1$ （負）
+\end{itemize}
+すべての極の実数部が負であり，$s$平面の左半平面（LHP）に配置されている．
+\end{enumerate}
+
+\textbf{結論:}\\
+すべての極が左半平面に存在するため，このシステムは安定である．
+
+\section{ラウスの安定判別法}
+
+\subsection{問題3(1) の解答と解説}
+
+\textbf{問題:} 特性方程式が $s^4+3s^3+4s^2+3s+2=0$ で与えられる伝達関数の安定性を，ラウスの安定判別法から判定せよ．
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item ラウス配列の構成:\\
+特性方程式の係数は $a_4=1, a_3=3, a_2=4, a_1=3, a_0=2$ である．
+
+\begin{table}[ht]
+\centering
+\caption{ラウス配列の構成過程}
+\label{tbl:routh1}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 1 & 4 & 2 \\
+$s^3$ & 3 & 3 & 0 \\
+$s^2$ & $b_1$ & $b_2$ & \\
+$s^1$ & $c_1$ & & \\
+$s^0$ & $d_1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+各要素を計算する．
+\begin{itemize}
+\item $s^2$ の行:
+$$b_1 = \frac{3 \cdot 4 - 1 \cdot 3}{3} = \frac{9}{3} = 3$$
+$$b_2 = \frac{3 \cdot 2 - 1 \cdot 0}{3} = \frac{6}{3} = 2$$
+\item $s^1$ の行:
+$$c_1 = \frac{3 \cdot 3 - 3 \cdot 2}{3} = \frac{3}{3} = 1$$
+\item $s^0$ の行:
+$$d_1 = \frac{1 \cdot 2 - 3 \cdot 0}{1} = 2$$
+\end{itemize}
+
+\item 完成したラウス配列と安定性の判定:\\
+完成した配列は表\ref{tbl:routh1_complete}の通りである．
+
+\begin{table}[ht]
+\centering
+\caption{完成したラウス配列}
+\label{tbl:routh1_complete}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 1 & 4 & 2 \\
+$s^3$ & \textbf{3} & 3 & 0 \\
+$s^2$ & \textbf{3} & 2 & \\
+$s^1$ & \textbf{1} & & \\
+$s^0$ & \textbf{2} & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+第1列の要素は $[1, 3, 3, 1, 2]$ である．すべての要素が正であり，符号の変化はない．
+\end{enumerate}
+
+\textbf{結論:}\\
+ラウス配列の第1列に符号変化がないため，このシステムは安定である．
+
+\subsection{問題3(2) の解答と解説}
+
+\textbf{問題:} 特性方程式が $2s^4+4s^3+s^2+2s+3=0$ で与えられる伝達関数の安定性を判定し，不安定の場合は不安定極の数も求めよ．
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item ラウス配列の構成と特殊ケースの発生:\\
+係数は $a_4=2, a_3=4, a_2=1, a_1=2, a_0=3$ である．
+
+\begin{table}[ht]
+\centering
+\caption{ラウス配列（特殊ケース発生）}
+\label{tbl:routh2}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 2 & 1 & 3 \\
+$s^3$ & 4 & 2 & 0 \\
+$s^2$ & $b_1$ & $b_2$ & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$s^2$ の行の第1要素 $b_1$ を計算する．
+$$b_1 = \frac{4 \cdot 1 - 2 \cdot 2}{4} = \frac{0}{4} = 0$$
+第1列に0が現れたため，これは特殊ケース1に該当する．
+
+\item $\varepsilon$法の適用:\\
+$b_1=0$ を微小な正の数 $\varepsilon$ で置き換えて計算を続行する．
+
+$$b_2 = \frac{4 \cdot 3 - 2 \cdot 0}{4} = 3$$
+
+修正された配列は表\ref{tbl:routh2_epsilon}のようになる．
+
+\begin{table}[ht]
+\centering
+\caption{微小量法を適用したラウス配列}
+\label{tbl:routh2_epsilon}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 2 & 1 & 3 \\
+$s^3$ & 4 & 2 & 0 \\
+$s^2$ & $\varepsilon$ & 3 & \\
+$s^1$ & $c_1$ & & \\
+$s^0$ & $d_1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+残りの要素を計算する．
+\begin{itemize}
+\item $s^1$ の行:
+$$c_1 = \frac{\varepsilon \cdot 2 - 4 \cdot 3}{\varepsilon} = \frac{2\varepsilon - 12}{\varepsilon}$$
+\item $s^0$ の行:
+$$d_1 = \frac{c_1 \cdot 3 - \varepsilon \cdot 0}{c_1} = 3$$
+\end{itemize}
+
+\item 第1列の符号評価 ($\varepsilon \to 0^+$):\\
+第1列の要素は $[2, 4, \varepsilon, \frac{2\varepsilon-12}{\varepsilon}, 3]$ である．$\varepsilon$ を微小な正の数として，各要素の符号を評価する．
+\begin{itemize}
+\item $s^4$ の行: 2 (正)
+\item $s^3$ の行: 4 (正)
+\item $s^2$ の行: $\varepsilon$ (正)
+\item $s^1$ の行: $\frac{2\varepsilon-12}{\varepsilon} \approx \frac{-12}{\varepsilon}$ (負)
+\item $s^0$ の行: 3 (正)
+\end{itemize}
+符号の系列は $[+, +, +, -, +]$ となる．
+
+\item 符号変化の回数と安定性の判定:\\
+第1列の符号は，$s^2$ の行から $s^1$ の行へ移る際に正から負へ変化し，$s^1$ の行から $s^0$ の行へ移る際に負から正へ変化している．符号変化は合計で2回である．
+\end{enumerate}
+
+\textbf{結論:}\\
+第1列の符号変化が2回あるため，このシステムは不安定であり，右半平面に2個の不安定極を持つ．
+
+\subsection{問題3(3) の解答と解説}
+
+\textbf{問題:} 特性方程式が $2s^4+s^3+4s^2+s+2=0$ で与えられる伝達関数の安定性を判定し，不安定の場合は不安定極の数も求めよ．
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item ラウス配列の構成と特殊ケースの発生:\\
+係数は $a_4=2, a_3=1, a_2=4, a_1=1, a_0=2$ である．
+
+\begin{table}[ht]
+\centering
+\caption{ラウス配列（ケース2発生）}
+\label{tbl:routh3}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 2 & 4 & 2 \\
+$s^3$ & 1 & 1 & 0 \\
+$s^2$ & $b_1$ & $b_2$ & \\
+$s^1$ & $c_1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$s^2$ の行の要素を計算する．
+$$b_1 = \frac{1 \cdot 4 - 2 \cdot 1}{1} = 2$$
+$$b_2 = \frac{1 \cdot 2 - 2 \cdot 0}{1} = 2$$
+
+次に，$s^1$ の行の要素 $c_1$ を計算する．
+$$c_1 = \frac{2 \cdot 1 - 1 \cdot 2}{2} = \frac{0}{2} = 0$$
+
+$s^1$ の行の他の要素も0となり，この行のすべての要素が0になる．これは特殊ケース2に該当する．
+
+\item 補助多項式の利用:\\
+ゼロの行 ($s^1$ の行) の1つ上の行 ($s^2$ の行) の係数 $[2, 2]$ から補助多項式 $P(s)$ を作る．$s^2$ の行は $s^2$ の項から始まるので，
+$$P(s) = 2s^2 + 2s^0 = 2s^2 + 2$$
+
+この補助多項式を $s$ で微分する．
+$$\frac{dP(s)}{ds} = 4s$$
+
+この微分の係数 $[4, 0]$ を，ゼロになった $s^1$ の行に代入する．
+
+\item 修正されたラウス配列と安定性の判定:\\
+修正された配列で計算を続行する．
+
+\begin{table}[ht]
+\centering
+\caption{補助多項式を用いて修正したラウス配列}
+\label{tbl:routh3_corrected}
+\begin{tabular}{cccc}
+\toprule
+$s^4$ & 2 & 4 & 2 \\
+$s^3$ & \textbf{1} & 1 & 0 \\
+$s^2$ & \textbf{2} & 2 & \\
+$s^1$ & \textbf{4} & 0 & \\
+$s^0$ & $d_1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$s^0$ の行の要素 $d_1$ を計算する．
+$$d_1 = \frac{4 \cdot 2 - 2 \cdot 0}{4} = 2$$
+
+完成した配列の第1列の要素は $[2, 1, 2, 4, 2]$ である．すべての要素が正であり，符号変化はない．
+
+\item 安定性の最終評価:\\
+第1列に符号変化がないことから，右半平面に極は存在しないことがわかる．しかし，補助多項式が現れたことは，システムが厳密に安定ではないことを示している．このシステムの挙動を正確に理解するために，補助方程式 $P(s)=0$ を解く．
+$$2s^2+2=0 \Rightarrow s^2=-1 \Rightarrow s=\pm j$$
+
+これは，システムが虚軸上に一対の極を持つことを意味する．
+\end{enumerate}
+
+\textbf{結論:}\\
+右半平面に極はないが，虚軸上に極 ($s=\pm j$) が存在するため，このシステムは安定限界の状態にある．
+
+\section{フルビッツの安定判別法}
+
+\subsection{問題4(1) の解答と解説}
+
+\textbf{問題:} 特性方程式が $s^3+7s^2+4s+6=0$ で与えられる伝達関数の安定性を，フルビッツの安定判別法から判定せよ．
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item 係数の特定:\\
+$n=3$ であり，係数は $a_3=1, a_2=7, a_1=4, a_0=6$ である．
+
+\item フルビッツ行列の構成:\\
+$3 \times 3$ のフルビッツ行列 $H$ を構成する．
+$$H = \begin{pmatrix}
+a_2 & a_3 & 0 \\
+a_0 & a_1 & a_2 \\
+0 & 0 & a_0
+\end{pmatrix} = \begin{pmatrix}
+7 & 1 & 0 \\
+6 & 4 & 7 \\
+0 & 0 & 6
+\end{pmatrix}$$
+
+\item \textbf{首座小行列式の計算:}
+\begin{itemize}
+\item $\Delta_1$:
+$$\Delta_1 = 7$$
+\item $\Delta_2$:
+$$\Delta_2 = \det\begin{pmatrix} 7 & 1 \\ 6 & 4 \end{pmatrix} = (7 \cdot 4) - (6 \cdot 1) = 28 - 6 = 22$$
+\item $\Delta_3$:
+$$\Delta_3 = \det(H) = \det\begin{pmatrix} 7 & 1 & 0 \\ 6 & 4 & 7 \\ 0 & 0 & 6 \end{pmatrix}$$
+第3列について余因子展開を行うと計算が容易になる．
+$$\Delta_3 = 6 \cdot \det\begin{pmatrix} 7 & 1 \\ 6 & 4 \end{pmatrix} = 6 \cdot 22 = 132$$
+\end{itemize}
+
+\item 安定性の判定:\\
+計算した小行列式を評価する．
+\begin{itemize}
+\item $\Delta_1 = 7 > 0$
+\item $\Delta_2 = 22 > 0$
+\item $\Delta_3 = 132 > 0$
+\end{itemize}
+すべての首座小行列式が正である．
+\end{enumerate}
+
+\textbf{結論:}\\
+フルビッツの安定条件をすべて満たしているため，このシステムは安定である．
+
+\subsection{問題4(2) の解答と解説}
+
+\textbf{問題:} 特性方程式が $3s^4+s^3+5s^2+2s+6=0$ で与えられる伝達関数の安定性を，フルビッツの安定判別法から判定せよ．
+
+\textbf{解答プロセス:}
+
+\begin{enumerate}
+\item 係数の特定:\\
+$n=4$ であり，係数は $a_4=3, a_3=1, a_2=5, a_1=2, a_0=6$ である．
+
+\item フルビッツ行列の構成:\\
+$4 \times 4$ のフルビッツ行列 $H$ を構成する．
+$$H = \begin{pmatrix}
+a_3 & a_4 & 0 & 0 \\
+a_1 & a_2 & a_3 & a_4 \\
+0 & a_0 & a_1 & a_2 \\
+0 & 0 & 0 & a_0
+\end{pmatrix} = \begin{pmatrix}
+1 & 3 & 0 & 0 \\
+2 & 5 & 1 & 3 \\
+0 & 6 & 2 & 5 \\
+0 & 0 & 0 & 6
+\end{pmatrix}$$
+
+\item \textbf{首座小行列式の計算:}
+\begin{itemize}
+\item $\Delta_1$:
+$$\Delta_1 = a_3 = 1$$
+この時点では条件 $\Delta_1 > 0$ を満たしている．
+\item $\Delta_2$:
+$$\Delta_2 = \det\begin{pmatrix} 1 & 3 \\ 2 & 5 \end{pmatrix} = (1 \cdot 5) - (2 \cdot 3) = 5 - 6 = -1$$
+\end{itemize}
+
+\item 安定性の判定:\\
+計算した小行列式を評価する．
+\begin{itemize}
+\item $\Delta_1 = 1 > 0$
+\item $\Delta_2 = -1 < 0$
+\end{itemize}
+$\Delta_2$ が負の値となったため，フルビッツの安定条件は満たされない．この時点で，システムが安定でないことが確定する．したがって，$\Delta_3$ と $\Delta_4$ を計算する必要はない．
+\end{enumerate}
+
+\textbf{結論:}\\
+第2首座小行列式 $\Delta_2$ が負であるため，このシステムは不安定である．
+
+\end{document}

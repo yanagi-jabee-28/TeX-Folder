@@ -1,0 +1,452 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage{float}
+
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% \usepackage{pxjahyper} % LuaLaTeXでは不要
+
+
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% 数式フォント設定
+\setmathfont{XITS Math}
+
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% ヘッダー設定例（タイトル・学籍情報・日付を適宜変更）
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  材料科学 期末試験対策総合資料 \\
+  長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人\\
+  \today
+}
+\setlength{\headheight}{35pt} % 値を調整
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={材料科学 期末試験対策総合資料},
+    pdfpagemode=FullScreen,
+    }
+
+\title{材料科学 期末試験対策総合資料}
+\author{長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+\clearpage
+
+\section{オプトエレクトロニクス材料}
+
+オプトエレクトロニクスは，光（Opto）と電子工学（Electronics）を融合した技術分野であり，光と電子の相互作用を利用して，発光，受光，光伝送などの機能を実現する．この分野の材料は，LEDやレーザー，太陽電池など，現代社会に不可欠なデバイスの基盤を形成している\supcite{ref1}．
+
+\subsection{光の二重性と物質との相互作用}
+
+物質と光の相互作用を理解するためには，光が持つ2つの異なる性質，すなわち\textbf{波の性質}と\textbf{粒子の性質}を理解することが不可欠である．この性質は\textbf{光の二重性}として知られている\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{波としての光}: 1800年代のヤングの干渉実験では，光が2つのスリットを通過するとスクリーン上に干渉縞を形成することが示された．これは，波同士が重なり合って強め合ったり弱め合ったりする\textbf{干渉}という現象であり，光が波の性質を持つことの強力な証拠である．後の研究で，光は電場と磁場の変化が相互に作用しながら空間を伝播する\textbf{電磁波}の一種であることが，マクスウェルの方程式によって理論的に確立された\supcite{ref1}．
+
+\item \textbf{粒子としての光}: 一方で，金属に光を当てると電子が飛び出す\textbf{光電効果}のような現象は，光を波としてだけでは説明できなかった．アインシュタインは，光が\textbf{光子}（photon）と呼ばれるエネルギーの塊（粒子）として振る舞うと提唱した．このモデルでは，1個の光子が1個の電子にエネルギーを与えて叩き出す．光子のエネルギーは光の色（周波数）に依存し，プランク定数を$h$，周波数を$\nu$として，$E=h\nu$という式で表される．このように，光は状況に応じて波と粒子の両方の性質を示すのである\supcite{ref1}．
+\end{itemize}
+
+\subsection{発光デバイス：LEDとレーザー}
+
+オプトエレクトロニクス材料の最も代表的な応用例が，電気エネルギーを光エネルギーに変換する発光デバイスである．その中でも，LEDとレーザーは動作原理において重要な違いがある．
+
+\subsubsection{発光ダイオード (LED)}
+
+\textbf{LED (Light Emitting Diode)は，半導体デバイスの一種であり，その中心的な構造はpn接合}である．この接合は，p型半導体とn型半導体を接合して作られる\supcite{ref1}．
+
+\textbf{動作原理}:
+\begin{enumerate}
+\item \textbf{順バイアス印加}: pn接合に\textbf{順バイアス}と呼ばれる電圧をかけると，n型領域の電子とp型領域の\textbf{正孔}（ホール）が接合部に向かって移動しやすくなる．
+\item \textbf{キャリアの再結合}: 接合部で電子と正孔が出会い，\textbf{再結合}する．この過程で，伝導帯にいた電子が価電子帯の正孔に「落ち込む」ことで，エネルギーを放出する．
+\item \textbf{発光}: 放出されるエネルギーの大きさは，その半導体材料固有の\textbf{バンドギャップ}エネルギーに相当する．このエネルギーが光子として放出されることで，LEDは発光する．光の波長（色）はバンドギャップエネルギーによって決まり，$E_g \approx \frac{hc}{\lambda}$の関係にある．したがって，バンドギャップが大きい材料ほど波長の短い光（青色など）を，小さい材料ほど波長の長い光（赤色など）を発する\supcite{ref1}．
+\end{enumerate}
+
+\textbf{発光の種類}: LEDにおける発光は，外部からの刺激なしに自発的に起こるため，\textbf{自然放出}と呼ばれる\supcite{ref1}．
+
+\subsubsection{レーザー (Laser)}
+
+\textbf{レーザー (Laser)は「Light Amplification by Stimulated Emission of Radiation」の頭字語であり，その名の通り誘導放出}による光の増幅を基本原理とする\supcite{ref1}．
+
+\textbf{動作原理}:
+\begin{enumerate}
+\item \textbf{励起状態}: まず，外部からエネルギーを与え，材料内の原子をエネルギーの高い\textbf{励起状態}にする．
+\item \textbf{誘導放出}: この励起状態にある原子に，その原子が放出する光と全く同じエネルギーを持つ光子が入射すると，それが「刺激」となって励起状態の電子が基底状態に遷移し，入射光と全く同じ位相，周波数，進行方向を持つ第二の光子を放出する．これが\textbf{誘導放出}である．
+\item \textbf{光増幅}: この過程が連鎖的に起こることで，同一の性質を持つ光子が雪崩式に増えていく．さらに，一対の反射鏡で光を往復させることでこの増幅を繰り返し，極めて強力で指向性の高いコヒーレントな光（レーザー光）を生成する\supcite{ref1}．
+\end{enumerate}
+
+\textbf{LEDとの比較}: レーザーは\textbf{誘導放出}を利用し，光共振器構造によって高出力でスペクトル幅の狭い光を生成する．一方，LEDは\textbf{自然放出}を利用するため，比較的低出力でスペクトル幅の広い光を生成するという明確な違いがある\supcite{ref1}．
+
+\subsection{受光素子と光伝送}
+
+光を電気信号として検出するデバイスや，光信号を伝送する技術もオプトエレクトロニクスの重要な要素である．
+
+\begin{itemize}
+\item \textbf{光導電材料 (Photoconductive Materials)}: \textbf{光導電性}とは，光の照射によって電気抵抗が変化する性質である．硫化カドミウム（CdS）などが代表的な材料である．半導体にそのバンドギャップより大きなエネルギーを持つ光を照射すると，電子と正孔のペアが生成され，電荷キャリアの数が増加する．これにより電気伝導性が高まり（抵抗が下がり），光の有無を検出できる\supcite{ref1}．
+
+\item \textbf{光ファイバ (Optical Fiber)}: 長距離・高速・大容量通信を実現する基幹技術である．
+  \begin{itemize}
+  \item \textbf{構造}: 中心部には屈折率の高いガラスで作られた\textbf{コア}があり，その周囲を屈折率の低いガラスである\textbf{クラッド}が覆っている\supcite{ref1}．
+  \item \textbf{原理}: コアとクラッドの境界で\textbf{全反射}という現象を利用する．コアからクラッドへ向かう光が，特定の角度（臨界角）以上で境界面に入射すると，光はクラッドへ透過せずにすべてコア内部に反射される．この全反射を繰り返すことで，光はコア内に閉じ込められたまま，長距離を効率的に伝播することができる\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{主要なオプトエレクトロニクス材料と特性}
+
+デバイスの性能は使用される材料によって決まる．以下に，代表的なレーザー材料とLED材料の特性を示す．
+
+\begin{table}[H]
+\caption{主なレーザー材料と特性\supcite{ref1}}
+\label{tbl:laser_materials}
+\centering
+\begin{tabular}{lll}
+\toprule
+種類 & 材料名 & 発振波長 (\si{\micro\meter}) \\
+\midrule
+気体レーザー & ヘリウムネオンレーザー & 0.63, 1.15, 3.39 \\
+ & 炭酸ガスレーザー & 10.6 \\
+固体レーザー & ルビーレーザー & 0.694 \\
+ & YAGレーザー & 1.064 \\
+液体レーザー & 色素レーザー & 広範囲（色素による） \\
+半導体レーザー & InGaAsPレーザー & 1.15～1.65 \\
+ & AlGaAsレーザー & 0.68～0.89 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{主な発光ダイオードの材料と用途\supcite{ref1}}
+\label{tbl:led_materials}
+\centering
+\begin{tabular}{llll}
+\toprule
+発光色 & 材料 & 発光波長 (\si{\nano\meter}) & 主な用途 \\
+\midrule
+青 & SiC & 470 & ランプ，ディスプレイ \\
+緑 & GaP & 565 & ランプ，ディスプレイ \\
+赤 & GaAsP & 650 & ランプ，ディスプレイ \\
+赤外 & GaAs & 940 & リモコン \\
+赤外 & GaInAsP & 1100～1550 & 光通信 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+これらのデバイスの根底には，量子力学的な\textbf{バンドギャップ}という概念が存在する．LEDの発光色，光導電材料の検出波長，半導体レーザーの発振波長は，すべて材料のバンドギャップエネルギーによって決定される．したがって，特定の機能を持つオプトエレクトロニクスデバイスを開発することは，目的の波長に応じた適切なバンドギャップを持つ材料を設計・選択する「バンドギャップエンジニアリング」そのものであると言える．
+
+\section{磁性材料}
+
+\textbf{磁性}とは，物質が磁場に応答して磁力を帯びる性質を指し，\textbf{磁性材料}は磁石になったり磁石に引き寄せられたりする性質を積極的に利用される材料である\supcite{ref1}．
+
+\subsection{磁性の起源：磁気モーメント}
+
+物質の磁性は，原子スケールの微視的な磁石に由来する．この微視的な磁石の強さと向きを示すベクトル量が\textbf{磁気モーメント}である．その起源は，原子内の電子が持つ2つの基本的な運動にある\supcite{ref1}．
+
+\begin{enumerate}
+\item \textbf{電子のスピン (Electron Spin)}: 電子は，自転のような性質を持つ\textbf{スピン}を有しており，これが磁気モーメントを生み出す．
+\item \textbf{軌道運動 (Orbital Motion)}: 電子が原子核の周りを公転する\textbf{軌道運動}も，円形電流と見なせるため磁気モーメントを発生させる．
+\end{enumerate}
+
+これらの運動によって生じる個々の磁気モーメントが，物質全体としてどのように振る舞うかによって，材料の磁気的な性質が決定される．特に，対になっていない\textbf{不対電子}が多い原子は，強い磁性を示しやすくなる．電子1個が持つスピンに由来する磁気モーメントの基本単位は\textbf{ボーア磁子}と呼ばれる\supcite{ref1}．
+
+\subsection{磁性の分類}
+
+物質内の磁気モーメントの相互作用や外部磁場への応答の仕方によって，磁性は主に5つの種類に分類される．
+
+\begin{itemize}
+\item \textbf{常磁性 (Paramagnetism)}:
+  \begin{itemize}
+  \item \textbf{定義}: 外部磁場がない状態では各原子の磁気モーメントの向きがランダムで，物質全体としては磁化を持たない．しかし，外部磁場をかけると磁気モーメントが磁場の向きに弱く整列し，磁石に引き付けられる性質である\supcite{ref1}．
+  \item \textbf{特徴}: 磁化の度合い（磁化率）は，一般に温度が高いほど熱運動によって整列が妨げられるため，温度に反比例する．これを\textbf{キュリーの法則}と呼ぶ\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{反磁性 (Diamagnetism)}:
+  \begin{itemize}
+  \item \textbf{定義}: すべての物質が持つ非常に弱い磁性である．外部磁場をかけると，その磁場を打ち消す方向に磁気モーメントが誘導され，磁石に弱く反発する性質である\supcite{ref1}．
+  \item \textbf{メカニズム}: 外部磁場によって電子の軌道運動が変化し，レンツの法則に従って磁場と逆向きの誘導磁場が生じるために起こる．磁化率は負の値を持つ\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{強磁性 (Ferromagnetism)}:
+  \begin{itemize}
+  \item \textbf{定義}: 隣り合う原子の磁気モーメントが，量子力学的な相互作用（交換相互作用）によって自発的に同じ向きに強く整列する性質である．これにより，外部磁場がなくても大きな磁化（\textbf{自発磁化}）を持ち，磁石として機能する\supcite{ref1}．
+  \item \textbf{ワイス磁界}: この強い相互作用を説明するために導入された仮想的な内部磁場が\textbf{内部磁界}（ワイス磁界）である\supcite{ref1}．
+  \item \textbf{キュリー温度}: ある特定の温度以上になると，熱エネルギーが交換相互作用に打ち勝ち，自発磁化が失われて常磁性体へと変化する．この転移温度を\textbf{キュリー温度}と呼ぶ\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{反強磁性 (Antiferromagnetism)}:
+  \begin{itemize}
+  \item \textbf{定義}: 隣り合う原子の磁気モーメントが，互いに逆向きに整列することで，全体の磁化が完全に打ち消されてゼロになる性質である\supcite{ref1}．
+  \item \textbf{ネール温度}: ある温度を超えると，この反平行の整列が崩れて常磁性体になる．この転移温度を\textbf{ネール温度}と呼ぶ\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{フェリ磁性 (Ferrimagnetism)}:
+  \begin{itemize}
+  \item \textbf{定義}: 反強磁性と同様に，隣り合う磁気モーメントが逆向きに整列するが，その大きさが異なるため，完全には打ち消されずに正味の自発磁化が残る性質である．フェライトなどが代表例で，磁石として利用できる\supcite{ref1}．
+  \item \textbf{キュリー温度}: 強磁性体と同様に，常磁性へと転移する\textbf{キュリー温度}を持つ\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{強磁性体・フェリ磁性体の振る舞い}
+
+実用的に重要な強磁性体とフェリ磁性体は，特有の振る舞いを示す．
+
+\subsubsection{ヒステリシス曲線（磁化曲線）}
+
+強磁性体に外部磁場（$H$）をかけてから元に戻す際の磁化（$M$）の変化をプロットしたグラフを\textbf{ヒステリシス曲線}（磁化曲線）と呼ぶ．この曲線は，材料の磁気的な「履歴」特性を示す\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{飽和磁化 ($M_s$)}: 外部磁場を強くしていくと，やがて全ての磁気モーメントが磁場の向きに完全に整列し，それ以上磁化が増加しなくなる状態の磁化\supcite{ref1}．
+\item \textbf{残留磁化 ($M_r$)}: 外部磁場をゼロに戻してもなお残る磁化．磁石としての保持力を示す\supcite{ref1}．
+\item \textbf{保磁力 ($H_c$)}: 残留磁化をゼロにするために必要な，逆向きの外部磁場の強さ．磁化のされにくさ，消えにくさを示す\supcite{ref1}．
+\item \textbf{ヒステリシス損}: 磁化の向きを繰り返し反転させる際，ヒステリシス曲線が囲む面積に比例するエネルギーが熱として失われる．これを\textbf{ヒステリシス損}と呼び，交流磁場で使用される材料では重要な損失要因となる\supcite{ref1}．
+\end{itemize}
+
+\subsubsection{微細構造：磁区と磁壁}
+
+強磁性体は，エネルギー的に安定するために，内部が複数の小さな領域に分かれている．
+
+\begin{itemize}
+\item \textbf{磁区 (Magnetic Domain)}: 内部の磁気モーメントがすべて同じ方向に揃っている微小な領域\supcite{ref1}．
+\item \textbf{磁壁 (Domain Wall)}: 隣り合う磁区の境界部分で，磁化の向きが徐々に変化している遷移領域\supcite{ref1}．
+\end{itemize}
+
+外部磁場がない状態では，各磁区の向きはバラバラで全体の磁化は小さいが，磁場をかけると，磁場と同じ向きの磁区が\textbf{磁壁移動}によって成長したり，磁区全体の向きが回転したりすることで磁化が進行する\supcite{ref1}．
+
+\subsection{実用磁性材料：軟質磁性材料と硬質磁性材料}
+
+ヒステリシス曲線の形状によって，磁性材料は大きく2種類に分類される．
+
+\begin{itemize}
+\item \textbf{軟質磁性材料 (Soft Magnetic Materials)}:
+  \begin{itemize}
+  \item \textbf{特性}: 小さな磁場で容易に磁化され，磁場を取り除くと容易に磁化を失う材料．ヒステリシス曲線が「痩せた」形状をしており，\textbf{保磁力が小さく}，\textbf{残留磁化も小さい}のが特徴である．透磁率が高く，ヒステリシス損が少ない\supcite{ref1}．
+  \item \textbf{微細構造}: 磁化を容易にするためには，\textbf{磁壁がスムーズに移動できる}必要がある．そのため，不純物や格子欠陥が少なく，均一で内部ひずみのない結晶構造が求められる\supcite{ref1}．
+  \item \textbf{用途}: トランスの鉄心や磁気ヘッドなど，磁化の向きを高速で切り替える必要がある用途に利用される．例：\textbf{ケイ素鋼}，\textbf{パーマロイ}\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{硬質磁性材料 (Hard Magnetic Materials)}:
+  \begin{itemize}
+  \item \textbf{特性}: 一度磁化されると，その磁化を強く保持し続ける材料．\textbf{永久磁石}とも呼ばれる．ヒステリシス曲線が「太った」形状をしており，\textbf{保磁力が大きく}，\textbf{残留磁化も大きい}のが特徴である\supcite{ref1}．
+  \item \textbf{微細構造}: 磁化を保持するためには，\textbf{磁壁の移動を妨げる}必要がある．そのために，材料を微粒子化したり，不純物や格子欠陥を意図的に導入したり，内部ひずみを与えたりする\supcite{ref1}．
+  \item \textbf{用途}: モーター，発電機，スピーカーなどの永久磁石として利用される．例：\textbf{フェライト磁石}，\textbf{希土類コバルト磁石}，\textbf{ネオジム磁石}\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+このように，同じ強磁性という物理現象を起源としながらも，その応用（軟質か硬質か）は，磁壁移動を制御するという\textbf{微細構造の設計}によって決定される．材料の保磁力を変えることは，ナノからマイクロスケールでの構造制御そのものであり，材料科学の核心的なアプローチを示している．
+
+\section{超伝導材料}
+
+\textbf{超伝導}（Superconductivity）は，特定の物質を極低温に冷却した際に，電気抵抗が完全にゼロになる現象である．1910年頃に水銀（Hg）を液体ヘリウムで冷却する実験で発見され，電圧降下やジュール熱によるエネルギー損失なしに電流を流せるため，多くの革新的な応用が期待されている\supcite{ref1}．
+
+\subsection{超伝導現象}
+
+通常の金属では，温度を下げると原子の\textbf{熱振動}が抑制されるため電気抵抗は減少するが，不純物や格子欠陥による散乱があるためゼロにはならない．しかし，超伝導体では，ある\textbf{臨界温度 ($T_c$)}以下で電気抵抗が測定不可能なほど完全にゼロになる\supcite{ref1}．この状態を\textbf{超伝導状態}と呼ぶ．
+
+\subsection{基本原理}
+
+超伝導が起こるメカニズムは，量子力学的な理論によって説明される．
+
+\begin{itemize}
+\item \textbf{BCS理論}:
+  \begin{itemize}
+  \item \textbf{概要}: 従来の超伝導（低温超伝導）を説明する標準理論である．
+  \item \textbf{クーパー対 (Cooper Pair)}: 低温状態では，結晶格子中を移動する1つの電子が，その負の電荷で周囲の正の原子イオンを引きつけ，局所的に正に帯電した領域を作る．この領域が別の電子を引きつけることで，2つの電子間に引力が働き，\textbf{クーパー対}と呼ばれる電子対が形成される．この対は，電子単体とは異なり，格子との相互作用が極めて弱い集団として振る舞うことができる\supcite{ref1}．
+  \item \textbf{エネルギーギャップ}: クーパー対が形成されると，フェルミ準位付近に\textbf{エネルギーギャップ}（$2\Delta$）が生じる．このギャップの存在により，クーパー対は小さなエネルギーの散乱（格子振動や不純物による）を受けても壊れにくくなる．これが，電気抵抗がゼロになる原因である\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{マイスナー効果 (Meissner Effect)}:
+  \begin{itemize}
+  \item \textbf{定義}: 超伝導体が臨界温度以下になると，外部の磁場を完全に内部から排除する現象である．これにより，超伝導体は\textbf{完全反磁性}を示す\supcite{ref1}．
+  \item \textbf{メカニズム}: 外部から磁場をかけると，超伝導体の表面に\textbf{表面電流}が流れ，それが外部磁場を完全に打ち消す逆向きの磁場を生成する．この効果により，磁石を超伝導体に近づけると反発して浮上する\textbf{磁気浮上}が可能になる\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{超伝導体の種類}
+
+超伝導状態は，温度（$T$），磁場（$H$），電流密度（$J$）がそれぞれ\textbf{臨界値}（$T_c$，$H_c$，$J_c$）以下でなければ維持されない．特に磁場に対する振る舞いの違いから，超伝導体は2種類に分類される\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{第一種超伝導体 (Type I Superconductor)}:
+  \begin{itemize}
+  \item \textbf{材料}: 鉛（Pb）や錫（Sn）などの純金属に多く見られる．
+  \item \textbf{振る舞い}: 単一の\textbf{臨界磁界 ($H_c$)} を持つ．外部磁場が$H_c$を超えると，超伝導状態は急激に破壊され，常伝導状態に戻る．$H_c$以下では完全なマイスナー効果を示す\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{第二種超伝導体 (Type II Superconductor)}:
+  \begin{itemize}
+  \item \textbf{材料}: 合金や化合物（NbNなど）に多く見られる．
+  \item \textbf{振る舞い}: \textbf{下部臨界磁界 ($H_{c1}$)} と\textbf{上部臨界磁界 ($H_{c2}$)} という2つの臨界磁界を持つ．
+    \begin{itemize}
+    \item $H<H_{c1}$: 第一種と同様に，完全なマイスナー効果を示す．
+    \item $H_{c1}<H<H_{c2}$: \textbf{混合状態}と呼ばれる特有の状態になる．この状態では，磁場が\textbf{磁束}という形で部分的に超伝導体内部に侵入するが，磁束が侵入していない領域は超伝導状態を維持する\supcite{ref1}．
+    \item $H>H_{c2}$: 超伝導状態は完全に破壊され，常伝導状態になる．
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+第二種超伝導体の上部臨界磁界$H_{c2}$は，第一種超伝導体の$H_c$に比べて非常に高い値を取り得る．MRIやリニアモーターカーなどの強力な磁石を必要とする応用では，強い磁場の中でも超伝導状態を維持できることが不可欠である．したがって，一見するとマイスナー効果が「不完全」に見える混合状態の存在こそが，第二種超伝導体を技術的に極めて有用なものにしている．この「不完全さ」が，高磁場応用への扉を開いたと言える．
+
+\section{炭素材料}
+
+炭素（C）は，その特異な結合能力により，ダイヤモンドからグラファイトまで，極めて多様な構造と物性を持つ同素体を形成する元素である．この多様性の根源は，電子軌道の\textbf{混成}にある\supcite{ref1}．
+
+\subsection{基礎となる混成軌道}
+
+炭素原子が他の原子と結合する際，最外殻のs軌道とp軌道が混じり合って，新しい形状とエネルギーを持つ\textbf{混成軌道}を形成する．
+
+\begin{itemize}
+\item \textbf{sp³混成軌道}:
+  \begin{itemize}
+  \item \textbf{形成}: 1つの2s軌道と3つの2p軌道が混成し，4つの等価な\textbf{sp³混成軌道}を形成する．
+  \item \textbf{構造}: これらの軌道は，互いに反発を最小にする\textbf{正四面体}の頂点方向を向き，結合角は\SI{109.5}{\degree}となる．このsp³混成軌道による強い共有結合が三次元的に広がることで，\textbf{ダイヤモンド}の硬い構造が生まれる\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{sp²混成軌道}:
+  \begin{itemize}
+  \item \textbf{形成}: 1つの2s軌道と2つの2p軌道が混成し，3つの等価な\textbf{sp²混成軌道}を形成する．
+  \item \textbf{構造}: これらの軌道は，同一平面上で互いに\SI{120}{\degree}の角度をなす\textbf{正三角形}の頂点方向を向く．混成に関与しなかった1つのp軌道は，この平面に対して垂直な方向に残る．このsp²混成軌道による平面的な結合が，\textbf{グラファイト}や\textbf{グラフェン}の基本構造を形成する\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{炭素の主要な同素体}
+
+炭素の混成状態と，それらが形成する構造の次元性によって，物性が大きく異なる材料が生まれる．
+
+\begin{itemize}
+\item \textbf{ダイヤモンド (Diamond)}:
+  \begin{itemize}
+  \item \textbf{構造}: すべての炭素原子が\textbf{sp³混成軌道}を介して隣の4つの炭素原子と共有結合した，三次元的な網目構造である\supcite{ref1}．
+  \item \textbf{物性}: 非常に硬く，電気的には絶縁体（\textbf{ワイドギャップ半導体}）であるが，熱伝導率は極めて高いという特徴を持つ．
+  \item \textbf{用途}: その硬さから\textbf{研磨材}や\textbf{切削工具}，高い熱伝導率から\textbf{放熱材料}として利用される\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{黒鉛 (Graphite)}:
+  \begin{itemize}
+  \item \textbf{構造}: \textbf{sp²混成軌道}で結合した炭素原子が作る六角形の網目状平面（\textbf{グラフェンシート}）が，ファンデルワールス力という弱い力で積層した構造である\supcite{ref1}．
+  \item \textbf{物性}: 層内は強い共有結合で結ばれているが，層間は弱く滑りやすいため，柔らかく潤滑性がある．また，sp²平面内に非局在化したπ電子が存在するため，平面方向には高い電気伝導性を示す．このように，方向によって性質が大きく異なる\textbf{異方性}が顕著である\supcite{ref1}．
+  \item \textbf{用途}: 鉛筆の芯，潤滑剤，リチウムイオン電池（LIB）の\textbf{負極材料}などに広く使われる\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{グラフェン (Graphene)}:
+  \begin{itemize}
+  \item \textbf{構造}: 黒鉛を構成する，原子1層分の厚みしかないsp²炭素シートそのものである\supcite{ref1}．
+  \item \textbf{物性}: 理論上，鋼鉄の数百倍の強度を持ちながら，非常に軽くしなやかである．また，電子が抵抗なく進む\textbf{バリスティック伝導}を示すなど，極めて高い電気伝導性を持ち，可視光の透過率も\SI{97}{\percent}と高い．
+  \item \textbf{用途}: 次世代のトランジスタや\textbf{透明導電膜}への応用が期待されているが，\textbf{大面積での高品質な合成が困難}という課題がある\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{フラーレン (Fullerene)}:
+  \begin{itemize}
+  \item \textbf{構造}: グラフェンシートを球状に閉じた構造を持つ炭素分子の総称．代表的な\textbf{C60}は，サッカーボールと同じ形状をしている\supcite{ref1}．
+  \item \textbf{用途}: \textbf{抗酸化作用}を利用した化粧品や，潤滑剤として利用される．内部に金属原子を内包させることで，超伝導などの特異な物性を示すこともある\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{カーボンナノチューブ (CNT)}:
+  \begin{itemize}
+  \item \textbf{構造}: グラフェンシートを円筒状に丸めた一次元構造の物質である\supcite{ref1}．
+  \item \textbf{物性}: グラフェンシートの巻き方（\textbf{カイラリティ}）によって，電気的特性が金属になったり半導体になったりする．非常に高い強度と電気伝導性を持つ．
+  \item \textbf{用途}: 複合材料の強化材，導電性インク，トランジスタなど多岐にわたるが，\textbf{単一構造のCNTを合成することは至難}とされている\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+これらの炭素材料の関係性は，構造の\textbf{次元性}という観点から整理できる．sp³結合が作る\textbf{3次元}構造がダイヤモンドであるのに対し，sp²結合が作る\textbf{2次元}の基本構成単位「グラフェン」を元に，それを丸めて\textbf{0次元}（点状）にしたものがフラーレン，\textbf{1次元}（線状）にしたものがカーボンナノチューブ，そして2次元シートを積層して\textbf{3次元}（バルク）にしたものがグラファイトである．このように，炭素は結合様式と次元性の組み合わせによって，驚くほど多様な材料群を生み出している\supcite{ref1}．
+
+\section{材料解析技術}
+
+新しい材料を開発し，その性質を理解するためには，その構造を様々なスケールで観察・分析する技術が不可欠である．ここでは，代表的な3つの材料解析手法の原理と，それによって何がわかるかを解説する．
+
+\subsection{X線回折 (XRD)}
+
+\textbf{X線回折（X-ray Diffraction: XRD)}は，物質の結晶構造を調べるための最も基本的な手法である\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{原理}: 結晶性の物質に単一波長のX線を照射すると，X線は結晶格子中の原子によって散乱される．結晶は原子が周期的に配列した構造を持つため，特定の方向（角度）に進む散乱X線同士が強め合う\textbf{干渉}を起こす．この現象が\textbf{回折}である．回折が起こる角度は，結晶の原子面の面間隔に依存する\supcite{ref1}．
+
+\item \textbf{ブラッグの法則}: 回折が起こる条件は，\textbf{ブラッグの法則}と呼ばれる以下の式で与えられる\supcite{ref1}．
+  \begin{equation}
+  n\lambda = 2d\sin\theta
+  \end{equation}
+  ここで，$\lambda$はX線の波長，$d$は結晶の面間隔（結晶面間の距離），$\theta$はX線の入射角（回折角），$n$は整数である．XRD測定では，回折X線の強度を角度$2\theta$の関数としてプロットした回折パターンを得る．
+
+\item \textbf{XRDでわかること}:
+  \begin{itemize}
+  \item \textbf{結晶構造の同定}: 得られた回折パターンは物質の結晶構造に固有の「指紋」のようなものであり，データベースと照合することで物質の種類を特定できる\supcite{ref1}．
+  \item \textbf{格子定数}: ピークの角度からブラッグの法則を用いて各結晶面の$d$値を算出し，それらから結晶格子の形状と大きさ（\textbf{格子定数}）を精密に決定できる\supcite{ref1}．
+  \item \textbf{結晶性}: 結晶性が高い（原子配列が規則正しい）材料ほど回折ピークはシャープになり，低い（非晶質・アモルファスに近い）ほどブロードになる．ピークの鋭さから\textbf{結晶性の良し悪し}を評価できる\supcite{ref1}．
+  \item \textbf{結晶子サイズ}: ピークの広がり（半値幅）から，\textbf{シェラーの式}（$D=K\lambda/(\beta\cos\theta)$）を用いて，結晶を構成する微小な単結晶領域である\textbf{結晶子}の平均的な大きさを算出できる\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{電子顕微鏡}
+
+\textbf{電子顕微鏡（Electron Microscope)}は，光の代わりに電子線を用いることで，光学顕微鏡では到底見ることのできない微細な構造を観察する装置である．電子の波長は可視光に比べて非常に短いため，極めて高い分解能を達成できる\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{透過型電子顕微鏡 (TEM)}:
+  \begin{itemize}
+  \item \textbf{原理}: 電子線を極めて薄くした試料に\textbf{透過}させ，透過した電子を結像させることで内部構造を観察する\supcite{ref1}．
+  \item \textbf{わかること}: \textbf{原子の配列}や，転位・積層欠陥といった\textbf{結晶構造の乱れ}，結晶粒の境界などを直接観察できる．原子レベルでの構造解析が可能である\supcite{ref1}．
+  \end{itemize}
+
+\item \textbf{走査型電子顕微鏡 (SEM)}:
+  \begin{itemize}
+  \item \textbf{原理}: 細く絞った電子線を試料表面で\textbf{走査}（スキャン）し，電子線が当たった点から放出される\textbf{二次電子}を検出して，その強度を輝点として画像化する\supcite{ref1}．
+  \item \textbf{わかること}: 試料\textbf{表面の凹凸}（形態・トポグラフィー）を，立体感のある画像として観察できる．比較的厚い試料でもそのまま観察できるのが利点である\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+\subsection{原子間力顕微鏡 (AFM)}
+
+\textbf{原子間力顕微鏡（Atomic Force Microscope: AFM)}は，鋭い探針で試料表面をなぞることで，その形状をナノメートルスケールで可視化する顕微鏡である\supcite{ref1}．
+
+\begin{itemize}
+\item \textbf{原理}: 先端が原子レベルで尖った\textbf{探針（チップ）}を，しなやかな板ばね（カンチレバー）の先に取り付け，試料表面に近づける．すると，探針の先端原子と試料表面の原子との間に原子間力（ファンデルワールス力など）が働き，カンチレバーがしなる．このしなりをレーザー光の反射で精密に検出することで，表面の凹凸を画像化する\supcite{ref1}．
+
+\item \textbf{AFMでわかること}:
+  \begin{itemize}
+  \item \textbf{表面の凹凸}: ナノメートルオーダーの極めて高い分解能で，試料表面の三次元形状を直接測定できる\supcite{ref1}．
+  \item \textbf{測定環境の多様性}: 試料に\textbf{導電性が不要}であり，SEMとは異なり真空中でなくても\textbf{大気中や液中でも測定が可能}である\supcite{ref1}．
+  \item \textbf{表面物性の評価}: 探針と試料の相互作用を解析することで，形状だけでなく，\textbf{摩擦力}，\textbf{粘着力}，\textbf{弾性}，\textbf{電気伝導性}といった局所的な物理特性をマッピングすることも可能である\supcite{ref1}．
+  \end{itemize}
+\end{itemize}
+
+これらの解析技術は互いに相補的な関係にある．例えば，新しい炭素材料を評価する場合，まず\textbf{XRD}でその材料がグラファイト構造を持つか，結晶性はどの程度かといった\textbf{バルクの平均的な結晶情報}を得る．次に\textbf{SEM}で粒子がどのような形や大きさで集合しているかという\textbf{ミクロンスケールの形態}を観察し，\textbf{TEM}で粒子内部のグラフェン層がどのように積層しているかという\textbf{ナノスケールの内部構造}を可視化する．最後に\textbf{AFM}で表面にある原子数層分のステップ（段差）の高さを正確に測定する，といった具合である．一つの手法だけでは得られない多角的な情報を組み合わせることで，初めて材料の全体像を深く理解することができるのである．
+
+\begin{thebibliography}{9}
+\bibitem{ref1} R7期末の範囲スライド.pdf
+\end{thebibliography}
+
+\end{document}

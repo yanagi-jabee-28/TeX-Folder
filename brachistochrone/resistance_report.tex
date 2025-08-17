@@ -1,0 +1,111 @@
+\documentclass{ltjsarticle}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{luatexja}
+\geometry{a4paper, margin=25mm}
+
+\title{抵抗の電圧・電流特性の測定実験}
+\author{氏名：山田 太郎　学籍番号：C012345}
+\date{\today}
+
+\begin{document}
+\maketitle
+\pagestyle{plain} % ページ番号を全ページに表示
+
+\section{目的}
+本実験は，未知抵抗に加える電圧を変化させ，その際に流れる電流を測定することによって抵抗の電圧・電流特性を理解し，オームの法則が成立することを確認することを目的として実施した．
+
+\section{原理}
+導体に流れる電流$I$は，導体の両端の電位差$V$に比例する．この関係はオームの法則として知られ，式(1)で表される．
+\begin{equation}
+V = RI
+\end{equation}
+ここで，$R$は抵抗であり，電圧と電流の比例定数である．本実験では，電圧$V$と電流$I$を測定し，この関係が成立するかを確認する．$V$を縦軸，$I$を横軸にとったグラフを作成すれば，測定点は傾き$R$の直線上に分布するはずである．
+
+\section{実験方法}
+図\ref{fig:circuit}に示す回路を組んだ．直流電源の電圧を0 Vから5 Vまで約1 V間隔で変化させ，それぞれの電圧設定において，デジタルマルチメータを用いて抵抗の両端の電圧$V$と回路に流れる電流$I$を測定した．
+
+% 回路図のプレースホルダー
+% 注意：以下のfigure環境を有効にするには、`circuit.png`という名前の
+%      回路図ファイルをこの.texファイルと同じフォルダに配置してください。
+\begin{figure}[h]
+\centering
+% \includegraphics[width=0.6\textwidth]{circuit.png}
+\framebox[0.6\textwidth][c]{ここに回路図(circuit.png)を挿入}
+\caption{電圧・電流測定回路}
+\label{fig:circuit}
+\end{figure}
+
+\section{使用機器}
+本実験で使用した機器を表\ref{tab:equipment}にまとめる．
+
+\begin{table}[h]
+\centering
+\caption{使用機器一覧}
+\label{tab:equipment}
+\begin{tabular}{lll}
+\hline
+機器名 & 型番 (メーカ名) & 備品番号 \\
+\hline
+直流安定化電源 & PW18-1.3ATS (KENWOOD) & E-1234 \\
+デジタルマルチメータ & PC710 (SANWA) & E-5678 \\
+未知抵抗 & -- & -- \\
+ブレッドボード & -- & -- \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{結果および考察}
+測定によって得られた電圧$V$と電流$I$の値，および式(1)を用いて算出した抵抗値$R$を表\ref{tab:results}に示す．
+
+\begin{table}[h]
+\centering
+\caption{電圧・電流測定結果と算出抵抗値}
+\label{tab:results}
+\begin{tabular}{ccc}
+\hline
+電圧 $V$ (V) & 電流 $I$ (mA) & 抵抗 $R$ ($\Omega$) \\
+\hline
+1.01 & 10.2 & 99.0 \\
+2.05 & 20.3 & 101.0 \\
+3.02 & 30.5 & 99.0 \\
+4.08 & 40.6 & 100.5 \\
+5.10 & 50.9 & 100.2 \\
+\hline
+\multicolumn{2}{r}{平均値} & 100.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+次に，測定結果をグラフにまとめたものを図\ref{fig:vi_graph}に示す．
+
+% グラフのプレースホルダー
+% 注意：以下のfigure環境を有効にするには、`vi_graph.png`という名前の
+%      グラフ画像をこの.texファイルと同じフォルダに配置してください。
+\begin{figure}[h]
+\centering
+% \includegraphics[width=0.8\textwidth]{vi_graph.png}
+\framebox[0.8\textwidth][c]{ここにV-Iグラフ(vi_graph.png)を挿入}
+\caption{未知抵抗の電圧-電流特性グラフ}
+\label{fig:vi_graph}
+\end{figure}
+
+表\ref{tab:results}より，測定された抵抗値は平均で100.0 $\Omega$となった．図\ref{fig:vi_graph}を見ると，測定点はほぼ一直線上に並んでおり，電圧と電流の間に強い比例関係があることがわかる．これはオームの法則($V=RI$)と合致する結果である．グラフの近似直線の傾きからも抵抗値が約100 $\Omega$であることが読み取れ，表\ref{tab:results}の計算結果と一致する．
+
+理論的には，抵抗値は一定であるはずだが，測定値には最大で$\pm 1.0 \%$程度のばらつきが見られる．これは，測定機器の内部抵抗や読み取り誤差，接触抵抗などが原因として考えられる．しかし，全体としてはオームの法則をよく満たしており，本実験の目的は達成された．
+
+\section{報告事項}
+\subsection*{課題：カラーコードが「茶黒茶金」の抵抗の抵抗値を求め，本実験の未知抵抗と同一と見なせるか考察する}
+カラーコード「茶黒茶金」は，それぞれ1 (茶), 0 (黒), 1 (10の乗数, 茶), $\pm$5% (金) を示す．したがって，その抵抗値は $10 \times 10^1 \, \Omega = 100 \, \Omega$ であり，許容差は$\pm 5 \%$である．
+よって，抵抗値の範囲は $95 \, \Omega$ から $105 \, \Omega$ となる．
+
+本実験で測定した抵抗値の平均は100.0 $\Omega$であり，この範囲内に収まっている．したがって，本実験で用いた未知抵抗は，カラーコードが「茶黒茶金」の抵抗である可能性が非常に高いと結論付けられる．
+
+\begin{thebibliography}{9}
+\bibitem{hayashi} 岡本市太郎, 電気電子計測, コロナ社, 2005.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper]{ltjsarticle} % LuaLaTeX-ja用の日本語対応クラス（A4・11pt）
+\usepackage{luatexja} % LuaLaTeXで日本語を扱うための基本パッケージ
+\usepackage{luatexja-fontspec} % LuaLaTeXで日本語フォントを指定するための拡張
+\usepackage{amsmath,amssymb} % 数式環境・記号の拡張
+\usepackage{geometry} % 余白などページレイアウトの調整
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm} % ページ余白の具体的な設定
+\usepackage{graphicx} % 画像の挿入
+\usepackage{booktabs} % 表の罫線を美しくする
+\usepackage{siunitx} % SI単位系の表記を統一・自動調整
+\sisetup{detect-all,detect-weight=true,detect-family=true} % siunitxの細かい設定（フォント検出など）
+\usepackage[
+  unicode,bookmarks=true,bookmarksnumbered=true,hypertexnames=false,breaklinks=true,linktocpage=true,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdfborder={0 0 0},pdfpagelabels=false
+]{hyperref} % PDFの目次やリンクを有効化・色付け
+\usepackage{url} % URLを自動でリンク化
+\usepackage{fancyhdr} % ヘッダー・フッターのカスタマイズ
+\usepackage{fontspec} % 欧文フォントの指定（LuaLaTeX用）
+\usepackage{unicode-math} % 数式フォントの指定（LuaLaTeX用）
+\usepackage{pgfplots} % グラフ描画用パッケージ
+\pgfplotsset{compat=1.18} % バージョン互換性（必要に応じて調整）
+% 欧文フォント設定（例: Times New Roman）
+\setmainfont{Times New Roman} % 本文の欧文フォント
+\setsansfont{Arial} % 欧文のサンセリフ体
+\setmonofont{Consolas} % 欧文の等幅フォント
+% 日本語フォント設定
+\setmainjfont{Yu Mincho} % 本文の和文明朝体
+\setsansjfont{Yu Gothic} % 和文ゴシック体
+% 数式フォントもTimes系に統一
+\setmathfont{XITS Math} % 数式用フォント（Times系互換）
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}} % \citeを上付きで表示
+
+
+\pagestyle{fancy} % ヘッダー・フッターのカスタムを有効化
+\fancyhead{} % 既存のヘッダーをクリア
+\fancyhead[R]{\footnotesize
+  7月18日課題 \\
+  長野高専 電気電子工学科 5年 34番 栁原魁人 \\
+  2025年7月28日
+} % 右上ヘッダーに情報を表示
+% ヘッダー高さ警告の対策
+\setlength{\headheight}{34.832pt} % ヘッダー高さを警告値に合わせて調整
+
+\begin{document}
+\title{7月18日課題}
+\author{長野高専 電気電子工学科 5年 34番 栁原魁人}
+\date{2025年7月18日}
+\maketitle
+\thispagestyle{fancy}
+
+\section{課題}
+
+与えられた値：
+\begin{itemize}
+\item X線の波長：$\lambda = 0.154$ nm
+\item 回折角：$\theta = 13.25°$
+\end{itemize}
+
+% \subsection{解答過程}
+
+1次回折（$n=1$）を考慮すると，回折条件は：
+$$\lambda = 2d\sin\theta$$
+
+与えられた値を代入する：
+$$0.154 = 2d\sin(13.25°)$$
+
+三角関数の値を計算する：
+$$\sin(13.25°) = 0.2292$$
+
+式を$d$について解く：
+$$d = \frac{\lambda}{2\sin\theta}$$
+
+数値を代入：
+$$d = \frac{0.154}{2 \times \sin(13.25°)}$$
+
+$$d = \frac{0.154}{2 \times 0.2292}$$
+
+$$d = \frac{0.154}{0.4584}$$
+
+$$d = 0.3359 \text{ nm}$$
+
+有効数字を考慮して：
+$$d \approx 0.336 \text{ nm}$$
+
+\end{document}

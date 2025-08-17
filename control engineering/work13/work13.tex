@@ -1,0 +1,62 @@
+\documentclass[11pt,a4paper]{ltjsarticle} % LuaLaTeX-ja用の日本語対応クラス（A4・11pt）
+\usepackage{luatexja} % LuaLaTeXで日本語を扱うための基本パッケージ
+\usepackage{luatexja-fontspec} % LuaLaTeXで日本語フォントを指定するための拡張
+\usepackage{amsmath,amssymb} % 数式環境・記号の拡張
+\usepackage{geometry} % 余白などページレイアウトの調整
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm} % ページ余白の具体的な設定
+\usepackage{graphicx} % 画像の挿入
+\usepackage{booktabs} % 表の罫線を美しくする
+\usepackage{siunitx} % SI単位系の表記を統一・自動調整
+\sisetup{detect-all,detect-weight=true,detect-family=true} % siunitxの細かい設定（フォント検出など）
+\usepackage[
+  unicode,bookmarks=true,bookmarksnumbered=true,hypertexnames=false,breaklinks=true,linktocpage=true,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdfborder={0 0 0},pdfpagelabels=false
+]{hyperref} % PDFの目次やリンクを有効化・色付け
+\usepackage{url} % URLを自動でリンク化
+\usepackage{fancyhdr} % ヘッダー・フッターのカスタマイズ
+\usepackage{fontspec} % 欧文フォントの指定（LuaLaTeX用）
+\usepackage{unicode-math} % 数式フォントの指定（LuaLaTeX用）
+\usepackage{pgfplots} % グラフ描画用パッケージ
+\pgfplotsset{compat=1.18} % バージョン互換性（必要に応じて調整）
+% 欧文フォント設定（例: Times New Roman）
+\setmainfont{Times New Roman} % 本文の欧文フォント
+\setsansfont{Arial} % 欧文のサンセリフ体
+\setmonofont{Consolas} % 欧文の等幅フォント
+% 日本語フォント設定
+\setmainjfont{Yu Mincho} % 本文の和文明朝体
+\setsansjfont{Yu Gothic} % 和文ゴシック体
+% 数式フォントもTimes系に統一
+\setmathfont{XITS Math} % 数式用フォント（Times系互換）
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}} % \citeを上付きで表示
+
+
+\pagestyle{fancy} % ヘッダー・フッターのカスタムを有効化
+\fancyhead{} % 既存のヘッダーをクリア
+\fancyhead[R]{\footnotesize
+  高周波誘電体材料の革新と応用 \\
+  長野高専 電気電子工学科 5年 34番 栁原魁人 \\
+  2025年7月10日
+} % 右上ヘッダーに情報を表示
+% ヘッダー高さ警告の対策
+\setlength{\headheight}{34.832pt} % ヘッダー高さを警告値に合わせて調整
+
+\begin{document}
+\title{制御工学における安定判別問題}
+\author{長野高専 電気電子工学科 5年 XX番 氏名}
+\date{2025年7月17日}
+\maketitle
+\thispagestyle{fancy}
+
+\section{問題}
+伝達関数 $G(s) = \frac{K}{s(s^2 + 3s + 12)}$，$H(s) = 1$ のとき，制御系を安定にするゲイン $K$ の条件を，ナイキストの安定判別（ヒント：ナイキスト線図の虚部が0となる実部の値のみを考える。）とラウスの安定判別法でそれぞれ求めよ。
+
+\section{解答}
+
+\subsection{ナイキストの安定判別}
+% ナイキスト安定判別の解答をここに記述
+
+\subsection{ラウスの安定判別法}
+% ラウス安定判別法の解答をここに記述
+
+\end{document}

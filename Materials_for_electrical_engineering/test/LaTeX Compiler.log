@@ -1,0 +1,150 @@
+Initial Win CP for (console input, console output, system): (CP932, CP932, CP932)
+I changed them all to CP932
+Rc files read:
+  C:/Users/kaito/.latexmkrc
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: Doing full clean up for 'c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex'
+Latexmk: Cannot remove file 'out/test4_answered.pdf'
+   Error message = 'Permission denied'
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Force everything to be remade.
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'lualatex' forced or previously required:
+    Reason or flag: 'go_mode'
+
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ restricted system commands enabled.
+(c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
+Document Class: ltjsarticle 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def))) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/tabularray/tabularray.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fix-cm.sty (c:/texlive/2025/texmf-dist/tex/latex/base/ts1enc.def)) (c:/texlive/2025/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-unicode-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics/color.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (./out/test4_answered.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl)
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: I can't write on file `test4_answered.pdf'.
+Please type another file name for output
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: Emergency stop.
+\PDF@SetupDoc ...tartview \@empty \else openaction
+                                                   goto page\@pdfstartpage {...
+l.51 \begin{document}
+                     
+ 950 words of node memory still in use:
+   9 hlist, 1 vlist, 5 rule, 1 dir, 4 kern, 1 glyph, 166 attribute, 56 glue_spec, 25 attribute_list, 2 if_stack, 1 write, 12 user_defined nodes
+   avail lists: 1:6,2:92,3:4,4:3,5:6,6:1,7:6,9:4
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51:  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on test4_answered.log.
+Latexmk: Getting log file 'out/test4_answered.log'
+Latexmk: Examining 'out/test4_answered.fls'
+Latexmk: Examining 'out/test4_answered.log'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Changed files or newly in use/created:
+  out/test4_answered.aux
+
+------------
+Run number 2 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ restricted system commands enabled.
+(c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
+Document Class: ltjsarticle 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def))) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/tabularray/tabularray.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fix-cm.sty (c:/texlive/2025/texmf-dist/tex/latex/base/ts1enc.def)) (c:/texlive/2025/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-unicode-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics/color.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (./out/test4_answered.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) (./out/test4_answered.out) (./out/test4_answered.out)
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: I can't write on file `test4_answered.pdf'.
+Please type another file name for output
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: Emergency stop.
+\PDF@SetupDoc ...tartview \@empty \else openaction
+                                                   goto page\@pdfstartpage {...
+l.51 \begin{document}
+                     
+ 950 words of node memory still in use:
+   9 hlist, 1 vlist, 5 rule, 1 dir, 4 kern, 1 glyph, 166 attribute, 56 glue_spec, 25 attribute_list, 2 if_stack, 1 write, 12 user_defined nodes
+   avail lists: 1:6,2:92,3:4,4:3,5:6,6:1,7:6,9:4
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51:  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on test4_answered.log.
+Latexmk: Getting log file 'out/test4_answered.log'
+Latexmk: Examining 'out/test4_answered.fls'
+Latexmk: Examining 'out/test4_answered.log'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Changed files or newly in use/created:
+  out/test4_answered.out
+
+------------
+Run number 3 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ restricted system commands enabled.
+(c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
+Document Class: ltjsarticle 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def))) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/tabularray/tabularray.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fix-cm.sty (c:/texlive/2025/texmf-dist/tex/latex/base/ts1enc.def)) (c:/texlive/2025/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-unicode-math.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics/color.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (./out/test4_answered.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) (./out/test4_answered.out) (./out/test4_answered.out)
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: I can't write on file `test4_answered.pdf'.
+Please type another file name for output
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51: Emergency stop.
+\PDF@SetupDoc ...tartview \@empty \else openaction
+                                                   goto page\@pdfstartpage {...
+l.51 \begin{document}
+                     
+ 950 words of node memory still in use:
+   9 hlist, 1 vlist, 5 rule, 1 dir, 4 kern, 1 glyph, 166 attribute, 56 glue_spec, 25 attribute_list, 2 if_stack, 1 write, 12 user_defined nodes
+   avail lists: 1:6,2:92,3:4,4:3,5:6,6:1,7:6,9:4
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered.tex:51:  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on test4_answered.log.
+Latexmk: Getting log file 'out/test4_answered.log'
+Latexmk: Examining 'out/test4_answered.fls'
+Latexmk: Examining 'out/test4_answered.log'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: Errors, in force_mode: so I tried finishing targets
+Collected error summary (may duplicate other messages):
+  lualatex: Command for 'lualatex' gave return code 1
+      Refer to 'out/test4_answered.log' and/or above output for details
+
+C:\texlive\2025\bin\windows\runscript.tlu:933: command failed with exit code 12:
+perl.exe c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl -f -gg -pv -lualatex -synctex=1 -interaction=nonstopmode -file-line-error c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test/test4_answered

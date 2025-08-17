@@ -1,0 +1,622 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% 数式フォント設定
+\setmathfont{XITS Math}
+
+% 参考文献番号を右肩に上付き表示するためのカスタムコマンド
+\newcommand{\supcite}[1]{\textsuperscript{\cite{#1}}}
+
+% ヘッダー設定
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  制御工学における安定判別問題 解答と解説 \\
+  長野高専 電気電子工学科 5年 XX番 氏名 \\
+  2025年7月18日
+}
+\setlength{\headheight}{34.832pt}
+
+\begin{document}
+
+\title{制御工学における安定判別問題 解答と解説}
+\author{長野高専 電気電子工学科 5年 XX番 氏名}
+\date{2025年7月18日}
+\maketitle
+\thispagestyle{fancy}
+
+% \section{はじめに}
+
+% 本レポートは，長野高専電気電子工学科5年生の制御工学における安定判別問題に対する詳細な解答と解説を提供するものである．これらの問題は，制御システムの安定性を評価するための基本的な手法である「極による安定判別」，「ラウスの安定判別法」，および「フルビッツの安定判別法」に焦点を当てている．
+
+% 解答は，問題解決の各ステップを明確にし，関連する理論的背景を補足することで，読者が安定判別法の本質を深く理解できるよう構成した．各問題において，特性方程式の導出から始まり，計算過程を省略することなく詳細に示し，最終的な安定性の判断に至るまでの論理的な流れを追えるように記述している．これにより，単に正解を導き出すだけでなく，その解法がなぜ重要なのか，どのような文脈で使われるのかを理解できるよう努めた．
+
+% 制御システム設計において，システムの安定性は最も基本的な要件である．安定とは，システムが外部からの擾乱や内部の変化に対して，その状態が有限な範囲に留まり，最終的に平衡点に戻る性質を指す．不安定なシステムは，出力が無限に発散したり，望ましくない振動を引き起こしたりする可能性があり，その機能が損なわれるだけでなく，安全上の問題を引き起こすこともある．例えば，産業用ロボットが不安定であれば，予期せぬ動きにより作業員に危険が及ぶ可能性がある．
+
+% 安定判別法は，システムが安定であるか否かを，システムの特性方程式の根（極）を直接計算することなく，あるいは計算した極の位置から，代数的に判断するための強力なツールである．これにより，設計者はシステムの挙動を予測し，必要に応じて補償器を設計して安定性を確保することができる．これらの判別法は，単に「安定か不安定か」を判断するだけでなく，システムの設計段階で潜在的な問題を早期に特定し，修正するための基盤を提供する．システムの「健康診断」のような役割を果たすことで，その「病気の原因」（極の位置）や「重症度」（不安定極の数）を診断し，適切な「治療法」（補償器設計）を検討するための情報を提供する．この診断能力は，理論と実践を結びつける上で不可欠である．
+
+\section{1}
+
+% 極による安定判別は，伝達関数の分母多項式を0と置いた特性方程式の根（極）を直接計算し，その実数部の符号に基づいてシステムの安定性を判別する方法である．極の実数部がすべて負であればシステムは安定であり，一つでも正であれば不安定と判断される．また，実数部が0の極が存在する場合は，安定限界とされる．この方法は，システムの動的な応答特性を直感的に理解する上で非常に有用である．
+
+\subsection{\texorpdfstring{1(1): 伝達関数$\frac{1}{s^2-2s+3}$の安定性}{1(1): 伝達関数の安定性}}
+
+\subsubsection{特性方程式の導出と極の計算}
+
+与えられた伝達関数は$G(s) = \frac{1}{s^2-2s+3}$である．
+
+伝達関数の安定性を判別するためには，分母多項式を0と置いた特性方程式の根，すなわち極を求める必要がある．
+特性方程式は以下のようになる．
+\begin{equation}
+s^2-2s+3=0
+\end{equation}
+
+この二次方程式の解を，二次方程式の解の公式$s = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$を用いて求める．
+ここで，$a=1$，$b=-2$，$c=3$を代入する．
+
+\begin{align}
+s &= \frac{-(-2) \pm \sqrt{(-2)^2-4 \times 1 \times 3}}{2 \times 1} \\
+&= \frac{2 \pm \sqrt{4-12}}{2} \\
+&= \frac{2 \pm \sqrt{-8}}{2} \\
+&= \frac{2 \pm \mathrm{j}\sqrt{8}}{2} \\
+&= \frac{2 \pm 2\sqrt{2}\mathrm{j}}{2} \\
+&= 1 \pm \sqrt{2}\mathrm{j}
+\end{align}
+
+したがって，伝達関数の極は$s_1 = 1 + \sqrt{2}\mathrm{j}$と$s_2 = 1 - \sqrt{2}\mathrm{j}$である．
+
+\subsubsection{極の位置に基づく安定性判別}
+
+求めた極の実数部は1である．
+制御システムにおいて，特性方程式の極の実数部が一つでも正である場合，そのシステムは不安定であると判断される．極の実数部が正であることは，システムの応答が時間とともに指数関数的に増大することを示唆している．これは，システムが制御不能になることを意味し，実際のシステムでは破壊や危険につながる可能性がある．
+
+よって，この伝達関数は不安定であると結論付けられる．
+
+\subsection{問題1(2): \texorpdfstring{伝達関数$\frac{1}{s^3+4s^2+7s+6}$の安定性}{伝達関数の安定性}}
+
+\subsubsection{特性方程式の因数分解と極の計算}
+
+与えられた伝達関数は$G(s) = \frac{1}{s^3+4s^2+7s+6}$である．
+
+特性方程式は以下のようになる．
+\begin{equation}
+s^3+4s^2+7s+6=0
+\end{equation}
+
+この3次方程式の解を求めるために，まず因数分解を試みる．$s=-2$を代入すると，
+\begin{equation}
+(-2)^3+4(-2)^2+7(-2)+6=-8+16-14+6=0
+\end{equation}
+
+となるため，$s+2$がこの多項式の因数であることがわかる．
+組み立て除法または多項式の割り算により因数分解を行う．
+
+\begin{equation}
+(s^3+4s^2+7s+6) \div (s+2) = s^2+2s+3
+\end{equation}
+
+よって，特性方程式は$(s+2)(s^2+2s+3)=0$と因数分解される．
+
+各因数から極を求める．
+
+1. $s+2=0 \Rightarrow s_1=-2$
+2. $s^2+2s+3=0$の解を二次方程式の解の公式で求める．
+   ここで，$a=1$，$b=2$，$c=3$を代入する．
+
+\begin{align}
+s &= \frac{-2 \pm \sqrt{2^2-4 \times 1 \times 3}}{2 \times 1} \\
+&= \frac{-2 \pm \sqrt{4-12}}{2} \\
+&= \frac{-2 \pm \sqrt{-8}}{2} \\
+&= \frac{-2 \pm 2\sqrt{2}\mathrm{j}}{2} \\
+&= -1 \pm \sqrt{2}\mathrm{j}
+\end{align}
+
+したがって，伝達関数の極は$s_1=-2$，$s_2=-1+\sqrt{2}\mathrm{j}$，$s_3=-1-\sqrt{2}\mathrm{j}$である．
+
+\subsubsection{極の位置に基づく安定性判別}
+
+求めたすべての極の実数部を確認する．
+
+\begin{itemize}
+\item $s_1=-2$の実数部は$-2$（負）
+\item $s_2=-1+\sqrt{2}\mathrm{j}$の実数部は$-1$（負）
+\item $s_3=-1-\sqrt{2}\mathrm{j}$の実数部は$-1$（負）
+\end{itemize}
+
+すべての極の実数部が負であるため，この伝達関数は安定であると判断できる．
+
+3次以上の特性方程式の場合，因数分解が困難になることが多い．この問題では，$s+2$という実根が与えられていることで，残りの複素共役根を容易に特定できた．しかし，実システムでは，このような因数分解が常に可能とは限らず，次章で解説するラウスやフルビッツのような代数的な判別法がより実用的となる．
+
+\section{問題2：ラウスの安定判別法}
+
+ラウスの安定判別法は，特性方程式の根を直接計算することなく，その係数から構成されるラウス表の第1列の符号変化の有無と回数によってシステムの安定性を判別する強力な代数的方法である．第1列の要素の符号がすべて同じ（すべて正またはすべて負）であればシステムは安定であり，符号変化があれば不安定である．符号変化の回数は，特性方程式の右半平面（実数部が正）に存在する根の数，すなわち不安定極の数を示す．
+
+\subsection{\texorpdfstring{問題2(1): 特性方程式$s^4+3s^3+4s^2+3s+2=0$の安定性}{問題2(1): 特性方程式の安定性}}
+
+\subsubsection{特性方程式の確認}
+
+与えられた特性方程式は$s^4+3s^3+4s^2+3s+2=0$である．
+
+\subsubsection{ラウス表の作成}
+
+ラウス表の作成手順に従い，特性方程式の係数を配置し，要素を計算する．
+特性方程式の係数は$a_4=1$，$a_3=3$，$a_2=4$，$a_1=3$，$a_0=2$である．
+
+\begin{itemize}
+\item $s^4$の行: $a_4, a_2, a_0 \Rightarrow 1, 4, 2$
+\item $s^3$の行: $a_3, a_1, 0 \Rightarrow 3, 3, 0$（定数項の次の係数は0とする）
+\end{itemize}
+
+次に，以下の計算式を用いて残りの行の要素を求める．
+\begin{equation}
+b_i = \frac{a_{k-1,1} \cdot a_{k-2,i+1} - a_{k-1,i+1} \cdot a_{k-2,1}}{a_{k-1,1}}
+\end{equation}
+
+\begin{itemize}
+\item $s^2$の行の要素$b_1, b_2$:
+  \begin{align}
+  b_1 &= \frac{3 \times 4 - 1 \times 3}{3} = \frac{12-3}{3} = \frac{9}{3} = 3 \\
+  b_2 &= \frac{3 \times 2 - 1 \times 0}{3} = \frac{6}{3} = 2
+  \end{align}
+\item $s^1$の行の要素$c_1$:
+  \begin{equation}
+  c_1 = \frac{3 \times 3 - 3 \times 2}{3} = \frac{9-6}{3} = \frac{3}{3} = 1
+  \end{equation}
+\item $s^0$の行の要素$d_1$:
+  \begin{equation}
+  d_1 = \frac{1 \times 2 - 3 \times 0}{1} = \frac{2}{1} = 2
+  \end{equation}
+\end{itemize}
+
+完成したラウス表は以下の通りである．
+
+\begin{table}[h]
+\centering
+\caption{問題2(1)のラウス表}
+\label{tbl:routh1}
+\begin{tabular}{cccc}
+\toprule
+次数 & 第1列 & 第2列 & 第3列 \\
+\midrule
+$s^4$ & 1 & 4 & 2 \\
+$s^3$ & 3 & 3 & 0 \\
+$s^2$ & 3 & 2 & 0 \\
+$s^1$ & 1 & 0 & \\
+$s^0$ & 2 & 0 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{第1列の符号変化の確認と安定性判別}
+
+ラウス表の第1列の要素は，上から順に$1, 3, 3, 1, 2$である．
+すべての要素が正であり，符号の変化はない．
+したがって，この伝達関数は安定であると判断される．
+
+\subsection{\texorpdfstring{問題2(2): 特性方程式$2s^4+4s^3+s^2+2s+3=0$の安定性}{問題2(2): 特性方程式の安定性}}
+
+\subsubsection{特性方程式の確認}
+
+与えられた特性方程式は$2s^4+4s^3+s^2+2s+3=0$である．
+
+\subsubsection{\texorpdfstring{ラウス表の作成と第1列にゼロが出現する特殊ケースの対処（$\varepsilon$置換法）}{ラウス表の作成と第1列にゼロが出現する特殊ケースの対処（イプシロン置換法）}}
+
+ラウス表の作成手順に従い，特性方程式の係数を配置する．
+特性方程式の係数は$a_4=2$，$a_3=4$，$a_2=1$，$a_1=2$，$a_0=3$である．
+
+\begin{itemize}
+\item $s^4$の行: $2, 1, 3$
+\item $s^3$の行: $4, 2, 0$
+\end{itemize}
+
+次に，$s^2$の行の要素$b_1, b_2$を計算する．
+
+\begin{align}
+b_1 &= \frac{4 \times 1 - 2 \times 2}{4} = \frac{4-4}{4} = 0 \\
+b_2 &= \frac{4 \times 3 - 2 \times 0}{4} = \frac{12}{4} = 3
+\end{align}
+
+ここで，$s^2$の行の第1列に0が出現した．このままでは計算を続けることができない．このような場合，この0を非常に小さい正の数$\varepsilon$（$\varepsilon > 0$）に置き換えて計算を進めるのが一般的な対処法である．
+
+\begin{itemize}
+\item $s^2$の行: $\varepsilon, 3, 0$（0を$\varepsilon$に置換）
+\end{itemize}
+
+次に，$s^1$の行の要素$c_1$を計算する．
+
+\begin{equation}
+c_1 = \frac{\varepsilon \times 2 - 4 \times 3}{\varepsilon} = \frac{2\varepsilon - 12}{\varepsilon}
+\end{equation}
+
+最後に，$s^0$の行の要素$d_1$を計算する．
+
+\begin{equation}
+d_1 = \frac{c_1 \times 3 - \varepsilon \times 0}{c_1} = 3
+\end{equation}
+
+完成したラウス表は以下の通りである．
+
+\begin{table}[h]
+\centering
+\caption{\texorpdfstring{問題2(2)のラウス表（$\varepsilon$置換を含む）}{問題2(2)のラウス表（イプシロン置換を含む）}}
+\label{tbl:routh2}
+\begin{tabular}{cccc}
+\toprule
+次数 & 第1列 & 第2列 & 第3列 \\
+\midrule
+$s^4$ & 2 & 1 & 3 \\
+$s^3$ & 4 & 2 & 0 \\
+$s^2$ & $\varepsilon$ & 3 & 0 \\
+$s^1$ & $\frac{2\varepsilon-12}{\varepsilon}$ & 0 & \\
+$s^0$ & 3 & 0 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{第1列の符号変化の確認と不安定極の数}
+
+ラウス表の第1列の要素を$\varepsilon \to 0$の極限で評価する．
+
+\begin{itemize}
+\item $s^4$の行: $2$（正）
+\item $s^3$の行: $4$（正）
+\item $s^2$の行: $\varepsilon$（正，$\varepsilon > 0$と仮定）
+\item $s^1$の行: $\frac{2\varepsilon-12}{\varepsilon}$
+  \begin{itemize}
+  \item $\varepsilon \to 0$のとき，分母は非常に小さい正の値，分子は$-12$に近づくため，この項は負の値となる．
+  \item $\lim_{\varepsilon \to 0^+} \frac{2\varepsilon-12}{\varepsilon} = -\infty$
+  \end{itemize}
+\item $s^0$の行: $3$（正）
+\end{itemize}
+
+第1列の符号は，正$\to$正$\to$正$\to$負$\to$正と変化している．
+符号変化があるため，この伝達関数は不安定であると判断される．
+
+符号変化の回数を数える．
+
+\begin{enumerate}
+\item $s^2$の行（正）から$s^1$の行（負）へ: 1回
+\item $s^1$の行（負）から$s^0$の行（正）へ: 1回
+\end{enumerate}
+
+合計2回の符号変化があるため，不安定極（実数部が正の極）は2個存在する．
+
+ラウス表の第1列にゼロが出現するケースは，特性方程式が虚軸上に根を持つか，あるいは実軸上に互いに符号が逆の根を持つ場合に発生する．$\varepsilon$置換法は，これらの特殊な根の存在を考慮しつつ，右半平面の根の数を正確に特定するために用いられる．この問題では，$\varepsilon \to 0$の極限を評価することで，不安定極の存在を明確に示している．
+
+\subsection{\texorpdfstring{問題2(3): 特性方程式$2s^4+s^3+4s^2+s+2=0$の安定性}{問題2(3): 特性方程式の安定性}}
+
+\subsubsection{特性方程式の確認}
+
+与えられた特性方程式は$2s^4+s^3+4s^2+s+2=0$である．
+
+\subsubsection{ラウス表の作成と行全体がゼロになる特殊ケースの対処（補助多項式法）}
+
+ラウス表の作成手順に従い，特性方程式の係数を配置する．
+特性方程式の係数は$a_4=2$，$a_3=1$，$a_2=4$，$a_1=1$，$a_0=2$である．
+
+\begin{itemize}
+\item $s^4$の行: $2, 4, 2$
+\item $s^3$の行: $1, 1, 0$
+\end{itemize}
+
+次に，$s^2$の行の要素$b_1, b_2$を計算する．
+
+\begin{align}
+b_1 &= \frac{1 \times 4 - 2 \times 1}{1} = \frac{4-2}{1} = 2 \\
+b_2 &= \frac{1 \times 2 - 2 \times 0}{1} = \frac{2}{1} = 2
+\end{align}
+
+\begin{itemize}
+\item $s^2$の行: $2, 2, 0$
+\end{itemize}
+
+次に，$s^1$の行の要素$c_1, c_2$を計算する．
+
+\begin{align}
+c_1 &= \frac{2 \times 1 - 1 \times 2}{2} = \frac{2-2}{2} = 0 \\
+c_2 &= \frac{2 \times 0 - 1 \times 0}{2} = 0
+\end{align}
+
+ここで，$s^1$の行のすべての要素が0になった．これは，特性方程式が虚軸上に根を持つか，あるいは実軸上に互いに符号が逆の根を持つことを示す．この場合，0になった行の1つ上の行（$s^2$の行）の要素から補助多項式$p(s)$を作成する．
+
+$s^2$の行の係数$2, 2$を用いて，補助多項式は$p(s) = 2s^2 + 2$となる．
+
+この補助多項式を$s$で微分する．
+
+\begin{equation}
+\frac{dp(s)}{ds} = 4s
+\end{equation}
+
+微分した結果の係数$(4, 0)$を，0になった行（$s^1$の行）に配置してラウス表を修正する．
+
+\begin{itemize}
+\item $s^1$の行: $4, 0$
+\end{itemize}
+
+修正されたラウス表を用いて，残りの要素を計算する．
+
+\begin{itemize}
+\item $s^0$の行の要素$d_1$:
+  \begin{equation}
+  d_1 = \frac{4 \times 2 - 2 \times 0}{4} = \frac{8}{4} = 2
+  \end{equation}
+\end{itemize}
+
+完成したラウス表は以下の通りである．
+
+\begin{table}[h]
+\centering
+\caption{問題2(3)のラウス表（補助多項式置換を含む）}
+\label{tbl:routh3}
+\begin{tabular}{cccc}
+\toprule
+次数 & 第1列 & 第2列 & 第3列 \\
+\midrule
+$s^4$ & 2 & 4 & 2 \\
+$s^3$ & 1 & 1 & 0 \\
+$s^2$ & 2 & 2 & 0 \\
+$s^1$ & 4 & 0 & \\
+$s^0$ & 2 & 0 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{補助多項式の根の解析と安定性判別}
+
+ラウス表の第1列の要素は，上から順に$2, 1, 2, 4, 2$である．
+すべての要素が正であり，符号の変化はない．これは，右半平面に不安定極が存在しないことを意味する．
+
+しかし，行全体がゼロになった場合，補助多項式の根を解析する必要がある．補助多項式$p(s) = 2s^2 + 2 = 0$の根を求める．
+
+\begin{align}
+2s^2 &= -2 \\
+s^2 &= -1 \\
+s &= \pm \mathrm{j}
+\end{align}
+
+これらの根は純虚軸上にあるため，システムは安定限界であると判断される．
+
+行全体がゼロになるケースは，特性方程式が虚軸に対して対称な根（例: $\pm \mathrm{j}\omega$）や実軸に対して対称な根（例: $\pm \sigma$）を持つ場合に発生する．補助多項式の根を求めることで，これらの特殊な根の性質を特定し，システムの安定性（安定限界）をより詳細に評価できる．これは，単に安定/不安定を判別するだけでなく，システムの動的挙動の予測にもつながる重要な情報である．
+
+\section{問題3：フルビッツの安定判別法}
+
+フルビッツの安定判別法は，特性方程式の係数からフルビッツ行列を構成し，そのすべての主小行列式が正であるかを確認することで安定性を判別する方法である．すべての主小行列式が正であればシステムは安定であり，一つでも負またはゼロになった場合，システムは不安定（または安定限界）と判断される．この方法は，ラウスの判別法と同様に，根を直接計算せずに安定性を判断できる点で有用である．
+
+\subsection{問題3(1): 特性方程式$s^3+7s^2+4s+6=0$の安定性}
+
+\subsubsection{特性方程式の確認}
+
+与えられた特性方程式は$s^3+7s^2+4s+6=0$である．
+
+\subsubsection{フルビッツ行列の作成}
+
+特性方程式$a_n s^n + a_{n-1} s^{n-1} + \cdots + a_1 s + a_0 = 0$の係数を$a_3=1$，$a_2=7$，$a_1=4$，$a_0=6$とする．
+$n=3$の場合，フルビッツ行列$H$は以下のように構成される．
+
+\begin{equation}
+H = \begin{pmatrix}
+a_{n-1} & a_{n-3} & a_{n-5} & \cdots \\
+a_n & a_{n-2} & a_{n-4} & \cdots \\
+0 & a_{n-1} & a_{n-3} & \cdots \\
+0 & a_n & a_{n-2} & \cdots \\
+\vdots & \vdots & \vdots & \ddots
+\end{equation}
+
+具体的に係数を代入すると，
+
+\begin{equation}
+H = \begin{pmatrix}
+a_2 & a_0 & 0 \\
+a_3 & a_1 & 0 \\
+0 & a_2 & a_0
+\end{pmatrix} = \begin{pmatrix}
+7 & 6 & 0 \\
+1 & 4 & 0 \\
+0 & 7 & 6
+\end{pmatrix}
+\end{equation}
+
+\subsubsection{フルビッツ行列式の計算と安定性判別}
+
+安定性の条件は，すべての主小行列式が正であることである．
+
+\begin{align}
+\Delta_1 &= a_{n-1} = a_2 = 7 > 0 \\
+\Delta_2 &= \begin{vmatrix}
+a_2 & a_0 \\
+a_3 & a_1
+\end{vmatrix} = \begin{vmatrix}
+7 & 6 \\
+1 & 4
+\end{vmatrix} = 7 \times 4 - 6 \times 1 = 28 - 6 = 22 > 0
+\end{align}
+
+\begin{align}
+\Delta_3 &= \begin{vmatrix}
+7 & 6 & 0 \\
+1 & 4 & 0 \\
+0 & 7 & 6
+\end{vmatrix}
+\end{align}
+
+第3列で余因子展開すると，
+
+\begin{align}
+\Delta_3 &= 0 \times (\cdots) - 0 \times (\cdots) + 6 \times \begin{vmatrix}
+7 & 6 \\
+1 & 4
+\end{vmatrix} \\
+&= 6 \times (7 \times 4 - 6 \times 1) = 6 \times (28 - 6) = 6 \times 22 = 132 > 0
+\end{align}
+
+すべての主小行列式$(\Delta_1, \Delta_2, \Delta_3)$が正であるため，この伝達関数は安定であると判断される．
+
+\begin{table}[h]
+\centering
+\caption{問題3(1)のフルビッツ行列と主小行列式}
+\label{tbl:hurwitz1}
+\begin{tabular}{cccc}
+\toprule
+行列式 & 計算過程 & 結果 & 安定性への影響 \\
+\midrule
+$\Delta_1$ & $a_2 = 7$ & 7 & 正なので安定条件を満たす \\
+$\Delta_2$ & $7 \times 4 - 6 \times 1$ & 22 & 正なので安定条件を満たす \\
+$\Delta_3$ & $6 \times (7 \times 4 - 6 \times 1)$ & 132 & 正なので安定条件を満たす \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{問題3(2): 特性方程式$3s^4+s^3+5s^2+2s+6=0$の安定性}
+
+\subsubsection{特性方程式の確認}
+
+与えられた特性方程式は$3s^4+s^3+5s^2+2s+6=0$である．
+
+\subsubsection{フルビッツ行列の作成}
+
+特性方程式$a_n s^n + a_{n-1} s^{n-1} + \cdots + a_1 s + a_0 = 0$の係数を$a_4=3$，$a_3=1$，$a_2=5$，$a_1=2$，$a_0=6$とする．
+$n=4$の場合，フルビッツ行列$H$は以下のように構成される．
+
+\begin{equation}
+H = \begin{pmatrix}
+a_3 & a_1 & 0 & 0 \\
+a_4 & a_2 & a_0 & 0 \\
+0 & a_3 & a_1 & 0 \\
+0 & a_4 & a_2 & a_0
+\end{pmatrix} = \begin{pmatrix}
+1 & 2 & 0 & 0 \\
+3 & 5 & 6 & 0 \\
+0 & 1 & 2 & 0 \\
+0 & 3 & 5 & 6
+\end{pmatrix}
+\end{equation}
+
+\subsubsection{フルビッツ行列式の計算と安定性判別}
+
+安定性の条件は，すべての主小行列式が正であることである．
+
+\begin{align}
+\Delta_1 &= a_{n-1} = a_3 = 1 > 0 \\
+\Delta_2 &= \begin{vmatrix}
+a_3 & a_1 \\
+a_4 & a_2
+\end{vmatrix} = \begin{vmatrix}
+1 & 2 \\
+3 & 5
+\end{vmatrix} = 1 \times 5 - 2 \times 3 = 5 - 6 = -1 < 0
+\end{align}
+
+ここで，$\Delta_2$が負となったため，これ以上計算を続ける必要はない．フルビッツの安定判別法では，一つでも主小行列式が負またはゼロになった場合，システムは不安定であると判断される．したがって，この伝達関数は不安定であると結論付けられる．
+
+参考として，$\Delta_3$と$\Delta_4$の計算も示す．
+
+\begin{align}
+\Delta_3 &= \begin{vmatrix}
+1 & 2 & 0 \\
+3 & 5 & 6 \\
+0 & 1 & 2
+\end{vmatrix}
+\end{align}
+
+第3列で余因子展開すると，
+
+\begin{align}
+\Delta_3 &= 0 \times (\cdots) - 6 \times \begin{vmatrix}
+1 & 0 \\
+0 & 1
+\end{vmatrix} + 2 \times \begin{vmatrix}
+1 & 2 \\
+3 & 5
+\end{vmatrix} \\
+&= -6 \times (1 \times 1 - 0 \times 0) + 2 \times (1 \times 5 - 2 \times 3) \\
+&= -6 \times 1 + 2 \times (5 - 6) = -6 + 2 \times (-1) = -6 - 2 = -8 < 0
+\end{align}
+
+\begin{align}
+\Delta_4 &= \begin{vmatrix}
+1 & 2 & 0 & 0 \\
+3 & 5 & 6 & 0 \\
+0 & 1 & 2 & 0 \\
+0 & 3 & 5 & 6
+\end{vmatrix}
+\end{align}
+
+第4列で余因子展開すると，
+
+\begin{align}
+\Delta_4 &= 6 \times \begin{vmatrix}
+1 & 2 & 0 \\
+3 & 5 & 6 \\
+0 & 1 & 2
+\end{vmatrix} = 6 \times \Delta_3 = 6 \times (-8) = -48 < 0
+\end{align}
+
+フルビッツの安定判別法は，計算途中で不安定性が判明した場合，それ以降の行列式計算を省略できるという利点がある．これは，計算コストの観点から効率的である．また，ラウスの判別法と同様に，特性方程式の係数がすべて正であるという必要条件（フルビッツの第一条件）を満たさない場合，即座に不安定と判断できる．この問題では係数はすべて正であったが，主小行列式が負になったため不安定と判断された．
+
+\begin{table}[h]
+\centering
+\caption{問題3(2)のフルビッツ行列と主小行列式}
+\label{tbl:hurwitz2}
+\begin{tabular}{cccc}
+\toprule
+行列式 & 計算過程 & 結果 & 安定性への影響 \\
+\midrule
+$\Delta_1$ & $a_3 = 1$ & 1 & 正なので安定条件を満たす \\
+$\Delta_2$ & $1 \times 5 - 2 \times 3$ & -1 & 負なので不安定と判断 \\
+$\Delta_3$ & $-6 \times 1 + 2 \times (1 \times 5 - 2 \times 3)$ & -8 & 負なので不安定と判断 \\
+$\Delta_4$ & $6 \times \Delta_3$ & -48 & 負なので不安定と判断 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{結論}
+
+\subsection{各安定判別法のまとめと考察}
+
+本レポートでは，極による安定判別，ラウスの安定判別法，フルビッツの安定判別法という三つの主要な手法を用いて，制御システムの安定性を評価した．
+
+\begin{itemize}
+\item \textbf{極による判別:} 最も直感的であり，システムの動的挙動（減衰，振動など）を直接的に理解できる．極の実数部が正であれば応答が指数関数的に増大し，虚数部があれば振動を伴うことが明確に示される．しかし，高次システムでは特性方程式の根を解析的に求めるのが困難であるという限界がある．
+
+\item \textbf{ラウスの安定判別法:} 特性方程式の根を直接計算することなく，代数的に安定性を判別できる強力なツールである．特に，第1列にゼロが出現するケース（$\varepsilon$置換法）や行全体がゼロになるケース（補助多項式法）といった特殊な状況への対処法を理解することが重要である．これらの特殊な状況は，虚軸上の根や実軸対称な根の存在を示唆し，システムの安定限界や不安定極の数を特定する上で不可欠な情報を提供する．
+
+\item \textbf{フルビッツの安定判別法:} ラウスの判別法と同様に，根を直接計算せずに安定性を判別できる．行列式の計算を伴うため，計算量が多くなる場合もあるが，系統的なアプローチが可能であり，計算途中で不安定性が判明した場合にはそれ以降の計算を省略できるという効率性も持ち合わせている．特に，設計パラメータの範囲を決定する問題において，その有効性を発揮する．
+\end{itemize}
+
+これらの判別法は，それぞれ異なる数学的背景を持つものの，線形時不変システムの安定性という同じ目的に対して補完的な情報を提供する．例えば，ラウス法は不安定極の数を直接与えるのに対し，フルビッツ法は行列式の符号のみで判別する．設計者は，問題の性質や利用可能なツールに応じて最適な判別法を選択する必要がある．
+
+\subsection{制御システム設計における安定性解析の意義}
+
+安定性解析は，制御システムが意図した通りに機能するための基盤であり，システムの安全性と信頼性を保証するために不可欠である．不安定なシステムは，予測不能な挙動を示し，最悪の場合，物理的な損害や人的被害を引き起こす可能性がある．例えば，航空機の自動操縦システムが不安定であれば，飛行の安全が脅かされる．
+
+これらの判別法を習得することは，単に試験問題を解く能力を高めるだけでなく，実際の工学的問題において，システムの挙動を予測し，安定性を確保するための設計判断を下す上で極めて重要である．安定性判別は，制御システムの「健康診断」のようなものである．単に「病気か否か」だけでなく，その「病気の原因」（極の位置）や「重症度」（不安定極の数）を診断することで，適切な「治療法」（補償器設計）を検討するための情報を提供する．この診断能力は，理論と実践を結びつける上で不可欠なスキルであり，将来のキャリアにおいてシステムの設計，分析，トラブルシューティングを行う上で大いに役立つであろう．
+
+\begin{thebibliography}{1}
+\bibitem{question} question.tex
+\end{thebibliography}
+
+\end{document}

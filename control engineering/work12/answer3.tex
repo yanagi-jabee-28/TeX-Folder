@@ -1,0 +1,288 @@
+
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+% 欧文フォント
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+% 日本語フォント
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  制御工学における安定判別法の演習 \\
+  長野高専 電気電子工学科 5年 34番 栁原魁人 \\
+  2025年7月22日
+}
+\setlength{\headheight}{34.832pt}
+
+\begin{document}
+\title{制御工学演習解答}
+\author{長野高専 電気電子工学科 5年 34番 栁原魁人}
+\date{2025年7月22日}
+\maketitle
+
+\section{問題1}
+
+\subsection{(1)}
+$$\frac{1}{s^2-2s+3}$$
+
+特性方程式: $s^2-2s+3=0$
+
+解の公式より:
+$$s = \frac{2 \pm \sqrt{4-12}}{2} = \frac{2 \pm j2\sqrt{2}}{2} = 1 \pm j\sqrt{2}$$
+
+極: $s_1=1+j\sqrt{2}$, $s_2=1-j\sqrt{2}$
+
+実数部が正なので右半平面にあり，システムは不安定．
+
+\subsection{(2)}
+$$\frac{1}{s^3+4s^2+7s+6}$$
+
+特性方程式: $s^3+4s^2+7s+6=0$
+
+$s=-2$を代入: $(-2)^3+4(-2)^2+7(-2)+6=-8+16-14+6=0$
+
+$(s+2)$で割ると: $(s+2)(s^2+2s+3)=0$
+
+$s_1=-2$
+
+$s^2+2s+3=0$より: $s = \frac{-2 \pm \sqrt{4-12}}{2} = -1 \pm j\sqrt{2}$
+
+極: $s_1=-2$, $s_2=-1+j\sqrt{2}$, $s_3=-1-j\sqrt{2}$
+
+すべての極の実数部が負なので，システムは安定．
+
+\section{問題3}
+
+\subsection{(1)}
+特性方程式: $s^4+3s^3+4s^2+3s+2=0$
+
+係数: $a_4=1, a_3=3, a_2=4, a_1=3, a_0=2$
+
+ラウス配列の基本形:
+\begin{align*}
+s^4: & \quad a_4 \quad a_2 \quad a_0 \\
+s^3: & \quad a_3 \quad a_1 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+s^1: & \quad c_1 \\
+s^0: & \quad d_1
+\end{align*}
+
+数値を代入したラウス配列:
+\begin{align*}
+s^4: & \quad 1 \quad 4 \quad 2 \\
+s^3: & \quad 3 \quad 3 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+s^1: & \quad c_1 \\
+s^0: & \quad d_1
+\end{align*}
+
+計算:
+$$b_1 = \frac{a_3 \cdot a_2 - a_4 \cdot a_1}{a_3} = \frac{3 \cdot 4 - 1 \cdot 3}{3} = 3$$
+
+$$b_2 = \frac{a_3 \cdot a_0 - a_4 \cdot 0}{a_3} = \frac{3 \cdot 2 - 1 \cdot 0}{3} = 2$$
+
+$$c_1 = \frac{b_1 \cdot a_1 - a_3 \cdot b_2}{b_1} = \frac{3 \cdot 3 - 3 \cdot 2}{3} = 1$$
+
+$$d_1 = \frac{c_1 \cdot b_2 - b_1 \cdot 0}{c_1} = \frac{1 \cdot 2 - 3 \cdot 0}{1} = 2$$
+
+完成したラウス配列:
+\begin{align*}
+s^4: & \quad 1 \quad 4 \quad 2 \\
+s^3: & \quad 3 \quad 3 \quad 0 \\
+s^2: & \quad 3 \quad 2 \\
+s^1: & \quad 1 \\
+s^0: & \quad 2
+\end{align*}
+
+第1列: $[1, 3, 3, 1, 2]$ すべて正，符号変化なし．
+
+システムは安定．
+
+\subsection{(2)}
+特性方程式: $2s^4+4s^3+s^2+2s+3=0$
+
+係数: $a_4=2, a_3=4, a_2=1, a_1=2, a_0=3$
+
+ラウス配列の基本形:
+\begin{align*}
+s^4: & \quad a_4 \quad a_2 \quad a_0 \\
+s^3: & \quad a_3 \quad a_1 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+s^1: & \quad c_1 \\
+s^0: & \quad d_1
+\end{align*}
+
+数値を代入したラウス配列:
+\begin{align*}
+s^4: & \quad 2 \quad 1 \quad 3 \\
+s^3: & \quad 4 \quad 2 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+\end{align*}
+
+$$b_1 = \frac{a_3 \cdot a_2 - a_4 \cdot a_1}{a_3} = \frac{4 \cdot 1 - 2 \cdot 2}{4} = 0 \text{ (特殊ケース)}$$
+
+$$b_2 = \frac{a_3 \cdot a_0 - a_4 \cdot 0}{a_3} = \frac{4 \cdot 3 - 2 \cdot 0}{4} = 3$$
+
+計算結果を代入したラウス配列:
+\begin{align*}
+s^4: & \quad 2 \quad 1 \quad 3 \\
+s^3: & \quad 4 \quad 2 \quad 0 \\
+s^2: & \quad 0 \quad 3 \\
+\end{align*}
+
+$\epsilon$法適用: $b_1 = \epsilon$
+
+$$c_1 = \frac{b_1 \cdot a_1 - a_3 \cdot b_2}{b_1} = \frac{\epsilon \cdot 2 - 4 \cdot 3}{\epsilon} = \frac{2\epsilon - 12}{\epsilon} \approx \frac{-12}{\epsilon} \text{ (負)}$$
+
+$$d_1 = \frac{c_1 \cdot b_2 - b_1 \cdot 0}{c_1} = \frac{\frac{-12}{\epsilon} \cdot 3 - \epsilon \cdot 0}{\frac{-12}{\epsilon}} = \frac{\frac{-36}{\epsilon}}{\frac{-12}{\epsilon}} = 3 \text{ (正)}$$
+
+完成したラウス配列（ε法適用後）:
+\begin{align*}
+s^4: & \quad 2 \quad 1 \quad 3 \\
+s^3: & \quad 4 \quad 2 \quad 0 \\
+s^2: & \quad \epsilon \quad 3 \\
+s^1: & \quad \frac{-12}{\epsilon} \\
+s^0: & \quad 3
+\end{align*}
+
+第1列符号: $[+, +, +, -, +]$ 符号変化2回
+
+右半平面に2個の不安定極．システムは不安定．
+
+\subsection{(3)}
+特性方程式: $2s^4+s^3+4s^2+s+2=0$
+
+係数: $a_4=2, a_3=1, a_2=4, a_1=1, a_0=2$
+
+ラウス配列の基本形:
+\begin{align*}
+s^4: & \quad a_4 \quad a_2 \quad a_0 \\
+s^3: & \quad a_3 \quad a_1 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+s^1: & \quad c_1 \\
+s^0: & \quad d_1
+\end{align*}
+
+数値を代入したラウス配列:
+\begin{align*}
+s^4: & \quad 2 \quad 4 \quad 2 \\
+s^3: & \quad 1 \quad 1 \quad 0 \\
+s^2: & \quad b_1 \quad b_2 \\
+s^1: & \quad c_1 \\
+\end{align*}
+
+計算:
+$$b_1 = \frac{a_3 \cdot a_2 - a_4 \cdot a_1}{a_3} = \frac{1 \cdot 4 - 2 \cdot 1}{1} = 2$$
+
+$$b_2 = \frac{a_3 \cdot a_0 - a_4 \cdot 0}{a_3} = \frac{1 \cdot 2 - 2 \cdot 0}{1} = 2$$
+
+$$c_1 = \frac{b_1 \cdot a_1 - a_3 \cdot b_2}{b_1} = \frac{2 \cdot 1 - 1 \cdot 2}{2} = 0$$
+
+計算結果を代入したラウス配列:
+\begin{align*}
+s^4: & \quad 2 \quad 4 \quad 2 \\
+s^3: & \quad 1 \quad 1 \quad 0 \\
+s^2: & \quad 2 \quad 2 \\
+s^1: & \quad 0 \\
+\end{align*}
+
+$$s^1\text{行がすべて}0 \text{ (特殊ケース)}$$
+
+補助多項式の構成:
+ゼロの行の直前の行（$s^2$行）の係数 $[2, 2]$ を使用。
+$s^2$行なので $s^2$ の項から始まり，係数を2つ飛ばしで配置:
+$$P(s) = 2s^2 + 2s^0 = 2s^2 + 2$$
+
+補助多項式の微分:
+$$\frac{dP(s)}{ds} = 4s + 0 = 4s$$
+
+微分の係数 $[4, 0]$ を $s^1$ 行に代入
+
+修正後のラウス配列:
+\begin{align*}
+s^4: & \quad 2 \quad 4 \quad 2 \\
+s^3: & \quad 1 \quad 1 \quad 0 \\
+s^2: & \quad 2 \quad 2 \\
+s^1: & \quad 4 \quad 0 \\
+s^0: & \quad 2
+\end{align*}
+
+$$d_1 = \frac{c_1 \cdot b_2 - b_1 \cdot 0}{c_1} = \frac{4 \cdot 2 - 2 \cdot 0}{4} = 2$$
+
+第1列: $[2, 1, 2, 4, 2]$ すべて正，符号変化なし
+
+補助方程式: $2s^2+2=0 \Rightarrow s=\pm j$
+
+虚軸上に極があるため，システムは安定限界．
+
+\section{問題4}
+
+\subsection{(1)}
+特性方程式: $s^3+7s^2+4s+6=0$
+
+係数: $a_3=1, a_2=7, a_1=4, a_0=6$
+
+フルビッツ行列:
+$$H = \begin{pmatrix} a_2 & a_0 & 0 \\ a_3 & a_1 & 0 \\ 0 & a_2 & a_0 \end{pmatrix} = \begin{pmatrix} 7 & 6 & 0 \\ 1 & 4 & 0 \\ 0 & 7 & 6 \end{pmatrix}$$
+
+小行列式の計算:
+
+**第1首座小行列式：**
+$$\Delta_1 = a_2 = 7 > 0$$
+
+**第2首座小行列式：**
+$$\Delta_2 = \begin{vmatrix} 7 & 6 \\ 1 & 4 \end{vmatrix} = 7 \times 4 - 6 \times 1 = 28 - 6 = 22 > 0$$
+
+**第3首座小行列式：**
+$$\Delta_3 = \begin{vmatrix} 7 & 6 & 0 \\ 1 & 4 & 0 \\ 0 & 7 & 6 \end{vmatrix}$$
+
+第3列で余因子展開すると：
+$$\Delta_3 = 0 \times (\text{小行列式}) + 0 \times (\text{小行列式}) + 6 \times \begin{vmatrix} 7 & 6 \\ 1 & 4 \end{vmatrix}$$
+
+$$= 6 \times (7 \times 4 - 6 \times 1) = 6 \times 22 = 132 > 0$$
+
+すべて正なので，システムは安定．
+
+\subsection{(2)}
+特性方程式: $3s^4+s^3+5s^2+2s+6=0$
+
+係数: $a_4=3, a_3=1, a_2=5, a_1=2, a_0=6$
+
+フルビッツ行列:
+$$H = \begin{pmatrix} 
+a_3 & a_1 & 0 & 0 \\
+a_4 & a_2 & a_0 & 0 \\
+0 & a_3 & a_1 & 0 \\
+0 & a_4 & a_2 & a_0
+\end{pmatrix} = \begin{pmatrix} 
+1 & 2 & 0 & 0 \\
+3 & 5 & 6 & 0 \\
+0 & 1 & 2 & 0 \\
+0 & 3 & 5 & 6
+\end{pmatrix}$$
+
+小行列式の計算:
+
+**第1首座小行列式：**
+$$\Delta_1 = a_3 = 1 > 0$$
+
+**第2首座小行列式：**
+$$\Delta_2 = \begin{vmatrix} 1 & 2 \\ 3 & 5 \end{vmatrix}$$
+
+2×2行列式の計算：
+$$\Delta_2 = (1 \times 5) - (2 \times 3) = 5 - 6 = -1 < 0$$
+
+$\Delta_2 < 0$なので，システムは不安定．
+
+\end{document}

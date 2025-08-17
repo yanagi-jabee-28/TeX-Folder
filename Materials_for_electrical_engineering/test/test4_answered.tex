@@ -1,0 +1,160 @@
+\documentclass[11pt,a4paper]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+
+\usepackage{siunitx}
+\sisetup{detect-all,detect-weight=true,detect-family=true}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=cyan, pdftitle={材料科学 期末試験対策（解答済み）}]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+% 欧文フォント設定
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 日本語フォント設定
+\setmainjfont{Yu Mincho}
+\setsansjfont{Yu Gothic}
+
+% 数式フォント設定
+\setmathfont{XITS Math}
+
+% 解答表示用のコマンド
+\newcommand{\ans}[1]{\textbf{#1}}
+
+% ヘッダー設定
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\footnotesize
+  材料科学 期末試験対策（解答済み） \\
+  長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人\\
+  \today
+}
+\setlength{\headheight}{35pt}
+
+\title{材料科学 期末試験対策資料\\
+（解答済みバージョン）}
+\author{長野高専 電気電子工学科 5年 34番 氏名 栁原 魁人}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+\clearpage
+
+\section{オプトエレクトロニクス材料}
+LEDの動作原理を理解しよう。
+
+\begin{enumerate}
+    \item LEDの中心的な構造は、p型半導体とn型半導体を接合した \ans{pn接合} である。
+    \item この接合に \ans{順バイアス} 電圧をかけると、n型領域の \ans{電子} とp型領域の \ans{正孔} が接合部に向かって移動する。
+    \item 接合部で両者が出会うと \ans{再結合} が起こる。
+    \item このとき、電子が持つエネルギーが光子として放出されるが、そのエネルギーの大きさは材料固有の \ans{バンドギャップ} によって決まる。
+    \item したがって、放出される光の波長（色）も \ans{バンドギャップ} によって決まる。
+\end{enumerate}
+
+\section{磁性材料}
+
+\subsection{磁性の起源}
+物質の磁性は、原子が持つ \ans{磁気モーメント} に由来する。その起源は、原子内の電子が持つ2つの基本的な運動、すなわち電子の自転である \ans{スピン} と、原子核の周りを公転する \ans{軌道運動} である。
+
+\subsection{磁性の種類}
+\begin{description}
+    \item[常磁性] 外部磁場がないと磁気モーメントの向きはランダムだが、磁場をかけると磁場の向きに弱く整列し、磁石に\underline{引き付けられる}。
+    \item[反磁性] 外部磁場をかけると、その磁場を打ち消す向きに磁化され、磁石に\underline{弱く反発する}。すべての物質が持つ性質。
+    \item[強磁性] 隣り合う磁気モーメントが自発的に同じ向きに強く整列し、外部磁場がなくても大きな \ans{自発磁化} を持つ。
+    \item[反強磁性] 隣り合う磁気モーメントが互いに\underline{逆向き}に整列することで、全体の磁化が打ち消し合う。
+    \item[フェリ磁性] 反強磁性と似ているが、逆向きの磁気モーモーメントの大きさが異なるため、完全には打ち消されずに \ans{自発磁化} が残る。フェライトが代表例。
+\end{description}
+
+\subsection{ヒステリシス曲線と磁性材料}
+強磁性体に外部磁場をかけてから元に戻す際の磁化の変化を示すのがヒステリシス曲線である。
+\begin{itemize}
+    \item 外部磁場をゼロにしても残る磁化を \ans{残留磁化} という。
+    \item 残留磁化をゼロにするために必要な逆向きの磁場の強さを \ans{保磁力} という。
+\end{itemize}
+
+この曲線の形状から、磁性材料は2種類に大別される。
+\begin{table}[H]
+    \centering
+    \caption{軟質磁性材料と硬質磁性材料}
+    \begin{tabular}{c|c|c}
+        \toprule
+        種類 & 特徴 & 用途例 \\
+        \midrule
+        \textbf{軟質磁性材料} & \ans{保磁力} が小さい。 & トランスの鉄心 \\
+        \textbf{硬質磁性材料} & \ans{保磁力} が大きい。（永久磁石） & モーター、スピーカー \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{超伝導材料}
+\begin{itemize}
+    \item 低温で電気抵抗がゼロになる現象を超伝導といい、そのメカニズムは \ans{BCS理論} によって説明される。
+    \item この理論では、低温状態で電子が2つずつペアになった \ans{クーパー対} を形成し、抵抗なく流れるとされる。
+    \item 超伝導体が外部の磁場を内部から完全に排除する現象を \ans{マイスナー効果} といい、これにより超伝導体は\textbf{完全反磁性}を示す。
+    \item 磁場に対する振る舞いから、\ans{第一種} 超伝導体と \ans{第二種} 超伝導体に分類される。
+    \item 特に \ans{第二種} 超伝導体は、強い磁場の中でも超伝導状態を維持できる\textbf{混合状態}を持つため、MRIなどの強力な磁石に応用される。
+\end{itemize}
+
+\section{炭素材料}
+炭素材料の多様性は、電子軌道の \ans{混成軌道} に由来する。
+\begin{itemize}
+    \item \ans{sp³} 混成軌道：正四面体構造をとり、3次元的に強く結合する。代表例は\textbf{ダイヤモンド}。
+    \item \ans{sp²} 混成軌道：平面的な構造をとり、層状の物質を形成する。代表例は\textbf{グラファイト}。
+\end{itemize}
+
+\section{材料解析}
+\begin{table}[H]
+    \centering
+    \caption{代表的な材料解析手法}
+    \begin{tblr}{
+        colspec={X[c]X[l]X[l]},
+        row{1}={font=\bfseries}
+    }
+        \toprule
+        解析手法 & 原理の要点 & これで何がわかるか \\
+        \midrule
+        X線回折 (XRD) & 結晶格子によるX線の回折 & \ans{結晶構造} の同定、結晶性の評価 \\
+        \midrule
+        電子顕微鏡 & 電子線を用いて微細構造を観察 & 
+        \parbox[t]{\linewidth}{
+        \begin{itemize}[leftmargin=*,topsep=0pt,partopsep=0pt,nosep]
+            \item SEM: 試料\ans{表面}の形態・凹凸
+            \item TEM: 試料\ans{内部}の構造（原子配列など）
+        \end{itemize}}
+         \\
+        \midrule
+        原子間力顕微鏡 (AFM) & 探針と試料表面の原子間力を検出 & \ans{表面}の凹凸（ナノスケール）、導電性不要 \\
+        \bottomrule
+    \end{tblr}
+\end{table}
+
+\section{計算問題について}
+講義で扱ったような計算問題も復習しておきましょう。特に、X線回折の分野で重要な\textbf{ブラッグの法則}は覚えておくと良いでしょう。
+
+\begin{equation}
+    n\lambda = 2d\sin\theta
+\end{equation}
+
+この式は、X線の波長（$\lambda$）と、結晶の格子面の間隔（$d$）、X線の入射角度（$\theta$）の関係を示しており、未知の結晶構造を解析する上で基本となります。
+
+\begin{thebibliography}{9}
+    \bibitem{ref1} R7期末の範囲スライド.pdf
+\end{thebibliography}
+
+\end{document}

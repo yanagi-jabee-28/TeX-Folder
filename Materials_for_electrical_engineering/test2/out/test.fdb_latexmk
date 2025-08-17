@@ -1,0 +1,9 @@
+# Fdb version 4
+["lualatex"] 0 "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test2/test.tex" "out/test.pdf" "test" 0 -1
+  "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/test2/test.tex" 0 -1 0 ""
+  "out/test.aux" 0 -1 0 "lualatex"
+  (generated)
+  "out/test.aux"
+  "out/test.log"
+  "out/test.pdf"
+  (rewritten before read)

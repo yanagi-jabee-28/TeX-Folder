@@ -1,0 +1,2568 @@
+Initial Win CP for (console input, console output, system): (CP932, CP932, CP932)
+I changed them all to CP932
+Rc files read:
+  C:/Users/kaito/.latexmkrc
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: Doing full clean up for 'c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex'
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Force everything to be remade.
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'lualatex' forced or previously required:
+    Reason or flag: 'go_mode'
+
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ restricted system commands enabled.
+(c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
+Document Class: ltjsarticle 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty))
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:3: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \usepackage{luatexja-fontspec}コ
+                                     ーナー周波数は，ゲインが直...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:3: Undefined control sequence.
+l.3 ...周波数 $f$ (\算出したパラメータ
+                                                   $K$ と $T$ を一次遅れ...
+Runaway argument?
+{itemize> この図\ref {fig:first_order_verification}に一次遅れ\ETC.
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:15: Paragraph ended before \end  was complete.
+<to be read again> 
+                   \par 
+l.15 
+     
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...とよく一致している．特に，\SI
+                                                  {1}{\hertz}での約\SI{2}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...致している．特に，\SI{1}{\hertz
+                                                  }での約\SI{2}{\decibel}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...る．特に，\SI{1}{\hertz}での約\SI
+                                                  {2}{\decibel}の値や全体...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...，\SI{1}{\hertz}での約\SI{2}{\decibel
+                                                  }の値や全体的な曲線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Extra }, or forgotten \endgroup.
+l.16 ...特性を表す伝達関数である．tz}
+                                                  ) ではなく角周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...z}) ではなく角周波数 $\omega$ (\si
+                                                  {\radian\per\second}) を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...なく角周波数 $\omega$ (\si{\radian
+                                                  \per\second}) を用いる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...く角周波数 $\omega$ (\si{\radian\per
+                                                  \second}) を用いる．変...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...周波数 $\omega$ (\si{\radian\per\second
+                                                  }) を用いる．変換式...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...i \times f_c = 2\pi \times 1.2 \approx \SI
+                                                  {7.54}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ... 2\pi \times 1.2 \approx \SI{7.54}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...i \times 1.2 \approx \SI{7.54}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...s 1.2 \approx \SI{7.54}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:20: Undefined control sequence.
+l.20 ...与えられる ($T=1/\omega_c$)\supcite
+                                                  {ref2}．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:22: Undefined control sequence.
+l.22 ...{1}{\omega_c} = \frac{1}{7.54} \approx \SI
+                                                  {0.133}{\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:22: Undefined control sequence.
+l.22 ... \frac{1}{7.54} \approx \SI{0.133}{\second
+                                                  }$
+Runaway argument?
+{itemize>\SI {3}{\decibel }低下した点の周波数としても定\ETC.
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:46: Paragraph ended before \end  was complete.
+<to be read again> 
+                   \par 
+l.46 
+     
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:57: Undefined control sequence.
+l.57 \setmathfont
+                 {XITS Math}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:63: Undefined control sequence.
+<argument> \undefinedpagestyle 
+                               
+l.63 \pagestyle{fancy}
+                      
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:64: Undefined control sequence.
+l.64 \fancyhead
+               {}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:65: Undefined control sequence.
+l.65 \fancyhead
+               [R]{\footnotesize
+(./out/derivation_of_transfer_function_from_bode_diagram.aux)
+[1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:78: Undefined control sequence.
+<argument> \undefinedpagestyle 
+                               
+l.78 \thispagestyle{fancy}
+                          
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...軸は対数スケールの周波数（\si
+                                                  {\hertz}），縦軸はゲ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...数スケールの周波数（\si{\hertz
+                                                  }），縦軸はゲイン（...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...\si{\hertz}），縦軸はゲイン（\si
+                                                  {\decibel}）を示してい...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...tz}），縦軸はゲイン（\si{\decibel
+                                                  }）を示している\sup...
+
+LaTeX Warning: Citation `ref1' on page 2 undefined on input line 87.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88     \item \textbf{低周波���の特性:} \SI
+                                                  {0.1}{\hertz}のような��...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...bf{低周波域の特性:} \SI{0.1}{\hertz
+                                                  }のような低い周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...低い周波数では，ゲインは約\SI
+                                                  {4.5}{\decibel}で一定で...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...では，ゲインは約\SI{4.5}{\decibel
+                                                  }で一定である\supcit...
+
+LaTeX Warning: Citation `ref1' on page 2 undefined on input line 88.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...することがわかる．例えば，\SI
+                                                  {1}{\hertz}（ゲイン約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...がわかる．例えば，\SI{1}{\hertz
+                                                  }（ゲイン約\SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...えば，\SI{1}{\hertz}（ゲイン約\SI
+                                                  {2}{\decibel}）から\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...I{1}{\hertz}（ゲイン約\SI{2}{\decibel
+                                                  }）から\SI{10}{\hertz}（...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...ゲイン約\SI{2}{\decibel}）から\SI
+                                                  {10}{\hertz}（ゲイン約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...約\SI{2}{\decibel}）から\SI{10}{\hertz
+                                                  }（ゲイン約\SI{-15}{\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...）から\SI{10}{\hertz}（ゲイン約\SI
+                                                  {-15}{\decibel}）までの...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...0}{\hertz}（ゲイン約\SI{-15}{\decibel
+                                                  }）までの1ディケー...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...10倍）の区間で，ゲインは約\SI
+                                                  {17}{\decibel}減少して...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...間で，ゲインは約\SI{17}{\decibel
+                                                  }減少している．これ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...系の理論的な減衰傾度である\SI
+                                                  {-20}{\dB\per\decade}に非...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...論的な��衰傾度である\SI{-20}{\dB
+                                                  \per\decade}に非常に近...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...な減衰傾度である\SI{-20}{\dB\per
+                                                  \decade}に非常に近い...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...衰傾度である\SI{-20}{\dB\per\decade
+                                                  }に非常に近い値であ...
+
+LaTeX Warning: Citation `ref2' on page 2 undefined on input line 89.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI
+              {-20}{\dB\per\decade}という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB
+                       \per\decade}という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB\per
+                           \decade}という���きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB\per\decade
+                                  }という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ...の漸近線から，ゲイン $G_{\text
+                                                  {dB}}$ は約\SI{4.5}{\dec...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ...ら，ゲイン $G_{\text{dB}}$ は約\SI
+                                                  {4.5}{\decibel}と読み取...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ... $G_{\text{dB}}$ は約\SI{4.5}{\decibel
+                                                  }と読み取れる\supcit...
+
+LaTeX Warning: Citation `ref1' on page 2 undefined on input line 100.
+
+
+[2]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ゲインのデシベル値 $G_{\text
+                                           {dB}}$ と真数（リニ���スケ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...のゲイン $K$ の関係は $G_{\text
+                                                  {dB}} = 20\log_{10}(K)$ で...
+
+LaTeX Warning: Citation `ref4' on page 3 undefined on input line 102.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...と，低周波域のゲインは約\SI
+                                                  {4.5}{\decibel}である．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...波域のゲインは約\SI{4.5}{\decibel
+                                                  }である．この値を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:110: Undefined control sequence.
+<argument> コーナー周波数 \texorpdfstring 
+                                                 {$f_c$}{fc} の決定
+l.110 ...数 \texorpdfstring{$f_c$}{fc} の決定}
+                                                  ���
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:110: Undefined control sequence.
+<argument> ...ーナー周波数 \texorpdfstring 
+                                                  {$f_c$}{fc} の決定}{\th...
+l.110 ...数 \texorpdfstring{$f_c$}{fc} の決定}
+                                                  󿿿
+
+LaTeX Warning: Citation `ref1' on page 3 undefined on input line 112.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:116: Undefined control sequence.
+l.116 ...作図:} 直流ゲインである約\SI
+                                                  {4.5}{\decibel}の高さに...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:116: Undefined control sequence.
+l.116 ...流ゲインである約\SI{4.5}{\decibel
+                                                  }の高さに水平な直線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...分に最もよく沿うように，\SI
+                                                  {-20}{\dB\per\decade}の傾...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...もよく沿うように，\SI{-20}{\dB
+                                                  \per\decade}の傾きを持...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...よく沿うように，\SI{-20}{\dB\per
+                                                  \decade}の傾きを持つ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...沿うように，\SI{-20}{\dB\per\decade
+                                                  }の傾きを持つ直線を...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...引く．この直線は，例えば\SI
+                                                  {10}{\hertz}において約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...この直線は，例えば\SI{10}{\hertz
+                                                  }において約\SI{-15}{\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...えば\SI{10}{\hertz}において約\SI
+                                                  {-15}{\decibel}の点を通...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...}{\hertz}において約\SI{-15}{\decibel
+                                                  }の点を通過���る．����
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:118: Undefined control sequence.
+l.118 ...線を描くと，交点は約 $f_c = \SI
+                                                  {1.2}{\hertz}$ となる．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:118: Undefined control sequence.
+l.118 ...と，交点は約 $f_c = \SI{1.2}{\hertz
+                                                  }$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:122: Undefined control sequence.
+l.122 ...ンが直流ゲインから正確に\SI
+                                                  {3}{\decibel}低下した��...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:122: Undefined control sequence.
+l.122 ...ゲインから正確に\SI{3}{\decibel
+                                                  }低下した点の周波数...
+
+LaTeX Warning: Citation `ref4' on page 3 undefined on input line 122.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:124: Undefined control sequence.
+l.124 ...ゲインは，直流ゲインから\SI
+                                                  {3}{\decibel}を��いた値...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:124: Undefined control sequence.
+l.124 ...，直流ゲインから\SI{3}{\decibel
+                                                  }を引いた値である．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI
+                               {5}{\decibel} - \SI{3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI{5}{\decibel
+                                           } - \SI{3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI{5}{\decibel} - \SI
+                                                  {3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...ン = \SI{5}{\decibel} - \SI{3}{\decibel
+                                                  } = \SI{2}{\decibel}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...\SI{5}{\decibel} - \SI{3}{\decibel} = \SI
+                                                  {2}{\decibel}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...bel} - \SI{3}{\decibel} = \SI{2}{\decibel
+                                                  }
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...特定:} ��ラフ上でゲインが\SI
+                                                  {2}{\decibel}となる周波...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...ラフ上でゲインが\SI{2}{\decibel
+                                                  }となる周波数を探す...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...確���すると，ゲイン曲線が\SI
+                                                  {2}{\decibel}のレベルを...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...と，ゲイン曲線が\SI{2}{\decibel
+                                                  }のレベルを通過する...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...ルを通過するのは，約 $f_c = \SI
+                                                  {1.0}{\hertz}$ であるこ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...するのは，約 $f_c = \SI{1.0}{\hertz
+                                                  }$ であるこ���がわか...
+
+LaTeX Warning: Citation `ref1' on page 3 undefined on input line 126.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:128: Undefined control sequence.
+l.128 ...たため，コーナー周波数は\SI
+                                                  {1.0}{\hertz}であると結...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:128: Undefined control sequence.
+l.128 ...コーナー周波数は\SI{1.0}{\hertz
+                                                  }であると結���付けら...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> 角周波数 \texorpdfstring 
+                                        {$\omega _c$}{ωc} への変換と時...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...変換と時定数 \texorpdfstring 
+                                                  {$T$}{T} の計算
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...e }\fi 角周波数 \texorpdfstring 
+                                                  {$\omega _c$}{ωc} への変...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...変換と時定数 \texorpdfstring 
+                                                  {$T$}{T} の計算}{\thepa...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...関数では通常，周波数 $f$ (\si
+                                                  {\hertz}) ではなく角周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...では通常，周波数 $f$ (\si{\hertz
+                                                  }) ではなく角周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...}) ではなく角周波数 $\omega$ (\si
+                                                  {\radian\per\second}) を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...なく角周波数 $\omega$ (\si{\radian
+                                                  \per\second}) を用いる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...く角周波数 $\omega$ (\si{\radian\per
+                                                  \second}) を用いる．変...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...波数 $\omega$ (\si{\radian\per\second
+                                                  }) を用いる．変換式...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ... \times f_c = 2\pi \times 1.0 \approx \SI
+                                                  {6.283}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...\pi \times 1.0 \approx \SI{6.283}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...\times 1.0 \approx \SI{6.283}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...1.0 \approx \SI{6.283}{\radian\per\second
+                                                  }$
+
+LaTeX Warning: Citation `ref2' on page 3 undefined on input line 136.
+
+
+[3]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:138: Undefined control sequence.
+l.138 ...}{\omega_c} = \frac{1}{6.283} \approx \SI
+                                                  {0.159}{\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:138: Undefined control sequence.
+l.138 ...frac{1}{6.283} \approx \SI{0.159}{\second
+                                                  }$
+
+LaTeX Warning: Citation `ref5' on page 4 undefined on input line 140.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:142: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_1(s)$}{G1(s)} の定式...
+l.142 ...rpdfstring{$G_1(s)$}{G1(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:142: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_1(s)$}{G1(s)} の定式...
+l.142 ...rpdfstring{$G_1(s)$}{G1(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:157: Undefined control sequence.
+l.157     \toprule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:159: Undefined control sequence.
+<recently read> \midrule 
+                         
+l.159     \midrule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160     直流ゲイン (\si
+                              {\decibel}) & $G_{\text{dB}}$ & \SI{4.5}{\deci...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160     直流ゲイン (\si{\decibel
+                                       }) & $G_{\text{dB}}$ & \SI{4.5}{\deci...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ...流ゲイン (\si{\decibel}) & $G_{\text
+                                                  {dB}}$ & \SI{4.5}{\decibel...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ... (\si{\decibel}) & $G_{\text{dB}}$ & \SI
+                                                  {4.5}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ...l}) & $G_{\text{dB}}$ & \SI{4.5}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162     コーナー周波数 (\si
+                                    {\hertz}) & $f_c$ & \SI{1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162     コーナー周波数 (\si{\hertz
+                                           }) & $f_c$ & \SI{1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162 ...ー周波数 (\si{\hertz}) & $f_c$ & \SI
+                                                  {1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162 ... (\si{\hertz}) & $f_c$ & \SI{1.2}{\hertz
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si
+                                    {\radian\per\second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si{\radian
+                                            \per\second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si{\radian\per
+                                                \second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...ナー周波数 (\si{\radian\per\second
+                                                  }) & $\omega_c$ & $2\pi \t...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...}) & $\omega_c$ & $2\pi \times 1.2$ & \SI
+                                                  {7.54}{\radian\per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...$ & $2\pi \times 1.2$ & \SI{7.54}{\radian
+                                                  \per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...$2\pi \times 1.2$ & \SI{7.54}{\radian\per
+                                                  \second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...times 1.2$ & \SI{7.54}{\radian\per\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:164: Undefined control sequence.
+l.164     時定数 & $T$ & $1/\omega_c$ & \SI
+                                              {0.133}{\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:164: Undefined control sequence.
+l.164 ...& $T$ & $1/\omega_c$ & \SI{0.133}{\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:165: Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.165     \bottomrule
+                     
+
+LaTeX Warning: Citation `ref1' on page 4 undefined on input line 173.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...は対数スケールの角周波数 (\si
+                                                  {\radian\per\second})，縦...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...スケールの角周波数 (\si{\radian
+                                                  \per\second})，縦軸はゲ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...ケールの角周波数 (\si{\radian\per
+                                                  \second})，縦軸はゲイ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...の角周波数 (\si{\radian\per\second
+                                                  })，縦軸はゲイン (\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...an\per\second})，縦軸はゲイン (\si
+                                                  {\decibel}) と位相 (\si...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...cond})，縦軸はゲイン (\si{\decibel
+                                                  }) ��位相 (\si{\degree}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...ゲイン (\si{\decibel}) と位相 (\si
+                                                  {\degree}) です\supcite{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ... (\si{\decibel}) と位相 (\si{\degree
+                                                  }) です\supcite{ref1}．...
+
+LaTeX Warning: Citation `ref1' on page 4 undefined on input line 176.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:177: Undefined control sequence.
+l.177 ...域において，ゲイン線図は\SI
+                                                  {0}{\decibel}で平坦にな...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:177: Undefined control sequence.
+l.177 ...て，ゲイン線図は\SI{0}{\decibel
+                                                  }で平坦になっている...
+
+LaTeX Warning: Citation `ref1' on page 4 undefined on input line 177.
+
+
+LaTeX Warning: Citation `ref3' on page 4 undefined on input line 178.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI 
+                            {54.5}{\radian \per \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI {54.5}{\radian 
+                                           \per \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI {54.5}{\radian \per 
+                                                \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> ...数 \SI {54.5}{\radian \per \second 
+                                                  }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 最大ゲイン \SI 
+                               {4.84}{\decibel }
+l.178 ...xtbf{最大ゲイン \SI{4.84}{\decibel}}
+                                                   であることが明示さ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 最大ゲイン \SI {4.84}{\decibel 
+                                               }
+l.178 ...xtbf{最大ゲイン \SI{4.84}{\decibel}}
+                                                   であることが明示さ...
+
+LaTeX Warning: Citation `ref1' on page 4 undefined on input line 178.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...れ系の理論的な傾きである\SI
+                                                  {-40}{\dB\per\decade}と一...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...理論的な傾きである\SI{-40}{\dB
+                                                  \per\decade}と一致する...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...論的な傾きである\SI{-40}{\dB\per
+                                                  \decade}と一致する\su...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...な傾きである\SI{-40}{\dB\per\decade
+                                                  }と一致する\supcite{r...
+
+LaTeX Warning: Citation `ref3' on page 4 undefined on input line 179.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...と，位相遅れが低周波域の\SI
+                                                  {0}{\degree}から始まり...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...相遅れが低周波域の\SI{0}{\degree
+                                                  }から始まり，共振周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...���まり，共振周波数付近で\SI
+                                                  {-90}{\degree}を通過し...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...共振周波数付近で\SI{-90}{\degree
+                                                  }を通過し，高周波域...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...\degree}を通過し，高周波域で\SI
+                                                  {-180}{\degree}に漸近し...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...過し，高周波域で\SI{-180}{\degree
+                                                  }に漸近している\sup...
+
+LaTeX Warning: Citation `ref7' on page 4 undefined on input line 180.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...近している\supcite{ref7}．この\SI
+                                                  {180}{\degree}にわたる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...\supcite{ref7}．この\SI{180}{\degree
+                                                  }にわたる位相変化は...
+
+[4]
+
+LaTeX Warning: Citation `ref8' on page 5 undefined on input line 187.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:191: Undefined control sequence.
+l.191 ...周波漸近線から，ゲインは\SI
+                                                  {0}{\decibel}です\supcit...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:191: Undefined control sequence.
+l.191 ...線から，ゲインは\SI{0}{\decibel
+                                                  }です\supcite{ref1}．こ...
+
+LaTeX Warning: Citation `ref1' on page 5 undefined on input line 191.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:193: Undefined control sequence.
+l.193     \item $K = 10^{(G_{\text
+                                  {dB}}/20)} = 10^{(0/20)} = 10^0 = 1$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...ピークゲイン \texorpdfstring 
+                                                  {$M_{p,\text {dB}}$}{Mp,dB...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...イン \texorpdfstring {$M_{p,\text 
+                                                  {dB}}$}{Mp,dB} と共振角...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...共振角周波数 \texorpdfstring 
+                                                  {$\omega _r$}{ωr} の読み...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...ピークゲイン \texorpdfstring 
+                                                  {$M_{p,\text {dB}}$}{Mp,dB...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...イン \texorpdfstring {$M_{p,\text 
+                                                  {dB}}$}{Mp,dB} と共振角...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...共振角周波数 \texorpdfstring 
+                                                  {$\omega _r$}{ωr} の読み...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+
+LaTeX Warning: Citation `ref1' on page 5 undefined on input line 199.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...tem 共振ピークゲイン: $M_{p,\text
+                                                  {dB}} = \SI{4.84}{\decibel}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...ークゲイン: $M_{p,\text{dB}} = \SI
+                                                  {4.84}{\decibel}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...: $M_{p,\text{dB}} = \SI{4.84}{\decibel
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...\item 共振角周波数: $\omega_r = \SI
+                                                  {54.5}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...周波数: $\omega_r = \SI{54.5}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...波数: $\omega_r = \SI{54.5}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ... $\omega_r = \SI{54.5}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:205: Undefined control sequence.
+<argument> 減衰係数 \texorpdfstring 
+                                        {$\zeta $}{ζ} の計算
+l.205 ... \texorpdfstring{$\zeta$}{ζ} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:205: Undefined control sequence.
+<argument> ...e }\fi 減衰係数 \texorpdfstring 
+                                                  {$\zeta $}{ζ} の計算}{...
+l.205 ... \texorpdfstring{$\zeta$}{ζ} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:210: Undefined control sequence.
+l.210     $M_p = 10^{(M_{p,\text
+                                {dB}}/20)} = 10^{(4.84/20)} = 10^{0.242} \ap...
+
+LaTeX Warning: Citation `ref3' on page 5 undefined on input line 213.
+
+
+[5]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:226: Undefined control sequence.
+l.226         \item $\zeta^2 = 0.090 \implies
+                                              \zeta = \sqrt{0.090} \approx 0...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:231: Undefined control sequence.
+<argument> 固有角周波数 \texorpdfstring 
+                                              {$\omega _n$}{ωn} の計算
+l.231 ...exorpdfstring{$\omega_n$}{ωn} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:231: Undefined control sequence.
+<argument> ... 固有角周波数 \texorpdfstring 
+                                                  {$\omega _n$}{ωn} の計算...
+l.231 ...exorpdfstring{$\omega_n$}{ωn} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241         \item $\omega_n \approx \SI
+                                         {60.18}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ...item $\omega_n \approx \SI{60.18}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ... $\omega_n \approx \SI{60.18}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ...a_n \approx \SI{60.18}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 固有角周波数は約 $\omega_n = \SI
+                                              {60.2}{\radian\per\second}$ と...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ...数は約 $\omega_n = \SI{60.2}{\radian
+                                                  \per\second}$ となる．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ...は約 $\omega_n = \SI{60.2}{\radian\per
+                                                  \second}$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ... $\omega_n = \SI{60.2}{\radian\per\second
+                                                  }$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...数 $\omega_n$ において正確に\SI
+                                                  {-90}{\degree}となる\su...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ..._n$ において正確に\SI{-90}{\degree
+                                                  }となる\supcite{ref7}．...
+
+LaTeX Warning: Citation `ref7' on page 6 undefined on input line 246.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...我々の計算結果は $\omega_n = \SI
+                                                  {60.2}{\radian\per\second}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...結果は $\omega_n = \SI{60.2}{\radian
+                                                  \per\second}$ であり，...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...果は $\omega_n = \SI{60.2}{\radian\per
+                                                  \second}$ であり，グラ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ... $\omega_n = \SI{60.2}{\radian\per\second
+                                                  }$ であり，グラフ上...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...おける位相を確認すると，\SI
+                                                  {-90}{\degree}に非常に...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...相を確認すると，\SI{-90}{\degree
+                                                  }に非常に近い値をと...
+
+LaTeX Warning: Citation `ref1' on page 6 undefined on input line 246.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:248: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_2(s)$}{G2(s)} の定式...
+l.248 ...rpdfstring{$G_2(s)$}{G2(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:248: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_2(s)$}{G2(s)} の定式...
+l.248 ...rpdfstring{$G_2(s)$}{G2(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:271: Undefined control sequence.
+l.271     \toprule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:273: Undefined control sequence.
+<recently read> \midrule 
+                         
+l.273     \midrule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274     直流ゲイン (\si
+                              {\decibel}) & $G_{\text{dB}}$ & \SI{0}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274     直流ゲイン (\si{\decibel
+                                       }) & $G_{\text{dB}}$ & \SI{0}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ...流ゲイン (\si{\decibel}) & $G_{\text
+                                                  {dB}}$ & \SI{0}{\decibel} ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ... (\si{\decibel}) & $G_{\text{dB}}$ & \SI
+                                                  {0}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ...bel}) & $G_{\text{dB}}$ & \SI{0}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276     共振角周波数 & $\omega_r$ & \SI
+                                               {54.5}{\radian\per\second} & ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...波数 & $\omega_r$ & \SI{54.5}{\radian
+                                                  \per\second} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...数 & $\omega_r$ & \SI{54.5}{\radian\per
+                                                  \second} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...$\omega_r$ & \SI{54.5}{\radian\per\second
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277     共振ピークゲ���ン (\si
+                                       {\decibel}) & $M_{p,\text{dB}}$ & \SI...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277     共振ピークゲイン (\si{\decibel
+                                                }) & $M_{p,\text{dB}}$ & \SI...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ...ゲイン (\si{\decibel}) & $M_{p,\text
+                                                  {dB}}$ & \SI{4.84}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ...(\si{\decibel}) & $M_{p,\text{dB}}$ & \SI
+                                                  {4.84}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ... & $M_{p,\text{dB}}$ & \SI{4.84}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...a_n$ & $\omega_r/\sqrt{1-2\zeta^2}$ & \SI
+                                                  {60.2}{\radian\per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ..._r/\sqrt{1-2\zeta^2}$ & \SI{60.2}{\radian
+                                                  \per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...sqrt{1-2\zeta^2}$ & \SI{60.2}{\radian\per
+                                                  \second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...2\zeta^2}$ & \SI{60.2}{\radian\per\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:281: Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.281     \bottomrule
+                     
+
+[6]
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:294: LaTeX Error: Environment align undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{align}
+                   
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:295: Missing $ inserted.
+<inserted text> 
+                $
+l.295 |G_
+         1(j\omega)| &= \frac{K}{\sqrt{1 + (\omega T)^2}} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:295: Misplaced alignment tab character &.
+l.295 |G_1(j\omega)| &
+                      = \frac{K}{\sqrt{1 + (\omega T)^2}} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:296: Misplaced alignment tab character &.
+l.296 \angle G_1(j\omega) &
+                           = -\arctan(\omega T)
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:297: LaTeX Error: \begin{itemize} on input line 21 ended by \end{align}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.297 \end{align}
+                 
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:297: Missing $ inserted.
+<inserted text> 
+                $
+l.297 \end{align}
+                 
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:303: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.303 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:304: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Undefined control sequence.
+l.317 \addplot
+              [domain=0.1:100, samples=200, thick, color=red] {20*log10(1.68...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Missing $ inserted.
+<inserted text> 
+                $
+l.317 ...] {20*log10(1.68/sqrt(1 + (2*pi*x*0.133)^
+                                                  2))};
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Extra }, or forgotten $.
+l.317 ...0*log10(1.68/sqrt(1 + (2*pi*x*0.133)^2))}
+                                                  ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Undefined control sequence.
+l.318 \addlegendentry
+                     {理論値 $G_1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Missing } inserted.
+<inserted text> 
+                }
+l.318 \addlegendentry{理論値 $
+                                 G_1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Missing $ inserted.
+<inserted text> 
+                $
+l.318 \addlegendentry{理論値 $G_
+                                   1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:321: Undefined control sequence.
+l.321 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:326: Undefined control sequence.
+l.326 \addlegendentry
+                     {設計点}󿿿
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:328: LaTeX Error: \begin{figure} on input line 301 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.328 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:329: LaTeX Error: \begin{figure} on input line 301 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.329 \end{tikzpicture}
+                       
+
+LaTeX Warning: Reference `fig:first_order_verification' on page 7 undefined on input line 334.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:336: Undefined control sequence.
+l.336     \item 低周波域で約\SI
+                                     {5}{\decibel}の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:336: Undefined control sequence.
+l.336     \item 低周波域で約\SI{5}{\decibel
+                                                 }の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:337: Undefined control sequence.
+<recently read> \SI 
+                    
+l.337     \item \SI
+                   {1}{\hertz}付近でのコーナー周波数󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:337: Undefined control sequence.
+l.337     \item \SI{1}{\hertz
+                             }付近でのコーナー周波数󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI
+                                     {-20}{\dB\per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI{-20}{\dB
+                                              \per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI{-20}{\dB\per
+                                                  \decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338 ...高周波域での\SI{-20}{\dB\per\decade
+                                                  }の減衰傾度󿿿
+
+[7]
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:346: LaTeX Error: Environment align undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 \begin{align}
+                   
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:347: Missing $ inserted.
+<inserted text> 
+                $
+l.347 |G_
+         2(j\omega| &= \frac{K}{\sqrt{(1-(\omega/\omega_n)^2)^2 + (2\zeta\om...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:347: Misplaced alignment tab character &.
+l.347 |G_2(j\omega| &
+                     = \frac{K}{\sqrt{(1-(\omega/\omega_n)^2)^2 + (2\zeta\om...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:348: Misplaced alignment tab character &.
+l.348 \angle G_2(j\omega) &
+                           = -\arctan\left(\frac{2\zeta\omega/\omega_n}{1-(\...
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:349: LaTeX Error: \begin{itemize} on input line 21 ended by \end{align}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.349 \end{align}
+                 
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:349: Missing $ inserted.
+<inserted text> 
+                $
+l.349 \end{align}
+                 
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:355: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:356: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.356 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:369: Undefined control sequence.
+l.369 \addplot
+              [domain=1:1000, samples=300, thick, color=red] {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:370: Missing $ inserted.
+<inserted text> 
+                $
+l.370     20*log10(1/sqrt((1-(x/60.2)^
+                                      2)^2 + (2*0.30*x/60.2)^2))
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:371: Extra }, or forgotten $.
+l.371 }
+       ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Undefined control sequence.
+l.372 \addlegendentry
+                     {理論値 $|G_2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Missing } inserted.
+<inserted text> 
+                }
+l.372 \addlegendentry{理論値 $
+                                 |G_2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Missing $ inserted.
+<inserted text> 
+                $
+l.372 \addlegendentry{理論値 $|G_
+                                    2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:375: Undefined control sequence.
+l.375 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:380: Undefined control sequence.
+l.380 \addlegendentry
+                     {設計点}󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:383: Undefined control sequence.
+l.383 \addplot
+              [dashed, color=gray] coordinates {(54.5, -50) (54.5, 10)};
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:385: LaTeX Error: \begin{figure} on input line 353 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.385 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:386: LaTeX Error: \begin{figure} on input line 353 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.386 \end{tikzpicture}
+                       
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:393: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.393 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:394: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:407: Undefined control sequence.
+l.407 \addplot
+              [domain=1:1000, samples=300, thick, color=red] {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:408: Missing $ inserted.
+<inserted text> 
+                $
+l.408     -atan2(2*0.30*x/60.2, 1-(x/60.2)^
+                                           2)
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:409: Extra }, or forgotten $.
+l.409 }
+       ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Undefined control sequence.
+l.410 \addlegendentry
+                     {理論値 $\angle G_2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Missing } inserted.
+<inserted text> 
+                }
+l.410 \addlegendentry{理論値 $
+                                 \angle G_2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Missing $ inserted.
+<inserted text> 
+                $
+l.410 \addlegendentry{理論値 $\angle G_
+                                          2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:413: Undefined control sequence.
+l.413 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:418: Undefined control sequence.
+l.418 \addlegendentry
+                     {設計点}󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:421: Undefined control sequence.
+l.421 \addplot
+              [dashed, color=gray] coordinates {(60.2, -180) (60.2, 0)};
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:423: LaTeX Error: \begin{figure} on input line 391 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.423 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:424: LaTeX Error: \begin{figure} on input line 391 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.424 \end{tikzpicture}
+                       
+
+LaTeX Warning: Reference `fig:second_order_gain_verification' on page 8 undefined on input line 429.
+
+
+LaTeX Warning: Reference `fig:second_order_phase_verification' on page 8 undefined on input line 429.
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:431: Undefined control sequence.
+l.431     \item 低周波域で\SI
+                                  {0}{\decibel}の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:431: Undefined control sequence.
+l.431     \item 低周波域で\SI{0}{\decibel
+                                              }の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+<recently read> \SI 
+                    
+l.432     \item \SI
+                   {54.5}{\radian\per\second}での共��ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian
+                                 \per\second}での共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian\per
+                                     \second}での共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian\per\second
+                                            }での共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432 ...per\second}での共振ピーク（約\SI
+                                                  {4.84}{\decibel}）󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432 ...共振ピーク（約\SI{4.84}{\decibel
+                                                  }）󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周波域での\SI
+                                     {-40}{\dB\per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周波域での\SI{-40}{\dB
+                                              \per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周波域での\SI{-40}{\dB\per
+                                                  \decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433 ...高周波域での\SI{-40}{\dB\per\decade
+                                                  }の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434     \item 固有角周波数\SI
+                                     {60.2}{\radian\per\second}での位相\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...\item 固有角周波数\SI{60.2}{\radian
+                                                  \per\second}での位���\S...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...m 固有角周波数\SI{60.2}{\radian\per
+                                                  \second}での位相\SI{-9...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...角周波数\SI{60.2}{\radian\per\second
+                                                  }での位相\SI{-90}{\deg...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...{60.2}{\radian\per\second}での位相\SI
+                                                  {-90}{\degree}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...n\per\second}での位相\SI{-90}{\degree
+                                                  }
+
+[8]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:450: Undefined control sequence.
+l.450 ...遅れ要素の場合｜Tajima ..., \url
+                                                  {https://tajimarobotics.co...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:451: Undefined control sequence.
+l.451 ...メージと使い方を解説！, \url
+                                                  {https://controlabo.com/se...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Undefined control sequence.
+l.452 ...かりやすい！入門サイト, \url
+                                                  {https://www.kairo-nyumon....
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Missing $ inserted.
+<inserted text> 
+                $
+l.452 ...url{https://www.kairo-nyumon.com/control_
+                                                  frequency.html} (参照 20...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Extra }, or forgotten $.
+l.452 ....kairo-nyumon.com/control_frequency.html}
+                                                   (参照 2025年7月14日).
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.453     \bibitem{ref5}
+                         基本的な伝達関数のステップ応答とボ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Missing $ inserted.
+<inserted text> 
+                $
+l.453     \bibitem{ref5}
+                         基本的な伝達関数のステップ応答とボ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Undefined control sequence.
+l.453 ... ー微分，積分，一次遅れ, \url
+                                                  {https://rikeinotame.com/b...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Missing $ inserted.
+<inserted text> 
+                $
+l.453 ...れ, \url{https://rikeinotame.com/bode_
+                                                  step1/} (参照 2025年7月...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Extra }, or forgotten $.
+l.453 ...\url{https://rikeinotame.com/bode_step1/}
+                                                   (参照 2025年7月14日).
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.454     \bibitem{ref6}
+                         2次遅れ系のボード線図・ナイキスト線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: Missing $ inserted.
+<inserted text> 
+                $
+l.454     \bibitem{ref6}
+                         2次遅れ系のボード線図・ナイキスト線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: Undefined control sequence.
+l.454 ...スト線図と減衰係数 - Qiita, \url
+                                                  {https://qiita.com/arairuc...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:455: Undefined control sequence.
+l.455 ...ド線図\_2次遅れ系 - YouTube, \url
+                                                  {https://www.youtube.com/w...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:456: Undefined control sequence.
+l.456 ...を解説！ - こんとろラボ, \url
+                                                  {https://controlabo.com/se...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:457: Missing } inserted.
+<inserted text> 
+                }
+l.457 \end{thebibliography}
+                           
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:457: Missing } inserted.
+<inserted text> 
+                }
+l.457 \end{thebibliography}
+                           
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:459: LaTeX Error: \begin{itemize} on input line 21 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.459 \end{document}
+                    
+
+[9] (./out/derivation_of_transfer_function_from_bode_diagram.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+)
+(\end occurred inside a group at level 2)
+
+### semi simple group (level 2) entered at line 21 (\begingroup)
+### semi simple group (level 1) entered at line 4 (\begingroup)
+### bottom level
+(see the transcript file for additional information)
+ 1285 words of node memory still in use:
+   11 hlist, 1 vlist, 8 rule, 2 glue, 3 kern, 1 glyph, 236 attribute, 80 glue_spec, 33 attribute_list, 2 shape, 1 write, 13 user_defined nodes
+   avail lists: 1:16,2:42536,3:364,4:292,5:167,6:52,7:4547,8:71,9:1953,10:20,11:70
+<c:/Windows/Fonts/timesbd.ttf><c:/Windows/Fonts/yumindb.ttf><c:/Windows/Fonts/YuGothR.ttc><c:/Windows/Fonts/arial.ttf><c:/Windows/Fonts/yumin.ttf><c:/Windows/Fonts/times.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on derivation_of_transfer_function_from_bode_diagram.pdf (9 pages, 858254 bytes).
+
+SyncTeX written on derivation_of_transfer_function_from_bode_diagram.synctex.gz.
+Transcript written on derivation_of_transfer_function_from_bode_diagram.log.
+Latexmk: Getting log file 'out/derivation_of_transfer_function_from_bode_diagram.log'
+Latexmk: Examining 'out/derivation_of_transfer_function_from_bode_diagram.fls'
+Latexmk: Examining 'out/derivation_of_transfer_function_from_bode_diagram.log'
+Latexmk: References changed.
+Latexmk: Important warning:
+  (\end occurred inside a group at level 2)
+Latexmk: Log file says output to 'derivation_of_transfer_function_from_bode_diagram.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Changed files or newly in use/created:
+  out/derivation_of_transfer_function_from_bode_diagram.aux
+
+------------
+Run number 2 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ restricted system commands enabled.
+(c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
+Document Class: ltjsarticle 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty))
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:3: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \usepackage{luatexja-fontspec}コ
+                                     ーナー周波数は，ゲインが直...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:3: Undefined control sequence.
+l.3 ...周波数 $f$ (\算出したパラメータ
+                                                   $K$ と $T$ を一次遅れ...
+Runaway argument?
+{itemize> この図\ref {fig:first_order_verification}に���次遅れ\ETC.
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:15: Paragraph ended before \end  was complete.
+<to be read again> 
+                   \par 
+l.15 
+     
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...とよく一致している．特に，\SI
+                                                  {1}{\hertz}での約\SI{2}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...致している．特に，\SI{1}{\hertz
+                                                  }での約\SI{2}{\decibel}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...る．特に，\SI{1}{\hertz}での約\SI
+                                                  {2}{\decibel}の値や全体...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...，\SI{1}{\hertz}での約\SI{2}{\decibel
+                                                  }の値や全体的な曲線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Extra }, or forgotten \endgroup.
+l.16 ...特性を表す伝達関数である．tz}
+                                                  ) ではなく角周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...z}) ではなく角周波数 $\omega$ (\si
+                                                  {\radian\per\second}) を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...なく角周波数 $\omega$ (\si{\radian
+                                                  \per\second}) を用いる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...く角周波数 $\omega$ (\si{\radian\per
+                                                  \second}) を用いる．変...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:16: Undefined control sequence.
+l.16 ...周波数 $\omega$ (\si{\radian\per\second
+                                                  }) を用いる．変換式...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...i \times f_c = 2\pi \times 1.2 \approx \SI
+                                                  {7.54}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ... 2\pi \times 1.2 \approx \SI{7.54}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...i \times 1.2 \approx \SI{7.54}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:18: Undefined control sequence.
+l.18 ...s 1.2 \approx \SI{7.54}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:20: Undefined control sequence.
+l.20 ...与えられる ($T=1/\omega_c$)\supcite
+                                                  {ref2}．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:22: Undefined control sequence.
+l.22 ...{1}{\omega_c} = \frac{1}{7.54} \approx \SI
+                                                  {0.133}{\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:22: Undefined control sequence.
+l.22 ... \frac{1}{7.54} \approx \SI{0.133}{\second
+                                                  }$
+Runaway argument?
+{itemize>\SI {3}{\decibel }低下した点の周波数としても定\ETC.
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:46: Paragraph ended before \end  was complete.
+<to be read again> 
+                   \par 
+l.46 
+     
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:57: Undefined control sequence.
+l.57 \setmathfont
+                 {XITS Math}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:63: Undefined control sequence.
+<argument> \undefinedpagestyle 
+                               
+l.63 \pagestyle{fancy}
+                      
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:64: Undefined control sequence.
+l.64 \fancyhead
+               {}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:65: Undefined control sequence.
+l.65 \fancyhead
+               [R]{\footnotesize
+(./out/derivation_of_transfer_function_from_bode_diagram.aux)
+[1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:78: Undefined control sequence.
+<argument> \undefinedpagestyle 
+                               
+l.78 \thispagestyle{fancy}
+                          
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...軸は対数スケールの周波数（\si
+                                                  {\hertz}），縦軸はゲ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...数スケールの周波数（\si{\hertz
+                                                  }），縦軸はゲイン（...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...\si{\hertz}），縦軸はゲイン（\si
+                                                  {\decibel}）を示してい...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:87: Undefined control sequence.
+l.87 ...tz}），縦軸はゲイン（\si{\decibel
+                                                  }）を示している\sup...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88     \item \textbf{低周波域の特性:} \SI
+                                                  {0.1}{\hertz}のような低...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...bf{低周波域の特性:} \SI{0.1}{\hertz
+                                                  }のような低い周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...低い周波数では，ゲインは約\SI
+                                                  {4.5}{\decibel}で一定で...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:88: Undefined control sequence.
+l.88 ...では，ゲインは約\SI{4.5}{\decibel
+                                                  }で一定である\supcit...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...することがわかる．例えば，\SI
+                                                  {1}{\hertz}（ゲイン約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...がわかる．例えば，\SI{1}{\hertz
+                                                  }（ゲイン約\SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...えば，\SI{1}{\hertz}（ゲイン約\SI
+                                                  {2}{\decibel}）から\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...I{1}{\hertz}（ゲイン約\SI{2}{\decibel
+                                                  }）から\SI{10}{\hertz}（...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...ゲイン約\SI{2}{\decibel}）から\SI
+                                                  {10}{\hertz}（ゲイン約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...約\SI{2}{\decibel}）から\SI{10}{\hertz
+                                                  }（ゲイン約\SI{-15}{\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...）から\SI{10}{\hertz}（ゲイン約\SI
+                                                  {-15}{\decibel}）までの...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...0}{\hertz}（ゲイン約\SI{-15}{\decibel
+                                                  }）までの1ディケー...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...10倍）の区間で，ゲインは約\SI
+                                                  {17}{\decibel}減少して...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...間で，ゲインは約\SI{17}{\decibel
+                                                  }減少している．これ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...系の理論的な減衰傾度である\SI
+                                                  {-20}{\dB\per\decade}に非...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...論的な減衰傾度である\SI{-20}{\dB
+                                                  \per\decade}に非常に近...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...な減衰傾度��ある\SI{-20}{\dB\per
+                                                  \decade}に非常に近い...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:89: Undefined control sequence.
+l.89 ...衰傾度である\SI{-20}{\dB\per\decade
+                                                  }に非常に近い値であ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI
+              {-20}{\dB\per\decade}という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB
+                       \per\decade}という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB\per
+                           \decade}という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:92: Undefined control sequence.
+l.92 この\SI{-20}{\dB\per\decade
+                                  }という傾きは，システムの高周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ...の漸近線から，ゲイン $G_{\text
+                                                  {dB}}$ は約\SI{4.5}{\dec...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ...ら，ゲイン $G_{\text{dB}}$ は約\SI
+                                                  {4.5}{\decibel}と読み取...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:100: Undefined control sequence.
+l.100 ... $G_{\text{dB}}$ は約\SI{4.5}{\decibel
+                                                  }と読み取れる\supcit...
+
+[2]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ゲインのデシベル値 $G_{\text
+                                           {dB}}$ と真数（リニアスケ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...のゲイン $K$ の関係は $G_{\text
+                                                  {dB}} = 20\log_{10}(K)$ で...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...と，低周波域のゲインは約\SI
+                                                  {4.5}{\decibel}である．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:102: Undefined control sequence.
+l.102 ...波域のゲインは約\SI{4.5}{\decibel
+                                                  }である．この値を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:110: Undefined control sequence.
+<argument> コーナー周波数 \texorpdfstring 
+                                                 {$f_c$}{fc} の決定
+l.110 ...数 \texorpdfstring{$f_c$}{fc} の決定}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:110: Undefined control sequence.
+<argument> ...ーナー周波数 \texorpdfstring 
+                                                  {$f_c$}{fc} の決定}{\th...
+l.110 ...数 \texorpdfstring{$f_c$}{fc} の決定}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:116: Undefined control sequence.
+l.116 ...作図:} 直流ゲインである約\SI
+                                                  {4.5}{\decibel}の高さに...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:116: Undefined control sequence.
+l.116 ...流ゲインである約\SI{4.5}{\decibel
+                                                  }の高さに水平な直線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...分に最もよく沿うように，\SI
+                                                  {-20}{\dB\per\decade}の傾...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...もよく沿うように，\SI{-20}{\dB
+                                                  \per\decade}の傾きを持...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...よく沿うように，\SI{-20}{\dB\per
+                                                  \decade}の傾きを持つ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...沿うように，\SI{-20}{\dB\per\decade
+                                                  }の傾きを持つ直線を...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...引く．この直線は，例えば\SI
+                                                  {10}{\hertz}において約...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...こ��直線は，例えば\SI{10}{\hertz
+                                                  }において約\SI{-15}{\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...えば\SI{10}{\hertz}において約\SI
+                                                  {-15}{\decibel}の点を通...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:117: Undefined control sequence.
+l.117 ...}{\hertz}において約\SI{-15}{\decibel
+                                                  }の点を通過する．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:118: Undefined control sequence.
+l.118 ...線を描くと，交点は約 $f_c = \SI
+                                                  {1.2}{\hertz}$ となる．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:118: Undefined control sequence.
+l.118 ...と，交点は約 $f_c = \SI{1.2}{\hertz
+                                                  }$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:122: Undefined control sequence.
+l.122 ...ンが直流ゲインから正確に\SI
+                                                  {3}{\decibel}低下した点...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:122: Undefined control sequence.
+l.122 ...ゲインから正確に\SI{3}{\decibel
+                                                  }低下した点の周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:124: Undefined control sequence.
+l.124 ...ゲインは，直流ゲインから\SI
+                                                  {3}{\decibel}を引いた値...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:124: Undefined control sequence.
+l.124 ...，直流ゲインから\SI{3}{\decibel
+                                                  }を引いた値である．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI
+                               {5}{\decibel} - \SI{3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI{5}{\decibel
+                                           } - \SI{3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125     目標ゲイン = \SI{5}{\decibel} - \SI
+                                                  {3}{\decibel} = \SI{2}{\de...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...ン = \SI{5}{\decibel} - \SI{3}{\decibel
+                                                  } = \SI{2}{\decibel}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...\SI{5}{\decibel} - \SI{3}{\decibel} = \SI
+                                                  {2}{\decibel}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:125: Undefined control sequence.
+l.125 ...bel} - \SI{3}{\decibel} = \SI{2}{\decibel
+                                                  }
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...特定:} グラフ上でゲインが\SI
+                                                  {2}{\decibel}となる周波...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...ラフ上でゲインが\SI{2}{\decibel
+                                                  }となる周波数を探す...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...確認すると，ゲイン曲線が\SI
+                                                  {2}{\decibel}のレベルを...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...と，ゲイン曲線が\SI{2}{\decibel
+                                                  }のレベルを通過する...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...ルを通過するのは，約 $f_c = \SI
+                                                  {1.0}{\hertz}$ であるこ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:126: Undefined control sequence.
+l.126 ...するのは，約 $f_c = \SI{1.0}{\hertz
+                                                  }$ であることがわか...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:128: Undefined control sequence.
+l.128 ...たため，コーナー周波���は\SI
+                                                  {1.0}{\hertz}であると結...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:128: Undefined control sequence.
+l.128 ...コーナー周波数は\SI{1.0}{\hertz
+                                                  }であると結論付けら...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> 角周波数 \texorpdfstring 
+                                        {$\omega _c$}{ωc} への変換と時...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...変換と時定数 \texorpdfstring 
+                                                  {$T$}{T} の計算
+l.130 ...��数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...e }\fi 角周波数 \texorpdfstring 
+                                                  {$\omega _c$}{ωc} への変...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:130: Undefined control sequence.
+<argument> ...変換と時定数 \texorpdfstring 
+                                                  {$T$}{T} ��計算}{\thepa...
+l.130 ...定数 \texorpdfstring{$T$}{T} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...関数では通常，周波数 $f$ (\si
+                                                  {\hertz}) ではな���角周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...では通常，周波数 $f$ (\si{\hertz
+                                                  }) ではなく角周波数...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...}) ではなく角周波数 $\omega$ (\si
+                                                  {\radian\per\second}) を用...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...なく角周波数 $\omega$ (\si{\radian
+                                                  \per\second}) を用いる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...く角周波数 $\omega$ (\si{\radian\per
+                                                  \second}) を用いる．変...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:132: Undefined control sequence.
+l.132 ...波数 $\omega$ (\si{\radian\per\second
+                                                  }) を用いる．変換式...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ... \times f_c = 2\pi \times 1.0 \approx \SI
+                                                  {6.283}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...\pi \times 1.0 \approx \SI{6.283}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...\times 1.0 \approx \SI{6.283}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:134: Undefined control sequence.
+l.134 ...1.0 \approx \SI{6.283}{\radian\per\second
+                                                  }$
+
+[3]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:138: Undefined control sequence.
+l.138 ...}{\omega_c} = \frac{1}{6.283} \approx \SI
+                                                  {0.159}{\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:138: Undefined control sequence.
+l.138 ...frac{1}{6.283} \approx \SI{0.159}{\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:142: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_1(s)$}{G1(s)} の定式...
+l.142 ...rpdfstring{$G_1(s)$}{G1(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:142: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_1(s)$}{G1(s)} の定式...
+l.142 ...rpdfstring{$G_1(s)$}{G1(s)} の定式���}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:157: Undefined control sequence.
+l.157     \toprule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:159: Undefined control sequence.
+<recently read> \midrule 
+                         
+l.159     \midrule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160     直流ゲイン (\si
+                              {\decibel}) & $G_{\text{dB}}$ & \SI{4.5}{\deci...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160     直流ゲイン (\si{\decibel
+                                       }) & $G_{\text{dB}}$ & \SI{4.5}{\deci...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ...流ゲイン (\si{\decibel}) & $G_{\text
+                                                  {dB}}$ & \SI{4.5}{\decibel...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ... (\si{\decibel}) & $G_{\text{dB}}$ & \SI
+                                                  {4.5}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:160: Undefined control sequence.
+l.160 ...l}) & $G_{\text{dB}}$ & \SI{4.5}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162     コーナー周波数 (\si
+                                    {\hertz}) & $f_c$ & \SI{1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162     コーナー周波数 (\si{\hertz
+                                           }) & $f_c$ & \SI{1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162 ...ー周波数 (\si{\hertz}) & $f_c$ & \SI
+                                                  {1.2}{\hertz} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:162: Undefined control sequence.
+l.162 ... (\si{\hertz}) & $f_c$ & \SI{1.2}{\hertz
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si
+                                    {\radian\per\second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si{\radian
+                                            \per\second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163     コーナー周波数 (\si{\radian\per
+                                                \second}) & $\omega_c$ & $2\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...ナ���周波数 (\si{\radian\per\second
+                                                  }) & $\omega_c$ & $2\pi \t...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...}) & $\omega_c$ & $2\pi \times 1.2$ & \SI
+                                                  {7.54}{\radian\per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...$ & $2\pi \times 1.2$ & \SI{7.54}{\radian
+                                                  \per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...$2\pi \times 1.2$ & \SI{7.54}{\radian\per
+                                                  \second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:163: Undefined control sequence.
+l.163 ...times 1.2$ & \SI{7.54}{\radian\per\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:164: Undefined control sequence.
+l.164     時定数 & $T$ & $1/\omega_c$ & \SI
+                                              {0.133}{\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:164: Undefined control sequence.
+l.164 ...& $T$ & $1/\omega_c$ & \SI{0.133}{\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:165: Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.165     \bottomrule
+                     
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...は対数スケールの角周波数 (\si
+                                                  {\radian\per\second})，縦...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...スケールの角周波数 (\si{\radian
+                                                  \per\second})，縦軸はゲ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...ケールの角周波数 (\si{\radian\per
+                                                  \second})，縦軸はゲイ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...の角周波数 (\si{\radian\per\second
+                                                  })，縦軸はゲイン (\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...an\per\second})，縦軸はゲイン (\si
+                                                  {\decibel}) と位相 (\si...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...cond})，縦軸はゲイン (\si{\decibel
+                                                  }) と位相 (\si{\degree}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ...ゲイン (\si{\decibel}) と位相 (\si
+                                                  {\degree}) です\supcite{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:176: Undefined control sequence.
+l.176 ... (\si{\decibel}) と位相 (\si{\degree
+                                                  }) です\supcite{ref1}．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:177: Undefined control sequence.
+l.177 ...域において，ゲイン線���は\SI
+                                                  {0}{\decibel}で平坦にな...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:177: Undefined control sequence.
+l.177 ...て，ゲイン線図は\SI{0}{\decibel
+                                                  }で平坦になっている...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI 
+                            {54.5}{\radian \per \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI {54.5}{\radian 
+                                           \per \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 角周波数 \SI {54.5}{\radian \per 
+                                                \second }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> ...数 \SI {54.5}{\radian \per \second 
+                                                  }
+l.178 ...周波数 \SI{54.5}{\radian\per\second}}
+                                                   で \textbf{最大ゲイン...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 最大ゲイン \SI 
+                               {4.84}{\decibel }
+l.178 ...xtbf{最大ゲイン \SI{4.84}{\decibel}}
+                                                   であることが明示さ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:178: Undefined control sequence.
+<argument> 最大ゲイン \SI {4.84}{\decibel 
+                                               }
+l.178 ...xtbf{最大ゲイン \SI{4.84}{\decibel}}
+                                                   であることが明示さ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...れ系の理論的な傾きである\SI
+                                                  {-40}{\dB\per\decade}と一...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...理論的な傾きである\SI{-40}{\dB
+                                                  \per\decade}と一致する...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...論的な傾きである\SI{-40}{\dB\per
+                                                  \decade}と一致する\su...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:179: Undefined control sequence.
+l.179 ...な傾きである\SI{-40}{\dB\per\decade
+                                                  }と一致する\supcite{r...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...と，位相遅れが低周波域の\SI
+                                                  {0}{\degree}から始まり...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...相遅れが低周波域の\SI{0}{\degree
+                                                  }から始まり，共振周...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...始まり，共振周波数付近で\SI
+                                                  {-90}{\degree}を通過し...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...共振周波数付近で\SI{-90}{\degree
+                                                  }を通過し，高周波域...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...\degree}を通過し，高周波域で\SI
+                                                  {-180}{\degree}に漸近し...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...過し，高周波域で\SI{-180}{\degree
+                                                  }に漸近している\sup...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...近���ている\supcite{ref7}．この\SI
+                                                  {180}{\degree}にわたる...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:180: Undefined control sequence.
+l.180 ...\supcite{ref7}．この\SI{180}{\degree
+                                                  }にわたる位相変化は...
+
+[4]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:191: Undefined control sequence.
+l.191 ...周波漸近線から，ゲインは\SI
+                                                  {0}{\decibel}です\supcit...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:191: Undefined control sequence.
+l.191 ...線から，ゲインは\SI{0}{\decibel
+                                                  }です\supcite{ref1}．こ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:193: Undefined control sequence.
+l.193     \item $K = 10^{(G_{\text
+                                  {dB}}/20)} = 10^{(0/20)} = 10^0 = 1$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...ピークゲイン \texorpdfstring 
+                                                  {$M_{p,\text {dB}}$}{Mp,dB...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...イン \texorpdfstring {$M_{p,\text 
+                                                  {dB}}$}{Mp,dB} と共振角...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...共振角周波数 \texorpdfstring 
+                                                  {$\omega _r$}{ωr} の読み...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...ピークゲイン \texorpdfstring 
+                                                  {$M_{p,\text {dB}}$}{Mp,dB...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...イン \texorpdfstring {$M_{p,\text 
+                                                  {dB}}$}{Mp,dB} と共振角...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:197: Undefined control sequence.
+<argument> ...共振角周波数 \texorpdfstring 
+                                                  {$\omega _r$}{ωr} の読み...
+l.197 ...fstring{$\omega_r$}{ωr} の読み取り}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...tem 共振ピークゲイン: $M_{p,\text
+                                                  {dB}} = \SI{4.84}{\decibel}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...ークゲイン: $M_{p,\text{dB}} = \SI
+                                                  {4.84}{\decibel}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:201: Undefined control sequence.
+l.201 ...: $M_{p,\text{dB}} = \SI{4.84}{\decibel
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...\item 共振角周波数: $\omega_r = \SI
+                                                  {54.5}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...周波数: $\omega_r = \SI{54.5}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ...波数: $\omega_r = \SI{54.5}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:202: Undefined control sequence.
+l.202 ... $\omega_r = \SI{54.5}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:205: Undefined control sequence.
+<argument> 減衰係数 \texorpdfstring 
+                                        {$\zeta $}{ζ} の計算
+l.205 ... \texorpdfstring{$\zeta$}{ζ} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:205: Undefined control sequence.
+<argument> ...e }\fi 減衰係数 \texorpdfstring 
+                                                  {$\zeta $}{ζ} の計算}{...
+l.205 ... \texorpdfstring{$\zeta$}{ζ} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:210: Undefined control sequence.
+l.210     $M_p = 10^{(M_{p,\text
+                                {dB}}/20)} = 10^{(4.84/20)} = 10^{0.242} \ap...
+
+[5]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:226: Undefined control sequence.
+l.226         \item $\zeta^2 = 0.090 \implies
+                                              \zeta = \sqrt{0.090} \approx 0...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:231: Undefined control sequence.
+<argument> 固有角周波数 \texorpdfstring 
+                                              {$\omega _n$}{ωn} の計算
+l.231 ...exorpdfstring{$\omega_n$}{ωn} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:231: Undefined control sequence.
+<argument> ... 固有角周波数 \texorpdfstring 
+                                                  {$\omega _n$}{ωn} の計算...
+l.231 ...exorpdfstring{$\omega_n$}{ωn} の計算}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241         \item $\omega_n \approx \SI
+                                         {60.18}{\radian\per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ...item $\omega_n \approx \SI{60.18}{\radian
+                                                  \per\second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ... $\omega_n \approx \SI{60.18}{\radian\per
+                                                  \second}$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:241: Undefined control sequence.
+l.241 ...a_n \approx \SI{60.18}{\radian\per\second
+                                                  }$
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 固有角周波数は約 $\omega_n = \SI
+                                              {60.2}{\radian\per\second}$ と...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ...数は約 $\omega_n = \SI{60.2}{\radian
+                                                  \per\second}$ となる．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ...は約 $\omega_n = \SI{60.2}{\radian\per
+                                                  \second}$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:244: Undefined control sequence.
+l.244 ... $\omega_n = \SI{60.2}{\radian\per\second
+                                                  }$ となる．󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...数 $\omega_n$ において正確に\SI
+                                                  {-90}{\degree}となる\su...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ..._n$ において正確に\SI{-90}{\degree
+                                                  }となる\supcite{ref7}．...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...我々の計算結果は $\omega_n = \SI
+                                                  {60.2}{\radian\per\second}...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...結果は $\omega_n = \SI{60.2}{\radian
+                                                  \per\second}$ であり，...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...果は $\omega_n = \SI{60.2}{\radian\per
+                                                  \second}$ であり，グラ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ... $\omega_n = \SI{60.2}{\radian\per\second
+                                                  }$ であり，グラフ上...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...おける位相を確認すると，\SI
+                                                  {-90}{\degree}に非常に...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:246: Undefined control sequence.
+l.246 ...相を確認すると，\SI{-90}{\degree
+                                                  }に非常に近い値をと...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:248: Undefined control sequence.
+<argument> ...的な伝��関数 \texorpdfstring 
+                                                  {$G_2(s)$}{G2(s)} の定式...
+l.248 ...rpdfstring{$G_2(s)$}{G2(s)} の定式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:248: Undefined control sequence.
+<argument> ...的な伝達関数 \texorpdfstring 
+                                                  {$G_2(s)$}{G2(s)} の定式...
+l.248 ...rpdfstring{$G_2(s)$}{G2(s)} の���式化}
+                                                  󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:271: Undefined control sequence.
+l.271     \toprule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:273: Undefined control sequence.
+<recently read> \midrule 
+                         
+l.273     \midrule
+                  
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274     直流ゲイン (\si
+                              {\decibel}) & $G_{\text{dB}}$ & \SI{0}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274     直流ゲイン (\si{\decibel
+                                       }) & $G_{\text{dB}}$ & \SI{0}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ...流ゲイン (\si{\decibel}) & $G_{\text
+                                                  {dB}}$ & \SI{0}{\decibel} ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ... (\si{\decibel}) & $G_{\text{dB}}$ & \SI
+                                                  {0}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:274: Undefined control sequence.
+l.274 ...bel}) & $G_{\text{dB}}$ & \SI{0}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276     共振角周波数 & $\omega_r$ & \SI
+                                               {54.5}{\radian\per\second} & ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...波数 & $\omega_r$ & \SI{54.5}{\radian
+                                                  \per\second} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...数 & $\omega_r$ & \SI{54.5}{\radian\per
+                                                  \second} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:276: Undefined control sequence.
+l.276 ...$\omega_r$ & \SI{54.5}{\radian\per\second
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277     共振ピークゲイン (\si
+                                       {\decibel}) & $M_{p,\text{dB}}$ & \SI...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277     共振ピークゲイン (\si{\decibel
+                                                }) & $M_{p,\text{dB}}$ & \SI...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ...ゲイン (\si{\decibel}) & $M_{p,\text
+                                                  {dB}}$ & \SI{4.84}{\decibe...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ...(\si{\decibel}) & $M_{p,\text{dB}}$ & \SI
+                                                  {4.84}{\decibel} & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:277: Undefined control sequence.
+l.277 ... & $M_{p,\text{dB}}$ & \SI{4.84}{\decibel
+                                                  } & - \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...a_n$ & $\omega_r/\sqrt{1-2\zeta^2}$ & \SI
+                                                  {60.2}{\radian\per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ..._r/\sqrt{1-2\zeta^2}$ & \SI{60.2}{\radian
+                                                  \per\second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...sqrt{1-2\zeta^2}$ & \SI{60.2}{\radian\per
+                                                  \second} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:280: Undefined control sequence.
+l.280 ...2\zeta^2}$ & \SI{60.2}{\radian\per\second
+                                                  } \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:281: Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.281     \bottomrule
+                     
+
+[6]
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:294: LaTeX Error: Environment align undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{align}
+                   
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:295: Missing $ inserted.
+<inserted text> 
+                $
+l.295 |G_
+         1(j\omega)| &= \frac{K}{\sqrt{1 + (\omega T)^2}} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:295: Misplaced alignment tab character &.
+l.295 |G_1(j\omega)| &
+                      = \frac{K}{\sqrt{1 + (\omega T)^2}} \\
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:296: Misplaced alignment tab character &.
+l.296 \angle G_1(j\omega) &
+                           = -\arctan(\omega T)
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:297: LaTeX Error: \begin{itemize} on input line 21 ended by \end{align}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.297 \end{align}
+                 
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:297: Missing $ inserted.
+<inserted text> 
+                $
+l.297 \end{align}
+                 
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:303: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.303 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:304: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Undefined control sequence.
+l.317 \addplot
+              [domain=0.1:100, samples=200, thick, color=red] {20*log10(1.68...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Missing $ inserted.
+<inserted text> 
+                $
+l.317 ...] {20*log10(1.68/sqrt(1 + (2*pi*x*0.133)^
+                                                  2))};
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:317: Extra }, or forgotten $.
+l.317 ...0*log10(1.68/sqrt(1 + (2*pi*x*0.133)^2))}
+                                                  ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Undefined control sequence.
+l.318 \addlegendentry
+                     {理論値 $G_1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Missing } inserted.
+<inserted text> 
+                }
+l.318 \addlegendentry{理論値 $
+                                 G_1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:318: Missing $ inserted.
+<inserted text> 
+                $
+l.318 \addlegendentry{理論値 $G_
+                                   1(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:321: Undefined control sequence.
+l.321 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:326: Undefined control sequence.
+l.326 \addlegendentry
+                     {設計点}󿿿
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:328: LaTeX Error: \begin{figure} on input line 301 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.328 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:329: LaTeX Error: \begin{figure} on input line 301 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.329 \end{tikzpicture}
+                       
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:336: Undefined control sequence.
+l.336     \item 低周波域で約\SI
+                                     {5}{\decibel}の平���なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:336: Undefined control sequence.
+l.336     \item 低周波域で約\SI{5}{\decibel
+                                                 }の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:337: Undefined control sequence.
+<recently read> \SI 
+                    
+l.337     \item \SI
+                   {1}{\hertz}付近でのコーナー周波数󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:337: Undefined control sequence.
+l.337     \item \SI{1}{\hertz
+                             }付近でのコーナー周波数󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI
+                                     {-20}{\dB\per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI{-20}{\dB
+                                              \per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338     \item 高周波域での\SI{-20}{\dB\per
+                                                  \decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:338: Undefined control sequence.
+l.338 ...高周波域での\SI{-20}{\dB\per\decade
+                                                  }の減衰傾度󿿿
+
+[7]
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:346: LaTeX Error: Environment align undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 \begin{align}
+                   
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:347: Missing $ inserted.
+<inserted text> 
+                $
+l.347 |G_
+         2(j\omega| &= \frac{K}{\sqrt{(1-(\omega/\omega_n)^2)^2 + (2\zeta\om...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:347: Misplaced alignment tab character &.
+l.347 |G_2(j\omega| &
+                     = \frac{K}{\sqrt{(1-(\omega/\omega_n)^2)^2 + (2\zeta\om...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:348: Misplaced alignment tab character &.
+l.348 \angle G_2(j\omega) &
+                           = -\arctan\left(\frac{2\zeta\omega/\omega_n}{1-(\...
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:349: LaTeX Error: \begin{itemize} on input line 21 ended by \end{align}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.349 \end{align}
+                 
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:349: Missing $ inserted.
+<inserted text> 
+                $
+l.349 \end{align}
+                 
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:355: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:356: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.356 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:369: Undefined control sequence.
+l.369 \addplot
+              [domain=1:1000, samples=300, thick, color=red] {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:370: Missing $ inserted.
+<inserted text> 
+                $
+l.370     20*log10(1/sqrt((1-(x/60.2)^
+                                      2)^2 + (2*0.30*x/60.2)^2))
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:371: Extra }, or forgotten $.
+l.371 }
+       ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Undefined control sequence.
+l.372 \addlegendentry
+                     {理論値 $|G_2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Missing } inserted.
+<inserted text> 
+                }
+l.372 \addlegendentry{理論値 $
+                                 |G_2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:372: Missing $ inserted.
+<inserted text> 
+                $
+l.372 \addlegendentry{理論値 $|G_
+                                    2(j\omega)|$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:375: Undefined control sequence.
+l.375 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:380: Undefined control sequence.
+l.380 \addlegendentry
+                     {設計点}󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:383: Undefined control sequence.
+l.383 \addplot
+              [dashed, color=gray] coordinates {(54.5, -50) (54.5, 10)};
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:385: LaTeX Error: \begin{figure} on input line 353 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.385 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:386: LaTeX Error: \begin{figure} on input line 353 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.386 \end{tikzpicture}
+                       
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:393: LaTeX Error: Environment tikzpicture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.393 \begin{tikzpicture}
+                         
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:394: LaTeX Error: Environment axis undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394 \begin{axis}
+                   [
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:407: Undefined control sequence.
+l.407 \addplot
+              [domain=1:1000, samples=300, thick, color=red] {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:408: Missing $ inserted.
+<inserted text> 
+                $
+l.408     -atan2(2*0.30*x/60.2, 1-(x/60.2)^
+                                           2)
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:409: Extra }, or forgotten $.
+l.409 }
+       ;
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Undefined control sequence.
+l.410 \addlegendentry
+                     {理論値 $\angle G_2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Missing } inserted.
+<inserted text> 
+                }
+l.410 \addlegendentry{理論値 $
+                                 \angle G_2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:410: Missing $ inserted.
+<inserted text> 
+                $
+l.410 \addlegendentry{理論値 $\angle G_
+                                          2(j\omega)$}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:413: Undefined control sequence.
+l.413 \addplot
+              [only marks, mark=*, mark size=3pt, color=blue] coordinates {
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:418: Undefined control sequence.
+l.418 \addlegendentry
+                     {設計点}󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:421: Undefined control sequence.
+l.421 \addplot
+              [dashed, color=gray] coordinates {(60.2, -180) (60.2, 0)};
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:423: LaTeX Error: \begin{figure} on input line 391 ended by \end{axis}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.423 \end{axis}
+                
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:424: LaTeX Error: \begin{figure} on input line 391 ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.424 \end{tikzpicture}
+                       
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:431: Undefined control sequence.
+l.431     \item 低周波域で\SI
+                                  {0}{\decibel}の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:431: Undefined control sequence.
+l.431     \item 低周波域で\SI{0}{\decibel
+                                              }の平坦なゲイン󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+<recently read> \SI 
+                    
+l.432     \item \SI
+                   {54.5}{\radian\per\second}での���振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian
+                                 \per\second}での共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian\per
+                                     \second}で���共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432     \item \SI{54.5}{\radian\per\second
+                                            }での共振ピーク（約\SI{...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432 ...per\second}での共振ピーク（約\SI
+                                                  {4.84}{\decibel}）󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:432: Undefined control sequence.
+l.432 ...共振��ーク（約\SI{4.84}{\decibel
+                                                  }）󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周波域での\SI
+                                     {-40}{\dB\per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周波域での\SI{-40}{\dB
+                                              \per\decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433     \item 高周���域での\SI{-40}{\dB\per
+                                                  \decade}の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:433: Undefined control sequence.
+l.433 ...高周波域での\SI{-40}{\dB\per\decade
+                                                  }の減衰傾度󿿿
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434     \item 固有角周波数\SI
+                                     {60.2}{\radian\per\second}での位相\...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...\item 固有角周波数\SI{60.2}{\radian
+                                                  \per\second}での位相\S...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...m 固有角周波数\SI{60.2}{\radian\per
+                                                  \second}での位相\SI{-9...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...角周波数\SI{60.2}{\radian\per\second
+                                                  }での位相\SI{-90}{\deg...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...{60.2}{\radian\per\second}での位相\SI
+                                                  {-90}{\degree}
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:434: Undefined control sequence.
+l.434 ...n\per\second}での位相\SI{-90}{\degree
+                                                  }
+
+[8]
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:450: Undefined control sequence.
+l.450 ...遅れ要素の場合｜Tajima ..., \url
+                                                  {https://tajimarobotics.co...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:451: Undefined control sequence.
+l.451 ...���ージと使い方を解説！, \url
+                                                  {https://controlabo.com/se...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Undefined control sequence.
+l.452 ...かりやすい！入門サイト, \url
+                                                  {https://www.kairo-nyumon....
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Missing $ inserted.
+<inserted text> 
+                $
+l.452 ...url{https://www.kairo-nyumon.com/control_
+                                                  frequency.html} (参照 20...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:452: Extra }, or forgotten $.
+l.452 ....kairo-nyumon.com/control_frequency.html}
+                                                   (参照 2025年7月14日).
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.453     \bibitem{ref5}
+                         基本的な伝達関数のステップ応答と��...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Missing $ inserted.
+<inserted text> 
+                $
+l.453     \bibitem{ref5}
+                         基本的な伝達関数のステップ応答とボ...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Undefined control sequence.
+l.453 ... ー微分，積分，一次遅れ, \url
+                                                  {https://rikeinotame.com/b...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Missing $ inserted.
+<inserted text> 
+                $
+l.453 ...れ, \url{https://rikeinotame.com/bode_
+                                                  step1/} (参照 2025年7月...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:453: Extra }, or forgotten $.
+l.453 ...\url{https://rikeinotame.com/bode_step1/}
+                                                   (参照 2025年7月14日).
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.454     \bibitem{ref6}
+                         2次遅れ系のボード線図・ナ���キスト線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: Missing $ inserted.
+<inserted text> 
+                $
+l.454     \bibitem{ref6}
+                         2次遅れ系のボード線図・ナイキスト線...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:454: Undefined control sequence.
+l.454 ...スト線図と減衰係数 - Qiita, \url
+                                                  {https://qiita.com/arairuc...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:455: Undefined control sequence.
+l.455 ...ド線図\_2次遅れ系 - YouTube, \url
+                                                  {https://www.youtube.com/w...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:456: Undefined control sequence.
+l.456 ...を解説！ - こんとろラボ, \url
+                                                  {https://controlabo.com/se...
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:457: Missing } inserted.
+<inserted text> 
+                }
+l.457 \end{thebibliography}
+                           
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:457: Missing } inserted.
+<inserted text> 
+                }
+l.457 \end{thebibliography}
+                           
+
+c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram.tex:459: LaTeX Error: \begin{itemize} on input line 21 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.459 \end{document}
+                    
+
+[9] (./out/derivation_of_transfer_function_from_bode_diagram.aux))
+(\end occurred inside a group at level 2)
+
+### semi simple group (level 2) entered at line 21 (\begingroup)
+### semi simple group (level 1) entered at line 4 (\begingroup)
+### bottom level
+(see the transcript file for additional information)
+ 1285 words of node memory still in use:
+   11 hlist, 1 vlist, 8 rule, 2 glue, 3 kern, 1 glyph, 236 attribute, 80 glue_spec, 33 attribute_list, 2 shape, 1 write, 13 user_defined nodes
+   avail lists: 1:16,2:42536,3:364,4:292,5:167,6:52,7:4547,8:71,9:1953,10:20,11:70
+<c:/Windows/Fonts/timesbd.ttf><c:/Windows/Fonts/yumindb.ttf><c:/Windows/Fonts/YuGothR.ttc><c:/Windows/Fonts/arial.ttf><c:/Windows/Fonts/yumin.ttf><c:/Windows/Fonts/times.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on derivation_of_transfer_function_from_bode_diagram.pdf (9 pages, 857632 bytes).
+
+SyncTeX written on derivation_of_transfer_function_from_bode_diagram.synctex.gz.
+Transcript written on derivation_of_transfer_function_from_bode_diagram.log.
+Latexmk: Getting log file 'out/derivation_of_transfer_function_from_bode_diagram.log'
+Latexmk: Examining 'out/derivation_of_transfer_function_from_bode_diagram.fls'
+Latexmk: Examining 'out/derivation_of_transfer_function_from_bode_diagram.log'
+Latexmk: Important warning:
+  (\end occurred inside a group at level 2)
+Latexmk: Log file says output to 'derivation_of_transfer_function_from_bode_diagram.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: Errors, in force_mode: so I tried finishing targets
+Collected error summary (may duplicate other messages):
+  lualatex: Command for 'lualatex' gave return code 1
+      Refer to 'out/derivation_of_transfer_function_from_bode_diagram.log' and/or above output for details
+
+C:\texlive\2025\bin\windows\runscript.tlu:933: command failed with exit code 12:
+perl.exe c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl -f -gg -pv -lualatex -synctex=1 -interaction=nonstopmode -file-line-error c:/Users/kaito/TeX-Folder/Materials_for_electrical_engineering/derivation_of_transfer_function_from_bode_diagram
