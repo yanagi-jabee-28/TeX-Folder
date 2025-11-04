@@ -9,6 +9,9 @@
 \usepackage{newtxtext, newtxmath} % Times系のフォント・数式パッケージ
 \usepackage{amsmath,amssymb}   % 数式
 \usepackage{graphicx}          % 画像の挿入
+\usepackage{tikz}             % 図作成
+\usepackage{pgfplots}         % グラフ作成
+\pgfplotsset{compat=1.18}
 \usepackage{siunitx}           % 国際単位系(SI)
 \usepackage{float}             % 図表の位置調整
 \usepackage{booktabs}          % 見栄えの良い表
@@ -74,6 +77,50 @@
 
 \paragraph{a) 実験結果}
 平板-平板電極の結果を表\ref{tab:plate}に，球-球電極(球半径 \SI{5}{\centi\meter})の結果を表\ref{tab:sphere}に，針-針電極の結果を表\ref{tab:needle}に示す．更に，表\ref{tab:plate}〜\ref{tab:needle}を比較するため1つにまとめたグラフを図1に示す．
+
+% --- 図1: 3種類の電極の実験式と実測値を重ねたグラフ (pgfplots) ---
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.85\linewidth,
+      height=7cm,
+      xlabel={ギャップ長 [cm]},
+      ylabel={破壊電圧 [kV]},
+      legend pos=south east,
+      legend style={font=\small},
+      grid=major,
+      mark size=3pt,
+      xmin=0, xmax=5.5,
+      ymin=0
+    ]
+  % 平板-平板: 実験式 (計算値, 塗りつぶし黒)
+  \addplot[black, thick, mark=o, mark options={fill=black, draw=black}] coordinates { (0.4,14.0) (0.7,22.4) (1.0,30.6) (1.3,38.5) (1.6,46.3) };
+  \addlegendentry{平板-平板 実験式}
+  % 平板-平板: 実測値 (実測値, マーカー白抜き)
+  \addplot[black, thick, mark=o, mark options={fill=white, draw=black}] coordinates { (0.4,13.3) (0.7,21.8) (1.0,31.0) (1.3,38.1) (1.6,46.4) };
+  \addlegendentry{平板-平板 実測値}
+
+  % 球-球: 実験式 (計算値, 塗りつぶし黒)
+  \addplot[black, thick, mark=square*, mark options={fill=black, draw=black}] coordinates { (0.4,13.0) (0.7,22.2) (1.0,31.2) (1.3,39.8) (1.6,48.0) };
+  \addlegendentry{球-球 実験式}
+  % 球-球: 実測値 (実測値, マーカー白抜き)
+  \addplot[black, thick, mark=square, mark options={fill=white, draw=black}] coordinates { (0.4,13.8) (0.7,22.6) (1.0,32.4) (1.3,41.0) (1.6,48.2) };
+  \addlegendentry{球-球 実測値}
+
+  % 針-針: 実験式 (計算値, 塗りつぶし黒)
+  \addplot[black, thick, mark=diamond*, mark options={fill=black, draw=black}] coordinates { (1.0,22.8) (2.0,27.7) (3.0,32.6) (4.0,37.5) (5.0,42.4) };
+  \addlegendentry{針-針 実験式}
+  % 針-針: 実測値 (実測値, マーカー白抜き)
+  \addplot[black, thick, mark=diamond, mark options={fill=white, draw=black}] coordinates { (1.0,8.7) (2.0,21.8) (3.0,31.4) (4.0,40.9) (5.0,48.4) };
+  \addlegendentry{針-針 実測値}
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{平板-平板，球-球，針-針電極の破壊電圧 — 実験式(連続線)と実測平均値(破線)を重ねた図}
+  \label{fig:gap-comparison}
+\end{figure}
+
 
 \paragraph{b) 考察および報告事項}
 図1について考察する．平等電界にあたる平板-平板電極と球-球電極については，プロット及び近似線がほぼ一致しており，実験式と実験結果ともによく一致した比例関係であることが確認できる．一方，不平等電界ギャップにあたる針-針電極は，ギャップ長が長くなると火花電圧も大きくなるといった傾向は一致もするものの，同じギャップ長における火花電圧は一致していない．これは，針-針電極の実験式が \SI{30}{\centi\meter} 以上の長ギャップを想定としており，測定したギャップ長では想定範囲外となるためである．但し，ギャップ長が長くなるに従い実験結果の傾きは徐々に低下していることから，実験式が想定する直線に近づくと考えられる．全体的な比較として，平等電界の電極と不平等電界の電極を実験結果で比較すると，ほぼ全てのギャップ長で平等電界ギャップの火花電圧が，不平等電界ギャップのそれよりも数倍程度大きいことがわかる．以上より，本実験は原理通りの結果が確認できた．(406文字)
