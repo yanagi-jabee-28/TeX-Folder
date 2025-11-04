@@ -234,6 +234,38 @@
   \end{tabular}
 \end{table}
 
+% --- 図: 針-平板電極の平均破壊電圧 (針(+) と 針(-) を重ねる) ---
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.75\linewidth,
+      height=6cm,
+      xlabel={ギャップ長 [cm]},
+      ylabel={破壊電圧 [kV]},
+      legend pos=south east,
+      grid=major,
+      mark size=3pt,
+      xmin=0, xmax=1.8,
+      ymin=0
+    ]
+  % 針(+) 平均値 (点のみ)
+  \addplot[only marks, black, thick, mark=o, mark options={fill=black,draw=black}] coordinates { (0.4,5.6) (0.7,9.1) (1.0,11.9) (1.3,14.8) (1.6,18.5) };
+    \addlegendentry{針(+) 平均値}
+  % 針(+) 回帰直線 (最小二乗): y = 10.5 x + 1.48
+  \addplot[black, thick, mark=none] {10.5*x + 1.48};
+
+  % 針(-) 平均値 (点のみ)
+  \addplot[only marks, black, thick, mark=triangle, mark options={fill=white,draw=black}] coordinates { (0.4,7.3) (0.7,12.2) (1.0,18.7) (1.3,25.5) (1.6,31.6) };
+    \addlegendentry{針(-) 平均値}
+  % 針(-) 回帰直線 (最小二乗): y = 20.6333 x - 1.5733
+  \addplot[black, thick, mark=none] {20.6333*x - 1.5733};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{針-平板電極におけるギャップ長と破壊電圧 (平均値)}
+  \label{fig:needle-plate}
+\end{figure}
+
 \subsection{液体および固体の絶縁破壊試験}
 
 本節では，液体絶縁体および固体絶縁体の破壊試験の結果を報告する．更に，前節の気体絶縁体を含めて気体・液体・固体絶縁体の破壊電圧を比較する．
