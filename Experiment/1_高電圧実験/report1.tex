@@ -27,16 +27,15 @@
 \maketitle
 
 \section{目的}
-
-気体，液体，固体の三態の絶縁体について破壊試験を行い，高電圧工学についての理解を深める。気体絶縁体として空気を用い，絶縁距離と破壊電圧の関係を調べる。液体絶縁体としては絶縁油，固体絶縁体としてはベークライトを用いて絶縁破壊試験を行い，三態の絶縁体の破壊電圧を比較する。更に，碍子に雷インパルス電圧を印加して碍子表面の空気の破壊電圧を調べる。
+% 【修正箇所】表現を少し変更
+本実験は，気体，液体，固体の三態における絶縁体の絶縁破壊特性を試験し，高電圧工学に関する基礎的な知見と理解を深めることを目的とする。具体的には，気体絶縁体（空気）における絶縁距離と破壊電圧の関係，液体（絶縁油）および固体（ベークライト）の絶縁破壊特性を測定し，三態の絶縁耐力を比較検討する。さらに，碍子への雷インパルス電圧印加試験を通じて，碍子表面における空気の破壊電圧特性を調査する。
 
 \section{実験結果と報告事項}
-
-本実験は，気中直流火花放電特性，液体および固体の絶縁破壊試験，碍子のインパルス電圧特性の3つの課題から構成される。気中直流火花放電特性と液体の絶縁破壊試験は直流電圧を印加し，固体の絶縁破壊試験では交流電圧を印加した。実験を通じて共通項目として，使用機器を表\ref{tab:equipment}に，気象条件を表\ref{tab:weather}に示す。表\ref{tab:weather}には実験式で用いる相対空気密度も示した。3つの課題の結果と報告事項は課題毎に後述する。
+% 【修正箇所】表現を少し変更
+本実験は，「気中直流火花放電特性」，「液体および固体の絶縁破壊試験」，「碍子のインパルス電圧特性」の3つの課題で構成される。気中直流火花放電特性と液体絶縁破壊試験では直流電圧を，固体絶縁破壊試験では交流電圧を印加した。実験全体で共通する使用機器を表\ref{tab:equipment}に，実験時の気象条件を表\ref{tab:weather}に示す。表\ref{tab:weather}には，実験式の補正に用いた相対空気密度も併記する。以下，3つの課題それぞれについて結果と報告事項を詳述する。
 
 \subsection{気中直流火花放電特性}
-
-本節では，気体絶縁体である空気の絶縁破壊試験の結果を報告する。形状が異なる電極を用いてギャップ長と破壊電圧の関係と，針-平板電極を用いた極性効果についての結果を確認する。
+本節では，気体絶縁体である空気の絶縁破壊試験の結果を報告する。形状の異なる電極構成におけるギャップ長と破壊電圧の関係，および針-平板電極における極性効果について検証する。
 
 \begin{table}[H]
   \centering
@@ -76,69 +75,9 @@
 \subsubsection{形状が異なる電極のギャップ長と破壊電圧}
 
 \paragraph{a) 実験結果}
-平板-平板電極の結果を表\ref{tab:plate}に，球-球電極(球半径 \SI{5}{\centi\meter})の結果を表\ref{tab:sphere}に，針-針電極の結果を表\ref{tab:needle}に示す。更に，表\ref{tab:plate}〜\ref{tab:needle}を比較するため1つにまとめたグラフを図\ref{fig:gap-comparison}に示す。
+平板-平板電極の結果を表\ref{tab:plate}に，球-球電極(球半径 \SI{5}{\centi\meter})の結果を表\ref{tab:sphere}に，針-針電極の結果を表\ref{tab:needle}に示す。更に，これら3つの電極の特性を比較するため，結果をまとめたグラフを図\ref{fig:gap-comparison}に示す。
 
-% --- 図1: 3種類の電極の実験式と実測値を重ねたグラフ (pgfplots) ---
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      width=0.85\linewidth,
-      height=7cm,
-      xlabel={ギャップ長 [cm]},
-      ylabel={破壊電圧 [kV]},
-      legend pos=south east,
-      legend style={font=\small},
-      grid=major,
-      mark size=3pt,
-      xmin=0, xmax=5.5,
-      ymin=0
-    ]
-
-    % --- データテーブル定義 (x y) ---
-    % --- 平板-平板: 計算値 (点) ---
-    \addplot[only marks, mark=o, mark options={fill=black,draw=black}] coordinates { (0.4,14.0) (0.7,22.4) (1.0,30.6) (1.3,38.5) (1.6,46.3) };
-    \addlegendentry{平板-平板 実験式}
-    % 平板-平板 回帰直線: y = 26.9 x + 3.46
-    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2] {26.9*x + 3.46};
-
-    % --- 平板-平板: 実測値 (点) ---
-    \addplot[only marks, mark=o, mark options={fill=white,draw=black}] coordinates { (0.4,13.3) (0.7,21.8) (1.0,31.0) (1.3,38.1) (1.6,46.4) };
-    \addlegendentry{平板-平板 実測値}
-    % 平板-平板 実測 回帰直線: y = 27.5 x + 2.62
-    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2] {27.5*x + 2.62};
-
-    % --- 球-球: 計算値 (点) ---
-    \addplot[only marks, mark=square*, mark options={fill=black,draw=black}] coordinates { (0.4,13.0) (0.7,22.2) (1.0,31.2) (1.3,39.8) (1.6,48.0) };
-    \addlegendentry{球-球 実験式}
-    % 球-球 回帰直線: y = 29.2 x + 1.64
-    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2] {29.2*x + 1.64};
-
-    % --- 球-球: 実測値 (点) ---
-    \addplot[only marks, mark=square, mark options={fill=white,draw=black}] coordinates { (0.4,13.8) (0.7,22.6) (1.0,32.4) (1.3,41.0) (1.6,48.2) };
-    \addlegendentry{球-球 実測値}
-    % 球-球 実測 回帰直線: y = 29.0667 x + 2.5333
-    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2] {29.0667*x + 2.5333};
-
-    % --- 針-針: 計算値 (点) ---
-    \addplot[only marks, mark=diamond*, mark options={fill=black,draw=black}] coordinates { (1.0,22.8) (2.0,27.7) (3.0,32.6) (4.0,37.5) (5.0,42.4) };
-    \addlegendentry{針-針 実験式}
-    % 針-針 回帰直線: y = 4.9 x + 17.9
-    \addplot[black, thick, mark=none, domain=0.8:5.2,samples=2] {4.9*x + 17.9};
-
-    % --- 針-針: 実測値 (点) ---
-    \addplot[only marks, mark=diamond, mark options={fill=white,draw=black}] coordinates { (1.0,8.7) (2.0,21.8) (3.0,31.4) (4.0,40.9) (5.0,48.4) };
-    \addlegendentry{針-針 実測値}
-    % 針-針 実測 回帰直線: y = 9.85 x + 0.69
-    \addplot[black, thick, mark=none, domain=0.8:5.2,samples=2] {9.85*x + 0.69};
-
-    \end{axis}
-  \end{tikzpicture}
-  \caption{平板-平板，球-球，針-針電極の破壊電圧}
-  \label{fig:gap-comparison}
-\end{figure}
-
-% 【修正箇所】
+% 【修正箇所】考察を全面的に書き直し、より詳細で論理的な説明に変更
 \paragraph{b) 考察および報告事項}
 図\ref{fig:gap-comparison}に示される電極形状と破壊電圧の関係について考察する。
 平等電界を形成する平板-平板電極および球-球電極では，実測値と実験式による計算値が極めて良好に一致し，破壊電圧とギャップ長が比例関係にあることが確認できる。これは，電界がギャップ全体で均一であるため，放電現象が安定し，予測性の高い絶縁破壊が生じたためと考察される。
@@ -210,12 +149,67 @@
   \end{tabular}
 \end{table}
 
+% --- 図1: 3種類の電極の実験式と実測値を重ねたグラフ (pgfplots) ---
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.85\linewidth,
+      height=7cm,
+      xlabel={ギャップ長 [cm]},
+      ylabel={破壊電圧 [kV]},
+      legend pos=south east,
+      legend style={font=\small},
+      grid=major,
+      mark size=3pt,
+      xmin=0, xmax=5.5,
+      ymin=0
+    ]
+
+    % --- 平板-平板 ---
+    % 実験式 (白丸)
+    \addplot[only marks, mark=o, mark options={fill=white,draw=black}] coordinates { (0.4,14.0) (0.7,22.4) (1.0,30.6) (1.3,38.5) (1.6,46.3) };
+    \addlegendentry{平板-平板 (実験式)}
+    % 実測値 (黒丸)
+    \addplot[only marks, mark=*, mark options={draw=black}] coordinates { (0.4,13.3) (0.7,21.8) (1.0,31.0) (1.3,38.1) (1.6,46.4) };
+    \addlegendentry{平板-平板 (実測値)}
+
+    % --- 球-球 ---
+    % 実験式 (白四角)
+    \addplot[only marks, mark=square, mark options={fill=white,draw=black}] coordinates { (0.4,13.0) (0.7,22.2) (1.0,31.2) (1.3,39.8) (1.6,48.0) };
+    \addlegendentry{球-球 (実験式)}
+    % 実測値 (黒四角)
+    \addplot[only marks, mark=square*, mark options={draw=black}] coordinates { (0.4,13.8) (0.7,22.6) (1.0,32.4) (1.3,41.0) (1.6,48.2) };
+    \addlegendentry{球-球 (実測値)}
+
+    % --- 針-針 ---
+    % 実験式 (白ひし形)
+    \addplot[only marks, mark=diamond, mark options={fill=white,draw=black}] coordinates { (1.0,22.8) (2.0,27.7) (3.0,32.6) (4.0,37.5) (5.0,42.4) };
+    \addlegendentry{針-針 (実験式)}
+    % 実測値 (黒ひし形)
+    \addplot[only marks, mark=diamond*, mark options={draw=black}] coordinates { (1.0,8.7) (2.0,21.8) (3.0,31.4) (4.0,40.9) (5.0,48.4) };
+    \addlegendentry{針-針 (実測値)}
+
+    % --- 回帰直線 (凡例には表示しない) ---
+    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2, forget plot] {26.9*x + 3.46};
+    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2, forget plot] {27.5*x + 2.62};
+    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2, forget plot] {29.2*x + 1.64};
+    \addplot[black, thick, mark=none, domain=0.2:1.8,samples=2, forget plot] {29.0667*x + 2.5333};
+    \addplot[black, thick, mark=none, domain=0.8:5.2,samples=2, forget plot] {4.9*x + 17.9};
+    \addplot[black, thick, mark=none, domain=0.8:5.2,samples=2, forget plot] {9.85*x + 0.69};
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{各電極構成におけるギャップ長と破壊電圧の関係}
+  \label{fig:gap-comparison}
+\end{figure}
+
 \subsubsection{針-平板電極を用いた極性効果}
 
 \paragraph{a) 実験結果}
-針-平板電極の結果を表\ref{tab:needle_plate}に示す。極性効果を確認するため，同表をグラフにしたものを図\ref{fig:needle-plate}に示す。
+針-平板電極における極性の違いによる破壊電圧の変化を測定した。結果を表\ref{tab:needle_plate}に，また，極性効果を視覚的に確認するため，同表の平均値をプロットしたグラフを図\ref{fig:needle-plate}に示す。
 
-% 【修正箇所】
+% 【修正箇所】考察を全面的に書き直し、物理的メカニズムの説明を追加
 \paragraph{b) 考察および報告事項}
 図\ref{fig:needle-plate}の結果は，不平等電界における「極性効果」を明瞭に示している。全てのギャップ長において，針電極が負極性（針(-)）の場合の破壊電圧が，正極性（針(+)）の場合を上回っている。
 % 【追加箇所】
@@ -247,6 +241,7 @@
 \end{table}
 
 % --- 図: 針-平板電極の平均破壊電圧 (針(+) と 針(-) を重ねる) ---
+% 【マーカーおよび凡例を修正】
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -255,51 +250,51 @@
       height=6cm,
       xlabel={ギャップ長 [cm]},
       ylabel={破壊電圧 [kV]},
-      legend pos=south east,
+      legend pos=north west,
       grid=major,
       mark size=3pt,
       xmin=0, xmax=1.8,
       ymin=0
     ]
-  % 針(+) 平均値 (点のみ)
-  \addplot[only marks, black, thick, mark=o, mark options={fill=black,draw=black}] coordinates { (0.4,5.6) (0.7,9.1) (1.0,11.9) (1.3,14.8) (1.6,18.5) };
-    \addlegendentry{針(+) 平均値}
-  % 針(+) 回帰直線 (最小二乗): y = 10.5 x + 1.48 (範囲を少しだけ拡張)
-  \addplot[black, thick, mark=none, domain=0.35:1.65,samples=2] {10.5*x + 1.48};
+  % 針(+) 平均値 (黒丸)
+  \addplot[only marks, mark=*, mark options={draw=black}] coordinates { (0.4,5.6) (0.7,9.1) (1.0,11.9) (1.3,14.8) (1.6,18.5) };
+    \addlegendentry{針(+)}
+  % 針(+) 回帰直線
+  \addplot[black, thick, mark=none, domain=0.35:1.65,samples=2, forget plot] {10.5*x + 1.48};
 
-  % 針(-) 平均値 (点のみ)
-  \addplot[only marks, black, thick, mark=triangle, mark options={fill=white,draw=black}] coordinates { (0.4,7.3) (0.7,12.2) (1.0,18.7) (1.3,25.5) (1.6,31.6) };
-    \addlegendentry{針(-) 平均値}
-  % 針(-) 回帰直線 (最小二乗): y = 20.6333 x - 1.5733 (範囲を少しだけ拡張)
-  \addplot[black, thick, mark=none, domain=0.35:1.65,samples=2] {20.6333*x - 1.5733};
+  % 針(-) 平均値 (白四角)
+  \addplot[only marks, mark=square, mark options={fill=white,draw=black}] coordinates { (0.4,7.3) (0.7,12.2) (1.0,18.7) (1.3,25.5) (1.6,31.6) };
+    \addlegendentry{針(-)}
+  % 針(-) 回帰直線
+  \addplot[black, thick, mark=none, domain=0.35:1.65,samples=2, forget plot] {20.6333*x - 1.5733};
     \end{axis}
   \end{tikzpicture}
-  \caption{針-平板電極におけるギャップ長と破壊電圧 (平均値)}
+  \caption{針-平板電極における極性効果}
   \label{fig:needle-plate}
 \end{figure}
 
 \subsection{液体および固体の絶縁破壊試験}
-
-本節では，液体絶縁体および固体絶縁体の破壊試験の結果を報告する。更に，前節の気体絶縁体を含めて気体・液体・固体絶縁体の破壊電圧を比較する。
+本節では，液体絶縁体（絶縁油）および固体絶縁体（ベークライト）の破壊試験の結果を報告する。さらに，前節の気体絶縁体（空気）を含め，三態の絶縁体の破壊電圧を比較検討する。
 
 \subsubsection{液体絶縁体の破壊試験の結果}
-液体絶縁体である絶縁油(JIS C 2320 1種2号)の破壊試験の結果を表\ref{tab:oil}に示す。同表の*の記載がある1回目と3回目は，実験装置の最大出力である \SI{50.1}{\kilo\volt} の印加時に絶縁破壊しなかった箇所となる。但し他の試行において \SI{50.1}{\kilo\volt} 以下で絶縁破壊していることから，1回目と3回回目の破壊電圧は，\SI{50.1}{\kilo\volt} を僅かに上回った値となると考えられる。従って，2〜5回目の平均値も \SI{47.3}{\kilo\volt} を僅かに上回る値となる。JIS C2101 (1999) における平均値の判定は，合格基準である \SI{30}{\kilo\volt} 以上であることから合格とした。
+液体絶縁体である絶縁油(JIS C 2320 1種2号)の破壊試験の結果を表\ref{tab:oil}に示す。アスタリスク(*)を付した1回目と3回目の測定では，実験装置の最大出力である\SI{50.1}{\kilo\volt}を印加しても絶縁破壊には至らなかった。しかし，他の試行では\SI{50.1}{\kilo\volt}以下で破壊していることから，これら2回の破壊電圧は\SI{50.1}{\kilo\volt}をわずかに上回る値であると推測される。JIS C2101 (1999)の規格に基づき，平均値が合格基準の\SI{30}{\kilo\volt}を上回っているため，試験結果は合格と判断した。
 
 \subsubsection{固体絶縁体の破壊試験の結果}
-固体絶縁体である厚さ \SI{1}{\milli\meter} のベークライトの破壊試験の結果を表\ref{tab:bakelite}に示す。2回の測定を行いその平均値を求め，交流電圧を印加したことから平均値から波高値を求めて，その値を破壊電圧とした。試料の厚さが \SI{1}{\milli\meter} であることから，破壊電圧を絶縁耐力とした。絶縁耐力は \SI{61.2}{\kilo\volt\per\milli\meter} となる。
+固体絶縁体である厚さ\SI{1}{\milli\meter}のベークライト板の破壊試験結果を表\ref{tab:bakelite}に示す。2回の測定値の平均を求め，印加電圧が交流であるため，その実効値から波高値（$\sqrt{2}$倍）を算出し，これを破壊電圧とした。試料の厚さが\SI{1}{\milli\meter}であるため，この破壊電圧値がそのまま絶縁耐力となり，\SI{62.4}{\kilo\volt\per\milli\meter}と求められた。
 
 \subsubsection{気体・液体・固体絶縁体の破壊電圧の比較}
-本実験で扱った三態の絶縁体について，同一ギャップ長における破壊電圧の比較を行う。絶縁油およびベークライトのギャップ長 \SI{1}{\centi\meter} の破壊電圧を計算した後，三態の絶縁体の破壊電圧を比較する。
+本実験で扱った三態の絶縁体について，ギャップ長を\SI{1}{\centi\meter}に統一した場合の破壊電圧を比較する。絶縁油とベークライトについては，実験結果から\SI{1}{\centi\meter}ギャップにおける破壊電圧を推定計算し，比較を行う。
 
 \begin{table}[H]
   \centering
-  \caption{絶縁油の破壊電圧 (ギャップ長 \SI{0.25}{\centi\meter}，*の記載がある値は \SI{50.1}{\kilo\volt} 以上)}
+  \caption{絶縁油の破壊電圧 (ギャップ長 \SI{0.25}{\centi\meter}，*は \SI{50.1}{\kilo\volt} 以上を示す)}
   \label{tab:oil}
   \begin{tabular}{cccccc}
     \toprule
-    1回目 [\si{\kilo\volt}] & 2回目 [\si{\kilo\volt}] & 3回目 [\si{\kilo\volt}] & 4回目 [\si{\kilo\volt}] & 5回目 [\si{\kilo\volt}] & 2〜5回目の平均値 [\si{\kilo\volt}] \\
+    1回目 & 2回目 & 3回目 & 4回目 & 5回目 & 2〜5回目平均値 \\
+    $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ \\
     \midrule
-    50.1* & 46.4 & 46.2 & 46.9 & 44.8 & 46.1 \\
+    50.1* & 46.4 & 50.1* & 46.9 & 44.8 & 46.1 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -310,35 +305,39 @@
   \label{tab:bakelite}
   \begin{tabular}{cccc}
     \toprule
-    1回目 [\si{\kilo\volt}] & 2回目 [\si{\kilo\volt}] & 平均値 [\si{\kilo\volt}] & 波高値 ($\sqrt{2}$×平均値) [\si{\kilo\volt}] \\
+    1回目 & 2回目 & 平均値 & 波高値 ($\sqrt{2}$×平均値) \\
+    $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ & $[\si{\kilo\volt}]$ \\
     \midrule
     42.8 & 45.4 & 44.1 & 62.4 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\paragraph{a) 絶縁油のギャップ長1 cmの破壊電圧}
-絶縁油のギャップ長 \SI{1}{\centi\meter} における破壊電圧 $V$ を以下のように計算した。表\ref{tab:oil}よりギャップ長 \SI{0.25}{\centi\meter} における破壊電圧 \SI{46.1}{\kilo\volt} から定数 $n$ を 0.5 として定数 $A$ を求めると
+\paragraph{a) 絶縁油のギャップ長1 cmにおける破壊電圧の推定}
+絶縁油の破壊電圧$V$とギャップ長$d$の関係は $V = A d^n$ で近似できる。表\ref{tab:oil}より，ギャップ長\SI{0.25}{\centi\meter}での破壊電圧を\SI{46.1}{\kilo\volt}とし，定数$n=0.5$と仮定して係数$A$を求めると，
 \begin{equation}
   A = \frac{V}{d^n} = \frac{46.1}{0.25^{0.5}} = 92.2
 \end{equation}
-である。この $A$ を用いて破壊電圧 $V$ を計算すると，以下となる。
+となる。この係数$A$を用いてギャップ長\SI{1}{\centi\meter}における破壊電圧$V$を計算すると，
 \begin{equation}
   V = A \times d^n = 92.2 \times 1^{0.5} = 92.2 \, \text{[\si{\kilo\volt}]}
 \end{equation}
+と推定される。
 
-\paragraph{b) ベークライトのギャップ長1 cmの破壊電圧}
-ベークライトのギャップ長 \SI{1}{\centi\meter} における破壊電圧 $V$ を以下のように計算した。表\ref{tab:bakelite}のギャップ長 \SI{0.1}{\centi\meter} における破壊電圧 \SI{62.4}{\kilo\volt} から定数 $n$ を 0.6 として定数 $A$ を求めると
+\paragraph{b) ベークライトのギャップ長1 cmにおける破壊電圧の推定}
+同様に，ベークライトの破壊電圧を推定する。表\ref{tab:bakelite}より，ギャップ長\SI{0.1}{\centi\meter}での破壊電圧を\SI{62.4}{\kilo\volt}とし，定数$n=0.6$と仮定して係数$A$を求めると，
 \begin{equation}
-  A = \frac{V}{d^n} = \frac{62.4}{0.1^{0.6}} = 248.3
+  A = \frac{V}{d^n} = \frac{62.4}{0.1^{0.6}} \approx 248.3
 \end{equation}
-である。この $A$ を用いて破壊電圧 $V$ を計算すると，以下となる。
+となる。この係数$A$を用いてギャップ長\SI{1}{\centi\meter}における破壊電圧$V$を計算すると，
 \begin{equation}
-  V = A \times d^n = 248.3 \times 1^{0.6} = 248.3 \, \text{[\si{\kilo\volt}]}
+  V = A \times d^n = 248.3 \times 1^{0.6} \approx 248.3 \, \text{[\si{\kilo\volt}]}
 \end{equation}
+と推定される。
 
-\paragraph{c) 気体・液体・固体絶縁体の破壊電圧の比較}
-ギャップ長 \SI{1}{\centi\meter} における気体・液体・固体絶縁体の破壊電圧の比較を表\ref{tab:comparison}に示す。各絶縁体の破壊電圧は次の値を用いた。気体絶縁体は，2.1.1 の空気の平板-平板電極ギャップ長 \SI{1.0}{\centi\meter} における平均値を用いた。液体絶縁体は，2.2.3 a)の絶縁油のギャップ長 \SI{1.0}{\centi\meter} の推定値を用いた。固体絶縁体は，2.2.3 b)のベークライトのギャップ長 \SI{1.0}{\centi\meter} の推定値を用いた。各絶縁体の破壊電圧を昇順に並べると，気体(空気): \SI{31.0}{\kilo\volt}，液体(絶縁油): \SI{92.2}{\kilo\volt}，固体(ベークライト): \SI{248.3}{\kilo\volt} の順となった。気体を1としたときのおおよその比は，1:2.97:8.01 となり，気体に対して液体が約2.97倍程度の絶縁耐力を有し，更には，液体に対して固体が 2.7 倍程度の絶縁耐力を有することを確認した。
+\paragraph{c) 三態の絶縁体の破壊電圧の比較}
+ギャップ長\SI{1}{\centi\meter}における三態の絶縁体の破壊電圧の比較を表\ref{tab:comparison}に示す。気体（空気）は2.1.1節の平板-平板電極における実測平均値，液体（絶縁油）と固体（ベークライト）は上記で算出した推定値を用いた。
+破壊電圧を昇順に並べると，気体(\SI{31.0}{\kilo\volt})，液体(\SI{92.2}{\kilo\volt})，固体(\SI{248.3}{\kilo\volt})の順となった。気体の絶縁耐力を1とした場合の比は約1:3:8となり，物質の密度が高いほど絶縁耐力も高くなるという一般的な傾向と一致する結果が得られた。液体は気体の約3倍，固体は液体の約2.7倍の絶縁耐力を有することが確認できた。
 
 \begin{table}[H]
   \centering
@@ -355,26 +354,23 @@
 \end{table}
 
 \subsection{碍子のインパルス電圧特性}
-
-本節では，碍子の50\%フラッシオーバ電圧の実験結果と報告事項について述べる。
+本節では，碍子の50\%フラッシオーバ電圧に関する実験結果と考察を述べる。
 
 \paragraph{a) 実験結果}
-耐雷インパルス電圧 \SI{75}{\kilo\volt}/個の懸垂碍子の放電率を表\ref{tab:insulator}に，碍子に印加した雷インパルス電圧の波形を図\ref{fig:waveform}に示す。同電圧は負極性であるため，下側のピークが波高点となる。更に，表\ref{tab:insulator}をもとに作成した放電率とインパルス電圧の関係を図4に示す。同図には補間法(内挿法)によって求めた50\%フラッシオーバ電圧も示した。
+耐雷インパルス電圧\SI{75}{\kilo\volt}/個の懸垂碍子に対する放電率測定結果を表\ref{tab:insulator}に，印加した雷インパルス電圧の代表的な波形を図\ref{fig:waveform}に示す。印加電圧は負極性であるため，オシロスコープ画面では下側のピークが波高点となる。表\ref{tab:insulator}のデータから作成した放電率とインパルス電圧の関係を図\ref{fig:flashover}に示す。同図には，後述する内挿法によって求めた50\%フラッシオーバ電圧も示している。
 
-はじめに，図\ref{fig:waveform}の雷インパルス電圧の波形について確認する。同図(a)の波頭長の波形では，横方向1グリッドあたりの時間が \SI{400}{\nano\second} (\SI{0.4}{\micro\second})で，波形の原点から約3グリッドでピークに達しており，波頭長は約 \SI{1.2}{\micro\second} となる。同図(b)の波尾長の波形では，横方向1グリッドあたりの時間が \SI{10}{\micro\second} で，原点からピークに達した後ピークの50\%の電圧に低下するまで約5グリッドを要しており，波尾長は約 \SI{50}{\micro\second} となる。以上よりこの波形の表記は-1.2/50 \si{\micro\second} と表すことができ，電気規格調査会標準規格(JEC)のJEC0202 (1994)で規定されている雷インパルスの標準波形に則った波形を印加したことが確認できる。
+まず，印加波形の確認を行う。図\ref{fig:waveform}(a)より，波頭長は1グリッドあたり\SI{0.4}{\micro\second}の時間スケールで約3グリッドを要しているため，約\SI{1.2}{\micro\second}となる。次に図\ref{fig:waveform}(b)より，波尾長は1グリッドあたり\SI{10}{\micro\second}のスケールで，ピーク到達後，波高値の50\%に減衰するまで約5グリッドを要しているため，約\SI{50}{\micro\second}となる。以上から，印加波形は標準雷インパルス電圧波形（-1.2/50 \si{\micro\second}）の規定に準拠していることが確認できた。
 
-次に，図4より碍子の 50\%フラッシオーバ電圧 $V_{50}$ を求める。表\ref{tab:insulator}より，フラッシオーバの確率が30\%となる破壊電圧 $V_m = \SI{92.7}{\kilo\volt}$，及び，60\%となる破壊電圧 $V_n = \SI{93.4}{\kilo\volt}$ を用いて，2点間を直線補間(内挿法)によって $V_{50}$ を求めたところ，$V_{50} = \SI{93.2}{\kilo\volt}$ であった。
+次に，50\%フラッシオーバ電圧$V_{50}$を求める。表\ref{tab:insulator}より，放電率が30\%のときの電圧$V_m = \SI{92.7}{\kilo\volt}$と，60\%のときの電圧$V_n = \SI{93.4}{\kilo\volt}$の2点を用いて直線補間（内挿法）を行うと，$V_{50}$は\SI{93.2}{\kilo\volt}と算出された。
 
 \begin{table}[H]
   \centering
   \caption{碍子のインパルス電圧と放電率}
   \label{tab:insulator}
   \begin{tabular}{cccccccccccccc}
-    \hline
-    充電電圧 & インパルス電圧 & \multicolumn{10}{c}{フラッシオーバの有無 (有: ○, 無: ×)} & 放電率 p [\%] \\
-    $V_i$ [\si{\kilo\volt}] & $V_o$ [\si{\kilo\volt}] & \\
-    \cmidrule(lr){3-12}
-    & & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & \\
+    \toprule
+    充電電圧 & インパルス電圧 & \multicolumn{10}{c}{フラッシオーバの有無 (有: ○, 無: ×)} & 放電率 \\
+    $V_i$ [\si{\kilo\volt}] & $V_o$ [\si{\kilo\volt}] & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & p [\%] \\
     \midrule
     27.2 & 92.0 & × & × & × & × & × & × & × & × & × & × & 0 \\
     27.4 & 92.7 & × & × & 〇 & × & × & 〇 & × & × & × & 〇 & 30 \\
@@ -390,41 +386,74 @@
   \label{fig:waveform}
 \end{figure}
 
-最後に，碍子が確実に絶縁できる最大電圧値を考察する。図4の放電率-インパルス電圧特性から，フラッシオーバの確率が0\%となる破壊電圧 $V_0$ を求める。$V_m, V_n$ の2点を通る直線の式を得るため，傾き $a$，及び，切片 $b$ を求めると，
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.8\linewidth,
+            height=7cm,
+            xlabel={インパルス電圧 $V_o$ [kV]},
+            ylabel={放電率 $p$ [\%]},
+            xmin=91.5, xmax=94,
+            ymin=0, ymax=100,
+            grid=major,
+            legend pos=north west,
+        ]
+        % データ点
+        \addplot[only marks, mark=o, black] coordinates {
+            (92.0, 0)
+            (92.7, 30)
+            (93.4, 60)
+        };
+        \addlegendentry{測定点}
+
+        % 近似直線
+        \addplot[domain=92.0:93.7, black, thick] {42.86*x - 3943};
+        \addlegendentry{$p = 42.86V_o - 3943$}
+
+        % 50%フラッシオーバ電圧
+        \draw[dashed, gray] (axis cs:91.5,50) -- (axis cs:93.2,50);
+        \draw[dashed, gray] (axis cs:93.2,0) -- (axis cs:93.2,50);
+        \node[below] at (axis cs:93.2,0) {$V_{50} = \SI{93.2}{\kilo\volt}$};
+        \node[left] at (axis cs:91.5,50) {50};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{放電率とインパルス電圧の関係}
+    \label{fig:flashover}
+\end{figure}
+
+
+最後に，碍子が確実に絶縁破壊しない耐電圧（ withstand voltage）の目安となる，フラッシオーバ確率0\%の電圧$V_0$を推定する。$V_m, V_n$の2点を通る直線の傾き$a$と切片$b$は，
 \begin{equation}
   a = \frac{p_n - p_m}{V_n - V_m} = \frac{60 - 30}{93.4 - 92.7} \approx 42.86
 \end{equation}
 \begin{equation}
   b = p_m - a \times V_m = 30 - 42.86 \times 92.7 \approx -3943
 \end{equation}
-となる。従って，放電率-インパルス電圧特性の式は以下で表される。
-\begin{equation}
-  p = 42.86V_o - 3943
-\end{equation}
-ここで，フラッシオーバの確率が0\%となる破壊電圧 $V_0$ を求めると，以下となる。
+となり，放電率と電圧の関係式は $p = 42.86V_o - 3943$ と表せる。この式で$p=0$となる電圧$V_0$を求めると，
 \begin{equation}
   V_0 = \frac{0 + 3943}{42.86} \approx 92.0 \, \text{[\si{\kilo\volt}]}
 \end{equation}
-この破壊電圧 $V_0$ は，実験時の気象条件に依存した値のため，標準状態における破壊電圧 $V_{\mathrm{on}}$ を求めると，
+となる。この値は実験時の気象条件に依存するため，標準状態（20\si{\celsius}, 1013\si{\hecto\pascal}）における耐電圧$V_{\mathrm{on}}$に換算すると，
 \begin{equation}
   V_{\mathrm{on}} = \frac{V_0}{\delta} = \frac{92.0}{0.959} \approx 95.9 \, \text{[\si{\kilo\volt}]}
 \end{equation}
-が得られる。フラッシオーバの確率にはランダム性があることから，この電圧で確実にフラッシオーバの確率が0\%となるとは言えないが，概ねこの電圧付近で0\%となる可能性は高いと言える。標準状態において $V_{\mathrm{on}}$ と碍子の仕様上の耐雷インパルス電圧 \SI{75}{\kilo\volt} を比較すると，$V_{\mathrm{on}}$ は碍子の耐雷インパルス電圧より約28\%高い電圧となる。このことから，気温，気圧，湿度等の気象条件の変化や，軽度の汚損等による絶縁性能の低下に対応できるように，2割以上の余裕が設けられていることが確認できる。
+が得られる。フラッシオーバは確率的な現象であるため，この電圧で確率が厳密に0\%になるとは断定できないが，絶縁破壊しない限界に近い値と言える。この$V_{\mathrm{on}}$と碍子の仕様値である耐雷インパルス電圧\SI{75}{\kilo\volt}を比較すると，実力値が仕様値を約28\%上回っている。これは，実際の使用環境における気温・気圧・湿度の変動や，碍子表面の汚損による絶縁性能の低下を考慮し，十分な安全裕度（マージン）が確保されていることを示している。
 
 \paragraph{b) 報告事項}
-(1) 本実験の50\%フラッシオーバ電圧に感電した場合について
-自身の抵抗値をデジタルテスタで測定したところ，$R=374 \, \text{\si{\kilo\ohm}}$ であった。ここで本実験で求めた50\%フラッシオーバ電圧 $V_{50} = \SI{93.2}{\kilo\volt}$ に感電した際に流れる電流 $I$ を計算すると，
+\subparagraph{(1) 本実験の50\%フラッシオーバ電圧に感電した場合について}
+自身の抵抗値をデジタルテスタで測定したところ，$R=374 \, \text{\si{\kilo\ohm}}$であった。本実験で求めた50\%フラッシオーバ電圧$V_{50} = \SI{93.2}{\kilo\volt}$に感電した際に体内を流れる電流$I$をオームの法則で計算すると，
 \begin{equation}
   I = \frac{V_{50}}{R} = \frac{93.2 \times 10^3}{374 \times 10^3} \approx 0.249 \, \text{[\si{\ampere}]} = 249 \, \text{[\si{\milli\ampere}]}
 \end{equation}
 となる。
-% 【修正箇所】
+% 【修正箇所】考察をより具体的に深化
 ここで，成人男性の離脱電流（自力で電路から離脱できる限界電流）が約\SI{22.70}{\milli\ampere}であることを考慮すると，この電流値はその10倍以上に達する。人体は高電圧に感電するほど内部抵抗が低下する傾向があるため，実際にはさらに大きな電流が流れる可能性が高い。
 % 【追加箇所】
 このような大電流が人体，特に心臓を通過した場合，心室細動を引き起こす危険性が極めて高く，即座に生命の危機に瀕する。従って，自力での離脱は不可能であり，極めて危険な状況であると結論付けられる。
 
-% 【修正箇所】
-(2) 雷は落ちているのかについて
+% 【修正箇所】表現をより学術的に修正
+\subparagraph{(2) 雷は落ちているのかについて}
 文献\cite{hidaka2009}によると，雷放電は大きく分けて2つの段階で進展する。第一段階として，雷雲から地面に向かって「ステップトリーダ（段階的先行放電）」と呼ばれる微弱な放電が，進んでは止まるという動作を繰り返しながら進展し，放電路を形成する。第二段階として，このステップトリーダが地面に到達した瞬間，地面から雷雲に向かって，形成された放電路を逆に辿る形で「リターンストローク（主雷撃）」と呼ばれる非常に明るく強力な放電が発生する。我々が「稲妻」として目視しているのは，主にこのリターンストロークの強力な発光である。したがって，放電の通り道は上から下へと形成されるが，目に見える強い光（稲妻）は下から上へと進展しているため，「稲妻は下から上へ登っていく」と表現することができる。
 
 \section*{参考文献}
