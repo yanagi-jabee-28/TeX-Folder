@@ -127,31 +127,19 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 よって示された．
 
-\subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\lor(\bar{p}\lor q)$ の真偽}
+\subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q)$}
 
-この等式は成立しません（偽）．反例として $p=I$, $q=O$ をとります．
-
-\noindent 左辺:
 \begin{align*}
-(p\lor q)\to (p \land q)
-&\equiv (I \lor O) \to (I \land O) \\ 
-&\equiv I \to O \\ 
-&\equiv O
+(p\lor q)\to (p \land q) &\equiv (p\lor \bar{q})\land(\bar{p}\lor q)\\
+&\equiv (\overline{p\lor q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (\text{ド・モルガンの法則})\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land (\bar{p} \lor q)) \lor (\bar{q} \land (\bar{p} \lor q)) \quad (\text{分配法則})\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land \bar{p}) \lor (p \land q) \lor (\bar{q} \land \bar{p}) \lor (\bar{q} \land q) \quad (\text{分配法則})\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv O \lor (p \land q) \lor (\bar{p} \land \bar{q}) \lor O \quad (\text{矛盾律 } p \land \bar{p} \equiv O, \bar{q} \land q \equiv O)\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land q) \lor (\bar{p} \land \bar{q}) \quad (\text{同一律 } O \lor A \equiv A)
 \end{align*}
 
-\noindent 右辺:
-\begin{align*}
-(p\lor \bar{q})\lor(\bar{p}\lor q)
-&\equiv (I \lor \bar{O}) \lor (\bar{I} \lor O) \\ 
-&\equiv (I \lor I) \lor (O \lor O) \\ 
-&\equiv I \lor O \\ 
-&\equiv I
-\end{align*}
-
-左辺は $O$、右辺は $I$ となり一致しないため，当該等式は偽である．
-
-\paragraph{参考}
-もし問題が誤植で，右辺が $(p\lor \bar{q})\land(\bar{p}\lor q)$ であるならば，両辺は同値になります．簡略化の過程を追うと，最終的に両辺が $(p\land q) \lor (\bar{p} \land \bar{q})$ に一致することが分かります．
+よって示された．
 
 \clearpage
 \appendix
