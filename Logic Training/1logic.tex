@@ -130,7 +130,8 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 \subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q)$}
 
 \begin{align*}
-(p\lor q)\to (p \land q) &\equiv (p\lor \bar{q})\land(\bar{p}\lor q)\\
+(p\lor q) &\to (p \land q)\\ 
+&\equiv (p\lor \bar{q})\land(\bar{p}\lor q)\\
 &\equiv (\overline{p\lor q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (A \to B \equiv \bar{A} \lor B)\\
 &\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (\text{ド・モルガンの法則})\\
 &\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land (\bar{p} \lor q)) \lor (\bar{q} \land (\bar{p} \lor q)) \quad (\text{分配法則})\\
