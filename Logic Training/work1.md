@@ -15,3 +15,11 @@ p：でてきたのはディーである
 q：赤いカードをもっている
 
 3.p,qを命題とするとき，次の(1)~(4)を同値変形により示せ。
+
+(1) $(p\lor q)\land (p\lor \bar{q})\equiv p$
+
+(2) $(p\to q)\to (p\land q)\equiv p$
+
+(3) $(p\land q)\to (p\to q)\equiv I$
+
+(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\lor(\bar{p}\lor q)$
