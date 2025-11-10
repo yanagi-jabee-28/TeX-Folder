@@ -22,4 +22,4 @@ q：赤いカードをもっている
 
 (3) $(p\land q)\to (p\to q)\equiv I$
 
-(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\lor(\bar{p}\lor q)$
+(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q)$

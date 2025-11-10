@@ -1,0 +1,168 @@
+% ===== ドキュメントクラスと基本パッケージ =====
+\documentclass[
+  a4paper,
+  11pt,
+]{ltjsarticle}
+\usepackage{newtxtext, newtxmath}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{anyfontsize}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{parskip} % 段落の空行を見やすく
+
+% ドキュメント情報
+\title{論理学 演習問題 — 解答・解説}
+\author{氏名}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+% ===================================================================
+\section{問題1：真理表による証明}
+
+$I$ を真（True）、$O$ を偽（False）として真理表を作成します．
+
+\subsection*{(1) $p\land (q \lor r)\equiv (p\land q) \lor (p\land r)$ （分配法則）}
+
+下表は，各組合せに対する各項の真理値を示します．左辺と右辺の列が一致するため，同値であることが分かります．
+
+\begin{table}[H]
+  \centering
+  \caption{$p\land (q \lor r)$ と $(p\land q) \lor (p\land r)$ の真理表}
+  \label{tab:dist1}
+  \begin{tabular}{cccccccc}
+    \toprule
+    $p$ & $q$ & $r$ & $q\lor r$ & $p\land(q\lor r)$ & $p\land q$ & $p\land r$ & $(p\land q)\lor(p\land r)$ \\
+    \midrule
+    $I$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ \\
+    $I$ & $I$ & $O$ & $I$ & $I$ & $I$ & $O$ & $I$ \\
+    $I$ & $O$ & $I$ & $I$ & $I$ & $O$ & $I$ & $I$ \\
+    $I$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ \\
+    $O$ & $I$ & $I$ & $I$ & $O$ & $O$ & $O$ & $O$ \\
+    $O$ & $I$ & $O$ & $I$ & $O$ & $O$ & $O$ & $O$ \\
+    $O$ & $O$ & $I$ & $I$ & $O$ & $O$ & $O$ & $O$ \\
+    $O$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{(2) $p\lor (q \land r)\equiv (p\lor q) \land (p\lor r)$ （分配法則）}
+
+同様に，次の真理表で左辺と右辺が一致することが確認できます．
+
+\begin{table}[H]
+  \centering
+  \caption{$p\lor (q \land r)$ と $(p\lor q)\land(p\lor r)$ の真理表}
+  \label{tab:dist2}
+  \begin{tabular}{cccccccc}
+    \toprule
+    $p$ & $q$ & $r$ & $q\land r$ & $p\lor(q\land r)$ & $p\lor q$ & $p\lor r$ & $(p\lor q)\land(p\lor r)$ \\
+    \midrule
+    $I$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ \\
+    $I$ & $I$ & $O$ & $O$ & $I$ & $I$ & $I$ & $I$ \\
+    $I$ & $O$ & $I$ & $O$ & $I$ & $I$ & $I$ & $I$ \\
+    $I$ & $O$ & $O$ & $O$ & $I$ & $I$ & $I$ & $I$ \\
+    $O$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ & $I$ \\
+    $O$ & $I$ & $O$ & $O$ & $O$ & $I$ & $O$ & $O$ \\
+    $O$ & $O$ & $I$ & $O$ & $O$ & $O$ & $I$ & $O$ \\
+    $O$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ & $O$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% ===================================================================
+\section{問題3：同値変形による証明}
+
+使用する主な法則：
+\begin{itemize}
+  \item $A\to B \equiv \overline{A} \lor B$
+  \item ド・モルガンの法則: $\overline{A \lor B} \equiv \bar{A} \land \bar{B}$, \quad $\overline{A \land B} \equiv \bar{A} \lor \bar{B}$
+  \item 分配律: $A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$, \quad $A \land (B \lor C) \equiv (A \land B) \lor (A \land C)$
+  \item その他の恒等式: $A \lor \bar{A} \equiv I$, $A \land \bar{A} \equiv O$, $A \lor O \equiv A$, $A \land I \equiv A$, $A \lor I \equiv I$, $A \land O \equiv O$
+\end{itemize}
+
+\subsection*{(1) $(p\lor q)\land (p\lor \bar{q})\equiv p$}
+
+\begin{align*}
+(p\lor q)\land (p\lor \bar{q})
+&\equiv p \lor (q \land \bar{q}) \quad (\text{分配法則})\\
+&\equiv p \lor O \quad (\text{矛盾律 } q \land \bar{q} \equiv O)\\
+&\equiv p \quad (\text{同一律 } p \lor O \equiv p)
+\end{align*}
+
+よって示された．
+
+\subsection*{(2) $(p\to q)\to (p\land q)\equiv p$}
+
+\begin{align*}
+(p\to q)\to (p\land q)
+&\equiv (\overline{p\to q}) \lor (p\land q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\overline{\bar{p} \lor q}) \lor (p\land q) \quad (p \to q \equiv \bar{p} \lor q)\\
+&\equiv (p \land \bar{q}) \lor (p\land q) \quad (\text{ド・モルガンの法則})\\
+&\equiv p \land (\bar{q} \lor q) \quad (\text{分配法則})\\
+&\equiv p \land I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
+&\equiv p \quad (\text{同一律 } p \land I \equiv p)
+\end{align*}
+
+よって示された．
+
+\subsection*{(3) $(p\land q)\to (p\to q)\equiv I$}
+
+\begin{align*}
+(p\land q)\to (p\to q)
+&\equiv (\overline{p\land q}) \lor (p\to q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \lor \bar{q}) \lor (\bar{p} \lor q) \quad (\text{ド・モルガン},\; p \to q \equiv \bar{p} \lor q)\\
+&\equiv \bar{p} \lor \bar{p} \lor \bar{q} \lor q \quad (\text{結合・交換})\\
+&\equiv \bar{p} \lor (\bar{q} \lor q) \quad (\bar{p} \lor \bar{p} \equiv \bar{p})\\
+&\equiv \bar{p} \lor I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
+&\equiv I \quad (\text{同一律 } \bar{p} \lor I \equiv I)
+\end{align*}
+
+よって示された．
+
+\subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\lor(\bar{p}\lor q)$ の真偽}
+
+この等式は成立しません（偽）．反例として $p=I$, $q=O$ をとります．
+
+\noindent 左辺:
+\begin{align*}
+(p\lor q)\to (p \land q)
+&\equiv (I \lor O) \to (I \land O) \\ 
+&\equiv I \to O \\ 
+&\equiv O
+\end{align*}
+
+\noindent 右辺:
+\begin{align*}
+(p\lor \bar{q})\lor(\bar{p}\lor q)
+&\equiv (I \lor \bar{O}) \lor (\bar{I} \lor O) \\ 
+&\equiv (I \lor I) \lor (O \lor O) \\ 
+&\equiv I \lor O \\ 
+&\equiv I
+\end{align*}
+
+左辺は $O$、右辺は $I$ となり一致しないため，当該等式は偽である．
+
+\paragraph{参考}
+もし問題が誤植で，右辺が $(p\lor \bar{q})\land(\bar{p}\lor q)$ であるならば，両辺は同値になります．簡略化の過程を追うと，最終的に両辺が $(p\land q) \lor (\bar{p} \land \bar{q})$ に一致することが分かります．
+
+\clearpage
+\appendix
+\section{補遺：記法と恒等式}
+本ドキュメントで使用した略記と恒等式の一覧をまとめます．授業や試験での参照に便利です．
+
+\begin{itemize}
+  \item $I$：真 (True)
+  \item $O$：偽 (False)
+  \item $\bar{A}$：命題 $A$ の否定
+  \item $A\to B$：$A$ ならば $B$（含意）
+\end{itemize}
+
+\end{document}
