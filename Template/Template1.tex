@@ -1,38 +1,73 @@
-% ===== ドキュメントクラスと基本的なパッケージ =====% ドキュメントの基本設定（用紙サイズ、フォントサイズなど）と、% 日本語フォントや数式、画像挿入などの基本機能を提供するパッケージを読み込みます。
-\documentclass[
-  a4paper,  % 用紙サイズ
-  11pt,     % フォントサイズ
-]{ltjsarticle}% \usepackage{luatexja-fontspec} % lualatex用日本語フォント設定
-\usepackage{newtxtext, newtxmath} % (推奨) Times系のフォント・数式パッケージ
-\usepackage{amsmath,amssymb}   % 数式
-\usepackage{graphicx}          % 画像の挿入
-\usepackage{siunitx}           % 国際単位系(SI)
-\usepackage{float}             % 図表の位置調整
-\usepackage{anyfontsize}       % フォントサイズの警告抑制
-\usepackage[margin=2.5cm]{geometry} % 余白の設定
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
 
-% ===== 回路図、グラフ、表、ソースコードのためのパッケージ =====% 回路図やグラフ描画、表データ操作、ソースコード表示のためのパッケージを設定します。
+% ===== ドキュメントクラス =====
+\documentclass[
+  a4paper,
+  11pt,
+]{ltjsarticle}
+
+% ===== フォント設定 (LuaLaTeX専用) =====
+\usepackage{luatexja-fontspec} % モダンなフォントシステムを有効化
+\usepackage{anyfontsize} % 任意のフォントサイズを許可し、サイズ置換警告を回避
+\usepackage{lmodern} % Latin Modern フォントを正しくロードし、フォント形状警告を回避
+
+% --- 安全なフォント設定 ---
+% システムに依存しにくい TeX Gyre 系フォントを明示的に指定します。
+% Windows 環境で "Arial" や "Courier New" が見つからない場合に備え、
+% TeX Live に同梱されている TeX Gyre 系を使うのが安定します。
+
+% 欧文（本文）: Latin Modern Roman を使用（安定した選択）
+\setmainfont{Latin Modern Roman}[Ligatures=TeX,NFSSFamily=lmr]
+
+% 和文（本文）: 利用可能なら Yu Mincho を指定します。
+% 注意: Windows 環境でこのフォント名が見つからないとコンパイルエラーになります。
+% 利用環境で日本語フォントが未インストールの場合は以下の行をコメントアウトするか
+% ご自身のシステムにある日本語フォント名に置き換えてください（例: "IPAMincho", "Noto Serif CJK JP" 等）。
+%\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+
+% 等幅フォント（ソース等）: Latin Modern Mono を使用
+\setmonofont{Latin Modern Mono}
+
+% サンセリフ体: Latin Modern Sans を使用
+\setsansfont{Latin Modern Sans}
+
+% ===== 数式・物理単位関連 =====
+\usepackage{amsmath}
+\usepackage{newtxmath} % 数式用フォント。これはluatexja-fontspecと競合しないため継続使用
+\usepackage{siunitx}
+\usepackage{cancel}            % 数式の打ち消し線
+
+% ===== 図表・レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry} % 余白の設定
+\usepackage{graphicx}          % 画像の挿入
+\usepackage{booktabs}          % 見栄えの良い表
+\usepackage{float}             % 図表の位置調整 (`[H]`オプション)
+\usepackage{wrapfig}           % 図の回り込み
+% \usepackage{parskip}         % (任意) 段落間のスペースを空ける場合、この行のコメントを外す
+
+% ===== 回路図・グラフ描画関連 (TikZ/PGF) =====
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{pgfplots}          % 高機能なグラフ描画
 \usepackage{pgfplotstable}     % グラフ描画のための表データ操作
 \pgfplotsset{compat=1.18}      % pgfplotsのバージョン互換性設定
 \usepgfplotslibrary{statistics} % 統計計算（回帰分析など）ライブラリ
-
 \usetikzlibrary{positioning}   % ノードの相対配置
-\usepackage{booktabs}          % 見栄えの良い表
-\usepackage{listings}          % ソースコードの表示
 
-% ===== 追加機能のためのパッケージ =====% 図の回り込みやアルゴリズム記述など、特定の用途に応じた追加機能を提供します。
-\usepackage{wrapfig}           % 図の回り込み
+% ===== プログラミング・アルゴリズム関連 =====
+\usepackage{listings}          % ソースコードの表示
 \usepackage{algorithm}         % アルゴリズム記述の環境
 \usepackage{algpseudocode}     % algorithm環境内で使う疑似コード
-\usepackage{cancel}            % 数式の打ち消し線
 
+% ===== ハイパーリンク設定 (原則として最後に読み込む) =====
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=green!60!black]{hyperref}
 
-% ===== その他 =====% PDF内でクリック可能なリンクを生成するための設定。
-% PDF内にクリック可能なリンクを生成
-\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=green!60!black]{hyperref} 
+% ===== (削除したパッケージ) =====
+% anyfontsize: ltjsarticleでは不要なため削除
+% amssymb: newtxmathに含まれるため不要
 
 % ===== ドキュメント情報 =====% レポートのタイトル、著者、日付を設定します。
 \title{実験レポート：高機能テンプレート}
