@@ -145,21 +145,7 @@
 ここでは，実験に用いた装置や手順について説明します。
 
 \subsection{実験装置}
-% --- 回り込み図のサンプル ---
-\begin{wrapfigure}{r}{0.4\textwidth}
-  \centering
-  \vspace{-15pt} % 上方向のスペースを微調整
-  \begin{circuitikz}
-    \draw (0,0) to[R=$R_1$] (2,0) to[R=$R_2$] (4,0);
-  \end{circuitikz}
-  \caption{回り込み図の例}
-  \label{fig:wrapped_circuit}
-  \vspace{-10pt} % 下方向のスペースを微調整
-\end{wrapfigure}
-実験に用いた回路を図\ref{fig:rlc_circuit}に示します。
-各素子のパラメータは表\ref{tab:params}の通りです。
-回り込み図のサンプルを図\ref{fig:wrapped_circuit}に示します。文章の途中に図を配置することで，紙面を有効に活用できます。
-回り込みを終えたい場所で，適宜改行を挟んでください。
+実験に用いた回路を以下に示します。
 
 % --- 回路図の例 ---
 \begin{figure}[H]
@@ -183,6 +169,8 @@
   \label{fig:rlc_circuit}
 \end{figure}
 
+図\ref{fig:rlc_circuit}に示す回路を用いました。各素子のパラメータを表に示します。
+
 % --- 表の例 ---
 \begin{table}[H]
   \centering
@@ -198,6 +186,22 @@
     \bottomrule
   \end{tabular}
 \end{table}
+
+表\ref{tab:params}に示すパラメータを用いました。
+
+% --- 回り込み図のサンプル ---
+\begin{wrapfigure}{r}{0.4\textwidth}
+  \centering
+  \vspace{-15pt} % 上方向のスペースを微調整
+  \begin{circuitikz}
+    \draw (0,0) to[R=$R_1$] (2,0) to[R=$R_2$] (4,0);
+  \end{circuitikz}
+  \caption{回り込み図の例}
+  \label{fig:wrapped_circuit}
+  \vspace{-10pt} % 下方向のスペースを微調整
+\end{wrapfigure}
+回り込み図のサンプルを図に示します。図\ref{fig:wrapped_circuit}に示すように、文章の途中に図を配置することで，紙面を有効に活用できます。
+回り込みを終えたい場所で，適宜改行を挟んでください。
 
 \subsection{測定手順}
 測定の手順をここに記述します。
@@ -222,8 +226,7 @@
 ]{15}{\regressiondata} % 15行のデータテーブル \regressiondata を作成
 
 \subsection{測定データ}
-測定結果を表\ref{tab:regression_data}に示します。
-この表は，上で生成されたデータから自動的に作成されます。
+測定結果を表に示します。この表は，上で生成されたデータから自動的に作成されます。
 
 \begin{table}[H]
   \centering
@@ -232,14 +235,16 @@
   \pgfplotstabletypeset[
     columns={x,y},
     columns/x/.style={column name=$V$ (\si{\volt})},
-    columns/y/.style={column name=$I$ (\si{\milli\ampere}), sci, sci zerofill, precision=2},
+    columns/y/.style={column name=$I$ (\si{\milli\ampere}), precision=2},
     every head row/.style={before row=\toprule, after row=\midrule},
     every last row/.style={after row=\bottomrule},
   ]{\regressiondata}
 \end{table}
 
+表\ref{tab:regression_data}に示すデータです。
+
 \subsection{グラフと回帰分析}
-測定データをプロットし，線形回帰分析を行った結果を図\ref{fig:regression_graph}に示します。
+測定データをプロットし，線形回帰分析を行った結果を図に示します。
 グラフと回帰直線は，表\ref{tab:regression_data}のデータを用いて自動的に描画されます。
 
 \begin{figure}[H]
@@ -269,6 +274,8 @@
   \caption{測定結果のグラフと回帰直線}
   \label{fig:regression_graph}
 \end{figure}
+
+図\ref{fig:regression_graph}に示すグラフです。
 
 \subsection{考察}
 図\ref{fig:regression_graph}から，電圧$V$と電流$I$の間には強い正の相関が見られます。
@@ -309,6 +316,8 @@
   ]{\csvdata}
 \end{table}
 
+表\ref{tab:csv_data}に示すデータです。
+
 \subsection{CSVデータから生成したグラフ}
 \verb|my_data.csv| のデータを元に，自動的に生成されたグラフと回帰直線です。
 
@@ -339,6 +348,8 @@
   \caption{my\_data.csv のデータから作成したグラフ}
   \label{fig:csv_graph}
 \end{figure}
+
+図\ref{fig:csv_graph}に示すグラフです。
 
 % ===================================================================
 \section{結論}
@@ -417,6 +428,29 @@
 \begin{equation}
   G_{\mathrm{dB}} = 20 \log_{10} \left( \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}} \right)
 \end{equation}
+
+\subsubsection{論理式}
+命題論理や述語論理で用いられる基本的な記号と数式の例です。
+\paragraph{命題論理}
+\begin{align}
+  P \land Q & \quad (\text{P かつ Q}) \\
+  P \lor Q & \quad (\text{P または Q}) \\
+  \bar{P} & \quad (\text{P でない}) \\
+  P \to Q & \quad (\text{P ならば Q}) \\
+  P \leftrightarrow Q & \quad (\text{P と Q は同値})
+\end{align}
+
+\paragraph{ド・モルガンの法則}
+\begin{align}
+  \overline{(P \land Q)} & \leftrightarrow (\bar{P} \lor \bar{Q}) \\
+  \overline{(P \lor Q)} & \leftrightarrow (\bar{P} \land \bar{Q})
+\end{align}
+
+\paragraph{述語論理}
+\begin{align}
+  \forall x \in S, P(x) & \quad (\text{集合Sの全ての要素xに対しP(x)が成り立つ}) \\
+  \exists y \in T, Q(y) & \quad (\text{集合Tのある要素yに対しQ(y)が成り立つ})
+\end{align}
 
 \subsection{様々なグラフの描画 (pgfplots)}
 
