@@ -131,13 +131,13 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 \begin{align*}
 (p\lor q) &\to (p \land q)\\ 
-&\equiv (p\lor \bar{q})\land(\bar{p}\lor q)\\
-&\equiv (\overline{p\lor q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (A \to B \equiv \bar{A} \lor B)\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q) \quad (\text{ド・モルガンの法則})\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land (\bar{p} \lor q)) \lor (\bar{q} \land (\bar{p} \lor q)) \quad (\text{分配法則})\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land \bar{p}) \lor (p \land q) \lor (\bar{q} \land \bar{p}) \lor (\bar{q} \land q) \quad (\text{分配法則})\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv O \lor (p \land q) \lor (\bar{p} \land \bar{q}) \lor O \quad (\text{矛盾律 } p \land \bar{p} \equiv O, \bar{q} \land q \equiv O)\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \equiv (p \land q) \lor (\bar{p} \land \bar{q}) \quad (\text{同一律 } O \lor A \equiv A)
+&\equiv \overline{(p\lor q)} \lor (p \land q) \quad (\text{含意の定義 } A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \quad (\text{ド・モルガンの法則})\\
+&\equiv \big((\bar{p} \land \bar{q}) \lor p\big) \land \big((\bar{p} \land \bar{q}) \lor q\big) \quad (\text{分配法則})\\
+&\equiv (\bar{p} \lor p) \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land (\bar{q} \lor q) \quad (\text{分配法則})\\
+&\equiv I \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land I \quad (\text{排中律 } \bar{p} \lor p \equiv I, \bar{q} \lor q \equiv I)\\
+&\equiv (\bar{q} \lor p) \land (\bar{p} \lor q) \quad (\text{同一律 } I \land A \equiv A)\\
+&\equiv (p \lor \bar{q}) \land (\bar{p} \lor q) \quad (\text{交換律})
 \end{align*}
 
 よって示された．
