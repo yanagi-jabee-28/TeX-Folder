@@ -11,15 +11,16 @@
 
 % ===== フォント設定 (LuaLaTeX専用) =====
 \usepackage{luatexja-fontspec} % モダンなフォントシステムを有効化
+\usepackage{anyfontsize} % 任意のフォントサイズを許可し、サイズ置換警告を回避
+\usepackage{lmodern} % Latin Modern フォントを正しくロードし、フォント形状警告を回避
 
 % --- 安全なフォント設定 ---
 % システムに依存しにくい TeX Gyre 系フォントを明示的に指定します。
 % Windows 環境で "Arial" や "Courier New" が見つからない場合に備え、
 % TeX Live に同梱されている TeX Gyre 系を使うのが安定します。
 
-% 欧文（本文）: 安全なデフォルトとして Latin Modern を使用（LuaLaTeX 向け）
-% 依然としてシステムに TeX Gyre 系がある場合は置き換えても構いません。
-\setmainfont{Latin Modern Roman}[Ligatures=TeX,Scale=MatchLowercase]
+% 欧文（本文）: Latin Modern Roman を使用（安定した選択）
+\setmainfont{Latin Modern Roman}[Ligatures=TeX,NFSSFamily=lmr]
 
 % 和文（本文）: 利用可能なら Yu Mincho を指定します。
 % 注意: Windows 環境でこのフォント名が見つからないとコンパイルエラーになります。
@@ -28,10 +29,10 @@
 %\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
 
 % 等幅フォント（ソース等）: Latin Modern Mono を使用
-\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+\setmonofont{Latin Modern Mono}
 
 % サンセリフ体: Latin Modern Sans を使用
-\setsansfont{Latin Modern Sans}[Scale=MatchLowercase]
+\setsansfont{Latin Modern Sans}
 
 % ===== 数式・物理単位関連 =====
 \usepackage{amsmath}
