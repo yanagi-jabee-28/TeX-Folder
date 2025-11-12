@@ -3,16 +3,23 @@
   a4paper,
   11pt,
 ]{ltjsarticle}
+
+% --- 数式関連パッケージ (amsmathを先に読み込む) ---
+\usepackage{amsmath}
+
+% --- フォント関連パッケージ (amssymbの機能はnewtxmathに含まれる) ---
 \usepackage{newtxtext, newtxmath}
-\usepackage{amsmath,amssymb}
+% \usepackage{amssymb} % ← newtxmathと競合するため、この行を削除またはコメントアウト
+
+% --- その他のパッケージ ---
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{float}
 \usepackage{anyfontsize}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{booktabs}
-\usepackage{hyperref}
 \usepackage{parskip} % 段落の空行を見やすく
+\usepackage{hyperref} % hyperrefは最後に読み込むのが安全
 
 % ドキュメント情報
 \title{論理学 演習問題 — 解答・解説}

@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+#
+# このファイルは latexmk のための設定ファイルです。
+#
+use utf8; # この行を追加: スクリプト自体がUTF-8であることを明示
+
+# -----------------------------------------------------------------------------
+# コンパイラと関連ツールのコマンド定義
+# -----------------------------------------------------------------------------
+# 日本語(uplatex)環境をデフォルトに設定
+$latex = 'uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode %S';
+
+# 各種LaTeXエンジンのコマンド
+$pdflatex = 'pdflatex %O -synctex=1 -interaction=nonstopmode %S';
+$lualatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S';
+$xelatex  = 'xelatex %O -synctex=1 -interaction=nonstopmode %S';
+
+# 参考文献・索引ツールのコマンド
+$biber    = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
+$bibtex   = 'upbibtex %O %B';
+$makeindex = 'upmendex %O -o %D %S';
+
+# DVIからの変換コマンド
+$dvipdf = 'dvipdfmx %O -o %D %S';
+$dvips  = 'dvips %O -z -f %S | convbkmk -u > %D';
+$ps2pdf = 'ps2pdf.exe %O %S %D';
+
+# -----------------------------------------------------------------------------
+# latexmk の動作設定
+# -----------------------------------------------------------------------------
+# PDF の作成方法 (VSCodeからエンジンを指定するため、ここでは特定のモードに固定しない)
+$pdf_mode = 3; # uplatex -> dvipdfmx のモードをデフォルトに設定
+
+# PDFビューワの設定
+$pdf_previewer = "";
+
+# -----------------------------------------------------------------------------
+# クリーンアップ設定
+# -----------------------------------------------------------------------------
+# ビルド後に自動でクリーンアップを実行
+$cleanup_mode = 1;
+
+# クリーンアップ対象の拡張子
+$clean_ext = 'aux bbl bcf blg fdb_latexmk fls ilg ind lof log lot out run.xml synctex.gz toc'
+           . ' acn acr alg glg glo gls ist nav snm vrb'
+           . ' figlist makefile';
+
+# $clean_full_mode = 1; # 通常はコメントアウト
