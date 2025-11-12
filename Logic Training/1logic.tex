@@ -78,72 +78,7 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 \end{table}
 
 % ===================================================================
-\section{問題3：同値変形による証明}
-
-使用する主な法則：
-\begin{itemize}
-  \item $A\to B \equiv \overline{A} \lor B$
-  \item ド・モルガンの法則: $\overline{A \lor B} \equiv \bar{A} \land \bar{B}$, \quad $\overline{A \land B} \equiv \bar{A} \lor \bar{B}$
-  \item 分配律: $A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$, \quad $A \land (B \lor C) \equiv (A \land B) \lor (A \land C)$
-  \item その他の恒等式: $A \lor \bar{A} \equiv I$, $A \land \bar{A} \equiv O$, $A \lor O \equiv A$, $A \land I \equiv A$, $A \lor I \equiv I$, $A \land O \equiv O$
-\end{itemize}
-
-\subsection*{(1) $(p\lor q)\land (p\lor \bar{q})\equiv p$}
-
-\begin{align*}
-(p\lor q)\land (p\lor \bar{q})
-&\equiv p \lor (q \land \bar{q}) \quad (\text{分配法則 } (A\lor B)\land(A\lor C)\equiv A\lor(B\land C))\\
-&\equiv p \lor O \quad (\text{矛盾律 } q \land \bar{q} \equiv O)\\
-&\equiv p \quad (\text{同一律 } p \lor O \equiv p)
-\end{align*}
-
-よって示された．
-
-\subsection*{(2) $(p\to q)\to (p\land q)\equiv p$}
-
-\begin{align*}
-(p\to q)\to (p\land q)
-&\equiv (\overline{ p\to q }) \lor (p\land q) \quad (A \to B \equiv \bar{A} \lor B)\\
-&\equiv (\bar{p} \lor \bar{q}) \lor (p\land q) \quad (p \to q \equiv \bar{p} \lor q)\\
-&\equiv (p \land \bar{q}) \lor (p\land q) \quad (\text{ド・モルガンの法則})\\
-&\equiv p \land (\bar{q} \lor q) \quad (\text{分配法則 } (X\land Y)\lor(X\land Z)\equiv X\land(Y\lor Z))\\
-&\equiv p \land I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
-&\equiv p \quad (\text{同一律 } p \land I \equiv p)
-\end{align*}
-
-よって示された．
-
-\subsection*{(3) $(p\land q)\to (p\to q)\equiv I$}
-
-\begin{align*}
-(p\land q)\to (p\to q)
-&\equiv (\overline{p\land q}) \lor (p\to q) \quad (A \to B \equiv \bar{A} \lor B)\\
-&\equiv (\bar{p} \lor \bar{q}) \lor (\bar{p} \lor q) \quad (\text{ド・モルガン},\; p \to q \equiv \bar{p} \lor q)\\
-&\equiv \bar{p} \lor \bar{p} \lor \bar{q} \lor q \quad (\text{結合・交換})\\
-&\equiv \bar{p} \lor (\bar{q} \lor q) \quad (\text{冪等律 } \bar{p} \lor \bar{p} \equiv \bar{p})\\
-&\equiv \bar{p} \lor I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
-&\equiv I \quad (\text{同一律 } \bar{p} \lor I \equiv I)
-\end{align*}
-
-よって示された．
-
-\subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q)$}
-
-\begin{align*}
-(p\lor q) &\to (p \land q)\\ 
-&\equiv (\overline{p\lor q}) \lor (p \land q) \quad (\text{含意の定義 } A \to B \equiv \bar{A} \lor B)\\
-&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \quad (\text{ド・モルガンの法則})\\
-&\equiv \big((\bar{p} \land \bar{q}) \lor p\big) \land \big((\bar{p} \land \bar{q}) \lor q\big) \quad (\text{分配法則})\\
-&\equiv (\bar{p} \lor p) \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land (\bar{q} \lor q) \quad (\text{分配法則})\\
-&\equiv I \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land I \quad (\text{排中律 } \bar{p} \lor p \equiv I, \bar{q} \lor q \equiv I)\\
-&\equiv (\bar{q} \lor p) \land (\bar{p} \lor q) \quad (\text{同一律 } I \land A \equiv A)\\
-&\equiv (p \lor \bar{q}) \land (\bar{p} \lor q) \quad (\text{交換律})
-\end{align*}
-
-よって示された．
-
-% ===================================================================
-\section{問題4：カードと発言のパズル}
+\section{問題2：カードと発言のパズル}
 
 命題変数 $p$, $q$, $r$ をそれぞれ以下のように定義します：
 \begin{itemize}
@@ -155,7 +90,7 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
   \item $O$: 恒偽命題（常に偽）
 \end{itemize}
 
-**ルール:**
+ルール:
 \begin{itemize}
   \item 赤のカード ($q$) をもっている人は，正しいことを言う。
   \item 黒のカード ($\bar{q}$) をもっている人は，間違ったことを言う。
@@ -235,6 +170,71 @@ S \equiv (p \land \bar{q}) \lor (\bar{p} \land q)
 どちらの場合も一貫して $p \equiv O$ となり，矛盾は生じません。  
 $p$ は「でてきたのはダムである」という命題だったので，$p \equiv O$ は「でてきたのがダムであることは偽である」を意味します。  
 したがって，でてきたのは\textbf{ディー} ($\bar{p} \equiv I$) です。
+
+% ===================================================================
+\section{問題3：同値変形による証明}
+
+使用する主な法則：
+\begin{itemize}
+  \item $A\to B \equiv \overline{A} \lor B$
+  \item ド・モルガンの法則: $\overline{A \lor B} \equiv \bar{A} \land \bar{B}$, \quad $\overline{A \land B} \equiv \bar{A} \lor \bar{B}$
+  \item 分配律: $A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$, \quad $A \land (B \lor C) \equiv (A \land B) \lor (A \land C)$
+  \item その他の恒等式: $A \lor \bar{A} \equiv I$, $A \land \bar{A} \equiv O$, $A \lor O \equiv A$, $A \land I \equiv A$, $A \lor I \equiv I$, $A \land O \equiv O$
+\end{itemize}
+
+\subsection*{(1) $(p\lor q)\land (p\lor \bar{q})\equiv p$}
+
+\begin{align*}
+(p\lor q)\land (p\lor \bar{q})
+&\equiv p \lor (q \land \bar{q}) \quad (\text{分配法則 } (A\lor B)\land(A\lor C)\equiv A\lor(B\land C))\\
+&\equiv p \lor O \quad (\text{矛盾律 } q \land \bar{q} \equiv O)\\
+&\equiv p \quad (\text{同一律 } p \lor O \equiv p)
+\end{align*}
+
+よって示された．
+
+\subsection*{(2) $(p\to q)\to (p\land q)\equiv p$}
+
+\begin{align*}
+(p\to q)\to (p\land q)
+&\equiv (\overline{ p\to q }) \lor (p\land q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \lor \bar{q}) \lor (p\land q) \quad (p \to q \equiv \bar{p} \lor q)\\
+&\equiv (p \land \bar{q}) \lor (p\land q) \quad (\text{ド・モルガンの法則})\\
+&\equiv p \land (\bar{q} \lor q) \quad (\text{分配法則 } (X\land Y)\lor(X\land Z)\equiv X\land(Y\lor Z))\\
+&\equiv p \land I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
+&\equiv p \quad (\text{同一律 } p \land I \equiv p)
+\end{align*}
+
+よって示された．
+
+\subsection*{(3) $(p\land q)\to (p\to q)\equiv I$}
+
+\begin{align*}
+(p\land q)\to (p\to q)
+&\equiv (\overline{p\land q}) \lor (p\to q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \lor \bar{q}) \lor (\bar{p} \lor q) \quad (\text{ド・モルガン},\; p \to q \equiv \bar{p} \lor q)\\
+&\equiv \bar{p} \lor \bar{p} \lor \bar{q} \lor q \quad (\text{結合・交換})\\
+&\equiv \bar{p} \lor (\bar{q} \lor q) \quad (\text{冪等律 } \bar{p} \lor \bar{p} \equiv \bar{p})\\
+&\equiv \bar{p} \lor I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
+&\equiv I \quad (\text{同一律 } \bar{p} \lor I \equiv I)
+\end{align*}
+
+よって示された．
+
+\subsection*{(4) $(p\lor q)\to (p \land q) \equiv (p\lor \bar{q})\land(\bar{p}\lor q)$}
+
+\begin{align*}
+(p\lor q) &\to (p \land q)\\ 
+&\equiv (\overline{p\lor q}) \lor (p \land q) \quad (\text{含意の定義 } A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \quad (\text{ド・モルガンの法則})\\
+&\equiv \big((\bar{p} \land \bar{q}) \lor p\big) \land \big((\bar{p} \land \bar{q}) \lor q\big) \quad (\text{分配法則})\\
+&\equiv (\bar{p} \lor p) \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land (\bar{q} \lor q) \quad (\text{分配法則})\\
+&\equiv I \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land I \quad (\text{排中律 } \bar{p} \lor p \equiv I, \bar{q} \lor q \equiv I)\\
+&\equiv (\bar{q} \lor p) \land (\bar{p} \lor q) \quad (\text{同一律 } I \land A \equiv A)\\
+&\equiv (p \lor \bar{q}) \land (\bar{p} \lor q) \quad (\text{交換律})
+\end{align*}
+
+よって示された．
 
 \clearpage
 \appendix
