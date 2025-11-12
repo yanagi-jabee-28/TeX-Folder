@@ -4,77 +4,82 @@
 %==============================================================================
 
 % ===== ドキュメントクラス =====
+% LuaLaTeX向けの日本語縦書きにも対応した標準的なクラス
 \documentclass[
   a4paper,
   11pt,
 ]{ltjsarticle}
 
-% ===== フォント設定 (LuaLaTeX専用) =====
-\usepackage{luatexja-fontspec} % モダンなフォントシステムを有効化
-\usepackage{anyfontsize} % 任意のフォントサイズを許可し、サイズ置換警告を回避
-\usepackage{lmodern} % Latin Modern フォントを正しくロードし、フォント形状警告を回避
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
 
-% --- 安全なフォント設定 ---
-% システムに依存しにくい TeX Gyre 系フォントを明示的に指定します。
-% Windows 環境で "Arial" や "Courier New" が見つからない場合に備え、
-% TeX Live に同梱されている TeX Gyre 系を使うのが安定します。
+% ===== フォント・言語設定 (LuaLaTeX専用) =====
+\usepackage{luatexja-fontspec} % fontspecを日本語向けに拡張し、モダンなフォントシステムを有効化
+% \usepackage{luatexja-preset} % (代替案) システム標準の和文フォントを自動設定する場合に利用
 
-% 欧文（本文）: Latin Modern Roman を使用（安定した選択）
-\setmainfont{Latin Modern Roman}[Ligatures=TeX,NFSSFamily=lmr]
-
-% 和文（本文）: 利用可能なら Yu Mincho を指定します。
-% 注意: Windows 環境でこのフォント名が見つからないとコンパイルエラーになります。
-% 利用環境で日本語フォントが未インストールの場合は以下の行をコメントアウトするか
-% ご自身のシステムにある日本語フォント名に置き換えてください（例: "IPAMincho", "Noto Serif CJK JP" 等）。
-%\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
-
-% 等幅フォント（ソース等）: Latin Modern Mono を使用
-\setmonofont{Latin Modern Mono}
-
-% サンセリフ体: Latin Modern Sans を使用
-\setsansfont{Latin Modern Sans}
+% ===== レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry} % 余白を簡単に設定
+\usepackage{graphicx}          % 画像の挿入 (\includegraphics)
+\usepackage{booktabs}          % 見栄えの良い表 (\toprule, \midrule, \bottomrule)
+\usepackage{float}             % 図表の位置調整 (`[H]`オプション)
+\usepackage{wrapfig}           % 文章中への図の回り込み
 
 % ===== 数式・物理単位関連 =====
-\usepackage{amsmath}
-\usepackage{newtxmath} % 数式用フォント。これはluatexja-fontspecと競合しないため継続使用
-\usepackage{siunitx}
-\usepackage{cancel}            % 数式の打ち消し線
+\usepackage{amsmath}           % 高度な数式環境 (align, pmatrixなど)
+\usepackage{newtxmath}         % 数式用フォント (Times系)
+\usepackage{siunitx}           % 物理単位の記述を統一 (\SI{100}{\ohm})
+\usepackage{cancel}            % 数式の打ち消し線 (\cancel)
 
-% ===== 図表・レイアウト関連 =====
-\usepackage[margin=2.5cm]{geometry} % 余白の設定
-\usepackage{graphicx}          % 画像の挿入
-\usepackage{booktabs}          % 見栄えの良い表
-\usepackage{float}             % 図表の位置調整 (`[H]`オプション)
-\usepackage{wrapfig}           % 図の回り込み
-% \usepackage{parskip}         % (任意) 段落間のスペースを空ける場合、この行のコメントを外す
-
-% ===== 回路図・グラフ描画関連 (TikZ/PGF) =====
+% ===== 図表・グラフ描画関連 (TikZ/PGF) =====
 \usepackage{tikz}
-\usepackage{circuitikz}
+\usepackage{circuitikz}        % 電気回路図の描画
 \usepackage{pgfplots}          % 高機能なグラフ描画
 \usepackage{pgfplotstable}     % グラフ描画のための表データ操作
-\pgfplotsset{compat=1.18}      % pgfplotsのバージョン互換性設定
+\pgfplotsset{compat=1.18}      % pgfplotsのバージョン互換性を保証
 \usepgfplotslibrary{statistics} % 統計計算（回帰分析など）ライブラリ
 \usetikzlibrary{positioning}   % ノードの相対配置
 
 % ===== プログラミング・アルゴリズム関連 =====
 \usepackage{listings}          % ソースコードの表示
-\usepackage{algorithm}         % アルゴリズム記述の環境
+\usepackage{algorithm}         % アルゴリズム記述のフロート環境
 \usepackage{algpseudocode}     % algorithm環境内で使う疑似コード
 
-% ===== ハイパーリンク設定 (原則として最後に読み込む) =====
-\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=green!60!black]{hyperref}
+% ===== その他 =====
+% hyperrefは、原則として最後に読み込むことで他のパッケージとの競合を避ける
+\usepackage[
+  colorlinks=true,      % リンクに色を付ける
+  linkcolor=blue,         % 内部リンクの色 (目次など)
+  citecolor=green!60!black, % 参考文献リンクの色
+  urlcolor=cyan,          % URLリンクの色
+  hidelinks,              % PDF上でリンクの枠を非表示にする (colorlinks=trueと併用推奨)
+]{hyperref}
 
-% ===== (削除したパッケージ) =====
-% anyfontsize: ltjsarticleでは不要なため削除
-% amssymb: newtxmathに含まれるため不要
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
 
-% ===== ドキュメント情報 =====% レポートのタイトル、著者、日付を設定します。
-\title{実験レポート：高機能テンプレート}
+% ===== フォント設定 =====
+% --- 欧文フォント ---
+% TeX Liveに標準で同梱されており、環境依存が少ないLatin Modernフォントを指定
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+
+% --- 和文フォント ---
+% 注意: ご利用の環境にインストールされているフォント名を指定してください。
+% 指定したフォントが存在しない場合、コンパイルエラーの原因となります。
+% (例: "IPAexMincho", "Noto Serif CJK JP", "Hiragino Mincho ProN")
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+% \setmonojfont[Renderer=HarfBuzz]{Yu Gothic} % 等幅和文フォントが必要な場合
+
+% ===== ドキュメント情報 =====
+\title{実験レポート：高機能テンプレート (改訂版)}
 \author{氏名}
 \date{\today}
 
-% ===== listings (ソースコード) のスタイル設定 =====% ソースコード表示のスタイル（フォント、色、行番号など）を設定します。
+% ===== listings (ソースコード) のスタイル設定 =====
 \lstset{
   language=Python,
   basicstyle=\small\ttfamily,
@@ -87,57 +92,76 @@
   breaklines=true,
   numbers=left,
   numberstyle=\tiny\color{gray},
+  xleftmargin=2em, % 左側のマージン
+  framexleftmargin=1.5em, % フレームと行番号のマージン
 }
 
-% ===== ここからドキュメント本体 =====% ドキュメントの本文が始まります。
+% ===== pgfplots (グラフ) の共通スタイル設定 =====
+\pgfplotsset{
+  % レポート内の全グラフに適用する共通スタイルを定義
+  report-style/.style={
+    xlabel style={yshift=0.5em}, % x軸ラベルと軸の間のスペース
+    ylabel style={yshift=-0.5em},% y軸ラベルと軸の間のスペース
+    legend pos=north west,
+    grid=major,
+    ticklabel style={font=\small},
+    label style={font=\small},
+    legend style={font=\small},
+  }
+}
+
+% ===== 数式用カスタムコマンド =====
+\newcommand{\dd}{\mathrm{d}} % 微分演算子 d
+\newcommand{\mi}{\mathrm{j}} % 虚数単位 j
+
+% ===== algorithmicx のスタイル調整 =====
+% Procedure をスモールキャピタルではなく太字で表示（フォント警告回避）
+\renewcommand{\textproc}[1]{\textbf{#1}}
+
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
 \begin{document}
 
-\maketitle    % タイトル、著者、日付を生成
-\tableofcontents % 目次を生成
+\maketitle
+\tableofcontents
 \clearpage
 
 % ===================================================================
 \section{はじめに}
-% ドキュメントの概要や目的を説明します。
 % ===================================================================
-このドキュメントは，LuaLaTeXを使用した技術レポートのテンプレートです．
-特に，\verb|pgfplots|パッケージを用いて，測定データの表と回帰直線付きグラフを自動で生成する機能に焦点を当てています．
-技術文書の作法に従い，句読点には「．」と「，」を使用します．
-また，和文中のカッコには全角（例：VDEC（VLSI Design and Education Center））を用い，物理量の添え字（例：$V_{\mathrm{pp}}$，ppはpeak-to-peakの略）はローマン体で記述します．
-数式 Vpp = 3 V のように，単位の前には半角スペースを入れます．
+このドキュメントは，LuaLaTeXを使用した技術レポートのテンプレートです。
+特に，\verb|pgfplots|パッケージを用いて，測定データの表と回帰直線付きグラフを自動で生成する機能に焦点を当てています。
+技術文書の作法に従い，句読点には「．」と「，」を使用します。
+また，和文中のカッコには全角（例：VDEC（VLSI Design and Education Center））を用い，物理量の添え字（例：$V_{\mathrm{pp}}$，ppはpeak-to-peakの略）はローマン体で記述します。
+数式 $V_{\mathrm{pp}} = \SI{3}{\volt}$ のように，単位の前には半角スペースを入れます (\verb|\SI|コマンドが自動で処理します)。
 
-図\ref{fig:rlc_circuit}や表\ref{tab:regression_data}のように，図表の相互参照が可能です．
-参考文献の引用も簡単です\cite{Scherz2006}．
+図\ref{fig:rlc_circuit}や表\ref{tab:regression_data}のように，図表の相互参照が可能です。
+参考文献の引用も簡単です\cite{Scherz2006}。
 
 % ===================================================================
 \section{実験方法}
-% 実験に用いた装置や手順を説明します。
 % ===================================================================
-ここでは，実験に用いた装置や手順について説明します．
+ここでは，実験に用いた装置や手順について説明します。
 
 \subsection{実験装置}
 % --- 回り込み図のサンプル ---
-% 図を文章の右側に回り込ませる例を示します。
-\begin{wrapfigure}{r}{0.4\textwidth} % r:右寄せ, 0.4\textwidth:幅
+\begin{wrapfigure}{r}{0.4\textwidth}
   \centering
-  \vspace{-15pt} % 上方向のスペースを詰める
+  \vspace{-15pt} % 上方向のスペースを微調整
   \begin{circuitikz}
     \draw (0,0) to[R=$R_1$] (2,0) to[R=$R_2$] (4,0);
   \end{circuitikz}
   \caption{回り込み図の例}
   \label{fig:wrapped_circuit}
-  \vspace{-10pt} % 下方向のスペースを詰める
+  \vspace{-10pt} % 下方向のスペースを微調整
 \end{wrapfigure}
-実験に用いた回路を図\ref{fig:rlc_circuit}に示します．
-
-各素子のパラメータは表\ref{tab:params}の通りです．
-回り込み図のサンプルを図\ref{fig:wrapped_circuit}に示します．
-文章の途中に図を配置することで，紙面を有効に活用できます．
-回り込みを終えたい場所で，適宜改行を挟んでください．
-
+実験に用いた回路を図\ref{fig:rlc_circuit}に示します。
+各素子のパラメータは表\ref{tab:params}の通りです。
+回り込み図のサンプルを図\ref{fig:wrapped_circuit}に示します。文章の途中に図を配置することで，紙面を有効に活用できます。
+回り込みを終えたい場所で，適宜改行を挟んでください。
 
 % --- 回路図の例 ---
-% RLC並列回路の回路図を描画します。
 \begin{figure}[H]
   \centering
   \begin{circuitikz}[american currents]
@@ -160,14 +184,13 @@
 \end{figure}
 
 % --- 表の例 ---
-% 実験に用いた素子のパラメータを表形式で示します。
 \begin{table}[H]
   \centering
   \caption{素子のパラメータ例}
   \label{tab:params}
   \begin{tabular}{llr}
     \toprule
-    素子 & 記号 & 値 \\
+    素子 & 記号 & \multicolumn{1}{c}{値} \\
     \midrule
     抵抗 & $R$ & \SI{100}{\ohm} \\
     インダクタ & $L$ & \SI{10}{\milli\henry} \\
@@ -177,7 +200,7 @@
 \end{table}
 
 \subsection{測定手順}
-測定の手順をここに記述します．
+測定の手順をここに記述します。
 \begin{enumerate}
   \item 手順1
   \item 手順2
@@ -186,69 +209,58 @@
 
 % ===================================================================
 \section{結果と考察}
-% 測定結果のデータと、それを基にした考察を記述します。
 % ===================================================================
-ここでは，測定結果のデータと，それをグラフ化したものを提示し，考察を述べます．
+ここでは，測定結果のデータと，それをグラフ化したものを提示し，考察を述べます。
 
 % --- ダミーの実験データを生成 ---
 % 目的: 毎回コンパイルするたびに新しいランダムなデータを作成する
 % y = 2x + 5 を基本とし、-1から1の範囲でランダムな誤差を加える
-% データの行数は {15} の部分で指定
 \pgfplotstablenew[
-    columns={x,y}, % 列名を指定
-    create on use/x/.style={create col/expr={\pgfplotstablerow+1}}, % x列を 1, 2, 3, ... で生成
-    create on use/y/.style={create col/expr={(2*(\pgfplotstablerow+1) + 5) + rand*2-1}}, % y列を計算式で生成
+    columns={x,y},
+    create on use/x/.style={create col/expr={\pgfplotstablerow+1}},
+    create on use/y/.style={create col/expr={(2*(\pgfplotstablerow+1) + 5) + rand*2-1}},
 ]{15}{\regressiondata} % 15行のデータテーブル \regressiondata を作成
 
 \subsection{測定データ}
-% 自動生成された測定データを表形式で表示します。
-測定結果を表\ref{tab:regression_data}に示します．
-この表は，上で生成されたデータから自動的に作成されます．
+測定結果を表\ref{tab:regression_data}に示します。
+この表は，上で生成されたデータから自動的に作成されます。
 
 \begin{table}[H]
   \centering
   \caption{測定データと回帰分析の結果}
   \label{tab:regression_data}
-  % \regressiondata の内容を表として出力
   \pgfplotstabletypeset[
-    columns={x,y}, % 表示する列
-    columns/x/.style={column name=$V$ [\si{\volt}]}, % x列のヘッダー名
-    columns/y/.style={column name=$I$ [\si{\milli\ampere}], sci, sci zerofill, precision=2}, % y列のヘッダー名と書式
-    every head row/.style={before row=\toprule, after row=\midrule}, % booktabs用のスタイル
+    columns={x,y},
+    columns/x/.style={column name=$V$ (\si{\volt})},
+    columns/y/.style={column name=$I$ (\si{\milli\ampere}), sci, sci zerofill, precision=2},
+    every head row/.style={before row=\toprule, after row=\midrule},
     every last row/.style={after row=\bottomrule},
   ]{\regressiondata}
 \end{table}
 
 \subsection{グラフと回帰分析}
-% 測定データをプロットし、線形回帰分析を行った結果を図\ref{fig:regression_graph}に示します。
-% グラフと回帰直線は、表\ref{tab:regression_data}のデータを用いて自動的に描画されます。
-測定データをプロットし，線形回帰分析を行った結果を図\ref{fig:regression_graph}に示します．
-グラフと回帰直線は，表\ref{tab:regression_data}のデータを用いて自動的に描画されます．
+測定データをプロットし，線形回帰分析を行った結果を図\ref{fig:regression_graph}に示します。
+グラフと回帰直線は，表\ref{tab:regression_data}のデータを用いて自動的に描画されます。
 
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      xlabel={電圧 $V$ [\si{\volt}]},
-      ylabel={電流 $I$ [\si{\milli\ampere}]},
-      legend pos=north west, % 凡例の位置
-      grid=major, % グリッド表示
+      report-style, % プリアンブルで定義した共通スタイルを適用
+      xlabel={電圧 $V$ (\si{\volt})},
+      ylabel={電流 $I$ (\si{\milli\ampere})},
     ]
       % --- 測定データのプロット ---
-      % `only marks`で点のみプロット
       \addplot+[only marks, mark=*, blue] table[x=x, y=y] {\regressiondata};
-      \addlegendentry{測定データ} % 凡例
+      \addlegendentry{測定データ}
 
       % --- 回帰直線の計算と描画 ---
-      % tableのy列に対して線形回帰(linear regression)を行い、その結果を元に直線を引く
       \addplot[red, thick, no marks] table[
         y={create col/linear regression={y=y}},
       ] {\regressiondata};
       
       % --- 回帰式の凡例 ---
-      % \pgfplotstableregressiona と \pgfplotstableregressionb には、
-      % それぞれ回帰直線の傾きとy切片が自動で格納される。
-      % これらを \pgfmathprintnumber を使って整形して表示する。
+      % \pgfplotstableregressiona (傾き) と \pgfplotstableregressionb (y切片) を整形して表示
       \addlegendentry{
         回帰直線: $I = \pgfmathprintnumber[fixed, precision=2]{\pgfplotstableregressiona} V + \pgfmathprintnumber[fixed, precision=2]{\pgfplotstableregressionb}$
       }
@@ -259,46 +271,54 @@
 \end{figure}
 
 \subsection{考察}
-図\ref{fig:regression_graph}から，電圧$V$と電流$I$の間には強い正の相関が見られます．
-回帰直線の傾きは\pgfmathprintnumber[fixed, precision=2]{\pgfplotstableregressiona}であり，これは回路のコンダクタンスに相当すると考えられます．
+図\ref{fig:regression_graph}から，電圧$V$と電流$I$の間には強い正の相関が見られます。
+回帰直線の傾きは$\pgfmathprintnumber[fixed, precision=2]{\pgfplotstableregressiona}$であり，これは回路のコンダクタンスに相当すると考えられます。
 
 % ===================================================================
 \section{CSVデータからの表とグラフの自動生成}
-% 外部CSVファイルを読み込み、表やグラフを自動生成します。
 % ===================================================================
-% my\_data.csv という名前のCSVファイルを読み込み、\csvdata というマクロに格納する
-% col sep=comma は、列の区切り文字がカンマであることを示す
+% 注意: このセクションをコンパイルするには、以下の内容で
+% "my_data.csv" というファイルをTeXファイルと同じフォルダに作成する必要があります。
+%
+% --- my_data.csv の内容例 ---
+% voltage,current
+% 1,7.1
+% 2,8.9
+% 3,11.2
+% 4,13.5
+% 5,14.8
+% 6,17.2
+% 7,18.9
+% 8,21.1
+% -----------------------------
 \pgfplotstableread[col sep=comma]{\detokenize{my_data.csv}}{\csvdata}
 
 \subsection{CSVデータから生成した表}
-% CSVファイルから読み込んだデータを表形式で表示します。
-外部CSVファイル `my\_data.csv` のデータを元に，自動的に生成された表です．
+外部CSVファイル \verb|my_data.csv| のデータを元に，自動的に生成された表です。
 
 \begin{table}[H]
   \centering
   \caption{my\_data.csv から読み込んだデータ}
   \label{tab:csv_data}
   \pgfplotstabletypeset[
-    columns={voltage,current}, % 表示する列をCSVのヘッダー名で指定
-    columns/voltage/.style={column name=$V$ [\si{\volt}]}, % voltage列のヘッダー名
-    columns/current/.style={column name=$I$ [\si{\milli\ampere}]}, % current列のヘッダー名
+    columns={voltage,current},
+    columns/voltage/.style={column name=$V$ (\si{\volt})},
+    columns/current/.style={column name=$I$ (\si{\milli\ampere}), precision=2},
     every head row/.style={before row=\toprule, after row=\midrule},
     every last row/.style={after row=\bottomrule},
   ]{\csvdata}
 \end{table}
 
 \subsection{CSVデータから生成したグラフ}
-% CSVデータをプロットし、回帰直線を描画します。
-`my\_data.csv` のデータを元に，自動的に生成されたグラフと回帰直線です．
+\verb|my_data.csv| のデータを元に，自動的に生成されたグラフと回帰直線です。
 
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      xlabel={電圧 $V$ [\si{\volt}]},
-      ylabel={電流 $I$ [\si{\milli\ampere}]},
-      legend pos=north west,
-      grid=major,
+      report-style, % 共通スタイルを適用
+      xlabel={電圧 $V$ (\si{\volt})},
+      ylabel={電流 $I$ (\si{\milli\ampere})},
     ]
       % --- CSVデータのプロット ---
       \addplot+[only marks, mark=*, blue] table[x=voltage, y=current] {\csvdata};
@@ -322,67 +342,42 @@
 
 % ===================================================================
 \section{結論}
-% 実験結果のまとめと考察を記述します。
 % ===================================================================
-本レポートでは，〇〇の実験を行い，△△という結果を得た．
-考察から，□□ということが示唆された．
+本レポートでは，〇〇の実験を行い，△△という結果を得た。
+考察から，□□ということが示唆された。
 
 % ===================================================================
-% 以下は、必要に応じて使用するサンプルセクション
+% 付録
 % ===================================================================
 \clearpage
-\appendix % 付録セクションを開始
+\appendix
 \section{補足情報：数式とグラフのサンプル}
 
-この付録では，レポート作成時に役立つ様々な数式やグラフの記述例を示します．
+この付録では，レポート作成時に役立つ様々な数式やグラフの記述例を示します。
 
-% -------------------------------------------------------------------
 \subsection{様々な数式の表現 (amsmath)}
-% -------------------------------------------------------------------
-\verb|amsmath|パッケージを用いることで，以下のような複雑な数式を記述できます．
 
 \subsubsection{微分・積分}
-
 常微分と偏微分:
 \begin{equation}
-  \frac{\mathrm{d}^2 f(x)}{\mathrm{d}x^2} + \frac{\partial^2 f(x,y)}{\partial y^2} = 0
+  \frac{\dd^2 f(x)}{\dd x^2} + \frac{\partial^2 f(x,y)}{\partial y^2} = 0
 \end{equation}
-
 時間積分と周回積分:
 \begin{equation}
-  \Phi = \int_S \vec{B} \cdot \mathrm{d}\vec{S}, \quad \oint_C \vec{E} \cdot \mathrm{d}\vec{l} = -\frac{\mathrm{d}\Phi_B}{\mathrm{d}t}
+  \Phi = \int_S \vec{B} \cdot \dd\vec{S}, \quad \oint_C \vec{E} \cdot \dd\vec{l} = -\frac{\dd\Phi_B}{\dd t}
 \end{equation}
 
-\subsubsection{総和・総乗}
-
+\subsubsection{行列・ベクトル}
 \begin{equation}
-  e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}, \quad n! = \prod_{k=1}^{n} k
-\end{equation}
-
-\subsubsection{行列・ベクトル・行列式}
-
-行列 (pmatrix):
-\begin{equation}
-  \begin{pmatrix} a & b \\
-    c & d \end{pmatrix}
-  \begin{pmatrix} x \\
-    y \end{pmatrix} =
-  \begin{pmatrix} ax+by \\
-    cx+dy \end{pmatrix}
-\end{equation}
-
-行列式 (vmatrix):
-\begin{equation}
+  \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+  \begin{pmatrix} x \\ y \end{pmatrix} =
+  \begin{pmatrix} ax+by \\ cx+dy \end{pmatrix},
+  \quad
   \det(A) = 
-  \begin{vmatrix}
-    a & b \\
-    c & d
-  \end{vmatrix} = ad - bc
+  \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc
 \end{equation}
-
 
 \subsubsection{場合分け}
-
 \begin{equation}
   f(x) = \begin{cases}
     x^2 & (x \ge 0) \\
@@ -390,128 +385,71 @@
   \end{cases}
 \end{equation}
 
-\subsubsection{数式の打ち消し線 (cancel)}\verb|cancel|パッケージは，数式における項の消去や約分を視覚的に示す際に有用です．特に，分数の約分や多項式の因数分解による簡約化の過程を明示するのに役立ちます．
-
-スラッシュで打ち消す (\verb|\cancel|):
+\subsubsection{数式の打ち消し線 (cancel)}
 \begin{equation}
-  \frac{\cancel{x^2}}{\cancel{x}} = x
-\end{equation}
-
-多項式の約分の例:
-\begin{equation}
-  \frac{(x+1)\cancel{(x-1)}}{\cancel{(x-1)}} = x+1 \quad (x \neq 1)
-\end{equation}
-
-
-打ち消し線の上から文字を書く (\verb|\cancelto|):
-\begin{equation}
+  \frac{(x+1)\cancel{(x-1)}}{\cancel{(x-1)}} = x+1 \quad (x \neq 1),
+  \quad
   \frac{\cancelto{1}{x}}{\cancelto{2}{2x}} = \frac{1}{2}
 \end{equation}
 
 \subsubsection{電気電子工学における数式表現}
-
-電気電子工学では，複素数，ラプラス変換，伝達関数，デシベル表現などが頻繁に用いられます．
-
 \paragraph{複素数}
-交流回路の解析では，複素数を用いた表現が不可欠です．
+交流回路の解析では，複素数を用いた表現が不可欠です。
 \begin{equation}
-  Z = R + \mathrm{j}X = |Z|e^{\mathrm{j}\phi}
+  Z = R + \mi X = |Z|e^{\mi\phi}
 \end{equation}
-ここで，$j$ は虚数単位 ($\mathrm{j}^2 = -1$)， $R$ は抵抗， $X$ はリアクタンス， $|Z|$ はインピーダンスの大きさ， $\phi$ は位相角を表します．
+ここで，$\mi$ は虚数単位 ($\mi^2 = -1$) です。
 
 \paragraph{ラプラス変換}
-線形時不変システム（LTIシステム）の解析に用いられるラプラス変換の例です．
+線形時不変システムの解析に用いられます。
 \begin{equation}
-  F(s) = \mathcal{L}\{f(t)\} = \int_0^\infty f(t)e^{-st} \mathrm{d}t
+  F(s) = \mathcal{L}\{f(t)\} = \int_0^\infty f(t)e^{-st} \dd t
 \end{equation}
 
 \paragraph{伝達関数}
-システムの入出力関係を表す伝達関数 $H(s)$ の例です．
+システムの入出力関係を表す伝達関数 $H(s)$ の例です。
 \begin{equation}
   H(s) = \frac{V_{\mathrm{out}}(s)}{V_{\mathrm{in}}(s)} = \frac{1}{RCs + 1}
 \end{equation}
 
 \paragraph{デシベル表現}
-ゲインや減衰量を対数スケールで表現するデシベルの定義です．
+ゲインや減衰量を対数スケールで表現します。
 \begin{equation}
   G_{\mathrm{dB}} = 20 \log_{10} \left( \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}} \right)
 \end{equation}
 
-% -------------------------------------------------------------------
 \subsection{様々なグラフの描画 (pgfplots)}
-% -------------------------------------------------------------------
 
-
-\subsubsection{片対数グラフ}
-
+\subsubsection{片対数・両対数グラフ}
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}
-    \begin{semilogyaxis}[
-      title={片対数グラフ (指数関数)}, 
-      xlabel={$x$},
-      ylabel={$y$},
-      grid=major,
-    ]
-    % y = exp(x)
-    \addplot[blue, thick, domain=0:5, samples=100] {exp(x)};
-    \legend{$y=e^x$}
-    \end{semilogyaxis}
-  \end{tikzpicture}
-  \caption{y軸を対数スケールにしたグラフ}
-  \label{fig:semilog_graph}
+  \begin{minipage}{0.48\textwidth}
+    \begin{tikzpicture}
+      \begin{semilogyaxis}[report-style, title={片対数グラフ}, xlabel={$x$}, ylabel={$y=e^x$}, height=5cm]
+        \addplot[blue, thick, domain=0:5, samples=100] {exp(x)};
+      \end{semilogyaxis}
+    \end{tikzpicture}
+    \caption{y軸を対数スケールにしたグラフ}
+    \label{fig:semilog_graph}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \begin{tikzpicture}
+      \begin{loglogaxis}[report-style, title={両対数グラフ}, xlabel={$x$}, ylabel={$y=x^2$}, height=5cm]
+        \addplot[red, thick, domain=1:100, samples=100] {x^2};
+      \end{loglogaxis}
+    \end{tikzpicture}
+    \caption{両軸を対数スケールにしたグラフ}
+    \label{fig:loglog_graph}
+  \end{minipage}
 \end{figure}
 
-\subsubsection{両対数グラフ}
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{loglogaxis}[
-      title={両対数グラフ (べき乗則)},
-      xlabel={$x$},
-      ylabel={$y$},
-      grid=major,
-    ]
-    % y = x^2
-    \addplot[red, thick, domain=1:100, samples=100] {x^2};
-    \legend{$y=x^2$}
-    \end{loglogaxis}
-  \end{tikzpicture}
-  \caption{x軸とy軸を対数スケールにしたグラフ}
-  \label{fig:loglog_graph}
-\end{figure}
-
-\subsubsection{媒介変数表示のグラフ}
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      title={媒介変数表示 (リサジュー図形)},
-      xlabel={$x = \cos(3t)$},
-      ylabel={$y = \sin(5t)$},
-      grid=major,
-      axis equal, % 軸のスケールを等しくする
-    ]
-    % x = cos(3t), y = sin(5t)
-    \addplot[green!60!black, thick, domain=0:2*pi, samples=200] ({cos(3*deg(x))}, {sin(5*deg(x))});
-    \end{axis}
-  \end{tikzpicture}
-  \caption{媒介変数tによってxとyが定義されるグラフ}
-  \label{fig:parametric_graph}
-\end{figure}
-
-
-% -------------------------------------------------------------------
 \subsection{アルゴリズムの記述 (algorithmicx)}
-% -------------------------------------------------------------------
-\verb|algorithm|と\verb|algorithmicx|パッケージを用いると，論文などで見られるような疑似コードを記述できます．
+\verb|algorithm|と\verb|algorithmicx|パッケージを用いると，論文などで見られるような疑似コードを記述できます。
 
 \begin{algorithm}[H]
   \caption{Euclidの互除法}
   \label{alg:euclid}
-  \begin{algorithmic}[1] % 1で行番号を表示
+  \begin{algorithmic}[1] % "1"で行番号を表示
     \Procedure{Euclid}{$a, b$}
       \State $r \gets a \pmod b$
       \While{$r \neq 0$}
@@ -524,11 +462,13 @@
   \end{algorithmic}
 \end{algorithm}
 
-
-% ===== 参考文献 =====% 参考文献を直接記述します。
+% ===================================================================
+% 参考文献
+% ===================================================================
+% BibTeX/biblatexを使用すると、参考文献の管理がより簡単になります。
 \begin{thebibliography}{9}
 \bibitem{Scherz2006}
-P. Scherz and S. Monk, ``Practical Electronics for Inventors,'' 2nd ed., McGraw-Hill, 2006.
+P. Scherz and S. Monk, \textit{Practical Electronics for Inventors}, 2nd ed., McGraw-Hill, 2006.
 \end{thebibliography}
 
 \end{document}

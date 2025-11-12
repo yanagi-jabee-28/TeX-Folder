@@ -3,7 +3,12 @@ I changed them all to CP932
 Rc files read:
   C:/Users/kaito/.latexmkrc
 Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
-Latexmk: Doing full clean up for 'c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex'
+Latexmk: Getting log file 'out/Template1.log'
+Latexmk: Examining 'out/Template1.fls'
+Latexmk: Examining 'out/Template1.log'
+Latexmk: Log file says output to 'Template1.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: Doing full clean up for 'c:/Users/kaito/TeX-Folder/Template/Template1.tex'
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Force everything to be remade.
 Latexmk: applying rule 'lualatex'...
@@ -16,149 +21,189 @@ Category 'other':
 Run number 1 of rule 'lualatex'
 ------------
 ------------
-Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex"'
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Template/Template1.tex"'
 ------------
 This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
  restricted system commands enabled.
-(c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-07-20>
+(c:/Users/kaito/TeX-Folder/Template/Template1.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
  (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
 Document Class: ltjsarticle 2025-05-26 ltjsclasses 
 (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
 (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
-(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxtext.sty `newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes and its extensions (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/xpatch/xpatch.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2025/texmf-dist/tex/latex/base/textcomp.sty) (c:/texlive/2025/texmf-dist/tex/generic/xstring/xstring.sty (c:/texlive/2025/texmf-dist/tex/generic/xstring/xstring.tex)) (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty) (c:/texlive/2025/texmf-dist/tex/latex/carlisle/scalefnt.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxmath.sty `newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def))) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex)
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxmath.sty `newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty) (c:/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex)
 amsthm NOT loaded
-) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/circuitikz/circuitikz.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-luatex.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+(c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.coltype.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.statistics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty \lstset, 
+new hook `InitVars',
 
-c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty:261: LaTeX Error: Command `\Bbbk' already defined.
+new hook `EndGroup',
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.261 ...ol{\Bbbk}           {\mathord}{AMSb}{"7C}
-                                                  
-) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg))) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/circuitikz/circuitikz.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
-Package pgfplots: loading complementary utilities for your pgf version...
-(c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-luatex.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.coltype.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.statistics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty (c:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty)) (c:/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithms/algorithm.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+new hook `ExitVars',
+
+new hook `ModeTrue',
+
+new hook `EOL',
+
+new hook `InitVarsBOL',
+basewidth, 
+new hook `FontAdjust',
+fontadjust, 
+new hook `PostOutput',
+
+new hook `OutputBox',
+
+new hook `InitBOL',
+columns, flexiblecolumns, 
+new hook `OnNewLine',
+emptylines, 
+new hook `OnEmptyLine',
+identifierstyle, 
+new hook `EmptyStyle',
+
+new hook `OutputOther',
+
+new hook `Output',
+tabsize, showtabs, tab, showspaces, keepspaces, 
+new hook `Init',
+formfeed, upquote, SelectCharTable, MoreSelectCharTable, 
+new hook `SetLanguage',
+extendedchars, useoutput, rescanchars, alsoletter, alsodigit, alsoother, 
+new hook `SelectCharTable',
+excludedelims, delim, moredelim, deletedelim, literate, basicstyle, inputencoding, multicols, 
+new hook `EveryLine',
+print, firstline, lastline, 
+new hook `PreSet',
+nolol, linerange, consecutivenumbers, rangeprefix, rangesuffix, rangebeginprefix, rangebeginsuffix, rangeendprefix, rangeendsuffix, includerangemarker, 
+new hook `DeInit',
+captionpos, abovecaptionskip, belowcaptionskip, label, title, caption, 
+new hook `TextStyle',
+\lstlistingname, \lstlistingnamestyle, numberbychapter, boxpos, float, floatplacement, aboveskip, belowskip, everydisplay, 
+new hook `DisplayStyle',
+
+new hook `PreInit',
+
+new hook `EveryPar',
+showlines, 
+new hook `InitVarsEOL',
+gobble, name, \lstlistlistingname, \lstlistoflistings, inputpath, \lstnewenvironment, fancyvrb, (c:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty 
+Define lst-aspect `strings': string, morestring, deletestring, stringstyle, showstringspaces, 
+new hook `ExcludeDelims',
+
+Allocs: none
+
+Define lst-aspect `comments': comment, morecomment, deletecomment, commentstyle, 
+new hook `AfterBeginComment',
+
+Allocs: none
+
+Define lst-aspect `escape': texcl, escapebegin, escapeend, escapechar, escapeinside, mathescape, 
+Allocs: none
+
+Define lst-aspect `keywords': sensitive, 
+new hook `TrackKeywords',
+
+new hook `PostTrackKeywords',
+
+new hook `DetectKeywords',
+classoffset, keywords, morekeywords, deletekeywords, keywordstyle, keywordstyle, ndkeywords, morendkeywords, deletendkeywords, ndkeywordstyle, keywordsprefix, otherkeywords, 
+Allocs: none
+
+Define lst-aspect `emph': emph, moreemph, deleteemph, emphstyle, 
+Allocs: none
+
+Define lst-aspect `index': index, moreindex, deleteindex, indexstyle, \lstindexmacro, 
+Allocs: none
+
+Define lst-aspect `style': \lststylefiles, \lstdefinestyle, \lst@definestyle, style, 
+new hook `SetStyle',
+
+Allocs: none
+
+Define lst-aspect `language': \lstlanguagefiles, \lstdefinelanguage, \lst@definelanguage, language, alsolanguage, \lstalias, defaultdialect, 
+Allocs: none
+
+Define lst-aspect `labels': numbers, stepnumber, numberfirstline, numberstyle, numbersep, numberblanklines, firstnumber, 
+Allocs: 2\count, 
+
+Define lst-aspect `lineshape': xleftmargin, xrightmargin, resetmargins, 
+new hook `BoxUnsafe',
+linewidth, lineskip, breaklines, breakindent, breakautoindent, breakatwhitespace, prebreak, postbreak, 
+Allocs: none
+
+Define lst-aspect `frames': framexleftmargin, framexrightmargin, framextopmargin, framexbottommargin, backgroundcolor, fillcolor, rulecolor, rulesepcolor, rulesep, framerule, framesep, frameshape, frameround, frame, 
+Allocs: 1\box, 
+) 
+Allocs: 8\count, 4\dimen, 2\box, 1\toks, 
+(c:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty) doubleletterspace, vsraw, vscmd, (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty 
+Define lst-aspect `writefile': 
+Allocs: 1\toks, 1\write, 
+))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/10/06 1.11 (Carsten Heinz)
+    so I'm assuming it got fixed.
+(c:/texlive/2025/texmf-dist/tex/latex/algorithms/algorithm.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (c:/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (c:/texlive/2025/texmf-dist/tex/latex/newtx/TeXGyreTermesX.fontspec) (./out/circuit-test2.aux) (c:/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxexa.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmxntxexx.fd) (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl)
+) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (./out/Template1.aux) (c:/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxexa.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmxntxexx.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl)
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-(c:/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
-No file circuit-test2.toc.
-
+(c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd)
+No file Template1.toc.
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `fig:rlc_circuit' on page 2 undefined on input line 74.
+LaTeX Warning: Reference `fig:rlc_circuit' on page 2 undefined on input line 135.
 
 
-LaTeX Warning: Reference `tab:regression_data' on page 2 undefined on input line 74.
+LaTeX Warning: Reference `tab:regression_data' on page 2 undefined on input line 135.
 
 
-LaTeX Warning: Citation `Scherz2006' on page 2 undefined on input line 75.
+LaTeX Warning: Citation `Scherz2006' on page 2 undefined on input line 136.
 
 
-LaTeX Warning: Reference `fig:rlc_circuit' on page 2 undefined on input line 96.
+LaTeX Warning: Reference `fig:rlc_circuit' on page 2 undefined on input line 155.
 
 
-LaTeX Warning: Reference `tab:params' on page 2 undefined on input line 98.
+LaTeX Warning: Reference `tab:params' on page 2 undefined on input line 156.
 
 
-LaTeX Warning: Reference `fig:wrapped_circuit' on page 2 undefined on input line 99.
-
+LaTeX Warning: Reference `fig:wrapped_circuit' on page 2 undefined on input line 157.
 
 [2]
 
-LaTeX Warning: Reference `tab:regression_data' on page 3 undefined on input line 170.
+LaTeX Warning: Reference `tab:regression_data' on page 3 undefined on input line 221.
 
 
-LaTeX Warning: Reference `fig:regression_graph' on page 3 undefined on input line 190.
+LaTeX Warning: Reference `fig:regression_graph' on page 3 undefined on input line 238.
 
 
-LaTeX Warning: Reference `tab:regression_data' on page 3 undefined on input line 191.
-
+LaTeX Warning: Reference `tab:regression_data' on page 3 undefined on input line 239.
 
 [3]
 
-LaTeX Warning: Reference `fig:regression_graph' on page 4 undefined on input line 227.
+LaTeX Warning: Reference `fig:regression_graph' on page 4 undefined on input line 270.
 
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:240: Missing $ inserted.
-<inserted text> 
-                $
-l.240 外部CSVファイル `my_
-                                data.csv` のデータを元に，自動的に...
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:241: Missing $ inserted.
-<inserted text> 
-                $
-l.241 
-      
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み��んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から��み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:257: Missing $ inserted.
-<inserted text> 
-                $
-l.257 `my_
-          data.csv` のデータを元に，自動的に生成されたグラ...
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:258: Missing $ inserted.
-<inserted text> 
-                $
-l.258 
-      
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータ���ら作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
+[4] [5] [6]
 
-[4]
-[5]
-[6]
-[7]
-[8]
-[9] (./out/circuit-test2.aux)
+LaTeX Font Warning: Font shape `TU/LatinModernRoman(0)/m/sc' undefined
+(Font)              using `TU/LatinModernRoman(0)/m/n' instead on input line 449.
+
+[7] (./out/Template1.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -166,167 +211,200 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
-Package rerunfilecheck Warning: File `circuit-test2.out' has changed.
+Package rerunfilecheck Warning: File `Template1.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 )
-(see the transcript file for additional information)
- 1751 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 12 kern, 1 glyph, 498 attribute, 57 glue_spec, 56 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:18,2:44510,3:2333,4:640,5:276,6:38,7:4301,8:39,9:1515,10:22,11:30
-<c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on circuit-test2.pdf (9 pages, 221119 bytes).
+ 1525 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 412 attribute, 57 glue_spec, 49 attribute_list, 2 write, 13 user_defined nodes
+   avail lists: 1:22,2:42886,3:1803,4:633,5:353,6:44,7:4367,8:50,9:1545,10:17,11:38
+<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on Template1.pdf (7 pages, 579562 bytes).
 
-SyncTeX written on circuit-test2.synctex.gz.
-Transcript written on circuit-test2.log.
-Latexmk: Getting log file 'out/circuit-test2.log'
-Latexmk: Examining 'out/circuit-test2.fls'
-Latexmk: Examining 'out/circuit-test2.log'
-Latexmk: Missing input file 'circuit-test2.toc' message in .log file:
-  No file circuit-test2.toc.
+SyncTeX written on Template1.synctex.gz.
+Transcript written on Template1.log.
+Latexmk: Getting log file 'out/Template1.log'
+Latexmk: Examining 'out/Template1.fls'
+Latexmk: Examining 'out/Template1.log'
+Latexmk: Missing input file 'Template1.toc' message in .log file:
+  No file Template1.toc.
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to 'circuit-test2.pdf'
+Latexmk: Log file says output to 'Template1.pdf'
 Latexmk: Using bibtex to make bibliography file(s).
 Latexmk: applying rule 'lualatex'...
 Rule 'lualatex':  Reasons for rerun
 Changed files or newly in use/created:
-  out/circuit-test2.aux
-  out/circuit-test2.out
-  out/circuit-test2.toc
+  out/Template1.aux
+  out/Template1.out
+  out/Template1.toc
 
 ------------
 Run number 2 of rule 'lualatex'
 ------------
 ------------
-Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex"'
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode "c:/Users/kaito/TeX-Folder/Template/Template1.tex"'
 ------------
 This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
  restricted system commands enabled.
-(c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-07-20>
+(c:/Users/kaito/TeX-Folder/Template/Template1.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
  (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls
 Document Class: ltjsarticle 2025-05-26 ltjsclasses 
 (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
 (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
-(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxtext.sty `newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes and its extensions (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/xpatch/xpatch.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2025/texmf-dist/tex/latex/base/textcomp.sty) (c:/texlive/2025/texmf-dist/tex/generic/xstring/xstring.sty (c:/texlive/2025/texmf-dist/tex/generic/xstring/xstring.tex)) (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty) (c:/texlive/2025/texmf-dist/tex/latex/carlisle/scalefnt.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxmath.sty `newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/luatex.def))) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex)
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/newtx/newtxmath.sty `newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe) (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty) (c:/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty) (c:/texlive/2025/texmf-dist/tex/generic/kastrup/binhex.tex)
 amsthm NOT loaded
-) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg) (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/circuitikz/circuitikz.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-luatex.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+(c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.coltype.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.statistics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty \lstset, 
+new hook `InitVars',
 
-c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty:261: LaTeX Error: Command `\Bbbk' already defined.
+new hook `EndGroup',
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.261 ...ol{\Bbbk}           {\mathord}{AMSb}{"7C}
-                                                  
-) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg))) (c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty (c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2025/texmf-dist/tex/latex/float/float.sty) (c:/texlive/2025/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty) (c:/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/circuitikz/circuitikz.sty (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (c:/texlive/2025/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
-Package pgfplots: loading complementary utilities for your pgf version...
-(c:/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-luatex.def))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex))) (c:/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code.tex (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.coltype.code.tex))) (c:/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.statistics.code.tex) (c:/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty (c:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty)) (c:/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithms/algorithm.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+new hook `ExitVars',
+
+new hook `ModeTrue',
+
+new hook `EOL',
+
+new hook `InitVarsBOL',
+basewidth, 
+new hook `FontAdjust',
+fontadjust, 
+new hook `PostOutput',
+
+new hook `OutputBox',
+
+new hook `InitBOL',
+columns, flexiblecolumns, 
+new hook `OnNewLine',
+emptylines, 
+new hook `OnEmptyLine',
+identifierstyle, 
+new hook `EmptyStyle',
+
+new hook `OutputOther',
+
+new hook `Output',
+tabsize, showtabs, tab, showspaces, keepspaces, 
+new hook `Init',
+formfeed, upquote, SelectCharTable, MoreSelectCharTable, 
+new hook `SetLanguage',
+extendedchars, useoutput, rescanchars, alsoletter, alsodigit, alsoother, 
+new hook `SelectCharTable',
+excludedelims, delim, moredelim, deletedelim, literate, basicstyle, inputencoding, multicols, 
+new hook `EveryLine',
+print, firstline, lastline, 
+new hook `PreSet',
+nolol, linerange, consecutivenumbers, rangeprefix, rangesuffix, rangebeginprefix, rangebeginsuffix, rangeendprefix, rangeendsuffix, includerangemarker, 
+new hook `DeInit',
+captionpos, abovecaptionskip, belowcaptionskip, label, title, caption, 
+new hook `TextStyle',
+\lstlistingname, \lstlistingnamestyle, numberbychapter, boxpos, float, floatplacement, aboveskip, belowskip, everydisplay, 
+new hook `DisplayStyle',
+
+new hook `PreInit',
+
+new hook `EveryPar',
+showlines, 
+new hook `InitVarsEOL',
+gobble, name, \lstlistlistingname, \lstlistoflistings, inputpath, \lstnewenvironment, fancyvrb, (c:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty 
+Define lst-aspect `strings': string, morestring, deletestring, stringstyle, showstringspaces, 
+new hook `ExcludeDelims',
+
+Allocs: none
+
+Define lst-aspect `comments': comment, morecomment, deletecomment, commentstyle, 
+new hook `AfterBeginComment',
+
+Allocs: none
+
+Define lst-aspect `escape': texcl, escapebegin, escapeend, escapechar, escapeinside, mathescape, 
+Allocs: none
+
+Define lst-aspect `keywords': sensitive, 
+new hook `TrackKeywords',
+
+new hook `PostTrackKeywords',
+
+new hook `DetectKeywords',
+classoffset, keywords, morekeywords, deletekeywords, keywordstyle, keywordstyle, ndkeywords, morendkeywords, deletendkeywords, ndkeywordstyle, keywordsprefix, otherkeywords, 
+Allocs: none
+
+Define lst-aspect `emph': emph, moreemph, deleteemph, emphstyle, 
+Allocs: none
+
+Define lst-aspect `index': index, moreindex, deleteindex, indexstyle, \lstindexmacro, 
+Allocs: none
+
+Define lst-aspect `style': \lststylefiles, \lstdefinestyle, \lst@definestyle, style, 
+new hook `SetStyle',
+
+Allocs: none
+
+Define lst-aspect `language': \lstlanguagefiles, \lstdefinelanguage, \lst@definelanguage, language, alsolanguage, \lstalias, defaultdialect, 
+Allocs: none
+
+Define lst-aspect `labels': numbers, stepnumber, numberfirstline, numberstyle, numbersep, numberblanklines, firstnumber, 
+Allocs: 2\count, 
+
+Define lst-aspect `lineshape': xleftmargin, xrightmargin, resetmargins, 
+new hook `BoxUnsafe',
+linewidth, lineskip, breaklines, breakindent, breakautoindent, breakatwhitespace, prebreak, postbreak, 
+Allocs: none
+
+Define lst-aspect `frames': framexleftmargin, framexrightmargin, framextopmargin, framexbottommargin, backgroundcolor, fillcolor, rulecolor, rulesepcolor, rulesep, framerule, framesep, frameshape, frameround, frame, 
+Allocs: 1\box, 
+) 
+Allocs: 8\count, 4\dimen, 2\box, 1\toks, 
+(c:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty) doubleletterspace, vsraw, vscmd, (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty 
+Define lst-aspect `writefile': 
+Allocs: 1\toks, 1\write, 
+))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/10/06 1.11 (Carsten Heinz)
+    so I'm assuming it got fixed.
+(c:/texlive/2025/texmf-dist/tex/latex/algorithms/algorithm.sty) (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty (c:/texlive/2025/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (c:/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (c:/texlive/2025/texmf-dist/tex/latex/newtx/TeXGyreTermesX.fontspec) (./out/circuit-test2.aux) (c:/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxexa.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmxntxexx.fd) (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl)
+) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def) (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty) (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex.def (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (./out/Template1.aux) (c:/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxexa.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/lmxntxexx.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl)
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-(./out/circuit-test2.out) (./out/circuit-test2.out) (c:/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) (./out/circuit-test2.toc)
-[1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2]
-[3]
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:240: Missing $ inserted.
-<inserted text> 
-                $
-l.240 外部CSVファイル `my_
-                                data.csv` のデータ���元に，自動的に...
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:241: Missing $ inserted.
-<inserted text> 
-                $
-l.241 
-      
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv か��読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:244: Missing $ inserted.
-<inserted text> 
-                $
-l.244 ..._data.csv から読み込んだデータ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:257: Missing $ inserted.
-<inserted text> 
-                $
-l.257 `my_
-          data.csv` のデータを元に，自動的に生���されたグラ...
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:258: Missing $ inserted.
-<inserted text> 
-                $
-l.258 
-      
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
-c:/Users/kaito/TeX-Folder/Template/circuit-test2.tex:284: Missing $ inserted.
-<inserted text> 
-                $
-l.284 ... のデータから作成したグラフ}
-                                                  󿿿
+(./out/Template1.out) (./out/Template1.out) (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (c:/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd) (./out/Template1.toc) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
 
-[4]
-[5]
-[6]
-[7]
-[8]
-[9] (./out/circuit-test2.aux))
-(see the transcript file for additional information)
- 1751 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 12 kern, 1 glyph, 498 attribute, 57 glue_spec, 56 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:19,2:44510,3:2333,4:643,5:276,6:80,7:4370,8:39,9:1554,10:22,11:30
-<c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on circuit-test2.pdf (9 pages, 224715 bytes).
+LaTeX Font Warning: Font shape `TU/LatinModernRoman(0)/m/sc' undefined
+(Font)              using `TU/LatinModernRoman(0)/m/n' instead on input line 449.
 
-SyncTeX written on circuit-test2.synctex.gz.
-Transcript written on circuit-test2.log.
-Latexmk: Getting log file 'out/circuit-test2.log'
-Latexmk: Examining 'out/circuit-test2.fls'
-Latexmk: Examining 'out/circuit-test2.log'
-Latexmk: Log file says output to 'circuit-test2.pdf'
+[7] (./out/Template1.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+)
+ 1525 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 412 attribute, 57 glue_spec, 49 attribute_list, 2 write, 13 user_defined nodes
+   avail lists: 1:14,2:42967,3:1803,4:631,5:353,6:90,7:4436,8:50,9:1584,10:17,11:38
+<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on Template1.pdf (7 pages, 583761 bytes).
+
+SyncTeX written on Template1.synctex.gz.
+Transcript written on Template1.log.
+Latexmk: Getting log file 'out/Template1.log'
+Latexmk: Examining 'out/Template1.fls'
+Latexmk: Examining 'out/Template1.log'
+Latexmk: Log file says output to 'Template1.pdf'
 Latexmk: Using bibtex to make bibliography file(s).
-Latexmk: Errors, in force_mode: so I tried finishing targets
-Collected error summary (may duplicate other messages):
-  lualatex: Command for 'lualatex' gave return code 1
-      Refer to 'out/circuit-test2.log' and/or above output for details
+Latexmk: All targets (out/Template1.pdf) are up-to-date
 
-C:\texlive\2025\bin\windows\runscript.tlu:933: command failed with exit code 12:
-perl.exe c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl -f -gg -pv -lualatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=c:/Users/kaito/TeX-Folder/Template/out c:/Users/kaito/TeX-Folder/Template/circuit-test2
