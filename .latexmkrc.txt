@@ -1,48 +1,51 @@
 #!/usr/bin/env perl
-#
-# このファイルは latexmk のための設定ファイルです。
-#
-use utf8; # この行を追加: スクリプト自体がUTF-8であることを明示
+# 先頭行は、Linux用のシバンなので、Windowsでは削除しても構いません。
 
-# -----------------------------------------------------------------------------
-# コンパイラと関連ツールのコマンド定義
-# -----------------------------------------------------------------------------
-# 日本語(uplatex)環境をデフォルトに設定
-$latex = 'uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode %S';
+# 通常の LaTeX ドキュメント用のコマンド
+# 今回はupLaTeXを設定してあります。
+$latex = 'uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode %S'; 
+# pdfLaTeX 用のコマンド 
+$pdflatex = 'pdflatex %O -synctex=1 -interaction=nonstopmode %S'; 
+# LuaLaTeX 用のコマンド 
+$lualatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S'; 
+# XeLaTeX 用のコマンド 
+$xelatex = 'xelatex %O -no-pdf -synctex=1 -shell-escape -interaction=nonstopmode %S'; 
+# Biber, BibTeX 用のコマンド 
+$biber = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B'; 
+$bibtex = 'upbibtex %O %B'; 
+# makeindex 用のコマンド 
+$makeindex = 'upmendex %O -o %D %S'; 
+# dvipdf のコマンド 
+$dvipdf = 'dvipdfmx %O -o %D %S'; 
+# dvips のコマンド 
+$dvips = 'dvips %O -z -f %S | convbkmk -u > %D'; 
+$ps2pdf = 'ps2pdf.exe %O %S %D'; 
 
-# 各種LaTeXエンジンのコマンド
-$pdflatex = 'pdflatex %O -synctex=1 -interaction=nonstopmode %S';
-$lualatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S';
-$xelatex  = 'xelatex %O -synctex=1 -interaction=nonstopmode %S';
+# $pdf_mode ...PDF の作成方法を指定するオプション 
+# 0: $latex で .tex -> .dvi するだけ
+# 1: $pdflatex で .tex -> .pdf (pdflatexは英文にしか使えない)
+# 2: $latex で .tex -> .dvi / $dvips で .dvi -> .ps / $ps2pdf で .ps -> PDF
+# 3: $latex で .tex -> .dvi / $dvipdf で .dvi -> PDF 
+# 4: $lualatex で .tex -> PDF
+# 5: $xelatex で .tex -> .xdv / $xdvipdfmx で .xdv -> PDF
+# lualatexしか使わないなら以下行のコメント（#）を外すが、他も使いそうならこのまま
+# $pdf_mode = 4; 
 
-# 参考文献・索引ツールのコマンド
-$biber    = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
-$bibtex   = 'upbibtex %O %B';
-$makeindex = 'upmendex %O -o %D %S';
-
-# DVIからの変換コマンド
-$dvipdf = 'dvipdfmx %O -o %D %S';
-$dvips  = 'dvips %O -z -f %S | convbkmk -u > %D';
-$ps2pdf = 'ps2pdf.exe %O %S %D';
-
-# -----------------------------------------------------------------------------
-# latexmk の動作設定
-# -----------------------------------------------------------------------------
-# PDF の作成方法 (VSCodeからエンジンを指定するため、ここでは特定のモードに固定しない)
-$pdf_mode = 3; # uplatex -> dvipdfmx のモードをデフォルトに設定
-
-# PDFビューワの設定
+# PDFビューワ の設定 
+# コンパイル成功時に外部ビューワを開かないようにする
 $pdf_previewer = "";
 
-# -----------------------------------------------------------------------------
-# クリーンアップ設定
-# -----------------------------------------------------------------------------
-# ビルド後に自動でクリーンアップを実行
+# 一時ファイルの自動削除設定
+# コンパイル成功時に中間ファイルを自動削除
+$clean_ext = "aux bbl blg fls fdb_latexmk figlist makefile synctex.gz run.xml";
+
+# ビルド後に自動クリーンアップを実行
+# 0: クリーンアップしない, 1: 成功時のみ, 2: 常にクリーンアップ
 $cleanup_mode = 1;
 
-# クリーンアップ対象の拡張子
-$clean_ext = 'aux bbl bcf blg fdb_latexmk fls ilg ind lof log lot out run.xml synctex.gz toc'
-           . ' acn acr alg glg glo gls ist nav snm vrb'
-           . ' figlist makefile';
+# 追加で削除したいファイルの拡張子
+# 必要に応じて追加
+push @generated_exts, "figlist", "makefile", "run.xml";
 
-# $clean_full_mode = 1; # 通常はコメントアウト
+# latexmkの管理ファイルも削除したい場合（通常は推奨しない）
+# $clean_full_mode = 1;  # コメントアウト推奨
