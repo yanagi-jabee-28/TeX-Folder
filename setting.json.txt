@@ -1,350 +1,169 @@
 {
-    "arduino.ignoreBoards": [],
-    "arduino.commandPath": "arduino-cli.exe",
-    "arduino.path": "C:\\Program Files\\Arduino CLI",
-    "arduino.useArduinoCli": true,
-    "C_Cpp.intelliSenseEngine": "Tag Parser",
-    "cmake.pinnedCommands": [
-        "workbench.action.tasks.configureTaskRunner",
-        "workbench.action.tasks.runTask"
-    ],
-    "json.schemas": [],
+    //================================================================
+    // 全般設定 (General Settings)
+    //================================================================
     "workbench.iconTheme": "vscode-icons",
-    "editor.foldingImportsByDefault": true,
-    "editor.foldingStrategy": "indentation",
-    "security.workspace.trust.untrustedFiles": "open",
-    "code-runner.runInTerminal": true,
-    "cSpell.userWords": [
-        "bigend",
-        "biggend",
-        "DFPLAYER",
-        "dfrobot",
-        "Hagman",
-        "hserial",
-        "intrabit",
-        "ladyada",
-        "maskreg",
-        "maskvalue",
-        "Mikal",
-        "pcint",
-        "pico",
-        "PROGMEM",
-        "raspberrypi",
-        "sserial",
-        "Stoffregen",
-        "stopbit",
-        "thebuf"
-    ],
-    "git.autofetch": true,
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.wordWrap": "on",
     "workbench.colorTheme": "GitHub Dark Dimmed",
-    "git.enableSmartCommit": true,
-    "git.confirmSync": false,
-    "terminal.integrated.commandsToSkipShell": [
-        "matlab.interrupt"
-    ],
-    "editor.insertSpaces": false,
-    "editor.formatOnSave": true,
-    "liveServer.settings.donotShowInfoMsg": true,
-    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
-
-// 以下、LaTeX Workshopの設定
-// LaTeXでビルドする際の設定を「Tool」「Recipi」の2種類設定する
-//   Tool ...1つのコマンド。料理で言うところの、「焼く」「煮る」などの操作かな。
-//   "latex-workshop.latex.tools" で定義。
-//   Recipe ...Tool を組み合わせて料理（つまりは文書）を作るレシピ。
-//   "latex-workshop.latex.recipes"で定義。
-//   デフォルトの操作は、1番最初に定義されたレシピになる（他のレシピも選択可）
-// Tool の定義
-"latex-workshop.latex.tools": [
-    // latexmk によるlualatex
-    {
-        "name": "Latexmk (LuaLaTeX)",
-        "command": "latexmk",
-        "args": [
-            "-f",
-            "-gg",
-            "-pv",
-            "-lualatex",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-output-directory=%OUTDIR%",
-            "%DOC%"
-        ]
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.ts": "default"
     },
-    // latexmk による xelatex
-    {
-        "name": "Latexmk (XeLaTeX)",
-        "command": "latexmk",
-        "args": [
-            "-f",
-            "-gg",
-            "-pv",
-            "-xelatex",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-output-directory=%OUTDIR%",
-            "%DOC%"
-        ]
-    },
-    // latexmk による uplatex
-    {
-        "name": "Latexmk (upLaTeX)",
-        "command": "latexmk",
-        "args": [
-            "-f",
-            "-gg",
-            "-pv",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-output-directory=%OUTDIR%",
-            "%DOC%"
-        ]
-    },
-    // latexmk による platex
-    //こいつ使うときもしかしたらpdf生成されずにdviまでしかできないかも
-    {
-        "name": "Latexmk (pLaTeX)",
-        "command": "latexmk",
-        "args": [
-            "-f",
-            "-gg",
-            "-pv",
-            "-latex='platex'",
-            "-latexoption='-kanji=utf8 -no-guess-input-env'",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-output-directory=%OUTDIR%",
-            "%DOC%"
-        ]
-    }
-],
-// Recipe の定義
-"latex-workshop.latex.recipes": [
-    // LuaLaTeX のレシピ
-    {
-        "name": "LuaLaTeX",
-        "tools": [
-            "Latexmk (LuaLaTeX)"
-        ]
-    },
-    // XeLaTeX のレシピ
-    {
-        "name": "XeLaTeX",
-        "tools": [
-            "Latexmk (XeLaTeX)"
-        ]
-    },
-    // upLaTeX のレシピ
-    {
-        "name": "upLaTeX",
-        "tools": [
-            "Latexmk (upLaTeX)"
-        ]
-    },
-    // pLaTeX のレシピ
-    {
-        "name": "pLaTeX",
-        "tools": [
-            "Latexmk (pLaTeX)"
-        ]
-    },
-],
-// マジックコメント付きの LaTeX ドキュメントのビルド設定
-// 特に記事では扱わないが、いつか使うことを考えて書いとく。
-// 参考: https://blog.miz-ar.info/2016/11/magic-comments-in-tex/
-"latex-workshop.latex.magic.args": [
-    "-f",
-    "-gg",
-    "-pv",
-    "-synctex=1",
-    "-interaction=nonstopmode",
-    "-file-line-error",
-    "%DOC%"
-],
-// 不要なファイルをクリーンアップする時の目印となる拡張子
-// 不要な一時ファイルや中間ファイルを自動削除する機能がある。
-"latex-workshop.latex.clean.fileTypes": [
-    "*.aux",
-    "*.bbl",
-    "*.blg",
-    "*.idx",
-    "*.ind",
-    "*.lof",
-    "*.lot",
-    "*.out",
-    "*.toc",
-    "*.acn",
-    "*.acr",
-    "*.alg",
-    "*.glg",
-    "*.glo",
-    "*.gls",
-    "*.ist",
-    "*.fls",
-    "*.log",
-    "*.fdb_latexmk",
-    "*.synctex.gz",
-    // for Beamer files
-    "_minted*",
-    "*.nav",
-    "*.snm",
-    "*.vrb",
-    // 追加の一時ファイル
-    "*.figlist",
-    "*.makefile",
-    "*.run.xml",
-    "*.bcf",
-    "*.ilg",
-    "*.nlo",
-    "*.nls",
-    "*.auxlock"
-],
-// ビルド失敗した際の残存ファイルが以降のビルドに影響を与えることがあるため、
-// 残存ファイルを削除する設定
-"latex-workshop.latex.autoClean.run": "onBuilt",
-// 成功時のみクリーンアップ（失敗時はログを残す）
-"latex-workshop.latex.clean.method": "glob",
-// PDFビューワの開き方。画面分割で開く。
-"latex-workshop.view.pdf.viewer": "tab",
-// LaTeXファイル保存時にPDFも更新するかどうか。
-// LuaLaTeXはビルドが遅いので、かえって煩わしいので無効化
-// (u)pLaTeXなら有効化しておいてもいいかも。
-"latex-workshop.latex.autoBuild.run": "never",
-"[tex]": {
-    // スニペット補完中にも補完を使えるようにする
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    // インデント幅を2にする
-    "editor.tabSize": 2
-},
-"[latex]": {
-    // スニペット補完中にも補完を使えるようにする
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    // インデント幅を2にする
-    "editor.tabSize": 2,
-    "editor.wordWrap": "on",
-    "editor.insertSpaces": true,
-    "editor.detectIndentation": false,
-    "editor.suggestSelection": "recentlyUsedByPrefix",
-    "editor.quickSuggestions": {
-        "other": true,
-        "comments": false,
-        "strings": false
-    },
-    "editor.bracketPairColorization.enabled": true,
-    "editor.unicodeHighlight.invisibleCharacters": true,
-    "editor.unicodeHighlight.allowedCharacters": {
-        "，": true,
-        "．": true,
-        "！": true,
-        "？": true,
-        "［": true,
-        "］": true,
-        "｛": true,
-        "｝": true,
-        "＜": true,
-        "＞": true,
-    },
-    "editor.stickyScroll.enabled": true,
-},
-"[bibtex]": {
-    // インデント幅を2にする
-    "editor.tabSize": 2
-},
-// 使用パッケージのコマンドや環境の補完を有効化
-"latex-workshop.intellisense.package.enabled": true,
-// 作成したファイルを、直下の "out" フォルダへ出力
-"latex-workshop.latex.outDir": "%DIR%/out",
-// --- ここまでTeXの設定 ---
-
     "files.autoSave": "afterDelay",
-    "diffEditor.codeLens": true,
     "files.associations": {
         "*.f90": "fortran",
         "*.ts": "typescript"
     },
+    // [推奨] 信頼されていないファイルを開く際の動作。'open'は危険なため'prompt'に変更。
+    "security.workspace.trust.untrustedFiles": "prompt",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "json.schemas": [],
+
+    //================================================================
+    // エディタ設定 (Editor Settings)
+    //================================================================
+    "editor.wordWrap": "on",
+    "editor.foldingImportsByDefault": true,
+    "editor.foldingStrategy": "indentation",
+    "editor.insertSpaces": false, // グローバルではタブを使用
+    "editor.formatOnSave": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.codeLens": true,
+
+    //================================================================
+    // バージョン管理 (Version Control)
+    //================================================================
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+
+    //================================================================
+    // ターミナル & 実行 (Terminal & Execution)
+    //================================================================
+    "terminal.integrated.commandsToSkipShell": [
+        "matlab.interrupt"
+    ],
+    "code-runner.runInTerminal": true,
+
+    //================================================================
+    // 言語別設定 (Language Specific Settings)
+    //================================================================
+    "[latex]": {
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.tabSize": 2,
+        "editor.wordWrap": "on",
+        "editor.insertSpaces": true, // LaTeXではスペースを使用
+        "editor.detectIndentation": false,
+        "editor.suggestSelection": "recentlyUsedByPrefix",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": false
+        },
+        "editor.bracketPairColorization.enabled": true,
+        "editor.unicodeHighlight.invisibleCharacters": true,
+        "editor.unicodeHighlight.allowedCharacters": {
+            "，": true, "．": true, "！": true, "？": true, "［": true, "］": true,
+            "｛": true, "｝": true, "＜": true, "＞": true
+        },
+        "editor.stickyScroll.enabled": true
+    },
+    "[tex]": {
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.tabSize": 2
+    },
+    "[bibtex]": {
+        "editor.tabSize": 2
+    },
     "[fortran]": {
         "editor.semanticHighlighting.enabled": true
     },
+
+    //================================================================
+    // 拡張機能別設定 (Extension Specific Settings)
+    //================================================================
+
+    //--- C/C++ ---
+    // [非推奨] "Tag Parser"は古い設定です。削除してデフォルトのIntelliSenseエンジンを使用することを推奨します。
+    // "C_Cpp.intelliSenseEngine": "Tag Parser",
+
+    //--- Arduino ---
+    "arduino.ignoreBoards": [],
+    "arduino.commandPath": "arduino-cli.exe",
+    "arduino.path": "C:\\Program Files\\Arduino CLI",
+    "arduino.useArduinoCli": true,
+
+    //--- CMake ---
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+
+    //--- Spell Checker ---
+    "cSpell.userWords": [
+        "bigend", "biggend", "DFPLAYER", "dfrobot", "Hagman", "hserial",
+        "intrabit", "ladyada", "maskreg", "maskvalue", "Mikal", "pcint",
+        "pico", "PROGMEM", "raspberrypi", "sserial", "Stoffregen",
+        "stopbit", "thebuf"
+    ],
+
+    //--- GitHub Copilot & AI Tools ---
+    "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
         "markdown": true,
         "scminput": false
     },
-    "chat.tools.autoApprove": true,
     "dart.flutterSdkPath": "C:\\Users\\kaito\\flutter",
     "geminicodeassist.project": "xanthic-renderer-k1tnf",
-    "chat.tools.terminal.autoApprove": {
-        "python": true,
-        "node": true,
-        "ForEach-Object": true,
-        "C:/Users/kaito/Documents/GitHub/GAME-ON/.venv/Scripts/python.exe \"Number-BATTLE-1/tools/number_battle_solver.py\"": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm install": true,
-        "npx jest c:\\Users\\kaito\\Documents\\GitHub\\GAME-ON\\Number-BATTLE-1\\js\\ai.test.js": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm test": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "Set-Location": true,
-        "npm run build": true,
-        "Set-Location -LiteralPath 'D:\\Dev\\vite_test'; npx tsc -b": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm run dev": true,
-        "Get-Process": true,
-        "Stop-Process": true,
-        "npx": true,
-        "Get-NetTCPConnection": true,
-        "netstat": true,
-        "curl.exe": true,
-        "mkdir": true,
-        "cp": true,
-        "$pids": true,
-        "if": true,
-        "rmdir": true,
-        "$null": true,
-        "console.log('game": true,
-        "{console.error(e)": true,
-        "process.exit(1)})\"": true,
-        "gci": true,
-        "npm run preview": true,
-        "pwsh": true,
-        "git commit": true,
-        "pwsh -NoProfile -Command \"git add GAME-pachinko-1/js/config.js; git commit -m 'fix(config): remove duplicate material key in MATERIAL_INTERACTIONS' || Write-Host 'No changes to commit'\"": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "pwsh -NoProfile -Command \"git add GAME-pachinko-1/js/objects.js; git commit -m 'fix(windmill): fallback blade color to config' || Write-Host 'No changes to commit'\"": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm run lint": true,
-        "Found.*warnings\"": true,
-        "errors\"": true,
-        "powershell -Command \"\"": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "Get-Command": true
-    },
     "chat.agent.maxRequests": 40,
+    "chat.tools.autoApprove": true, // UI上のツール使用は自動承認
     "chat.tools.terminal.autoReplyToPrompts": true,
-    "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.ts": "default"
-    }
+
+    // [重要/セキュリティ] ターミナルコマンドの自動承認設定。
+    // 汎用コマンド(python, node, mkdir等)の自動承認は極めて危険なため、すべて無効化しました。
+    // 信頼できる特定のスクリプトのみを、以下のようにフルパスで指定して承認することを強く推奨します。
+    "chat.tools.terminal.autoApprove": {
+
+    },
+
+    //--- LaTeX Workshop ---
+    // 出力ディレクトリ。(.gitignoreに "%DIR%/out" を追加することを推奨)
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    // ビルドツールチェインの定義
+    "latex-workshop.latex.tools": [
+        { "name": "Latexmk (LuaLaTeX)", "command": "latexmk", "args": [ "-f", "-gg", "-pv", "-lualatex", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "-output-directory=%OUTDIR%", "%DOC%" ] },
+        { "name": "Latexmk (XeLaTeX)", "command": "latexmk", "args": [ "-f", "-gg", "-pv", "-xelatex", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "-output-directory=%OUTDIR%", "%DOC%" ] },
+        { "name": "Latexmk (upLaTeX)", "command": "latexmk", "args": [ "-f", "-gg", "-pv", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "-output-directory=%OUTDIR%", "%DOC%" ] },
+        { "name": "Latexmk (pLaTeX)", "command": "latexmk", "args": [ "-f", "-gg", "-pv", "-latex='platex'", "-latexoption='-kanji=utf8 -no-guess-input-env'", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "-output-directory=%OUTDIR%", "%DOC%" ] }
+    ],
+    // ビルドレシピの定義 (デフォルトは最初のもの)
+    "latex-workshop.latex.recipes": [
+        { "name": "LuaLaTeX", "tools": [ "Latexmk (LuaLaTeX)" ] },
+        { "name": "XeLaTeX", "tools": [ "Latexmk (XeLaTeX)" ] },
+        { "name": "upLaTeX", "tools": [ "Latexmk (upLaTeX)" ] },
+        { "name": "pLaTeX", "tools": [ "Latexmk (pLaTeX)" ] }
+    ],
+    // ファイル保存時の自動ビルドは無効 (ユーザー設定を維持)
+    "latex-workshop.latex.autoBuild.run": "never",
+    // ビルド成功時に中間ファイルを削除
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.method": "glob",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out",
+        "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist",
+        "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz", "_minted*", "*.nav",
+        "*.snm", "*.vrb", "*.figlist", "*.makefile", "*.run.xml", "*.bcf",
+        "*.ilg", "*.nlo", "*.nls", "*.auxlock"
+    ],
+    // PDFビューワはタブで開く
+    "latex-workshop.view.pdf.viewer": "tab",
+    // パッケージコマンドの補完を有効化
+    "latex-workshop.intellisense.package.enabled": true,
+    // マジックコメント用の設定
+    "latex-workshop.latex.magic.args": [
+        "-f", "-gg", "-pv", "-synctex=1", "-interaction=nonstopmode",
+        "-file-line-error", "%DOC%"
+    ]
 }
