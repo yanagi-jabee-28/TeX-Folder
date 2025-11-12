@@ -92,7 +92,7 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 \begin{align*}
 (p\lor q)\land (p\lor \bar{q})
-&\equiv p \lor (q \land \bar{q}) \quad (\text{分配法則})\\
+&\equiv p \lor (q \land \bar{q}) \quad (\text{分配法則 } (A\lor B)\land(A\lor C)\equiv A\lor(B\land C))\\
 &\equiv p \lor O \quad (\text{矛盾律 } q \land \bar{q} \equiv O)\\
 &\equiv p \quad (\text{同一律 } p \lor O \equiv p)
 \end{align*}
@@ -103,10 +103,10 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 \begin{align*}
 (p\to q)\to (p\land q)
-&\equiv (\overline{p\to q}) \lor (p\land q) \quad (A \to B \equiv \bar{A} \lor B)\\
-&\equiv (\overline{\bar{p} \lor q}) \lor (p\land q) \quad (p \to q \equiv \bar{p} \lor q)\\
+&\equiv (\overline{ p\to q }) \lor (p\land q) \quad (A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\bar{p} \lor \bar{q}) \lor (p\land q) \quad (p \to q \equiv \bar{p} \lor q)\\
 &\equiv (p \land \bar{q}) \lor (p\land q) \quad (\text{ド・モルガンの法則})\\
-&\equiv p \land (\bar{q} \lor q) \quad (\text{分配法則})\\
+&\equiv p \land (\bar{q} \lor q) \quad (\text{分配法則 } (X\land Y)\lor(X\land Z)\equiv X\land(Y\lor Z))\\
 &\equiv p \land I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
 &\equiv p \quad (\text{同一律 } p \land I \equiv p)
 \end{align*}
@@ -120,7 +120,7 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 &\equiv (\overline{p\land q}) \lor (p\to q) \quad (A \to B \equiv \bar{A} \lor B)\\
 &\equiv (\bar{p} \lor \bar{q}) \lor (\bar{p} \lor q) \quad (\text{ド・モルガン},\; p \to q \equiv \bar{p} \lor q)\\
 &\equiv \bar{p} \lor \bar{p} \lor \bar{q} \lor q \quad (\text{結合・交換})\\
-&\equiv \bar{p} \lor (\bar{q} \lor q) \quad (\bar{p} \lor \bar{p} \equiv \bar{p})\\
+&\equiv \bar{p} \lor (\bar{q} \lor q) \quad (\text{冪等律 } \bar{p} \lor \bar{p} \equiv \bar{p})\\
 &\equiv \bar{p} \lor I \quad (\text{排中律 } \bar{q} \lor q \equiv I)\\
 &\equiv I \quad (\text{同一律 } \bar{p} \lor I \equiv I)
 \end{align*}
@@ -131,7 +131,7 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 \begin{align*}
 (p\lor q) &\to (p \land q)\\ 
-&\equiv \overline{(p\lor q)} \lor (p \land q) \quad (\text{含意の定義 } A \to B \equiv \bar{A} \lor B)\\
+&\equiv (\overline{p\lor q}) \lor (p \land q) \quad (\text{含意の定義 } A \to B \equiv \bar{A} \lor B)\\
 &\equiv (\bar{p} \land \bar{q}) \lor (p \land q) \quad (\text{ド・モルガンの法則})\\
 &\equiv \big((\bar{p} \land \bar{q}) \lor p\big) \land \big((\bar{p} \land \bar{q}) \lor q\big) \quad (\text{分配法則})\\
 &\equiv (\bar{p} \lor p) \land (\bar{q} \lor p) \land (\bar{p} \lor q) \land (\bar{q} \lor q) \quad (\text{分配法則})\\
@@ -144,13 +144,16 @@ $I$ を真（True）、$O$ を偽（False）として真理表を作成します
 
 \clearpage
 \appendix
+
+本ドキュメントでは、命題の否定を表すために、単一の変数には $\bar{a}$ のような形式を用い、複合式には $\overline{aB}$ のような形式を用いています．これは、視覚的な明確さを保つためです．
+
 \section{補遺：記法と恒等式}
 本ドキュメントで使用した略記と恒等式の一覧をまとめます．授業や試験での参照に便利です．
 
 \begin{itemize}
   \item $I$：真 (True)
   \item $O$：偽 (False)
-  \item $\bar{A}$：命題 $A$ の否定
+  \item $\overline{A}$：命題 $A$ の否定
   \item $A\to B$：$A$ ならば $B$（含意）
 \end{itemize}
 
