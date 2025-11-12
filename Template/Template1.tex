@@ -27,6 +27,7 @@
 
 % ===== 数式・物理単位関連 =====
 \usepackage{amsmath}           % 高度な数式環境 (align, pmatrixなど)
+\usepackage{amsthm}            % 定理環境 (proofなど)
 \usepackage{newtxmath}         % 数式用フォント (Times系)
 \usepackage{siunitx}           % 物理単位の記述を統一 (\SI{100}{\ohm})
 \usepackage{cancel}            % 数式の打ち消し線 (\cancel)
@@ -396,6 +397,15 @@
   \end{cases}
 \end{equation}
 
+\subsubsection{連分数}
+\begin{equation}
+  \cfrac{1}{1 + \cfrac{1}{\sqrt{2}}}
+\end{equation}
+一般形:
+\begin{equation}
+  \cfrac{1}{a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3 + \cdots}}}}
+\end{equation}
+
 \subsubsection{数式の打ち消し線 (cancel)}
 \begin{equation}
   \frac{(x+1)\cancel{(x-1)}}{\cancel{(x-1)}} = x+1 \quad (x \neq 1),
@@ -428,6 +438,107 @@
 \begin{equation}
   G_{\mathrm{dB}} = 20 \log_{10} \left( \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}} \right)
 \end{equation}
+
+\subsubsection{数学記号の表現}
+
+\paragraph{極限}
+\begin{equation}
+  \lim_{x \to 0} \frac{\sin x}{x} = 1
+\end{equation}
+
+\paragraph{総和と総積}
+\begin{equation}
+  \sum_{k=1}^{n} k = \frac{n(n+1)}{2}, \quad \prod_{k=1}^{n} k = n!
+\end{equation}
+
+\paragraph{コンビネーション}
+\begin{equation}
+  \binom{n}{r} = \frac{n!}{r!(n-r)!}, \quad {}_{n} \mathrm{C}_{k} = \frac{n!}{k!(n-k)!}
+\end{equation}
+
+\paragraph{階乗}
+\begin{equation}
+  n! = 1 \times 2 \times \cdots \times n
+\end{equation}
+
+\paragraph{順列}
+\begin{equation}
+  P(n,k) = \frac{n!}{(n-k)!}, \quad {}_{n} \mathrm{P}_{k} = \frac{n!}{(n-k)!}
+\end{equation}
+
+\paragraph{重複組合せ}
+\begin{equation}
+  H(n,k) = \binom{n+k-1}{k}, \quad {}_{n} \mathrm{H}_{k} = \binom{n+k-1}{k}
+\end{equation}
+
+\paragraph{重複順列}
+\begin{equation}
+  {}_{n} \Pi_{k} = n^{k}
+\end{equation}
+
+\subsubsection{代数}
+
+\paragraph{方程式と不等式}
+\begin{align}
+  x^2 - 5x + 6 = 0 \\
+  x^2 + y^2 = r^2 \\
+  a^2 + b^2 = c^2 \\
+  x^2 < 4
+\end{align}
+
+\paragraph{関数}
+\begin{align}
+  f(x) = ax + b \\
+  g(x) = x^2 + 2x + 1 \\
+  h(x) = e^x \\
+  i(x) = \log x \\
+  j(x) = \sin x + \cos x
+\end{align}
+
+\subsubsection{数列}
+
+\paragraph{等差数列と等比数列}
+\begin{align}
+  a_n = a + (n-1)d \\
+  a_n = a r^{n-1}
+\end{align}
+
+\subsubsection{幾何}
+
+\paragraph{ベクトル}
+\begin{align}
+  \vec{a} = (a_1, a_2, a_3) \\
+  \vec{a} \cdot \vec{b} = a_1 b_1 + a_2 b_2 + a_3 b_3 \\
+  \vec{a} \times \vec{b} = (a_2 b_3 - a_3 b_2, a_3 b_1 - a_1 b_3, a_1 b_2 - a_2 b_1)
+\end{align}
+
+\paragraph{図形の面積と体積}
+\begin{align}
+  S = \pi r^2 \\
+  V = \frac{4}{3} \pi r^3 \\
+  S = a^2 \\
+  V = a^3
+\end{align}
+
+\subsubsection{確率・統計}
+
+\paragraph{確率}
+\begin{equation}
+  P(A) = \frac{n(A)}{n(U)}
+\end{equation}
+
+\paragraph{統計量}
+\begin{align}
+  \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i \\
+  \sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2
+\end{align}
+
+\subsubsection{数学的帰納法}
+数学的帰納法の証明例：
+\begin{proof}
+  \textbf{基底ステップ:} $n=1$ のとき成立。 \\
+  \textbf{帰納ステップ:} $n=k$ のとき成立と仮定し、$n=k+1$ のときも成立することを示す。
+\end{proof}
 
 \subsubsection{論理式}
 命題論理や述語論理で用いられる基本的な記号と数式の例です。
