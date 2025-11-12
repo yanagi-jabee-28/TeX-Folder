@@ -1,25 +1,72 @@
-% ===== ドキュメントクラスと基本パッケージ =====
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+% ===== ドキュメントクラス =====
 \documentclass[
   a4paper,
   11pt,
 ]{ltjsarticle}
 
-% --- 数式関連パッケージ (amsmathを先に読み込む) ---
+% ===== フォント設定 (LuaLaTeX専用) =====
+\usepackage{luatexja-fontspec} % モダンなフォントシステムを有効化
+
+% --- 安全なフォント設定 ---
+% システムに依存しにくい TeX Gyre 系フォントを明示的に指定します。
+% Windows 環境で "Arial" や "Courier New" が見つからない場合に備え、
+% TeX Live に同梱されている TeX Gyre 系を使うのが安定します。
+
+% 欧文（本文）: 安全なデフォルトとして Latin Modern を使用（LuaLaTeX 向け）
+% 依然としてシステムに TeX Gyre 系がある場合は置き換えても構いません。
+\setmainfont{Latin Modern Roman}[Ligatures=TeX,Scale=MatchLowercase]
+
+% 和文（本文）: 利用可能なら Yu Mincho を指定します。
+% 注意: Windows 環境でこのフォント名が見つからないとコンパイルエラーになります。
+% 利用環境で日本語フォントが未インストールの場合は以下の行をコメントアウトするか
+% ご自身のシステムにある日本語フォント名に置き換えてください（例: "IPAMincho", "Noto Serif CJK JP" 等）。
+%\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+
+% 等幅フォント（ソース等）: Latin Modern Mono を使用
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+
+% サンセリフ体: Latin Modern Sans を使用
+\setsansfont{Latin Modern Sans}[Scale=MatchLowercase]
+
+% ===== 数式・物理単位関連 =====
 \usepackage{amsmath}
-
-% --- フォント関連パッケージ (amssymbの機能はnewtxmathに含まれる) ---
-\usepackage{newtxtext, newtxmath}
-% \usepackage{amssymb} % ← newtxmathと競合するため、この行を削除またはコメントアウト
-
-% --- その他のパッケージ ---
-\usepackage{graphicx}
+\usepackage{newtxmath} % 数式用フォント。これはluatexja-fontspecと競合しないため継続使用
 \usepackage{siunitx}
-\usepackage{float}
-\usepackage{anyfontsize}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{booktabs}
-\usepackage{parskip} % 段落の空行を見やすく
-\usepackage{hyperref} % hyperrefは最後に読み込むのが安全
+\usepackage{cancel}            % 数式の打ち消し線
+
+% ===== 図表・レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry} % 余白の設定
+\usepackage{graphicx}          % 画像の挿入
+\usepackage{booktabs}          % 見栄えの良い表
+\usepackage{float}             % 図表の位置調整 (`[H]`オプション)
+\usepackage{wrapfig}           % 図の回り込み
+% \usepackage{parskip}         % (任意) 段落間のスペースを空ける場合、この行のコメントを外す
+
+% ===== 回路図・グラフ描画関連 (TikZ/PGF) =====
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{pgfplots}          % 高機能なグラフ描画
+\usepackage{pgfplotstable}     % グラフ描画のための表データ操作
+\pgfplotsset{compat=1.18}      % pgfplotsのバージョン互換性設定
+\usepgfplotslibrary{statistics} % 統計計算（回帰分析など）ライブラリ
+\usetikzlibrary{positioning}   % ノードの相対配置
+
+% ===== プログラミング・アルゴリズム関連 =====
+\usepackage{listings}          % ソースコードの表示
+\usepackage{algorithm}         % アルゴリズム記述の環境
+\usepackage{algpseudocode}     % algorithm環境内で使う疑似コード
+
+% ===== ハイパーリンク設定 (原則として最後に読み込む) =====
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=green!60!black]{hyperref}
+
+% ===== (削除したパッケージ) =====
+% anyfontsize: ltjsarticleでは不要なため削除
+% amssymb: newtxmathに含まれるため不要
 
 % ドキュメント情報
 \title{論理学 演習問題 — 解答・解説}
