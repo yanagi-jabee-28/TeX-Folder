@@ -126,16 +126,24 @@ S \equiv (p \land \bar{q}) \lor (\bar{p} \land q)
     よって，$S \equiv I$ となります。
   \item 発言 $S$ の内容を評価:  
     発言 $S \equiv (p \land \bar{q}) \lor (\bar{p} \land q)$ に，仮定 $q \equiv I$ と $\bar{q} \equiv O$ を代入します。  
-    $S \equiv (p \land O) \lor (\bar{p} \land I)$
+    \[
+    S \equiv (p \land O) \lor (\bar{p} \land I)
+    \]
   \item 論理式の簡略化:  
     性質 $P \land O = O$ および $P \land I = P$ を用います。  
-    $S \equiv O \lor \bar{p}$  
+    \[
+    S \equiv O \lor \bar{p}
+    \]
     性質 $P \lor O = P$ を用います。  
-    $S \equiv \bar{p}$
+    \[
+    S \equiv \bar{p}
+    \]
   \item 結論の導出:  
     ステップ2（ルール）より $S \equiv I$ であり，ステップ4（発言内容）より $S \equiv \bar{p}$ です。  
     したがって，この2つは等しくなければなりません。  
-    $I \equiv \bar{p}$  
+    \[
+    I \equiv \bar{p}
+    \]
     これは，$p \equiv O$ を意味します。  
     この仮定（赤カード）は，発言者がディーである場合 ($p \equiv O$) に矛盾なく成立します。
 \end{enumerate}
@@ -150,16 +158,24 @@ S \equiv (p \land \bar{q}) \lor (\bar{p} \land q)
     よって，$S \equiv O$ となります。
   \item 発言 $S$ の内容を評価:  
     発言 $S \equiv (p \land \bar{q}) \lor (\bar{p} \land q)$ に，仮定 $q \equiv O$ と $\bar{q} \equiv I$ を代入します。  
-    $S \equiv (p \land I) \lor (\bar{p} \land O)$
+    \[
+    S \equiv (p \land I) \lor (\bar{p} \land O)
+    \]
   \item 論理式の簡略化:  
     性質 $P \land I = P$ および $P \land O = O$ を用います。  
-    $S \equiv p \lor O$  
+    \[
+    S \equiv p \lor O
+    \]
     性質 $P \lor O = P$ を用います。  
-    $S \equiv p$
+    \[
+    S \equiv p
+    \]
   \item 結論の導出:  
     ステップ2（ルール）より $S \equiv O$ であり，ステップ4（発言内容）より $S \equiv p$ です。  
     したがって，この2つは等しくなければなりません。  
-    $O \equiv p$  
+    \[
+    O \equiv p
+    \]
     これは，$p \equiv O$ を意味します。  
     この仮定（黒カード）も，発言者がディーである場合 ($p \equiv O$) に矛盾なく成立します。
 \end{enumerate}
