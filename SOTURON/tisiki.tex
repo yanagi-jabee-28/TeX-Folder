@@ -15,11 +15,13 @@
 
 % ===== フォント・言語設定 (LuaLaTeX専用) =====
 \usepackage{luatexja-fontspec}
+\usepackage{lmodern} % フォントサイズの置き換えを防ぐため
 
 % ===== レイアウト関連 =====
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{graphicx} % 画像挿入のために追加
 
 % ===== 数式・物理単位関連 =====
 \usepackage{amsmath}
@@ -28,6 +30,8 @@
 
 % ===== その他 =====
 \usepackage{url} % URLを適切に表示
+\urlstyle{same}
+\Urlmuskip=0mu plus 1mu
 \usepackage[
   colorlinks=true,
   linkcolor=blue,
@@ -46,6 +50,7 @@
 \setmonofont{Latin Modern Mono}
 \setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
 \setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+\DeclareMathSizes{11}{11}{7}{5} % 数学フォントサイズの調整
 
 % ===== ドキュメント情報 =====
 \title{高周波基板の損失測定に関する体系的知識の構築：\\
@@ -196,11 +201,67 @@
 このとき，主に2つのメカニズムによって損失が著しく増大します．
 \begin{enumerate}
     \item \textbf{電流経路の増大（トポロジー効果）:}
-    電流は $\delta_s$ という薄い層を流れます．表面が平滑であれば，電流は最短距離（直線）を流れます．しかし，表面が粗いと，電流はこの「地形」の山と谷に沿って流れることを余儀なくされます．その結果，電流が流れる実効的な経路長が長くなり，抵抗値 $R$ が増大します\cite{PolarInstruments:2025}．あなたのスライド\cite{Yanagihara2025}にある $\alpha_c = R_s / (Z_0W)$ の式\cite{Yanagihara2025}で言えば，$R_s$ が増大することを意味します．
+    電流は $\delta_s$ という薄い層を流れます．表面が平滑であれば，電流は最短距離（直線）を流れます．しかし，表面が粗いと，電流はこの「地形」の山と谷に沿って流れることを余儀なくされます．その結果，電流が流れる実効的な経路長が長くなり，抵抗値が増大します\cite{PolarInstruments:2025}．
     \item \textbf{局所的な磁界集中（近接効果）:}
     これは，単純な経路長増大よりも深刻な影響を与える可能性があります．粗さの「谷」の部分を想像してください．電流は谷底を流れます．このとき，谷の両側の「壁」の部分にも電流が流れます．これにより，谷底の狭い領域に磁界が局所的に集中します．この局所的に強まった時間変化する磁界 $H(t)$ が，ファラデーの法則により，その近傍で\textbf{さらに強力な渦電流（損失）}を誘導します．
 \end{enumerate}
 したがって，表面粗さは，(1)電流の経路を長くし，(2)局所的な磁界集中を引き起こす，という2つの要因によって，滑らかな導体表面から予測される損失よりもはるかに大きな損失（$\alpha_c$）を生み出すのです．
+
+\clearpage
+% ===================================================================
+\chapter{導電率の重要性と導体損失との関係}
+% ===================================================================
+
+\section{なぜ導電率を知る必要があるのか？}
+
+端的に言えば，測定された全体の損失から，真の誘電損失（$\tan\delta$）を正確に分離・算出するために不可欠だからです．
+
+あなたの研究の核心は「損失分離」にあります．VNAで測定できるのは，導体損失と誘電損失が合わさった「全体の損失」($\alpha$ や $1/Q_0$) のみです．ここから誘電損失 ($\alpha_d$ や $1/Q_d$) を知るためには，もう一方の導体損失 ($\alpha_c$ や $1/Q_c$) を正確に差し引く必要があります．
+
+この「差し引くべき導体損失」を理論的に計算する際に，材料固有の物理定数である「導電率 $\sigma$」が必須のパラメータとなるためです．もし導電率の値が不正確であれば，導体損失の計算値がずれ，その誤差がすべて誘電損失の算出結果に影響を及ぼしてしまいます．
+
+\section{\texorpdfstring{導体損失 $\alpha_c$ と導電率 $\sigma$ の関係}{導体損失と導電率の関係}}
+
+導体損失 $\alpha_c$ がどのように導電率 $\sigma$ と結びついているのか，段階的に説明します．
+
+\begin{enumerate}
+    \item \textbf{導体損失 $\alpha_c$ は表面抵抗 $R_s$ に比例する}
+    高周波信号が伝送線路を伝わるときの導体損失 $\alpha_c$ は，その線路が持つ単位長さあたりの抵抗成分に起因します．伝送線路理論によれば，導体損失 $\alpha_c$ は，単位長さあたりの抵抗 $R$ と特性インピーダンス $Z_0$ を用いて，$\alpha_c \approx R / (2Z_0)$ と近似できます．高周波では，電流は導体表面に集中するため，この抵抗 $R$ は表面抵抗 $R_s$ を用いてモデル化されます．電流が幅 $W$ の導体下面に一様に流れると仮定する最も単純なモデルでは，$R \approx R_s / W$ となります．
+    
+    これらを組み合わせることで，$\alpha_c \approx R_s / (2 Z_0 W)$ という関係が導かれます．あなたのスライドで引用されている式 $\alpha_c = R_s / (Z_0 W)$ は，この物理的関係を表す基本的なモデル式であり，導体損失が表面抵抗 $R_s$ に比例し，線路幅 $W$ と特性インピーダンス $Z_0$ に反比例することを示しています．本質は，$\alpha_c$ が $R_s$ に比例するという点にあります．
+
+    \item \textbf{表面抵抗 $R_s$ は表皮効果で決まる}
+    高周波では「表皮効果」により，電流は導体の表面近傍の非常に薄い層に集中して流れます．このときの抵抗が「表面抵抗 $R_s$」です．$R_s$ は，電流が流れる実効的な断面積がどれだけ狭くなるかで決まります．
+
+    \item \textbf{表皮深さ $\delta_s$ が鍵を握る}
+    電流が流れる層の厚さは「表皮深さ $\delta_s$」で定義されます．レポートにある通り，表皮深さ $\delta_s$ は以下の式で与えられます．
+
+    \begin{equation}
+        \delta_s = \frac{1}{\sqrt{\pi f \mu \sigma}}
+    \end{equation}
+
+    この式は，導電率 $\sigma$ が高い（良導体である）ほど，表皮深さ $\delta_s$ は浅くなることを示しています．これは，良導体ほど内部に発生する渦電流が強くなり，中心部の電流をより効果的に打ち消して表面に押しやるためです．
+
+    \item \textbf{表面抵抗 $R_s$ と導電率 $\sigma$ の関係}
+    表面抵抗 $R_s$ は，厚さ $\delta_s$ の導体層が持つ抵抗であり，物理的には $R_s = 1 / (\sigma \delta_s)$ という関係にあります．ここに上記の $\delta_s$ の式を代入すると，
+
+    \begin{equation}
+        R_s = \frac{1}{\sigma \delta_s} = \frac{1}{\sigma} \sqrt{\pi f \mu \sigma} = \sqrt{\frac{\pi f \mu}{\sigma}}
+    \end{equation}
+
+    となります．
+
+    \item \textbf{結論：$\alpha_c$ と $\sigma$ の関係}
+    最終的に，導体損失 $\alpha_c$ は表面抵抗 $R_s$ に比例し，その $R_s$ は導電率 $\sigma$ の平方根に反比例します．
+
+    \begin{equation}
+        \alpha_c \propto R_s \propto \sqrt{\frac{1}{\sigma}}
+    \end{equation}
+
+    これは物理的に「導電率 $\sigma$ が高い材料（＝電気が流れやすい良い導体）ほど，導体損失 $\alpha_c$ は小さくなる」という直感に一致する結果です．
+\end{enumerate}
+
+以上の関係から，あなたの研究で行う損失分離のプロセスにおいて，導体損失に起因するQ値（$Q_c$）を理論計算するためには，使用する銅箔の正確な導電率 $\sigma$ の値が不可欠となるのです．
 
 \clearpage
 % ===================================================================
@@ -482,13 +543,70 @@ DUTをBCDRで測定して得られた全体のQ値 $Q_{0,\mathrm{dut}}$ と，�
 Q値そのものはエネルギーの「効率」であり，単純に足し合わせることはできません．しかし，\textbf{$1/Q$（損失率，またはDissipation Factor）は，エネルギーの「消費」に対応しており，消費電力 $P_{\mathrm{loss}}$ が単純加算であるのと同様に，$1/Q$ も単純加算（線形結合）}で表すことができます\cite{wiki:Qfactor}．
 あなたの研究における「損失分離」とは，この $1/Q$ の加法性を利用して，測定した $1/Q_0$ から理論計算した $1/Q_c$ を差し引き，$1/Q_d$（すなわち$\tan\delta$）を導出するプロセス\cite{Yanagihara2025}そのものなのです．
 
+% ===================================================================
+% ===== ここから新規追加チャプター =====
+% ===================================================================
+\chapter{損失の周波数特性と界面効果}
+% ===================================================================
+これまでの章で解説した物理原理が，実際の測定データにおいてどのように現れるか，また，さらなる高周波化に向けて考慮すべき発展的な課題について考察します．
+
+\section{損失の周波数依存性：理論と実測の比較}
+全減衰定数 $\alpha$ は，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ の和で表されます．この2つの損失成分は，周波数に対して異なる振る舞いを示します．
+
+\begin{itemize}
+    \item \textbf{導体損失 $\alpha_c$ の周波数依存性}:
+    第2章で議論した通り，導体損失は表皮効果に支配されます．表面抵抗 $R_s$ は $R_s = \sqrt{\pi f \mu / \sigma}$ で与えられ，周波数の平方根 $\sqrt{f}$ に比例します．したがって，$\alpha_c$ もまた周波数の平方根に比例して，比較的緩やかに増加します．
+    \begin{equation}
+        \alpha_c \propto \sqrt{f}
+    \end{equation}
+    
+    \item \textbf{誘電損失 $\alpha_d$ の周波数依存性}:
+    一方，誘電損失は，単位長さあたりのコンダクタンス $G$ に起因し，理論的に $G = \omega C \tan\delta$ と表されます．ここで $C$ は単位長さあたりのキャパシタンスです．減衰定数 $\alpha_d$ はこの $G$ に比例するため，角周波数 $\omega=2\pi f$ に直接比例します（ここでは$\tan\delta$の周波数依存性は小さいと仮定）．
+    \begin{equation}
+        \alpha_d \propto f
+    \end{equation}
+\end{itemize}
+
+図 \ref{fig:loss_vs_freq} は，汎用的なFR-4基板（丸印）と高性能な低損失基板（三角印）について，$\alpha_c$（中空シンボル）と $\alpha_d$（塗りつぶしシンボル）を周波数の関数としてプロットしたものです．このグラフは，上記の物理法則を明確に裏付けています．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{input_file_0.png}
+    \caption{各種基板材料における導体損失($\alpha_c$)と誘電損失($\alpha_d$)の周波数依存性．丸印がFR-4，三角印が低損失材料を示す．}
+    \label{fig:loss_vs_freq}
+\end{figure}
+
+このグラフから，「高周波帯では誘電損失が支配的になる」という重要な結論が導かれます．例えばFR-4（丸印）を見ると，25 GHzでは誘電損失 $\alpha_d$（約 \SI{7.5}{\deci\bel/100mm}）が，導体損失 $\alpha_c$（約 \SI{1.5}{\deci\bel/100mm}）を遥かに上回っていることが一目瞭然です．
+
+\section{界面効果と実効的導電率}
+損失分離において，導体損失 $\alpha_c$ の理論計算は「バルクの導電率 $\sigma$」を用いて行われます．しかし，ミリ波のような極めて高い周波数帯では，銅箔の「表面」と「界面」の状態が無視できない影響を及ぼします．
+
+\begin{itemize}
+    \item \textbf{表面粗さの影響の再考}:
+    第2章で述べた通り，表面粗さは電流経路を長くし，損失を増大させます．この効果をシミュレーションモデルに組み込む際，例えばHurayモデルやGroisseモデルが用いられます．これらのモデルは，実効的に「見かけの導電率」を低下させる，あるいは表面インピーダンスを増加させる形で損失増大を表現します．
+    
+    \item \textbf{界面の化学的影響}:
+    基板製造プロセスにおいて，銅箔と誘電体樹脂の接着強度を確保するため，銅箔表面には酸化処理やシランカップリング剤による化学処理が施されます．この数nmから数十nmの薄い「界面層」は，純粋な銅とも誘電体とも異なる，導電率が低く損失の大きい層です．
+    ミリ波帯では表皮深さがサブミクロンオーダーにまで浅くなるため，電流がこの界面層を流れる割合が増加し，バルク導電率から予測されるよりも大きな損失が生じる原因となります．
+\end{itemize}
+したがって，超高周波領域での精密な損失モデリングは，単純なバルク導電率だけでなく，これらの界面効果を考慮した「実効的導電率」や界面インピーダンスの概念を導入する必要があります．
+
+\section{FR-4の利用限界と材料選定の重要性}
+図 \ref{fig:loss_vs_freq} は，汎用基板材料であるFR-4がどの周波数帯まで利用可能かの評価にも有用です．
+
+FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失が比較的小さく，コスト面の利点から多くのアプリケーションで採用されます．しかし，周波数が高くなるにつれて誘電損失 $\alpha_d$ が急激に増大し，\SI{20}{\giga\hertz}を超える領域では，10cmの伝送路だけで信号パワーが半分以下（\SI{-3}{\deci\bel}以上）になるほどの大きな損失を示します．
+
+これに対し，低損失材料（三角印）は，$\alpha_d$ の絶対値と周波数に対する増加勾配の両方が劇的に小さく抑えられています．\SI{25}{\giga\hertz}においても，全損失はFR-4の半分以下です．
+
+この比較から，「どの周波数帯まで利用できるか」は，そのシステムが許容できる「損失マージン」に依存しますが，数十Gbpsの高速デジタル伝送や\SI{20}{\giga\hertz}を超えるマイクロ波回路では，FR-4の使用は現実的ではなく，低損失材料の選定が伝送品質を確保する上で不可欠であることが明確に示されています．
+
 \clearpage
 % ===================================================================
 \part{質疑応答への準備}
 % ===================================================================
 
 \chapter{想定問答集}
-上記1〜7章の知識に基づき，あなたの研究発表\cite{Yanagihara2025}で教授から投げかけられそうな専門的で鋭い質問を10個想定し，それぞれに対する模範解答を作成します．
+上記1〜8章の知識に基づき，あなたの研究発表\cite{Yanagihara2025}で教授から投げかけられそうな専門的で鋭い質問を10個想定し，それぞれに対する模範解答を作成します．
 
 \begin{description}
     \item[Q1.] \textbf{なぜ単純な伝送線路法（TL法）ではなく，わざわざBCDRのような共振器法を用いるのですか？その本質的な利点は何ですか？}
@@ -550,7 +668,7 @@ Q値そのものはエネルギーの「効率」であり，単純に足し合�
 
 \clearpage
 \begin{sloppypar}
-\emergencystretch=1em
+\emergencystretch=4em
 \begin{thebibliography}{99}
     \bibitem{Yanagihara2025} 5中間発表\_柳原.pdf
     \bibitem{wiki:dielectric} Dielectric - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Dielectric}
@@ -585,13 +703,13 @@ Q値そのものはエネルギーの「効率」であり，単純に足し合�
     \bibitem{Fiveable:Qfactor} Quality factor and bandwidth | Electrical Circuits and Systems II Class Notes - Fiveable, accessed Nov. 13, 2025, \url{https://fiveable.me/electrical-circuits-systems-ii/unit-4/quality-factor-bandwidth/study-guide/75pXRlt90vyTwa7w}
     \bibitem{PMC:SuperDamping} Super Damping of Mechanical Vibrations - PMC - PubMed Central, accessed Nov. 13, 2025, \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC6882872/}
     \bibitem{IEEE:BCDR220GHz} Broadband Perpendicular Permittivity Measurements up to 220 GHz Using a Balanced-Type Circular Disk Resonator Without - IEEE Xplore, accessed Nov. 13, 2025, \url{https://ieeexplore.ieee.org/iel8/19/4407674/11006707.pdf}
-    \bibitem{ResearchGate:BCDRanalysis} The analysis of a balanced-type circular disk resonator excited by coaxial cable lines to measure the complex permittivity - ResearchGate, accessed Nov. 13, 2025, \url{https://www.researchgate.net/publication/3937129_The_analysis_of_a_balanced-type_circular_disk_resonator_excited_by_coaxial_cable_lines_to_measure_the_complex_permittivity}
+    \bibitem{ResearchGate:BCDRanalysis} \href{https://www.researchgate.net/publication/3937129}{Analysis of Balanced-Type Circular Disk Resonator}, accessed Nov. 13, 2025
     \bibitem{ScholarsMine:TM010} Design of the TM010 Mode Cylindrical Cavity Resonator for PCB Dielectric Characterization - Scholars' Mine, accessed Nov. 13, 2025, \url{https://scholarsmine.mst.edu/cgi/viewcontent.cgi?article=7814&context=ele_comeng_facwork}
     \bibitem{Panasonic:diel_loss} On dielectric constant and loss tangent of dielectric material for circuit boards, accessed Nov. 13, 2025, \url{https://industrial.panasonic.com/content/data/EM/PDF/2021_5G_Multilayer_PCB_Solutions_WhitePaper_202108.pdf}
     \bibitem{Intel:losstangent} 1.2.1.2. Loss Tangent - Intel, accessed Nov. 13, 2025, \url{https://www.intel.com/content/www/us/en/docs/programmable/683883/current/loss-tangent.html}
     \bibitem{Optica:resonatorloss} Modeling and measurement of losses in silicon-on-insulator resonators and bends, accessed Nov. 13, 2025, \url{https://opg.optica.org/oe/abstract.cfm?uri=oe-15-17-10553}
     \bibitem{PhysicsLibreTexts:TEMresonances} 7.4: TEM Resonances - Physics LibreTexts, accessed Nov. 13, 2025, \url{https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_and_Applications_(Staelin)/07:_TEM_transmission_lines/7.04:_TEM_resonances}
-    \bibitem{iMapsource:highfreqmeas} Optimizing Measurement Accuracy and Repeatability for High Frequency Measurements, accessed Nov. 13, 2025, \url{https://imapsource.org/api/v1/articles/116510-optimizing-measurement-accuracy-and-repeatability-for-high-frequency-measurements.pdf}
+    \bibitem{iMapsource:highfreqmeas} Optimizing Measurement Accuracy and Repeatability for High Frequency Measurements, accessed Nov. 13, 2025, \href{https://imapsource.org/api/v1/articles/116510-optimizing-measurement-accuracy-and-repeatability-for-high-frequency-measurements.pdf}{iMapsource Link}
     \bibitem{CMT:Qfactor} Determining Resonator Q Factor from Return Loss Measurement Alone, accessed Nov. 13, 2025, \url{https://coppermountaintech.com/determining-resonator-q-factor-from-return-loss-measurement-alone/}
     \bibitem{ECStudio:Qfactor} Quality Factor and Bandwidth - Filters - Basics Electronics - electric circuit studio, accessed Nov. 13, 2025, \url{https://ecstudiosystems.com/discover/textbooks/basic-electronics/filters/quality-factor-and-bandwidth/}
     \bibitem{Hapislab:TanDel} 複素誘電率, accessed Nov. 13, 2025, \url{https://hapislab.org/public/makino/materials/20071030_TanDel.pdf}
