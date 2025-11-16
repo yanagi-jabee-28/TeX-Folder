@@ -209,9 +209,9 @@
 
 \clearpage
 % ===================================================================
-\chapter{減衰定数\texorpdfstring{$\alpha$}{alpha}の厳密な物理的背景}
+\chapter{損失の分離と周波数依存性の導出}
 % ===================================================================
-あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，近似を含まない厳密な式から出発し，どのようにしてこの実用的な分離式が導かれるのか，そしてその過程で導体損失 $\alpha_c$ がどのように定義されるのかを解説します．
+あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，近似を含まない厳密な式から出発し，どのようにしてこの実用的な分離式が導かれるのか，そしてその過程で $\alpha_c$ と $\alpha_d$ の周波数依存性がどのように決まるのかを解説します．
 
 \section{伝搬定数\texorpdfstring{$\gamma$}{gamma}からの出発}
 伝送線路を伝わる電圧・電流波の振る舞いは，電信方程式から導かれる**伝搬定数 $\gamma$** によって完全に記述されます．$\gamma$ は複素数であり，その実数部が減衰定数 $\alpha$，虚数部が位相定数 $\beta$ となります．
@@ -254,27 +254,44 @@
     \alpha_d &\equiv \frac{G Z_0}{2} \label{eq:alpha_d_def}
 \end{align}
 
-\section{導体損失\texorpdfstring{$\alpha_c$}{alpha c}の最終形と導電率\texorpdfstring{$\sigma$}{sigma}}
-前節で定義された $\alpha_c = R / (2 Z_0)$ が，導体損失のより正確な表現です．ここから，さらに物理的なパラメータである導電率 $\sigma$ との関係を導きます．
-
+\section{導体損失\texorpdfstring{$\alpha_c$}{alpha c}の周波数特性}
+式 \eqref{eq:alpha_c_def} で定義された導体損失 $\alpha_c$ が，どのように周波数 $f$ と関係するのかを導出します．
 \begin{enumerate}
-    \item \textbf{高周波における抵抗 $R$ の物理モデル} \\
-    式 \eqref{eq:alpha_c_def} に含まれる単位長さあたりの抵抗 $R$ は，直流抵抗ではありません．高周波では表皮効果により，電流は導体の表面に集中します．このときの単位面積あたりの抵抗が「表面抵抗 $R_s$」[\si{\ohm\per\text{sq.}}]です．
-    電流が幅 $W$ の導体を流れると考えると，単位長さあたりの抵抗 $R$ は，この表面抵抗 $R_s$ を用いてモデル化できます．（電流経路を考慮すると $R \propto R_s/W$ となります）
-
-    \item \textbf{表面抵抗 $R_s$ と導電率 $\sigma$ の関係} \\
-    表面抵抗 $R_s$ は，物理法則から導電率 $\sigma$ を用いて以下のように表されます．
+    \item \textbf{高周波抵抗 $R$ のモデル化:} 式 \eqref{eq:alpha_c_def} の $R$ は，表皮効果を考慮した高周波抵抗です．これは表面抵抗 $R_s$ [\si{\ohm\per sq.}] を用いて，$R \approx R_s / W_{\mathrm{eff}}$ とモデル化できます．ここで $W_{\mathrm{eff}}$ は電流が流れる実効的な幅です．
     \begin{equation}
-        R_s = \sqrt{\frac{\pi f \mu}{\sigma}}
+        \alpha_c \approx \frac{R_s}{2 Z_0 W_{\mathrm{eff}}}
     \end{equation}
-    この式は，表面抵抗 $R_s$ が，周波数 $f$ の平方根に比例し，導電率 $\sigma$ の平方根に反比例することを示しています．
-
-    \item \textbf{結論：$\alpha_c$ と $\sigma$ の関係} \\
-    以上の関係をまとめると，導体損失 $\alpha_c$ は，単位長さあたりの抵抗 $R$ に比例し，その $R$ は表面抵抗 $R_s$ に比例し，さらにその $R_s$ は導電率 $\sigma$ の平方根に反比例します．
+    \item \textbf{表面抵抗 $R_s$ の周波数依存性:} 第2章で示した通り，表面抵抗 $R_s$ は周波数 $f$ を含む以下の式で与えられます．
     \begin{equation}
-        \alpha_c \propto R \propto R_s \propto \sqrt{\frac{1}{\sigma}}
+        R_s = \sqrt{\frac{\pi f \mu}{\sigma}} = \left( \sqrt{\frac{\pi \mu}{\sigma}} \right) \sqrt{f}
     \end{equation}
-    これは物理的に「\textbf{導電率 $\sigma$ が高い材料（＝電気が流れやすい良い導体）ほど，導体損失 $\alpha_c$ は小さくなる}」という直感に一致する重要な結果です．あなたの研究における損失分離では，この物理的関係に基づいて，測定された損失から導電率の情報を引き出すことが核心となります．
+    \item \textbf{最終形:} 上記の2式を組み合わせることで，$\alpha_c$ の周波数依存性が陽に示された式が得られます．
+    \begin{equation}
+        \alpha_c \approx \left( \frac{1}{2 Z_0 W_{\mathrm{eff}}} \sqrt{\frac{\pi \mu}{\sigma}} \right) \sqrt{f}
+    \end{equation}
+    この式は，$\alpha_c = K_c \sqrt{f}$ の形をしています．ここで比例定数 $K_c$ は，線路の形状 ($Z_0, W_{\mathrm{eff}}$) と導体の材料物性 ($\mu, \sigma$) のみで決まる，周波数に依存しない係数です．
+    \begin{equation}
+        \alpha_c = K_c \sqrt{f}, \quad \text{ただし} \quad K_c = \frac{1}{2 Z_0 W_{\mathrm{eff}}} \sqrt{\frac{\pi \mu}{\sigma}}
+    \end{equation}
+    これにより，\textbf{導体損失 $\alpha_c$ は周波数の平方根に比例する}ことが理論的に示されます．
+\end{enumerate}
+
+\section{誘電損失\texorpdfstring{$\alpha_d$}{alpha d}の周波数特性}
+同様に，式 \eqref{eq:alpha_d_def} で定義された誘電損失 $\alpha_d$ の周波数依存性を導出します．
+\begin{enumerate}
+    \item \textbf{コンダクタンス $G$ のモデル化:} 式 \eqref{eq:alpha_d_def} の $G$ は，誘電体の漏れ電流を表し，複素誘電率の議論から $G = \omega C \tan\delta$ とモデル化できます．
+    \begin{equation}
+        \alpha_d = \frac{(\omega C \tan\delta) Z_0}{2} = \frac{(2\pi f C \tan\delta) Z_0}{2} = (\pi C Z_0 \tan\delta) f
+    \end{equation}
+    \item \textbf{物理定数による書き換え:} ここで，$Z_0 \approx \sqrt{L/C}$ と，線路の位相速度 $v_p \approx 1/\sqrt{LC}$ の関係を用いると，$C Z_0 \approx C \sqrt{L/C} = \sqrt{LC} = 1/v_p$ となります．さらに，$v_p$ は光速 $c$ と実効比誘電率 $\epsilon_{\mathrm{eff}}$ を用いて $v_p = c/\sqrt{\epsilon_{\mathrm{eff}}}$ と表せます．
+    \begin{equation}
+        \alpha_d \approx \pi \left( \frac{1}{v_p} \right) \tan\delta \cdot f = \frac{\pi \sqrt{\epsilon_{\mathrm{eff}}}}{c} \tan\delta \cdot f
+    \end{equation}
+    \item \textbf{最終形:} この式は，$\alpha_d = K_d f$ の形をしています．ここで比例定数 $K_d$ は，材料の誘電特性 ($\epsilon_{\mathrm{eff}}, \tan\delta$) のみで決まる係数です（ここでは $\tan\delta$ 等の周波数依存性は無視）．
+    \begin{equation}
+        \alpha_d = K_d f, \quad \text{ただし} \quad K_d = \frac{\pi \sqrt{\epsilon_{\mathrm{eff}}}}{c} \tan\delta
+    \end{equation}
+    これにより，\textbf{誘電損失 $\alpha_d$ は周波数に直接比例する}ことが理論的に示されます．
 \end{enumerate}
 
 \clearpage
@@ -565,25 +582,12 @@ Q値そのものはエネルギーの「効率」であり，単純に足し合�
 これまでの章で解説した物理原理が，実際の測定データにおいてどのように現れるか，また，さらなる高周波化に向けて考慮すべき発展的な課題について考察します．
 
 \section{損失の周波数依存性：理論と実測の比較}
-全減衰定数 $\alpha$ は，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ の和で表されます．この2つの損失成分は，周波数に対して異なる振る舞いを示します．
-
-\begin{itemize}
-    \item \textbf{導体損失 $\alpha_c$ の周波数依存性}:
-    第3章で議論した通り，導体損失は表皮効果に支配される表面抵抗 $R_s$ に比例し，$R_s = \sqrt{\pi f \mu / \sigma}$ で与えられます．したがって，$\alpha_c$ は周波数の平方根 $\sqrt{f}$ に比例して，比較的緩やかに増加します．
-    \begin{equation}
-        \alpha_c \propto \sqrt{f}
-    \end{equation}
-    
-    \item \textbf{誘電損失 $\alpha_d$ の周波数依存性}:
-    一方，誘電損失 $\alpha_d$ は，伝送線路理論から導かれる以下の一般式で与えられます．
-    \begin{equation}
-        \alpha_d = \frac{\pi f \sqrt{\epsilon_{\mathrm{eff}}}}{c} \tan\delta
-    \end{equation}
-    ここで $c$ は光速，$\epsilon_{\mathrm{eff}}$ は線路の実効比誘電率です．この式から，$\alpha_d$ は周波数 $f$ に直接比例することがわかります（ここでは$\tan\delta$と$\epsilon_{\mathrm{eff}}$の周波数依存性は小さいと仮定）．
-    \begin{equation}
-        \alpha_d \propto f
-    \end{equation}
-\end{itemize}
+第3章で理論的に導出したように，導体損失 $\alpha_c$ は周波数の平方根 $\sqrt{f}$ に，誘電損失 $\alpha_d$ は周波数 $f$ に比例します．この2つの損失成分は，周波数に対して異なる振る舞いを示します．
+\begin{align}
+    \alpha_c(f) &= K_c \sqrt{f} \\
+    \alpha_d(f) &= K_d f
+\end{align}
+ここで $K_c, K_d$ は材料と線路形状で決まる比例定数です．
 
 図 \ref{fig:loss_vs_freq} は，汎用的なFR-4基板（丸印）と高性能な低損失基板（三角印）について，$\alpha_c$（中空シンボル）と $\alpha_d$（塗りつぶしシンボル）を周波数の関数としてプロットしたものです．このグラフは，上記の物理法則を明確に裏付けています．
 
@@ -594,7 +598,7 @@ Q値そのものはエネルギーの「効率」であり，単純に足し合�
     \label{fig:loss_vs_freq}
 \end{figure}
 
-このグラフから，「高周波帯では誘電損失が支配的になる」という重要な結論が導かれます．例えばFR-4（丸印）を見ると，25 GHzでは誘電損失 $\alpha_d$（約 \SI{7.5}{\deci\bel/100mm}）が，導体損失 $\alpha_c$（約 \SI{1.5}{\deci\bel/100mm}）を遥かに上回っていることが一目瞭然です．
+このグラフから，「高周波帯では誘電損失が支配的になる」という重要な結論が導かれます．周波数 $f$ が十分に高くなると，線形に増加する $\alpha_d$ が，緩やかに増加する $\alpha_c$ を必ず追い越すためです．例えばFR-4（丸印）を見ると，25 GHzでは誘電損失 $\alpha_d$（約 \SI{7.5}{\deci\bel/100mm}）が，導体損失 $\alpha_c$（約 \SI{1.5}{\deci\bel/100mm}）を遥かに上回っていることが一目瞭然です．
 
 \section{界面効果と実効的導電率}
 損失分離において，導体損失 $\alpha_c$ の理論計算は「バルクの導電率 $\sigma$」を用いて行われます．しかし，ミリ波のような極めて高い周波数帯では，銅箔の「表面」と「界面」の状態が無視できない影響を及ぼします．
