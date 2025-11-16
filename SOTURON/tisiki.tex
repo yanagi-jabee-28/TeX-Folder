@@ -209,58 +209,73 @@
 
 \clearpage
 % ===================================================================
-\chapter{導電率の重要性と導体損失との関係}
+\chapter{減衰定数\texorpdfstring{$\alpha$}{alpha}の厳密な物理的背景}
 % ===================================================================
+あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，近似を含まない厳密な式から出発し，どのようにしてこの実用的な分離式が導かれるのか，そしてその過程で導体損失 $\alpha_c$ がどのように定義されるのかを解説します．
 
-\section{なぜ導電率を知る必要があるのか？}
+\section{伝搬定数\texorpdfstring{$\gamma$}{gamma}からの出発}
+伝送線路を伝わる電圧・電流波の振る舞いは，電信方程式から導かれる**伝搬定数 $\gamma$** によって完全に記述されます．$\gamma$ は複素数であり，その実数部が減衰定数 $\alpha$，虚数部が位相定数 $\beta$ となります．
+\begin{equation}
+    \gamma = \alpha + \mi\beta
+\end{equation}
+この伝搬定数 $\gamma$ は，線路の単位長さあたりの電気的特性を示す4つの分布定数（$R, L, G, C$）によって，以下の**厳密な式**で与えられます．
+\begin{itemize}
+    \item $R$: 単位長さあたりの抵抗 [\si{\ohm\per\meter}] （導体損失の源）
+    \item $L$: 単位長さあたりのインダクタンス [\si{\henry\per\meter}]
+    \item $G$: 単位長さあたりのコンダクタンス [\si{\siemens\per\meter}] （誘電損失の源）
+    \item $C$: 単位長さあたりのキャパシタンス [\si{\farad\per\meter}]
+\end{itemize}
+\begin{equation}
+    \gamma = \sqrt{(R + \mi\omega L)(G + \mi\omega C)}
+\end{equation}
+減衰定数 $\alpha$ は，この $\gamma$ の実数部 `$\alpha = \mathrm{Re}(\gamma)$` です．この式には一切の近似が含まれていませんが，$R$ と $G$ の効果が平方根の中で複雑に絡み合っており，このままでは導体損失と誘電損失を分離できません．
 
-端的に言えば，測定された全体の損失から，真の誘電損失（$\tan\delta$）を正確に分離・算出するために不可欠だからです．
+\section{低損失近似による損失分離}
+幸いなことに，あなたが扱うような高周波伝送線路では，通常，以下の**低損失条件**が極めて高い精度で成り立ちます．
+\begin{align}
+    R &\ll \omega L \\
+    G &\ll \omega C
+\end{align}
+これは物理的に，抵抗やコンダクタンスによるエネルギー損失が，インダクタンスやキャパシタンスに蓄えられるエネルギーに比べて十分に小さいことを意味します．
 
-あなたの研究の核心は「損失分離」にあります．VNAで測定できるのは，導体損失と誘電損失が合わさった「全体の損失」($\alpha$ や $1/Q_0$) のみです．ここから誘電損失 ($\alpha_d$ や $1/Q_d$) を知るためには，もう一方の導体損失 ($\alpha_c$ や $1/Q_c$) を正確に差し引く必要があります．
+この条件下で $\gamma$ の式をテイラー展開し近似計算すると，減衰定数 $\alpha$ は以下の非常に見通しの良い形に変形できます．
+\begin{equation}
+    \alpha \approx \frac{R}{2} \sqrt{\frac{C}{L}} + \frac{G}{2} \sqrt{\frac{L}{C}}
+\end{equation}
+ここで，低損失線路の特性インピーダンス $Z_0 \approx \sqrt{L/C}$ を用いると，
+\begin{equation}
+    \alpha \approx \frac{R}{2 Z_0} + \frac{G Z_0}{2}
+\end{equation}
+この式は，全体の減衰 $\alpha$ が，導体の物理特性($R$)のみに依存する項と，誘電体の物理特性($G$)のみに依存する項の単純な和で表せることを示しています．この瞬間，「損失の分離」が数学的に可能となります．
 
-この「差し引くべき導体損失」を理論的に計算する際に，材料固有の物理定数である「導電率 $\sigma$」が必須のパラメータとなるためです．もし導電率の値が不正確であれば，導体損失の計算値がずれ，その誤差がすべて誘電損失の算出結果に影響を及ぼしてしまいます．
+したがって，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ は，この低損失近似の下で，以下のように厳密に定義されます．
+\begin{align}
+    \alpha_c &\equiv \frac{R}{2 Z_0} \label{eq:alpha_c_def} \\
+    \alpha_d &\equiv \frac{G Z_0}{2} \label{eq:alpha_d_def}
+\end{align}
 
-\section{\texorpdfstring{導体損失 $\alpha_c$ と導電率 $\sigma$ の関係}{導体損失と導電率の関係}}
-
-導体損失 $\alpha_c$ がどのように導電率 $\sigma$ と結びついているのか，物理法則から段階的に説明します．
+\section{導体損失\texorpdfstring{$\alpha_c$}{alpha c}の最終形と導電率\texorpdfstring{$\sigma$}{sigma}}
+前節で定義された $\alpha_c = R / (2 Z_0)$ が，導体損失のより正確な表現です．ここから，さらに物理的なパラメータである導電率 $\sigma$ との関係を導きます．
 
 \begin{enumerate}
-    \item \textbf{出発点：伝送線路の減衰定数}
-    伝送線路理論によれば，低損失線路における導体が原因の減衰定数 $\alpha_c$ は，単位長さあたりの抵抗 $R$ と線路の特性インピーダンス $Z_0$ を用いて，次のように表されます．
-    \begin{equation}
-        \alpha_c \approx \frac{R}{2 Z_0}
-    \end{equation}
-    この式は，単位長さあたりの抵抗 $R$ が大きいほど，損失が大きくなるという物理的直感に一致します．
+    \item \textbf{高周波における抵抗 $R$ の物理モデル} \\
+    式 \eqref{eq:alpha_c_def} に含まれる単位長さあたりの抵抗 $R$ は，直流抵抗ではありません．高周波では表皮効果により，電流は導体の表面に集中します．このときの単位面積あたりの抵抗が「表面抵抗 $R_s$」[\si{\ohm\per\text{sq.}}]です．
+    電流が幅 $W$ の導体を流れると考えると，単位長さあたりの抵抗 $R$ は，この表面抵抗 $R_s$ を用いてモデル化できます．（電流経路を考慮すると $R \propto R_s/W$ となります）
 
-    \item \textbf{高周波における抵抗 $R$ のモデル化}
-    高周波では「表皮効果」により，電流は導体の表面近傍に集中します．このときの単位面積あたりの抵抗が「表面抵抗 $R_s$」[\si{\ohm\per\text{sq.}}]です．
-    電流が幅 $W$ の導体に流れると考えると，単位長さあたりの抵抗 $R$ は，この表面抵抗 $R_s$ を幅 $W$ で割ることで近似できます．（ここでは電流が信号線とグラウンドの両方を流れることを考慮し，実効的な抵抗としてモデル化します）
+    \item \textbf{表面抵抗 $R_s$ と導電率 $\sigma$ の関係} \\
+    表面抵抗 $R_s$ は，物理法則から導電率 $\sigma$ を用いて以下のように表されます．
     \begin{equation}
-        R \propto \frac{R_s}{W}
+        R_s = \sqrt{\frac{\pi f \mu}{\sigma}}
     \end{equation}
-    これを最初の式に代入すると，$\alpha_c$ は表面抵抗 $R_s$ に比例し，線路幅 $W$ に反比例する関係が見えてきます．
-    \begin{equation}
-        \alpha_c \propto \frac{R_s}{Z_0 W}
-    \end{equation}
-    これは，ご提示の式 `$\alpha_c = R_s / (Z_0 W)$` が示す物理的関係の本質です．
+    この式は，表面抵抗 $R_s$ が，周波数 $f$ の平方根に比例し，導電率 $\sigma$ の平方根に反比例することを示しています．
 
-    \item \textbf{表面抵抗 $R_s$ と導電率 $\sigma$ の関係}
-    表面抵抗 $R_s$ は，電流が流れる層の厚さである「表皮深さ $\delta_s$」と導体の「導電率 $\sigma$」で決まります．物理的には，$R_s = 1 / (\sigma \delta_s)$ という関係にあります．
-    ここに，第2章で示した $\delta_s = 1/\sqrt{\pi f \mu \sigma}$ の式を代入すると，
+    \item \textbf{結論：$\alpha_c$ と $\sigma$ の関係} \\
+    以上の関係をまとめると，導体損失 $\alpha_c$ は，単位長さあたりの抵抗 $R$ に比例し，その $R$ は表面抵抗 $R_s$ に比例し，さらにその $R_s$ は導電率 $\sigma$ の平方根に反比例します．
     \begin{equation}
-        R_s = \frac{1}{\sigma \delta_s} = \frac{1}{\sigma} \sqrt{\pi f \mu \sigma} = \sqrt{\frac{\pi f \mu}{\sigma}}
+        \alpha_c \propto R \propto R_s \propto \sqrt{\frac{1}{\sigma}}
     \end{equation}
-    となり，表面抵抗 $R_s$ は，周波数 $f$ の平方根に比例し，導電率 $\sigma$ の平方根に反比例することがわかります．
-
-    \item \textbf{結論：$\alpha_c$ と $\sigma$ の関係}
-    最終的に，導体損失 $\alpha_c$ は表面抵抗 $R_s$ に比例し，その $R_s$ は導電率 $\sigma$ の平方根に反比例します．
-    \begin{equation}
-        \alpha_c \propto R_s \propto \sqrt{\frac{1}{\sigma}}
-    \end{equation}
-    これは物理的に「\textbf{導電率 $\sigma$ が高い材料（＝電気が流れやすい良い導体）ほど，導体損失 $\alpha_c$ は小さくなる}」という直感に一致する重要な結果です．
+    これは物理的に「\textbf{導電率 $\sigma$ が高い材料（＝電気が流れやすい良い導体）ほど，導体損失 $\alpha_c$ は小さくなる}」という直感に一致する重要な結果です．あなたの研究における損失分離では，この物理的関係に基づいて，測定された損失から導電率の情報を引き出すことが核心となります．
 \end{enumerate}
-
-以上の関係から，あなたの研究で行う損失分離のプロセスにおいて，導体損失に起因するQ値（$Q_c$）を理論計算するためには，使用する銅箔の正確な導電率 $\sigma$ の値が不可欠となるのです．
 
 \clearpage
 % ===================================================================
@@ -373,7 +388,7 @@ BCDR（Balanced Circular Disk Resonator）は，円板状の誘電体サンプ�
     \item \textbf{伝送線路法（TL法）:} 基板上に作成した伝送線路のS21（減衰量 $\alpha$）を測定する手法です\cite{Panasonic:diel_loss}．
     \item \textbf{課題:} あなたが測定対象とするMEGTRON6\cite{Yanagihara2025}のような超低損失材料（$\tan\delta$ が 0.002 など\cite{Intel:losstangent}）では，$\alpha$ が極めて小さくなります（例：\SI{0.01}{\deci\bel\per\centi\meter}）．VNAの測定誤差（例：コネクタの再接続誤差）の中で，この微小な $\alpha$ を正確に測定するには，非常に長い線路（例：数メートル）が必要になりますが，これは非現実的です\cite{Optica:resonatorloss}．
     \item \textbf{BCDR法（共振器法）の優位性:} BCDR法は $\alpha$ ではなく $Q$ を測定します．
-    第4章で述べたように，共振器はエネルギーを内部に蓄積し，その振幅はQ倍になります\cite{PhysicsLibreTexts:TEMresonances}．この蓄積されたエネルギーが，材料のわずかな損失（$\tan\delta$）によって失われると，共振ピークの鋭さが鈍ります（$\Delta f$ が広がる）．
+    第5章で述べたように，共振器はエネルギーを内部に蓄積し，その振幅はQ倍になります\cite{PhysicsLibreTexts:TEMresonances}．この蓄積されたエネルギーが，材料のわずかな損失（$\tan\delta$）によって失われると，共振ピークの鋭さが鈍ります（$\Delta f$ が広がる）．
 \end{itemize}
 BCDR法は，\textbf{時間的にエネルギーを蓄積すること（$Q$ 回往復させること）で，材料の微小な損失（$\tan\delta$）を，VNAで高精度に測定可能な「周波数（$\Delta f$）」という指標に高感度に変換する}技術です\cite{iMapsource:highfreqmeas}．
 
@@ -408,7 +423,7 @@ TL法が「非常に長い距離を伝播させて，やっと観測できるわ
     \begin{enumerate}
         \item Step 2で求めた $Q_0$ は，共振器全体の損失です．
         \item この損失は，(a)導体壁（銅）の損失 $P_c$ と (b)誘電体（基板）の損失 $P_d$ の和です．
-        \item したがって，Q値の関係は $\frac{1}{Q_0} = \frac{1}{Q_c} + \frac{1}{Q_d}$ となります（\cite{Yanagihara2025}，詳細は第7章）．
+        \item したがって，Q値の関係は $\frac{1}{Q_0} = \frac{1}{Q_c} + \frac{1}{Q_d}$ となります（\cite{Yanagihara2025}，詳細は第8章）．
         \item \textbf{$Q_c$（導体Q）の計算:} $Q_c$ は，導体（銅）の導電率 $\sigma$ と表皮深さ $\delta_s$ から，電磁界理論に基づき\textbf{理論計算}できます．（注：この段階では，表面粗さの影響は無視し，「滑らかな銅」と仮定して計算します\cite{ElectronicsOrg:2020}）．
         \item \textbf{$Q_d$（誘電体Q）の分離:} $Q_d$ が，我々が知りたい誘電損失 $\tan\delta$ に対応します．
         \begin{equation}
@@ -609,7 +624,7 @@ FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失
 % ===================================================================
 
 \chapter{想定問答集}
-上記1〜8章の知識に基づき，あなたの研究発表\cite{Yanagihara2025}で教授から投げかけられそうな専門的で鋭い質問を10個想定し，それぞれに対する模範解答を作成します．
+上記1〜9章の知識に基づき，あなたの研究発表\cite{Yanagihara2025}で教授から投げかけられそうな専門的で鋭い質問を10個想定し，それぞれに対する模範解答を作成します．
 
 \begin{description}
     \item[Q1.] \textbf{なぜ単純な伝送線路法（TL法）ではなく，わざわざBCDRのような共振器法を用いるのですか？その本質的な利点は何ですか？}
@@ -671,7 +686,7 @@ FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失
 
 \clearpage
 \begin{sloppypar}
-\emergencystretch=6em
+\emergencystretch=4em
 \begin{thebibliography}{99}
     \bibitem{Yanagihara2025} 5中間発表\_柳原.pdf
     \bibitem{wiki:dielectric} Dielectric - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Dielectric}
