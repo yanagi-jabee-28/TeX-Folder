@@ -209,90 +209,104 @@
 
 \clearpage
 % ===================================================================
-\chapter{損失の分離と周波数依存性の導出}
+\chapter{伝搬定数の厳密な導出と損失分離}
 % ===================================================================
-あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，近似を含まない厳密な式から出発し，どのようにしてこの実用的な分離式が導かれるのか，そしてその過程で $\alpha_c$ と $\alpha_d$ の周波数依存性がどのように決まるのかを解説します．
+あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，伝送線路の基本方程式から出発し，近似を一切含まない厳密な減衰定数 $\alpha$ の一般式を導出します．その上で，低損失近似を適用することで，実用的な分離式がどのように導かれるのかを解説します．
 
-\section{伝搬定数\texorpdfstring{$\gamma$}{gamma}からの出発}
-伝送線路を伝わる電圧・電流波の振る舞いは，電信方程式から導かれる**伝搬定数 $\gamma$** によって完全に記述されます．$\gamma$ は複素数であり，その実数部が減衰定数 $\alpha$，虚数部が位相定数 $\beta$ となります．
-\begin{equation}
-    \gamma = \alpha + \mi\beta
-\end{equation}
-この伝搬定数 $\gamma$ は，線路の単位長さあたりの電気的特性を示す4つの分布定数（$R, L, G, C$）によって，以下の**厳密な式**で与えられます．
-\begin{itemize}
-    \item $R$: 単位長さあたりの抵抗 [\si{\ohm\per\meter}] （導体損失の源）
-    \item $L$: 単位長さあたりのインダクタンス [\si{\henry\per\meter}]
-    \item $G$: 単位長さあたりのコンダクタンス [\si{\siemens\per\meter}] （誘電損失の源）
-    \item $C$: 単位長さあたりのキャパシタンス [\si{\farad\per\meter}]
-\end{itemize}
-\begin{equation}
-    \gamma = \sqrt{(R + \mi\omega L)(G + \mi\omega C)}
-\end{equation}
-減衰定数 $\alpha$ は，この $\gamma$ の実数部 `$\alpha = \mathrm{Re}(\gamma)$` です．この式には一切の近似が含まれていませんが，$R$ と $G$ の効果が平方根の中で複雑に絡み合っており，このままでは導体損失と誘電損失を分離できません．
-
-\section{低損失近似による損失分離}
-幸いなことに，あなたが扱うような高周波伝送線路では，通常，以下の**低損失条件**が極めて高い精度で成り立ちます．
+\section{伝送線路方程式（電信方程式）}
+伝送線路上の電圧 $V(z)$ と電流 $I(z)$ の振る舞いは，線路の微小区間 $\Delta z$ における等価回路から導かれます．キルヒホッフの法則を適用し，$\Delta z \to 0$ の極限をとることで，以下の連立微分方程式が得られます．これを電信方程式（Telegrapher's Equations）と呼びます．
 \begin{align}
-    R &\ll \omega L \\
-    G &\ll \omega C
+    -\frac{\dd V(z)}{\dd z} &= (R + \mi\omega L) I(z) \\
+    -\frac{\dd I(z)}{\dd z} &= (G + \mi\omega C) V(z)
 \end{align}
-これは物理的に，抵抗やコンダクタンスによるエネルギー損失が，インダクタンスやキャパシタンスに蓄えられるエネルギーに比べて十分に小さいことを意味します．
+ここで，$R, L, G, C$ は線路の単位長さあたりの分布定数です．
 
-この条件下で $\gamma$ の式をテイラー展開し近似計算すると，減衰定数 $\alpha$ は以下の非常に見通しの良い形に変形できます．
+\section{波動方程式と伝搬定数\texorpdfstring{$\gamma$}{gamma}}
+上記2式の片方を $z$ で微分し，もう一方を代入して整理すると，電圧と電流がそれぞれ独立して満たすべき波動方程式が得られます．
+\begin{align}
+    \frac{\dd^2 V(z)}{\dd z^2} - (R + \mi\omega L)(G + \mi\omega C) V(z) &= 0 \\
+    \frac{\dd^2 I(z)}{\dd z^2} - (R + \mi\omega L)(G + \mi\omega C) I(z) &= 0
+\end{align}
+ここで，複素数である伝搬定数 $\gamma$ を以下のように定義します．
+\begin{equation}
+    \gamma^2 = (R + \mi\omega L)(G + \mi\omega C)
+\end{equation}
+すると，波動方程式は $\frac{\dd^2 V(z)}{\dd z^2} - \gamma^2 V(z) = 0$ と簡潔に書け，その一般解は進行波と後進波の重ね合わせ $V(z) = V_1 e^{-\gamma z} + V_2 e^{+\gamma z}$ となります．$\gamma$ の実数部が減衰を，虚数部が位相の回転を司ることがわかります．
+
+\section{減衰定数\texorpdfstring{$\alpha$}{alpha}と位相定数\texorpdfstring{$\beta$}{beta}の厳密な導出}
+伝搬定数 $\gamma$ を実数部の減衰定数 $\alpha$ と虚数部の位相定数 $\beta$ に分離して $\gamma = \alpha + \mi\beta$ とおき，$\alpha$ と $\beta$ の厳密な一般式を導出します．
+
+まず，$\gamma^2$ を展開し，実数部と虚数部に分離します．
+\begin{equation}
+    \gamma^2 = (RG - \omega^2 LC) + \mi\omega(RC + GL)
+\end{equation}
+一方で，$(\alpha + \mi\beta)^2$ を展開すると，
+\begin{equation}
+    (\alpha + \mi\beta)^2 = (\alpha^2 - \beta^2) + \mi(2\alpha\beta)
+\end{equation}
+両辺の実数部と虚数部を比較することで，以下の連立方程式が得られます．
+\begin{align}
+    \alpha^2 - \beta^2 &= RG - \omega^2 LC \label{eq:real_part} \\
+    2\alpha\beta &= \omega(RC + GL) \label{eq:imag_part}
+\end{align}
+式 \eqref{eq:imag_part} から $\beta = \omega(RC + GL) / (2\alpha)$ を式 \eqref{eq:real_part} に代入します．
+\begin{equation}
+    \alpha^2 - \left( \frac{\omega(RC + GL)}{2\alpha} \right)^2 = RG - \omega^2 LC
+\end{equation}
+両辺に $4\alpha^2$ を掛けて整理すると，$\alpha^2$ に関する二次方程式（複二次方程式）が得られます．
+\begin{equation}
+    4\alpha^4 - 4(RG - \omega^2 LC)\alpha^2 - \omega^2(RC + GL)^2 = 0
+\end{equation}
+これを $\alpha^2$ について解の公式を用いて解くと（$\alpha^2 > 0$ であるため正の解のみ採用），
+\begin{equation}
+    \alpha^2 = \frac{4(RG - \omega^2 LC) + \sqrt{16(RG - \omega^2 LC)^2 + 16\omega^2(RC + GL)^2}}{8}
+\end{equation}
+平方根の中を整理すると，$(R^2+\omega^2L^2)(G^2+\omega^2C^2) = (RG-\omega^2LC)^2 + \omega^2(RC+GL)^2$ という恒等式が成り立つため，
+\begin{equation}
+    \alpha^2 = \frac{1}{2} \left\{ (RG - \omega^2 LC) + \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} \right\}
+\end{equation}
+したがって，減衰定数 $\alpha$ の厳密な一般式は以下となります．
+\begin{equation}
+    \alpha = \sqrt{\frac{1}{2} \left\{ \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} + (RG - \omega^2 LC) \right\}}
+\end{equation}
+同様に，$\beta$ についても解くことができ，以下の厳密式が得られます．
+\begin{equation}
+    \beta = \sqrt{\frac{1}{2} \left\{ \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} - (RG - \omega^2 LC) \right\}}
+\end{equation}
+
+\section{低損失近似と損失分離}
+前節で導出した厳密式は複雑ですが，「低損失条件」（$R \ll \omega L, G \ll \omega C$）を適用することで，物理的に見通しの良い形に近似できます．
+この条件下で $\alpha$ の厳密式をテイラー展開すると，
 \begin{equation}
     \alpha \approx \frac{R}{2} \sqrt{\frac{C}{L}} + \frac{G}{2} \sqrt{\frac{L}{C}}
 \end{equation}
-ここで，低損失線路の特性インピーダンス $Z_0 \approx \sqrt{L/C}$ を用いると，
+となり，低損失線路の特性インピーダンス $Z_0 \approx \sqrt{L/C}$ を用いると，
 \begin{equation}
     \alpha \approx \frac{R}{2 Z_0} + \frac{G Z_0}{2}
 \end{equation}
-この式は，全体の減衰 $\alpha$ が，導体の物理特性($R$)のみに依存する項と，誘電体の物理特性($G$)のみに依存する項の単純な和で表せることを示しています．この瞬間，「損失の分離」が数学的に可能となります．
-
-したがって，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ は，この低損失近似の下で，以下のように厳密に定義されます．
+この式は，全体の減衰 $\alpha$ が，導体の物理特性($R$)のみに依存する項と，誘電体の物理特性($G$)のみに依存する項の単純な和で表せることを示しています．したがって，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ は，この低損失近似の下で，以下のように定義されます．
 \begin{align}
-    \alpha_c &\equiv \frac{R}{2 Z_0} \label{eq:alpha_c_def} \\
-    \alpha_d &\equiv \frac{G Z_0}{2} \label{eq:alpha_d_def}
+    \alpha_c &\equiv \frac{R}{2 Z_0} \label{eq:alpha_c_def_re} \\
+    \alpha_d &\equiv \frac{G Z_0}{2} \label{eq:alpha_d_def_re}
 \end{align}
 
-\section{導体損失\texorpdfstring{$\alpha_c$}{alpha c}の周波数特性}
-式 \eqref{eq:alpha_c_def} で定義された導体損失 $\alpha_c$ が，どのように周波数 $f$ と関係するのかを導出します．
-\begin{enumerate}
-    \item \textbf{高周波抵抗 $R$ のモデル化:} 式 \eqref{eq:alpha_c_def} の $R$ は，表皮効果を考慮した高周波抵抗です．これは表面抵抗 $R_s$ [\si{\ohm\per sq.}] を用いて，$R \approx R_s / W_{\mathrm{eff}}$ とモデル化できます．ここで $W_{\mathrm{eff}}$ は電流が流れる実効的な幅です．
+\section{損失の周波数特性の導出}
+この分離された定義式から，各損失成分の周波数依存性を導出します．
+\begin{itemize}
+    \item \textbf{導体損失 $\alpha_c$ の周波数特性:}
+    $\alpha_c$ の定義式 \eqref{eq:alpha_c_def_re} に含まれる高周波抵抗 $R$ は，表面抵抗 $R_s$ を用いて $R \propto R_s$ とモデル化できます．さらに $R_s = \sqrt{\pi f \mu / \sigma}$ であるため，$R \propto \sqrt{f}$ となります．したがって，
     \begin{equation}
-        \alpha_c \approx \frac{R_s}{2 Z_0 W_{\mathrm{eff}}}
+        \alpha_c \propto R \propto \sqrt{f}
     \end{equation}
-    \item \textbf{表面抵抗 $R_s$ の周波数依存性:} 第2章で示した通り，表面抵抗 $R_s$ は周波数 $f$ を含む以下の式で与えられます．
-    \begin{equation}
-        R_s = \sqrt{\frac{\pi f \mu}{\sigma}} = \left( \sqrt{\frac{\pi \mu}{\sigma}} \right) \sqrt{f}
-    \end{equation}
-    \item \textbf{最終形:} 上記の2式を組み合わせることで，$\alpha_c$ の周波数依存性が陽に示された式が得られます．
-    \begin{equation}
-        \alpha_c \approx \left( \frac{1}{2 Z_0 W_{\mathrm{eff}}} \sqrt{\frac{\pi \mu}{\sigma}} \right) \sqrt{f}
-    \end{equation}
-    この式は，$\alpha_c = K_c \sqrt{f}$ の形をしています．ここで比例定数 $K_c$ は，線路の形状 ($Z_0, W_{\mathrm{eff}}$) と導体の材料物性 ($\mu, \sigma$) のみで決まる，周波数に依存しない係数です．
-    \begin{equation}
-        \alpha_c = K_c \sqrt{f}, \quad \text{ただし} \quad K_c = \frac{1}{2 Z_0 W_{\mathrm{eff}}} \sqrt{\frac{\pi \mu}{\sigma}}
-    \end{equation}
-    これにより，\textbf{導体損失 $\alpha_c$ は周波数の平方根に比例する}ことが理論的に示されます．
-\end{enumerate}
+    より具体的には，$\alpha_c = K_c \sqrt{f}$ と書け，比例定数 $K_c$ は線路形状と導体物性（$\sigma, \mu$）で決まります．
 
-\section{誘電損失\texorpdfstring{$\alpha_d$}{alpha d}の周波数特性}
-同様に，式 \eqref{eq:alpha_d_def} で定義された誘電損失 $\alpha_d$ の周波数依存性を導出します．
-\begin{enumerate}
-    \item \textbf{コンダクタンス $G$ のモデル化:} 式 \eqref{eq:alpha_d_def} の $G$ は，誘電体の漏れ電流を表し，複素誘電率の議論から $G = \omega C \tan\delta$ とモデル化できます．
+    \item \textbf{誘電損失 $\alpha_d$ の周波数特性:}
+    $\alpha_d$ の定義式 \eqref{eq:alpha_d_def_re} に含まれるコンダクタンス $G$ は，$G = \omega C \tan\delta = 2\pi f C \tan\delta$ とモデル化できます．したがって，$G \propto f$ となります．
     \begin{equation}
-        \alpha_d = \frac{(\omega C \tan\delta) Z_0}{2} = \frac{(2\pi f C \tan\delta) Z_0}{2} = (\pi C Z_0 \tan\delta) f
+        \alpha_d \propto G \propto f
     \end{equation}
-    \item \textbf{物理定数による書き換え:} ここで，$Z_0 \approx \sqrt{L/C}$ と，線路の位相速度 $v_p \approx 1/\sqrt{LC}$ の関係を用いると，$C Z_0 \approx C \sqrt{L/C} = \sqrt{LC} = 1/v_p$ となります．さらに，$v_p$ は光速 $c$ と実効比誘電率 $\epsilon_{\mathrm{eff}}$ を用いて $v_p = c/\sqrt{\epsilon_{\mathrm{eff}}}$ と表せます．
-    \begin{equation}
-        \alpha_d \approx \pi \left( \frac{1}{v_p} \right) \tan\delta \cdot f = \frac{\pi \sqrt{\epsilon_{\mathrm{eff}}}}{c} \tan\delta \cdot f
-    \end{equation}
-    \item \textbf{最終形:} この式は，$\alpha_d = K_d f$ の形をしています．ここで比例定数 $K_d$ は，材料の誘電特性 ($\epsilon_{\mathrm{eff}}, \tan\delta$) のみで決まる係数です（ここでは $\tan\delta$ 等の周波数依存性は無視）．
-    \begin{equation}
-        \alpha_d = K_d f, \quad \text{ただし} \quad K_d = \frac{\pi \sqrt{\epsilon_{\mathrm{eff}}}}{c} \tan\delta
-    \end{equation}
-    これにより，\textbf{誘電損失 $\alpha_d$ は周波数に直接比例する}ことが理論的に示されます．
-\end{enumerate}
+    より具体的には，$\alpha_d = K_d f$ と書け，比例定数 $K_d$ は線路形状と誘電体物性（$\epsilon_r, \tan\delta$）で決まります．
+\end{itemize}
 
 \clearpage
 % ===================================================================
