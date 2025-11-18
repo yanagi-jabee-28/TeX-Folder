@@ -21,7 +21,7 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{booktabs}
 \usepackage{float}
-\usepackage{graphicx} % 画像挿入のために追加
+\usepackage{graphicx}
 
 % ===== 数式・物理単位関連 =====
 \usepackage{amsmath}
@@ -30,13 +30,10 @@
 
 % ===== その他 =====
 \usepackage{url} % URLを適切に表示
+\usepackage{xurl} % Improved line breaking for long URLs
 \urlstyle{same}
-\Urlmuskip=0mu plus 1mu
+\Urlmuskip=0mu plus 2mu
 \usepackage[
-  colorlinks=true,
-  linkcolor=blue,
-  citecolor=green!60!black,
-  urlcolor=cyan,
   hidelinks,
 ]{hyperref}
 
@@ -53,8 +50,7 @@
 \DeclareMathSizes{11}{11}{7}{5} % 数学フォントサイズの調整
 
 % ===== ドキュメント情報 =====
-\title{高周波基板の損失測定に関する体系的知識の構築：\\
-物理的原理から測定技術，損失分離まで}
+\title{高周波基板における伝送損失の物理的起源と\\高精度分離測定に関する体系的研究}
 \author{（氏名）}
 \date{\today}
 
@@ -66,676 +62,433 @@
 % ドキュメント本体 (Body)
 %==============================================================================
 \begin{document}
+\sloppy % allow more flexible spacing to reduce overfull \hbox warnings
 
 \maketitle
 \tableofcontents
 \clearpage
 
 % ===================================================================
-\chapter*{序論：研究の核心的課題 — 「損失の分離」}
-\addcontentsline{toc}{chapter}{序論：研究の核心的課題 — 「損失の分離」}
+\chapter*{序論：研究の核心的課題 — 「損失の分離」と「実効的導電率」}
+\addcontentsline{toc}{chapter}{序論：研究の核心的課題 — 「損失の分離」と「実効的導電率」}
 % ===================================================================
 
 柳原さん，あなたの研究発表資料\cite{Yanagihara2025}を拝見しました．「BCDRを用いた基板の誘電損失と表面粗さによる電気伝導性の測定」という研究テーマは，\SI{100}{\giga\hertz}級の通信\cite{Yanagihara2025}を支える高周波工学において，最も本質的かつ重要な課題の一つである「損失の分離（Loss Separation）」に正面から取り組むものです．
 
-あなたの発表資料\cite{Yanagihara2025}に示された2つの基本式，
+この課題は，現代の回路設計に不可欠な電磁界シミュレーション技術とも密接に関連しています．高周波回路設計で多用されるFDTD法などのシミュレーションでは，計算コストの制約から導体を損失ゼロの「完全導体（Perfect Electric Conductor, PEC）」として扱うことが多く，これでは現実の導体損失を評価できません．より高精度な解析のために導体に有限の導電率を与えようとしても，高周波領域では「表皮効果」と「表面粗さ」の影響で，銅の物性値（バルク導電率）と実際の振る舞いが大きく乖離します．このシミュレーションと現実のギャップを埋める鍵が，現実の物理効果をすべて含んだ\textbf{「実効的導電率」}を実験的に求めることです．
+
+あなたの研究の最終目的は，この実効的導電率を決定するために不可欠な，導体損失 $\alpha_c$（あるいは $Q_c$）に対する「表面粗さ」の影響を明らかにすることです\cite{Yanagihara2025}．しかし，VNA（ベクトルネットワークアナライザ）で測定できるのは，常に「全体の損失」でしかありません．
 \begin{align}
-  \alpha &= \alpha_c + \alpha_d \label{eq:alpha_sum} \\
-  \frac{1}{Q} &= \frac{1}{Q_c} + \frac{1}{Q_d} \label{eq:q_sum}
+  \alpha &= \alpha_c + \alpha_d \\
+  \frac{1}{Q} &= \frac{1}{Q_c} + \frac{1}{Q_d}
 \end{align}
-は，この「損失分離」の根幹を成します．ここで $\alpha$ は空間的な減衰（1メートル進むごとにどれだけ信号が弱まるか），$Q$ は時間的な減衰（共振器内でエネルギーがどれだけ長く留まるか）を表しており，両者は物理的に深く結びついています．
-
-あなたの研究の最終目的は，導体損失 $\alpha_c$（あるいは $Q_c$）に対する「表面粗さ」の影響を明らかにすることです\cite{Yanagihara2025}．しかし，VNA（ベクトルネットワークアナライザ）で測定できるのは，常に「全体の損失 $\alpha$」あるいは「全体のQ値 $Q$」でしかありません．
-
-したがって，あなたの研究の論理構造は，必然的に以下のようになります\cite{Yanagihara2025}．
+したがって，あなたの研究の論理構造は，必然的に以下の2段階測定アプローチとなります．
 \begin{enumerate}
-  \item \textbf{目的:} $\alpha_c$（表面粗さを含む導体損失）を知りたい．
-  \item \textbf{課題:} しかし測定できるのは $\alpha = \alpha_c + \alpha_d$（全体損失）だけであり，$\alpha_c$ と $\alpha_d$ は共に未知数である．
-  \item \textbf{解決策:} 2つの未知数を分離するため，まず表面粗さの影響を排除した「基準系」で $\alpha_d$（誘電損失）を精密に決定する．次に，その既知の $\alpha_d$ を用いて，本測定系から $\alpha_c$ を正確に差し引く必要がある．
-  \item \textbf{今回のアプローチ:} そこで，まずBCDR法という高感度な手法を用いて，$\alpha_d$（誘電損失，すなわち $\tan\delta$ や $Q_d$）を精密に測定することから始める\cite{Yanagihara2025}．
+  \item \textbf{目的:} 表面粗さの影響を含む真の導体損失 $\alpha_c$（実効的導電率）を知りたい．
+  \item \textbf{課題:} しかし測定できるのは全体の損失だけであり，$\alpha_c$ と $\alpha_d$ は共に未知数である．
+  \item \textbf{解決策（2段階アプローチ）:}
+    \begin{description}
+        \item[Step 1: 基準測定] 評価対象の基板から銅箔を完全に除去した「誘電体コア材」を，鏡面仕上げの基準電極で測定する．これにより，材料固有の純粋な誘電損失 $\alpha_d$（すなわち $\tan\delta$ や $Q_d$）を精密に決定する．
+        \item[Step 2: 本測定] 次に，表面粗さを持つ銅箔付きの「評価試料」を測定し，全体の損失を求める．その全体の損失から，Step 1で得た既知の誘電損失 $\alpha_d$ を差し引くことで，目的である導体損失 $\alpha_c$ を正確に分離する．
+    \end{description}
 \end{enumerate}
-
-本レポートは，この論理的なストーリーラインを物理的な本質から支えるための専門知識を体系的に解説するものです．第1部で損失の「物理的起源」，第2部でその「高感度測定と分離の原理」を詳述します．これらを修得することで，第3部の質疑応答に自信を持って臨むことができるでしょう．
+本レポートは，この論理的なストーリーラインを物理的な本質から支えるための専門知識を体系的に解説するものです．第I部で損失の物理的起源，第II部で高精度測定と分離の原理，第III部で応用的考察を詳述します．これらを修得することで，第IV部の質疑応答に自信を持って臨むことができるでしょう．
 
 \clearpage
 % ===================================================================
-\part{高周波における損失の物理}
+\part{損失の物理的起源と理論的定式化}
 % ===================================================================
-高周波信号が基板上を伝播するとき，エネルギーが熱に変わる現象，すなわち「損失」が発生します．あなたの研究で扱うのは，その2大要因である「誘電損失」と「導体損失」です\cite{Yanagihara2025}．
 
 % ===================================================================
-\chapter{誘電損失のメカニズム}
+\chapter{誘電損失のミクロな機構}
 % ===================================================================
-誘電損失は，基板の絶縁体部分（FR-4やMEGTRON6の樹脂やガラスクロス）で発生する熱損失です．
+誘電損失は，基板の絶縁体部分（FR-4やMEGTRON6の樹脂やガラスクロス）で発生する熱損失です．その根源は，物質を構成する分子レベルの「分極の遅れ」にあります\cite{wiki:dielectric}．
 
-\section{なぜ物質中で誘電損失が発生するのか？}
-誘電損失の根源は，物質を構成する分子レベルの「分極の遅れ」にあります\cite{wiki:dielectric}．
+\section{分極の「遅れ」と熱発生のメカニズム}
 \begin{enumerate}
   \item \textbf{分極とは:} 誘電体（絶縁体）に外部から電界 $\bm{E}$ を印加すると，物質内のプラスとマイナスの電荷がわずかに変位し，物質内部に外部電界を打ち消す方向の電界が生じます．この現象を「分極（Polarization）」と呼びます．
-  \item \textbf{分極の種類:} 分極には，原子核に対して電子雲が変位する「電子分極」，イオン結晶で陽イオンと陰イオンが互いに変位する「イオン分極」，そして水（H\textsubscript{2}O）のように元々極性を持つ分子（双極子）が電界の向きに配向しようとする「双極子配向分極」などがあります\cite{ACSPublications:2014}．
-  \item \textbf{高周波における「遅れ」:} あなたが扱うFR-4やMEGTRON6のような高分子材料では，この双極子配向分極がギガヘルツ帯の損失の主要因となります．
-    \begin{itemize}
-        \item \textbf{低周波:} 電界の振動がゆっくりな場合，双極子（分子）は電界の変化に容易に追従して向きを変えることができます\cite{EnergySustainabilityDirectory:2025}．
-        \item \textbf{高周波:} 周波数が高くなる（例：数十\si{\giga\hertz}）と，電界の振動があまりにも速くなります．分子はそれ自体の質量（慣性）や，周囲の分子との「粘性抵抗」（摩擦）があるため，電界の変化に完全には追従できなくなります\cite{wiki:dielectric}．これが「分極の遅れ」です．
-    \end{itemize}
-  \item \textbf{熱発生のメカニズム:} この「遅れ」こそが損失の正体です．外部電界は分子を無理やり振動させようとし，分子は粘性抵抗に逆らいながら追従しようとします．この過程で，外部電界が分子群に行った仕事が，分子のランダムな運動（熱）として散逸します\cite{wiki:dielectric}．これが誘電損失による熱発生のメカニズムです．
+  \item \textbf{分極の種類:} 分極には，電子分極，イオン分極，そして水（H\textsubscript{2}O）のように元々極性を持つ分子（双極子）が電界の向きに配向しようとする「双極子配向分極」などがあります\cite{ACSPublications:2014}．
+  \item \textbf{高周波における「遅れ」:} あなたが扱うFR-4やMEGTRON6のような高分子材料では，この双極子配向分極がギガヘルツ帯の損失の主要因となります．周波数が高くなると，電界の振動があまりにも速くなるため，分子はそれ自体の質量（慣性）や，周囲の分子との「粘性抵抗」（摩擦）があるため，電界の変化に完全には追従できなくなります\cite{wiki:dielectric}．これが「分極の遅れ」です．
+  \item \textbf{熱発生のメカニズム:} この「遅れ」こそが損失の正体です．外部電界は分子を無理やり振動させようとし，分子は粘性抵抗に逆らいながら追従しようとします．この過程で，外部電界が分子群に行った仕事が，分子のランダムな運動（熱）として散逸します\cite{wiki:dielectric}．
 \end{enumerate}
 
 \section{\texorpdfstring{複素誘電率（$\epsilon = \epsilon' - \mi\epsilon''$）の物理的意味}{複素誘電率の物理的意味}}
-この「分極の遅れ」という物理現象を，電磁気学の数式でエレガントに表現する道具が「複素数」です．
-
-電界を $E(t) = E_0 \cos(\omega t)$ と表すとき，もし物質の応答（電束密度 $D$）に「遅れ」がなければ，$D(t) = D_0 \cos(\omega t)$ となります．しかし，実際には遅れ $\delta$ が生じるため，$D(t) = D_0 \cos(\omega t - \delta)$ となります．
-
-オイラーの公式 $e^{\mi\theta} = \cos\theta + \mi\sin\theta$ を用いて，この関係をフェーザ表示（時間項 $e^{\mi\omega t}$ を省略した複素表現）で $D = \epsilon E$ と書くことにすると，この位相の遅れ $\delta$ を表現するために，誘電率 $\epsilon$ は必然的に複素数 $\epsilon = \epsilon' - \mi\epsilon''$ となります．
+この「分極の遅れ」という物理現象を，電磁気学の数式で表現する道具が「複素誘電率」です．電界 $E$ と物質の応答である電束密度 $D$ の間に位相の遅れ $\delta$ が生じる（$D(t) \propto \cos(\omega t - \delta)$）ことを表現するため，誘電率 $\epsilon$ は必然的に複素数 $\epsilon = \epsilon' - \mi\epsilon''$ となります．
 
 \begin{itemize}
-    \item \textbf{実数部 $\epsilon'$（イプシロン・プライム）:}
-    これは，印加された電界 $E$ と\textbf{同位相（in-phase）}の応答成分を表します．物理的には，外部から供給された電界エネルギーを，物質内部に\textbf{「蓄積」}する能力の大きさを示します\cite{wiki:permittivity}．これが私たちが通常「比誘電率 $\epsilon_r$」と呼ぶもので（$\epsilon' = \epsilon_r \epsilon_0$），コンデンサの容量 $C$ を決定します．
-    \item \textbf{虚数部 $\epsilon''$（イプシロン・ダブルプライム）:}
-    これは，印加された電界 $E$ から\textbf{90°遅れた（out-of-phase）}応答成分を表します．物理的には，分極の遅れ（摩擦）によって，1サイクルの電界振動の間にエネルギーが熱として\textbf{「損失」}される能力の大きさを示します\cite{Microwaves101:permittivity}．$\epsilon''$ が大きいほど，損失の大きい材料であることを意味します．
+    \item \textbf{実数部 $\epsilon'$（イプシロン・プライム）:} 電界 $E$ と\textbf{同位相}の応答成分を表し，電界エネルギーを物質内部に\textbf{「蓄積」}する能力の大きさを示します\cite{wiki:permittivity}．これが通常「比誘電率 $\epsilon_r$」と呼ばれるものです（$\epsilon' = \epsilon_r \epsilon_0$）．
+    \item \textbf{虚数部 $\epsilon''$（イプシロン・ダブルプライム）:} 電界 $E$ から\textbf{90°遅れた}応答成分を表し，分極の遅れによってエネルギーが熱として\textbf{「損失」}される能力の大きさを示します\cite{Microwaves101:permittivity}．
 \end{itemize}
 
 \section{\texorpdfstring{誘電正接（$\tan\delta$）の物理的意味}{誘電正接の物理的意味}}
-誘電正接（Loss Tangent）または $\tan\delta$（タンデルタ）は，これら2つの物理量の比として定義されます．
+誘電正接（Loss Tangent）は，これら2つの物理量の比として定義されます．
 \begin{equation}
   \tan\delta = \frac{\epsilon''}{\epsilon'}
 \end{equation}
-この式が，高周波損失の指標として $\epsilon''$ そのものよりも重要視される理由は，その物理的な意味にあります．
-
-\begin{itemize}
-    \item \textbf{意味1：エネルギーの「損失率」}
-    $\tan\delta$ は，その定義（$\epsilon'' / \epsilon'$）から明らかなように，「1サイクルの間に蓄積されるエネルギー（$\epsilon'$）のうち，どれだけの割合が熱として失われるか（$\epsilon''$）」を示す，規格化された無次元の損失指標です\cite{Altium:2025}．
-    あなたが測定したMEGTRON6の $\tan\delta$ がFR-4よりも極めて小さい\cite{Yanagihara2025}ということは，MEGTRON6がエネルギーを蓄積する能力（$\epsilon'$）に対して，失う割合（$\epsilon''$）が非常に小さい，極めてエネルギー効率の高い（＝低損失な）材料であることを意味します．
-    
-    \item \textbf{意味2：位相の「ズレ」}
-    この指標は，理想的なコンデンサからの「ズレ」の角度としても解釈できます\cite{HVI:2019}．
-    \begin{itemize}
-        \item 理想的なコンデンサ（損失ゼロ，$\epsilon''=0$）では，流れる電流 $I_C$（容量性電流）は，印加電圧 $V$ よりも正確に90°位相が進みます．
-        \item 損失のある誘電体（$\epsilon''>0$）では，この損失がコンデンサと並列に接続された抵抗 $R$ に流れる電流 $I_R$（抵抗性電流）としてモデル化できます．
-        \item VNAから見た全電流 $I$ は，$I_C$ と $I_R$ のベクトル和になります．その結果，全電流 $I$ と電圧 $V$ の位相差は90°からわずかに小さくなります．
-        \item この「90°からズレた角度」こそが\textbf{損失角 $\delta$（デルタ）}です\cite{HVI:2019}．
-        \item このとき，$\tan\delta = I_R / I_C$，すなわち「損失に寄与する電流」と「蓄積に寄与する電流」の比率となり，意味1と物理的に等価な指標となります．
-    \end{itemize}
-\end{itemize}
+これは，「1サイクルの間に蓄積されるエネルギー（$\epsilon'$）のうち，どれだけの割合が熱として失われるか（$\epsilon''$）」を示す，規格化された無次元の損失指標です\cite{Altium:2025}．また，理想的なコンデンサ（電流と電圧の位相差が90°）からの「ズレの角度 $\delta$」の正接（タンジェント）としても解釈できます\cite{HVI:2019}．
 
 % ===================================================================
-\chapter{導体損失のメカニズム}
+\chapter{導体損失のミクロな機構}
 % ===================================================================
-導体損失は，基板の銅配線（銅箔）で発生する抵抗損失（ジュール熱）です．直流では単純な抵抗 $R$ ですが，高周波では「表皮効果」と「表面粗さ」が支配的になります．
+導体損失は，基板の銅配線で発生する抵抗損失（ジュール熱）です．高周波では「表皮効果」と「表面粗さ」が支配的になります．
 
-\section{高周波における「表皮効果（Skin Effect）」}
-表皮効果とは，周波数が高くなるほど，電流が導体の中心部を避けて\textbf{表面に集中して流れる}現象です\cite{MDPI:2023}．
+\section{高周波電流と表皮効果}
+表皮効果とは，周波数が高くなるほど，電流が導体の中心部を避けて\textbf{表面に集中して流れる}現象です\cite{MDPI:2023}．これは，導体内部を流れる電流が作る時間変化磁界が，ファラデーの電磁誘導の法則により，導体中心部の電流を妨げる向きの渦電流を誘導するために起こります．
 
-この現象は，マクスウェル方程式，特に「ファラデーの電磁誘導の法則」と「アンペールの法則」の帰結として平易に説明できます．
-\begin{enumerate}
-    \item 導体に高周波の交流電流 $J(t)$ を流そうとします．
-    \item アンペールの法則 ($\nabla \times \bm{H} = \bm{J}$) により，この電流 $J(t)$ は，導線の\textbf{内部}にも時間変化する磁界 $H(t)$ を発生させます．
-    \item ファラデーの誘導法則 ($\nabla \times \bm{E} = -\frac{\dd B}{\dd t} = -\mu \frac{\dd H}{\dd t}$) により，この時間変化する磁界 $H(t)$ は，導線内部に「渦電流」を引き起こす電界 $E_{\mathrm{induced}}$ を誘導します．
-    \item レンツの法則によれば，この $E_{\mathrm{induced}}$ は，元の電流 $J(t)$ の変化を妨げる向き（すなわち逆向き）に働きます．
-    \item この「妨害」の効果（インピーダンス）は，磁界 $H(t)$ が最も強い\textbf{導体の中心部で最大}となります．
-    \item 結果として，電流はインピーダンスが最も低い経路，すなわち\textbf{導体表面}を避けて流れるようになります．これが表皮効果です．
-\end{enumerate}
-
-\section{表皮深さ（Skin Depth）}
-表皮深さ（$\delta_s$）は，電流密度が導体表面の $1/e$（約37\%）にまで減衰する深さを定義したものです\cite{InComplianceMagazine:2025}．
-
-導体中を伝播する電磁波の減衰問題として解くと，表皮深さ $\delta_s$ は以下の式で与えられます．
+\section{\texorpdfstring{表皮深さ（$\delta_s$）を決定する物理パラメータ}{表皮深さを決定する物理パラメータ}}
+表皮深さ（$\delta_s$）は，電流密度が導体表面の $1/e$（約37\%）にまで減衰する深さであり，以下の式で与えられます\cite{InComplianceMagazine:2025}．
 \begin{equation}
-    \delta_s = \sqrt{\frac{2}{\omega \mu \sigma}} = \frac{1}{\sqrt{\pi f \mu \sigma}}
+    \delta_s = \frac{1}{\sqrt{\pi f \mu \sigma}}
 \end{equation}
-ここで，$f$ は周波数，$\mu$ は透磁率（銅などの非磁性体では $\mu_0$），$\sigma$ は導電率です\cite{AIFutureSchool:2025}．
+ここで，$f$ は周波数，$\mu$ は透磁率，$\sigma$ は導電率です．周波数が高いほど，また導電率が高いほど，電流はより薄い表面に集中します．
 
-この式が示す物理的な関係は重要です．
-\begin{itemize}
-    \item \textbf{周波数 $f$ との関係: $\delta_s \propto 1/\sqrt{f}$}
-    周波数が高くなるほど，$\delta_s$ は浅くなります\cite{YouTube:SkinEffect}．周波数が高いほど $\dd H/\dd t$ が大きくなり，中心部での逆起電力が強まるため，電流がより表面に押しやられます．
-    \item \textbf{導電率 $\sigma$ との関係: $\delta_s \propto 1/\sqrt{\sigma}$}
-    導電率が高い（＝良導体である）ほど，$\delta_s$ は浅くなります\cite{YouTube:SkinEffect}．これは直感に反するかもしれませんが，$\sigma$ が高いほど，わずかな誘導電界 $E_{\mathrm{induced}}$ でも大きな渦電流が流れ，中心部の電流を打ち消す効果が強まるためです．
-\end{itemize}
-
-\section{導体表面の「表面粗さ」と損失増大}
-これがあなたの研究の最終目的\cite{Yanagihara2025}に直結する部分です．なぜ銅箔の表面がザラザラしていると，高周波での導体損失 $\alpha_c$ が増大するのでしょうか．
-
-ギガヘルツ帯になると，表皮深さ $\delta_s$ は非常に浅くなります（例：\SI{10}{\giga\hertz}の銅で約\SI{0.66}{\micro\meter}）．これは，基板製造時に接着強度を稼ぐために施される銅箔の表面粗さ（$R_z$ が数\si{\micro\meter}オーダー）と同等か，それよりも浅くなります\cite{ElectronicsOrg:2020}．
-
-このとき，主に2つのメカニズムによって損失が著しく増大します．
+\section{導体表面粗さと損失増大のメカニズム}
+ギガヘルツ帯になると，表皮深さ $\delta_s$ は銅箔の表面粗さ（$R_z$ が数\si{\micro\meter}オーダー）と同等か，それよりも浅くなります\cite{ElectronicsOrg:2020}．このとき，主に2つのメカニズムによって損失が増大します．
 \begin{enumerate}
-    \item \textbf{電流経路の増大（トポロジー効果）:}
-    電流は $\delta_s$ という薄い層を流れます．表面が平滑であれば，電流は最短距離（直線）を流れます．しかし，表面が粗いと，電流はこの「地形」の山と谷に沿って流れることを余儀なくされます．その結果，電流が流れる実効的な経路長が長くなり，抵抗値が増大します\cite{PolarInstruments:2025}．
-    \item \textbf{局所的な磁界集中（近接効果）:}
-    これは，単純な経路長増大よりも深刻な影響を与える可能性があります．粗さの「谷」の部分を想像してください．電流は谷底を流れます．このとき，谷の両側の「壁」の部分にも電流が流れます．これにより，谷底の狭い領域に磁界が局所的に集中します．この局所的に強まった時間変化する磁界 $H(t)$ が，ファラデーの法則により，その近傍で\textbf{さらに強力な渦電流（損失）}を誘導します．
+    \item \textbf{経路長増大:} 電流は粗さの地形に沿って流れるため，実効的な経路長が長くなり，抵抗値が増大します\cite{PolarInstruments:2025}．
+    \item \textbf{磁界集中:} 粗さの「谷」の部分では電流が集中し，局所的に磁界が強まります．この強まった磁界が，さらに強力な渦電流（損失）を誘導します．
 \end{enumerate}
-したがって，表面粗さは，(1)電流の経路を長くし，(2)局所的な磁界集中を引き起こす，という2つの要因によって，滑らかな導体表面から予測される損失よりもはるかに大きな損失（$\alpha_c$）を生み出すのです．
 
-\clearpage
 % ===================================================================
-\chapter{伝搬定数の厳密な導出と損失分離}
+\chapter{伝送線路における損失の数学的表現}
 % ===================================================================
-あなたの研究の根幹をなす式 $\alpha = \alpha_c + \alpha_d$ は，実は「低損失」という条件下で成立する近似式です．ここでは，伝送線路の基本方程式から出発し，近似を一切含まない厳密な減衰定数 $\alpha$ の一般式を導出します．その上で，低損失近似を適用することで，実用的な分離式がどのように導かれるのかを解説します．
 
-\section{伝送線路方程式（電信方程式）}
-伝送線路上の電圧 $V(z)$ と電流 $I(z)$ の振る舞いは，線路の微小区間 $\Delta z$ における等価回路から導かれます．キルヒホッフの法則を適用し，$\Delta z \to 0$ の極限をとることで，以下の連立微分方程式が得られます．これを電信方程式（Telegrapher's Equations）と呼びます．
+\section{伝送線路方程式（電信方程式）からの出発}
+伝送線路上の電圧 $V(z)$ と電流 $I(z)$ の振る舞いは，以下の電信方程式で記述されます．
 \begin{align}
     -\frac{\dd V(z)}{\dd z} &= (R + \mi\omega L) I(z) \\
     -\frac{\dd I(z)}{\dd z} &= (G + \mi\omega C) V(z)
 \end{align}
 ここで，$R, L, G, C$ は線路の単位長さあたりの分布定数です．
 
-\section{波動方程式と伝搬定数\texorpdfstring{$\gamma$}{gamma}}
-上記2式の片方を $z$ で微分し，もう一方を代入して整理すると，電圧と電流がそれぞれ独立して満たすべき波動方程式が得られます．
-\begin{align}
-    \frac{\dd^2 V(z)}{\dd z^2} - (R + \mi\omega L)(G + \mi\omega C) V(z) &= 0 \\
-    \frac{\dd^2 I(z)}{\dd z^2} - (R + \mi\omega L)(G + \mi\omega C) I(z) &= 0
-\end{align}
-ここで，複素数である伝搬定数 $\gamma$ を以下のように定義します．
+\section{\texorpdfstring{伝搬定数（$\gamma$）の厳密な導出}{伝搬定数の厳密な導出}}
+電信方程式から波動方程式を導くと，複素伝搬定数 $\gamma = \alpha + \mi\beta$ が以下のように定義されます．
 \begin{equation}
     \gamma^2 = (R + \mi\omega L)(G + \mi\omega C)
 \end{equation}
-すると，波動方程式は $\frac{\dd^2 V(z)}{\dd z^2} - \gamma^2 V(z) = 0$ と簡潔に書け，その一般解は進行波と後進波の重ね合わせ $V(z) = V_1 e^{-\gamma z} + V_2 e^{+\gamma z}$ となります．$\gamma$ の実数部が減衰を，虚数部が位相の回転を司ることがわかります．
-
-\section{減衰定数\texorpdfstring{$\alpha$}{alpha}と位相定数\texorpdfstring{$\beta$}{beta}の厳密な導出}
-伝搬定数 $\gamma$ を実数部の減衰定数 $\alpha$ と虚数部の位相定数 $\beta$ に分離して $\gamma = \alpha + \mi\beta$ とおき，$\alpha$ と $\beta$ の厳密な一般式を導出します．
-
-まず，$\gamma^2$ を展開し，実数部と虚数部に分離します．
-\begin{equation}
-    \gamma^2 = (RG - \omega^2 LC) + \mi\omega(RC + GL)
-\end{equation}
-一方で，$(\alpha + \mi\beta)^2$ を展開すると，
-\begin{equation}
-    (\alpha + \mi\beta)^2 = (\alpha^2 - \beta^2) + \mi(2\alpha\beta)
-\end{equation}
-両辺の実数部と虚数部を比較することで，以下の連立方程式が得られます．
-\begin{align}
-    \alpha^2 - \beta^2 &= RG - \omega^2 LC \label{eq:real_part} \\
-    2\alpha\beta &= \omega(RC + GL) \label{eq:imag_part}
-\end{align}
-式 \eqref{eq:imag_part} から $\beta = \omega(RC + GL) / (2\alpha)$ を式 \eqref{eq:real_part} に代入します．
-\begin{equation}
-    \alpha^2 - \left( \frac{\omega(RC + GL)}{2\alpha} \right)^2 = RG - \omega^2 LC
-\end{equation}
-両辺に $4\alpha^2$ を掛けて整理すると，$\alpha^2$ に関する二次方程式（複二次方程式）が得られます．
-\begin{equation}
-    4\alpha^4 - 4(RG - \omega^2 LC)\alpha^2 - \omega^2(RC + GL)^2 = 0
-\end{equation}
-これを $\alpha^2$ について解の公式を用いて解くと（$\alpha^2 > 0$ であるため正の解のみ採用），
-\begin{equation}
-    \alpha^2 = \frac{4(RG - \omega^2 LC) + \sqrt{16(RG - \omega^2 LC)^2 + 16\omega^2(RC + GL)^2}}{8}
-\end{equation}
-平方根の中を整理すると，$(R^2+\omega^2L^2)(G^2+\omega^2C^2) = (RG-\omega^2LC)^2 + \omega^2(RC+GL)^2$ という恒等式が成り立つため，
-\begin{equation}
-    \alpha^2 = \frac{1}{2} \left\{ (RG - \omega^2 LC) + \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} \right\}
-\end{equation}
-したがって，減衰定数 $\alpha$ の厳密な一般式は以下となります．
+$\gamma$ の実数部である減衰定数 $\alpha$ の厳密な一般式は以下となります．
 \begin{equation}
     \alpha = \sqrt{\frac{1}{2} \left\{ \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} + (RG - \omega^2 LC) \right\}}
 \end{equation}
-同様に，$\beta$ についても解くことができ，以下の厳密式が得られます．
-\begin{equation}
-    \beta = \sqrt{\frac{1}{2} \left\{ \sqrt{(R^2+\omega^2L^2)(G^2+\omega^2C^2)} - (RG - \omega^2 LC) \right\}}
-\end{equation}
 
-\section{低損失近似と損失分離}
-前節で導出した厳密式は複雑ですが，「低損失条件」（$R \ll \omega L, G \ll \omega C$）を適用することで，物理的に見通しの良い形に近似できます．
-この条件下で $\alpha$ の厳密式をテイラー展開すると，
-\begin{equation}
-    \alpha \approx \frac{R}{2} \sqrt{\frac{C}{L}} + \frac{G}{2} \sqrt{\frac{L}{C}}
-\end{equation}
-となり，低損失線路の特性インピーダンス $Z_0 \approx \sqrt{L/C}$ を用いると，
+\section{\texorpdfstring{低損失近似による減衰定数（$\alpha$）の導出と損失分離}{低損失近似による減衰定数の導出と損失分離}}
+「低損失条件」（$R \ll \omega L, G \ll \omega C$）を適用すると，$\alpha$ は以下のように近似できます．
 \begin{equation}
     \alpha \approx \frac{R}{2 Z_0} + \frac{G Z_0}{2}
 \end{equation}
-この式は，全体の減衰 $\alpha$ が，導体の物理特性($R$)のみに依存する項と，誘電体の物理特性($G$)のみに依存する項の単純な和で表せることを示しています．したがって，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ は，この低損失近似の下で，以下のように定義されます．
+ここで，$Z_0 \approx \sqrt{L/C}$ は特性インピーダンスです．この式は，全体の減衰 $\alpha$ が，導体損失 $\alpha_c$ と誘電損失 $\alpha_d$ の単純な和で表せることを示しています．
 \begin{align}
-    \alpha_c &\equiv \frac{R}{2 Z_0} \label{eq:alpha_c_def_re} \\
-    \alpha_d &\equiv \frac{G Z_0}{2} \label{eq:alpha_d_def_re}
+    \alpha_c &\equiv \frac{R}{2 Z_0} \\
+    \alpha_d &\equiv \frac{G Z_0}{2}
 \end{align}
 
-\section{損失の周波数特性の導出}
-この分離された定義式から，各損失成分の周波数依存性を導出します．
+\section{\texorpdfstring{各損失成分の周波数特性（$\alpha_c \propto \sqrt{f}$, $\alpha_d \propto f$）の導出}{各損失成分の周波数特性の導出}}
 \begin{itemize}
-    \item \textbf{導体損失 $\alpha_c$ の周波数特性:}
-    $\alpha_c$ の定義式 \eqref{eq:alpha_c_def_re} に含まれる高周波抵抗 $R$ は，表面抵抗 $R_s$ を用いて $R \propto R_s$ とモデル化できます．さらに $R_s = \sqrt{\pi f \mu / \sigma}$ であるため，$R \propto \sqrt{f}$ となります．したがって，
-    \begin{equation}
-        \alpha_c \propto R \propto \sqrt{f}
-    \end{equation}
-    より具体的には，$\alpha_c = K_c \sqrt{f}$ と書け，比例定数 $K_c$ は線路形状と導体物性（$\sigma, \mu$）で決まります．
-
-    \item \textbf{誘電損失 $\alpha_d$ の周波数特性:}
-    $\alpha_d$ の定義式 \eqref{eq:alpha_d_def_re} に含まれるコンダクタンス $G$ は，$G = \omega C \tan\delta = 2\pi f C \tan\delta$ とモデル化できます．したがって，$G \propto f$ となります．
-    \begin{equation}
-        \alpha_d \propto G \propto f
-    \end{equation}
-    より具体的には，$\alpha_d = K_d f$ と書け，比例定数 $K_d$ は線路形状と誘電体物性（$\epsilon_r, \tan\delta$）で決まります．
+    \item \textbf{導体損失 $\alpha_c$:} 高周波抵抗 $R$ は表皮効果により $R \propto \sqrt{f}$ となるため，$\alpha_c \propto \sqrt{f}$ となります．
+    \item \textbf{誘電損失 $\alpha_d$:} コンダクタンス $G$ は $G = \omega C \tan\delta \propto f$ となるため，$\alpha_d \propto f$ となります．
 \end{itemize}
+この周波数依存性の違いが，高周波帯で誘電損失が支配的になる物理的な理由です．
 
 \clearpage
 % ===================================================================
-\part{測定原理と物理量の関係性}
-% ===================================================================
-第1部で学んだ2種類の損失を，どのようにして高感度に測定・分離するか．それがこの第2部のテーマです．
-
-% ===================================================================
-\chapter{測定の基本原理：Sパラメータ}
+\part{高精度測定の原理と実践}
 % ===================================================================
 
-\section{なぜSパラメータが必要か？ — 高周波測定の課題}
-マイクロ波やミリ波といった高周波領域では、回路の「電圧」や「電流」を直接測定することが極めて困難になります。その理由は以下の通りです。
-\begin{itemize}
-    \item \textbf{理想的な測定条件の不存在:} 回路の特性を測るための基準となる「完全な短絡（ショート）」や「完全な開放（オープン）」を物理的に作ることができません。開放端はアンテナとして機能し電磁波を放射してしまい、短絡端もわずかな配線がインダクタンス成分を持ってしまいます。
-    \item \textbf{プロービングの影響:} 測定プローブを回路に接触させる行為そのものが、回路の特性インピーダンスを乱し、正確な測定を妨げます。
-\end{itemize}
-この問題を解決するため、高周波領域では電圧や電流の代わりに、伝送線路を伝わる電力の流れを「波」として捉え、その振る舞いを記述するSパラメータ（Scattering Parameters, 散乱行列）が用いられます。
+% ===================================================================
+\chapter{高周波測定の基礎：SパラメータとVNA}
+% ===================================================================
 
-\section{Sパラメータの物理的・数学的定義}
+\section{なぜSパラメータが必要か}
+マイクロ波・ミリ波領域では，理想的な短絡・開放が作れず，プローブの接触自体が回路特性を乱すため，電圧・電流の直接測定は困難です．そのため，電力の流れを「波」として捉え，その散乱（Scattering）の様子を記述するSパラメータが用いられます．
 
-\subsection{電力波の導入：入射波 ($a_n$) と出射波 ($b_n$)}
-Sパラメータは、被測定物（DUT: Device Under Test）の各接続点（ポート）における電力波 (Power Wave) の関係性を記述します。電力波とは、その振幅の2乗が電力の次元を持つように正規化された波の表現です。
-
-\begin{description}
-    \item[入射波 ($a_n$)] ポート$n$に向かって進む波であり、測定器がDUTに「入力する」刺激（Stimulus）に相当します。VNAからDUTへ供給される基準信号がこれにあたります。$|a_n|^2$はポート$n$への入射電力を表します。
-    \item[出射波 ($b_n$)] ポート$n$から出ていく波であり、入射波に対するDUTの「応答」（Response）に相当します。DUTで反射された波や、DUTを透過してきた波がこれにあたります。$|b_n|^2$はポート$n$からの出射電力を表します。
-\end{description}
-
-\subsection{2ポートネットワークのSパラメータ行列}
-最も一般的な2ポートネットワーク（入力と出力が1つずつある回路）では、入力である入射波ベクトル $\bm{a}$ と、出力である出射波ベクトル $\bm{b}$ の関係は、Sパラメータ行列 $\bm{S}$ を用いて以下のように線形関係で結ばれます。
+\section{Sパラメータの物理的定義}
+Sパラメータは，被測定物（DUT）の各ポートにおける入射波 $a_n$（入力）と出射波 $b_n$（応答）の関係を行列で記述します．2ポートネットワークの場合，
 \begin{equation}
     \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}
     =
     \begin{pmatrix} S_{11} & S_{12} \\ S_{21} & S_{22} \end{pmatrix}
     \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}
 \end{equation}
-これは、以下の2つの連立方程式と等価です。
-\begin{align*}
-    b_1 &= S_{11}a_1 + S_{12}a_2 \\
-    b_2 &= S_{21}a_1 + S_{22}a_2
-\end{align*}
+各要素は，$S_{11}$ が入力反射係数，$S_{21}$ が順方向透過係数を表し，振幅と位相を持つ複素数です．
 
-\subsection{各Sパラメータ要素の物理的意味}
-各Sパラメータの要素 $S_{ij}$ は、「ポート$j$に波を入射させたとき、ポート$i$からどれだけの波が出てくるか」を示す複素数です。この定義を正確にするため、測定時には信号を入射させるポート以外はすべて、その系の特性インピーダンス（例: \SI{50}{\ohm}）で完全に整合終端します。整合終端されたポートでは、外部からの反射波が存在しないため、そのポートへの入射波はゼロ ($a_n=0$) と見なせます。
+\section{VNAによる複素Sパラメータの測定原理}
+VNA（ベクトルネットワークアナライザ）は，Sパラメータのベクトル量（振幅と位相）を測定する装置です．その基本原理は「ヘテロダイン検波」に基づいています\cite{AllAboutCircuits:VNA}．
+VNAは，DUTへの入力波（基準波）とDUTからの出力波（測定波）をそれぞれ捕捉し，内部の局部発振器（LO）からの信号と混合（Mix）します．これにより，元のギガヘルツ信号が持つ振幅比と位相差の情報を保持したまま，扱いやすい低い中間周波数（IF）に変換します．VNAのDSPは，このIF信号を比較することで，振幅 $|S_{21}|$ と位相 $\angle S_{21}$ を高精度に算出します．
 
-\begin{description}
-    \item[$S_{11}$ (入力反射係数)] ポート2を整合終端 ($a_2=0$) した状態で、ポート1に入射した波 $a_1$ のうち、ポート1に反射して戻ってきた波 $b_1$ の比率。
-    $$ S_{11} = \frac{b_1}{a_1} \bigg|_{a_2=0} $$
-    \item[$S_{21}$ (順方向透過係数)] ポート2を整合終端 ($a_2=0$) した状態で、ポート1に入射した波 $a_1$ のうち、ポート2を透過して出てきた波 $b_2$ の比率。
-    $$ S_{21} = \frac{b_2}{a_1} \bigg|_{a_2=0} $$
-    \item[$S_{22}$ (出力反射係数)] ポート1を整合終端 ($a_1=0$) した状態で、ポート2に入射した波 $a_2$ のうち、ポート2に反射して戻ってきた波 $b_2$ の比率。
-    $$ S_{22} = \frac{b_2}{a_2} \bigg|_{a_1=0} $$
-    \item[$S_{12}$ (逆方向透過係数)] ポート1を整合終端 ($a_1=0$) した状態で、ポート2に入射した波 $a_2$ のうち、ポート1を透過して出てきた波 $b_1$ の比率。
-    $$ S_{12} = \frac{b_1}{a_2} \bigg|_{a_1=0} $$
-\end{description}
+% ===================================================================
+\chapter{共振器法による損失の増幅}
+% ===================================================================
 
-\section{Sパラメータの複素数表現：振幅と位相}
-Sパラメータは、単なる大きさの比ではなく、振幅と位相の両方の情報を持つ複素数です。VNAで測定すると、各周波数に対して実部と虚部、あるいは振幅と位相のペアとしてデータが得られます。
-\begin{equation}
-    S_{ij} = \mathrm{Re}(S_{ij}) + \mi \cdot \mathrm{Im}(S_{ij}) = |S_{ij}| e^{\mi\angle S_{ij}}
-\end{equation}
-\begin{itemize}
-    \item \textbf{振幅 ($|S_{ij}|$)}:
-    電力の伝達率や反射率を表します。デシベル (dB) 単位で表現されることが多く、例えば透過特性 $|S_{21}|$ は挿入損失 (Insertion Loss) として知られています。
-    $$ \text{Insertion Loss [dB]} = -20 \log_{10} |S_{21}| $$
-    （注：損失を表すため負号をつける定義が一般的です）
-    \item \textbf{位相 ($\angle S_{ij}$)}:
-    信号がDUTを通過または反射する際に生じる位相の遅れ（または進み）を表します。これは信号の伝搬時間（遅延）と直接関係しています。
-\end{itemize}
+\section{「共振」の物理的状態：定在波の形成とエネルギーの蓄積}
+共振とは，共振器構造に入射した波が反射波と位相が一致して強め合い（建設的干渉），空間的に振幅が固定された「定在波」を形成する状態です\cite{Warwick:resonator}．このとき，共振器内部には外部の何倍もの強大な電磁界エネルギーが蓄積されます\cite{MIT:ResonantCavities}．
 
-\section{VNAによる測定原理}
-VNA（ベクトルネットワークアナライザ）は、その名の通り、Sパラメータのベクトル量（振幅と位相）を測定するための装置です。VNAがS21の振幅と位相を測定する基本原理は「ヘテロダイン検波」に基づいています\cite{AllAboutCircuits:VNA}．
+\section{Q値（Quality Factor）の多角的理解}
+Q値は，共振器が「どれだけ上手に（損失を少なく）エネルギーを蓄積できるか」を示す指標で，3つの等価な側面から理解できます．
 \begin{enumerate}
-    \item \textbf{信号発生と分配:} VNA内部の信号源が，ある周波数 $f$ の高周波信号（基準信号）を発生させ，ポート1からDUTへ送出します．これが $a_1$ です\cite{Keysight:VNA}．
-    \item \textbf{基準波の捕捉:} ポート1の直前にある方向性結合器が，$a_1$ のごく一部を分岐させ，VNA内部の基準受信機（R受信機）へ送ります\cite{Keysight:VNA}．
-    \item \textbf{透過波の捕捉:} DUTを透過した信号 $b_2$ は，ポート2からVNAに入り，測定受信機（T受信機）へ送られます\cite{Anritsu:VNA}．
-    \item \textbf{ダウンコンバート:} ギガヘルツの信号を直接扱うのは困難です．そこで，VNA内部の局部発振器（LO）からの信号と混合（Mix）し，R受信機とT受信機の両方で，低い中間周波数（IF）に周波数変換（ダウンコンバート）します\cite{AllAboutCircuits:VNA}．
-    \item \textbf{振幅と位相の比較:} このIF信号は，元のギガヘルツ信号の振幅比と位相差の情報をそのまま保持しています．VNAのDSP（デジタル信号処理部）は，この測定しやすいIF信号を比較します\cite{NI:VNA}．
-    \begin{itemize}
-        \item \textbf{振幅 $|S_{21}|$}: (T受信機のIF信号の振幅) / (R受信機のIF信号の振幅)
-        \item \textbf{位相 $\angle S_{21}$}: (T受信機のIF信号の位相) - (R受信機のIF信号の位相)
-    \end{itemize}
+    \item \textbf{エネルギー定義:} $Q = \omega_r (W_{\mathrm{stored}} / P_{\mathrm{loss}})$．蓄積エネルギーと消費電力の比で，最も根本的な定義です\cite{TaylorFrancis:Qfactor}．
+    \item \textbf{周波数応答:} $Q_L = f_r / \Delta f_{\mathrm{3dB}}$．共振ピークの鋭さを表し，VNAで直接観測する量です．Q値が高い（低損失）ほどピークは鋭くなります\cite{wiki:Qfactor}．
+    \item \textbf{時間応答:} エネルギー供給を止めた後の減衰の遅さを表します．Q値が高いほど，エネルギーはゆっくりと減衰します（鐘の余韻が長い）\cite{wiki:Qfactor}．
 \end{enumerate}
-このように，VNAは「基準波（$a_1$）」に対する「透過波（$b_2$）」の「振幅比」と「位相差」を測定するため，「ベクトル」ネットワークアナライザと呼ばれます．
+
+\section{共振器法が低損失材料測定に優れる本質的理由}
+MEGTRON6のような超低損失材料では，伝送線路法（TL法）で測定する減衰量 $\alpha$ が小さすぎて測定誤差に埋もれてしまいます．
+共振器法は，時間的にエネルギーを蓄積すること（Q回往復させること）で，材料の微小な損失（$\tan\delta$）を，VNAで高精度に測定可能な「周波数幅（$\Delta f$）」という指標に高感度に変換します．これは，微小な損失の影響を「増幅」して観測する手法と言え，低損失材料の精密測定に不可欠です．
 
 % ===================================================================
-\chapter{共振器の物理}
+\chapter{BCDR法の原理と実践}
 % ===================================================================
 
-\section{「共振」の物理的状態}
-共振とは，物理的にどのような状態を指すのでしょうか．それは「\textbf{エネルギーの閉じ込め}」と「\textbf{定在波の形成}」です\cite{Warwick:resonator}．
+\section{\texorpdfstring{BCDRが利用するTM\textsubscript{0m0}モードの電磁界分布とその役割}{BCDRが利用するTM0m0モードの電磁界分布とその役割}}
+BCDR（Balanced Circular Disk Resonator）法では，円筒対称な TM\textsubscript{0m0} モードを選択的に利用します\cite{IEEE:BCDR220GHz}．このモードは，電界 $E$ が基板に垂直な $z$ 成分のみ，磁界 $H$ が同心円状の $\phi$ 成分のみを持つという非常にシンプルな電磁界分布をしています\cite{ScholarsMine:TM010}．基板の厚さ方向の誘電特性（$\epsilon_r, \tan\delta$）を測定するのに最も適したモードです．
+
+\section{S21共振ピークからの物性値算出プロセス（一般論）}
+VNAで測定したS21の生データから物性値を導出する一般的なプロセスは，以下の通りです．
 \begin{enumerate}
-    \item BCDRのような共振器構造（上下を導体で塞がれた空間）に，特定の周波数 $f_r$ の電磁波が入射します．
-    \item 波は導体壁で反射します．
-    \item もし周波数が $f_r$（共振周波数）と一致していれば，反射して戻ってきた波が，次に入射してくる波と\textbf{位相が完全に一致}し，互いに強め合います（\textbf{建設的干渉}）\cite{PhysicsStackExchange:EMresonance}．
-    \item この結果，波は一方向へ進む「進行波」ではなく，空間的に振幅の「腹」と「節」が固定された「\textbf{定在波（Standing Wave）}」を形成します\cite{Warwick:resonator}．
-    \item 外部からエネルギーが供給され続けると，定在波の振幅は（損失によって制限されるまで）増大し続け，共振器内部には外部（伝送線路）の何倍もの強大な電磁界エネルギーが蓄積されます\cite{MIT:ResonantCavities}．
+    \item \textbf{負荷Q（$Q_L$）の測定:} VNAのマーカー機能で共振周波数 $f_r$ と半値全幅 $\Delta f$ を読み取り，$Q_L = f_r / \Delta f$ を算出します．
+    \item \textbf{無負荷Q（$Q_0$）の算出:} 負荷Q $Q_L$ とピークの挿入損失 $IL_r$ から，測定系との結合による外部損失を取り除いた，共振器自体の真のQ値である無負荷Q $Q_0$ を算出します：$Q_0 = Q_L / (1 - 10^{IL_r / 20})$．
+    \item \textbf{比誘電率 $\epsilon_r$ の算出:} 測定した共振周波数 $f_r$ とBCDRの寸法から，理論式（超越方程式）を数値的に解くことで $\epsilon_r$ を決定します．
+    \item \textbf{損失の分離計算:} 全体の損失を表す $1/Q_0$ は，導体損失 $1/Q_c$ と誘電損失 $1/Q_d$ の和（$1/Q_0 = 1/Q_c + 1/Q_d$）で表されます．$Q_c$ を理論計算し，$Q_0$ から差し引くことで $Q_d$ を分離し，$\tan\delta = 1/Q_d$ を得ます．
 \end{enumerate}
-あなたのS21のピーク\cite{Yanagihara2025}は，まさしくこの「定在波が形成され，エネルギーがうまく閉じ込められて透過できた」状態を示しています．
-
-\section{「Q値（Quality Factor）」の3つの側面}
-Q値は，この共振器が「どれだけ上手に（損失を少なく）エネルギーを蓄積できるか」を示す性能指標です．Q値は，同じ物理現象（損失）を3つの異なる側面から見たもので，これらはすべて等価です．
-\begin{enumerate}
-    \item \textbf{側面①：エネルギー蓄積と消費電力の比（最も根本的な定義）}
-    \begin{equation}
-        Q = \omega_r \frac{W_{\mathrm{stored}}}{P_{\mathrm{loss}}}
-    \end{equation}
-    ここで，$\omega_r = 2\pi f_r$（共振角周波数），$W_{\mathrm{stored}}$ は共振器に蓄積される平均エネルギー [\si{\joule}]，$P_{\mathrm{loss}}$ は単位時間あたりに消費される電力（全損失） [\si{\watt}] です\cite{TaylorFrancis:Qfactor}．
-    Q値が高い（例：$Q=10,000$）とは，$P_{\mathrm{loss}}$ が $W_{\mathrm{stored}}$ に対して非常に小さい，すなわちエネルギー効率が極めて良い（低損失）ことを意味します．
-
-    \item \textbf{側面②：共振ピークの鋭さ（周波数領域での定義）}
-    \begin{equation}
-        Q_L = \frac{f_r}{\Delta f_{\mathrm{3dB}}}
-    \end{equation}
-    これは，あなたがVNAのS21測定で直接観測する量です\cite{Yanagihara2025}．$f_r$ は共振周波数，$\Delta f_{\mathrm{3dB}}$ は共振ピークの頂点から電力が半分（\SI{-3}{\deci\bel}）になる周波数帯域幅（半値全幅）です\cite{wiki:Qfactor}．
-    Q値が高い（損失が少ない）と，共振器はエネルギーの蓄積（建設的干渉）に対して非常に「選択的」になります．共振周波数 $f_r$ からわずかでも周波数がズレると，建設的干渉が急激に崩れ，エネルギーは蓄積されません．その結果，S21の透過特性は非常に鋭い（Sharp）ピークを描き，$\Delta f$ は狭くなります\cite{Fiveable:Qfactor}．
-
-    \item \textbf{側面③：時間的減衰（時間領域での定義）}
-    高品質な金属の鐘（高Q）は，一度叩くと，その振動がなかなか減衰せず，長時間「鳴り響き（Ringing）」ます\cite{wiki:Qfactor}．
-    共振器も同様に，外部からのエネルギー供給を止めた場合，蓄積されたエネルギー $W(t)$ は，$W(t) = W_0 e^{-(\omega_r / Q)t}$ という形で指数関数的に減衰していきます．Q値が高いほど，エネルギーが失われるまでの時間（時定数 $\tau = Q / \omega_r$）が長い（減衰が遅い）ことを示します\cite{PMC:SuperDamping}．
-\end{enumerate}
-これら3つは，「損失が少ない」（①）$\iff$「ピークが鋭い」（②）$\iff$「減衰が遅い」（③）という，物理的に等価な関係にあります．
-
-% ===================================================================
-\chapter{BCDR法の詳細}
-% ===================================================================
-
-\section{\texorpdfstring{BCDRが利用する電磁界モード（TM\textsubscript{0m0}モード）}{BCDRが利用する電磁界モード}}
-BCDR（Balanced Circular Disk Resonator）は，円板状の誘電体サンプルを上下の導体円板で挟み込んだ「円筒共振器」の一種です．この構造で選択的に励起されるのが \textbf{TM\textsubscript{0m0} モード}です\cite{IEEE:BCDR220GHz}．
-\begin{itemize}
-    \item \textbf{TM（Transverse Magnetic）:} 電磁波の主要な伝播方向（この場合，半径 $r$ 方向）に対して，磁界 $H$ が常に垂直（Transverse）であることを意味します．
-    \item \textbf{添え字 $0m0$ の意味:}
-    \begin{itemize}
-        \item 最初の $0$: $\phi$（円周）方向に電磁界の変動がないこと，すなわち\textbf{円筒対称}であることを意味します\cite{ResearchGate:BCDRanalysis}．
-        \item 中央の $m$: $r$（半径）方向に $m$ 個の電磁界の腹（変動）があることを意味します．あなたのS21のプロット\cite{Yanagihara2025}で見られる\textbf{複数の共振ピーク}は，この $m$ が $m=1, 2, 3,...$ と変わる高次の共振モードに対応しています\cite{IEEE:BCDR220GHz}．
-        \item 最後の $0$: $z$（高さ＝基板厚さ）方向に電磁界の変動がないこと（電界が $z$ 方向に一様であること）を意味します．
-    \end{itemize}
-\end{itemize}
-この TM\textsubscript{0m0} モードの最大の特徴は，電磁界分布が「\textbf{電界 $E$ は $z$ 成分（基板に対して垂直）のみ}」，「\textbf{磁界 $H$ は $\phi$ 成分（同心円状）のみ}」という，非常にシンプルで理想的な形になることです\cite{ScholarsMine:TM010}．電界 $E_z$ が基板に対して一様に垂直に印加されるため，基板の $z$ 方向（厚さ方向）の物性（$\epsilon_r$ と $\tan\delta$）を測定するのに最も適したモードです\cite{ScholarsMine:TM010}．
-
-\section{BCDR法の原理的優位性（vs 伝送線路法）}
-あなたのスライド\cite{Yanagihara2025}にあるように，BCDR法は「高周波，低損失」な材料の測定に適しています．なぜ，単純な伝送線路（マイクロストリップライン）法よりも優れているのでしょうか．
-\begin{itemize}
-    \item \textbf{伝送線路法（TL法）:} 基板上に作成した伝送線路のS21（減衰量 $\alpha$）を測定する手法です\cite{Panasonic:diel_loss}．
-    \item \textbf{課題:} あなたが測定対象とするMEGTRON6\cite{Yanagihara2025}のような超低損失材料（$\tan\delta$ が 0.002 など\cite{Intel:losstangent}）では，$\alpha$ が極めて小さくなります（例：\SI{0.01}{\deci\bel\per\centi\meter}）．VNAの測定誤差（例：コネクタの再接続誤差）の中で，この微小な $\alpha$ を正確に測定するには，非常に長い線路（例：数メートル）が必要になりますが，これは非現実的です\cite{Optica:resonatorloss}．
-    \item \textbf{BCDR法（共振器法）の優位性:} BCDR法は $\alpha$ ではなく $Q$ を測定します．
-    第5章で述べたように，共振器はエネルギーを内部に蓄積し，その振幅はQ倍になります\cite{PhysicsLibreTexts:TEMresonances}．この蓄積されたエネルギーが，材料のわずかな損失（$\tan\delta$）によって失われると，共振ピークの鋭さが鈍ります（$\Delta f$ が広がる）．
-\end{itemize}
-BCDR法は，\textbf{時間的にエネルギーを蓄積すること（$Q$ 回往復させること）で，材料の微小な損失（$\tan\delta$）を，VNAで高精度に測定可能な「周波数（$\Delta f$）」という指標に高感度に変換する}技術です\cite{iMapsource:highfreqmeas}．
-
-TL法が「非常に長い距離を伝播させて，やっと観測できるわずかな減衰」を測るのに対し，BCDR法は「共振器内でQ回（数千〜数万回）往復させて損失を\textit{増幅}し，その結果をピークの鈍りとして観測する」手法と言えます．これが，MEGTRON6のような低損失材料の測定に共振器法が不可欠な理由です\cite{iMapsource:highfreqmeas}．
-
-\section{S21共振ピークからの物性値算出プロセス}
-あなたがVNAで測定したS21の生データ\cite{Yanagihara2025}から，誘電特性\cite{Yanagihara2025}を導出する計算プロセスは，以下の4ステップで構成されます．
-\begin{description}
-    \item[Step 1: 負荷Q（$Q_L$）の測定]
-    VNAのマーカー機能を用い，各共振ピーク（TM\textsubscript{0m0}モード）について，以下を読み取ります\cite{CMT:Qfactor}．
-    \begin{enumerate}
-        \item ピークの頂点の周波数 $\to$ \textbf{共振周波数 $f_r$}
-        \item ピークの頂点のS21 $\to$ \textbf{挿入損失 $IL_r$} （例：\SI{-20}{\deci\bel}）
-        \item ピークの頂点から\SI{-3}{\deci\bel}下がった点の周波数幅 $\Delta f$ を測定します．
-    \end{enumerate}
-    \textbf{負荷Q（Loaded Q） $Q_L = f_r / \Delta f$} を算出します\cite{ECStudio:Qfactor}．
-    \textit{注意:} $Q_L$ は，共振器自体の損失（$Q_0$）に加えて，VNAのポート（入出力結合）による「外部損失」も\textit{含んだ}Q値です．
-
-    \item[Step 2: 無負荷Q（$Q_0$）の算出]
-    我々が知りたいのは，BCDR共振器自体の真のQ値，すなわち無負荷Q（Unloaded Q） $Q_0$ です．$Q_L$ と挿入損失 $IL_r$ から $Q_0$ を計算します．
-    \begin{equation}
-        Q_0 = \frac{Q_L}{1 - 10^{IL_r / 20}}
-    \end{equation}
-    （$IL_r$は負の値（例：\SI{-20}{\deci\bel}）なので，$10^{IL_r / 20}$ は 1 より小さい正の値（例：0.1）になります．$Q_0$ は $Q_L$ より必ず大きくなります．）
-
-    \item[Step 3: 比誘電率 $\epsilon_r$ の算出]
-    共振周波数 $f_r$ は，BCDRの幾何学的寸法（半径 $R$，基板厚 $d$）と，基板の比誘電率 $\epsilon_r$ によって一意に決まります．TM\textsubscript{0m0} モードの $f_r$ と $\epsilon_r$ の関係は，ベッセル関数を含む複雑な理論式（超越方程式）で与えられます．
-    実用的には，既知の $R, d$ と，Step 1で測定した $f_r$ をこの理論式に代入し，未知数 $\epsilon_r$ について数値的に解くことで，$\epsilon_r$ が決定されます．これが，あなたのグラフ\cite{Yanagihara2025}のプロットです．
-
-    \item[Step 4: 誘電正接 $\tan\delta$ の算出（損失分離）]
-    ここがあなたの研究の核心です\cite{Yanagihara2025}．
-    \begin{enumerate}
-        \item Step 2で求めた $Q_0$ は，共振器全体の損失です．
-        \item この損失は，(a)導体壁（銅）の損失 $P_c$ と (b)誘電体（基板）の損失 $P_d$ の和です．
-        \item したがって，Q値の関係は $\frac{1}{Q_0} = \frac{1}{Q_c} + \frac{1}{Q_d}$ となります（\cite{Yanagihara2025}，詳細は第8章）．
-        \item \textbf{$Q_c$（導体Q）の計算:} $Q_c$ は，導体（銅）の導電率 $\sigma$ と表皮深さ $\delta_s$ から，電磁界理論に基づき\textbf{理論計算}できます．（注：この段階では，表面粗さの影響は無視し，「滑らかな銅」と仮定して計算します\cite{ElectronicsOrg:2020}）．
-        \item \textbf{$Q_d$（誘電体Q）の分離:} $Q_d$ が，我々が知りたい誘電損失 $\tan\delta$ に対応します．
-        \begin{equation}
-            \frac{1}{Q_d} = \frac{1}{Q_0} - \frac{1}{Q_c}
-        \end{equation}
-        \item \textbf{$\tan\delta$ の決定:} 誘電体のみのQ値 $Q_d$ と $\tan\delta$ の間には， $Q_d = 1 / \tan\delta$ という直接的な関係があります\cite{Hapislab:TanDel}．
-        \item \textbf{最終結果:}
-        \begin{equation}
-            \tan\delta = \frac{1}{Q_d} = \frac{1}{Q_0} - \frac{1}{Q_c}
-        \end{equation}
-        これが，あなたのグラフ\cite{Yanagihara2025}のプロットです．
-    \end{enumerate}
-\end{description}
+しかし，この一般論では導体損失 $Q_c$ の理論計算に「表面粗さ」という不確定要素が含まれるため，高精度な分離は困難です．次章でその解決策を述べます．
 
 % ===================================================================
 \chapter{基準測定を用いた高精度損失分離法}
 % ===================================================================
+単一の測定から誘電損失と表面粗さの影響を分離することは原理的に困難です．この問題を解決するため，「基準測定」と「本測定」を組み合わせた2段階の測定アプローチが極めて有効です．
 
-BCDR法を用いて未知の基板の損失分離を行う際，誘電正接 $\tan\delta$ と導体表面粗さの影響は，単一の測定から一意に分離することが原理的に困難です．$1/Q_0 = 1/Q_c + 1/Q_d$ の関係式において，測定できるのは全体のQ値 $Q_0$ のみであり，右辺の $Q_c$（導体損失，粗さを含む）と $Q_d$（誘電損失）は共に未知数であるためです．
-
-この問題を解決し，表面粗さの影響を定量的に評価するためには，「基準測定」と「本測定」を組み合わせた2段階の測定アプローチが極めて有効です．
-
-\section{基準測定による誘電体特性の精密決定}
-
-まず，評価対象の導体が持つ表面粗さという不確定要素を排除し，誘電体材料固有の損失特性 $\tan\delta$ を正確に決定します．
-
-そのために，表面が極めて平滑な\textbf{標準銅箔}（圧延銅箔など）と，銅箔が貼られていない\textbf{誘電体コア材}を用いて基準共振器を構成します．この系で測定した全体のQ値 $Q_{0,\mathrm{ref}}$ から，表面粗さの影響を無視して理論計算できる導体Q値 $Q_{c,\mathrm{ref}}$ を差し引きます．
+\section{Step 1: 基準測定による誘電体特性の精密決定}
+まず，導体の表面粗さという不確定要素を完全に排除し，誘電体材料固有の損失特性 $\tan\delta$ を正確に決定します．
+\begin{enumerate}
+    \item \textbf{試料準備:} 評価対象の基板から，化学処理（エッチング）により銅箔を完全に除去した\textbf{誘電体コア材}を用意します．
+    \item \textbf{測定:} この誘電体コア材を，表面が極めて平滑な\textbf{標準銅箔（基準電極）}で挟み，BCDR測定を行います．
+    \item \textbf{計算:} この系で測定した全体のQ値 $Q_{0,\mathrm{ref}}$ から，表面粗さの影響を無視して理論計算できる基準電極の導体Q値 $Q_{c,\mathrm{ref}}$ を差し引きます．
+\end{enumerate}
 \begin{equation}
     \tan\delta = \frac{1}{Q_d} = \frac{1}{Q_{0,\mathrm{ref}}} - \frac{1}{Q_{c,\mathrm{ref}}}
 \end{equation}
-この `ref` は基準（Reference）を意味します．このステップにより，導体損失の不確かさから完全に分離された，信頼性の高い `tan\delta` の周波数特性データが得られます．
+このステップにより，導体損失の不確かさから完全に分離された，信頼性の高い $\tan\delta$ の周波数特性データが得られます．
 
-\section{本測定による導体損失（表面粗さ効果）の分離}
-
-次に，前節で決定した既知の $\tan\delta$（すなわち $Q_d$）を用いて，評価対象である実際の基板（DUT: Device Under Test）の導体損失 $Q_{c,\mathrm{dut}}$ を分離します．
-
-DUTをBCDRで測定して得られた全体のQ値 $Q_{0,\mathrm{dut}}$ と，基準測定から得られた $Q_d$ を用い，損失分離式を $Q_{c,\mathrm{dut}}$ について解きます．
+\section{Step 2: 本測定による実効的導電率の導出}
+次に，前節で決定した既知の $\tan\delta$ を用いて，評価対象である実際の基板の導体損失（表面粗さ効果）を分離し，実効的導電率を導出します．
+\begin{enumerate}
+    \item \textbf{試料準備:} 評価対象である，\textbf{表面粗さを持つ銅箔が貼られたままの基板（DUT）}を用います．
+    \item \textbf{測定:} DUTをBCDRで測定し，全体のQ値 $Q_{0,\mathrm{dut}}$ を得ます．
+    \item \textbf{計算:} 損失分離式を $Q_{c,\mathrm{dut}}$ について解き，測定した $Q_{0,\mathrm{dut}}$ とStep 1で得た $Q_d$ を用いて，DUTの銅箔が持つ表面粗さの影響を全て含んだ実測の導体損失 $Q_{c,\mathrm{dut}}$ を算出します．
+\end{enumerate}
 \begin{equation}
     \frac{1}{Q_{c,\mathrm{dut}}} = \frac{1}{Q_{0,\mathrm{dut}}} - \frac{1}{Q_d} = \frac{1}{Q_{0,\mathrm{dut}}} - \tan\delta
 \end{equation}
-この $Q_{c,\mathrm{dut}}$ は，DUTの銅箔が持つ表面粗さの影響を全て含んだ実測の導体損失です．これを平滑な場合の理論値と比較することで，表面粗さによる損失増大効果を定量的に議論することが可能となります．この2段階のアプローチこそが，あなたの研究の最終目的を達成するための論理的根幹を成すものです．
+この実測された導体損失 $Q_{c,\mathrm{dut}}$ から，電磁界理論に基づき最終目的である\textbf{実効的導電率 $\sigma_{\mathrm{eff}}$} を算出します．この値こそが，高精度なFDTDシミュレーションに不可欠なパラメータとなります．
+
+\clearpage
+% ===================================================================
+\part{応用的考察と研究の深化}
+% ===================================================================
 
 % ===================================================================
-\chapter{損失指標の相互関係}
+\chapter{損失の周波数特性と材料選定の重要性}
 % ===================================================================
-
-\section{\texorpdfstring{減衰定数 $\alpha$ と Q値 の関係式 $\alpha = \beta / (2Q)$ の証明}{減衰定数とQ値の関係式の証明}}
-この式は，伝送線路における\textbf{空間的減衰}（$\alpha$，[\si{\neper\per\meter}]）と，共振器における\textbf{時間的減衰}（$Q$，無次元）という，一見異なる二つの現象を結びつける，非常に重要な関係式です．
-
-この関係は，Q値のエネルギー定義から導出できます．
-\begin{enumerate}
-    \item \textbf{Q値の定義（単位長さあたり）:}
-    共振器のQ値の定義（側面①）を，伝送線路のような「分布定数系」に適用するため，単位長さあたりの量で書き換えます．
-    $Q = \omega \frac{W'_{\mathrm{stored}}}{P'_{\mathrm{loss}}}$
-    ここで，$W'_{\mathrm{stored}}$ は単位長さあたりの蓄積エネルギー [\si{\joule\per\meter}]，$P'_{\mathrm{loss}}$ は単位長さあたりの消費電力 [\si{\watt\per\meter}] です\cite{UltrasonicResonators:Qfactor}．
-
-    \item \textbf{$\alpha$ と $P'_{\mathrm{loss}}$ の関係:}
-    伝送線路を伝わる波の電力 $P(z)$ は，減衰定数 $\alpha$ に従って空間的に減衰します: $P(z) = P_0 e^{-2\alpha z}$．
-    （注：電力は振幅の2乗に比例するため，減衰係数は $2\alpha$ となります．）
-    単位長さあたりの消費電力 $P'_{\mathrm{loss}}$ は，この電力の減少分（$-\frac{\dd P}{\dd z}$）に等しいので，
-    $P'_{\mathrm{loss}} = -\frac{\dd}{\dd z}(P_0 e^{-2\alpha z}) = 2\alpha (P_0 e^{-2\alpha z}) = 2\alpha P(z)$
-    すなわち，$P'_{\mathrm{loss}} = 2\alpha P$ です．
-
-    \item \textbf{$P$ と $W'_{\mathrm{stored}}$ の関係（群速度の導入）:}
-    電力 $P$ とは，単位長さあたりのエネルギー $W'_{\mathrm{stored}}$ [\si{\joule\per\meter}] が，どれだけの速度で運ばれるか（エネルギーの流量）に他なりません．この「エネルギーが伝わる速度」こそが，群速度（Group Velocity）$v_g$ [\si{\meter\per\second}] です\cite{IEEE:alphaQrelation}．
-    したがって，$P = W'_{\mathrm{stored}} \times v_g$ と書けます．
-
-    \item \textbf{式の結合:}
-    Step 1 のQの式に，Step 2 と Step 3 の関係を代入します．
-    $Q = \omega \frac{W'_{\mathrm{stored}}}{P'_{\mathrm{loss}}} = \omega \frac{W'_{\mathrm{stored}}}{2\alpha P} = \omega \frac{W'_{\mathrm{stored}}}{2\alpha (W'_{\mathrm{stored}} \times v_g)}$
-    $W'_{\mathrm{stored}}$ が消去され，
-    $Q = \frac{\omega}{2\alpha v_g}$
-
-    \item \textbf{$\alpha$ について解く:}
-    \begin{equation}
-        \alpha = \frac{\omega}{2 Q v_g}
-    \end{equation}
-    これが，$\alpha$ と $Q$ を結びつける厳密な関係式です．
-\end{enumerate}
-
-\section{\texorpdfstring{群速度 $v_g$ と 位相速度 $v_p$ の役割}{群速度と位相速度の役割}}
-上記で導出した $\alpha = \omega / (2 Q v_g)$ が，なぜ質問の $\alpha = \beta / (2Q)$ となるのか．ここで「群速度」と「位相速度」の違いが重要になります．
-\begin{itemize}
-    \item \textbf{位相速度（Phase Velocity）$v_p$:}
-    波の「位相」（山や谷）が進む速度であり，$v_p = \omega / \beta$ と定義されます．ここで $\beta$ は位相定数 [\si{\radian\per\meter}] です\cite{Testbook:group_phase}．
-    \item \textbf{群速度（Group Velocity）$v_g$:}
-    波の「エネルギー」や「情報（パケット）」が伝わる速度であり，$v_g = \dd\omega / \dd\beta$ と定義されます\cite{Testbook:group_phase}．
-\end{itemize}
-もし媒質に\textbf{分散（Dispersion）}がなければ（＝周波数によらず $v_p$ が一定であれば），$v_g = v_p$ となります．あなたの測定対象であるMEGTRON6は，測定帯域において $\epsilon_r$ がほぼ一定\cite{Yanagihara2025}であり，「低分散」とみなすことができます\cite{EngLibreTexts:TLT}．
-
-    この $v_g \approx v_p$ という近似を用いると，
-    $\alpha = \frac{\omega}{2 Q v_g} \approx \frac{\omega}{2 Q v_p}$
-ここに $v_p = \omega / \beta$ を代入すると，
-\begin{equation}
-    \alpha \approx \frac{\omega}{2 Q (\omega / \beta)} = \frac{\omega \beta}{2 Q \omega} = \frac{\beta}{2Q}
-\end{equation}
-（証明終）
-
-この式は，あなたの研究において，BCDR（Q値）で測定した材料の「時間的損失」が，伝送線路（$\alpha$）で発生する「空間的損失」と，$\beta$ を介して\textbf{物理的に等価である}ことを証明する，極めて重要な式です．
-
-\section{\texorpdfstring{損失分離式 $1/Q = 1/Q_c + 1/Q_d$ の物理的背景}{損失分離式の物理的背景}}
-この式\cite{Yanagihara2025}は，あなたの研究における「損失分離」の根幹をなすものです．なぜQそのものの和（$Q = Q_c + Q_d$）ではなく，「逆数の和」になるのか．
-
-これは，Q値の「エネルギー定義」に立ち返れば，自明の理です．物理の基本法則である「\textbf{エネルギー保存則（あるいは電力の加法性）}」に基づいています\cite{ElectricalTechnology:Qfactor}．
-\begin{enumerate}
-    \item 共振器系（BCDR）の\textbf{全消費電力 $P_{\mathrm{loss\_total}}$} は，各損失要因で消費される電力の\textbf{単純な和}で表されます．
-    \item あなたの系では，損失要因は「導体（Copper）の損失 $P_c$」と「誘電体（Dielectric）の損失 $P_d$」の2つです．（放射損失 $P_{\mathrm{rad}}$ はBCDRでは無視できるほど小さいと仮定します）
-    \begin{equation}
-        P_{\mathrm{loss\_total}} = P_c + P_d
-    \end{equation}
-    \item ここで，Q値のエネルギー定義 $Q = \omega W_{\mathrm{stored}} / P_{\mathrm{loss}}$ を $P_{\mathrm{loss}}$ について変形します．
-    $P_{\mathrm{loss}} = \omega W_{\mathrm{stored}} / Q$
-    \item この関係を，全体のQ値（無負荷Q $Q_0$），導体のQ値（$Q_c$），誘電体のQ値（$Q_d$）について立てます．
-    \begin{itemize}
-        \item $P_{\mathrm{loss\_total}} = \omega W_{\mathrm{stored}} / Q_0$
-        \item $P_c = \omega W_{\mathrm{stored}} / Q_c$
-        \item $P_d = \omega W_{\mathrm{stored}} / Q_d$
-    \end{itemize}
-    （ここで $W_{\mathrm{stored}}$ は系に蓄積される全エネルギーであり，全ての項で共通です）
-    \item これらの式を，Step 2 の電力の和の式に代入します．
-    \begin{equation}
-        \frac{\omega W_{\mathrm{stored}}}{Q_0} = \frac{\omega W_{\mathrm{stored}}}{Q_c} + \frac{\omega W_{\mathrm{stored}}}{Q_d}
-    \end{equation}
-    \item 両辺の共通項 $\omega W_{\mathrm{stored}}$ を消去すると，
-    \begin{equation}
-        \frac{1}{Q_0} = \frac{1}{Q_c} + \frac{1}{Q_d}
-    \end{equation}
-    （証明終）
-\end{enumerate}
-\paragraph{物理的意味}
-Q値そのものはエネルギーの「効率」であり，単純に足し合わせることはできません．しかし，\textbf{$1/Q$（損失率，またはDissipation Factor）は，エネルギーの「消費」に対応しており，消費電力 $P_{\mathrm{loss}}$ が単純加算であるのと同様に，$1/Q$ も単純加算（線形結合）}で表すことができます\cite{wiki:Qfactor}．
-あなたの研究における「損失分離」とは，この $1/Q$ の加法性を利用して，測定した $1/Q_0$ から理論計算した $1/Q_c$ を差し引き，$1/Q_d$（すなわち$\tan\delta$）を導出するプロセス\cite{Yanagihara2025}そのものなのです．
-
-% ===================================================================
-% ===== ここから新規追加チャプター =====
-% ===================================================================
-\chapter{損失の周波数特性と界面効果}
-% ===================================================================
-これまでの章で解説した物理原理が，実際の測定データにおいてどのように現れるか，また，さらなる高周波化に向けて考慮すべき発展的な課題について考察します．
-
-\section{損失の周波数依存性：理論と実測の比較}
-第3章で理論的に導出したように，導体損失 $\alpha_c$ は周波数の平方根 $\sqrt{f}$ に，誘電損失 $\alpha_d$ は周波数 $f$ に比例します．この2つの損失成分は，周波数に対して異なる振る舞いを示します．
-\begin{align}
-    \alpha_c(f) &= K_c \sqrt{f} \\
-    \alpha_d(f) &= K_d f
-\end{align}
-ここで $K_c, K_d$ は材料と線路形状で決まる比例定数です．
-
-図 \ref{fig:loss_vs_freq} は，汎用的なFR-4基板（丸印）と高性能な低損失基板（三角印）について，$\alpha_c$（中空シンボル）と $\alpha_d$（塗りつぶしシンボル）を周波数の関数としてプロットしたものです．このグラフは，上記の物理法則を明確に裏付けています．
+\section{理論と実測の比較：各種基板における損失成分の振る舞い}
+第I部で導出した通り，導体損失 $\alpha_c$ は $\sqrt{f}$ に，誘電損失 $\alpha_d$ は $f$ に比例します．図\ref{fig:loss_vs_freq}は，汎用的なFR-4基板と高性能な低損失基板について，この関係を実測データで示したものです．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{input_file_0.png}
-    \caption{各種基板材料における導体損失($\alpha_c$)と誘電損失($\alpha_d$)の周波数依存性．丸印がFR-4，三角印が低損失材料を示す．}
+    \caption{各種基板材料における導体損失($\alpha_c$)と誘電損失($\alpha_d$)の周波数依存性．}
     \label{fig:loss_vs_freq}
 \end{figure}
 
-このグラフから，「高周波帯では誘電損失が支配的になる」という重要な結論が導かれます．周波数 $f$ が十分に高くなると，線形に増加する $\alpha_d$ が，緩やかに増加する $\alpha_c$ を必ず追い越すためです．例えばFR-4（丸印）を見ると，25 GHzでは誘電損失 $\alpha_d$（約 \SI{7.5}{\deci\bel/100mm}）が，導体損失 $\alpha_c$（約 \SI{1.5}{\deci\bel/100mm}）を遥かに上回っていることが一目瞭然です．
+\section{高周波帯で誘電損失が支配的になる物理的理由}
+図\ref{fig:loss_vs_freq}が示すように，周波数 $f$ が高くなると，線形に増加する誘電損失 $\alpha_d$ が，緩やかにしか増加しない導体損失 $\alpha_c$ を必ず追い越します．これが，高周波信号伝送において，$\tan\delta$ の小さい低損失材料の選定が極めて重要になる物理的な理由です．
 
-\section{界面効果と実効的導電率}
-損失分離において，導体損失 $\alpha_c$ の理論計算は「バルクの導電率 $\sigma$」を用いて行われます．しかし，ミリ波のような極めて高い周波数帯では，銅箔の「表面」と「界面」の状態が無視できない影響を及ぼします．
+\section{FR-4の利用限界と低損失材料の戦略的価値}
+FR-4は低周波域ではコスト面の利点から多用されますが，\SI{20}{\giga\hertz}を超える領域では誘電損失が急激に増大し，信号品質の維持が困難になります．数十Gbpsの高速デジタル伝送やミリ波回路では，$\tan\delta$ の増加勾配が緩やかな低損失材料の採用が，システムの性能を保証する上で不可欠な戦略となります．
 
+% ===================================================================
+\chapter{測定精度と不確かさの評価}
+% ===================================================================
+BCDR法による精密測定といえども，様々な誤差要因が存在します．その影響を理解し，制御することが高精度な評価には不可欠です．
+
+\section{最大の誤差要因：エアギャップの影響}
+BCDRの導体板と測定サンプルとの間に生じる，ミクロンレベルのわずかな隙間「エアギャップ」は，最大の誤差要因です\cite{IEEE:BCDR220GHz}．この隙間は，比誘電率が1で損失がゼロの微小なコンデンサがサンプルと直列に接続されたかのような影響を与えます．
+これにより，測定される実効的な比誘電率 $\epsilon_r$ は真の値よりも低く，実効的な誘電正接 $\tan\delta$ も，特に低損失材料では真の値より著しく低く見積もられてしまいます．例えば，厚さ\SI{50}{\micro\meter}の基板に対し\SI{5}{\micro\meter}のエアギャップが存在するだけで，$\tan\delta$ が20\%以上も過小評価されるという報告もあります．
+
+\section{高周波域における測定限界：不要モードと放射損失}
+高周波になるほど，測定はより困難になります．
 \begin{itemize}
-    \item \textbf{表面粗さの影響の再考}:
-    第2章で述べた通り，表面粗さは電流経路を長くし，損失を増大させます．この効果をシミュレーションモデルに組み込む際，例えばHurayモデルやGroisseモデルが用いられます．これらのモデルは，実効的に「見かけの導電率」を低下させる，あるいは表面インピーダンスを増加させる形で損失増大を表現します．
-    
-    \item \textbf{界面の化学的影響}:
-    基板製造プロセスにおいて，銅箔と誘電体樹脂の接着強度を確保するため，銅箔表面には酸化処理やシランカップリング剤による化学処理が施されます．この数nmから数十nmの薄い「界面層」は，純粋な銅とも誘電体とも異なる，導電率が低く損失の大きい層です．
-    ミリ波帯では表皮深さがサブミクロンオーダーにまで浅くなるため，電流がこの界面層を流れる割合が増加し，バルク導電率から予測されるよりも大きな損失が生じる原因となります．
+    \item \textbf{不要モード（スプリアス）の発生:} 周波数が高くなると，目的のTM\textsubscript{0m0}モード以外に，TEモードやハイブリッドモードといった不要な共振モードが発生しやすくなります．これらが目的のモードと周波数的に近接すると，モードカップリングを起こして共振ピークを歪ませ，Q値の正確な測定を妨げます．
+    \item \textbf{放射損失:} 共振器は理想的には閉じた系ですが，実際には側面（開放端）からわずかに電磁波が放射されます．周波数が高くなり波長が短くなると，この放射損失が無視できなくなります．放射損失は導体損失や誘電損失とは別の損失メカニズムであり，これを材料損失と誤認しないよう注意が必要です．
 \end{itemize}
-したがって，超高周波領域での精密な損失モデリングは，単純なバルク導電率だけでなく，これらの界面効果を考慮した「実効的導電率」や界面インピーダンスの概念を導入する必要があります．
+これらの影響が顕著になる周波数帯では，測定データを除外するなどの判断が必要となります．
 
-\section{FR-4の利用限界と材料選定の重要性}
-図 \ref{fig:loss_vs_freq} は，汎用基板材料であるFR-4がどの周波数帯まで利用可能かの評価にも有用です．
+\section{測定系のキャリブレーションと再現性の確保}
+VNA自体の精度を保証するためのキャリブレーションはもちろんのこと，BCDR治具の組み立て再現性も重要です．特にエアギャップの量を一定に保つため，サンプルを固定する際の締め付けトルクを管理するなど，測定手順を標準化することが，信頼性の高いデータを取得するための鍵となります．
 
-FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失が比較的小さく，コスト面の利点から多くのアプリケーションで採用されます．しかし，周波数が高くなるにつれて誘電損失 $\alpha_d$ が急激に増大し，\SI{20}{\giga\hertz}を超える領域では，10cmの伝送路だけで信号パワーが半分以下（\SI{-3}{\deci\bel}以上）になるほどの大きな損失を示します．
+% ===================================================================
+\chapter{超高周波領域における界面効果}
+% ===================================================================
+ミリ波帯のように表皮深さがサブミクロンオーダーにまで浅くなると，導体の「バルク特性」だけでなく，銅箔と誘電体の「界面」の状態が損失に無視できない影響を及ぼします．
 
-これに対し，低損失材料（三角印）は，$\alpha_d$ の絶対値と周波数に対する増加勾配の両方が劇的に小さく抑えられています．\SI{25}{\giga\hertz}においても，全損失はFR-4の半分以下です．
+\section{表面粗さモデルの高度化（Hurayモデル等）}
+単純な経路長増大モデルでは，特に微細な凹凸構造による損失を正確に表現できません．そこで，より物理的な現実に即したモデルが提案されています．
+代表的なものが，雪玉が積み重なった構造を仮定する\textbf{Hurayモデル}です．このモデルは，電流が微小な球体（雪玉）の表面を流れると仮定することで，単純な凹凸だけでなく，半球状の突起が作る局所的な磁界集中効果を考慮に入れることができます．これにより，特にマット面（接着面）の複雑な構造が引き起こす損失増大を，より正確に予測することが可能になります．
 
-この比較から，「どの周波数帯まで利用できるか」は，そのシステムが許容できる「損失マージン」に依存しますが，数十Gbpsの高速デジタル伝送や\SI{20}{\giga\hertz}を超えるマイクロ波回路では，FR-4の使用は現実的ではなく，低損失材料の選定が伝送品質を確保する上で不可欠であることが明確に示されています．
+\section{銅箔-誘電体界面の化学的影響と実効的導電率}
+基板製造プロセスでは，銅箔と樹脂の接着強度を確保するため，銅箔表面に酸化処理（黒化処理）やシランカップリング剤による化学処理が施されます．この数nmから数十nmの薄い「界面層」は，純粋な銅とも誘電体とも異なり，導電率が低く損失の大きい層です．
+ミリ波帯では電流がこの界面層を流れる割合が増加するため，銅のバルク導電率から予測されるよりも大きな損失が生じる原因となります．精密な損失モデリングは，この界面層の特性を考慮した「実効的導電率」の概念を導入する必要があります．
+
+\section{今後の課題：界面特性を含めた統合的損失モデルの構築}
+今後の超高周波回路設計においては，バルクの誘電特性 ($\epsilon_r, \tan\delta$) と導体特性 ($\sigma$) に加え，表面粗さの物理形状と界面の化学的特性を統合した，より高精度な損失モデルの構築が重要な研究課題となります．
 
 \clearpage
 % ===================================================================
-\part{質疑応答への準備}
+\part{総合的理解度と質疑応答への準備}
 % ===================================================================
 
+% ===================================================================
 \chapter{想定問答集}
-上記1〜9章の知識に基づき，あなたの研究発表\cite{Yanagihara2025}で教授から投げかけられそうな専門的で鋭い質問を10個想定し，それぞれに対する模範解答を作成します．
+% ===================================================================
+本研究の理解度を深め，あらゆる角度からの質問に論理的かつ的確に応答できるよう，基礎的な概念から応用的・発展的な内容までを網羅した想定問答集を作成します．
 
+\section{基礎概念に関する問答}
 \begin{description}
-    \item[Q1.] \textbf{なぜ単純な伝送線路法（TL法）ではなく，わざわざBCDRのような共振器法を用いるのですか？その本質的な利点は何ですか？}
-    \item[A1.] はい．TL法は信号の減衰定数 $\alpha$ を直接測定しますが，今回測定対象としたMEGTRON6\cite{Yanagihara2025}のような超低損失材料では $\alpha$ が極めて小さく，VNAの測定誤差内で有意な減衰を得るには，非現実的な線路長が必要となります\cite{Optica:resonatorloss}．
-    共振器法は，電磁界エネルギーをQ値倍に共振器内部に蓄積させ\cite{PhysicsLibreTexts:TEMresonances}，材料の微小な損失（$\tan\delta$）を，「共振ピークの鋭さ（$Q=f_r/\Delta f$）」という，VNAで高精度に測定可能な周波数指標に高感度に変換します\cite{iMapsource:highfreqmeas}．この「損失の増幅効果」が，低損失材料の精密測定における共振器法の本質的な利点です．
+    \item[Q1.] \textbf{そもそも「損失」とは，物理的に何が起きている現象ですか？ なぜ高周波になると，損失が問題になるのでしょうか？}
+    \item[A1.] はい．「損失」とは，伝送線路を伝わる電気信号のエネルギーが，意図せず「熱」に変わってしまう現象を指します．
+    高周波になると問題になる理由は2つあります．第一に，周波数が高くなるほど，誘電損失（基板の樹脂が原因）や導体損失（銅箔が原因）といった熱に変わるメカニズムがより活発に働くため，損失の絶対量が増加します．第二に，デジタル信号は高速化（高周波化）するほど，信号の波形がなまりやすくなります．損失が大きいと，この波形のなまりが酷くなり，「0」と「1」の区別がつかなくなって通信エラーを引き起こすため，高周波ほど深刻な問題となります．
 
-    \item[Q2.] \textbf{導体表面の粗さ（Roughness）が損失を増やす物理的メカニズムを，表皮深さ（Skin Depth）と関連付けて説明してください．}
-    \item[A2.] はい．高周波では表皮効果により電流が表面に集中し，その深さ $\delta_s$ は $1/\sqrt{f}$ に比例して浅くなります\cite{YouTube:SkinEffect}．周波数が高くなり，$\delta_s$ が銅箔の表面粗さ（数\si{\micro\meter}）と同等以下になると，主に2つのメカニズムで損失が増大します\cite{ElectronicsOrg:2020}．
-    第一に，電流が粗さの山谷の地形に沿って流れるため，実効的な電流経路長が平滑な場合より増大し，抵抗が増加します\cite{PolarInstruments:2025}．
-    第二に，粗さの「谷」部分では，電流が谷底に集中し，両側の壁を流れる電流との近接効果によって局所的な磁界集中が発生します．この強まった磁界が，さらに強力な渦電流（損失）を誘導するためです．
+    \item[Q2.] \textbf{なぜ損失を「導体損失」と「誘電損失」の2つに『分離』して考える必要があるのですか？ 全体の損失だけを見ていては，なぜ不十分なのでしょうか？}
+    \item[A2.] それは，損失の原因を正確に特定し，適切な対策を打つためです．例えば，ある基板の全体損失が大きい場合，その原因が「銅箔の表面の粗さ」なのか，それとも「基板の樹脂材料の特性」なのかを切り分けなければ，改善のしようがありません．
+    導体損失が原因であれば，より表面が平滑な銅箔を採用するべき，という結論になります．一方で，誘電損失が原因であれば，より高性能な低損失材料に変更するべき，となります．このように，原因によって対策が全く異なるため，損失をその物理的な起源ごとに分離して評価することが，材料開発や回路設計において不可欠なのです．
 
-    \item[Q3.] \textbf{あなたのBCDR測定系において，$\epsilon_r$ や $\tan\delta$ の測定精度を左右する，最大の誤差要因は何だと考えますか？}
-    \item[A3.] エアギャップ（Air Gap），すなわちBCDRの導体板と測定サンプル（基板）との間に生じる，ミクロンレベルのわずかな隙間だと考えます\cite{IEEE:BCDR220GHz}．
-    このエアギャップは，比誘電率が1で損失がゼロの微小なコンデンサが，サンプルと直列に接続されたかのような影響を与えます．これにより，特にMEGTRON6のような高誘電率・低損失材料では，測定される実効的な $\epsilon_r$ と $\tan\delta$ は，真の値よりも著しく低く見積もられてしまいます\cite{IEEE:BCDR220GHz}．測定時には，このギャップを最小化するよう，均一な圧力を加える機構が重要になります．
-
-    \item[Q4.] \textbf{発表スライド9ページ\cite{Yanagihara2025}では，高周波側で共振ピークの形が崩れていますが，これはなぜですか？なぜそのデータを計算から除外したのですか？}
-    \item[A4.] ご指摘の通り，高周波領域でピークのQ値が低下し，形状が崩れています．これは，MEGTRON6の材料特性が劣化したのではなく，測定系（BCDR）の限界によるものだと考えています．
-    具体的には，(1)目的の TM\textsubscript{0m0} モード\cite{IEEE:BCDR220GHz}以外の，TEモードやハイブリッドモードといった不要なスプリアス共振が発生し，目的のモードと干渉（モードカップリング）を起こしている可能性，(2)周波数が高くなり波長が短くなったことで，共振器の側面（開放端）からの放射損失が無視できなくなった可能性，が考えられます．
-    これらの不要な損失要因が含まれたデータでは，材料本来の $\tan\delta$ を正確に分離・算出することができません．そのため，ピーク形状が理論通り明確で，不要な損失の影響が小さいと判断できる周波数帯のデータのみを使用しました\cite{Yanagihara2025}．
-
-    \item[Q5.] \textbf{損失の分離式\cite{Yanagihara2025}は $1/Q = 1/Q_c + 1/Q_d$ と「逆数の和」で表されます．なぜQそのものの和 $Q = Q_c + Q_d$ ではないのですか？}
-    \item[A5.] それは，Q値の物理的定義 $Q = \omega W_{\mathrm{stored}} / P_{\mathrm{loss}}$\cite{UltrasonicResonators:Qfactor}と，物理法則である「電力の加法性」に基づいています\cite{ElectricalTechnology:Qfactor}．
-    共振器全体の消費電力 $P_{\mathrm{total}}$ は，導体損失 $P_c$ と誘電損失 $P_d$ の単純な和で表されます（$P_{\mathrm{total}} = P_c + P_d$）．
-    この式の両辺を，系に蓄積されるエネルギー $\omega W_{\mathrm{stored}}$ で割ると，$P_{\mathrm{loss}} / (\omega W_{\mathrm{stored}})$ という項は $1/Q$ と定義されます\cite{EngLibreTexts:Qfactor_fund}．
-    したがって，$1/Q_{\mathrm{total}} = 1/Q_c + 1/Q_d$ となり，「$1/Q$（規格化された損失率）」が，消費電力と同様の加法性を持つためです．
-
-    \item[Q6.] \textbf{あなたの研究の最終目的は「表面粗さの影響」を調べること\cite{Yanagihara2025}ですが，今回の発表では「まず誘電損失を測定」しています．この論理的な繋がりを説明してください．}
-    \item[A6.] はい．最終的に知りたいのは，表面粗さを含む導体損失 $Q_c$ です．しかし，VNAで測定できるのは全体の損失 $Q_0$ だけであり，損失分離式 $1/Q_0 = 1/Q_c + 1/Q_d$ には $Q_c$ と $Q_d$ という2つの未知数が含まれます．
-    そこで，この問題を解決するために，2段階の測定戦略をとります．
-    \textbf{第1段階}が今回の発表内容で，表面が極めて平滑な「標準銅箔」と誘電体コア材で基準共振器を構成し，表面粗さの影響を完全に排除した状態で，材料固有の真の誘電損失 $Q_d$（すなわち $\tan\delta$）を精密に決定します．
-    \textbf{第2段階}として，その既知となった $Q_d$ を利用して，本当に評価したい「粗さのある基板」の全体の損失 $Q_0$ から $1/Q_c = 1/Q_0 - 1/Q_d$ の関係を用いて，表面粗さの影響を含んだ真の導体損失 $Q_c$ を正確に分離します．
-    このように，まず $\tan\delta$ を確定させることが，最終目的である導体損失評価の論理的な前提となるためです．
-
-    \item[Q7.] \textbf{BCDR法では TM\textsubscript{0m0} モードを利用するとのことですが，このモードが誘電体シートの測定に適しているのはなぜですか？}
-    \item[A7.] TM\textsubscript{0m0} モードは，その電磁界分布に特徴があります．電界 $E$ が基板に対して垂直な成分（$E_z$）のみを持ち，磁界 $H$ が同心円状の成分（$H_\phi$）のみを持つ，非常にシンプルな円筒対称のモードです\cite{ScholarsMine:TM010}．
-    基板材料の $\epsilon_r$ や $\tan\delta$ は，主に電界によって決まる物性です．$E_z$ が基板全面に一様に印加されるこのモードは，基板の $z$ 方向（厚さ方向）の誘電特性を測定する上で，最も理想的かつ解析しやすい電磁界分布であるため，BCDR法で選択的に利用されます\cite{IEEE:BCDR220GHz}．
-    
-    \item[Q8.] \textbf{複素誘電率 $\epsilon = \epsilon' - \mi\epsilon''$ の「虚数部 $\epsilon''$」とは，物理的に何を意味しますか？}
-    \item[A8.] 複素誘電率は，物質に印加した時間変化する電界 $E$ と，それに対する物質の応答（電束密度 $D$）の間の「位相の遅れ」を表現したものです\cite{VTechWorks:diel_perf}．
-    実数部 $\epsilon'$ は電界と同位相の応答で，エネルギーを「蓄積」する能力（$\epsilon_r$）を意味します\cite{Microwaves101:permittivity}．
-    虚数部 $\epsilon''$ は電界と90°遅れた応答で，分極が電界に追従しきれない\cite{wiki:dielectric}ことによる「摩擦」や「抵抗」を意味し，1サイクルあたりに熱として「損失」されるエネルギーの大きさを表します\cite{Microwaves101:permittivity}．
-
-    \item[Q9.] \textbf{減衰定数 $\alpha$ と Q値 の関係式 $\alpha = \beta / (2Q)$ を導出する際，「群速度 $v_g$」と「位相速度 $v_p$」がどのように関わってくるのか説明してください．}
-    \item[A9.] はい．この式の厳密な導出は，Qのエネルギー定義 $Q = \omega W'_{\mathrm{stored}} / P'_{\mathrm{loss}}$ から始まります．ここで，電力 $P$ はエネルギーが伝わる速度，すなわち群速度 $v_g$ で蓄積エネルギー $W'_{\mathrm{stored}}$ を運ぶため，$P = W'_{\mathrm{stored}} \times v_g$ と表されます\cite{IEEE:alphaQrelation}．
-    これらを整理すると，厳密な関係式 $\alpha = \omega / (2 Q v_g)$ が得られます．ここで $v_g = \dd\omega / \dd\beta$ です\cite{Testbook:group_phase}．
-    一方，位相速度は $v_p = \omega / \beta$ です\cite{Testbook:group_phase}．もし媒質が「無分散」で $v_g = v_p$ と近似できる場合にのみ\cite{EngLibreTexts:TLT}，$\alpha = \omega / (2Q (\omega/\beta))$ となり，ご質問の $\alpha = \beta / (2Q)$ という簡略化された関係式が導出されます．
-
-    \item[Q10.] \textbf{VNAはどのようにしてSパラメータの「位相」を測定しているのですか？ ギガヘルツの波の位相を直接測るのは困難ではないですか？}
-    \item[A10.] 非常に良いご質問です．VNAはギガヘルツの位相を\textbf{直接}測定しているわけではありません．\textbf{ヘテロダイン検波}という原理を用いています\cite{AllAboutCircuits:VNA}．
-    \begin{enumerate}
-        \item まず，VNAは基準信号 $a_1$ を「R受信機」で，透過信号 $b_2$ を「T受信機」で受けます\cite{Keysight:VNA}．
-        \item VNA内部の局部発振器（LO）とこれら2つの信号を「混合（Mix）」します．
-        \item これにより，両方の受信機で，例えば数\si{\mega\hertz}の非常に低い\textbf{中間周波数（IF）}の信号が生成されます\cite{NI:VNA}．
-        \item 重要なのは，このIF信号が，元のギガヘルツ信号の「振幅情報」と「位相情報」を\textbf{そのまま保持している}ことです．
-        \item VNAは，この測定しやすいIF信号の「R受信機のIF位相」と「T受信機のIF位相」の\textbf{位相差}をデジタル的に精密測定します．これが $\angle S_{21}$ となります．
-    \end{enumerate}
-    つまり，ギガヘルツの位相差を，測定可能なIF周波数の位相差に「変換」して測定しています．
+    \item[Q3.] \textbf{「比誘電率 ($\epsilon_r$)」と「誘電正接 ($\tan\delta$)」は，基板の性能指標としてよく聞きますが，この2つは何が違うのですか？}
+    \item[A3.] はい．この2つは役割が全く異なります．
+    \textbf{比誘電率 ($\epsilon_r$)} は，主に「信号の伝わる速さ」と「回路の物理的なサイズ」を決定します．$\epsilon_r$ が高いほど信号は遅くなります．いわば，信号が伝わる「道の舗装状態」を決めるパラメータです．
+    一方，\textbf{誘電正接 ($\tan\delta$)} は，信号が伝わる際の「エネルギー損失の大きさ」を決定します．$\tan\delta$ が大きいほど，信号のエネルギーが熱として失われ，信号が弱まります．これは「道の燃費」に相当するパラメータです．
 \end{description}
+
+\section{測定原理に関する問答}
+\begin{description}
+    \item[Q4.] \textbf{なぜ測定にVNA（ベクトルネットワークアナライザ）を使うのですか？ オシロスコープで波形を見るだけでは，損失は分からないのでしょうか？}
+    \item[A4.] はい，オシロスコープでは正確な損失測定は困難です．高周波の世界では，信号が単純に弱まるだけでなく，インピーダンスの不整合によって「反射」が起こります．
+    VNAは，自身が発生させた基準となる波に対して，被測定物から「どれだけ反射してきたか（$S_{11}$）」と「どれだけ透過してきたか（$S_{21}$）」を，振幅と位相の両方で極めて精密に測定できる装置です．損失は，この透過してきた波（$S_{21}$）がどれだけ減少したかを測定することで評価します．このように，入力波と出力波を比較し，そのベクトル的な比率を測定するというVNAの基本原理が，損失評価には不可欠となります．
+
+    \item[Q5.] \textbf{共振器を使うと，なぜ感度が良くなるのですか？ もっと簡単なイメージで教えてください。}
+    \item[A5.] はい．これは「ブランコをタイミング良く押し続けると，少しの力でも非常に大きく揺れる」のと同じ原理です．
+    共振器は，特定の周波数の電磁波だけを内部に閉じ込めて何千回と往復させ，エネルギーを蓄積します．材料が持つごくわずかな損失は，この「1回の往復」ごとにエネルギーを少しずつ奪っていきますが，何千回も往復させることでその微小な損失が積み重なり，VNAでも観測できるほど大きな変化，すなわち「共振のピークが鈍る」という形で現れます．
+    このように，共振器は「時間を利用して損失の影響を増幅する装置」とイメージできます．
+
+    \item[Q6.] \textbf{なぜ単純な伝送線路法（TL法）ではなく，わざわざBCDRのような共振器法を用いるのですか？その本質的な利点は何ですか？}
+    \item[A6.] はい．TL法は信号の減衰定数 $\alpha$ を直接測定しますが，今回測定対象としたMEGTRON6\cite{Yanagihara2025}のような超低損失材料では $\alpha$ が極めて小さく，VNAの測定誤差内で有意な減衰を得るには，非現実的な線路長が必要となります．
+    共振器法は，電磁界エネルギーをQ値倍に共振器内部に蓄積させ，材料の微小な損失（$\tan\delta$）を，「共振ピークの鋭さ（$Q=f_r/\Delta f$）」という，VNAで高精度に測定可能な周波数指標に高感度に変換します．この「損失の増幅効果」が，低損失材料の精密測定における共振器法の本質的な利点です．
+
+    \item[Q7.] \textbf{VNAはどのようにしてSパラメータの「位相」を測定しているのですか？ ギガヘルツの波の位相を直接測るのは困難ではないですか？}
+    \item[A7.] 非常に良いご質問です．VNAはギガヘルツの位相を\textbf{直接}測定しているわけではなく，\textbf{ヘテロダイン検波}という原理を用いています\cite{AllAboutCircuits:VNA}．VNAは，基準信号と測定信号を，内部の局部発振器と混合することで，元のギガヘルツ信号が持つ位相差情報をそのまま保持した，扱いやすい低い\textbf{中間周波数（IF）}の信号に変換します．VNAは，このIF信号間の位相差をデジタル的に精密測定することで，$\angle S_{21}$ を算出しています．
+    
+    \item[Q8.] \textbf{BCDR法では TM\textsubscript{0m0} モードを利用するとのことですが，このモードが誘電体シートの測定に適しているのはなぜですか？}
+    \item[A8.] TM\textsubscript{0m0} モードは，電界 $E$ が基板に対して垂直な成分（$E_z$）のみを持ち，磁界 $H$ が同心円状の成分（$H_\phi$）のみを持つ，非常にシンプルな円筒対称のモードです\cite{ScholarsMine:TM010}．基板材料の $\epsilon_r$ や $\tan\delta$ は，主に電界によって決まる物性です．$E_z$ が基板全面に一様に印加されるこのモードは，基板の厚さ方向の誘電特性を測定する上で，最も理想的かつ解析しやすい電磁界分布であるため，選択的に利用されます．
+\end{description}
+
+\section{物理機構と理論に関する問答}
+\begin{description}
+    \item[Q9.] \textbf{導体表面の粗さ（Roughness）が損失を増やす物理的メカニズムを，表皮深さ（Skin Depth）と関連付けて説明してください．}
+    \item[A9.] はい．高周波では表皮効果により電流が表面の薄い層（表皮深さ $\delta_s$）に集中します．$\delta_s$ が銅箔の表面粗さと同等以下になると，主に2つのメカニズムで損失が増大します．第一に，電流が粗さの凹凸に沿って流れるため，実効的な電流経路長が増大し，抵抗が増加します．第二に，粗さの「谷」部分では，電流が集中し局所的な磁界が強まります．この強まった磁界が，さらに強力な渦電流（損失）を誘導するためです．
+
+    \item[Q10.] \textbf{複素誘電率 $\epsilon = \epsilon' - \mi\epsilon''$ の「虚数部 $\epsilon''$」とは，物理的に何を意味しますか？}
+    \item[A10.] 複素誘電率は，物質に印加した電界 $E$ と，それに対する物質の応答（電束密度 $D$）の間の「位相の遅れ」を表現したものです．実数部 $\epsilon'$ は電界と同位相の応答で，エネルギーを「蓄積」する能力（$\epsilon_r$）を意味します．虚数部 $\epsilon''$ は電界と90°遅れた応答で，分極が電界に追従しきれないことによる「摩擦」に相当し，1サイクルあたりに熱として「損失」されるエネルギーの大きさを表します．
+
+    \item[Q11.] \textbf{損失の分離式は $1/Q = 1/Q_c + 1/Q_d$ と「逆数の和」で表されます．なぜQそのものの和 $Q = Q_c + Q_d$ ではないのですか？}
+    \item[A11.] それは，Q値のエネルギー定義 $Q = \omega W_{\mathrm{stored}} / P_{\mathrm{loss}}$ と，物理法則である「電力の加法性」に基づいています．共振器全体の消費電力 $P_{\mathrm{total}}$ は，導体損失 $P_c$ と誘電損失 $P_d$ の単純な和で表されます．この式の各項をQ値の定義を用いて書き換えると，$1/Q_{\mathrm{total}} = 1/Q_c + 1/Q_d$ という関係が導かれます．つまり，「$1/Q$（損失率）」が，消費電力と同様の加法性を持つためです．
+
+    \item[Q12.] \textbf{減衰定数 $\alpha$ と Q値 の関係式 $\alpha = \beta / (2Q)$ は，どのように導出されるのですか？}
+    \item[A12.] はい．この式の厳密な導出は，Qのエネルギー定義から始まります．伝送線路を伝わる電力 $P$ と単位長さあたりの消費電力 $P'_{\mathrm{loss}}$ の間には $P'_{\mathrm{loss}}=2\alpha P$ という関係があります．また，電力 $P$ はエネルギーが伝わる速度，すなわち群速度 $v_g$ で運ばれるため，$P = W'_{\mathrm{stored}} \times v_g$ と表されます．これらを整理すると，厳密な関係式 $\alpha = \omega / (2 Q v_g)$ が得られます．ここで媒質が「無分散」で群速度 $v_g$ と位相速度 $v_p=\omega/\beta$ が等しいと近似できる場合にのみ，ご質問の $\alpha = \beta / (2Q)$ という簡略化された関係式が導出されます．
+\end{description}
+
+\section{応用的・実践的な問答}
+\begin{description}
+    \item[Q13.] \textbf{あなたの研究の最終目的は「表面粗さの影響」を調べることですが，今回の発表では「まず誘電損失を測定」しています．この論理的な繋がりを説明してください．}
+    \item[A13.] はい．最終的に知りたいのは導体損失 $Q_c$ ですが，測定できるのは全体の損失 $Q_0$ だけであり，分離式 $1/Q_0 = 1/Q_c + 1/Q_d$ には2つの未知数が含まれます．そこで，まず表面が極めて平滑な「基準系」を用いて，表面粗さの影響を排除した状態で材料固有の真の誘電損失 $Q_d$（すなわち $\tan\delta$）を精密に決定します．次に，その既知となった $Q_d$ を利用して，評価対象である「粗さのある基板」の全体の損失 $Q_0$ から $Q_c$ を正確に分離します．このように，まず $\tan\delta$ を確定させることが，最終目的の論理的な前提となります．
+
+    \item[Q14.] \textbf{あなたのBCDR測定系において，$\epsilon_r$ や $\tan\delta$ の測定精度を左右する，最大の誤差要因は何だと考えますか？}
+    \item[A14.] エアギャップ（Air Gap），すなわちBCDRの導体板と測定サンプルとの間に生じる，ミクロンレベルのわずかな隙間だと考えます．このエアギャップは，比誘電率が1のコンデンサが直列に挿入されたかのような影響を与え，測定される実効的な $\epsilon_r$ と $\tan\delta$ を，真の値よりも著しく低く見積もらせる原因となります．
+
+    \item[Q15.] \textbf{BCDR測定において，エアギャップの影響を最小化するために具体的にどのような工夫をすべきですか？また，その影響を補正する数学的な手法は存在しますか？}
+    \item[A15.] はい．まず物理的な工夫として，(1)BCDR治具の導体表面を鏡面研磨し平坦度を上げること，(2)サンプル全面に均一な圧力がかかるよう，トルク管理されたネジで締め付けること，が重要です．
+    数学的な補正手法も存在します．エアギャップを厚さ $d_g$ の空気層（$\epsilon_r=1$）とモデル化し，サンプル（厚さ $d_s$, 比誘電率 $\epsilon_s$）と直列の合成容量として実効誘電率を計算する手法が基本です．さらに高度な手法として，複数の厚さのサンプルを測定し，エアギャップの影響を外挿して取り除く方法や，電磁界シミュレーションを用いてエアギャップの影響を定量評価し，測定値を補正（de-embedding）する方法があります．
+
+    \item[Q16.] \textbf{発表スライドでは，高周波側で共振ピークの形が崩れていますが，これはなぜですか？なぜそのデータを計算から除外したのですか？}
+    \item[A16.] ご指摘の通り，高周波領域でピーク形状が崩れています．これは材料特性の劣化ではなく，測定系の限界によるものだと考えています．具体的には，(1)目的のTM\textsubscript{0m0}モード以外の不要なスプリアス共振が発生し干渉を起こしている可能性，(2)周波数が高くなり波長が短くなったことで，共振器の側面からの放射損失が無視できなくなった可能性，が考えられます．これらの不要な損失要因が含まれたデータでは，材料本来の $\tan\delta$ を正確に算出できないため，ピーク形状が理論通り明確な周波数帯のデータのみを使用しました．
+
+    \item[Q17.] \textbf{あなたの研究では導体損失と誘電損失を分離していますが，ミリ波帯では放射損失も無視できない場合があります．BCDR法において，放射損失はどのように抑制あるいは評価できると考えますか？}
+    \item[A17.] はい．BCDRは上下を導体で挟んだ「閉鎖型」の共振器であるため，マイクロストリップラインのような「開放型」の構造に比べて，原理的に放射損失が極めて小さいという利点があります．放射は主に共振器の側面（開放端）から起こりますが，特に今回のような高誘電率基板では，電磁界が基板内部によく閉じ込められるため，その影響はさらに抑制されます．
+    評価方法としては，直径の異なる複数のBCDRで同一材料を測定し，放射損失の大きさ（寸法に依存）と材料損失（寸法に依存しない）を分離する手法や，電磁界シミュレーションによって放射損失の寄与を理論的に計算し，測定結果から差し引く方法が考えられます．
+
+    \item[Q18.] \textbf{表面粗さの損失への寄与をモデル化する際，単純な経路長増大だけでなく，Hurayモデルのような球体を用いたモデルが提案されているのはなぜですか？その物理的な妥当性は何ですか？}
+    \item[A18.] それは，単純な経路長増大（トポロジー効果）だけでは，特に銅箔のマット面（接着面）に見られる複雑な凹凸構造が引き起こす損失を説明しきれないためです．
+    Hurayモデルは，粗さの表面を「雪玉（微小な球体）の集合体」としてモデル化します．この物理的な妥当性は，電流が単に凹凸の表面をなぞるだけでなく，半球状の突起の周りに「密集」し，局所的な磁界集中を引き起こすという電磁気的な効果を表現できる点にあります．これにより，単純な経路長モデルでは捉えきれない，近接効果による損失増大をより正確に考慮することができ，特に凹凸が激しい表面の損失を高い精度で予測することが可能になります．
+\end{description}
+
+\clearpage
+% ===================================================================
+\appendix
+\part*{付録}
+\addcontentsline{toc}{part}{付録}
+% ===================================================================
+
+% ===================================================================
+\chapter{物理指標の相互関係に関する数学的証明}
+% ===================================================================
+
+\section{\texorpdfstring{減衰定数 $\alpha$ と Q値 の関係式 $\alpha = \beta / (2Q)$ の証明}{減衰定数とQ値の関係式の証明}}
+この式は，伝送線路における\textbf{空間的減衰}（$\alpha$）と，共振器における\textbf{時間的減衰}（$Q$）を結びつける重要な関係式です．Q値のエネルギー定義から導出できます．
+\begin{enumerate}
+    \item \textbf{Q値の定義（単位長さあたり）:}
+    $Q = \omega \frac{W'_{\mathrm{stored}}}{P'_{\mathrm{loss}}}$
+    ここで，$W'_{\mathrm{stored}}$ は単位長さあたりの蓄積エネルギー，$P'_{\mathrm{loss}}$ は単位長さあたりの消費電力です\cite{UltrasonicResonators:Qfactor}．
+
+    \item \textbf{$\alpha$ と $P'_{\mathrm{loss}}$ の関係:}
+    伝送線路を伝わる電力 $P(z)$ は $P(z) = P_0 e^{-2\alpha z}$ と減衰します．単位長さあたりの消費電力は $P'_{\mathrm{loss}} = -\frac{\dd P}{\dd z} = 2\alpha P(z)$ となります．
+
+    \item \textbf{$P$ と $W'_{\mathrm{stored}}$ の関係:}
+    電力 $P$ は，単位長さあたりのエネルギー $W'_{\mathrm{stored}}$ が群速度 $v_g$ で運ばれるエネルギーの流量なので，$P = W'_{\mathrm{stored}} \times v_g$ と書けます\cite{IEEE:alphaQrelation}．
+
+    \item \textbf{式の結合と整理:}
+    Step 1 のQの式に，Step 2, 3 の関係を代入すると，
+    $Q = \omega \frac{W'_{\mathrm{stored}}}{2\alpha (W'_{\mathrm{stored}} \times v_g)} = \frac{\omega}{2\alpha v_g}$
+    $\alpha$ について解くと，厳密な関係式 $\alpha = \frac{\omega}{2 Q v_g}$ が得られます．
+
+    \item \textbf{低分散近似:}
+    媒質が低分散で，群速度 $v_g = \dd\omega / \dd\beta$ と位相速度 $v_p = \omega / \beta$ がほぼ等しい ($v_g \approx v_p$) と近似できる場合\cite{EngLibreTexts:TLT}，
+    $\alpha \approx \frac{\omega}{2 Q v_p} = \frac{\omega}{2 Q (\omega / \beta)} = \frac{\beta}{2Q}$
+    となり，証明が完了します．
+\end{enumerate}
+
+\section{\texorpdfstring{損失分離式 $1/Q = 1/Q_c + 1/Q_d$ の物理的背景と導出}{損失分離式の物理的背景と導出}}
+この式は，物理の基本法則である「\textbf{エネルギー保存則（あるいは電力の加法性）}」に基づいています\cite{ElectricalTechnology:Qfactor}．
+\begin{enumerate}
+    \item 共振器系全体の\textbf{全消費電力 $P_{\mathrm{total}}$} は，各損失要因で消費される電力の\textbf{単純な和}で表されます．
+    $P_{\mathrm{total}} = P_c + P_d$
+    ここで $P_c$ は導体損失，$P_d$ は誘電損失による消費電力です．
+
+    \item Q値のエネルギー定義 $Q = \omega W_{\mathrm{stored}} / P_{\mathrm{loss}}$ を変形すると，$P_{\mathrm{loss}} = \omega W_{\mathrm{stored}} / Q$ となります．
+
+    \item この関係を，全体のQ値（無負荷Q $Q_0$），導体のQ値（$Q_c$），誘電体のQ値（$Q_d$）について立てます．
+    \begin{itemize}
+        \item $P_{\mathrm{total}} = \omega W_{\mathrm{stored}} / Q_0$
+        \item $P_c = \omega W_{\mathrm{stored}} / Q_c$
+        \item $P_d = \omega W_{\mathrm{stored}} / Q_d$
+    \end{itemize}
+    （ここで $W_{\mathrm{stored}}$ は系に蓄積される全エネルギーであり，全ての項で共通です）
+
+    \item これらの式を，Step 1 の電力の和の式に代入します．
+    $\frac{\omega W_{\mathrm{stored}}}{Q_0} = \frac{\omega W_{\mathrm{stored}}}{Q_c} + \frac{\omega W_{\mathrm{stored}}}{Q_d}$
+
+    \item 両辺の共通項 $\omega W_{\mathrm{stored}}$ を消去すると，
+    \begin{equation}
+        \frac{1}{Q_0} = \frac{1}{Q_c} + \frac{1}{Q_d}
+    \end{equation}
+    となり，証明が完了します．
+\end{enumerate}
+この式は，Q値そのものではなく，\textbf{$1/Q$（損失率）が，消費電力と同様に単純加算できる}物理量であることを示しています\cite{wiki:Qfactor}．
 
 \clearpage
 \begin{sloppypar}
@@ -743,39 +496,37 @@ FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失
 \begin{thebibliography}{99}
     \bibitem{Yanagihara2025} 5中間発表\_柳原.pdf
     \bibitem{wiki:dielectric} Dielectric - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Dielectric}
-    \bibitem{VTechWorks:diel_perf} Chapter 5 Dielectric Performance - VTechWorks, accessed Nov. 13, 2025, \url{https://vtechworks.lib.vt.edu/bitstream/handle/10919/40359/ch5.pdf}
     \bibitem{ACSPublications:2014} Exploring Strategies for High Dielectric Constant and Low Loss Polymer Dielectrics | The Journal of Physical Chemistry Letters - ACS Publications, accessed Nov. 13, 2025, \url{https://pubs.acs.org/doi/10.1021/jz501831q}
-    \bibitem{EnergySustainabilityDirectory:2025} Dielectric Polarization Mechanisms → Term - Energy → Sustainability Directory, accessed Nov. 13, 2025, \url{https://energy.sustainability-directory.com/term/dielectric-polarization-mechanisms/}
     \bibitem{wiki:permittivity} Permittivity - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Permittivity}
     \bibitem{Microwaves101:permittivity} Microwaves101 | Permittivity - Microwave Encyclopedia, accessed Nov. 13, 2025, \url{https://www.microwaves101.com/encyclopedias/permittivity}
-    \bibitem{YouTube:ComplexPermittivity} Defining Complex Permittivity - YouTube, accessed Nov. 13, 2025, \url{https://www.youtube.com/watch?v=pswL_Ce8ooE}
     \bibitem{Altium:2025} The Increasingly Important Role of Loss Tangents in PCB Laminates, accessed Nov. 13, 2025, \url{https://resources.altium.com/p/increasingly-important-role-loss-tangents-pcb-laminates}
-    \bibitem{OilTester:TanDelta} Tan Delta dielectric loss tangent angle definition, detection significance - Oil-tester.com, accessed Nov. 13, 2025, \url{https://www.oil-tester.com/tan-delta-dielectric-loss-tangent-angle-definition-detection-significance/}
     \bibitem{HVI:2019} TAN δ CABLE TESTING Overview \& Answers to Frequently Asked Questions - High Voltage Inc, accessed Nov. 13, 2025, \url{https://hvinc.com/wp-content/uploads/2019/11/HVI-TD-FAQ-WEB-2019.pdf}
     \bibitem{MDPI:2023} Applied Sciences | Free Full-Text | Analytical Calculation of the ..., accessed Nov. 13, 2025, \url{https://www.mdpi.com/2076-3417/13/22/12416}
-    \bibitem{AIFutureSchool:2025} Understanding the Skin Effect in High Frequency Conductors - AI-FutureSchool, accessed Nov. 13, 2025, \url{https://www.ai-futureschool.com/en/electrotechnics/understanding-skin-effect-in-high-frequency-conductors.php}
     \bibitem{InComplianceMagazine:2025} Skin Depth in Good Conductors - In Compliance Magazine, accessed Nov. 13, 2025, \url{https://incompliancemag.com/skin-depth-in-good-conductors/}
-    \bibitem{YouTube:SkinEffect} Skin Effect and Skin Depth Explained: Basics, Derivation, and Parameters - YouTube, accessed Nov. 13, 2025, \url{https://www.youtube.com/watch?v=xJvYwZb5Bvk}
     \bibitem{ElectronicsOrg:2020} Effect of Conductor Surface Roughness upon Measured Loss and Extracted Values of PCB Laminate Material Dissipation Factor, accessed Nov. 13, 2025, \url{https://www.electronics.org/system/files/technical_resource/E8%26S20_02.pdf}
     \bibitem{PolarInstruments:2025} Surface roughness effect on PCB trace attenuation / loss by Hammerstad Groisse and Huray snowball method - Polar Instruments, accessed Nov. 13, 2025, \url{https://www.polarinstruments.com/support/si/AP8155.html}
-    \bibitem{Ansys:Sparam} What Are S-parameters? - Ansys, accessed Nov. 13, 2025, \url{https://www.ansys.com/simulation-topics/what-are-s-parameters}
-    \bibitem{SierraCircuits:Sparam} S-parameters Measurement Using VNA | Sierra Circuits, accessed Nov. 13, 2025, \url{https://www.protoexpress.com/blog/s-parameters-measurement-vector-network-analyzer/}
-    \bibitem{Coilcraft:Sparam} S-Parameters for High Frequency Circuit Simulation | Coilcraft, accessed Nov. 13, 2025, \url{https://www.coilcraft.com/en-us/resources/application-notes/s-parameters-for-high-frequency-circuit-simulation/}
-    \bibitem{wiki:Sparam} Scattering parameters - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Scattering_parameters}
-    \bibitem{Keysight:VNA} VNA FAQ: An Introduction | Keysight Blogs, accessed Nov. 13, 2025, \url{https://www.keysight.com/blogs/en/tech/rfmw/2023/03/02/vna-faq-an-introduction}
     \bibitem{AllAboutCircuits:VNA} Understanding the Inner Workings of Vector Network Analyzers - Technical Articles, accessed Nov. 13, 2025, \url{https://www.allaboutcircuits.com/technical-articles/the-inner-workings-of-vector-network-analyzers-exploring-the-signal-source-and-receivers/}
-    \bibitem{NI:VNA} Introduction to Network Analyzer Measurements - ni, accessed Nov. 13, 2025, \url{http://download.ni.com/evaluation/rf/Introduction_to_Network_Analyzer_Measurements.pdf}
-    \bibitem{Anritsu:VNA} Understanding Vector Network Analysis Product Guide, accessed Nov. 13, 2025, \url{https://dl.cdn-anritsu.com/en-us/test-measurement/files/Application-Notes/Application-Note/11410-00724D.pdf}
     \bibitem{Warwick:resonator} Resonators - University of Warwick, accessed Nov. 13, 2025, \url{https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/imr_cdt/students/stephen_hogg/resonators/}
-    \bibitem{PhysicsStackExchange:EMresonance} Can there be resonance in electromagnetic waves? - Physics Stack Exchange, accessed Nov. 13, 2025, \url{https://physics.stackexchange.com/questions/354743/can-there-be-resonance-in-electromagnetic-waves}
     \bibitem{MIT:ResonantCavities} Resonant Cavities and Waveguides - MIT, accessed Nov. 13, 2025, \url{https://web.mit.edu/22.09/ClassHandouts/Charged%20Particle%20Accel/CHAP12.PDF}
     \bibitem{TaylorFrancis:Qfactor} Q factor | Definition, Equation, \& Facts | Britannica, accessed Nov. 13, 2025, \url{https://www.britannica.com/technology/Q-factor}
     \bibitem{wiki:Qfactor} Q factor - Wikipedia, accessed Nov. 13, 2025, \url{https://en.wikipedia.org/wiki/Q_factor}
+    \bibitem{IEEE:BCDR220GHz} Broadband Perpendicular Permittivity Measurements up to 220 GHz Using a Balanced-Type Circular Disk Resonator Without - IEEE Xplore, accessed Nov. 13, 2025, \url{https://ieeexplore.ieee.org/iel8/19/4407674/11006707.pdf}
+    \bibitem{ScholarsMine:TM010} Design of the TM010 Mode Cylindrical Cavity Resonator for PCB Dielectric Characterization - Scholars' Mine, accessed Nov. 13, 2025, \url{https://scholarsmine.mst.edu/cgi/viewcontent.cgi?article=7814&context=ele_comeng_facwork}
+    \bibitem{UltrasonicResonators:Qfactor} Quality factor (Q) (definition) - Ultrasonic Resonators, accessed Nov. 13, 2025, \url{https://www.ultrasonic-resonators.org/glossary/q1_dict.html}
+    \bibitem{IEEE:alphaQrelation} On "A relation between α and Q" | IEEE Journals \& Magazine, accessed Nov. 13, 2025, \url{https://ieeexplore.ieee.org/document/1443802/1000}
+    \bibitem{EngLibreTexts:TLT} 2.2: Transmission Line Theory - Engineering LibreTexts, accessed Nov. 13, 2025, \url{https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Microwave_and_RF_Design_II_-_Transmission_Lines_(Steer)/02:_Transmission_Lines/2.02:_Transmission_Line_Theory}
+    \bibitem{ElectricalTechnology:Qfactor} Q Factor in Electrical and Electronics Engineering, accessed Nov. 13, 2025, \url{https://www.electricaltechnology.org/2013/11/q-factor-in-electrical-and-electronics-engineering.html}
+    \bibitem{VTechWorks:diel_perf} Chapter 5 Dielectric Performance - VTechWorks, accessed Nov. 13, 2025, \url{https://vtechworks.lib.vt.edu/bitstream/handle/10919/40359/ch5.pdf}
+    \bibitem{EnergySustainabilityDirectory:2025} Dielectric Polarization Mechanisms → Term - Energy → Sustainability Directory, accessed Nov. 13, 2025, \url{https://energy.sustainability-directory.com/term/dielectric-polarization-mechanisms/}
+    \bibitem{YouTube:SkinEffect} Skin Effect and Skin Depth Explained: Basics, Derivation, and Parameters - YouTube, accessed Nov. 13, 2025, \url{https://www.youtube.com/watch?v=xJvYwZb5Bvk}
+    \bibitem{AIFutureSchool:2025} Understanding the Skin Effect in High Frequency Conductors - AI-FutureSchool, accessed Nov. 13, 2025, \url{https://www.ai-futureschool.com/en/electrotechnics/understanding-skin-effect-in-high-frequency-conductors.php}
+    \bibitem{Keysight:VNA} VNA FAQ: An Introduction | Keysight Blogs, accessed Nov. 13, 2025, \url{https://www.keysight.com/blogs/en/tech/rfmw/2023/03/02/vna-faq-an-introduction}
+    \bibitem{Anritsu:VNA} Understanding Vector Network Analysis Product Guide, accessed Nov. 13, 2025, \url{https://dl.cdn-anritsu.com/en-us/test-measurement/files/Application-Notes/Application-Note/11410-00724D.pdf}
+    \bibitem{NI:VNA} Introduction to Network Analyzer Measurements - ni, accessed Nov. 13, 2025, \url{http://download.ni.com/evaluation/rf/Introduction_to_Network_Analyzer_Measurements.pdf}
+    \bibitem{PhysicsStackExchange:EMresonance} Can there be resonance in electromagnetic waves? - Physics Stack Exchange, accessed Nov. 13, 2025, \url{https://physics.stackexchange.com/questions/354743/can-there-be-resonance-in-electromagnetic-waves}
     \bibitem{Fiveable:Qfactor} Quality factor and bandwidth | Electrical Circuits and Systems II Class Notes - Fiveable, accessed Nov. 13, 2025, \url{https://fiveable.me/electrical-circuits-systems-ii/unit-4/quality-factor-bandwidth/study-guide/75pXRlt90vyTwa7w}
     \bibitem{PMC:SuperDamping} Super Damping of Mechanical Vibrations - PMC - PubMed Central, accessed Nov. 13, 2025, \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC6882872/}
-    \bibitem{IEEE:BCDR220GHz} Broadband Perpendicular Permittivity Measurements up to 220 GHz Using a Balanced-Type Circular Disk Resonator Without - IEEE Xplore, accessed Nov. 13, 2025, \url{https://ieeexplore.ieee.org/iel8/19/4407674/11006707.pdf}
     \bibitem{ResearchGate:BCDRanalysis} \href{https://www.researchgate.net/publication/3937129}{Analysis of Balanced-Type Circular Disk Resonator}, accessed Nov. 13, 2025
-    \bibitem{ScholarsMine:TM010} Design of the TM010 Mode Cylindrical Cavity Resonator for PCB Dielectric Characterization - Scholars' Mine, accessed Nov. 13, 2025, \url{https://scholarsmine.mst.edu/cgi/viewcontent.cgi?article=7814&context=ele_comeng_facwork}
     \bibitem{Panasonic:diel_loss} On dielectric constant and loss tangent of dielectric material for circuit boards, accessed Nov. 13, 2025, \url{https://industrial.panasonic.com/content/data/EM/PDF/2021_5G_Multilayer_PCB_Solutions_WhitePaper_202108.pdf}
     \bibitem{Intel:losstangent} 1.2.1.2. Loss Tangent - Intel, accessed Nov. 13, 2025, \url{https://www.intel.com/content/www/us/en/docs/programmable/683883/current/loss-tangent.html}
     \bibitem{Optica:resonatorloss} Modeling and measurement of losses in silicon-on-insulator resonators and bends, accessed Nov. 13, 2025, \url{https://opg.optica.org/oe/abstract.cfm?uri=oe-15-17-10553}
@@ -784,11 +535,7 @@ FR-4（丸印）は，低周波域（\SI{5}{\giga\hertz}以下）では全損失
     \bibitem{CMT:Qfactor} Determining Resonator Q Factor from Return Loss Measurement Alone, accessed Nov. 13, 2025, \url{https://coppermountaintech.com/determining-resonator-q-factor-from-return-loss-measurement-alone/}
     \bibitem{ECStudio:Qfactor} Quality Factor and Bandwidth - Filters - Basics Electronics - electric circuit studio, accessed Nov. 13, 2025, \url{https://ecstudiosystems.com/discover/textbooks/basic-electronics/filters/quality-factor-and-bandwidth/}
     \bibitem{Hapislab:TanDel} 複素誘電率, accessed Nov. 13, 2025, \url{https://hapislab.org/public/makino/materials/20071030_TanDel.pdf}
-    \bibitem{UltrasonicResonators:Qfactor} Quality factor (Q) (definition) - Ultrasonic Resonators, accessed Nov. 13, 2025, \url{https://www.ultrasonic-resonators.org/glossary/q1_dict.html}
-    \bibitem{IEEE:alphaQrelation} On "A relation between α and Q" | IEEE Journals \& Magazine, accessed Nov. 13, 2025, \url{https://ieeexplore.ieee.org/document/1443802/1000}
     \bibitem{Testbook:group_phase} Relation Between Group Velocity and Phase Velocity - Testbook, accessed Nov. 13, 2025, \url{https://testbook.com/physics/relation-between-group-velocity-and-phase-velocity}
-    \bibitem{EngLibreTexts:TLT} 2.2: Transmission Line Theory - Engineering LibreTexts, accessed Nov. 13, 2025, \url{https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Microwave_and_RF_Design_II_-_Transmission_Lines_(Steer)/02:_Transmission_Lines/2.02:_Transmission_Line_Theory}
-    \bibitem{ElectricalTechnology:Qfactor} Q Factor in Electrical and Electronics Engineering, accessed Nov. 13, 2025, \url{https://www.electricaltechnology.org/2013/11/q-factor-in-electrical-and-electronics-engineering.html}
     \bibitem{EngLibreTexts:Qfactor_fund} 9.2: Q Factor - Engineering LibreTexts, accessed Nov. 13, 2025, \url{https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Book:_Fundamentals_of_Microwave_and_RF_Design_(Steer)/09:_Passive_Components/9.02:_Q_Factor}
 \end{thebibliography}
 \end{sloppypar}
