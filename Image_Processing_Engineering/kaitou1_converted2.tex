@@ -1,6 +1,6 @@
 % !TEX program = lualatex
 %==============================================================================
-% 初学者向け解説付き 画像処理レポート用TeXソース
+% プリアンブル (Preamble)
 %==============================================================================
 
 \documentclass[a4paper, 11pt]{ltjsarticle}
@@ -9,256 +9,173 @@
 % パッケージ読み込み
 %------------------------------------------------------------------------------
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{amsmath}           % 数式環境
-\usepackage{amssymb}           % 数学記号
-\usepackage{booktabs}          % 美しい表
-\usepackage{siunitx}           % 単位記述
-\usepackage{luatexja-fontspec} % LuaLaTeX用フォント設定
-\usepackage{cancel}            % 約分などの取り消し線用
-\usepackage{tcolorbox}         % ポイント解説用の枠
-\tcbuselibrary{breakable}
+\usepackage{amsmath}           % 高度な数式環境 (aligned, pmatrixなど)
+\usepackage{amssymb}           % 数学記号 (\therefore など)
+\usepackage{booktabs}          % 見栄えの良い表 (\toprule, \midrule, \bottomrule)
+\usepackage{siunitx}           % 物理単位の記述 (\SI{}{})
+\usepackage{luatexja-fontspec} % LuaLaTeX向け和文フォント設定
 
 %------------------------------------------------------------------------------
-% フォント・設定
+% 各種設定
 %------------------------------------------------------------------------------
+
+% --- 和文フォント設定 ---
+% ご利用の環境にインストールされているフォント名を指定してください。
 \setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
 \setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
-% ※コンパイルエラーが出る場合は、上記2行をコメントアウトし、
-%   \usepackage[haranoaji]{luatexja-preset} などを検討してください。
 
-\title{画像処理・画像処理工学 レポート課題1\\{\large 詳細解説付き解答}}
-\author{}
+% --- ドキュメント情報 ---
+\title{画像処理・画像処理工学 レポート課題1 解答}
+\author{} % 氏名などを記載
 \date{\today}
 
-%------------------------------------------------------------------------------
-% 本文開始
-%------------------------------------------------------------------------------
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
 \begin{document}
 
 \maketitle
 \thispagestyle{empty}
-
-\section*{レポート作成の方針：思考プロセスの明示}
-本レポートでは、単に最終的な回答を示すだけでなく、問題解決に至るまでの「思考の順序」「数式の選定理由」「計算の途中経過」を詳細に記述する。これにより、画像処理および光学の初学者が論理展開を追体験できるように構成した。
-
 \clearpage
 
-%==============================================================================
-% 問題1
-%==============================================================================
 \section{問題1}
 
 \subsection{複合レンズによる像の位置と大きさ}
 
-\subsubsection{思考プロセスと解析}
-複合レンズ系の問題は、一度に全体を考えるのではなく、光が進む順序に従って「レンズごとに」計算を行うのが定石である。
-\begin{enumerate}
-    \item \textbf{ステップ1（レンズA）}: 物体から出た光がレンズAによって結ぶ「中間像」の位置と大きさを求める。
-    \item \textbf{ステップ2（座標変換）}: レンズAによる像を、レンズBにとっての「新たな物体」と見なし、レンズBからの距離（物体距離）を再計算する。
-    \item \textbf{ステップ3（レンズB）}: レンズBによってできる「最終的な像」の位置と大きさを求める。
-\end{enumerate}
-
 \subsubsection{計算・導出過程}
+\paragraph{凸レンズAによる中間像}
+凸レンズAによる中間像の位置 $b_A$ は，レンズの公式より以下のように求まる．
+\[
+\frac{1}{16} + \frac{1}{b_A} = \frac{1}{12}
+\]
+\[
+\frac{1}{b_A} = \frac{1}{12} - \frac{1}{16} = \frac{4}{48} - \frac{3}{48} = \frac{1}{48}
+\]
+\[
+\therefore b_A = \SI{48}{cm}
+\]
+このときの倍率 $m_A$ および中間像の大きさ $h_A'$ は，
+\[
+m_A = -\frac{48}{16} = -3
+\]
+\[
+h_A' = 2.0 \times |-3| = \SI{6.0}{cm}
+\]
+となる．
 
-\paragraph{1. 凸レンズAによる中間像の導出}
-レンズの公式 $\frac{1}{a} + \frac{1}{b} = \frac{1}{f}$ を使用する。ここで各変数は以下の通りである。
+\paragraph{凸レンズBによる最終的な像}
+中間像は凸レンズBの前方に位置するため，これを物体として扱う．凸レンズBまでの物体距離 $a_B$ は，
+\[
+a_B = 63 - 48 = \SI{15}{cm}
+\]
+となる．凸レンズBの焦点距離 $f_B = \SI{10}{cm}$ を用いて，最終的な像の位置 $b_B$ を計算する．
+\[
+\frac{1}{15} + \frac{1}{b_B} = \frac{1}{10}
+\]
+\[
+\frac{1}{b_B} = \frac{1}{10} - \frac{1}{15} = \frac{3}{30} - \frac{2}{30} = \frac{1}{30}
+\]
+\[
+\therefore b_B = \SI{30}{cm}
+\]
+最終的な倍率 $m_B$ と像の大きさ $h_B'$ は以下の通り．
+\[
+m_B = -\frac{30}{15} = -2
+\]
+\[
+h_B' = 6.0 \times |-2| = \SI{12.0}{cm}
+\]
+
+\subsubsection*{答え}
 \begin{itemize}
-    \item $a$: レンズから物体までの距離
-    \item $b$: レンズから像までの距離（正なら実像、負なら虚像）
-    \item $f$: 焦点距離（凸レンズなので正）
-\end{itemize}
-
-まず、像の位置 $b_A$ を求めるために公式を $b$ について解きやすい形に変形する。
-\[
-\frac{1}{b_A} = \frac{1}{f_A} - \frac{1}{a_A}
-\]
-与えられた値 $a_A = \SI{16}{cm}$、$f_A = \SI{12}{cm}$ を代入し、通分して計算する。
-\begin{align*}
-    \frac{1}{b_A} &= \frac{1}{12} - \frac{1}{16} \\
-    &= \frac{4}{48} - \frac{3}{48} \quad (\text{分母を最小公倍数48で通分}) \\
-    &= \frac{1}{48}
-\end{align*}
-逆数をとり、
-\[
-b_A = \SI{48}{cm}
-\]
-$b_A > 0$ なので、レンズAの後方 \SI{48}{cm} の位置に実像ができることがわかる。
-
-次に倍率 $m_A$ を計算する。倍率の公式は $m = -\frac{b}{a}$ である。
-\[
-m_A = -\frac{b_A}{a_A} = -\frac{48}{16} = -3
-\]
-倍率が負であることは「倒立像」であることを意味する。
-元の物体の大きさ $h = \SI{2.0}{cm}$ より、中間像の大きさ $|h_A'|$ は以下となる。
-\[
-|h_A'| = h \times |m_A| = 2.0 \times 3 = \SI{6.0}{cm}
-\]
-
-\paragraph{2. レンズBにとっての物体距離の設定}
-レンズAで作られた中間像が、レンズBの物体となる。
-レンズAとBの間隔は \SI{63}{cm} である。中間像はレンズAの後方 \SI{48}{cm} にあるため、レンズBから見た物体距離 $a_B$ は、レンズ間距離から $b_A$ を引いた残りとなる。
-\[
-a_B = (\text{レンズ間距離}) - b_A = 63 - 48 = \SI{15}{cm}
-\]
-
-\paragraph{3. 凸レンズBによる最終像の導出}
-同様にレンズの公式を用いて、最終的な像の位置 $b_B$ を求める。
-与えられた値は $a_B = \SI{15}{cm}$、$f_B = \SI{10}{cm}$ である。
-\begin{align*}
-    \frac{1}{b_B} &= \frac{1}{f_B} - \frac{1}{a_B} \\
-    &= \frac{1}{10} - \frac{1}{15} \\
-    &= \frac{3}{30} - \frac{2}{30} \quad (\text{分母を最小公倍数30で通分}) \\
-    &= \frac{1}{30}
-\end{align*}
-逆数をとり、
-\[
-b_B = \SI{30}{cm}
-\]
-$b_B > 0$ より、レンズBの後方（光の進行方向）に実像ができる。
-
-最後に最終倍率 $m_B$ と最終的な像の大きさ $h_B'$ を求める。
-\[
-m_B = -\frac{b_B}{a_B} = -\frac{30}{15} = -2
-\]
-最終的な像の大きさは、中間像の大きさにこの倍率を掛けることで求められる。
-\[
-|h_B'| = |h_A'| \times |m_B| = 6.0 \times 2 = \SI{12.0}{cm}
-\]
-（参考：全体の倍率は $m_{total} = m_A \times m_B = (-3) \times (-2) = 6$ なので、元の2.0cmの6倍で12.0cm、かつ正の値なので正立像となる。）
-
-\subsubsection*{解答}
-\begin{itemize}
-    \item \textbf{像の位置}: 凸レンズBの後方 \SI{30}{cm}
-    \item \textbf{像の大きさ}: \SI{12.0}{cm}
+    \item 像の位置: 凸レンズBの後方 \SI{30}{cm}
+    \item 像の大きさ: \SI{12.0}{cm}
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.4pt}\end{center}
 
 \subsection{各デバイスのppi計算と比較}
 
-\subsubsection{思考プロセス}
-画素密度 (ppi: pixels per inch) とは、「1インチあたりの画素数」を指す。
-画面サイズは通常「対角線のインチ数」で与えられるため、単純に縦や横の画素数を割ることはできない。
-したがって、以下の手順で計算する。
-\begin{enumerate}
-    \item 三平方の定理を用いて、対角線上の総画素数（ピクセル距離）を算出する。
-    \item これを対角線の物理的な長さ（インチ）で割り算する。
-\end{enumerate}
-計算式:
-\[
-\text{ppi} = \frac{\text{対角画素数}}{\text{対角インチ数}} = \frac{\sqrt{w_p^2 + h_p^2}}{d_i}
-\]
-
 \subsubsection{計算・導出過程}
+画面解像度 $(w_p, h_p)$ および対角線インチ数 $d_i$ から，画素密度 (ppi) は次式で得られる．
+\[
+\text{ppi} = \frac{\sqrt{w_p^2 + h_p^2}}{d_i}
+\]
+各デバイスについて計算を行う．
 
 \paragraph{A. Google Pixel 10}
-\begin{itemize}
-    \item 画素数: $1080 \times 2424$
-    \item 画面サイズ: $6.3$ インチ
-\end{itemize}
-まず、対角線上の画素数を計算する。
-\begin{align*}
-    \text{対角画素数} &= \sqrt{1080^2 + 2424^2} \\
-    &= \sqrt{1,166,400 + 5,875,776} \\
-    &= \sqrt{7,042,176} \\
-    &\approx 2653.71
-\end{align*}
-これをインチ数で割る。
 \[
-\text{ppi} = \frac{2653.71}{6.3} \approx 421.22 \dots
+\text{ppi} = \frac{\sqrt{1080^2 + 2424^2}}{6.3} = \frac{\sqrt{7042176}}{6.3} \approx \frac{2653.7}{6.3} \approx 421.22
 \]
 
 \paragraph{B. iPad (A16)}
-\begin{itemize}
-    \item 画素数: $2360 \times 1640$
-    \item 画面サイズ: $10.9$ インチ
-\end{itemize}
-同様に対角画素数を求める。
-\begin{align*}
-    \text{対角画素数} &= \sqrt{2360^2 + 1640^2} \\
-    &= \sqrt{5,569,600 + 2,689,600} \\
-    &= \sqrt{8,259,200} \\
-    &\approx 2873.88
-\end{align*}
-ppiを計算する。
 \[
-\text{ppi} = \frac{2873.88}{10.9} \approx 263.65 \dots
+\text{ppi} = \frac{\sqrt{2360^2 + 1640^2}}{10.9} = \frac{\sqrt{8259200}}{10.9} \approx \frac{2873.9}{10.9} \approx 263.66
 \]
 
 \paragraph{C. EIZO EV2740S}
-\begin{itemize}
-    \item 画素数: $3840 \times 2160$ (4K UHD)
-    \item 画面サイズ: $27.0$ インチ
-\end{itemize}
-\begin{align*}
-    \text{対角画素数} &= \sqrt{3840^2 + 2160^2} \\
-    &= \sqrt{14,745,600 + 4,665,600} \\
-    &= \sqrt{19,411,200} \\
-    &\approx 4405.81
-\end{align*}
-ppiを計算する。
 \[
-\text{ppi} = \frac{4405.81}{27.0} \approx 163.17 \dots
+\text{ppi} = \frac{\sqrt{3840^2 + 2160^2}}{27.0} = \frac{\sqrt{19411200}}{27.0} \approx \frac{4405.8}{27.0} \approx 163.18
 \]
 
-\subsubsection*{解答}
-一般的にディスプレイの仕様では整数値（四捨五入）で表記されることが多いため、整数値で回答する。
-
+\subsubsection*{答え}
+計算結果を整数値でまとめると下表の通りとなる．
 \begin{center}
-    \begin{tabular}{llr}
+    \begin{tabular}{lr}
         \toprule
-        デバイス名 & 計算結果 & 解答 (整数) \\
+        デバイス名 & ppi (整数値) \\
         \midrule
-        Google Pixel 10 & 421.22... & \textbf{421 ppi} \\
-        iPad (A16)      & 263.65... & \textbf{264 ppi} \\
-        EIZO EV2740S    & 163.17... & \textbf{163 ppi} \\
+        Google Pixel 10 & 421 ppi \\
+        iPad (A16)      & 264 ppi \\
+        EIZO EV2740S    & 163 ppi \\
         \bottomrule
     \end{tabular}
 \end{center}
 
-\clearpage
-
 \subsection{8近傍鮮鋭化フィルタの導出}
 
-\subsubsection{思考プロセス}
-「画像の鮮鋭化（シャープニング）」とは、画像のエッジ（輪郭）を強調する処理である。
-これは、元の画像に「エッジ成分」を加算することで実現できる。
-\[
-\text{鮮鋭化画像} = \text{元画像} + (\text{エッジ成分} \times k) \quad (\text{通常 } k=1)
-\]
-ここで、エッジ成分を抽出するために「2次微分（ラプラシアン）」を用いる。
-8近傍ラプラシアンフィルタは、上下左右だけでなく斜め方向の変化も考慮した2次微分フィルタである。
-
 \subsubsection{導出過程}
-
-\paragraph{1. 差分による2次微分の定義}
-デジタル画像は離散データであるため、微分は差分で近似する。
-ある画素 $f(i)$ の2次微分 $f''$ は、「右隣との差」と「左隣との差」の差分として定義される。
+鮮鋭化フィルタオペレータ $W_S$ は，単位オペレータ $W_I$ とラプラシアンフィルタ $W_L$ を用いて次式で表される．
 \[
-f''(i) \approx \{f(i+1) - f(i)\} - \{f(i) - f(i-1)\} = f(i+1) - 2f(i) + f(i-1)
+W_S = W_I - W_L
 \]
-つまり、係数は $(1, -2, 1)$ となる。これを2次元（画像）の全方向に適用する。
+ここで，ラプラシアンフィルタ $W_L$ を構成するための2次差分を導出する．
 
-\paragraph{2. 全4方向の2次差分の総和}
-8近傍ラプラシアン $\nabla^2 f$ は、以下の4つの方向の2次微分の和として定義される。
+\paragraph{各方向の2次差分の近似}
+注目画素を $f(i, j)$ とし，隣接画素間の変化量の差分をとることで2次微分（ラプラシアン）を近似する．
 
-\begin{itemize}
-    \item \textbf{水平方向 (x)}: $f(i+1, j) - 2f(i, j) + f(i-1, j)$
-    \item \textbf{垂直方向 (y)}: $f(i, j+1) - 2f(i, j) + f(i, j-1)$
-    \item \textbf{対角方向1 (↘)}: $f(i+1, j+1) - 2f(i, j) + f(i-1, j-1)$
-    \item \textbf{対角方向2 (↙)}: $f(i-1, j+1) - 2f(i, j) + f(i+1, j-1)$
-\end{itemize}
+\textbf{1) x方向およびy方向 ($f_{xx}, f_{yy}$)}
+\[
+\begin{aligned}
+f_{xx} & = \{f(i+1, j) - f(i, j)\} - \{f(i, j) - f(i-1, j)\} \\
+       & = f(i+1, j) - 2f(i, j) + f(i-1, j)
+\end{aligned}
+\]
+\[
+\begin{aligned}
+f_{yy} & = \{f(i, j+1) - f(i, j)\} - \{f(i, j) - f(i, j-1)\} \\
+       & = f(i, j+1) - 2f(i, j) + f(i, j-1)
+\end{aligned}
+\]
 
-これら4つの式を全て足し合わせるとどうなるか、注目画素 $f(i,j)$ とその周辺画素に注目して整理する。
-\begin{itemize}
-    \item \textbf{周辺画素 (8個)}: それぞれの方向の式で1回ずつ登場し、係数はすべて $+1$ である。
-    \item \textbf{中心画素 $f(i,j)$}: 4つの式すべてに登場し、係数は毎回 $-2$ である。
-    \[
-    \text{中心の係数合計} = (-2) + (-2) + (-2) + (-2) = -8
-    \]
-\end{itemize}
+\textbf{2) 斜め方向 ($f_{d1}, f_{d2}$)}
+同様に，対角成分についても差分をとる．
+\[
+\begin{aligned}
+f_{d1} & = \{f(i+1, j+1) - f(i, j)\} - \{f(i, j) - f(i-1, j-1)\} \\
+       & = f(i+1, j+1) - 2f(i, j) + f(i-1, j-1)
+\end{aligned}
+\]
+\[
+\begin{aligned}
+f_{d2} & = \{f(i-1, j+1) - f(i, j)\} - \{f(i, j) - f(i+1, j-1)\} \\
+       & = f(i-1, j+1) - 2f(i, j) + f(i+1, j-1)
+\end{aligned}
+\]
 
-これにより、8近傍ラプラシアンフィルタ $W_L$ のカーネル（行列）が得られる。
+\paragraph{8近傍ラプラシアンフィルタ $W_L$}
+全方向の2次差分の和 $\nabla^2 f = f_{xx} + f_{yy} + f_{d1} + f_{d2}$ を計算すると，注目画素 $f(i,j)$ の係数は $-2 \times 4 = -8$，周囲8近傍の画素係数はすべて $1$ となる．
+したがって，対応するオペレータ $W_L$ は以下のようになる．
 \[
 W_L =
 \begin{pmatrix}
@@ -267,42 +184,31 @@ W_L =
 1 & 1 & 1
 \end{pmatrix}
 \]
-このフィルタは、エッジ部分（輝度が変化する場所）で大きな値を返し、平坦な部分では $1 \times 8 + (-8) = 0$ となる性質を持つ。
 
-\paragraph{3. 鮮鋭化フィルタへの変換}
-鮮鋭化は「元画像からラプラシアン（エッジ成分）を引く」ことで計算される。
-（※ラプラシアンの中央が負の値 $-8$ なので、引くことで中央の係数がプラスになり、コントラストが強調される）
-
-\[
-W_S = W_{\text{元画像}} - W_{\text{ラプラシアン}}
-\]
-ここで $W_{\text{元画像}}$ は、中心だけが1で他が0の単位インパルスフィルタである。
+\paragraph{8近傍鮮鋭化フィルタ $W_S$}
+単位オペレータ $W_I$ から $W_L$ を減じることで，$W_S$ が得られる．
 \[
 W_S =
-\underbrace{
 \begin{pmatrix}
 0 & 0 & 0 \\
 0 & 1 & 0 \\
 0 & 0 & 0
 \end{pmatrix}
-}_{\text{元画像}}
 -
-\underbrace{
 \begin{pmatrix}
 1 & 1 & 1 \\
 1 & -8 & 1 \\
 1 & 1 & 1
 \end{pmatrix}
-}_{\text{エッジ成分}}
+=
+\begin{pmatrix}
+-1 & -1 & -1 \\
+-1 & 9 & -1 \\
+-1 & -1 & -1
+\end{pmatrix}
 \]
-行列の引き算を成分ごとに行う。
-\begin{itemize}
-    \item 中心以外: $0 - 1 = -1$
-    \item 中心: $1 - (-8) = 1 + 8 = 9$
-\end{itemize}
 
-\subsubsection*{解答}
-導出された8近傍鮮鋭化フィルタのオペレータ：
+\subsubsection*{答え}
 \[
 W_S =
 \begin{pmatrix}
@@ -312,114 +218,60 @@ W_S =
 \end{pmatrix}
 \]
 
-\clearpage
-
 \subsection{Sobelフィルタによるエッジの強度と方向の算出}
 
-\subsubsection{思考プロセス}
-Sobelフィルタは、画像のノイズを抑えながら（平滑化しながら）微分を行うフィルタである。
-計算は「畳み込み演算（積和演算）」によって行う。
-\begin{itemize}
-    \item \textbf{エッジ強度 $G$}: $\sqrt{G_x^2 + G_y^2}$ で求める。勾配ベクトルの大きさである。
-    \item \textbf{エッジ方向 $\theta$}: $\arctan(G_y / G_x)$ で求める。勾配ベクトルの向きである。
-\end{itemize}
-ここで、Sobelオペレータは以下の通り定義される。
+\subsubsection{計算・導出過程}
+Sobelフィルタのオペレータ $S_x, S_y$ を用いて各方向の一次微分 $G_x, G_y$ を求め，エッジ強度 $G$ と方向 $\theta$ を算出する．
 \[
-S_x = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}, \quad
-S_y = \begin{pmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{pmatrix}
+G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)
 \]
 
-\subsubsection{計算・導出過程：注目画素 A}
-画素A周辺の画素値：
+\paragraph{注目画素 A}
+周辺画素の値を用いて微分値を計算する．
 \[
-\text{Image}_A =
-\begin{pmatrix}
-50 & 50 & 100 \\
-50 & 50 & 100 \\
-100 & 100 & 150
-\end{pmatrix}
+G_x = (100 + 200 + 150) - (50 + 100 + 100) = 200
+\]
+\[
+G_y = (100 + 200 + 150) - (50 + 100 + 100) = 200
+\]
+よって，エッジ強度および方向は，
+\[
+G_A = \sqrt{200^2 + 200^2} \approx 282.84
+\]
+\[
+\theta_A = \arctan(1) = 45^{\circ}
 \]
 
-\paragraph{1. x方向微分 ($G_x$) の計算}
-$S_x$ と $\text{Image}_A$ の対応する位置の要素を掛けて足し合わせる。
-$S_x$ の中央列はすべて0なので、計算から省略できる。
-\begin{align*}
-G_x &= \underbrace{(-1 \times 50) + (-2 \times 50) + (-1 \times 100)}_{\text{左列 (負の係数)}} + \underbrace{(1 \times 100) + (2 \times 100) + (1 \times 150)}_{\text{右列 (正の係数)}} \\
-    &= (-50 - 100 - 100) + (100 + 200 + 150) \\
-    &= -250 + 450 \\
-    &= 200
-\end{align*}
-
-\paragraph{2. y方向微分 ($G_y$) の計算}
-同様に $S_y$ を適用する。$S_y$ の中央行はすべて0である。
-\begin{align*}
-G_y &= \underbrace{(-1 \times 50) + (-2 \times 50) + (-1 \times 100)}_{\text{上段 (負の係数)}} + \underbrace{(1 \times 100) + (2 \times 100) + (1 \times 150)}_{\text{下段 (正の係数)}} \\
-    &= (-50 - 100 - 100) + (100 + 200 + 150) \\
-    &= -250 + 450 \\
-    &= 200
-\end{align*}
-
-\paragraph{3. 強度と方向の算出}
-\begin{itemize}
-    \item \textbf{強度}: $G_A = \sqrt{200^2 + 200^2} = 200\sqrt{2} \approx 282.8$
-    \item \textbf{方向}: $\theta_A = \arctan\left(\frac{200}{200}\right) = \arctan(1)$。
-    $G_x>0, G_y>0$ なので第1象限であり、角度は $45^{\circ}$。
-\end{itemize}
-
-\subsubsection{計算・導出過程：注目画素 B}
-画素B周辺の画素値：
+\paragraph{注目画素 B}
+同様に微分値を計算する．
 \[
-\text{Image}_B =
-\begin{pmatrix}
-150 & 250 & 250 \\
-150 & 150 & 250 \\
-100 & 100 & 200
-\end{pmatrix}
+G_x = (250 + 500 + 200) - (150 + 300 + 100) = 400
+\]
+\[
+G_y = (100 + 200 + 200) - (150 + 500 + 250) = -400
+\]
+エッジ強度および方向は以下の通り．
+\[
+G_B = \sqrt{400^2 + (-400)^2} \approx 565.69
+\]
+\[
+\theta_B = \arctan(-1) = -45^{\circ}
 \]
 
-\paragraph{1. x方向微分 ($G_x$) の計算}
-\begin{align*}
-G_x &= \underbrace{(-1 \cdot 150) + (-2 \cdot 150) + (-1 \cdot 100)}_{\text{左列}} + \underbrace{(1 \cdot 250) + (2 \cdot 250) + (1 \cdot 200)}_{\text{右列}} \\
-    &= (-150 - 300 - 100) + (250 + 500 + 200) \\
-    &= -550 + 950 \\
-    &= 400
-\end{align*}
-
-\paragraph{2. y方向微分 ($G_y$) の計算}
-\begin{align*}
-G_y &= \underbrace{(-1 \cdot 150) + (-2 \cdot 250) + (-1 \cdot 250)}_{\text{上段}} + \underbrace{(1 \cdot 100) + (2 \cdot 100) + (1 \cdot 200)}_{\text{下段}} \\
-    &= (-150 - 500 - 250) + (100 + 200 + 200) \\
-    &= -900 + 500 \\
-    &= -400
-\end{align*}
-
-\paragraph{3. 強度と方向の算出}
-\begin{itemize}
-    \item \textbf{強度}: $G_B = \sqrt{400^2 + (-400)^2} = 400\sqrt{2} \approx 565.7$
-    \item \textbf{方向}: $\theta_B = \arctan\left(\frac{-400}{400}\right) = \arctan(-1)$。
-    $G_x>0, G_y<0$ なので第4象限であり、角度は $-45^{\circ}$。
-\end{itemize}
-
-\subsubsection*{比較と考察}
-\begin{table}[h]
-    \centering
-    \caption{計算結果の比較}
+\subsubsection*{答えと考察}
+\begin{center}
     \begin{tabular}{lrr}
         \toprule
-        項目 & 注目画素 A & 注目画素 B \\
+         & 注目画素 A & 注目画素 B \\
         \midrule
-        $G_x$ (横方向変化) & 200 & 400 \\
-        $G_y$ (縦方向変化) & 200 & -400 \\
-        \textbf{エッジ強度 $G$} & \textbf{283} & \textbf{566} \\
-        \textbf{エッジ方向 $\theta$} & \textbf{45$^{\circ}$ (右上)} & \textbf{-45$^{\circ}$ (右下)} \\
+        x方向微分 $G_x$ & 200 & 400 \\
+        y方向微分 $G_y$ & 200 & -400 \\
+        エッジ強度 $G$ & 約 282.8 & 約 565.7 \\
+        エッジ方向 $\theta$ & $45^{\circ}$ & $-45^{\circ}$ \\
         \bottomrule
     \end{tabular}
-\end{table}
-
-\textbf{考察}:
-\begin{itemize}
-    \item \textbf{強度の違い}: 画素B周辺のエッジ強度はAの2倍である。これは、画素B周辺の方が「輝度の変化がより激しい（コントラストが高い）」ことを意味している。
-    \item \textbf{方向の違い}: Aは左下から右上へ明るくなるエッジ、Bは左上から右下へ明るくなるエッジであり、エッジの向きが直交していることが数値的に示された。
-\end{itemize}
+\end{center}
+算出結果を比較すると，注目画素Bのエッジ強度 $G_B$ は $G_A$ の約2倍の値を示している．これは画素B周辺の方がより急峻な輝度変化を持つことを意味する．
+また，エッジ方向については，Aが左下から右上（正の傾き）であるのに対し，Bは左上から右下（負の傾き）であり，エッジの特性が異なることが確認できる．
 
 \end{document}
