@@ -147,9 +147,9 @@
     ],
     // ファイル保存時の自動ビルドは無効 (ユーザー設定を維持)
     "latex-workshop.latex.autoBuild.run": "never",
-    // ビルド成功時に中間ファイルを削除
+    // クリーンアップは .latexmkrc に一元化するため、VSCode側の設定は無効化します。
     "latex-workshop.latex.autoClean.run": "onBuilt",
-    "latex-workshop.latex.clean.method": "glob",
+    // autoCleanをneverにしたため、以下の設定は不要になりますが、念のため残しても問題ありません。
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out",
         "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist",
