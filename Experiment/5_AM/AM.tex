@@ -1,10 +1,10 @@
 % !TEX program = lualatex
+% !TEX options = --shell-escape
 %==============================================================================
 % プリアンブル (Preamble)
 %==============================================================================
 
 % ===== ドキュメントクラス =====
-% LuaLaTeX向けの日本語縦書きにも対応した標準的なクラス
 \documentclass[
   a4paper,
   11pt,
@@ -14,46 +14,49 @@
 % パッケージ読み込み
 %------------------------------------------------------------------------------
 
-% ===== フォント・言語設定 (LuaLaTeX専用) =====
-\usepackage{luatexja-fontspec} % fontspecを日本語向けに拡張し、モダンなフォントシステムを有効化
-% \usepackage{luatexja-preset} % (代替案) システム標準の和文フォントを自動設定する場合に利用
+% ===== フォント・言語設定 =====
+\usepackage{luatexja-fontspec} 
 
 % ===== レイアウト関連 =====
-\usepackage[margin=2.5cm]{geometry} % 余白を簡単に設定
-\usepackage{graphicx}          % 画像の挿入 (\includegraphics)
-\usepackage{booktabs}          % 見栄えの良い表 (\toprule, \midrule, \bottomrule)
-\usepackage{float}             % 図表の位置調整 (`[H]`オプション)
-\usepackage{wrapfig}           % 文章中への図の回り込み
+\usepackage[margin=2.5cm]{geometry} 
+\usepackage{graphicx}          
+
+% ===== SVG関連 (重要) =====
+% Inkscapeがインストールされ、PATHが通っている必要があります。
+\usepackage[inkscapelatex=false]{svg} 
+
+\usepackage{booktabs}          
+\usepackage{float}             
+\usepackage{wrapfig}           
 
 % ===== 数式・物理単位関連 =====
-\usepackage{amsmath}           % 高度な数式環境 (align, pmatrixなど)
-\usepackage{amsthm}            % 定理環境 (proofなど)
-\usepackage{newtxmath}         % 数式用フォント (Times系)
-\usepackage{siunitx}           % 物理単位の記述を統一 (\SI{100}{\ohm})
-\usepackage{cancel}            % 数式の打ち消し線 (\cancel)
+\usepackage{amsmath}           
+\usepackage{amsthm}            
+\usepackage{newtxmath}         
+\usepackage{siunitx}           
+\usepackage{cancel}            
 
-% ===== 図表・グラフ描画関連 (TikZ/PGF) =====
+% ===== 図表・グラフ描画関連 =====
 \usepackage{tikz}
-\usepackage{circuitikz}        % 電気回路図の描画
-\usepackage{pgfplots}          % 高機能なグラフ描画
-\usepackage{pgfplotstable}     % グラフ描画のための表データ操作
-\pgfplotsset{compat=1.18}      % pgfplotsのバージョン互換性を保証
-\usepgfplotslibrary{statistics} % 統計計算（回帰分析など）ライブラリ
-\usetikzlibrary{positioning}   % ノードの相対配置
+\usepackage{circuitikz}        
+\usepackage{pgfplots}          
+\usepackage{pgfplotstable}     
+\pgfplotsset{compat=1.18}      
+\usepgfplotslibrary{statistics} 
+\usetikzlibrary{positioning}   
 
 % ===== プログラミング・アルゴリズム関連 =====
-\usepackage{listings}          % ソースコードの表示
-\usepackage{algorithm}         % アルゴリズム記述のフロート環境
-\usepackage{algpseudocode}     % algorithm環境内で使う疑似コード
+\usepackage{listings}          
+\usepackage{algorithm}         
+\usepackage{algpseudocode}     
 
 % ===== その他 =====
-% hyperrefは、原則として最後に読み込むことで他のパッケージとの競合を避ける
 \usepackage[
-  colorlinks=true,      % リンクに色を付ける
-  linkcolor=blue,         % 内部リンクの色 (目次など)
-  citecolor=green!60!black, % 参考文献リンクの色
-  urlcolor=cyan,          % URLリンクの色
-  hidelinks,              % PDF上でリンクの枠を非表示にする (colorlinks=trueと併用推奨)
+  colorlinks=true,      
+  linkcolor=blue,         
+  citecolor=green!60!black, 
+  urlcolor=cyan,          
+  hidelinks,              
 ]{hyperref}
 
 %------------------------------------------------------------------------------
@@ -61,26 +64,18 @@
 %------------------------------------------------------------------------------
 
 % ===== フォント設定 =====
-% --- 欧文フォント ---
-% TeX Liveに標準で同梱されており、環境依存が少ないLatin Modernフォントを指定
 \setmainfont{Latin Modern Roman}
 \setsansfont{Latin Modern Sans}
 \setmonofont{Latin Modern Mono}
-
-% --- 和文フォント ---
-% 注意: ご利用の環境にインストールされているフォント名を指定してください。
-% 指定したフォントが存在しない場合、コンパイルエラーの原因となります。
-% (例: "IPAexMincho", "Noto Serif CJK JP", "Hiragino Mincho ProN")
 \setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
 \setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
-% \setmonojfont[Renderer=HarfBuzz]{Yu Gothic} % 等幅和文フォントが必要な場合
 
 % ===== ドキュメント情報 =====
 \title{5. AM}
 \author{}
 \date{}
 
-% ===== listings (ソースコード) のスタイル設定 =====
+% ===== listings 設定 =====
 \lstset{
   language=Python,
   basicstyle=\small\ttfamily,
@@ -93,16 +88,15 @@
   breaklines=true,
   numbers=left,
   numberstyle=\tiny\color{gray},
-  xleftmargin=2em, % 左側のマージン
-  framexleftmargin=1.5em, % フレームと行番号のマージン
+  xleftmargin=2em, 
+  framexleftmargin=1.5em, 
 }
 
-% ===== pgfplots (グラフ) の共通スタイル設定 =====
+% ===== pgfplots 設定 =====
 \pgfplotsset{
-  % レポート内の全グラフに適用する共通スタイルを定義
   report-style/.style={
-    xlabel style={yshift=0.5em}, % x軸ラベルと軸の間のスペース
-    ylabel style={yshift=-0.5em},% y軸ラベルと軸の間のスペース
+    xlabel style={yshift=0.5em}, 
+    ylabel style={yshift=-0.5em},
     legend pos=north west,
     grid=major,
     ticklabel style={font=\small},
@@ -112,11 +106,10 @@
 }
 
 % ===== 数式用カスタムコマンド =====
-\newcommand{\dd}{\mathrm{d}} % 微分演算子 d
-\newcommand{\mi}{\mathrm{j}} % 虚数単位 j
+\newcommand{\dd}{\mathrm{d}} 
+\newcommand{\mi}{\mathrm{j}} 
 
-% ===== algorithmicx のスタイル調整 =====
-% Procedure をスモールキャピタルではなく太字で表示（フォント警告回避）
+% ===== algorithmicx 設定 =====
 \renewcommand{\textproc}[1]{\textbf{#1}}
 
 %==============================================================================
@@ -168,8 +161,9 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 
 \begin{figure}[H]
   \centering
-  % 指定されたパスの図を使用
-  \includegraphics[width=0.8\textwidth]{Wave.eps}
+  % SVGファイルを挿入
+  % TeXファイルと同じフォルダに Wave.svg がある前提です
+  \includesvg[width=0.8\textwidth]{Wave.svg}
   \caption{各部の波形 (a) 変調信号，(b) 搬送波，(c) 被変調波}
   \label{fig:waveforms}
 \end{figure}
@@ -181,8 +175,9 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 
 \begin{figure}[H]
   \centering
-  % 指定されたパスの図を使用
-  \includegraphics[width=0.9\textwidth]{config.eps}
+  % SVGファイルを挿入
+  % TeXファイルと同じフォルダに config.svg がある前提です
+  \includesvg[width=0.9\textwidth]{config.svg}
   \caption{AM 変復調回路}
   \label{fig:circuit}
 \end{figure}
