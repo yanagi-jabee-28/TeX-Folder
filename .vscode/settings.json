@@ -1,3 +1,84 @@
 {
-	"liveServer.settings.port": 5501
+    // Workspace settings for LaTeX Workshop and other editor preferences
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "files.autoSave": "afterDelay",
+    "files.associations": {
+        "*.f90": "fortran",
+        "*.ts": "typescript"
+    },
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "Latexmk (LuaLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-lualatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "Latexmk (XeLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "Latexmk (upLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "Latexmk (pLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-latex='platex'",
+                "-latexoption='-kanji=utf8 -no-guess-input-env'",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        { "name": "LuaLaTeX", "tools": [ "Latexmk (LuaLaTeX)" ] },
+        { "name": "XeLaTeX", "tools": [ "Latexmk (XeLaTeX)" ] },
+        { "name": "upLaTeX", "tools": [ "Latexmk (upLaTeX)" ] },
+        { "name": "pLaTeX", "tools": [ "Latexmk (pLaTeX)" ] }
+    ],
+    // Keep autoBuild disabled unless you want on-save builds
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.method": "glob",
+    "latex-workshop.view.pdf.viewer": "tab"
 }
