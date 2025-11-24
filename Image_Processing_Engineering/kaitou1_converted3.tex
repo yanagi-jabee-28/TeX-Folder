@@ -177,12 +177,51 @@ $d=27.0$インチ, $w=3840$, $h=2160$ を代入する。
 \subsection{3) 8近傍鮮鋭化フィルタの導出}
 
 \subsubsection{ラプラシアンフィルタの導出}
-画像の2次微分（ラプラシアン）$\nabla^2 f$ は、注目画素を中心とした近傍画素との差分によって近似できる。8近傍の場合、水平($x$)、垂直($y$)に加え、対角2方向($d_1, d_2$)の2階差分の和をとる。
+注目画素を $f(i, j)$ とし、各方向の2次差分を以下のように定義する。
+
+\begin{itemize}
+    \item \textbf{x方向 ($f_{xx}$):}
+    隣接画素との1次差分の差分をとる。
+    \[
+    \begin{aligned}
+    f_{xx} &= \{f(i+1, j) - f(i, j)\} - \{f(i, j) - f(i-1, j)\} \\
+           &= f(i-1, j) + f(i+1, j) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    \item \textbf{y方向 ($f_{yy}$):}
+    \[
+    \begin{aligned}
+    f_{yy} &= \{f(i, j+1) - f(i, j)\} - \{f(i, j) - f(i, j-1)\} \\
+           &= f(i, j-1) + f(i, j+1) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    授業では斜め方向の二次差分を $f_{xy}, f_{yx}$ のように表記したが、
+    自分でわからなくなるため、本レポートでは斜め方向の二次差分を $f_{d1}, f_{d2}$ と表記した。
+    \item \textbf{斜め方向1 (左上-右下, $f_{d1}$):}
+    \[
+    \begin{aligned}
+    f_{d1} &= \{f(i+1, j+1) - f(i, j)\} - \{f(i, j) - f(i-1, j-1)\} \\
+           &= f(i-1, j-1) + f(i+1, j+1) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    \item \textbf{斜め方向2 (右上-左下, $f_{d2}$):}
+    \[
+    \begin{aligned}
+    f_{d2} &= \{f(i+1, j-1) - f(i, j)\} - \{f(i, j) - f(i-1, j+1)\} \\
+           &= f(i-1, j+1) + f(i+1, j-1) - 2f(i, j)
+    \end{aligned}
+    \]
+\end{itemize}
+
+8近傍ラプラシアン $\nabla^2 f$ は、これら4方向の2次差分の総和である。
 \[
-\nabla^2 f \approx \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial d_1^2} + \frac{\partial^2 f}{\partial d_2^2}
+\nabla^2 f = f_{xx} + f_{yy} + f_{d1} + f_{d2}
 \]
-各方向の2階差分係数は $(1, -2, 1)$ であるため、中心画素 $(i,j)$ における係数の総和は $-2 \times 4 = -8$ となる。周辺の8画素はそれぞれ係数 $1$ を持つ。
-よって、8近傍ラプラシアンフィルタのカーネル $H_L$ は以下のようになる。
+上式に各差分式を代入して整理すると、注目画素 $f(i, j)$ の係数は $-2 \times 4 = -8$ となり、周囲8近傍の画素 $f(i\pm 1, j\pm 1)$ 等の係数はすべて $1$ となる。
+したがって、対応するオペレータ$H_L$ は以下の通り導出される。
 \[
 H_L =
 \begin{pmatrix}
