@@ -130,8 +130,8 @@ cv2.imwrite(IMG_DIR + 'denoised_image.png', dst)
 src = cv2.imread(IMG_DIR + 'denoised_image.png', cv2.IMREAD_GRAYSCALE)
 
 # しきい値設定 (Threshold)
-th1 = 30
-th2 = 80
+th1 = 75
+th2 = 92
 
 # エッジ検出
 edges = cv2.Canny(src, th1, th2)
