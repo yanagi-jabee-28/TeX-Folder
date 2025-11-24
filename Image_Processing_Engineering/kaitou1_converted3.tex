@@ -48,7 +48,7 @@
 
 % --- ドキュメント情報 ---
 \title{画像処理・画像処理工学 レポート課題1}
-\author{画像処理工学科　学生番号: 25X0000　氏名: 画像 太郎}
+\author{画像処理工学科　学籍番号: 21239　5E　氏名: 栁原　魁人}
 \date{\today}
 
 %==============================================================================
@@ -388,28 +388,80 @@ g(f) = \begin{cases} 1.2f + 15 & (0 \le f \le 200) \\ 255 & (200 < f \le 255) \e
 \]
 この変換を適用した結果、元画像で低輝度に集中していた分布が全体的に明るい方向へシフトし、ヒストグラムの幅が広がった。これにより画像のコントラストが強調され、視認性が向上したことが確認できた。
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{gray_image.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{transformed_image.png}
+  \caption{元画像と変換後画像}
+  \label{fig:contrast_enhancement}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{Histogram_gray_image.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{Histogram_transformed_image.png}
+  \caption{元画像のヒストグラムと変換後画像のヒストグラム}
+  \label{fig:histograms}
+\end{figure}
+
 \subsection{2) 輝度反転}
-画像のネガポジ反転を行うため、以下の変換式を用いた。
+画像の輝度反転を行うため、以下の変換式を用いた。
 \[
 g(f) = 255 - f
 \]
 これは8ビット画像の最大輝度255から入力値を引く操作であり、黒(0)は白(255)に、白(255)は黒(0)に変換される。
 処理結果として、元画像の明暗が完全に逆転した画像が得られた。ヒストグラムにおいても、輝度分布が左右反転（高輝度側と低輝度側が入れ替わる）していることが確認でき、理論通りの結果となった。
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{building.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{inverted_image.png}
+    \caption{輝度反転の比較: 元画像 (building.png) と反転後 (inverted\_image.png)}
+    \label{fig:inversion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Histogram_building.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{Histogram_inverted_image.png}
+    \caption{輝度反転前後のヒストグラム比較: 元画像のヒストグラムと反転後のヒストグラム}
+    \label{fig:histogram_inversion}
+\end{figure}
+
 \subsection{3) 空間フィルタリングによるノイズ除去}
 ノイズ除去には\textbf{メディアンフィルタ}（サイズ $3 \times 3$）を採用した。
 選択の理由は、対象画像に含まれるノイズが、ランダムに白や黒の点が現れる「ごま塩ノイズ（インパルスノイズ）」であったためである。平均化フィルタではノイズ成分が周囲にぼやけて広がってしまうのに対し、メディアンフィルタは注目画素周辺の中央値を出力するため、突発的な外れ値であるインパルスノイズを効果的に除去しつつ、物体の輪郭（エッジ）を比較的保存できる特性がある。
 適用結果として、エッジの鋭さを保ったままノイズのみがきれいに除去された画像が得られた。
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{noisy_image.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{denoised_image.png}
+    \caption{ノイズ除去の比較: 処理前と処理後}
+    \label{fig:median_denoise}
+\end{figure}
+
 \subsection{4) Canny法によるエッジ検出}
 ノイズ除去後の画像に対し、Canny法によるエッジ検出を行った。本手法では2つのしきい値（Threshold 1, Threshold 2）の設定が重要となるため、値を変化させて比較を行った。
-しきい値を極端に低くすると、壁面の微細な模様やノイズまで過剰に検出された。逆に高くしすぎると、建物の主要な輪郭線が途切れてしまった。
+しきい値を極端に低くすると、壁面の微細な模様やノイズ，空の模様まで過剰に検出された。逆に高くしすぎると、建物の主要な輪郭線が途切れてしまった。
 試行錯誤の結果、\textbf{Threshold 1 = 75, Threshold 2 = 92} に設定した際、ノイズを拾わず、かつ建物の形状を正確に抽出できる最適な結果が得られた。
 ただし、まだより最適な数値が存在する可能性はあるものの、今回はここで妥協した。違いが分かりづらい部分があるため、今後はエッジ検出の精度を定量的に評価する調整方法を調査したい。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{canny_edge_image.png}
+    \caption{Canny法によるエッジ検出結果}
+    \label{fig:canny_edge_image}
+\end{figure}
 
 \section*{付録: プログラムリスト}
 本レポートの課題2で使用したPythonプログラムを以下に示す．
 
-\lstinputlisting[caption={画像処理プログラム (report\_image\_analysis3.py)}, label={lst:code}]{report_image_analysis3.py}
+\lstinputlisting[caption={画像処理プログラム}, label={lst:code}]{report_image_analysis3.py}
 
 \end{document}
