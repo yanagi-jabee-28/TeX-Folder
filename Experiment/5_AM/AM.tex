@@ -289,16 +289,6 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
   \label{fig:DETOUT_waveforms}
 \end{figure}
 
-% 測定値は考察節に移動しました。
-
-% 理論的導出は簡潔に示す: 山–山/谷–谷 を比率 R として m=(R-1)/(R+1) を用いる。
-
-% 注意: 数式内に直接 Unicode のダッシュ(–/—)を入れると描画に問題が出ることがあります。
-%       数式中のハイフンは ASCII の '-' または $-$, 日本語文字を含む場合は \text{-} あるいは
-%       \text{--} (二重ハイフン) を使ってください。
-
-% 追加の説明は省略します。
-
 \subsubsection*{実験(3) の周波数特性}
 \label{sec:result_exp3}
 \noindent 実験\ref{exp:3} により得られた周波数特性の測定結果は表および図の通りである．\par
@@ -307,7 +297,7 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
   \caption{周波数特性: 周波数に対するAM OUT(包絡線p-p)とDET OUTの測定値}
   \label{tab:freq_response}
   \begin{tabular}{rcc}
-    	oprule
+    \toprule
     周波数 (Hz) & AM OUT & DET OUT \\
     \midrule
     100  & 1.46 & 0.186 \\
@@ -327,10 +317,10 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 % 補正後の表: プローブ倍率 ×10 の補正 (測定値を10で割る)
 \begin{table}[H]
   \centering
-  \caption{周波数特性（補正後）: 測定値を10で割った実際のAM OUT(包絡線p-p)とDET OUT}
+  \caption{周波数特性: 測定値を10で割った実際のAM OUT(包絡線p-p)とDET OUT}
   \label{tab:freq_response_corrected}
   \begin{tabular}{rcc}
-    	oprule
+    \toprule
     周波数 (Hz) & AM OUT (補正後) & DET OUT (補正後) \\
     \midrule
     100  & 0.146 & 0.0186 \\
@@ -361,10 +351,10 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 \noindent 実験\ref{exp:4} により測定した入出力特性を表と図に示す．\par
 \begin{table}[H]
   \centering
-  \caption{入出力特性: AF IN (入力) と対応する AM OUT, DET OUT の測定値 (3 kHz)}
+  \caption{入出力特性: AF INと対応する AM OUT, DET OUT の測定値 (3 kHz)}
   \label{tab:io_characteristic}
   \begin{tabular}{rcc}
-    	oprule
+    \toprule
     AF IN & AM OUT & DET OUT \\
     \midrule
     1.35 & 3.50 & 1.36 \\
@@ -384,10 +374,10 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 % 補正後の入出力特性 (測定値を10で割る)
 \begin{table}[H]
   \centering
-  \caption{入出力特性（補正後）: AF IN (入力) と対応する AM OUT, DET OUT の補正後測定値 (3 kHz)}
+  \caption{入出力特性: AF INと対応する AM OUT, DET OUT の補正後測定値 (3 kHz)}
   \label{tab:io_characteristic_corrected}
   \begin{tabular}{rcc}
-    	oprule
+    \toprule
     AF IN & AM OUT (補正後) & DET OUT (補正後) \\
     \midrule
     0.135 & 0.350 & 0.136 \\
@@ -424,6 +414,7 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
   \item 図\ref{fig:circuit}のAM変復調回路の各部の動作について説明する．
   \item 変調回路及び復調回路を一つずつ調べ動作を説明する．
 \end{enumerate}
+
 \subsubsection*{実験結果}
 \begin{itemize}
   \item AF IN: p-p = \SI{0.438}{\volt}, T = \SI{335}{\micro\second} →
@@ -436,4 +427,5 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
     直接に計算すると
     \( m = \dfrac{A - B}{A + B} = \dfrac{4.26 - 1.85}{4.26 + 1.85} \simeq 0.395 \simeq 39.5\% \).
 \end{itemize}
+
 \end{document}
