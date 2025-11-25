@@ -66,6 +66,14 @@
   urlcolor=cyan,          
   hidelinks,              
 ]{hyperref}
+% 文献番号を本文中で上付きの[数字]形式にする
+\usepackage{cite}
+\makeatletter
+% 本文中引用: ^[1] 形式（複数: ^[1--3,5]）
+\def\@cite#1#2{$^{[#1\if@tempswa , #2\fi]}$}
+% 参考文献一覧ラベル: [1]（上付きにしない）
+\def\@biblabel#1{[#1]}
+\makeatother
 
 %------------------------------------------------------------------------------
 % 各種設定
@@ -425,7 +433,7 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 図\ref{fig:io_characteristic_corrected} では AF IN に対し AM OUT と DET OUT がほぼ比例し原点近くを通る。変調部は入力振幅に素直に追従し，ダイオードは十分な振幅で直線動作している。飽和や顕著な歪みは観測されない。
 
 \subsection*{4. 回路動作および変復調方式の特定}
-図\ref{fig:circuit} の各部の主な働きと方式を簡潔に示す（\cite{tanno1988}）。
+図\ref{fig:circuit} の各部の主な働きと方式を簡潔に示す\cite{tanno1988}。
 
 \paragraph{変調部}
 \begin{itemize}
