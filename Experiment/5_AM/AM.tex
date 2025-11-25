@@ -191,14 +191,14 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 \end{figure}
 
 \begin{enumerate}
-  \item 「AM OUT」端子と「AM IN」端子を接続した．
+  \item \label{exp:1} 「AM OUT」端子と「AM IN」端子を接続した．
 
-  \item 低周波発振器を「AF IN」に接続し，\SI{3}{\kilo\hertz}の入力信号に対する図\ref{fig:circuit}の「AF IN」，「AM OUT」及び「DET OUT」端子の電圧波形をスケッチした．ただし，「AM OUT」の包絡線電圧や「DET OUT」が歪まないよう低周波発振器のAmplitudeを調整した．
+  \item \label{exp:2} 低周波発振器を「AF IN」に接続し，\SI{3}{\kilo\hertz}の入力信号に対する図\ref{fig:circuit}の「AF IN」，「AM OUT」及び「DET OUT」端子の電圧波形をスケッチした．ただし，「AM OUT」の包絡線電圧や「DET OUT」が歪まないよう低周波発振器のAmplitudeを調整した．
 
-  \item \SI{100}{\hertz}～\SI{50}{\kilo\hertz}の周波数範囲の「AF IN」-「AM OUT」及び「DET OUT」間の周波数特性を測定した（10ポイント以上）．\\
+  \item \label{exp:3} \SI{100}{\hertz}～\SI{50}{\kilo\hertz}の周波数範囲の「AF IN」-「AM OUT」及び「DET OUT」間の周波数特性を測定した（10ポイント以上）．\\
   注：片対数のグラフ用紙を用いた．「AM OUT」については，包絡線電圧のp-p値を測定した．
 
-  \item 入力周波数を一定としたときの「AF IN」に対する「AM OUT」，「DET OUT」の入出力特性を測定した（10ポイント以上）．\\
+  \item \label{exp:4} 入力周波数を一定(\SI{3}{\kilo\hertz})としたときの「AF IN」に対する「AM OUT」，「DET OUT」の入出力特性を測定した（10ポイント以上）．\\
   注：方眼紙を用いた．「AM OUT」については，包絡線電圧のp-p値を測定した．
 \end{enumerate}
 
@@ -212,9 +212,19 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 \paragraph{注意}
 今回の測定はオシロスコープにプローブ\(\times10\)を使用して行った．そのため，表示された値はプローブの分圧により10倍（または表示がそのままの場合は実際値が表示の1/10）になっている場合がある．本稿では既存の測定結果はそのまま残し，後に補正（測定値を10で割る）した補正済みの表を示す．
 
+以下，実験項目ごとに結果をまとめる．
+\begin{itemize}
+  \item 実験\ref{exp:2}: 波形のスケッチ（AF IN, AM OUT, DET OUT）
+  \item 実験\ref{exp:3}: 周波数特性（AF IN - AM OUT, DET OUT）
+  \item 実験\ref{exp:4}: 入出力特性（AF IN 対 AM OUT, DET OUT）
+\end{itemize}
+
 % ------------------
 % 波形の図（挿入）
 % ------------------
+\subsubsection*{実験(2) の波形スケッチ}
+\label{sec:result_exp2}
+\noindent 実験\ref{exp:2} により観測した波形を以下に示す．\par
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.48\textwidth}
@@ -279,7 +289,28 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
   \label{fig:DETOUT_waveforms}
 \end{figure}
 
+\subsubsection*{測定値と結果}
+\begin{itemize}
+  \item AF IN: p-p = \SI{0.438}{\volt}, T = \SI{335}{\micro\second} →
+    $f_{AFIN} \simeq \SI{2985}{\hertz} \simeq \SI{2.99}{\kilo\hertz}$.
+  \item DET OUT: p-p = \SI{0.468}{\volt}, T = \SI{332}{\micro\second} →
+    $f_{DETOUT} \simeq \SI{3012}{\hertz} \simeq \SI{3.01}{\kilo\hertz}$.
+  \item AM OUT の包絡線（観測値）: PK–PK = \SI{4.26}{\volt}, 山–谷 = \SI{1.18}{\volt}, 谷–谷 = \SI{1.85}{\volt}.
+  \item 変調度: $R=\dfrac{\text{山--山}}{\text{谷--谷}} = \dfrac{4.26}{1.85} \simeq 2.303$,
+    \( m = \dfrac{R-1}{R+1} \simeq 0.395 \simeq 39.5\% \).
+\end{itemize}
 
+% 理論的導出は簡潔に示す: 山–山/谷–谷 を比率 R として m=(R-1)/(R+1) を用いる。
+
+% 注意: 数式内に直接 Unicode のダッシュ(–/—)を入れると描画に問題が出ることがあります。
+%       数式中のハイフンは ASCII の '-' または $-$, 日本語文字を含む場合は \text{-} あるいは
+%       \text{--} (二重ハイフン) を使ってください。
+
+% 追加の説明は省略します。
+
+\subsubsection*{実験(3) の周波数特性}
+\label{sec:result_exp3}
+\noindent 実験\ref{exp:3} により得られた周波数特性の測定結果は表および図の通りである．\par
 \begin{table}[H]
   \centering
   \caption{周波数特性: 周波数に対するAM OUT(包絡線p-p)とDET OUTの測定値}
@@ -334,6 +365,9 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
   \label{fig:freq_response_corrected}
 \end{figure}
 
+\subsubsection*{実験(4) の入出力特性}
+\label{sec:result_exp4}
+\noindent 実験\ref{exp:4} により測定した入出力特性を表と図に示す．\par
 \begin{table}[H]
   \centering
   \caption{入出力特性: AF IN (入力) と対応する AM OUT, DET OUT の測定値 (3 kHz)}
