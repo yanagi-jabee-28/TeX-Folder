@@ -420,17 +420,22 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 \end{enumerate}
 
 \subsection*{1. 実験(2) 波形の考察}
-実験(2)の波形（図\ref{fig:AFIN_waveforms}～図\ref{fig:DETOUT_waveforms}）を簡潔にまとめる．AF IN と DET OUT の周期はそれぞれ $T=\SI{335}{\micro\second}$, $T=\SI{332}{\micro\second}$ で周波数はいずれも約 \SI{3.0}{\kilo\hertz} に一致し，復調波形に顕著な歪みはない．包絡線の最大値 $A=\SI{4.26}{\volt}$，最小値 $B=\SI{1.85}{\volt}$ から
+実験(2)の波形（図\ref{fig:AFIN_waveforms}～図\ref{fig:DETOUT_waveforms}）を簡潔にまとめる．AF IN と DET OUT の周期はそれぞれ $T=\SI{335}{\micro\second}$, $T=\SI{332}{\micro\second}$ である．周波数は
+\[
+ f=\frac{1}{T}
+\]
+より，AF IN で $f\simeq\SI{2.99}{\kilo\hertz}$，DET OUT で $f\simeq\SI{3.01}{\kilo\hertz}$ と求まる．復調波形に顕著な歪みはない．なお，DETOUT の振幅がやや大きめに観測される傾向があったが，その原因は特定できなかった．包絡線の最大値 $A=\SI{4.26}{\volt}$，最小値 $B=\SI{1.85}{\volt}$ から
+また，DETOUT には搬送波（高周波）の成分がわずかに乗っている様子が観測された．
 \[
  m=\frac{A-B}{A+B}=\frac{4.26-1.85}{4.26+1.85}\simeq 0.395
 \]
-変調度は約 40\% で，過変調は生じていない．
+変調度は約 40\% で，過変調は生じていない．\cite{tanno1988}
 
 \subsection*{2. 実験(3) 周波数特性の考察}
-図\ref{fig:freq_response_corrected} では \SI{2}{\kilo\hertz}～\SI{20}{\kilo\hertz} でほぼ一定出力。低域の減少は結合/バイパス用コンデンサで低周波が通りにくいため，高域低下は同調回路とトランスの限界による。音声帯域 (約 \SI{300}{\hertz}～\SI{3.4}{\kilo\hertz}) を扱うには十分平坦である。
+図\ref{fig:freq_response_corrected} では \SI{2}{\kilo\hertz}～\SI{20}{\kilo\hertz} でほぼ一定出力。低域の減少は結合/バイパス用コンデンサで低周波が通りにくいため，高域低下は同調回路とトランスの限界による。音声帯域 (約 \SI{300}{\hertz}～\SI{3.4}{\kilo\hertz}) を扱うには十分平坦である。\cite{tanno1988}
 
 \subsection*{3. 実験(4) 入出力特性の考察}
-図\ref{fig:io_characteristic_corrected} では AF IN に対し AM OUT と DET OUT がほぼ比例し原点近くを通る。変調部は入力振幅に素直に追従し，ダイオードは十分な振幅で直線動作している。飽和や顕著な歪みは観測されない。
+図\ref{fig:io_characteristic_corrected} では AF IN に対し AM OUT と DET OUT がほぼ比例し原点近くを通る。変調部は入力振幅に素直に追従し，ダイオードは十分な振幅で直線動作している。飽和や顕著な歪みは観測されない。\cite{tanno1988}
 
 \subsection*{4. 回路動作および変復調方式の特定}
 図\ref{fig:circuit} の各部の主な働きと方式を簡潔に示す\cite{tanno1988}。
