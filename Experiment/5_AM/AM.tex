@@ -20,6 +20,8 @@
 % ===== レイアウト関連 =====
 \usepackage[margin=2.5cm]{geometry} 
 \usepackage{graphicx}          
+% Set graphics path to image folder
+\graphicspath{{image/}}
 
 % ===== SVG関連 (重要) =====
 % Inkscapeがインストールされ、PATHが通っている必要があります。
@@ -49,6 +51,12 @@
 \usepackage{listings}          
 \usepackage{algorithm}         
 \usepackage{algpseudocode}     
+% Enumerate style
+\usepackage{enumitem}
+% Use parenthesized numbers like (1), (2) for top-level enumerate
+\setlist[enumerate,1]{label=(\arabic*)}
+% Subfigure package for arranging multiple images
+\usepackage{subcaption}
 
 % ===== その他 =====
 \usepackage[
@@ -203,6 +211,73 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 % -----------------------------------------------------------------------------
 \paragraph{注意}
 今回の測定はオシロスコープにプローブ\(\times10\)を使用して行った．そのため，表示された値はプローブの分圧により10倍（または表示がそのままの場合は実際値が表示の1/10）になっている場合がある．本稿では既存の測定結果はそのまま残し，後に補正（測定値を10で割る）した補正済みの表を示す．
+
+% ------------------
+% 波形の図（挿入）
+% ------------------
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AFIN_pk-pk.jpg}
+    \caption{AF IN (p-p)}
+    \label{fig:afin_pkpk}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AFIN_T.jpg}
+    \caption{AF IN (周期T)}
+    \label{fig:afin_T}
+  \end{subfigure}
+  \caption{AF IN の波形（p-p と周期）}
+  \label{fig:AFIN_waveforms}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_山ー山.jpg}
+    \caption{AM OUT 山–山}
+    \label{fig:amout_peakpeak}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_山ー谷.jpg}
+    \caption{AM OUT 山–谷}
+    \label{fig:amout_peaktrough}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_谷-谷.jpg}
+    \caption{AM OUT 谷–谷}
+    \label{fig:amout_troughtrough}
+  \end{subfigure}
+  \caption{AM OUT の包絡線波形（各代表測定）}
+  \label{fig:AMOUT_envelope}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{DETOUT_pk-pk.jpg}
+    \caption{DET OUT (p-p)}
+    \label{fig:detout_pkpk}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{DETOUT_T.jpg}
+    \caption{DET OUT (周期T)}
+    \label{fig:detout_T}
+  \end{subfigure}
+  \caption{DET OUT の波形（p-p と周期）}
+  \label{fig:DETOUT_waveforms}
+\end{figure}
 
 
 \begin{table}[H]
