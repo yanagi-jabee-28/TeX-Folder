@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{ltjsarticle} % LuaLaTeX用のクラスに変更
+\documentclass[a4paper,11pt]{ltjsarticle} % LuaLaTeX用のクラス
 
 %------------------------------------------------------------------------------
 % パッケージ読み込み
@@ -10,7 +10,7 @@
 %------------------------------------------------------------------------------
 % コマンド定義
 %------------------------------------------------------------------------------
-% 単位記述用のコマンド（[m]などを綺麗に出力するため）
+% 単位記述用のコマンド
 \newcommand{\unit}[1]{\,[\mathrm{#1}]}
 
 %==============================================================================
@@ -35,7 +35,7 @@
 
 %--- 定数リスト ---
 \section*{使用定数}
-本課題では以下の物理定数を用いる。
+本講義ノート（第2章 電子放出）および配布資料に基づき、以下の物理定数を用いる。
 \begin{align*}
 k &= 1.38 \times 10^{-23} \unit{J \cdot K^{-1}} & e &= 1.60 \times 10^{-19} \unit{C} \\
 m &= 9.11 \times 10^{-31} \unit{kg} & h &= 6.63 \times 10^{-34} \unit{J \cdot s} \\
@@ -49,90 +49,101 @@ c &= 3.00 \times 10^{8} \unit{m/s}
 \textbf{条件:}
 \begin{itemize}
  \item 温度 $T = 2500 \unit{K}$
- \item 半径 $r = 1.50 \times 10^{-4} \unit{m}$
+ \item タングステンフィラメント半径 $r = 1.50 \times 10^{-4} \unit{m}$
  \item 全電流 $I = 2.00 \times 10^{-3} \unit{A}$
- \item 仕事関数 $\phi = 4.52 \unit{eV}$
+ \item 仕事関数 $\phi = 4.52 \unit{V}$ （※エネルギー値 $4.52 \unit{eV}$ に相当）
 \end{itemize}
 
 \noindent
 \textbf{解答:}
 
-リチャードソン・ダッシュマンの式より、電流密度 $J$ は次式で与えられる。
+講義資料の式(2.7) リチャードソン・ダッシュマンの式より、電流密度 $J$ は次式で表される。
 \begin{equation}
-J = A T^2 \exp\left( -\frac{\phi}{kT} \right)
+J = A T^2 \exp\left( -\frac{e\phi}{kT} \right) \tag{2.7}
 \end{equation}
-ここで定数 $A$（リチャードソン定数）の理論値を計算する。
+ここでリチャードソン定数 $A$ の理論値を導出・確認する。
 \begin{align*}
 A &= \frac{4\pi m e k^2}{h^3} \\
-  &= \frac{4 \times \pi \times (9.11 \times 10^{-31}) \times (1.60 \times 10^{-19}) \times (1.38 \times 10^{-23})^2}{(6.63 \times 10^{-34})^3} \\
-  &\approx 1.201 \times 10^6 \unit{A \cdot m^{-2} \cdot K^{-2}}
+  &= \frac{4\pi \times (9.11 \times 10^{-31}) \times (1.60 \times 10^{-19}) \times (1.38 \times 10^{-23})^2}{(6.63 \times 10^{-34})^3} \\
+  &= \frac{12.566 \times 9.11 \times 1.60 \times 1.9044}{291.43} \times \frac{10^{-31} \cdot 10^{-19} \cdot 10^{-46}}{10^{-102}} \\
+  &= \frac{348.8}{291.4} \times 10^{(-96) - (-102)} \\
+  &\approx 1.197 \times 10^6 \unit{A \cdot m^{-2} \cdot K^{-2}}
 \end{align*}
-仕事関数 $\phi$ をジュール単位に換算する。
+本計算では、講義で示された標準的な理論値 $A \approx 1.20 \times 10^6$ を採用する。
+
+次に、指数項の引数（仕事関数のエネルギー換算項）を計算する。
 \begin{align*}
-\phi_{\mathrm{J}} &= 4.52 \times (1.60 \times 10^{-19}) \\
-                  &= 7.232 \times 10^{-19} \unit{J}
+\frac{e\phi}{kT} &= \frac{(1.60 \times 10^{-19}) \times 4.52}{(1.38 \times 10^{-23}) \times 2500} \\
+                 &= \frac{7.232 \times 10^{-19}}{3.450 \times 10^{-20}} \\
+                 &= \frac{7.232}{3.450} \times 10^{1} \\
+                 &\approx 20.9623
 \end{align*}
-これらを式(1)に代入し、電流密度 $J$ を求める。指数部は
-\[
-\frac{\phi_{\mathrm{J}}}{kT} = \frac{7.232 \times 10^{-19}}{(1.38 \times 10^{-23}) \times 2500} \approx 20.962
-\]
-であるから、
+これを式(2.7)に代入し、電流密度 $J$ を求める。
 \begin{align*}
-J &= (1.201 \times 10^6) \times (2500)^2 \times \exp(-20.962) \\
-  &= 7.506 \times 10^{12} \times 7.876 \times 10^{-10} \\
-  &\approx 5.912 \times 10^3 \unit{A/m^2}
+J &= (1.20 \times 10^6) \times (2500)^2 \times \exp(-20.9623) \\
+  &= (1.20 \times 10^6) \times (6.25 \times 10^6) \times (7.874 \times 10^{-10}) \\
+  &= (1.20 \times 6.25 \times 7.874) \times 10^{(6+6-10)} \\
+  &= 59.055 \times 10^2 \\
+  &\approx 5.906 \times 10^3 \unit{A/m^2}
 \end{align*}
-電極の側面積 $S$ は、長さ $L$ を用いて $S = 2\pi r L$ と表される。全電流 $I = J \cdot S$ より、
+電極の側面積 $S = 2\pi r L$ と全電流 $I = J S$ の関係より、必要なフィラメント長 $L$ を逆算する。
 \begin{align*}
 L &= \frac{I}{J \cdot 2\pi r} \\
-  &= \frac{2.00 \times 10^{-3}}{(5.912 \times 10^3) \times 2\pi \times (1.50 \times 10^{-4})} \\
-  &= \frac{2.00 \times 10^{-3}}{5.572} \\
-  &\approx 3.589 \times 10^{-4}
+  &= \frac{2.00 \times 10^{-3}}{(5.906 \times 10^3) \times 2\pi \times (1.50 \times 10^{-4})} \\
+  &= \frac{2.00 \times 10^{-3}}{(5.906 \times 2\pi \times 1.50) \times 10^{-1}} \\
+  &= \frac{2.00 \times 10^{-3}}{55.66 \times 10^{-1}} \\
+  &= 0.03593 \times 10^{-2} \\
+  &= 3.593 \times 10^{-4}
 \end{align*}
 有効数字3桁で整理する。
 \[
 \therefore L = 3.59 \times 10^{-4} \unit{m}
 \]
-(※理論定数 $A$ の計算精度のとり方により $3.60 \times 10^{-4}$ となる場合もあるが、上記の通り導出した)
 
 %--- 課題2 ---
 \section*{課題2}
 \textbf{条件:}
 \begin{itemize}
- \item 仕事関数 $\phi = 4.27 \unit{eV}$
- \item 波長 $\lambda = 45.5 \unit{nm} = 45.5 \times 10^{-9} \unit{m}$
+ \item 仕事関数 $\phi = 4.27 \unit{V}$ （エネルギー $\phi = 4.27 \unit{eV}$）
+ \item 入射光波長 $\lambda = 45.5 \unit{nm} = 4.55 \times 10^{-8} \unit{m}$
 \end{itemize}
 
 \noindent
 \textbf{解答:}
 
-アインシュタインの光電効果の式より
+アインシュタインの光電効果の式（講義ノート§2.3参照）より
 \begin{equation}
-h\nu = \phi + \frac{1}{2}mv^2 \quad \Longleftrightarrow \quad \frac{hc}{\lambda} = \phi + K_{\max}
+h\nu = e\phi + \frac{1}{2}mv^2 \quad \Longleftrightarrow \quad \frac{hc}{\lambda} = e\phi + K_{\max}
 \end{equation}
-まず、入射光のエネルギー $E = hc/\lambda$ を求める。
+
+まず、入射光子のエネルギー $E = hc/\lambda$ を算出する。
 \begin{align*}
-E &= \frac{(6.63 \times 10^{-34}) \times (3.00 \times 10^8)}{45.5 \times 10^{-9}} \\
-  &= \frac{1.989 \times 10^{-25}}{4.55 \times 10^{-8}} \\
-  &\approx 4.371 \times 10^{-18} \unit{J}
+E &= \frac{(6.63 \times 10^{-34}) \times (3.00 \times 10^8)}{4.55 \times 10^{-8}} \\
+  &= \frac{19.89}{4.55} \times \frac{10^{-26}}{10^{-8}} \\
+  &= 4.3714 \times 10^{-18} \unit{J}
 \end{align*}
-次に、仕事関数 $\phi$ をジュール単位に換算する。
+
+次に、仕事関数のエネルギー項 $W = e\phi$ をジュール単位で算出する。
 \begin{align*}
-\phi_{\mathrm{J}} &= 4.27 \times (1.60 \times 10^{-19}) \\
-                  &= 6.832 \times 10^{-19} \unit{J}
+W &= 1.60 \times 10^{-19} \times 4.27 \\
+  &= 6.832 \times 10^{-19} \unit{J}
 \end{align*}
-光電子の最大運動エネルギー $K_{\max}$ は
+
+光電子の最大運動エネルギー $K_{\max}$ を求める。桁数を合わせるため $E = 43.71 \times 10^{-19} \unit{J}$ として計算する。
 \begin{align*}
-K_{\max} &= E - \phi_{\mathrm{J}} \\
-         &= 4.371 \times 10^{-18} - 0.683 \times 10^{-18} \\
+K_{\max} &= E - W \\
+         &= (43.714 - 6.832) \times 10^{-19} \\
+         &= 36.882 \times 10^{-19} \\
          &= 3.688 \times 10^{-18} \unit{J}
 \end{align*}
-最大速度 $v$ を求める。
+
+最大速度 $v$ を導出する。
 \begin{align*}
 v &= \sqrt{\frac{2 K_{\max}}{m}} \\
   &= \sqrt{\frac{2 \times (3.688 \times 10^{-18})}{9.11 \times 10^{-31}}} \\
-  &= \sqrt{\frac{7.376 \times 10^{-18}}{9.11 \times 10^{-31}}} \\
-  &= \sqrt{8.096 \times 10^{12}} \\
+  &= \sqrt{\frac{7.376}{9.11} \times 10^{13}} \\
+  &= \sqrt{0.8096 \times 10 \times 10^{12}} \\
+  &= \sqrt{8.096} \times 10^6 \\
   &\approx 2.845 \times 10^6
 \end{align*}
 有効数字3桁で整理する。
@@ -145,30 +156,31 @@ v &= \sqrt{\frac{2 K_{\max}}{m}} \\
 \textbf{条件:}
 \begin{itemize}
  \item 二次電子放出比 $\delta = 4.0$
- \item 段数 $n = 10$
+ \item ダイノード段数 $n = 10$
  \item コレクタ電流 $I_o = 0.125 \times 10^{-3} \unit{A}$
 \end{itemize}
 
 \noindent
 \textbf{解答:}
 
-光電子増倍管の総合利得（ゲイン）$G$ は次式となる。
+光電子増倍管の総合利得（ゲイン）$G$ は、各段での増幅率の積となるため次式で与えられる。
 \[
 G = \delta^n = 4.0^{10}
 \]
-コレクタ電流 $I_o$ と光電面からの光電流 $I_p$ の関係は $I_o = G I_p$ であるため、
+ここで $4^{10}$ の値を近似計算する（$2^{10} = 1024 \approx 1.024 \times 10^3$ を利用）。
 \begin{align*}
-I_p &= \frac{I_o}{G} = \frac{0.125 \times 10^{-3}}{4^{10}} \\
-    &= \frac{1.25 \times 10^{-4}}{(2^2)^{10}} = \frac{1.25 \times 10^{-4}}{2^{20}}
+G &= (2^2)^{10} = 2^{20} = (2^{10})^2 \\
+  &\approx (1.024 \times 10^3)^2 \\
+  &\approx 1.049 \times 10^6
 \end{align*}
-ここで $2^{10} = 1024 \approx 1.024 \times 10^3$ より、
-\[
-2^{20} = (1.024 \times 10^3)^2 \approx 1.049 \times 10^6
-\]
-よって、
+
+光電面からの一次光電流 $I_p$ は、関係式 $I_o = G I_p$ より逆算される。
 \begin{align*}
-I_p &= \frac{1.25 \times 10^{-4}}{1.049 \times 10^6} \\
-    &\approx 1.192 \times 10^{-10}
+I_p &= \frac{I_o}{G} \\
+    &= \frac{0.125 \times 10^{-3}}{1.049 \times 10^6} \\
+    &= \frac{0.125}{1.049} \times 10^{-9} \\
+    &\approx 0.1191 \times 10^{-9} \\
+    &= 1.191 \times 10^{-10}
 \end{align*}
 有効数字3桁で整理する。
 \[
@@ -178,43 +190,50 @@ I_p &= \frac{1.25 \times 10^{-4}}{1.049 \times 10^6} \\
 %--- 課題4 ---
 \section*{課題4}
 \textbf{条件:}
-電位分布が次式で与えられる。
+電位分布 $V(x,y,z)$ が次式で与えられる（点電荷による電位分布の形状）。
 \[
-V = \frac{1}{\sqrt{x^2 + y^2 + z^2}} \unit{V}
+V = \frac{1}{\sqrt{x^2 + y^2 + z^2}} = (x^2 + y^2 + z^2)^{-\frac{1}{2}} \unit{V}
 \]
 
 \noindent
 \textbf{解答:}
 
-電界ベクトル $\bm{E}$ と電位 $V$ の関係は $\bm{E} = -\nabla V$ である。すなわち、
+静電場における電界ベクトル $\bm{E}$ は、電位 $V$ の勾配（gradient）として定義される（ノート§3.1参照）。
 \[
-\bm{E} = \left( E_x, E_y, E_z \right) = \left( -\frac{\partial V}{\partial x}, -\frac{\partial V}{\partial y}, -\frac{\partial V}{\partial z} \right)
+\bm{E} = -\nabla V = - \left( \frac{\partial V}{\partial x} \bm{i} + \frac{\partial V}{\partial y} \bm{j} + \frac{\partial V}{\partial z} \bm{k} \right)
 \]
-まず $x$ 成分について計算する。$V = (x^2 + y^2 + z^2)^{-\frac{1}{2}}$ として偏微分を行う。
+
+まず $x$ 成分について偏微分を行う。合成関数の微分法を用いる。
 \begin{align*}
-\frac{\partial V}{\partial x} &= \frac{\partial}{\partial x} \left( (x^2 + y^2 + z^2)^{-\frac{1}{2}} \right) \\
+\frac{\partial V}{\partial x} &= \frac{\partial}{\partial x} \left\{ (x^2 + y^2 + z^2)^{-\frac{1}{2}} \right\} \\
 &= -\frac{1}{2} (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot \frac{\partial}{\partial x}(x^2 + y^2 + z^2) \\
 &= -\frac{1}{2} (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot (2x) \\
 &= -x (x^2 + y^2 + z^2)^{-\frac{3}{2}}
 \end{align*}
-したがって、電界の $x$ 成分 $E_x$ は
+
+したがって、電界の $x$ 成分 $E_x$ は以下の通りとなる。
 \[
-E_x = - \frac{\partial V}{\partial x} = x (x^2 + y^2 + z^2)^{-\frac{3}{2}} = \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
+E_x = - \frac{\partial V}{\partial x} = - \left( - \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \right) = \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
 \]
-$y, z$ 成分についても式の対称性より同様であるため、以下のように求められる。
+
+$y, z$ 成分についても式の対称性より同様である。
 \begin{align*}
-E_y &= \frac{y}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
-E_z &= \frac{z}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
+E_y &= - \frac{\partial V}{\partial y} = \frac{y}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
+E_z &= - \frac{\partial V}{\partial z} = \frac{z}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
 \end{align*}
 
 \noindent
 \textbf{答:}
 \begin{equation*}
+\bm{E} = \frac{1}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} (x, y, z) \unit{V/m}
+\end{equation*}
+または成分表示にて、
+\begin{equation*}
 \left\{
 \begin{aligned}
-E_x &= \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \unit{V/m} \\
-E_y &= \frac{y}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \unit{V/m} \\
-E_z &= \frac{z}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \unit{V/m}
+E_x &= \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
+E_y &= \frac{y}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
+E_z &= \frac{z}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
 \end{aligned}
 \right.
 \end{equation*}
