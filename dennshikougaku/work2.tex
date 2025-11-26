@@ -55,35 +55,26 @@ c &= 3.00 \times 10^{8} \unit{m/s}
 \noindent
 \textbf{解答:}
 
-リチャードソン・ダッシュマンの式
-\begin{equation}
-J = A T^2 \exp\left( -\frac{e\phi}{kT} \right)
-\end{equation}
-
-リチャードソン定数 $A$
+リチャードソン定数 $A$（理論値）
 \begin{align*}
 A &= \frac{4\pi m e k^2}{h^3} \\
   &= \frac{4\pi (9.11 \times 10^{-31}) (1.60 \times 10^{-19}) (1.38 \times 10^{-23})^2}{(6.63 \times 10^{-34})^3} \\
-  &\approx 1.20 \times 10^6 \unit{A \cdot m^{-2} \cdot K^{-2}}
+  &\approx 1.201 \times 10^6 \unit{A \cdot m^{-2} \cdot K^{-2}}
 \end{align*}
 
-指数項
+リチャードソン・ダッシュマンの式より、電流密度 $J$
 \begin{align*}
-\frac{e\phi}{kT} &= \frac{(1.60 \times 10^{-19}) \times 4.52}{(1.38 \times 10^{-23}) \times 2500} \\
-                 &\approx 20.96
+J &= A T^2 \exp\left( -\frac{e\phi}{kT} \right) \\
+  &= (1.201 \times 10^6) \times (2500)^2 \times \exp\left( -\frac{(1.60 \times 10^{-19}) \times 4.52}{(1.38 \times 10^{-23}) \times 2500} \right) \\
+  &= (7.506 \times 10^{12}) \times \exp( -20.9623 \dots ) \\
+  &\approx 5.912 \times 10^3 \unit{A/m^2}
 \end{align*}
 
-電流密度 $J$
+全電流の式 $I = J \cdot S = J \cdot (2\pi r L)$ より、フィラメント長 $L$
 \begin{align*}
-J &= (1.20 \times 10^6) \times (2500)^2 \times \exp(-20.96) \\
-  &\approx 5.91 \times 10^3 \unit{A/m^2}
-\end{align*}
-
-フィラメント長 $L$ ($I = J \cdot 2\pi r L$ より)
-\begin{align*}
-L &= \frac{I}{J \cdot 2\pi r} \\
-  &= \frac{2.00 \times 10^{-3}}{(5.91 \times 10^3) \cdot 2\pi \cdot (1.50 \times 10^{-4})} \\
-  &\approx 3.59 \times 10^{-4}
+L &= \frac{I}{2\pi r J} \\
+  &= \frac{2.00 \times 10^{-3}}{2\pi \times (1.50 \times 10^{-4}) \times (5.912 \times 10^3)} \\
+  &\approx 3.589 \times 10^{-4}
 \end{align*}
 
 \[
@@ -106,10 +97,12 @@ L &= \frac{I}{J \cdot 2\pi r} \\
 \frac{hc}{\lambda} = e\phi + \frac{1}{2}mv_m^2 \quad \Longleftrightarrow \quad v_m = \sqrt{ \frac{2}{m} \left( \frac{hc}{\lambda} - e\phi \right) }
 \end{equation}
 
+数値を代入
 \begin{align*}
 v_m &= \sqrt{ \frac{2}{9.11 \times 10^{-31}} \left( \frac{(6.63 \times 10^{-34})(3.00 \times 10^8)}{4.55 \times 10^{-8}} - (1.60 \times 10^{-19})(4.27) \right) } \\
-    &= \sqrt{ \frac{2}{9.11 \times 10^{-31}} ( 4.37 \times 10^{-18} - 6.83 \times 10^{-19} ) } \\
-    &\approx 2.85 \times 10^6
+    &= \sqrt{ \frac{2}{9.11 \times 10^{-31}} ( 4.3714 \dots \times 10^{-18} - 6.832 \times 10^{-19} ) } \\
+    &= \sqrt{ \frac{7.376 \dots \times 10^{-18}}{9.11 \times 10^{-31}} } \\
+    &\approx 2.845 \times 10^6
 \end{align*}
 
 \[
@@ -132,7 +125,8 @@ v_m &= \sqrt{ \frac{2}{9.11 \times 10^{-31}} \left( \frac{(6.63 \times 10^{-34})
 \begin{align*}
 I_p &= \frac{I_o}{\delta^n} \\
     &= \frac{0.125 \times 10^{-3}}{4.0^{10}} \\
-    &\approx 1.19 \times 10^{-10}
+    &= \frac{1.25 \times 10^{-4}}{1.048576 \times 10^6} \\
+    &\approx 1.192 \times 10^{-10}
 \end{align*}
 
 \[
@@ -151,13 +145,14 @@ V = \frac{1}{\sqrt{x^2 + y^2 + z^2}} \unit{V}
 
 電界 $\bm{E} = -\nabla V$
 \[
-\bm{E} = - \left( \frac{\partial V}{\partial x}, \frac{\partial V}{\partial y}, \frac{\partial V}{\partial z} \right)
+\bm{E} = - \left( \frac{\partial V}{\partial x} \bm{i} + \frac{\partial V}{\partial y} \bm{j} + \frac{\partial V}{\partial z} \bm{k} \right)
 \]
 
-$x$ 成分
+$x$ 成分の計算
 \begin{align*}
 E_x &= - \frac{\partial}{\partial x} (x^2 + y^2 + z^2)^{-\frac{1}{2}} \\
-    &= - \left( -\frac{1}{2} \right) (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot (2x) \\
+    &= - \left( -\frac{1}{2} \right) (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot \frac{\partial}{\partial x}(x^2 + y^2 + z^2) \\
+    &= \frac{1}{2} (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot (2x) \\
     &= \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
 \end{align*}
 
