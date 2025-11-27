@@ -1,0 +1,408 @@
+% !TEX program = lualatex
+% !TEX options = --shell-escape
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+% ===== ドキュメントクラス =====
+\documentclass[
+  a4paper,
+  11pt,
+  ja=standard  % 標準的な日本語設定
+]{ltjsarticle}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+
+% ===== フォント・言語設定 =====
+\usepackage{luatexja-fontspec} 
+
+% ===== レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry} 
+\usepackage{graphicx}          
+\graphicspath{{image/}}
+
+% ===== SVG関連 =====
+% Inkscape等の設定に依存するため、環境に合わせて調整してください
+\usepackage[inkscapelatex=false]{svg} 
+
+\usepackage{booktabs}          
+\usepackage{float}             
+\usepackage{wrapfig}           
+\usepackage{caption}           
+\captionsetup[table]{skip=5pt} % 表のキャプションと本体の間隔調整
+
+% ===== 数式・物理単位関連 =====
+\usepackage{amsmath}           
+\usepackage{amsthm}            
+\usepackage{newtxmath}         
+\usepackage{siunitx}           
+\usepackage{cancel}            
+
+% ===== 図表・グラフ描画関連 =====
+\usepackage{tikz}
+\usepackage{circuitikz}        
+\usepackage{pgfplots}          
+\usepackage{pgfplotstable}     
+\pgfplotsset{compat=1.18}      
+\usepgfplotslibrary{statistics} 
+\usetikzlibrary{positioning}   
+
+% ===== プログラミング・アルゴリズム関連 =====
+\usepackage{listings}          
+\usepackage{algorithm}         
+\usepackage{algpseudocode}     
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\arabic*)}
+\usepackage{subcaption}
+
+% ===== ハイパーリンク =====
+\usepackage[
+  colorlinks=true,      
+  linkcolor=blue,         
+  citecolor=green!60!black, 
+  urlcolor=cyan,          
+  hidelinks,              
+]{hyperref}
+
+% ===== 引用設定 =====
+\usepackage{cite}
+\makeatletter
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
+\makeatother
+
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
+
+% ===== フォント設定 =====
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+
+% ===== ドキュメント情報 =====
+\title{実験報告書：振幅変調 (AM)}
+\author{}
+\date{}
+
+% ===== 数式用カスタムコマンド =====
+\newcommand{\dd}{\mathrm{d}} 
+\newcommand{\mi}{\mathrm{j}} 
+
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
+\begin{document}
+
+\maketitle
+
+% ===================================================================
+\section{目的}
+% ===================================================================
+AM（振幅変調）変調と復調の原理，およびそれを実現する回路の動作を理解することを目的とする．
+
+% ===================================================================
+\section{AMの変調・復調の原理}
+% ===================================================================
+無線通信において能率よく電波を放射するためには，高い周波数の電磁波（搬送波）を用いる必要がある．音声のような低い周波数の情報信号を高周波に乗せる手法の一つがAM（Amplitude Modulation：振幅変調）であり，搬送波の振幅を情報信号（変調波）に応じて変化させる方式である．
+
+いま，搬送波 $v_c$ が
+\begin{equation}
+  v_c = V_c \cos \omega_c t
+  \label{eq:carrier}
+\end{equation}
+で表される正弦波であり，これを
+\begin{equation}
+  v_s = V_s \cos \omega_s t
+  \label{eq:signal}
+\end{equation}
+で表される信号波（変調波）によって振幅変調する場合を考える．振幅変調では搬送波の振幅が変調波によって変化するため，被変調波の振幅成分は
+\begin{equation}
+  V_c + k_a V_s \cos \omega_s t
+  \label{eq:amplitude}
+\end{equation}
+となる．ここで $k_a$ は比例定数である．したがって，被変調波 $v$ は次式で表される．
+\begin{equation}
+  v = (V_c + k_a V_s \cos \omega_s t) \cos \omega_c t = V_c(1 + m_a \cos \omega_s t) \cos \omega_c t
+  \label{eq:modulated_wave}
+\end{equation}
+ここで，
+\begin{equation}
+  m_a = \frac{k_a V_s}{V_c}
+  \label{eq:modulation_index}
+\end{equation}
+は変調度と呼ばれ，これを百分率で表したものを変調率という．
+
+復調は，被変調波を整流または2乗し，そこに含まれる低周波成分を取り出すことによって行われる．
+振幅変調回路は，搬送波増幅器の増幅度を変調信号によって変化させることで実現できる．図\ref{fig:waveforms}に，変調信号，搬送波および被変調波の波形を示す．
+
+\begin{figure}[H]
+  \centering
+  % width調整
+  \includesvg[width=0.75\textwidth]{Wave.svg}
+  \caption{各部の波形．(a) 変調信号，(b) 搬送波，(c) 被変調波}
+  \label{fig:waveforms}
+\end{figure}
+
+% ===================================================================
+\section{実験方法}
+% ===================================================================
+図\ref{fig:circuit}に示すAM変復調回路を用いて実験を行った．
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.85\textwidth]{config.svg}
+  \caption{AM 変復調回路}
+  \label{fig:circuit}
+\end{figure}
+
+\begin{enumerate}
+  \item \label{exp:1} 「AM OUT」端子と「AM IN」端子を接続した．
+
+  \item \label{exp:2} 低周波発振器を「AF IN」に接続し，周波数\SI{3}{\kilo\hertz}の正弦波を入力した．図\ref{fig:circuit}における「AF IN」，「AM OUT」および「DET OUT」端子の電圧波形をオシロスコープで観測し，スケッチした．その際，「AM OUT」の包絡線や「DET OUT」の波形に歪みが生じないよう，低周波発振器の振幅（Amplitude）を調整した．
+
+  \item \label{exp:3} 入力周波数を\SI{100}{\hertz}～\SI{50}{\kilo\hertz}の範囲で変化させ，「AF IN」―「AM OUT」間および「AF IN」―「DET OUT」間の周波数特性を測定した（測定点10点以上）．
+  \par\noindent ※注：グラフ作成には片対数グラフ用紙を用いた．「AM OUT」については包絡線電圧のp-p値を測定値とした．
+
+  \item \label{exp:4} 入力周波数を一定（\SI{3}{\kilo\hertz}）とし，入力電圧「AF IN」に対する「AM OUT」および「DET OUT」の入出力特性（直線性）を測定した（測定点10点以上）．
+  \par\noindent ※注：グラフ作成には両対数または普通方眼紙を用いた．「AM OUT」については包絡線電圧のp-p値を測定値とした．
+\end{enumerate}
+
+% ===================================================================
+\section{実験結果}
+% ===================================================================
+以下に本実験で得られた測定結果を示す．なお，単位は測定器の表示に従う．
+
+% 注意事項: プローブ補正
+\paragraph{測定値に関する注記}
+本実験の電圧測定には減衰比 $10:1$ のプローブ（$\times 10$）を使用した．オシロスコープ側でプローブ設定を行っていないため，画面上の表示電圧値は実際の電圧値の10倍となっている．したがって，本報告書では「測定値（表示値）」と，それを1/10倍した「補正値（実電圧）」を併記する．
+
+\subsection{波形観測（実験\ref{exp:2}）}
+\label{sec:result_exp2}
+周波数\SI{3}{\kilo\hertz}における各部の観測波形を図\ref{fig:AFIN_waveforms}～図\ref{fig:DETOUT_waveforms}に示す．
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AFIN_pk-pk.jpg}
+    \caption{AF IN (p-p電圧)}
+    \label{fig:afin_pkpk}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AFIN_T.jpg}
+    \caption{AF IN (周期 $T$)}
+    \label{fig:afin_T}
+  \end{subfigure}
+  \caption{AF IN の波形}
+  \label{fig:AFIN_waveforms}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_山ー山.jpg}
+    \caption{AM OUT (最大値)}
+    \label{fig:amout_peakpeak}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_山ー谷.jpg}
+    \caption{AM OUT (p-p)}
+    \label{fig:amout_peaktrough}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{AMOUT_谷-谷.jpg}
+    \caption{AM OUT (最小値)}
+    \label{fig:amout_troughtrough}
+  \end{subfigure}
+  \caption{AM OUT の包絡線波形}
+  \label{fig:AMOUT_envelope}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{DETOUT_pk-pk.jpg}
+    \caption{DET OUT (p-p電圧)}
+    \label{fig:detout_pkpk}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{DETOUT_T.jpg}
+    \caption{DET OUT (周期 $T$)}
+    \label{fig:detout_T}
+  \end{subfigure}
+  \caption{DET OUT の波形}
+  \label{fig:DETOUT_waveforms}
+\end{figure}
+
+\subsection{周波数特性（実験\ref{exp:3}）}
+\label{sec:result_exp3}
+実験\ref{exp:3}により得られた周波数特性の測定結果を表\ref{tab:freq_response}および表\ref{tab:freq_response_corrected}に示す．また，これを片対数グラフにプロットしたものを図\ref{fig:freq_response_corrected}に示す．
+
+\begin{table}[H]
+  \centering
+  \caption{周波数特性測定値（オシロスコープ表示値）}
+  \label{tab:freq_response}
+  \begin{tabular}{S[table-format=5.0] S[table-format=1.2] S[table-format=1.3]}
+    \toprule
+    {周波数 (\si{\hertz})} & {AM OUT (\si{\volt})} & {DET OUT (\si{\volt})} \\
+    \midrule
+    100   & 1.46 & 0.186 \\
+    400   & 1.88 & 0.394 \\
+    600   & 1.95 & 0.584 \\
+    800   & 1.94 & 0.734 \\
+    2000  & 2.07 & 0.810 \\
+    3000  & 2.09 & 0.802 \\
+    5000  & 2.08 & 0.860 \\
+    10000 & 2.01 & 0.860 \\
+    20000 & 2.07 & 0.835 \\
+    50000 & 0.94 & 0.830 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{周波数特性補正値（実電圧：表示値 $\times 1/10$）}
+  \label{tab:freq_response_corrected}
+  \begin{tabular}{S[table-format=5.0] S[table-format=1.3] S[table-format=1.4]}
+    \toprule
+    {周波数 (\si{\hertz})} & {AM OUT (\si{\volt})} & {DET OUT (\si{\volt})} \\
+    \midrule
+    100   & 0.146 & 0.0186 \\
+    400   & 0.188 & 0.0394 \\
+    600   & 0.195 & 0.0584 \\
+    800   & 0.194 & 0.0734 \\
+    2000  & 0.207 & 0.0810 \\
+    3000  & 0.209 & 0.0802 \\
+    5000  & 0.208 & 0.0860 \\
+    10000 & 0.201 & 0.0860 \\
+    20000 & 0.207 & 0.0835 \\
+    50000 & 0.094 & 0.0830 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.85\textwidth]{freq_response.svg}
+  \caption{周波数特性（補正後）}
+  \label{fig:freq_response_corrected}
+\end{figure}
+
+\subsection{入出力特性（実験\ref{exp:4}）}
+\label{sec:result_exp4}
+実験\ref{exp:4}により測定した入出力特性を表\ref{tab:io_characteristic}および表\ref{tab:io_characteristic_corrected}に示す（入力周波数：\SI{3}{\kilo\hertz}）．また，そのグラフを図\ref{fig:io_characteristic_corrected}に示す．
+
+\begin{table}[H]
+  \centering
+  \caption{入出力特性測定値（オシロスコープ表示値）}
+  \label{tab:io_characteristic}
+  \begin{tabular}{S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
+    \toprule
+    {AF IN (\si{\volt})} & {AM OUT (\si{\volt})} & {DET OUT (\si{\volt})} \\
+    \midrule
+    1.35  & 3.50  & 1.36 \\
+    1.225 & 3.24  & 1.23 \\
+    1.13  & 3.00  & 1.15 \\
+    0.995 & 2.55  & 1.025 \\
+    0.83  & 2.22  & 0.87 \\
+    0.735 & 1.93  & 0.76 \\
+    0.596 & 1.66  & 0.634 \\
+    0.49  & 1.36  & 0.514 \\
+    0.41  & 1.07  & 0.432 \\
+    0.18  & 0.405 & 0.174 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{入出力特性補正値（実電圧：表示値 $\times 1/10$）}
+  \label{tab:io_characteristic_corrected}
+  \begin{tabular}{S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
+    \toprule
+    {AF IN (\si{\volt})} & {AM OUT (\si{\volt})} & {DET OUT (\si{\volt})} \\
+    \midrule
+    0.135  & 0.350  & 0.136 \\
+    0.1225 & 0.324  & 0.123 \\
+    0.113  & 0.300  & 0.115 \\
+    0.0995 & 0.255  & 0.1025 \\
+    0.083  & 0.222  & 0.087 \\
+    0.0735 & 0.193  & 0.076 \\
+    0.0596 & 0.166  & 0.0634 \\
+    0.049  & 0.136  & 0.0514 \\
+    0.041  & 0.107  & 0.0432 \\
+    0.018  & 0.0405 & 0.0174 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.85\textwidth]{io_characteristics.svg}
+  \caption{入出力特性（補正後）}
+  \label{fig:io_characteristic_corrected}
+\end{figure}
+
+
+% ===================================================================
+\section{考察}
+% ===================================================================
+
+\subsection{波形の考察（実験(2)）}
+実験(2)の観測波形（図\ref{fig:AFIN_waveforms}～図\ref{fig:DETOUT_waveforms}）より，各信号の周期 $T$ は，AF IN で \SI{335}{\micro\second}，DET OUT で \SI{332}{\micro\second} と読み取れる．これより周波数 $f = 1/T$ を求めると，
+\begin{align*}
+  f_{\text{AF}} &= \frac{1}{335 \times 10^{-6}} \simeq \SI{2.99}{\kilo\hertz} \\
+  f_{\text{DET}} &= \frac{1}{332 \times 10^{-6}} \simeq \SI{3.01}{\kilo\hertz}
+\end{align*}
+となり，入力信号周波数 \SI{3}{\kilo\hertz} とほぼ一致している．復調波形に顕著な歪みは見られないが，DET OUT には搬送波成分（リップル）がわずかに残留している様子が確認できる．
+
+また，AM OUT 波形の包絡線の最大値 $A$（山-山）および最小値 $B$（谷-谷）から変調度 $m$ を算出する．測定値（補正前）より $A=\SI{4.26}{\volt}$，$B=\SI{1.85}{\volt}$ とすると，
+\[
+ m = \frac{A-B}{A+B} = \frac{4.26-1.85}{4.26+1.85} \simeq 0.395
+\]
+となり，変調度は約 40\% である．過変調による波形の崩れはなく，正常な変調動作が行われていると考えられる\cite{tanno1988}．
+
+\subsection{周波数特性の考察（実験(3)）}
+図\ref{fig:freq_response_corrected}より，\SI{2}{\kilo\hertz}～\SI{20}{\kilo\hertz}の範囲では出力電圧がほぼ一定であり，良好な特性を示している．
+低周波領域（\SI{1}{\kilo\hertz}以下）での出力低下は，回路内の結合コンデンサやバイパスコンデンサによるリアクタンスの影響で，信号が通過しにくくなるためと考えられる．
+一方，高周波領域では本来，同調回路の帯域制限により減衰が生じるはずであるが，本測定では\SI{50}{\kilo\hertz}においてもDET OUTの出力低下は見られなかった．これは測定範囲内では回路の帯域幅に余裕があったか，あるいは測定誤差が含まれている可能性がある．ただし，一般的な音声信号（\SI{300}{\hertz}～\SI{3.4}{\kilo\hertz}）を扱う上では十分な特性を有していると言える\cite{tanno1988}．
+
+\subsection{入出力特性の考察（実験(4)）}
+図\ref{fig:io_characteristic_corrected}より，AF IN の入力振幅に対して AM OUT および DET OUT の振幅が直線的に増加しており，原点付近を通る良好な比例関係にあることがわかる．
+これは，変調回路が線形変調器として動作し，復調回路（ダイオード検波回路）においても十分な入力振幅が与えられているため，ダイオードの非線形領域の影響を受けずに直線検波が行われているためである．飽和特性や著しい非線形歪みは観測されず，正常に動作していると判断できる．
+
+\subsection{回路動作および変復調方式}
+図\ref{fig:circuit}のAM変復調回路における各部の役割と動作原理について述べる\cite{tanno1988}．
+
+\paragraph{変調部（Q1, Q3）}
+Q1を含むLC発振回路で搬送波を生成している．音声信号（AF IN）はQ3で増幅され，トランスT2を介してQ1のコレクタ側に重畳される．これにより，Q1の電源電圧が音声信号に応じて変動し，発振振幅が変化する．この方式は\textbf{コレクタ変調}と呼ばれ，深い変調をかけても歪みが少ない特徴がある．
+
+\paragraph{緩衝増幅部（Q2）}
+Q2はエミッタフォロワ等のバッファ回路として機能し，後段の負荷変動が発振段（Q1）へ影響を与え，周波数が不安定になることを防いでいる．
+
+\paragraph{復調部（D3）}
+D3は検波用ダイオードであり，被変調波を半波整流する．その後段にある抵抗とコンデンサ（R20, C11, C12等）による低域通過フィルタ（LPF）により，高周波成分（搬送波）を除去し，包絡線信号（音声信号）のみを取り出す．この方式は\textbf{直線検波（包絡線検波）}と呼ばれ，入力信号振幅が大きい場合に歪みの少ない復調が可能である．
+
+% ===================================================================
+\begin{thebibliography}{9}
+\bibitem{tanno1988}
+丹野頼元：『森北電気工学シリーズ2 電子回路（第2版）』，森北出版株式会社，1988年，pp.253--265．
+\end{thebibliography}
+
+\end{document}
