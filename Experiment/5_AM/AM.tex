@@ -432,10 +432,10 @@ AMと復調の原理及びそれを実現する回路の動作を理解する．
 変調度は約 40\% で，過変調は生じていない．\cite{tanno1988}
 
 \subsection*{2. 実験(3) 周波数特性の考察}
-図\ref{fig:freq_response_corrected} では \SI{2}{\kilo\hertz}～\SI{20}{\kilo\hertz} でほぼ一定出力。低域の減少は結合/バイパス用コンデンサで低周波が通りにくいため，高域低下は同調回路とトランスの限界による。音声帯域 (約 \SI{300}{\hertz}～\SI{3.4}{\kilo\hertz}) を扱うには十分平坦である。\cite{tanno1988}
+図\ref{fig:freq_response_corrected} では \SI{2}{\kilo\hertz}～\SI{20}{\kilo\hertz} でほぼ一定出力を示した。低域の減少は結合/バイパス用コンデンサで低周波が通りにくいため，高域低下は同調回路とトランスの限界による。音声帯域 (約 \SI{300}{\hertz}～\SI{3.4}{\kilo\hertz}) を扱うには十分平坦である。なお，理論的には高周波帯で減衰が期待されるが，\SI{50}{\kilo\hertz} においても DET OUT がほぼ一定に保たれた点は測定誤差の影響と考えられる。\cite{tanno1988}
 
 \subsection*{3. 実験(4) 入出力特性の考察}
-図\ref{fig:io_characteristic_corrected} では AF IN に対し AM OUT と DET OUT がほぼ比例し原点近くを通る。変調部は入力振幅に素直に追従し，ダイオードは十分な振幅で直線動作している。飽和や顕著な歪みは観測されない。\cite{tanno1988}
+図\ref{fig:io_characteristic_corrected} では AF IN に対し AM OUT と DET OUT がほぼ比例し原点近くを通る。この線形性は，変調部が入力振幅に比例して搬送波の振幅を変化させる線形変調器として動作し，復調側のダイオードも十分な振幅領域で大信号動作（包絡線検波）を行っているためである。飽和や顕著な歪みは観測されず，設計通りの線形入出力特性が確認された。\cite{tanno1988}
 
 \subsection*{4. 回路動作および変復調方式の特定}
 図\ref{fig:circuit} の各部の主な働きと方式を簡潔に示す\cite{tanno1988}。
