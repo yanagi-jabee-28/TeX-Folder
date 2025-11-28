@@ -416,10 +416,105 @@ Q2は搬送波を増幅する回路であるが，その電源電圧（コレク
 \paragraph{復調部（D3）}
 D3は検波用ダイオードであり，被変調波を半波整流する．その後段にある抵抗とコンデンサ（R20, C11, C12等）による低域通過フィルタ（LPF）により，高周波成分（搬送波）を除去し，包絡線信号（音声信号）のみを取り出す．この方式は\textbf{直線検波（包絡線検波）}と呼ばれ，入力信号振幅が大きい場合に歪みの少ない復調が可能である．
 
+\subsection{観測波形の数式化}
+実験(2)で観測されたAM波形（図\ref{fig:AMOUT_envelope}）を数式で表現することを試みる．
+AM波の一般式は，搬送波角周波数を $\omega_c$，信号波角周波数を $\omega_s$，搬送波振幅（片振幅）を $V_c$，変調度を $m$ とすると，次式で表される．
+\begin{equation}
+  v(t) = V_c (1 + m \cos \omega_s t) \cos \omega_c t
+  \label{eq:am_general}
+\end{equation}
+
+ここで，各パラメータを本実験の測定結果より算出する．
+まず，変調度 $m$ は前節で求めたとおり $m \simeq 0.395$ である．
+
+次に，搬送波振幅 $V_c$ を求める．図\ref{fig:AMOUT_envelope}より，包絡線の最大値（山-山）を $V_{\text{max}(p-p)}$，最小値（谷-谷）を $V_{\text{min}(p-p)}$，包絡線のピークツーピーク値を $V_{\text{env}(p-p)}$ とする．測定値（補正後実電圧）より，
+\begin{align*}
+  V_{\text{max}(p-p)} &= \SI{0.426}{\volt} \quad \text{（山-山）} \\
+  V_{\text{min}(p-p)} &= \SI{0.185}{\volt} \quad \text{（谷-谷）} \\
+  V_{\text{env}(p-p)} &= \SI{0.118}{\volt} \quad \text{（包絡線のp-p）}
+\end{align*}
+である．
+
+AM波の包絡線において，最大値は $V_c(1+m)$，最小値は $V_c(1-m)$ に対応する（片振幅基準）．したがって，それぞれのp-p値は搬送波の両振幅を表すため，
+\begin{align*}
+  V_{\text{max}(p-p)} &= 2V_c(1+m) \\
+  V_{\text{min}(p-p)} &= 2V_c(1-m)
+\end{align*}
+となる．また，包絡線のピークツーピーク値は，
+\begin{equation}
+  V_{\text{env}(p-p)} = V_c(1+m) - V_c(1-m) = 2V_c m
+\end{equation}
+である．
+
+ここから搬送波振幅 $V_c$ を求める方法は複数あるが，包絡線のp-p値を用いる方法が直接的である．式変形により，
+\begin{equation}
+  V_c = \frac{V_{\text{env}(p-p)}}{2m} = \frac{0.118}{2 \times 0.395} \simeq \SI{0.149}{\volt}
+\end{equation}
+と求まる．
+
+検証として，山-山と谷-谷の平均から求める方法でも確認する．
+\begin{equation}
+  V_c = \frac{V_{\text{max}(p-p)} + V_{\text{min}(p-p)}}{4} = \frac{0.426 + 0.185}{4} \simeq \SI{0.153}{\volt}
+\end{equation}
+両者はほぼ一致しており，$V_c \simeq \SI{0.15}{\volt}$ と判断できる．本報告では包絡線p-p値から求めた $V_c = \SI{0.149}{\volt}$ を採用する．
+
+周波数については,信号波周波数はファンクションジェネレータの設定より $f_s = \SI{3}{\kilo\hertz}$ である.また,搬送波周波数 $f_c$ はオシロスコープの時間軸設定および回路仕様よりおよそ \SI{3}{\mega\hertz} と推定する.
+以上より,観測されたAM波形 $v(t)$ の式は次のように表される.
+\begin{equation}
+  v(t) = 0.149 \{ 1 + 0.395 \cos(2\pi \cdot 3 \times 10^3 t) \} \cos(2\pi \cdot 3 \times 10^6 t) \quad [\si{\volt}]
+  \label{eq:am_waveform}
+\end{equation}
+
+この波形を図示したものを図\ref{fig:am_waveform_plot}に示す.搬送波が信号波の包絡線に沿って振幅変調されている様子が確認できる.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.9\textwidth,
+      height=6cm,
+      xlabel={時間 $t$ [\si{\milli\second}]},
+      ylabel={電圧 $v(t)$ [\si{\volt}]},
+      domain=0:2,
+      samples=2000,
+      grid=major,
+      xmin=0, xmax=2,
+      ymin=-0.25, ymax=0.25,
+      axis lines=middle,
+      every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+      every axis y label/.style={at={(current axis.above origin)},anchor=south},
+      legend pos=north west,
+      legend cell align=left,
+      ]
+      
+      % AM波形（搬送波周波数を見やすく調整: 実際は3MHzだが表示上は300kHzで描画）
+      \addplot[blue, thick, domain=0:2] {0.149 * (1 + 0.395*cos(deg(2*pi*3*x))) * cos(deg(2*pi*300*x))};
+      \addlegendentry{AM波形 $v(t)$}
+      
+      % 包絡線（上側）
+      \addplot[red, dashed, thick, domain=0:2] {0.149 * (1 + 0.395*cos(deg(2*pi*3*x)))};
+      \addlegendentry{包絡線（上）}
+      
+      % 包絡線（下側）
+      \addplot[red, dashed, thick, domain=0:2] {-0.149 * (1 + 0.395*cos(deg(2*pi*3*x)))};
+      \addlegendentry{包絡線（下）}
+      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{観測されたAM波形の数式表現（搬送波周波数は表示のため調整）}
+  \label{fig:am_waveform_plot}
+\end{figure}
+
+\paragraph{注記}
+図\ref{fig:am_waveform_plot}では,実際の搬送波周波数 \SI{3}{\mega\hertz} を用いると波形が密集しすぎて視認できないため,表示上は搬送波周波数を \SI{300}{\kilo\hertz} に調整して描画している.これにより変調の様子（包絡線に沿った振幅変化）が明瞭に確認できる.
+
 % ===================================================================
 \begin{thebibliography}{9}
 \bibitem{tanno1988}
 丹野頼元：『森北電気工学シリーズ2 電子回路（第2版）』，森北出版株式会社，1988年，pp.253--265．
+
+\bibitem{koshiba2015}
+小柴典居，植田佳典：『発信・変復調回路の考え方（改訂2版）』，オーム社，pp.56--114．
 \end{thebibliography}
 
 \end{document}
