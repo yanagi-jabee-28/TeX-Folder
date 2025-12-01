@@ -1,0 +1,181 @@
+% !TEX program = lualatex
+%==============================================================================
+% 電子工学(5E) 後期中間到達度試験 完全対策資料
+%==============================================================================
+% 制作：試験対策委員会
+% 対象資料：試験範囲ポイント表（①〜⑲）、2024/2023年度過去問、講義ノート
+%==============================================================================
+
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+%------------------------------------------------------------------------------
+% パッケージ設定
+%------------------------------------------------------------------------------
+\usepackage[left=20mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{amsmath, amssymb, bm} % 数式
+\usepackage{siunitx}              % 単位
+\usepackage{graphicx}             % 画像
+\usepackage{booktabs}             % 表
+\usepackage{tcolorbox}            % 枠線・ボックス
+\tcbuselibrary{skins, breakable}
+\usepackage{enumitem}             % リスト設定
+\usepackage{hyperref}             % リンク
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan}
+
+%------------------------------------------------------------------------------
+% 定数・コマンド定義
+%------------------------------------------------------------------------------
+\newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
+\newcommand{\kB}{k}              % ボルツマン定数
+\newcommand{\dd}{\mathrm{d}}     % 微分記号
+
+% 試験用物理定数
+\newcommand{\ValE}{1.60 \times 10^{-19}}
+\newcommand{\ValK}{1.38 \times 10^{-23}}
+\newcommand{\ValA}{1.20 \times 10^6}
+
+\title{\textbf{電子工学(5E) 試験範囲ポイント完全解説}}
+\author{重要ポイント①〜⑲網羅版}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black, title=\textbf{学習の指針}]
+配布された「試験範囲ポイント（①〜⑲）」の全てに対し、過去問とノートに基づく解答を作成しました。
+\begin{itemize}
+    \item \textbf{計算}: 熱電子（リチャードソン）、光電子（アインシュタイン）、PMT増倍率、電界計算。
+    \item \textbf{理論}: バンド図の名称、フェルミ準位の定義、各種放出の原理。
+\end{itemize}
+特に\textbf{赤字}の部分は、記述問題や穴埋め問題で狙われるキーワードです。
+\end{tcolorbox}
+
+%==============================================================================
+\section{エネルギーバンドと電子放出の基礎 (ポイント①〜⑦)}
+%==============================================================================
+
+\subsection{バンド構造の定義 (①)}
+\begin{description}
+    \item[充満帯 (Filled Band)] 電子が隙間なく詰まっている帯。通常、電流に寄与しない。
+    \item[禁制帯 (Forbidden Band)] 電子が存在できないエネルギー領域（バンドギャップ）。
+    \item[伝導帯 (Conduction Band)] 電子が自由に動ける帯。金属では充満帯と重なっている。
+\end{description}
+
+\subsection{電子放出のメカニズム (②, ③, ④, ⑤)}
+\begin{itemize}
+    \item \textbf{放出の条件}: 外部エネルギー（熱・光・電界）を受け取り、電子のエネルギーが\textbf{真空準位}（ポテンシャルの壁の高さ $W$）を超えること。
+    \item \textbf{飛び出さない理由 (③)}: 表面の原子核（正電荷）による引力（クーロン力・鏡像力）が働き、\textbf{電位障壁}が形成されているため。
+    \item \textbf{仕事関数 $\phi$}:
+    \begin{equation}
+        \phi = W - \EF \quad [\si{eV}]
+    \end{equation}
+    「フェルミ準位 $\EF$ にある電子を、外（真空）に取り出すのに必要な最小エネルギー」。
+    \item \textbf{0Kでのエネルギー (⑤)}: 絶対零度において、金属内電子は最高でフェルミ準位 $\EF$ までのエネルギーを持つ。
+\end{itemize}
+
+\subsection{フェルミ準位と分布関数 (⑥, ⑦)}
+\begin{itemize}
+    \item \textbf{フェルミ分布関数 $f(E)$}: あるエネルギー $E$ に電子が存在する確率。
+    \item \textbf{フェルミ準位 $\EF$ の定義}:
+    \begin{itemize}
+        \item $T=\SI{0}{K}$：電子が存在する上限のエネルギー。
+        \item $T>\SI{0}{K}$：電子の存在確率 $f(E)$ が \textbf{1/2 (50\%)} になるエネルギー準位。
+    \end{itemize}
+    \item \textbf{状態密度 $n(E)$}: エネルギー準位の「座席数」。エネルギーが高くなると増える（放物線状）。
+\end{itemize}
+
+%==============================================================================
+\section{熱電子放出 (ポイント⑧〜⑩)}
+%==============================================================================
+
+\subsection{リチャードソン・ダッシュマンの式 (⑧)}
+熱電子の飽和電流密度 $J [\si{A/m^2}]$ を表す最重要公式。
+\begin{tcolorbox}[colback=white, colframe=blue]
+    \begin{equation}
+        J = A T^2 \exp\left( -\frac{e\phi}{\kB T} \right)
+    \end{equation}
+\end{tcolorbox}
+\textbf{計算の注意}: 指数部分 $\frac{e\phi}{\kB T}$ を計算する際、$\phi[\si{eV}]$ は必ず $\times 1.6 \times 10^{-19}$ して \textbf{ジュール$[\si{J}]$} に直すこと。
+
+\subsection{リチャードソン線 (⑨)}
+式を変形し、対数をとる：
+\[
+    \ln\left( \frac{J}{T^2} \right) = \ln A - \frac{e\phi}{\kB} \cdot \frac{1}{T}
+\]
+\begin{itemize}
+    \item \textbf{縦軸}: $\ln(J/T^2)$, \textbf{横軸}: $1/T$
+    \item グラフは\textbf{直線}になる。
+    \item \textbf{直線の傾き}から「仕事関数 $\phi$」を、\textbf{切片}から「定数 $A$」を求めることができる。
+\end{itemize}
+
+\subsection{熱陰極の具備条件 (⑩)}
+良い陰極材料の条件：
+\begin{enumerate}
+    \item \textbf{仕事関数 $\phi$ が小さいこと}（低温で電子が出やすい）。
+    \item \textbf{融点が高いこと}（高温に耐える）。
+    \item \textbf{寿命が長いこと}（蒸発しにくい）。
+\end{enumerate}
+※ 例：タングステン(W)、酸化物陰極(BaOなど)。
+
+%==============================================================================
+\section{光電子放出 (ポイント⑪〜⑬)}
+%==============================================================================
+
+\subsection{アインシュタインの式と放出条件 (⑪, ⑫)}
+\begin{equation}
+    h\nu = e\phi + \frac{1}{2}mv_m^2
+\end{equation}
+\begin{itemize}
+    \item **放出条件**: 光子エネルギー $h\nu$ が仕事関数 $e\phi$ 以上であること。 ($h\nu \ge e\phi$)
+    \item **限界周波数 $\nu_0$**: $h\nu_0 = e\phi$
+    \item **限界波長 $\lambda_0$**: $\lambda_0 = \dfrac{hc}{e\phi}$
+    \item 波長が $\lambda_0$ より\textbf{短い}光でないと放出されない（短波長＝高エネルギー）。
+\end{itemize}
+
+\subsection{量子効率と光電感度 (⑬)}
+\begin{description}
+    \item[量子効率 $\eta_q$] 入射した光子数に対し、放出された電子数の割合。
+    \item[光電感度 $S$] 入射した光パワー $[\si{W}]$ に対する電流 $[\si{A}]$ の比 ($S = I/P$)。
+\end{description}
+
+%==============================================================================
+\section{二次電子放出 (ポイント⑭〜⑰)}
+%==============================================================================
+
+\subsection{原理と放出比 (⑭, ⑮, ⑯)}
+\begin{itemize}
+    \item **原理**: 一次電子が固体に衝突し、そのエネルギーで固体内の電子が弾き飛ばされる現象。
+    \item **二次電子放出比 $\delta$**: $\delta = I_s / I_p$ （二次電流 / 一次電流）。
+    \item **放出特性曲線 (⑯)**: 一次電子の加速電圧を上げると $\delta$ は増加するが、ある電圧 ($V_{pmax}$) で最大値 ($\delta_{max}$) をとり、それ以降は\textbf{減少}する。（電子が深くまで入りすぎて脱出できなくなるため）。
+\end{itemize}
+
+\subsection{光電子増倍管 (PMT) (⑰)}
+\begin{itemize}
+    \item **構造**: 光電面 $\to$ ダイノード群 $\to$ アノード。
+    \item **原理**: 二次電子放出を繰り返して電子を増倍する（雪崩増幅）。
+    \item **計算式**: 出力電流 $I = I_{photo} \times \delta^n$ （$n$: ダイノード段数）。
+\end{itemize}
+
+%==============================================================================
+\section{電界放出と電子の運動 (ポイント⑱, ⑲)}
+%==============================================================================
+
+\subsection{ショットキー効果 (⑱)}
+強い電界 $E$ をかけることによる効果。
+\begin{itemize}
+    \item 鏡像力によるポテンシャルと外部電界が合成される。
+    \item 結果として、電位障壁の頂点が\textbf{低下}し、かつ\textbf{金属側に移動}する。
+    \item 仕事関数が見かけ上減少し、熱電子放出が増加する。
+\end{itemize}
+
+\subsection{電界計算の手順 (⑲)}
+空間電荷密度 $\rho$ がある場合の計算フロー（記述問題対策）。
+\begin{enumerate}
+    \item \textbf{ポアソンの方程式}を立てる: $\dfrac{\dd^2 V}{\dd x^2} = -\dfrac{\rho}{\varepsilon_0}$
+    \item \textbf{1回目の積分}: $\dfrac{\dd V}{\dd x} = -E_x$ を求める（積分定数 $C_1$ 出現）。
+    \item \textbf{2回目の積分}: 電位 $V(x)$ を求める（積分定数 $C_2$ 出現）。
+    \item \textbf{境界条件の適用}: $V(0)=0$、 $V(d)=V_a$ などを代入し、定数を決定する。
+\end{enumerate}
+
+\end{document}

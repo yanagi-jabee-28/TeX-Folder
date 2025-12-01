@@ -1,237 +1,205 @@
 % !TEX program = lualatex
 %==============================================================================
-% プリアンブル (Preamble)
+% 電子工学(5E) 後期中間到達度試験 対策資料
 %==============================================================================
 
-% ===== ドキュメントクラス (LuaLaTeX用) =====
-% ltjsarticle が自動的に日本語フォント設定を行います
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 %------------------------------------------------------------------------------
-% パッケージ読み込み
+% パッケージ設定
 %------------------------------------------------------------------------------
-
-% ===== フォント設定の競合回避 =====
-% 【修正】luatexja-preset と luatexja-fontspec を削除しました。
-% クラスのデフォルト設定を使用することで、スケーリング警告や機能無視の警告を防ぎます。
-
-% ===== レイアウト関連 =====
-\usepackage[left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
-\usepackage{graphicx}
-\usepackage{booktabs}      % 綺麗な表
-\usepackage{enumitem}      % リストのカスタマイズ
-\setlist[enumerate,1]{label=(\arabic*)}
-
-% ===== 数式・物理単位関連 =====
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{bm}            % ベクトル太字 (\bm{})
-\usepackage{siunitx}       % 単位記述用
-\usepackage{cancel}        % 式のキャンセル線
-
-% ===== デザイン・装飾関連 =====
-\usepackage{tcolorbox}     % 枠線・強調ボックス
-\tcbuselibrary{skins}
-
-% ===== ハイパーリンク =====
-\usepackage[
-  colorlinks=true,
-  linkcolor=blue,
-  urlcolor=cyan,
-  hidelinks,
-]{hyperref}
+\usepackage[left=20mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{amsmath, amssymb, bm} % 数式
+\usepackage{siunitx}              % 単位
+\usepackage{graphicx}             % 画像
+\usepackage{booktabs}             % 表
+\usepackage{tcolorbox}            % 枠線
+\tcbuselibrary{skins, breakable}
+\usepackage{enumitem}             % リスト設定
+\usepackage{hyperref}             % リンク
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan}
 
 %------------------------------------------------------------------------------
-% カスタムコマンド
+% コマンド定義
 %------------------------------------------------------------------------------
-\newcommand{\dd}{\mathrm{d}}
 \newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
+\newcommand{\dd}{\mathrm{d}}     % 微分記号
+\newcommand{\kB}{k}              % ボルツマン定数
 
-% ===== ドキュメント情報 =====
-\title{電子工学 中間到達度試験 対策分析まとめ}
-\author{}
-\date{}
+% 定数定義（試験用）
+\newcommand{\ConstE}{1.60 \times 10^{-19}}
+\newcommand{\ConstK}{1.38 \times 10^{-23}}
+\newcommand{\ConstH}{6.63 \times 10^{-34}}
+\newcommand{\ConstC}{3.00 \times 10^{8}}
 
-%==============================================================================
-% ドキュメント本体 (Body)
-%==============================================================================
+\title{\textbf{電子工学(5E) 後期中間試験 完全攻略ガイド}}
+\author{試験対策委員会}
+\date{対象：2024・2023年度過去問分析に基づく}
+
 \begin{document}
 
 \maketitle
 
-提供された資料（試験範囲、2024年過去問、2023年過去問）を詳細に分析しました。
-この試験は、\textbf{「電子放出（熱・光・二次・電界）」}と\textbf{「真空中での電子の運動」}の2大テーマで構成されています。
-
-過去問の傾向が極めて明確であり、毎年似た形式で出題されています。以下に、得点源となる重要ポイントと解法の定石を解説します。
-
-%------------------------------------------------------------------------------
-\section{エネルギー準位とバンド理論（基礎知識）}
-%------------------------------------------------------------------------------
-\textbf{【出題箇所】} 2024問1・問2、2023問2 \\
-\textbf{【ポイント一覧】} ①〜⑤
-
-まず、言葉の定義と図の関係を暗記してください。
-
-\begin{itemize}
-    \item \textbf{孤立原子 vs 金属}: 原子が集合して金属になると、電子の軌道が重なり「バンド（帯）」を形成します。
-    \begin{itemize}
-        \item \textbf{充満帯 (Filled Band)}: 電子が詰まっているバンド。
-        \item \textbf{禁制帯 (Forbidden Band)}: 電子が存在できないエネルギー領域（バンドギャップ）。
-        \item \textbf{伝導帯 (Conduction Band)}: 電子が自由に動けるバンド。
-    \end{itemize}
-    \item \textbf{フェルミ準位 ($\EF$)}: 絶対零度（\SI{0}{K}）で電子が詰まっている最大のエネルギー準位。
-    \item \textbf{仕事関数 ($\phi$)}: 電子を固体表面から真空中に取り出すのに必要な最小エネルギー。
-    \begin{itemize}
-        \item 数式定義：$\phi = W - \EF$ （真空準位 $W$ とフェルミ準位の差）
-        \item \textbf{重要}: $\phi$ は「表面の障壁」の高さです。
-    \end{itemize}
-\end{itemize}
-
-%------------------------------------------------------------------------------
-\section{熱電子放出（計算問題の最重要）}
-%------------------------------------------------------------------------------
-\textbf{【出題箇所】} 2024問3、2023問3 \\
-\textbf{【ポイント一覧】} ⑧〜⑩
-
-\textbf{ダッシュマン・リチャードソンの式}を使って計算させられます。
-
-\begin{equation}
-    J = AT^2 \exp\left(-\frac{e\phi}{kT}\right)
-\end{equation}
-
-\begin{itemize}
-    \item $J$: 電流密度 $[\mathrm{A/m}^2]$
-    \item $A$: リチャードソン定数（問題文で与えられます）
-    \item $T$: 温度 $[\mathrm{K}]$
-    \item $k$: ボルツマン定数
-    \item $\phi$: 仕事関数 $[\mathrm{V}]$ または $[\mathrm{eV}]$（※指数の計算時は単位に注意）
-\end{itemize}
-
-\subsection*{【解法の定石】}
+\begin{tcolorbox}[colback=yellow!10!white, colframe=red!50!black, title=\textbf{はじめに：試験の傾向と対策}]
+本試験は、過去問（2023年、2024年）の傾向が非常に似通っており、以下の2大テーマから構成されています。
 \begin{enumerate}
-    \item \textbf{電流 $I$ と電流密度 $J$ の関係}:
-    \[ I = J \times S \]
-    ここで $S$ は表面積です。円柱状の電線（タングステン線など）の場合、半径 $r$、長さ $L$ とすると表面積は $S = 2\pi r L$ です。
-    
-    \item \textbf{式の変形}:
-    \begin{itemize}
-        \item 2024年は $\phi$ を求める問題なので、対数をとって変形します。
-        \item 2023年は $r$ を求める問題なので、$I = (AT^2 \exp(\dots)) \times 2\pi r L$ から $r$ について解きます。
-    \end{itemize}
+    \item \textbf{電子放出（第2章）}：熱・光・二次・電界放出のメカニズムと計算。
+    \item \textbf{真空中の電子の運動（第3章）}：ポテンシャル、電界計算、ポアソンの方程式。
 \end{enumerate}
-
-%------------------------------------------------------------------------------
-\section{光電子放出（光電効果）}
-%------------------------------------------------------------------------------
-\textbf{【出題箇所】} 2024問4、2023問4 \\
-\textbf{【ポイント一覧】} ⑪〜⑬
-
-アインシュタインの光電効果の式が全てです。
-
-\begin{equation}
-    h\nu = \phi + \frac{1}{2}mv_m^2
-\end{equation}
-
-\begin{itemize}
-    \item $h\nu$: 入射光のエネルギー（$h$: プランク定数、$\nu$: 振動数）
-    \item $\phi$: 仕事関数（脱出に必要なエネルギー）
-    \item $\frac{1}{2}mv_m^2$: 飛び出した電子の最大運動エネルギー
-\end{itemize}
-
-\subsection*{【よく使う変換】}
-\begin{itemize}
-    \item 振動数と波長の関係: $\nu = \frac{c}{\lambda}$ （$c$: 光速）
-    \item \textbf{限界波長 $\lambda_0$}: 電子がギリギリ飛び出す（運動エネルギー0）条件なので、$h\frac{c}{\lambda_0} = \phi$ となります。
-    \item \textbf{単位の罠}: 仕事関数 $\phi$ は $[\mathrm{eV}]$ で与えられますが、計算式ではジュール $[\mathrm{J}]$ に直す必要があります。
-    \[ 1 \, [\mathrm{eV}] = 1.60 \times 10^{-19} \, [\mathrm{J}] \]
-\end{itemize}
-
-%------------------------------------------------------------------------------
-\section{二次電子放出と光電子増倍管（PMT）}
-%------------------------------------------------------------------------------
-\textbf{【出題箇所】} 2024問5・問6、2023問5 \\
-\textbf{【ポイント一覧】} ⑭〜⑰
-
-ここも毎年必ず計算が出ます。パターンは決まっています。
-
-\subsection*{【光電子増倍管の出力電流 $I$ の求め方】}
-プロセスは「光が入る $\to$ 光電子が出る $\to$ 二次電子で増幅される」です。
-
-\begin{enumerate}
-    \item \textbf{初段の電流（光電流）}:
-    \[ \text{光電流} = \text{入射光パワー } P \, [\mathrm{W}] \times \text{光電感度 } \eta \, [\mathrm{A/W}] \]
-    ※2024年問6、2023年問5(2)では、$\eta$ の単位 $[\mathrm{mA/W}]$ に注意。
-    
-    \item \textbf{増幅（ダイノード）}:
-    1段あたりの二次電子放出比を $\delta$、段数を $n$ とすると、増幅率（ゲイン）は $\delta^n$ です。
-    
-    \item \textbf{最終出力電流 $I$}:
-    \begin{equation}
-        I = (P \times \eta) \times \delta^n
-    \end{equation}
-\end{enumerate}
-
-\subsection*{【記述対策】}
-\begin{itemize}
-    \item \textbf{スーパーカミオカンデ}: 「ニュートリノ観測装置。チェレンコフ光を光電子増倍管で検出し、電気信号に変える」という概要を押さえる（2023問5(3)）。
-\end{itemize}
-
-%------------------------------------------------------------------------------
-\section{電界放出・ショットキー効果・ポアソン方程式}
-%------------------------------------------------------------------------------
-\textbf{【出題箇所】} 2024問7・問8、2023問1・問6 \\
-\textbf{【ポイント一覧】} ⑱〜⑲
-
-\subsection*{ショットキー効果（2024問7）}
-\begin{itemize}
-    \item 強い電界をかけると、鏡像力（イメージ力）と外部電界の合成により、金属表面の\textbf{電位障壁が下がる}現象。
-    \item これにより熱電子が放出しやすくなります。
-    \item 図の説明：点線が元の障壁、実線が合成後の障壁（頂点が低くなっている）を示します。
-\end{itemize}
-
-\subsection*{電位と電界の計算（2024問8、2023問6）}
-\begin{itemize}
-    \item \textbf{関係式}: 電界 $\boldsymbol{E} = -\nabla V$ （電位の傾きのマイナス）。
-    \item \textbf{手順}:
-    \begin{enumerate}
-        \item ポアソン方程式（$\nabla^2 V = -\frac{\rho}{\epsilon_0}$）を立てる。
-        \item 積分して電界、さらに積分して電位を求める（境界条件で積分定数を決定）。
-        \item あるいは、電位の式 $V$ が与えられている場合（2023問6）、単に $x$ で偏微分してマイナスをつければ $E_x$ になります。
-        \[ E_x = - \frac{\partial V}{\partial x} \]
-    \end{enumerate}
-\end{itemize}
-
-\vspace{1em}
-
-\begin{tcolorbox}[
-  colback=white,
-  colframe=black,
-  title=\textbf{直前対策まとめ},
-  sharp corners=downhill,
-  boxrule=1pt
-]
-これらの方針で学習すれば、60分以内に十分完答可能です。計算ミス（特に指数の桁）にだけ注意してください。
-
-\begin{enumerate}
-    \item \textbf{単位換算を徹底する}:
-    \begin{itemize}
-        \item エネルギー: $\mathrm{eV} \to \mathrm{J}$ （$\times 1.6 \times 10^{-19}$）
-        \item 長さ: $\mathrm{nm} \to \mathrm{m}$ （$\times 10^{-9}$）、$\mathrm{cm} \to \mathrm{m}$ （$\times 10^{-2}$）
-        \item 電流: $\mathrm{mA} \to \mathrm{A}$ （$\times 10^{-3}$）
-    \end{itemize}
-    
-    \item \textbf{必須公式3選}:
-    \begin{itemize}
-        \item 熱電子放出： $J = AT^2 e^{-e\phi/kT}$
-        \item 光電効果： $h\frac{c}{\lambda} = \phi + K_{\max}$
-        \item PMT増幅： $I_{\text{out}} = P \cdot \eta \cdot \delta^n$
-    \end{itemize}
-    
-    \item \textbf{「鏡像法」の力}:
-    \begin{itemize}
-        \item 金属表面から距離 $x$ にある電子が受ける力 $F = \frac{e^2}{16\pi\epsilon_0 x^2}$ （2023問1）も式変形できるようにしておいてください。
-    \end{itemize}
-\end{enumerate}
+特に\textbf{「単位変換のミス」}が命取りになります。必ず $[\mathrm{eV}]$ を $[\mathrm{J}]$ に直して計算する習慣をつけてください。
 \end{tcolorbox}
+
+%==============================================================================
+\section{基礎：エネルギーバンドと用語定義}
+%==============================================================================
+\textbf{出題実績}：2024年 問1・問2、2023年 問2
+
+穴埋め問題や作図問題で確実に得点すべきセクションです。
+
+\subsection{重要用語の定義}
+\begin{description}
+    \item[充満帯 (Filled Band)] 電子が隙間なく詰まっているエネルギー帯。
+    \item[禁制帯 (Forbidden Band)] 電子が存在できないエネルギーギャップ。
+    \item[伝導帯 (Conduction Band)] 電子が自由に動けるエネルギー帯。金属では充満帯と重なっている。
+    \item[フェルミ準位 ($\EF$)] 
+        \begin{itemize}
+            \item $T=\SI{0}{K}$：電子が存在する\textbf{最高の}エネルギー準位。
+            \item $T>\SI{0}{K}$：電子の存在確率が\textbf{1/2 (50\%)}になるエネルギー準位。
+        \end{itemize}
+    \item[仕事関数 ($\phi$)] フェルミ準位にある電子を、表面の外（真空準位）に取り出すのに必要な最小エネルギー。
+    \begin{equation}
+        \phi = W - \EF \quad (\text{$W$: 金属の底から真空準位までの全障壁高さ})
+    \end{equation}
+\end{description}
+
+%==============================================================================
+\section{熱電子放出（最重要計算）}
+%==============================================================================
+\textbf{出題実績}：2024年 問3、2023年 問3
+
+\subsection{リチャードソン・ダッシュマンの式}
+電流密度 $J$ $[\si{A/m^2}]$ は以下の式で表されます。この式は暗記必須です。
+\begin{tcolorbox}[colback=white, colframe=blue]
+    \begin{equation}
+        J = A T^2 \exp\left( -\frac{e\phi}{\kB T} \right)
+    \end{equation}
+\end{tcolorbox}
+\begin{itemize}
+    \item $A$: リチャードソン定数（通常 $1.20 \times 10^6 \, \si{A/m^2 K^2}$）
+    \item $T$: 絶対温度 $[\si{K}]$
+    \item $\kB$: ボルツマン定数 ($1.38 \times 10^{-23} \, \si{J/K}$)
+    \item $e\phi$: 仕事関数（エネルギー単位 $[\si{J}]$ に換算が必要）
+\end{itemize}
+
+\subsection{計算の定石とトラップ}
+\textbf{パターン1：電流 $I$ を求める（または $I$ から逆算する）} \\
+タングステン線などの「円柱形状」の場合、表面積 $S$ の計算を間違えないこと。
+\begin{equation}
+    I = J \times S = J \times (2 \pi r L) \quad (\text{$r$: 半径, $L$: 長さ})
+\end{equation}
+※ 断面積 $\pi r^2$ ではありません！電子は\textbf{表面（側面積）}から飛び出します。
+
+\textbf{パターン2：指数の計算} \\
+指数の中身 $\frac{e\phi}{\kB T}$ は無次元になります。
+\[
+    \text{分子} = \phi[\si{eV}] \times (\ConstE) \quad \leftarrow \text{必ずジュールに直す！}
+\]
+
+%==============================================================================
+\section{光電子放出（光電効果）}
+%==============================================================================
+\textbf{出題実績}：2024年 問4、2023年 問4
+
+\subsection{アインシュタインの式}
+\begin{tcolorbox}[colback=white, colframe=blue]
+    \begin{equation}
+        h\nu = e\phi + \frac{1}{2} m v_m^2
+    \end{equation}
+\end{tcolorbox}
+\begin{itemize}
+    \item $h\nu$: 入射光子のエネルギー（入力）
+    \item $e\phi$: 仕事関数（税金のようなコスト）
+    \item $\frac{1}{2}mv_m^2$: 電子の最大運動エネルギー（残りカス）
+\end{itemize}
+
+\subsection{限界波長 $\lambda_0$}
+電子がギリギリ放出される（運動エネルギーが0）条件です。
+\begin{equation}
+    h \frac{c}{\lambda_0} = e\phi \implies \lambda_0 = \frac{hc}{e\phi}
+\end{equation}
+\textbf{便利テクニック}:
+\[
+    \lambda_0 [\si{nm}] \approx \frac{1240}{\phi [\si{eV}]}
+\]
+※記述式の場合は、基本定数 $h, c, e$ を代入して計算過程を示すのが無難です。
+
+%==============================================================================
+\section{二次電子放出・光電子増倍管 (PMT)}
+%==============================================================================
+\textbf{出題実績}：2024年 問5・6、2023年 問5
+
+\subsection{計算のアルゴリズム}
+光電子増倍管の出力電流 $I$ を求める問題は、以下の3ステップで解けます。
+
+\begin{enumerate}
+    \item \textbf{光電流 $I_0$ の計算}:
+    入射光パワー $P [\si{W}]$ と光電感度 $\eta [\si{A/W}]$ を掛けます。
+    \[ I_0 = P \times \eta \]
+    \textbf{注意}: $\eta$ が $[\si{mA/W}]$ で与えられた場合、$\times 10^{-3}$ を忘れないこと。
+
+    \item \textbf{増倍率（ゲイン） $G$ の計算}:
+    二次電子放出比 $\delta$、ダイノード段数 $n$ のとき、
+    \[ G = \delta^n \]
+
+    \item \textbf{出力電流 $I$}:
+    \[ I = I_0 \times G = P \eta \delta^n \]
+\end{enumerate}
+
+\subsection{記述対策}
+\begin{itemize}
+    \item \textbf{二次電子放出比特性}: 入射エネルギーが高すぎると、電子が深く潜りすぎて脱出できなくなるため、放出比 $\delta$ はある電圧でピークを持ち、その後減少する。
+    \item \textbf{応用例}: 「スーパーカミオカンデ」＝ニュートリノ観測。チェレンコフ光をPMTで検出。
+\end{itemize}
+
+%==============================================================================
+\section{電界放出・真空中の運動}
+%==============================================================================
+\textbf{出題実績}：2024年 問7・8、2023年 問1・6
+
+\subsection{ショットキー効果}
+強い電界 $E$ により、ポテンシャル障壁が変化する現象。
+\begin{itemize}
+    \item \textbf{変化}: 電位障壁の頂点が\textbf{低くなり}、かつ\textbf{金属側に移動}する。
+    \item \textbf{結果}: 仕事関数が見かけ上減少し、熱電子放出電流が増加する。
+\end{itemize}
+
+\subsection{鏡像力（イメージ力）}
+金属表面から距離 $x$ にある電荷 $-e$ が受ける力 $F$。
+\begin{equation}
+    F = \frac{1}{4\pi\varepsilon_0} \frac{e^2}{(2x)^2} = \frac{e^2}{16\pi\varepsilon_0 x^2}
+\end{equation}
+※ 鏡像電荷 $+e$ が、壁の向こう側距離 $x$（合計距離 $2x$）にいると仮定してクーロンの法則を適用する。
+
+\subsection{ポアソン・ラプラスの方程式（解法フロー）}
+空間電荷密度 $\rho$ がある場合の電位 $V$ と電界 $E_x$ の求め方。
+\begin{enumerate}
+    \item \textbf{方程式を立てる}: $\dfrac{\dd^2 V}{\dd x^2} = -\dfrac{\rho}{\varepsilon_0}$
+    \item \textbf{1回積分 ($E$)}: $\dfrac{\dd V}{\dd x} = -E_x = -\dfrac{\rho}{\varepsilon_0}x + C_1$
+    \item \textbf{もう1回積分 ($V$)}: $V = -\dfrac{\rho}{2\varepsilon_0}x^2 + C_1 x + C_2$
+    \item \textbf{境界条件}: 「$x=0$で$V=0$」などを代入して $C_1, C_2$ を決定する。
+\end{enumerate}
+
+%==============================================================================
+\section{直前チェックリスト（定数・単位）}
+%==============================================================================
+試験開始直前に確認してください。
+
+\begin{itemize}
+    \item $1 \, [\si{eV}] = \ConstE \, [\si{J}]$
+    \item $1 \, [\si{nm}] = 10^{-9} \, [\si{m}]$
+    \item $1 \, [\si{cm}] = 10^{-2} \, [\si{m}]$
+    \item $\mu$ (マイクロ) $= 10^{-6}$, $m$ (ミリ) $= 10^{-3}$, $k$ (キロ) $= 10^{3}$, $M$ (メガ) $= 10^{6}$
+    \item 温度は必ず\textbf{ケルビン ($K$)}を使う。 ($\si{\degree C} + 273.15$)
+\end{itemize}
 
 \end{document}
