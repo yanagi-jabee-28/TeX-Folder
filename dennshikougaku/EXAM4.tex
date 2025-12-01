@@ -3,7 +3,7 @@
 % 電子工学(5E) 後期中間到達度試験 統合対策資料 (完全版)
 %==============================================================================
 % 制作：試験対策委員会
-% 内容：試験範囲ポイント①〜⑲の完全網羅解説 ＋ 2024/2023年度過去問詳細解答
+% 内容：試験範囲ポイント①〜⑲の完全網羅解説 ＋ 2024/2023年度過去問詳細解答 ＋ レポート課題演習
 %==============================================================================
 
 \documentclass[a4paper,11pt]{ltjsarticle}
@@ -38,7 +38,7 @@
 \newcommand{\ValC}{3.00 \times 10^8}
 
 \title{\textbf{電子工学(5E) 試験対策 統合完全版}}
-\author{ポイント①〜⑲網羅解説 \& 過去問詳細解法}
+\author{ポイント①〜⑲網羅解説 \& 過去問・レポート課題詳細解法}
 \date{}
 
 \begin{document}
@@ -228,20 +228,38 @@ $\delta > 1$ のとき、電子が増倍（増幅）されます。
     \item 仕事関数が見かけ上減少するため、熱電子放出電流が増加します。
 \end{itemize}
 
-\subsection*{⑲ 電界と電位の計算手順（ポアソン・ラプラス）}
-空間に電荷密度 $\rho$ が存在する場合の計算手順（記述問題で問われます）。
+\subsection*{⑲ 電界の強さと電位、ベクトル表記、ポアソン・ラプラスの方程式}
+\textbf{【記述試験・レポート課題4 対応重要項目】}
+
+空間内の電位 $V$ と電界 $\bm{E}$ の間には、微分（勾配）の関係があります。
+
+\subsubsection*{1. 電位 $V$ と電界 $\bm{E}$ のベクトル関係}
+電界ベクトル $\bm{E}$ は、電位 $V$ の勾配（Gradient）の逆符号で定義されます。電位が高い方から低い方へ向かう傾きが電界の向きです。
+\begin{tcolorbox}[colback=white, colframe=red, title=\textbf{重要公式}]
+\[ \bm{E} = -\nabla V = -\text{grad } V \]
+成分表示（直交座標系）では：
+\[ \bm{E} = -\left( \frac{\partial V}{\partial x}\bm{i} + \frac{\partial V}{\partial y}\bm{j} + \frac{\partial V}{\partial z}\bm{k} \right) \]
+\end{tcolorbox}
+※ $\nabla$（ナブラ）はベクトル微分演算子 $\nabla = (\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z})$ です。
+レポート課題4のように $V$ が座標の関数で与えられた場合、各成分を偏微分して符号を変えることで電界を求めます。
+
+\subsubsection*{2. 支配方程式（ポアソン・ラプラス）}
+電位 $V$ は空間内の電荷分布 $\rho$ によって決定されます。
+\begin{itemize}
+    \item \textbf{ポアソンの方程式}（電荷 $\rho$ がある場合）:
+    \[ \nabla^2 V = \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} + \frac{\partial^2 V}{\partial z^2} = -\frac{\rho}{\varepsilon_0} \]
+    1次元モデル（極板間など）では $\frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0}$ として積分計算に用います。
+    \item \textbf{ラプラスの方程式}（電荷がない場合 $\rho=0$）:
+    \[ \nabla^2 V = 0 \]
+\end{itemize}
+
+\subsubsection*{3. 計算手順のまとめ（1次元の場合）}
+記述問題で「電界と電位を求めよ」と問われた場合の定石です。
 \begin{enumerate}
-    \item \textbf{ポアソンの方程式を立てる}:
-    電荷と電位の関係式です。
-    \[ \frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0} \]
-    \item \textbf{1回目の積分}（電界 $E$ を求める）:
-    $x$ で積分します。積分定数 $C_1$ が現れます。
-    \[ \frac{\dd V}{\dd x} = \int \left(-\frac{\rho}{\varepsilon_0}\right) \dd x \quad \Rightarrow \quad -E_x = -\frac{\rho}{\varepsilon_0}x + C_1 \]
-    \item \textbf{2回目の積分}（電位 $V$ を求める）:
-    もう一度 $x$ で積分します。積分定数 $C_2$ が現れます。
-    \[ V = \int \left(-\frac{\rho}{\varepsilon_0}x + C_1\right) \dd x \quad \Rightarrow \quad V = -\frac{\rho}{2\varepsilon_0}x^2 + C_1 x + C_2 \]
-    \item \textbf{境界条件の適用}:
-    問題で与えられた条件（例：$x=0$で$V=0$、 $x=d$で$V=V_a$）を代入して連立方程式を解き、積分定数 $C_1, C_2$ を決定します。
+    \item \textbf{出発点}: ポアソン方程式 $\frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0}$
+    \item \textbf{第1積分}: $x$ で積分し、電界 $E_x = -\frac{\dd V}{\dd x}$ を求める（積分定数 $C_1$ 出現）。
+    \item \textbf{第2積分}: もう一度積分し、電位 $V$ を求める（積分定数 $C_2$ 出現）。
+    \item \textbf{境界条件}: 与えられた条件（例：$x=0, V=0$）を代入し、$C_1, C_2$ を決定する。
 \end{enumerate}
 
 \newpage
@@ -365,7 +383,7 @@ $V = (x^2+y^2+z^2)^{-1/2}$ として偏微分する（合成関数の微分）�
 %==============================================================================
 \part{重要演習課題 (レポート課題・記述対策)}
 %==============================================================================
-提出レポート課題として課された問題の詳細解答と、それに基づく類似問題の対策です。数値計算のプロセスを正確に追跡します。
+提出レポート課題として課された問題の詳細解答です。試験でも同様の数値計算や記述（特に課題4のベクトル演算）が出題される可能性が高いため、プロセスを完璧に理解してください。
 
 \section*{課題1: 熱電子放出とフィラメント設計}
 \textbf{条件:}
@@ -383,7 +401,7 @@ A &= \frac{4\pi m e k^2}{h^3} \\
   &= \frac{4\pi (9.11 \times 10^{-31}) (1.60 \times 10^{-19}) (1.38 \times 10^{-23})^2}{(6.63 \times 10^{-34})^3} \\
   &\approx 1.201 \times 10^6 \, [\si{A \cdot m^{-2} \cdot K^{-2}}]
 \end{align*}
-※試験では $A = 1.20 \times 10^6$ が与えられることが一般的ですが、導出を問われる可能性もあるため覚えておきましょう。
+※試験では $A = 1.20 \times 10^6$ が与えられることが一般的ですが、導出を問われる可能性もあるため式と値を覚えておきましょう。
 
 \subsection*{【ステップ2】 電流密度 $J$ の算出}
 リチャードソン・ダッシュマンの式を用います。
@@ -462,8 +480,8 @@ I_p &= \frac{0.125 \times 10^{-3}}{4.0^{10}} \\
 電界 $\bm{E}$ を求めよ。
 
 \textbf{解答プロセス:}
-電界は電位の勾配（gradient）の逆符号です。$\bm{E} = -\nabla V$
-\[ \bm{E} = - \left( \frac{\partial V}{\partial x} \bm{i} + \frac{\partial V}{\partial y} \bm{j} + \frac{\partial V}{\partial z} \bm{k} \right) \]
+ポイント⑲で解説した通り、電界は電位の勾配（gradient）の逆符号です。
+\[ \bm{E} = -\nabla V = - \left( \frac{\partial V}{\partial x} \bm{i} + \frac{\partial V}{\partial y} \bm{j} + \frac{\partial V}{\partial z} \bm{k} \right) \]
 
 $r = (x^2 + y^2 + z^2)^{1/2}$ と置くと $V = r^{-1}$ です。
 $x$ についての偏微分を行います（合成関数の微分）。
@@ -480,6 +498,6 @@ $x$ についての偏微分を行います（合成関数の微分）。
 $y, z$ についても対称性より同様の結果となります。
 
 \[ \therefore \bm{E} = \frac{1}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} (x \bm{i} + y \bm{j} + z \bm{k}) \, [\si{V/m}] \]
-※ベクトル表記 $(x, y, z)$ でも正解となります。
+※ ベクトル表記 $(x, y, z)$ や $\bm{r} / r^3$ といった表記でも正解となります。
 
 \end{document}
