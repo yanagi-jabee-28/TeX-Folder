@@ -1,27 +1,60 @@
-% Use LuaLaTeX (luatex) with bxjsarticle; don't specify dvipdfmx here
-\documentclass[a4paper,11pt]{bxjsarticle}
-% Use fontspec + luatexja for LuaLaTeX (handles Japanese glyphs correctly)
-\usepackage{fontspec}
-\usepackage{luatexja-fontspec}
-% If you prefer specific fonts, uncomment and set as appropriate:
-% \setmainfont{TeX Gyre Termes}
-% \setmainjfont{IPAexMincho}
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+% ===== ドキュメントクラス (LuaLaTeX用) =====
+% ltjsarticle が自動的に日本語フォント設定を行います
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+
+% ===== フォント設定の競合回避 =====
+% 【修正】luatexja-preset と luatexja-fontspec を削除しました。
+% クラスのデフォルト設定を使用することで、スケーリング警告や機能無視の警告を防ぎます。
+
+% ===== レイアウト関連 =====
+\usepackage[left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}      % 綺麗な表
+\usepackage{enumitem}      % リストのカスタマイズ
+\setlist[enumerate,1]{label=(\arabic*)}
+
+% ===== 数式・物理単位関連 =====
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{bm}           % ベクトル用
-\usepackage{geometry}     % 余白設定
-\usepackage{enumitem}     % リストのカスタマイズ
-\usepackage{tcolorbox}    % 枠線用
-\usepackage{url}
+\usepackage{bm}            % ベクトル太字 (\bm{})
+\usepackage{siunitx}       % 単位記述用
+\usepackage{cancel}        % 式のキャンセル線
 
-% 余白の設定: reset class geometry first, then set explicit A4 paper and margins.
-% Using `reset` clears class defaults and avoids over-specification warnings.
-\geometry{reset, a4paper, left=25mm, right=25mm, top=30mm, bottom=30mm}
+% ===== デザイン・装飾関連 =====
+\usepackage{tcolorbox}     % 枠線・強調ボックス
+\tcbuselibrary{skins}
 
+% ===== ハイパーリンク =====
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=cyan,
+  hidelinks,
+]{hyperref}
+
+%------------------------------------------------------------------------------
+% カスタムコマンド
+%------------------------------------------------------------------------------
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
+
+% ===== ドキュメント情報 =====
 \title{電子工学 中間到達度試験 対策分析まとめ}
 \author{}
 \date{}
 
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
 \begin{document}
 
 \maketitle
@@ -31,7 +64,9 @@
 
 過去問の傾向が極めて明確であり、毎年似た形式で出題されています。以下に、得点源となる重要ポイントと解法の定石を解説します。
 
+%------------------------------------------------------------------------------
 \section{エネルギー準位とバンド理論（基礎知識）}
+%------------------------------------------------------------------------------
 \textbf{【出題箇所】} 2024問1・問2、2023問2 \\
 \textbf{【ポイント一覧】} ①〜⑤
 
@@ -44,15 +79,17 @@
         \item \textbf{禁制帯 (Forbidden Band)}: 電子が存在できないエネルギー領域（バンドギャップ）。
         \item \textbf{伝導帯 (Conduction Band)}: 電子が自由に動けるバンド。
     \end{itemize}
-    \item \textbf{フェルミ準位 ($E_F$)}: 絶対零度（0K）で電子が詰まっている最大のエネルギー準位。
+    \item \textbf{フェルミ準位 ($\EF$)}: 絶対零度（\SI{0}{K}）で電子が詰まっている最大のエネルギー準位。
     \item \textbf{仕事関数 ($\phi$)}: 電子を固体表面から真空中に取り出すのに必要な最小エネルギー。
     \begin{itemize}
-        \item 数式定義：$\phi = W - E_F$ （真空準位 $W$ とフェルミ準位の差）
+        \item 数式定義：$\phi = W - \EF$ （真空準位 $W$ とフェルミ準位の差）
         \item \textbf{重要}: $\phi$ は「表面の障壁」の高さです。
     \end{itemize}
 \end{itemize}
 
+%------------------------------------------------------------------------------
 \section{熱電子放出（計算問題の最重要）}
+%------------------------------------------------------------------------------
 \textbf{【出題箇所】} 2024問3、2023問3 \\
 \textbf{【ポイント一覧】} ⑧〜⑩
 
@@ -83,7 +120,9 @@
     \end{itemize}
 \end{enumerate}
 
+%------------------------------------------------------------------------------
 \section{光電子放出（光電効果）}
+%------------------------------------------------------------------------------
 \textbf{【出題箇所】} 2024問4、2023問4 \\
 \textbf{【ポイント一覧】} ⑪〜⑬
 
@@ -107,7 +146,9 @@
     \[ 1 \, [\mathrm{eV}] = 1.60 \times 10^{-19} \, [\mathrm{J}] \]
 \end{itemize}
 
+%------------------------------------------------------------------------------
 \section{二次電子放出と光電子増倍管（PMT）}
+%------------------------------------------------------------------------------
 \textbf{【出題箇所】} 2024問5・問6、2023問5 \\
 \textbf{【ポイント一覧】} ⑭〜⑰
 
@@ -135,7 +176,9 @@
     \item \textbf{スーパーカミオカンデ}: 「ニュートリノ観測装置。チェレンコフ光を光電子増倍管で検出し、電気信号に変える」という概要を押さえる（2023問5(3)）。
 \end{itemize}
 
+%------------------------------------------------------------------------------
 \section{電界放出・ショットキー効果・ポアソン方程式}
+%------------------------------------------------------------------------------
 \textbf{【出題箇所】} 2024問7・問8、2023問1・問6 \\
 \textbf{【ポイント一覧】} ⑱〜⑲
 
@@ -160,7 +203,13 @@
 
 \vspace{1em}
 
-\begin{tcolorbox}[colback=white,colframe=black,title=\textbf{直前対策まとめ}]
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=\textbf{直前対策まとめ},
+  sharp corners=downhill,
+  boxrule=1pt
+]
 これらの方針で学習すれば、60分以内に十分完答可能です。計算ミス（特に指数の桁）にだけ注意してください。
 
 \begin{enumerate}
