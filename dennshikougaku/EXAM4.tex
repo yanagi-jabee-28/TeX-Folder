@@ -29,8 +29,6 @@
 \newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
 \newcommand{\kB}{k}              % ボルツマン定数
 \newcommand{\dd}{\mathrm{d}}     % 微分記号
-% Define simple unit macro only if one doesn't already exist to avoid conflicts
-% with packages like siunitx which may define their own \unit command.
 \providecommand{\unit}[1]{\,[\mathrm{#1}]}
 
 % 試験用物理定数
@@ -41,7 +39,7 @@
 \newcommand{\ValC}{3.00 \times 10^8}
 
 \title{\textbf{電子工学(5E) 試験対策 統合完全版}}
-\author{ポイント①〜⑲網羅解説 \& 過去問詳細解法}
+\author{ポイント①〜⑲網羅解説 \& 過去問超詳細解法}
 \date{}
 
 \begin{document}
@@ -252,121 +250,254 @@ $\delta > 1$ のとき、電子が増倍（増幅）されます。
 \part{過去問 詳細解法 (2024・2023)}
 %==============================================================================
 \noindent
-計算問題の解法プロセスを省略せず、すべて記述しました。試験直前の計算練習に活用してください。
+計算の途中経過を省略せず、思考のプロセス、式変形、単位変換のタイミングを丁寧に記述しました。
+このパートを熟読し、手を動かして計算を再現できるようにしてください。
 
 \section{2024年度 試験問題}
 
 \subsection*{問1. エネルギーバンドの名称}
-ナトリウム金属のバンド図において：
+\textbf{考え方}: ナトリウム原子（Na, 原子番号11）の電子配置は K(2)L(8)M(1) です。
 \begin{itemize}
-    \item (2) バンドが重なる部分: アルカリ金属では価電子帯が半分しか埋まっておらず、伝導帯と連続しています。よって [(c) 価電子帯, (d) 伝導帯] の両方を選びます。
-    \item (3), (4) 内殻準位: 電子で満たされており、電気伝導に寄与しない低いエネルギー準位は [(a) 充満帯] です。
-    \item バンド間の隙間: 電子が存在できない領域なので [(b) 禁制帯] です。
+    \item 図の下側にある (3), (4) は電子で満たされている内殻準位（L殻、K殻）に相当するため、これらは電気伝導に寄与しない**[(a) 充満帯]** です。
+    \item 内殻と外殻の間の隙間は、電子が存在できない **[(b) 禁制帯]** です。
+    \item 図の上部 (2) は最外殻（M殻）に相当します。アルカリ金属では価電子帯が半分しか埋まっておらず、そのまま伝導帯として機能します。したがって、価電子帯と伝導帯が重なっている（または同一である）ため、**[(c) 価電子帯, (d) 伝導帯]** の両方を選びます。
 \end{itemize}
 
 \subsection*{問2. 金属表面のエネルギー準位（穴埋め）}
 \begin{itemize}
-    \item 金属内でエネルギーが最も [(d) 大きい] 電子は、底部Bを基準として$E_F$のエネルギーをもつ。これを [(e) フェルミ] エネルギーと呼ぶ。
-    \item [(b) 価電子帯] の底部Bにある電子が [(j) 自由電子]（真空中に脱出）になるエネルギーは $W$ である。
-    \item $\phi = W - E_F$ より [(g) 仕事関数] エネルギーを外部から与えると電子は放出される。この $\phi$ を [(g) 仕事関数] と呼ぶ。
+    \item 金属内でエネルギーが最も **(1) [(d) 大きい]** 電子は、絶対零度において $E_F$ までのエネルギーを持ちます。
+    \item $E_F$ は **(2) [(e) フェルミ]** エネルギーです。
+    \item バンドの底部 B にあるのは、原子核に束縛されている電子の集まり、すなわち **(3) [(b) 価電子帯]** です。
+    \item 電子が真空中に飛び出すと、原子の束縛を離れて **(4) [(j) 自由電子]** になります。
+    \item $E_F$ にある電子を外に取り出すには、足りない分のエネルギー $\phi$ を与える必要があります。これは **(5) [(g) 仕事関数]** です。
+    \item 記号 $\phi$ の名称も **(6) [(g) 仕事関数]** です。
 \end{itemize}
 
-\subsection*{問3. タングステン電極の仕事関数 $\phi$}
-\textbf{条件}: $T=2000 \unit{K}$, $r=1.25\times 10^{-4} \unit{m}$, $L=0.1 \unit{m}$, $I=2.00 \unit{mA}$. \\
-\textbf{解法}:
+\subsection*{問3. 熱電子放出（タングステン電極の仕事関数 $\phi$）}
+\textbf{問題}: 温度 $T=2000 \unit{K}$, 半径 $r=1.25\times 10^{-4} \unit{m}$, 長さ $L=0.1 \unit{m}$ のタングステン線から、電流 $I=2.00 \unit{mA}$ が得られた。$\phi$ を求めよ。
+
+\textbf{詳細解法}:
 \begin{enumerate}
-    \item \textbf{表面積 $S$}:
-    \[ S = 2\pi r L = 2\pi (1.25 \times 10^{-4})(0.1) \approx 7.854 \times 10^{-5} \unit{m^2} \]
-    \item \textbf{電流密度 $J$}:
-    \[ J = I/S = (2.00 \times 10^{-3}) / (7.854 \times 10^{-5}) \approx 25.46 \unit{A/m^2} \]
-    \item \textbf{$\phi$ の計算}: リチャードソンの式 $J = A T^2 \exp(-e\phi/kT)$ より
-    \[ \ln(J/AT^2) = -e\phi/kT \quad \Rightarrow \quad \phi = \frac{kT}{e} \ln(AT^2/J) \]
-    数値を代入（$kT/e \approx 0.1725 \unit{eV}$）:
-    \[ \phi \approx 0.1725 \times \ln\left( \frac{1.20 \times 10^6 \times 2000^2}{25.46} \right) \approx 4.478 \unit{eV} \]
+    \item \textbf{表面積 $S$ の計算}:
+    タングステン線は円柱状なので、電子が放出される側面積 $S$ を求めます。
+    \begin{align*}
+    S &= 2\pi r L \\
+      &= 2 \times \pi \times (1.25 \times 10^{-4}) \times (0.1) \\
+      &= 0.25 \pi \times 10^{-4} \\
+      &\approx 7.854 \times 10^{-5} \unit{m^2}
+    \end{align*}
+
+    \item \textbf{電流密度 $J$ の計算}:
+    電流密度とは「単位面積あたりの電流」です。
+    \[ J = \frac{I}{S} \]
+    ここで $I = 2.00 \unit{mA} = 2.00 \times 10^{-3} \unit{A}$ です。
+    \begin{align*}
+    J &= \frac{2.00 \times 10^{-3}}{7.854 \times 10^{-5}} \\
+      &= \frac{2.00}{7.854} \times 10^{2} \\
+      &\approx 0.2546 \times 100 = 25.46 \unit{A/m^2}
+    \end{align*}
+
+    \item \textbf{$\phi$ の計算}:
+    リチャードソン・ダッシュマンの式を変形して $\phi$ を求めます。
+    \[ J = A T^2 \exp\left(-\frac{e\phi}{kT}\right) \]
+    まず、両辺を $A T^2$ で割ります。
+    \[ \frac{J}{A T^2} = \exp\left(-\frac{e\phi}{kT}\right) \]
+    両辺の自然対数 ($\ln$) をとります。
+    \[ \ln\left( \frac{J}{A T^2} \right) = -\frac{e\phi}{kT} \]
+    $\phi$ について解きます。
+    \[ \phi = -\frac{kT}{e} \ln\left( \frac{J}{A T^2} \right) = \frac{kT}{e} \ln\left( \frac{A T^2}{J} \right) \]
+    
+    数値を代入します。
+    \begin{itemize}
+        \item 係数部分:
+        \[ \frac{kT}{e} = \frac{1.38 \times 10^{-23} \times 2000}{1.60 \times 10^{-19}} \approx 0.1725 \unit{eV} \]
+        \item 対数の中身:
+        \[ \frac{A T^2}{J} = \frac{1.20 \times 10^6 \times (2000)^2}{25.46} = \frac{4.8 \times 10^{12}}{25.46} \approx 1.885 \times 10^{11} \]
+        \item 対数の計算:
+        \[ \ln(1.885 \times 10^{11}) = \ln(1.885) + 11 \ln(10) \approx 0.634 + 11(2.30) \approx 25.96 \]
+    \end{itemize}
+    最終計算:
+    \[ \phi = 0.1725 \times 25.96 \approx 4.478 \unit{eV} \]
 \end{enumerate}
 \textbf{答}: $4.48 \unit{eV}$
 
 \subsection*{問4. 光電子の最大速度 $V_m$}
-\textbf{条件}: $\phi=1.68 \unit{eV}$, $\lambda=520 \unit{nm}$. \\
-\textbf{解法}:
+\textbf{問題}: 仕事関数 $\phi=1.68 \unit{eV}$、入射光波長 $\lambda=520 \unit{nm}$ のとき、放出される光電子の最大速度 $V_m$ を求めよ。
+
+\textbf{詳細解法}:
 \begin{enumerate}
-    \item \textbf{光エネルギー $h\nu$}:
-    \[ h\nu = \frac{hc}{\lambda} \approx 3.825 \times 10^{-19} \unit{J} \]
-    \item \textbf{仕事関数 $e\phi$}:
-    \[ e\phi = 1.68 \times (1.60 \times 10^{-19}) \approx 2.688 \times 10^{-19} \unit{J} \]
-    \item \textbf{運動エネルギー $K$}:
-    \[ K = h\nu - e\phi = 1.137 \times 10^{-19} \unit{J} \]
-    \item \textbf{速度 $V_m$}:
-    \[ V_m = \sqrt{2K/m} \approx \sqrt{2 \times 1.137 \times 10^{-19} / (9.11 \times 10^{-31})} \approx 5.00 \times 10^5 \unit{m/s} \]
+    \item \textbf{光子のエネルギー $h\nu$ をジュール [J] で求める}:
+    波長 $\lambda = 520 \unit{nm} = 520 \times 10^{-9} \unit{m}$ です。
+    \begin{align*}
+    h\nu &= \frac{hc}{\lambda} = \frac{(6.63 \times 10^{-34}) \times (3.00 \times 10^8)}{520 \times 10^{-9}} \\
+         &= \frac{19.89 \times 10^{-26}}{5.20 \times 10^{-7}} \\
+         &= 3.825 \times 10^{-19} \unit{J}
+    \end{align*}
+
+    \item \textbf{仕事関数 $e\phi$ をジュール [J] に換算する}:
+    $1 \unit{eV} = 1.60 \times 10^{-19} \unit{J}$ なので、
+    \[ e\phi = 1.68 \times (1.60 \times 10^{-19}) = 2.688 \times 10^{-19} \unit{J} \]
+
+    \item \textbf{運動エネルギー $K$ を求める (アインシュタインの式)}:
+    \[ K = \frac{1}{2}m V_m^2 = h\nu - e\phi \]
+    \[ K = (3.825 - 2.688) \times 10^{-19} = 1.137 \times 10^{-19} \unit{J} \]
+
+    \item \textbf{速度 $V_m$ を求める}:
+    電子の質量 $m = 9.11 \times 10^{-31} \unit{kg}$ を代入します。
+    \begin{align*}
+    V_m &= \sqrt{\frac{2K}{m}} \\
+        &= \sqrt{ \frac{2 \times 1.137 \times 10^{-19}}{9.11 \times 10^{-31}} } \\
+        &= \sqrt{ \frac{2.274}{9.11} \times 10^{12} } \\
+        &\approx \sqrt{ 0.2496 \times 10^{12} } \\
+        &\approx 0.4996 \times 10^6 \unit{m/s}
+    \end{align*}
 \end{enumerate}
 \textbf{答}: $5.00 \times 10^5 \unit{m/s}$
 
 \subsection*{問5. 二次電子放出材料}
-\textbf{答}: 酸化マグネシウム (MgO) \\
-\textbf{理由}: 表の中で二次電子放出比の最大値 $\delta_{max}$ が $4.0$ と最も大きく、効率よく電子を増倍できるため。
+\textbf{問題}: $\delta_{max}$ (最大二次電子放出比) の表から優れた物質を選べ。
+\textbf{答}: **酸化マグネシウム (MgO)** \\
+\textbf{理由}: 表の中で二次電子放出比の最大値 $\delta_{max}$ が $4.0$ と最も大きいからです。$\delta$ が大きいほど、1つの電子の衝突で多くの二次電子を放出できるため、増幅（増倍）効率が高くなります。
 
 \subsection*{問6. 光電子増倍管 (PMT)}
-\textbf{(1) 応用例}: スーパーカミオカンデ（ニュートリノ観測）、シンチレーションカウンタ。 \\
-\textbf{(2) 出力電流 $I$}:
+\textbf{(1) 測定対象と応用}:
+測定対象は**極微弱な光**（フォトンレベル）です。応用例としては**スーパーカミオカンデ（ニュートリノ観測）**や、シンチレーションカウンタなどが挙げられます。
+
+\textbf{(2) 出力電流 $I$ の計算}:
+\textbf{条件}: $P=1.98 \times 10^{-5} \unit{W}$, $\eta=27.0 \unit{mA/W}$, $\delta=3.51$, 段数 $n=6$.
+
+\textbf{詳細解法}:
 \begin{enumerate}
-    \item 初期電流 $I_0$: $I_0 = P \times \eta = (1.98 \times 10^{-5}) \times (0.027) \approx 5.346 \times 10^{-7} \unit{A}$
-    \item 利得 $G$: $G = \delta^n = 3.51^6 \approx 1869$
-    \item 出力 $I$: $I = I_0 \times G \approx 1.00 \times 10^{-3} \unit{A}$
+    \item **初期光電流 $I_0$ の計算**:
+    光電感度 $\eta$ の単位に注意します。$27.0 \unit{mA/W} = 0.027 \unit{A/W}$ です。
+    \begin{align*}
+    I_0 &= P \times \eta \\
+        &= (1.98 \times 10^{-5}) \times 0.027 \\
+        &\approx 0.05346 \times 10^{-5} \\
+        &= 5.346 \times 10^{-7} \unit{A}
+    \end{align*}
+
+    \item **増倍率（ゲイン） $G$ の計算**:
+    ダイノード1段で $\delta$ 倍になるので、6段では $\delta^6$ 倍になります。
+    \[ G = \delta^n = 3.51^6 \approx 1869 \]
+
+    \item **出力電流 $I$ の計算**:
+    \[ I = I_0 \times G = (5.346 \times 10^{-7}) \times 1869 \approx 9991 \times 10^{-7} \unit{A} \]
+    \[ \approx 1.00 \times 10^{-3} \unit{A} = 1.00 \unit{mA} \]
 \end{enumerate}
 \textbf{答}: $1.00 \unit{mA}$
 
+\subsection*{問7. ショットキー効果の説明}
+\textbf{ポイント}:
+図の点線は鏡像力のみのポテンシャル、実線は外部電界を加えた合成ポテンシャルを示しています。
+「強い電界 $E$ を加えることで、**電位障壁の頂点が $\Delta \phi$ だけ低くなり**、かつその位置が**金属表面側に移動**する現象。これにより仕事関数が見かけ上小さくなるため、熱電子が放出されやすくなる」と記述すれば正解です。
+
 \subsection*{問8. 電界計算（記述）}
-\textbf{(1) 方程式}: ポアソンの方程式 $\nabla^2 V = -\rho/\varepsilon_0$ \\
+\textbf{(1) 方程式}: ポアソンの方程式 $\nabla^2 V = -\frac{\rho}{\varepsilon_0}$
+（あるいは1次元で $\frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0}$）
+
 \textbf{(2) 手順}:
+計算の流れを問われています。
 \begin{itemize}
-    \item ① $x$ で1回積分して電界 $E$ の式を出す。
+    \item ① $x$ で1回積分して電界 $E$（または $\frac{dV}{dx}$）の式を出す。
     \item ② もう一度 $x$ で積分して電位 $V$ の式を出す。
-    \item ③ 境界条件で定数を決定し、微分して電界 $E_x$ を求める。
+    \item ③ 境界条件（$V(0)=0$など）を代入して積分定数を決定する。
+    \item 最後：求めた定数を使って $E_x$ を確定する。
 \end{itemize}
 
 \section{2023年度 試験問題}
 
 \subsection*{問1. 鏡像力と電位障壁}
-\textbf{(1) 力の大きさ}: $|F| = \frac{e^2}{16\pi\varepsilon_0 x^2}$ (クーロン力、距離 $2x$) \\
-\textbf{(3) 電位障壁 $W$}: $W = \int_{x}^{\infty} F dx = \frac{e^2}{16\pi\varepsilon_0 x} \unit{J}$。 eV単位なら $W = \frac{e}{16\pi\varepsilon_0 x} \unit{eV}$。
+\textbf{(1) 力の大きさ}:
+クーロンの法則 $F = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2}$ を使います。
+電荷は電子 $-e$ と鏡像電荷 $+e$、距離は $x$ ではなく壁の向こう側も含めた $2x$ です。
+\[ |F| = \frac{1}{4\pi\varepsilon_0} \frac{e \times e}{(2x)^2} = \frac{e^2}{16\pi\varepsilon_0 x^2} \unit{[N]} \]
+
+\textbf{(3) 電位障壁 $W$ の計算}:
+無限遠から距離 $x$ まで電子を運ぶ仕事（または $x$ から無限遠まで引き離す仕事）を積分で求めます。
+\begin{align*}
+W &= \int_{x}^{\infty} |F| \dd r = \int_{x}^{\infty} \frac{e^2}{16\pi\varepsilon_0 r^2} \dd r \\
+  &= \frac{e^2}{16\pi\varepsilon_0} \left[ -\frac{1}{r} \right]_{x}^{\infty} \\
+  &= \frac{e^2}{16\pi\varepsilon_0} \left( 0 - \left(-\frac{1}{x}\right) \right) = \frac{e^2}{16\pi\varepsilon_0 x} \unit{[J]}
+\end{align*}
+eV単位にするには素電荷 $e$ で割ります。
+\textbf{答}: $\frac{e}{16\pi\varepsilon_0 x} \unit{[eV]}$
 
 \subsection*{問3. モリブデン線の半径 $r$}
 \textbf{条件}: $T=2000$, $I=22.8\unit{mA}$, $L=0.1$, $\phi=4.27\unit{eV}$. \\
 \textbf{解法}:
+2024年の問3の逆問題（半径を求める）です。
 \begin{enumerate}
-    \item \textbf{電流密度 $J$ の計算}: リチャードソンの式より
-    \[ J = (1.20 \times 10^6) \times 2000^2 \times \exp\left( -\frac{4.27}{0.1725} \right) \approx 85.25 \unit{A/m^2} \]
-    \item \textbf{半径 $r$ の計算}: $I = J \times 2\pi r L$ より
-    \[ r = \frac{I}{2\pi L J} = \frac{0.0228}{2\pi (0.1)(85.25)} \approx 4.26 \times 10^{-4} \unit{m} \]
+    \item \textbf{電流密度 $J$ の理論値を計算}:
+    指数部分の計算：
+    \[ \frac{e\phi}{kT} = \frac{1.60 \times 10^{-19} \times 4.27}{1.38 \times 10^{-23} \times 2000} \approx 24.754 \]
+    $J$ の計算：
+    \begin{align*}
+    J &= A T^2 \exp(-24.754) \\
+      &= (1.20 \times 10^6) \times (2000)^2 \times (1.776 \times 10^{-11}) \\
+      &= (4.8 \times 10^{12}) \times (1.776 \times 10^{-11}) \\
+      &\approx 85.25 \unit{A/m^2}
+    \end{align*}
+
+    \item \textbf{半径 $r$ の計算}:
+    全電流 $I = J \times S = J \times (2\pi r L)$ より $r$ について解きます。
+    \[ r = \frac{I}{2\pi L J} \]
+    代入します（$I = 22.8 \unit{mA} = 0.0228 \unit{A}$）：
+    \begin{align*}
+    r &= \frac{0.0228}{2 \pi \times 0.1 \times 85.25} \\
+      &= \frac{0.0228}{53.56} \\
+      &\approx 4.257 \times 10^{-4} \unit{m}
+    \end{align*}
 \end{enumerate}
 \textbf{答}: $4.26 \times 10^{-4} \unit{m}$
 
 \subsection*{問4. 限界波長 $\lambda_0$}
 \textbf{条件}: $\phi=1.72 \unit{eV}$. \\
 \textbf{解法}:
-\[ \lambda_0 = \frac{hc}{e\phi} \approx \frac{1240 \unit{eV \cdot nm}}{1.72 \unit{eV}} \approx 721 \unit{nm} \]
-（正確な定数計算では $7.23 \times 10^{-7} \unit{m}$）\\
+限界波長の公式にそのまま代入します。
+\begin{align*}
+\lambda_0 &= \frac{hc}{e\phi} \\
+          &= \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{1.60 \times 10^{-19} \times 1.72} \\
+          &= \frac{19.89 \times 10^{-26}}{2.752 \times 10^{-19}} \\
+          &\approx 7.227 \times 10^{-7} \unit{m}
+\end{align*}
+ナノメートル ($10^{-9}$) に直すと、 $722.7 \unit{nm}$ です。
 \textbf{答}: $723 \unit{nm}$
 
 \subsection*{問5. PMTの出力電流}
 \textbf{条件}: $P=6.43 \times 10^{-5}$, $\eta=15.0 \unit{mA/W}$, $\delta=3.4$, $n=5$. \\
 \textbf{解法}:
-\[ I = (P \times \eta) \times \delta^n = (9.645 \times 10^{-7}) \times (3.4^5) \approx 4.38 \times 10^{-4} \unit{A} \]
+\begin{enumerate}
+    \item **初期電流**:
+    \[ I_0 = P \times \eta = (6.43 \times 10^{-5}) \times (0.015) \approx 9.645 \times 10^{-7} \unit{A} \]
+    \item **ゲイン**:
+    \[ G = 3.4^5 = 454.35 \]
+    \item **出力**:
+    \[ I = I_0 \times G = (9.645 \times 10^{-7}) \times 454.35 \approx 4.382 \times 10^{-4} \unit{A} \]
+\end{enumerate}
 \textbf{答}: $0.438 \unit{mA}$
 
 \subsection*{問6. 電界 $E_x$ の導出}
-\textbf{条件}: $V = (x^2+y^2+z^2)^{-1/2}$. \\
+\textbf{条件}: $V = \frac{1}{\sqrt{x^2+y^2+z^2}}$. \\
 \textbf{解法}:
-電界 $E_x = -\frac{\partial V}{\partial x}$。合成関数の微分を利用。
-\[ \frac{\partial V}{\partial x} = -\frac{1}{2}(x^2+y^2+z^2)^{-3/2} \cdot (2x) = -x(x^2+y^2+z^2)^{-3/2} \]
-符号を反転させて、
-\textbf{答}: $E_x = \frac{x}{(x^2+y^2+z^2)^{3/2}} \unit{V/m}$
+電界は電位の傾きの逆符号です。$E_x = -\frac{\partial V}{\partial x}$ を計算します。
+合成関数の微分 $\frac{d}{dx} u^n = n u^{n-1} u'$ を使います。
+$u = x^2+y^2+z^2$ とおくと、 $V = u^{-1/2}$ です。
+\begin{align*}
+\frac{\partial V}{\partial x} &= \frac{\dd (u^{-1/2})}{\dd u} \cdot \frac{\partial u}{\partial x} \\
+    &= \left( -\frac{1}{2} u^{-3/2} \right) \cdot (2x) \\
+    &= -x \cdot u^{-3/2} \\
+    &= -x (x^2+y^2+z^2)^{-3/2}
+\end{align*}
+よって、
+\[ E_x = - \frac{\partial V}{\partial x} = -(-x (\dots)) = \frac{x}{(x^2+y^2+z^2)^{3/2}} \]
+\textbf{答}: $E_x = \frac{x}{(x^2+y^2+z^2)\sqrt{x^2+y^2+z^2}} \unit{V/m}$
 
 \newpage
 %==============================================================================
 \part{重要演習課題 (レポート課題・記述対策)}
 %==============================================================================
-提出レポート課題として課された問題の詳細解答です。数値計算のプロセスを正確に追跡します。
+提出レポート課題として課された問題の詳細解答と、それに基づく類似問題の対策です。数値計算のプロセスを正確に追跡します。
 
 \section*{課題1: 熱電子放出とフィラメント設計}
 \textbf{条件:}
