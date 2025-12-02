@@ -11,9 +11,23 @@
 %------------------------------------------------------------------------------
 % パッケージ設定
 %------------------------------------------------------------------------------
+\usepackage{lmodern}              % 【修正】フォントサイズ警告を解消（スケーラブルフォント）
 \usepackage[left=15mm,right=15mm,top=20mm,bottom=20mm]{geometry}
 \usepackage{amsmath, amssymb, bm} % 数式
+
+%--- siunitxとphysicsの競合対策 ---
+\usepackage{physics}              % 微分などの記述簡略化
 \usepackage{siunitx}              % 単位の統一
+
+% siunitxがphysicsパッケージを検知した際の警告を抑制
+\ExplSyntaxOn
+\msg_redirect_name:nnn { siunitx } { physics-package } { none }
+\ExplSyntaxOff
+
+% エラーログで推奨された修正：\qtyコマンドをsiunitxの\SIとして上書き定義
+\AtBeginDocument{\RenewCommandCopy\qty\SI \let\qty\SI}
+%--------------------------------
+
 \usepackage{graphicx}             % 画像
 \usepackage{booktabs}             % 表
 \usepackage{tcolorbox}            % 枠線・ボックス
@@ -21,9 +35,6 @@
 \usepackage{enumitem}             % リスト設定
 \usepackage{hyperref}             % リンク
 \usepackage{cancel}               % 計算過程のキャンセル線
-\usepackage{physics}              % 微分などの記述簡略化
-% Fix: siunitx omits \qty when the physics package is loaded; restore alias
-\AtBeginDocument{\RenewCommandCopy\qty\SI}
 
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan}
 
@@ -32,9 +43,24 @@
 %------------------------------------------------------------------------------
 \newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
 \newcommand{\kB}{k}              % ボルツマン定数
-% Use \providecommand so we don't clash with \dd from the physics package
-\providecommand{\dd}{\mathrm{d}}     % 微分記号
-\providecommand{\unit}[1]{\,[\mathrm{#1}]}
+
+% \unitコマンドの定義（siunitxと競合しないよう、ドキュメント開始時に再定義）
+% 目的：単位を [eV] のように角括弧で囲むスタイルにするため
+% 以下はより堅牢な定義方法です。
+% - siunitx が \unit を定義している場合はそれを \siunitxUnit にバックアップ
+% - そうでない場合は Fallback を用意します（linter/エディタ向け）
+\AtBeginDocument{%
+    % siunitx の \unit が存在するならバックアップする
+    \ifcsname unit\endcsname
+        % copy current meaning: \siunitxUnit -> \unit
+        \expandafter\let\csname siunitxUnit\endcsname\unit
+    \else
+        % fallback 定義（存在しない場合に備える）
+        \providecommand{\siunitxUnit}[1]{\,[\mathrm{#1}]}%
+    \fi
+    % ドキュメント全体で使う簡易な \unit を定義（角括弧表記）
+    \renewcommand{\unit}[1]{\,[\mathrm{#1}]}%
+}
 
 % 試験用物理定数 (計算時はこれを使用)
 \newcommand{\ValE}{1.60 \times 10^{-19}}     % 素電荷 [C]
@@ -48,6 +74,7 @@
 \newtcolorbox{pointbox}[1]{colback=blue!5!white, colframe=blue!75!black, title=\textbf{#1}, breakable}
 \newtcolorbox{warnbox}[1]{colback=red!5!white, colframe=red!75!black, title=\textbf{【注意】#1}, breakable}
 \newtcolorbox{calcbox}[1]{colback=gray!5!white, colframe=black, title=\textbf{計算プロセス詳細: #1}, breakable}
+\newtcolorbox{derivationbox}[1]{colback=green!5!white, colframe=green!40!black, title=\textbf{【重要導出】#1}, breakable}
 
 \title{\textbf{電子工学(5E) 試験対策 統合完全版・改}}
 \author{詳細解説・計算過程完全記述・記述対策強化版}
@@ -363,31 +390,78 @@ $K_{\max} = 0$ （ギリギリ放出される状態）とおくことで求め�
 ※これに対し、常温で極めて強い電界をかけ、障壁をトンネル効果で突き抜けるのが「(冷)電界放出 (Field Emission / Fowler-Nordheim tunneling)」である。区別に注意。
 
 \subsection*{⑲ 電界と電位の計算手順（ポアソン・ラプラス）}
-記述問題の山場。電荷密度 $\rho$ と電位 $V$ の関係を解く。
+記述問題の山場であり、多くの学生が躓くポイント。ここでは、物理法則の根源（ガウスの法則）から出発し、試験で問われる微分方程式の形になるまでを**一切の飛躍なく**解説する。
 
-\subsubsection*{基礎方程式 (Maxwellの方程式より導出)}
-\begin{enumerate}
-    \item ガウスの法則（微分形）: $\nabla \cdot \bm{E} = \frac{\rho}{\varepsilon_0}$
-    \item 電位の定義: $\bm{E} = -\nabla V$
-    \item 代入して\textbf{ポアソン方程式}: $\nabla \cdot (-\nabla V) = -\nabla^2 V = \frac{\rho}{\varepsilon_0} \implies \nabla^2 V = -\frac{\rho}{\varepsilon_0}$
-    \item 電荷がない場合 ($\rho=0$) は\textbf{ラプラス方程式}: $\nabla^2 V = 0$
-\end{enumerate}
+\subsubsection*{基礎方程式の導出（ガウスの法則からポアソン方程式へ）}
+この流れは記述問題で「導出過程を書け」と問われる可能性があるため、論理ステップを暗記すること。
 
-\subsubsection*{1次元計算パターン (記述対策)}
-$\dfrac{\dd^2 V}{\dd x^2} = -\dfrac{\rho(x)}{\varepsilon_0}$ を2回積分するプロセス。
+\begin{derivationbox}{ポアソン方程式とラプラス方程式の導出}
+\textbf{Step 1: ガウスの法則（積分形）の確認} \\
+空間内の任意の閉曲面 $S$ を考え、その内部の体積を $V$、内部にある総電荷を $Q$ とする。
+「閉曲面から出る電気力線の総本数（電束）は、内部の電荷量に等しい」という法則である。
+\[ \oint_S \bm{D} \cdot \dd \bm{S} = Q = \int_V \rho \, \dd v \]
+ここで $\bm{D}$ は電束密度、$\rho$ は体積電荷密度である。
 
-\begin{pointbox}{パターン3: 空間電荷制限電流 (Child-Langmuir則の基礎)}
+\textbf{Step 2: ガウスの発散定理の適用} \\
+数学の定理「面積分 $\to$ 体積分への変換」を用いる。
+\[ \oint_S \bm{D} \cdot \dd \bm{S} = \int_V (\nabla \cdot \bm{D}) \, \dd v \]
+これと Step 1 の式を比較すると、どちらも体積分 $\int_V \dots \dd v$ の形になる。
+\[ \int_V (\nabla \cdot \bm{D}) \, \dd v = \int_V \rho \, \dd v \]
+
+\textbf{Step 3: 微分形（マクスウェル方程式）へ} \\
+任意の体積 $V$ で上記が成り立つためには、被積分関数同士が等しくなければならない。
+\[ \nabla \cdot \bm{D} = \rho \quad \text{（ガウスの法則の微分形）} \]
+
+\textbf{Step 4: 電界と電位の関係を代入} \\
+(1) 構成方程式: $\bm{D} = \varepsilon_0 \bm{E}$ （真空中の場合） \\
+(2) 電位の定義: 静電場において電界は電位 $V$ の勾配（マイナス）で表される。 $\bm{E} = -\nabla V$
+これらを Step 3 に代入する。
+\[ \nabla \cdot (\varepsilon_0 \bm{E}) = \rho \quad \xrightarrow{\bm{E}=-\nabla V} \quad \nabla \cdot (\varepsilon_0 (-\nabla V)) = \rho \]
+
+\textbf{Step 5: ポアソン方程式の完成} \\
+$\varepsilon_0$ を定数として外に出し、$\nabla \cdot \nabla = \nabla^2$ （ラプラシアン）を用いると：
+\[ -\varepsilon_0 \nabla^2 V = \rho \quad \Longleftrightarrow \quad \nabla^2 V = -\frac{\rho}{\varepsilon_0} \]
+これが\textbf{ポアソンの方程式}である。電荷 $\rho$ が存在する場合の電位分布を記述する。
+
+\textbf{Step 6: ラプラス方程式（電荷がない場合）} \\
+もし空間に電荷が存在しない（$\rho = 0$）ならば、右辺はゼロになる。
+\[ \nabla^2 V = 0 \]
+これを\textbf{ラプラスの方程式}と呼ぶ。
+\end{derivationbox}
+
+\subsubsection*{1次元計算パターン (試験で実際に解く式)}
+実際の試験問題では、平板電極などを想定して「1次元（$x$方向のみ）」の変化を考えることが多い。この場合、ラプラシアン $\nabla^2$ は単純な2階微分 $\dfrac{\dd^2}{\dd x^2}$ に置き換わる。
+
+\begin{pointbox}{パターン別の微分方程式と解法}
+基本式（1次元ポアソン方程式）:
+\[ \frac{\dd^2 V}{\dd x^2} = -\frac{\rho(x)}{\varepsilon_0} \]
+
+\textbf{【パターン1: 空間電荷なし ($\rho = 0$)】}
+方程式: $\dfrac{\dd^2 V}{\dd x^2} = 0$ （ラプラス方程式）
+\begin{itemize}
+    \item 1回積分: $\dfrac{\dd V}{\dd x} = C_1$ （電界 $E$ は一定）
+    \item 2回積分: $V = C_1 x + C_2$ （電位は直線的に変化）
+    \item 平行平板コンデンサの電位分布そのものである。
+\end{itemize}
+
+\textbf{【パターン2: 一様な空間電荷 ($\rho = \text{const}$)】}
+方程式: $\dfrac{\dd^2 V}{\dd x^2} = -\dfrac{\rho}{\varepsilon_0}$
+\begin{itemize}
+    \item 1回積分: $\dfrac{\dd V}{\dd x} = -\dfrac{\rho}{\varepsilon_0}x + C_1$ （電界は傾きをもつ直線）
+    \item 2回積分: $V = -\dfrac{\rho}{2\varepsilon_0}x^2 + C_1 x + C_2$ （電位は放物線を描く）
+\end{itemize}
+
+\textbf{【パターン3: 空間電荷制限電流 (Child-Langmuir則の基礎)】}
 講義で扱われた「距離に依存する電荷分布 $\rho(x) = -k x^{-1/2}$」のケース（初速度0の電子が加速されるモデル）。
-
-\textbf{方程式}:
+方程式:
 \[ \frac{\dd^2 V}{\dd x^2} = \frac{k}{\varepsilon_0} x^{-1/2} \]
 
-\textbf{ステップ1 (1回積分: 電界)}:
+\textbf{手順1 (1回積分: 電界)}:
 \[ \frac{\dd V}{\dd x} = \int \frac{k}{\varepsilon_0} x^{-1/2} \dd x = \frac{k}{\varepsilon_0} [ 2x^{1/2} ] + C_1 \]
 境界条件「カソード($x=0$)で電界0」とすると $C_1 = 0$。
 \[ \frac{\dd V}{\dd x} = \frac{2k}{\varepsilon_0} x^{1/2} \]
 
-\textbf{ステップ2 (2回積分: 電位)}:
+\textbf{手順2 (2回積分: 電位)}:
 \[ V = \int \frac{2k}{\varepsilon_0} x^{1/2} \dd x = \frac{2k}{\varepsilon_0} [ \frac{2}{3}x^{3/2} ] + C_2 \]
 境界条件「カソード($x=0$)で電位0」とすると $C_2 = 0$。
 
@@ -522,7 +596,12 @@ $P=1.98\times 10^{-5}\unit{W}, \eta=27.0\unit{mA/W}, \delta=3.51, n=6$段。
 \textbf{(1) クーロン力}: 金属表面から距離 $x$ にある電子($-e$)は、壁の反対側距離 $x$ にある鏡像電荷($+e$)と引き合う。電荷間距離は $2x$。
 \[ F = \frac{1}{4\pi\varepsilon_0} \frac{q_1 q_2}{r^2} = \frac{e^2}{4\pi\varepsilon_0 (2x)^2} = \frac{e^2}{16\pi\varepsilon_0 x^2} \]
 \textbf{(3) ポテンシャルエネルギー}: 力の積分（無限遠基準）。
-\[ W(x) = \int_x^\infty F dr = \left[ -\frac{e^2}{16\pi\varepsilon_0 r} \right]_x^\infty = 0 - \left( - \frac{e^2}{16\pi\varepsilon_0 x} \right) = \frac{e^2}{16\pi\varepsilon_0 x} \unit{[J]} \]
+\[ W(x) = \int_x^\infty |F| \dd r = \int_{x}^{\infty} \frac{e^2}{16\pi\varepsilon_0 r^2} \dd r \]
+積分計算:
+\begin{align*}
+W &= \frac{e^2}{16\pi\varepsilon_0} \left[ -\frac{1}{r} \right]_{x}^{\infty} \\
+  &= \frac{e^2}{16\pi\varepsilon_0} \left( 0 - \left(-\frac{1}{x}\right) \right) = \frac{e^2}{16\pi\varepsilon_0 x} \unit{[J]}
+\end{align*}
 eV単位で答える場合は $e$ で割る $\to \frac{e}{16\pi\varepsilon_0 x} \unit{[eV]}$
 
 \subsection*{問3. モリブデン線の半径 $r$}
