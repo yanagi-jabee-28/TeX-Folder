@@ -23,7 +23,8 @@
 % コマンド定義
 %------------------------------------------------------------------------------
 \newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
-\newcommand{\dd}{\mathrm{d}}     % 微分記号
+% Use \providecommand to avoid conflict if math packages define \dd
+\providecommand{\dd}{\mathrm{d}}     % 微分記号
 \newcommand{\kB}{k}              % ボルツマン定数
 
 % 定数定義（試験用）

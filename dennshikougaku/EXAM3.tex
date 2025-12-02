@@ -28,7 +28,8 @@
 %------------------------------------------------------------------------------
 \newcommand{\EF}{E_{\mathrm{F}}} % フェルミ準位
 \newcommand{\kB}{k}              % ボルツマン定数
-\newcommand{\dd}{\mathrm{d}}     % 微分記号
+% Use \providecommand to avoid conflict if math packages define \dd
+\providecommand{\dd}{\mathrm{d}}     % 微分記号
 
 % 試験用物理定数
 \newcommand{\ValE}{1.60 \times 10^{-19}}
