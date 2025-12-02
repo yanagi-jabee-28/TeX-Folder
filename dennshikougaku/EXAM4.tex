@@ -232,54 +232,51 @@ $\delta > 1$ のとき、電子が増倍（増幅）されます。
 \subsection*{⑲ 電界と電位の計算手順（ポアソン・ラプラス）}
 空間に電荷密度 $\rho$ が存在する場合の計算手順（記述問題で問われます）。
 
-\subsubsection*{基礎方程式の導出（ガウスの法則からポアソン方程式へ）}
+\subsubsection*{⑲-A 基礎方程式の導出（ガウスの法則から）}
 講義板書に基づき、ポアソン方程式がどのように導かれるかを解説します。
 
 \begin{enumerate}
     \item \textbf{ガウスの法則（積分形）}:
-    ある閉曲面 $S$ 内の総電荷 $Q$ と、そこから出る電束 $\Psi$ は等しい。
+    閉曲面 $S$ 内の総電荷 $Q$ と、そこから出る電束は等しい。
     \[ \oint_S \bm{D} \cdot \dd \bm{S} = Q = \int_V \rho \, \dd v \]
-    ここで $\bm{D}$ は電束密度 $[\si{C/m^2}]$、$\rho$ は空間電荷密度 $[\si{C/m^3}]$ です。
-
     \item \textbf{ガウスの発散定理}:
-    面積分を体積分に変換します。
-    \[ \oint_S \bm{D} \cdot \dd \bm{S} = \int_V (\nabla \cdot \bm{D}) \, \dd v \]
-    これをガウスの法則と等置すると、
-    \[ \int_V (\nabla \cdot \bm{D}) \, \dd v = \int_V \rho \, \dd v \]
-    任意の体積 $V$ で成り立つため、被積分関数が等しくなります。
+    面積分を体積分に変換。 $\oint_S \bm{D} \cdot \dd \bm{S} = \int_V (\nabla \cdot \bm{D}) \, \dd v$
+    これらを等置すると、
     \[ \nabla \cdot \bm{D} = \rho \quad (\text{ガウスの法則の微分形}) \]
-    あるいは $\mathrm{div} \bm{D} = \rho$ と書きます。
-
-    \item \textbf{電束密度と電界の関係}:
-    $\bm{D} = \varepsilon_0 \bm{E}$ より、
-    \[ \nabla \cdot (\varepsilon_0 \bm{E}) = \rho \quad \Rightarrow \quad \nabla \cdot \bm{E} = \frac{\rho}{\varepsilon_0} \]
-
-    \item \textbf{電界と電位の関係}:
-    静電界において $\bm{E} = -\nabla V = -\mathrm{grad} \, V$ です。これを代入すると、
-    \[ \nabla \cdot (-\nabla V) = \frac{\rho}{\varepsilon_0} \quad \Rightarrow \quad \nabla^2 V = -\frac{\rho}{\varepsilon_0} \]
-    これが\textbf{ポアソンの方程式}です。
-    \[ \left( \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} + \frac{\partial^2 V}{\partial z^2} = -\frac{\rho}{\varepsilon_0} \right) \]
-
-    \item \textbf{ラプラスの方程式}:
-    空間電荷がない場合（$\rho = 0$）、式は以下のようになります。
-    \[ \nabla^2 V = 0 \]
+    \item \textbf{電束密度と電界}: $\bm{D} = \varepsilon_0 \bm{E}$ より、 $\nabla \cdot \bm{E} = \frac{\rho}{\varepsilon_0}$
+    \item \textbf{電位の定義}: $\bm{E} = -\nabla V$ を代入すると、\textbf{ポアソン方程式}が得られます。
+    \[ \nabla^2 V = -\frac{\rho}{\varepsilon_0} \]
 \end{enumerate}
 
-\subsubsection*{電界強度の算出手順}
-上記のポアソン方程式を用いて、1次元（$x$ 方向のみ変化）の電界を求める手順は以下の通りです。
+\subsubsection*{⑲-B 電位分布の計算パターン（授業資料より）}
+電荷分布 $\rho$ の条件によって、計算結果がどう変わるか整理します。
 
-\begin{enumerate}
-    \item \textbf{ポアソンの方程式を立てる}:
-    \[ \frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0} \]
-    \item \textbf{1回目の積分}（電界 $E$ を求める）:
-    $x$ で積分します。積分定数 $C_1$ が現れます。
-    \[ \frac{\dd V}{\dd x} = \int \left(-\frac{\rho}{\varepsilon_0}\right) \dd x \quad \Rightarrow \quad -E_x = -\frac{\rho}{\varepsilon_0}x + C_1 \]
-    \item \textbf{2回目の積分}（電位 $V$ を求める）:
-    もう一度 $x$ で積分します。積分定数 $C_2$ が現れます。
-    \[ V = \int \left(-\frac{\rho}{\varepsilon_0}x + C_1\right) \dd x \quad \Rightarrow \quad V = -\frac{\rho}{2\varepsilon_0}x^2 + C_1 x + C_2 \]
-    \item \textbf{境界条件の適用}:
-    問題で与えられた条件（例：$x=0$で$V=0$、 $x=d$で$V=V_a$）を代入して連立方程式を解き、積分定数 $C_1, C_2$ を決定します。
-\end{enumerate}
+\begin{description}
+    \item[パターン1: 空間電荷なし ($\rho = 0$)]
+    方程式は\textbf{ラプラスの方程式} $\dfrac{\dd^2 V}{\dd x^2} = 0$ となります。
+    \begin{itemize}
+        \item 1回積分: $\dfrac{\dd V}{\dd x} = C_1$ （電界は一定）
+        \item 2回積分: $V = C_1 x + C_2$ （電位は直線的に変化）
+    \end{itemize}
+
+    \item[パターン2: 一様な空間電荷 ($\rho = \text{一定}$)]
+    方程式は $\dfrac{\dd^2 V}{\dd x^2} = -\dfrac{\rho}{\varepsilon_0}$ です。
+    \begin{itemize}
+        \item 1回積分: $\dfrac{\dd V}{\dd x} = -\dfrac{\rho}{\varepsilon_0}x + C_1$ （電界は傾きをもつ直線）
+        \item 2回積分: $V = -\dfrac{\rho}{2\varepsilon_0}x^2 + C_1 x + C_2$ （電位は放物線）
+    \end{itemize}
+
+    \item[パターン3: 距離に依存する電荷 ($\rho(x) = -k x^{-1/2}$)] \textbf{※講義資料の例}
+    方程式：$\dfrac{\dd^2 V}{\dd x^2} = - \dfrac{-k x^{-1/2}}{\varepsilon_0} = \dfrac{k}{\varepsilon_0} x^{-1/2}$
+    \begin{itemize}
+        \item \textbf{1回積分 ($E$)}:
+        \[ \frac{\dd V}{\dd x} = \int \frac{k}{\varepsilon_0} x^{-1/2} \dd x = \frac{k}{\varepsilon_0} (2 x^{1/2}) + C_1 \]
+        \item \textbf{2回積分 ($V$)}:
+        \[ V = \int \left( \frac{2k}{\varepsilon_0} x^{1/2} + C_1 \right) \dd x = \frac{2k}{\varepsilon_0} \left( \frac{2}{3} x^{3/2} \right) + C_1 x + C_2 \]
+        \[ V = \frac{4k}{3\varepsilon_0} x^{3/2} + C_1 x + C_2 \]
+    \end{itemize}
+    境界条件として「カソード($x=0$)で電位0、初速度0(電界0)」を仮定すると $C_1=C_2=0$ となり、電位は $x^{3/2}$ に比例します（\textbf{3/2乗則}）。
+\end{description}
 
 \newpage
 %==============================================================================
