@@ -231,9 +231,45 @@ $\delta > 1$ のとき、電子が増倍（増幅）されます。
 
 \subsection*{⑲ 電界と電位の計算手順（ポアソン・ラプラス）}
 空間に電荷密度 $\rho$ が存在する場合の計算手順（記述問題で問われます）。
+
+\subsubsection*{基礎方程式の導出（ガウスの法則からポアソン方程式へ）}
+講義板書に基づき、ポアソン方程式がどのように導かれるかを解説します。
+
+\begin{enumerate}
+    \item \textbf{ガウスの法則（積分形）}:
+    ある閉曲面 $S$ 内の総電荷 $Q$ と、そこから出る電束 $\Psi$ は等しい。
+    \[ \oint_S \bm{D} \cdot \dd \bm{S} = Q = \int_V \rho \, \dd v \]
+    ここで $\bm{D}$ は電束密度 $[\si{C/m^2}]$、$\rho$ は空間電荷密度 $[\si{C/m^3}]$ です。
+
+    \item \textbf{ガウスの発散定理}:
+    面積分を体積分に変換します。
+    \[ \oint_S \bm{D} \cdot \dd \bm{S} = \int_V (\nabla \cdot \bm{D}) \, \dd v \]
+    これをガウスの法則と等置すると、
+    \[ \int_V (\nabla \cdot \bm{D}) \, \dd v = \int_V \rho \, \dd v \]
+    任意の体積 $V$ で成り立つため、被積分関数が等しくなります。
+    \[ \nabla \cdot \bm{D} = \rho \quad (\text{ガウスの法則の微分形}) \]
+    あるいは $\mathrm{div} \bm{D} = \rho$ と書きます。
+
+    \item \textbf{電束密度と電界の関係}:
+    $\bm{D} = \varepsilon_0 \bm{E}$ より、
+    \[ \nabla \cdot (\varepsilon_0 \bm{E}) = \rho \quad \Rightarrow \quad \nabla \cdot \bm{E} = \frac{\rho}{\varepsilon_0} \]
+
+    \item \textbf{電界と電位の関係}:
+    静電界において $\bm{E} = -\nabla V = -\mathrm{grad} \, V$ です。これを代入すると、
+    \[ \nabla \cdot (-\nabla V) = \frac{\rho}{\varepsilon_0} \quad \Rightarrow \quad \nabla^2 V = -\frac{\rho}{\varepsilon_0} \]
+    これが\textbf{ポアソンの方程式}です。
+    \[ \left( \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} + \frac{\partial^2 V}{\partial z^2} = -\frac{\rho}{\varepsilon_0} \right) \]
+
+    \item \textbf{ラプラスの方程式}:
+    空間電荷がない場合（$\rho = 0$）、式は以下のようになります。
+    \[ \nabla^2 V = 0 \]
+\end{enumerate}
+
+\subsubsection*{電界強度の算出手順}
+上記のポアソン方程式を用いて、1次元（$x$ 方向のみ変化）の電界を求める手順は以下の通りです。
+
 \begin{enumerate}
     \item \textbf{ポアソンの方程式を立てる}:
-    電荷と電位の関係式です。
     \[ \frac{\dd^2 V}{\dd x^2} = -\frac{\rho}{\varepsilon_0} \]
     \item \textbf{1回目の積分}（電界 $E$ を求める）:
     $x$ で積分します。積分定数 $C_1$ が現れます。
