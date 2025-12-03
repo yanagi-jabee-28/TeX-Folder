@@ -16,7 +16,11 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{float}
+% Better control of floats: avoid forcing them into place with [H] and reduce float pile-up
+\usepackage{placeins}
 \usepackage[margin=2.5cm]{geometry}
+% Provide a safe maximum height for tall images and keep aspect ratio
+\setkeys{Gin}{height=0.6\textheight,keepaspectratio}
 
 % ページ下部の余白調整を緩める（Overfull \vbox 対策）
 \raggedbottom
@@ -38,7 +42,6 @@
 \begin{document}
 
 \maketitle
-\clearpage
 
 \section{目的}
 実機デモとシミュレータでの回路作成を通じて，アナログ信号をパルス信号で変調，復調するパルス符号変・復調回路の仕組みと，その動作を習得することを目的として本実験を実施した．
@@ -50,9 +53,9 @@
 
 また，PCM復調回路は，受信信号のチャンネル信号とPCM変調信号を分離する分離回路，分離されたチャンネル信号を解読するチャンネル判別回路，PCM変調信号を並列信号に変換する符号変換回路，並列信号に変換されたPCM変調信号をチャンネル別に復調するD/A変換器，および高周波成分を除去するLPF回路より構成されている．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_000.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_000.png}
   \caption{基本方式}
   \label{fig:1}
 \end{figure}
@@ -60,9 +63,9 @@
 \subsection{タイミングパルス発生回路}
 タイミングパルス発生回路は1つの発振器をもとにして，装置各部の回路に必要なタイミングパルスを発生する回路である．タイミングパルス発生回路の回路図を図2に示す．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{image/img_001.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_001.png}
   \caption{タイミングパルス発生回路とカルノー図}
   \label{fig:2}
 \end{figure}
@@ -74,9 +77,9 @@ U3 SN74LS162のCLKには，U1の125 [\si{\kilo\hertz}]のクロックパルス�
 \subsection{切換回路}
 PCM通信を多重化するための切換回路を図3に示す．この場合上と下に2チャンネルの入力信号源がある．この回路出力は標本化回路の入力となる．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_002.png}
+  \includegraphics[width=0.6\textwidth,height=0.6\textheight,keepaspectratio]{image/img_002.png}
   \caption{切替回路}
   \label{fig:3}
 \end{figure}
@@ -86,9 +89,9 @@ PCM通信を多重化するための切換回路を図3に示す．この場合�
 \subsection{標本化回路（サンプル\&ホールド回路）}
 アナログ信号をある時間間隔でサンプリングし，次のタイミングまでその値を保持する回路である．回路図を図4に示す．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_003.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_003.png}
   \caption{標本化回路（サンプル\&ホールド回路）}
   \label{fig:4}
 \end{figure}
@@ -97,9 +100,9 @@ PCM通信を多重化するための切換回路を図3に示す．この場合�
 
 なお，図4にはR1の抵抗がつけられているが，回路の安定性のためのものである．R1は1 [\si{\mega\ohm}]という非常に大きな値なので，理論上では開放と考えてもよい．開放と考えるとよくあるボルテージフォロワ回路と同じ回路になる．試しにR1を取り外してシミュレーションをした結果が図5であるが，波形は変わらない．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_004.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_004.png}
   \caption{サンプル\&ホールド回路のR1の役割}
   \label{fig:5}
 \end{figure}
@@ -109,7 +112,7 @@ PCM通信を多重化するための切換回路を図3に示す．この場合�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_005.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_005.png}
   \caption{シフトレジスタ}
   \label{fig:6}
 \end{figure}
@@ -123,7 +126,7 @@ T3の波形を反転させるためにIdeal inverterを使う．Ideal inverter�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_006.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_006.png}
   \caption{波形合成・分離回路}
   \label{fig:7}
 \end{figure}
@@ -139,7 +142,7 @@ Vmixが-5 [\si{\volt}]のときは上のダイオードがON，下のダイオ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_007.png}
+  \includegraphics[width=0.6\textwidth,height=0.6\textheight,keepaspectratio]{image/img_007.png}
   \caption{波形合成・分離回路の動作}
   \label{fig:8}
 \end{figure}
@@ -155,10 +158,11 @@ AD変換されたデータは再びDAコンバータMV95308に入力しアナロ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_008.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_008.png}
   \caption{AD・DA変換回路とローパスフィルタ}
   \label{fig:9}
 \end{figure}
+\FloatBarrier
 
 \section{実験方法}
 図2中のクロックと電圧ピンを取り去り，そこに「特殊」タブにあるマクロピンを接続した．図11に図2を変更した回路を示す．図11の回路をマクロ化（1チップ化）した．「ツール」中の新規マクロ・ウィザードでマクロ化し，回路図に読み込み（「挿入」－＞「マクロ」），この回路を保存した．
@@ -166,7 +170,7 @@ AD変換されたデータは再びDAコンバータMV95308に入力しアナロ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_009.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_009.png}
   \caption{マクロ用回路}
   \label{fig:10}
 \end{figure}
@@ -177,7 +181,7 @@ AD変換されたデータは再びDAコンバータMV95308に入力しアナロ
 
 \section{使用機器}
 本実験では，シミュレーションソフト「TINA-TI」を用いた．TINAはDesignSoftの製品であり，TEXAS INSTRUMENTS社専用で，無償で提供されている．
-
+\FloatBarrier
 \section{実験結果及び考察}
 
 \subsection{タイミングパルス発生回路}
@@ -185,7 +189,7 @@ AD変換されたデータは再びDAコンバータMV95308に入力しアナロ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_010.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_010.png}
   \caption{タイミングパルス発生回路の過渡特性}
   \label{fig:11}
 \end{figure}
@@ -195,7 +199,7 @@ AD変換されたデータは再びDAコンバータMV95308に入力しアナロ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_011.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_011.png}
   \caption{切替回路の過渡特性}
   \label{fig:12}
 \end{figure}
@@ -207,7 +211,7 @@ Voutを見ると，Vclockのタイミングで100 [\si{\hertz}]の信号と50 [\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_012.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_012.png}
   \caption{標本化回路の過渡特性}
   \label{fig:13}
 \end{figure}
@@ -219,7 +223,7 @@ Voutの波形を見ると，Vclockの立ち上がりのタイミングでVG1の�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_013.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_013.png}
   \caption{シフトレジスタの過渡特性}
   \label{fig:14}
 \end{figure}
@@ -229,7 +233,7 @@ Voutの波形を見ると，Vclockの立ち上がりのタイミングでVG1の�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_014.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_014.png}
   \caption{波形合成・分離回路の過渡特性}
   \label{fig:15}
 \end{figure}
@@ -241,7 +245,7 @@ Vmixを見ると，T2の波形はプラスで，T3の波形はマイナスで合
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{image/img_015.png}
+  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_015.png}
   \caption{AD-DA変換回路，ローパスフィルタの過渡特性}
   \label{fig:16}
 \end{figure}
@@ -285,7 +289,7 @@ $h_s(t)$は標本化関数，または，補間関数といわれ，そのイン
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_016.png}
+  \includegraphics[width=0.6\textwidth,height=0.6\textheight,keepaspectratio]{image/img_016.png}
   \caption{標本化とその復調}
   \label{fig:17}
 \end{figure}
@@ -302,7 +306,7 @@ $h_s(t)$は標本化関数，または，補間関数といわれ，そのイン
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_017.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_017.png}
   \caption{サレン・キー型アクティブローパスフィルタ（LPF）の回路図}
   \label{fig:18}
 \end{figure}
@@ -398,7 +402,7 @@ PCM変調で標本化をする際に，時間的に少しずつずらして標�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_018.png}
+  \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{image/img_018.png}
   \caption{時分割多重化（TDM）}
   \label{fig:19}
 \end{figure}
