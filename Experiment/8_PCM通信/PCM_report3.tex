@@ -15,32 +15,16 @@
 \usepackage{bm} % ベクトル太字用
 
 % ----- 画像・単位・レイアウト関連 -----
-% 【重要】[dvipdfmx]オプションを削除しました。
-% コンパイラの自動判定に任せることで、lualatex/platexの不整合を防ぎます。
+% 【重要】コンパイラの自動判定設定
 \usepackage{graphicx} 
-% adjustbox: provides 'max size' option for \includegraphics (prevents upscaling small images)
 \usepackage[export]{adjustbox}
 \usepackage{siunitx}
 \usepackage{float}
 \usepackage{placeins}
 \usepackage[margin=25mm]{geometry}
 
-% 画像の高さ制限設定（keepaspectratio のみをデフォルトにし、個々の図では max size=.. を指定する）
+% 画像の高さ制限設定
 \setkeys{Gin}{keepaspectratio}
-
-% --- 画像品質に関するメモ（編集中に参照） -----
-% 1) 回路図やベクトル描画は可能な限りベクターファイル（.pdf, .eps）で出力し,
-%    LaTeXに埋め込んでください（拡大しても画質劣化しません）。
-% 2) スクリーンショットやラスター画像（.png/.jpg）は印刷品質のために
-%    300dpi（目安）以上で出力・保存してください。細い線（回路図など）は
-%    600dpi推奨です。
-% 3) 小さなラスター画像を
-%    \includegraphics[width=0.6\textwidth]{...}
-%    のように強制拡大すると画質が大きく劣化します。本ファイルでは
-%    `adjustbox` の `max size` を用いて「最大表示サイズ」を指定しており,
-%    小さい画像は拡大せず，最大サイズを超える画像だけ縮小する設定です。
-% 4) TINA-TIなどのシミュレータからは可能ならPDF出力（ベクター）を使い,
-%    できない場合はPNGの出力解像度を上げてください。
 
 % 便利マクロ: max size をデフォルトで使うラッパー
 \newcommand{\includefig}[2][]{\includegraphics[max size={\textwidth}{0.45\textheight},#1]{#2}}
@@ -54,7 +38,6 @@
 \makeatother
 
 % ----- ハイパーリンク -----
-% リンクの色を黒に統一（図番号などの参照箇所の色付けを黒にする）
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,anchorcolor=black]{hyperref}
 
 % ===== ドキュメント情報 =====
@@ -297,26 +280,22 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 \end{equation}
 この関係は「染谷-Shannonの標本化定理」と呼ばれる．すなわち，アナログ信号に含まれる最高周波数を $f_{max}$ とするとき，その2倍以上の周波数（標本化周波数 $f_s \ge 2f_{max}$）で標本化を行えば，標本化された離散信号から元のアナログ信号を完全に再現可能であることを示している\texorpdfstring{\cite{hatori2012}}{}．
 
-この式の物理的意味を以下に説明する．入力信号 $g(t)$ を無限小のパルス幅を持つインパルス $\delta(t)$ の列で標本化すると，標本化パルス列 $g_T(t)$ は次式で表される（図\ref{fig:17}(b)）．
-\begin{equation}
-  g_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \cdot \delta(t - nT) \label{eq:2}
-\end{equation}
-これを，インパルス応答 $h_s(t)$ が
+この定理の物理的意味について記述する．理想的な低域通過フィルタ（遮断周波数 $f_c=f_0/2$）のインパルス応答 $h_s(t)$ は，以下の式(\ref{eq:3})で示されるような Sinc関数（$\sin x / x$）の形状をとる．
 \begin{equation}
   h_s(t) = \frac{\sin \pi f_0 t}{\pi f_0 t} \label{eq:3}
 \end{equation}
-で与えられる理想的な低域通過フィルタに通すと，その出力信号 $y(t)$ は畳み込み積分により
+
+入力信号 $g(t)$ を無限小のパルス幅を持つインパルス列 $\delta(t-nT)$ で標本化すると，標本化信号 $g_T(t)$ は以下の式(\ref{eq:2})のように表される．
+\begin{equation}
+  g_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \cdot \delta(t - nT) \label{eq:2}
+\end{equation}
+
+このインパルス列を上述の理想低域通過フィルタに通すと，出力 $y(t)$ は各インパルスに対するフィルタ応答（Sinc関数）の総和となる．すなわち畳み込み積分により以下のように計算される．
 \begin{equation}
   y(t) = \int_{-\infty}^{\infty} g_T(\tau) h_s(t-\tau)d\tau = \sum_{n=-\infty}^{\infty} g(nT) \cdot h_s(t - nT) \label{eq:4}
 \end{equation}
-となり，式(\ref{eq:1})と等価になる．これは，各標本点におけるインパルス応答（Sinc関数）の重ね合わせによって元の波形が滑らかに補間・復調されることを意味する（図\ref{fig:17}(c)～(f)）\texorpdfstring{\cite{kaneko1977_1}}{}．
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_016.png}
-  \caption{標本化とその復調の原理}
-  \label{fig:17}
-\end{figure}
+この式は，標本点ごとに中心を持つSinc関数（$h_s(t-nT)$）を，その時点の標本値 $g(nT)$ で重み付けして重ね合わせる操作を意味する．
+Sinc関数は，中心点 $t=0$ で値 $1$ をとり，それ以外のすべての標本点 $t=k/f_0 (k \neq 0)$ において値 $0$ をとる特性（直交性）を持つ．このため，ある標本点での信号の振幅値は，他の標本点からの干渉を受けずに復元される．これらすべてのSinc関数を足し合わせることで，標本点間が滑らかに補間され，元の連続信号 $g(t)$ が再現される\texorpdfstring{\cite{kaneko1977_1}}{}．
 
 \subsection{本実験における量子化レベル}
 量子化とは，標本化によって時間的に離散化された信号に対し，その振幅値を離散的な数値に置き換える操作である\texorpdfstring{\cite{kaneko1977_2}}{}．
@@ -326,21 +305,15 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 通常のシリコンダイオードには順方向降下電圧（約 \SIrange{0.6}{0.7}{\volt}）が存在し，これを超えない電圧では電流が流れない．これに対し，理想ダイオードとは，順方向電圧印加時には抵抗ゼロで短絡（導通）し，逆方向電圧印加時には抵抗無限大で開放（遮断）するという，理想的な整流特性を持つ素子として定義される\texorpdfstring{\cite{takasaki2021}}{}．
 
 \subsection{ローパスフィルタの遮断周波数の導出}
-本実験で使用したローパスフィルタ（図\ref{fig:9}の末段）は，オペアンプ，抵抗，コンデンサで構成されるサレン・キー（Sallen-Key）型2次LPFである（図\ref{fig:18}）．
+本実験で使用したローパスフィルタ（図\ref{fig:9}の末段）は，オペアンプ，抵抗，コンデンサで構成されるサレン・キー（Sallen-Key）型2次LPFである．回路の構成要素を以下のように定義する．
+\begin{itemize}
+    \item 入力側から順に，直列接続された抵抗： $R_1, R_2$
+    \item フィードバック（$R_1$と$R_2$の中点への帰還）：コンデンサ $C_1$
+    \item 非反転入力端子の接地：コンデンサ $C_2$
+    \item オペアンプはユニティゲインバッファ（ボルテージフォロワ）として動作
+\end{itemize}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_017.png}
-  \caption{サレン・キー型アクティブローパスフィルタ（LPF）}
-  \label{fig:18}
-\end{figure}
-
-図\ref{fig:18}においてキルヒホッフの法則を適用し，伝達関数を導出する．各部の電流および電圧の関係は以下の通りである．
-\begin{align}
-  I_1 &= \frac{V_{IN} - V_x}{Z_1}, \quad I_2 = \frac{V_{OUT} - V_x}{Z_2} \label{eq:5} \\
-  I_3 &= \frac{V_x}{Z_3 + Z_4} = \frac{V_{OUT}}{Z_4} \label{eq:7}
-\end{align}
-オペアンプの入力インピーダンスが無限大であると仮定すると $I_3 = I_1 + I_2$ が成立する．式(\ref{eq:7})より $V_x = \frac{Z_3 + Z_4}{Z_4} V_{OUT}$ となる．これらを整理して伝達関数 $G(s) = V_{OUT}/V_{IN}$ を求めると，最終的に以下の形式が得られる．
+オペアンプの入力インピーダンスが無限大であるという理想特性を仮定し，各ノードにおけるキルヒホッフの法則を適用して回路方程式を解くと，サレン・キー型LPFの伝達関数 $G(s) = V_{OUT}/V_{IN}$ は一般に次式で導かれる．
 \begin{equation}
   G(s) = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s(\frac{1}{R_1 C_1} + \frac{1}{R_2 C_1}) + \frac{1}{R_1 R_2 C_1 C_2}} \label{eq:15}
 \end{equation}
@@ -348,7 +321,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 \begin{equation}
   G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \label{eq:16}
 \end{equation}
-に対応する．ここで固有角周波数 $\omega_n$ は
+に対応する．ここで固有角周波数 $\omega_n$ は定数項の平方根として求まるため，
 \begin{equation}
   \omega_n = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}} \label{eq:18}
 \end{equation}
@@ -375,14 +348,9 @@ PCM変調が他のアナログ変調方式と比較して優れている主な�
 \subsection{PCM通信における多重化の原理}
 多重化伝送とは，1つの伝送路を用いて複数の情報を同時に送る技術である．PCM通信では，時分割多重（TDM: Time Division Multiplexing）が用いられる．
 
-標本化定理に基づき，各チャンネルの信号をパルス列としてサンプリングする際，それぞれのパルスのタイミング（位相）を互いに重ならないようにずらすことで，時間軸上で複数の信号をインターリーブ（多重化）することが可能となる（図\ref{fig:19}）．受信側では，送信側と同期をとることで，特定のタイムスロットの信号のみを分離して取り出し，各チャンネルの信号を復元する\texorpdfstring{\cite{kaneko1977_4}}{}．
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_018.png}
-  \caption{時分割多重（TDM）の概念図}
-  \label{fig:19}
-\end{figure}
+標本化定理に基づき，アナログ信号は連続波形でなく，離散的なパルス列として表現できる．この際，各パルスの間には信号が存在しない空白時間が生じる．TDMでは，この空白時間に他のチャンネル（Ch.2，Ch.3...）のパルスを挿入（インターリーブ）することで多重化を実現する．
+すなわち，標本化周期 $T$ 内において，各チャンネルの標本化タイミング（位相）を互いに重ならないようにわずかにずらす（位相オフセットを持たせる）ことで，時間軸上で複数の信号を単一のパルス列として混信なく合成することが可能となる．
+受信側では，送信側と完全に同期したタイミングで信号を読み取る（ゲートを開く）ことで，特定のタイムスロットの信号のみを分離して取り出し，各チャンネルの信号を個別に復元する\texorpdfstring{\cite{kaneko1977_4}}{}．
 
 \subsection{PCM通信の応用分野}
 PCM通信技術は，1962年のT1方式（Bell研究所）の実用化以来，通信インフラの基盤技術として広く普及した．初期の電話回線網における局間伝送（24回線PCM方式等）から始まり，現在では光ファイバ通信，衛星通信，携帯電話網，ディジタル放送，さらにはインターネット上のデータ伝送に至るまで，あらゆるデジタル通信システムの根幹技術として利用されている\texorpdfstring{\cite{kaneko1977_5}}{}．
