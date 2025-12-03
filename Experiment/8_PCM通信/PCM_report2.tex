@@ -18,13 +18,32 @@
 % 【重要】[dvipdfmx]オプションを削除しました。
 % コンパイラの自動判定に任せることで、lualatex/platexの不整合を防ぎます。
 \usepackage{graphicx} 
+% adjustbox: provides 'max size' option for \includegraphics (prevents upscaling small images)
+\usepackage[export]{adjustbox}
 \usepackage{siunitx}
 \usepackage{float}
 \usepackage{placeins}
 \usepackage[margin=25mm]{geometry}
 
-% 画像の高さ制限設定
-\setkeys{Gin}{height=0.45\textheight,keepaspectratio}
+% 画像の高さ制限設定（keepaspectratio のみをデフォルトにし、個々の図では max size=.. を指定する）
+\setkeys{Gin}{keepaspectratio}
+
+% --- 画像品質に関するメモ（編集中に参照） -----
+% 1) 回路図やベクトル描画は可能な限りベクターファイル（.pdf, .eps）で出力し,
+%    LaTeXに埋め込んでください（拡大しても画質劣化しません）。
+% 2) スクリーンショットやラスター画像（.png/.jpg）は印刷品質のために
+%    300dpi（目安）以上で出力・保存してください。細い線（回路図など）は
+%    600dpi推奨です。
+% 3) 小さなラスター画像を
+%    \includegraphics[width=0.6\textwidth]{...}
+%    のように強制拡大すると画質が大きく劣化します。本ファイルでは
+%    `adjustbox` の `max size` を用いて「最大表示サイズ」を指定しており,
+%    小さい画像は拡大せず，最大サイズを超える画像だけ縮小する設定です。
+% 4) TINA-TIなどのシミュレータからは可能ならPDF出力（ベクター）を使い,
+%    できない場合はPNGの出力解像度を上げてください。
+
+% 便利マクロ: max size をデフォルトで使うラッパー
+\newcommand{\includefig}[2][]{\includegraphics[max size={\textwidth}{0.45\textheight},#1]{#2}}
 
 % ページ下部の余白調整
 \raggedbottom
@@ -35,8 +54,8 @@
 \makeatother
 
 % ----- ハイパーリンク -----
-% colorlinksの設定などを維持
-\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=black,urlcolor=blue]{hyperref}
+% リンクの色を黒に統一（図番号などの参照箇所の色付けを黒にする）
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,anchorcolor=black]{hyperref}
 
 % ===== ドキュメント情報 =====
 \title{PCM通信 実験報告書}
@@ -59,7 +78,7 @@ PCM変調回路は，入力切換回路で選択された入力信号を標本�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_000.png}
+  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_000.png}
   \caption{PCM通信の基本方式}
   \label{fig:1}
 \end{figure}
@@ -73,7 +92,7 @@ JKフリップフロップ回路では，JおよびK入力の双方がHighレベ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_001.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_001.png}
   \caption{タイミングパルス発生回路とカルノー図}
   \label{fig:2}
 \end{figure}
@@ -85,7 +104,7 @@ U1のクロック信号によってアナログスイッチSW3およびSW4のオ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_002.png}
+  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_002.png}
   \caption{切換回路}
   \label{fig:3}
 \end{figure}
@@ -99,14 +118,14 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_003.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_003.png}
   \caption{標本化回路（サンプル\&ホールド回路）}
   \label{fig:4}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_004.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_004.png}
   \caption{サンプル\&ホールド回路におけるR1の影響検証}
   \label{fig:5}
 \end{figure}
@@ -118,7 +137,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_005.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_005.png}
   \caption{シフトレジスタ（パラレルシリアル変換回路）}
   \label{fig:6}
 \end{figure}
@@ -130,7 +149,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_006.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_006.png}
   \caption{波形合成・分離回路}
   \label{fig:7}
 \end{figure}
@@ -145,7 +164,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_007.png}
+  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_007.png}
   \caption{波形合成・分離回路の動作原理}
   \label{fig:8}
 \end{figure}
@@ -161,7 +180,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_008.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_008.png}
   \caption{AD・DA変換回路とローパスフィルタ}
   \label{fig:9}
 \end{figure}
@@ -173,7 +192,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_009.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_009.png}
   \caption{タイミングパルス発生回路のマクロ化}
   \label{fig:10}
 \end{figure}
@@ -196,7 +215,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_010.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_010.png}
   \caption{タイミングパルス発生回路の過渡特性}
   \label{fig:11}
 \end{figure}
@@ -208,7 +227,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_011.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_011.png}
   \caption{切替回路の過渡特性}
   \label{fig:12}
 \end{figure}
@@ -220,7 +239,7 @@ Voutの波形を確認すると，Vclockが立ち上がるタイミングで入�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_012.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_012.png}
   \caption{標本化回路の過渡特性}
   \label{fig:13}
 \end{figure}
@@ -232,7 +251,7 @@ OUTPUT波形を確認すると，ロード信号T3の入力後に，設定した
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_013.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_013.png}
   \caption{シフトレジスタの過渡特性}
   \label{fig:14}
 \end{figure}
@@ -244,7 +263,7 @@ OUTPUT波形を確認すると，ロード信号T3の入力後に，設定した
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_014.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_014.png}
   \caption{波形合成・分離回路の過渡特性}
   \label{fig:15}
 \end{figure}
@@ -260,7 +279,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{image/img_015.png}
+  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_015.png}
   \caption{AD-DA変換回路，ローパスフィルタの過渡特性}
   \label{fig:16}
 \end{figure}
@@ -292,7 +311,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{image/img_016.png}
+  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_016.png}
   \caption{標本化とその復調の原理}
   \label{fig:17}
 \end{figure}
@@ -309,7 +328,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_017.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_017.png}
   \caption{サレン・キー型アクティブローパスフィルタ（LPF）}
   \label{fig:18}
 \end{figure}
@@ -358,7 +377,7 @@ PCM変調が他のアナログ変調方式と比較して優れている主な�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{image/img_018.png}
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_018.png}
   \caption{時分割多重（TDM）の概念図}
   \label{fig:19}
 \end{figure}
