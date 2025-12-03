@@ -3,61 +3,36 @@
   a4paper,
   11pt,
 ]{ltjsarticle}
+
+% ----- フォント・数式関連 -----
 \usepackage{newtxtext}
 \usepackage{newtxmath}
 \usepackage{amsmath}
-% newtxmathとの競合を避けるため amssymb 読み込み前に \Bbbk を未定義にする
+% newtxmathとの競合回避
 \let\Bbbk\relax
 \usepackage{amssymb}
+
+% ----- 画像・単位・レイアウト関連 -----
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{float}
-\usepackage{anyfontsize}
 \usepackage[margin=2.5cm]{geometry}
+
 % ページ下部の余白調整を緩める（Overfull \vbox 対策）
 \raggedbottom
 
-% ===== 参考文献の上付き表示設定 =====
+% ----- 参考文献の上付き表示設定 -----
 \makeatletter
 \def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
 \makeatother
 
-% ===== 回路図、グラフ、表、ソースコードのためのパッケージ =====
-\usepackage{tikz}
-\usepackage{circuitikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepackage{booktabs}
-\usepackage{listings}
-
-% ===== 追加機能のためのパッケージ =====
-\usepackage{wrapfig}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{cancel}
-
-% ===== その他 =====
-\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=green!60!black]{hyperref}
+% ----- ハイパーリンク（最後に読み込む） -----
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=black]{hyperref}
 
 % ===== ドキュメント情報 =====
 \title{PCM通信}
 \author{氏名}
 \date{2025年12月3日}
-
-% ===== listings (ソースコード) のスタイル設定 =====
-\lstset{
-  language=Python,
-  basicstyle=\small\ttfamily,
-  keywordstyle=\color{blue},
-  commentstyle=\color{green!50!black},
-  stringstyle=\color{purple},
-  showstringspaces=false,
-  frame=tb,
-  captionpos=b,
-  breaklines=true,
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-}
 
 % ===== ここからドキュメント本体 =====
 \begin{document}
@@ -288,7 +263,7 @@ V復調を見ると，VDAではT2のクロックごとに変化していた振�
 \begin{equation}
   g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_0(t - nT)}{\pi f_0 (t - nT)} \label{eq:1}
 \end{equation}
-この関係は，染谷―Shannonの標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が$f_0$であるとき，標本化周波数が$2f_0$以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が4 [\si{\kilo\hertz}]であれば，標本化周波数は8 [\si{\kilo\hertz}]でよいことになる．）\cite{hatori2012}．
+この関係は，染谷―Shannonの標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が$f_0$であるとき，標本化周波数が$2f_0$以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が4 [\si{\kilo\hertz}]であれば，標本化周波数は8 [\si{\kilo\hertz}]でよいことになる．）\texorpdfstring{\cite{hatori2012}}{}．
 
 この式の持つ物理的意味を説明する．いま入力信号$g(t)$を無限小のパルス幅のインパルス$\delta(t)$の列で標本化すると，標本化パルス列は，
 \begin{equation}
@@ -306,7 +281,7 @@ V復調を見ると，VDAではT2のクロックごとに変化していた振�
 
 $h_s(t)$は標本化関数，または，補間関数といわれ，そのインパルス応答は，図17（c）に示すように$t = 0 [\si{\second}]$で1，ほかの標本点$nT$で0になる関数である．
 
-したがって，インパルス列$g(0), g(1T), g(2T), \cdots$に対するフィルタの応答波形は，図17（c），（d），（e）に示すように，$h_s(t)$をTずつ時間的にずらした波形に標本値振幅を掛け合わせたものになる．各標本値に対するこのような応答波形をすべて総和したものが，最終的な補間・復調された波形で，図17（f）のように連続波形に合成される．\cite{kaneko1977_1}
+したがって，インパルス列$g(0), g(1T), g(2T), \cdots$に対するフィルタの応答波形は，図17（c），（d），（e）に示すように，$h_s(t)$をTずつ時間的にずらした波形に標本値振幅を掛け合わせたものになる．各標本値に対するこのような応答波形をすべて総和したものが，最終的な補間・復調された波形で，図17（f）のように連続波形に合成される．\texorpdfstring{\cite{kaneko1977_1}}{}
 
 \begin{figure}[H]
   \centering
@@ -316,13 +291,13 @@ $h_s(t)$は標本化関数，または，補間関数といわれ，そのイン
 \end{figure}
 
 \subsection{(2) 本実験における量子化レベルはいくらかを報告する．}
-量子化とは，標本化が時間的に離散的な信号抽出をするのに対し，振幅軸方向で離散的な値をとることである．\cite{kaneko1977_2}
+量子化とは，標本化が時間的に離散的な信号抽出をするのに対し，振幅軸方向で離散的な値をとることである．\texorpdfstring{\cite{kaneko1977_2}}{}
 本実験では，アナログ信号を8桁の2進数に変換している．したがって，量子化ビット数は8である．8ビット符号化の場合は$2^8$の出力レベル数があり，256ステップで表現されている．
 
 \subsection{(3) 理想ダイオードとはどういうものかを報告する．}
-通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では解放である特性を持つ．\cite{takasaki2021}
+通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では解放である特性を持つ．\texorpdfstring{\cite{takasaki2021}}{}
 
-\subsection{(4) 図9のローパスフィルタの遮断周波数はいくらかを報告する．\cite{elec-info, terashima2019}}
+\subsection{(4) 図9のローパスフィルタの遮断周波数はいくらかを報告する．\texorpdfstring{\cite{elec-info, terashima2019}}{}}
 図9のローパスフィルタ（LPF）はサレン・キー型LPFと呼ばれるもので，オペアンプと抵抗R，コンデンサC，で構成されている2次LPFである．入力電圧VINの低周波成分を通過させ，高周波成分を遮断する．
 
 \begin{figure}[H]
@@ -399,7 +374,7 @@ $h_s(t)$は標本化関数，または，補間関数といわれ，そのイン
 \end{equation}
 ただし，図9において図18に対応する素子の値は，R1 = R2 = 50 [\si{\kilo\ohm}]，C1 = 2.3 [\si{\nano\farad}]，C2 = 1.1 [\si{\nano\farad}]である．
 
-\subsection{(5) PCM変調がほかの変調方式に比べて優れている点を述べる．\cite{kaneko1977_3}}
+\subsection{(5) PCM変調がほかの変調方式に比べて優れている点を述べる．\texorpdfstring{\cite{kaneko1977_3}}{}}
 PCM変調がほかの変調方式に比べて優れている点をいかに示す．
 \begin{itemize}
     \item[A)] 雑音妨害に対して強い．（PCMでは再生に際して1か0かを検出すればよいからである．）
@@ -419,7 +394,7 @@ PCM変調がほかの変調方式に比べて優れている点をいかに示�
 多重化伝送とは，1本のケーブルあるいは1つの無線周波数などの伝送媒体を通して，複数の情報源を伝送することをいう．多重化する方法としては，時間的に重なり合いがないように多重化する方法であるTDM（Time Division Multiplex：時分割多重化）がある．
 
 PCM変調で標本化をする際に，時間的に少しずつずらして標本化すると，互いに重なり合わないAMパルス列となり，これを合成することによって時分割多重化が行われ，TDM-PAM信号が得られる．図19に，TDMの原理を示す．
-受信する際は標本周期と同じタイミングで信号を受信すれば，正しく信号を受けることができる．\cite{kaneko1977_4}
+受信する際は標本周期と同じタイミングで信号を受信すれば，正しく信号を受けることができる．\texorpdfstring{\cite{kaneko1977_4}}{}
 
 \begin{figure}[H]
   \centering
@@ -429,7 +404,7 @@ PCM変調で標本化をする際に，時間的に少しずつずらして標�
 \end{figure}
 
 \subsection{(7) PCM通信はどのようなところで用いられているかを簡単に説明する．}
-Bell電話研究所の研究により，1962年にT1方式が世界初の商用化されたPCM通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によってPCMの研究が開始された．1965年には，24回線PCM方式が日本電信電話公社により商用化されるに至った．その後，高次群PCMの開発，マイクロPCM，同軸PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのようにPCM技術が用いられている．\cite{kaneko1977_5}
+Bell電話研究所の研究により，1962年にT1方式が世界初の商用化されたPCM通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によってPCMの研究が開始された．1965年には，24回線PCM方式が日本電信電話公社により商用化されるに至った．その後，高次群PCMの開発，マイクロPCM，同軸PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのようにPCM技術が用いられている．\texorpdfstring{\cite{kaneko1977_5}}{}
 
 % ===== 参考文献 =====
 \begin{thebibliography}{99}
