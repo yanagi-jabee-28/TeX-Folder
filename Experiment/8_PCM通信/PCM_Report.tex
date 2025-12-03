@@ -34,12 +34,18 @@
 % (TeX Live の cite パッケージでは `square` は未定義なため使用しない。
 %  `sort` と `compress` を分けて指定する。)
 \usepackage[sort,compress]{cite}
-% 文中引用を上付きの角括弧にする
-\renewcommand\citeform[1]{\textsuperscript{[#1]}}
 
 % --- ハイパーリンク (最後に読み込む) ---
 % 引用リンクは黒で表示する（色情報は他リンクの色を保つ）
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=black,urlcolor=blue]{hyperref}
+% 文中の引用を「上付きの角括弧（例: ^[1]）」にする。
+% cite パッケージの内部コマンド \@cite を上書きし、
+% 複数番号や圧縮（1--3）を含む一覧を一つの括弧内にまとめて上付きにする。
+% cite パッケージがデフォルトで付ける角括弧を無効化する（重複防止）
+\renewcommand\citeleft{}\renewcommand\citeright{}
+\makeatletter
+\renewcommand\@cite[2]{\textsuperscript{[#1\if@tempswa, #2\fi]}}%
+\makeatother
 
 % --- 文書情報 ---
 \title{パルス符号変調の包括的分析：理論、回路レベル実装、および現代的応用}
