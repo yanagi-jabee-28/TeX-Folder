@@ -41,7 +41,7 @@
 % ===== ここからドキュメント本体 =====
 \begin{document}
 
-\maketitle
+% \maketitle
 
 \section{目的}
 実機デモとシミュレータでの回路作成を通じて，アナログ信号をパルス信号で変調，復調するパルス符号変・復調回路の仕組みと，その動作を習得することを目的として本実験を実施した．
@@ -55,10 +55,13 @@
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.75\textwidth,height=0.6\textheight,keepaspectratio]{image/img_000.png}
+  % サイズを少し小さくして見栄えを改善
+  \includegraphics[width=0.6\textwidth,height=0.5\textheight,keepaspectratio]{image/img_000.png}
   \caption{基本方式}
   \label{fig:1}
 \end{figure}
+
+\clearpage
 
 \subsection{タイミングパルス発生回路}
 タイミングパルス発生回路は1つの発振器をもとにして，装置各部の回路に必要なタイミングパルスを発生する回路である．タイミングパルス発生回路の回路図を図2に示す．
