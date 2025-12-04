@@ -1,5 +1,4 @@
 % ===== ドキュメントクラス =====
-% LuaLaTeXでのコンパイルを前提としたクラス設定
 \documentclass[
   a4paper,
   11pt,
@@ -9,35 +8,30 @@
 \usepackage{newtxtext}
 \usepackage{newtxmath}
 \usepackage{amsmath}
-% newtxmathとの競合回避
 \let\Bbbk\relax
 \usepackage{amssymb}
-\usepackage{bm} % ベクトル太字用
+\usepackage{bm}
 
 % ----- 画像・単位・レイアウト関連 -----
-% 【重要】コンパイラの自動判定設定
 \usepackage{graphicx} 
 \usepackage[export]{adjustbox}
 \usepackage{siunitx}
 \usepackage{float}
 \usepackage{placeins}
 \usepackage[margin=25mm]{geometry}
-\usepackage{booktabs} % 表の罫線を美しくするため追加
-\usepackage{url}      % URL表示用
+\usepackage{booktabs}
+\usepackage{url}
 
-% ----- グラフ描画機能 (TeX機能による数式の可視化) -----
+% ----- グラフ描画機能 -----
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows, arrows.meta, positioning, calc, shapes.geometric}
+\usetikzlibrary{arrows.meta, positioning, calc, shapes.geometric}
 
 % 画像の高さ制限設定
 \setkeys{Gin}{keepaspectratio}
 
-% 便利マクロ
 \newcommand{\includefig}[2][]{\includegraphics[max size={\textwidth}{0.45\textheight},#1]{#2}}
-
-% ページ下部の余白調整
 \raggedbottom
 
 % ----- 参考文献の上付き表示設定 -----
@@ -45,7 +39,6 @@
 \def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
 \makeatother
 
-% ----- ハイパーリンク -----
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,anchorcolor=black]{hyperref}
 
 % ===== ドキュメント情報 =====
@@ -57,10 +50,6 @@
 \begin{document}
 
 \maketitle
-
-% 目次（必要に応じて有効化）
-% \tableofcontents
-% \newpage
 
 \section{目的}
 ワンボードマイコンを用いてヒーターをPID制御する方法について理解する．
@@ -81,109 +70,117 @@ PID制御における操作量 $u(t)$ と偏差 $e(t)$ の関係は式(1)のよ�
   \label{eq:pid_tf}
 \end{equation}
 
-% --- 図1 PID制御ブロック図のTikZ再現 ---
+% --- 図1 PID制御ブロック図（修正版） ---
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[auto, node distance=1.5cm, >=Latex]
+  \begin{tikzpicture}[auto, node distance=2.0cm, >=Latex]
     % Styles
-    \tikzstyle{block} = [draw, rectangle, minimum height=2em, minimum width=3em]
+    \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=4em]
     \tikzstyle{sum} = [draw, circle, inner sep=1pt]
     \tikzstyle{input} = [coordinate]
     \tikzstyle{output} = [coordinate]
     \tikzstyle{branch} = [circle,inner sep=0pt,minimum size=1mm,fill=black,draw=black]
 
-    % Frame for PID Controller
-    \draw[dashed] (1.2,-2.2) rectangle (5.5, 2.2);
-    \node at (3.35, 2.4) {\small PID制御器 $K_C$};
-
-    % Nodes
+    % Nodes definition
     \node [input] (input) {};
     \node [sum, right=1cm of input] (sum1) {};
-    \node [left=0.1cm of sum1] (plus) {$+$};
+    \node [left=0.1cm of sum1] {$+$};
     
-    % Gain Blocks
-    \node [block, right=1.5cm of sum1] (kp) {$K_P$};
-    \node [block, above=1cm of kp] (ki_block) {$\displaystyle \frac{K_I}{s}$}; % 積分
-    \node [block, below=1cm of kp] (kd_block) {$K_D s$}; % 微分
+    % Branch point
+    \node [branch, right=1cm of sum1] (b1) {};
+    
+    % PID Blocks (Layout: KP in center, KI above, KD below)
+    \node [block, right=1.5cm of b1] (kp) {$K_P$};
+    \node [block, above=1.8cm of kp] (ki) {$\displaystyle \frac{K_I}{s}$}; 
+    \node [block, below=1.8cm of kp] (kd) {$K_D s$}; 
 
-    % Summing Point for PID
+    % Summing point 2
     \node [sum, right=2cm of kp] (sum2) {};
     
-    % Plant
+    % Dashed Frame for Controller
+    % Calculate coordinates to enclose the blocks nicely
+    \draw[dashed] ($(ki.north west)+(-0.8,0.6)$) rectangle ($(kd.south east)+(0.5,-0.6)$);
+    \node at ($(ki.north)+(0,0.4)$) {\small PID制御器 $K_C$};
+
+    % Connections
+    % Input to Sum1
+    \draw [->] (input) -- node {\small 目標値} (sum1);
+    \draw [-] (sum1) -- (b1);
+    
+    % Branching to P, I, D
+    \draw [->] (b1) -- (kp);
+    \draw [->] (b1) |- (ki);
+    \draw [->] (b1) |- (kd);
+    
+    % Output from P, I, D to Sum2
+    \draw [->] (kp) -- (sum2);
+    \draw [->] (ki) -| (sum2);
+    \draw [->] (kd) -| (sum2);
+
+    % Plant and Output
     \node [block, right=1.5cm of sum2] (plant) {制御対象};
     \node [output, right=1.5cm of plant] (output) {};
 
-    % Connections
-    \draw [->] (input) -- node {目標値} (sum1);
-    \draw [->] (sum1) -- (kp);
-    
-    % Branching to I and D
-    \node [branch, right=0.5cm of sum1] (b1) {};
-    \draw [->] (b1) |- node[above, xshift=-0.5cm] {比例ゲイン} (ki_block) node[midway, above] {積分ゲイン} node[pos=0.9, above] {積分};
-    \draw [->] (b1) |- node[below, xshift=-0.5cm] {微分ゲイン} (kd_block) node[midway, below] {微分};
-    
-    % To Sum2
-    \draw [->] (ki_block) -| (sum2);
-    \draw [->] (kp) -- (sum2);
-    \draw [->] (kd_block) -| (sum2);
-
-    % To Plant and Output
     \draw [->] (sum2) -- (plant);
-    \draw [->] (plant) -- node [name=y] {出力} (output);
+    \draw [->] (plant) -- node [name=y] {\small 出力} (output);
     
-    % Feedback
-    \draw [->] (y) -- ++(0,-3) -| node[pos=0.99] {$-$} (sum1);
+    % Feedback Loop
+    % Increased downward shift to avoid collision with KD block
+    \draw [->] (y) -- ++(0,-3.5) -| node[pos=0.99] {$-$} (sum1);
     
   \end{tikzpicture}
-  \caption{PID制御のブロック図（第1形式：並列型）}
+  \caption{PID制御のブロック図（並列型）}
   \label{fig:pid_block1}
 \end{figure}
 
-% 2つ目の形式（標準形）も描画
+% --- 図2 標準形（修正版） ---
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[auto, node distance=1.5cm, >=Latex]
-    \tikzstyle{block} = [draw, rectangle, minimum height=2em, minimum width=3em]
+    \tikzstyle{block} = [draw, rectangle, minimum height=2.5em, minimum width=3.5em]
     \tikzstyle{sum} = [draw, circle, inner sep=1pt]
     \tikzstyle{input} = [coordinate]
     \tikzstyle{output} = [coordinate]
     \tikzstyle{branch} = [circle,inner sep=0pt,minimum size=1mm,fill=black,draw=black]
 
-    \draw[dashed] (1.2,-2.2) rectangle (6.5, 2.2);
-    \node at (3.85, 2.4) {\small PID制御器（標準形）};
+    % Frame
+    \draw[dashed] (1.2,-2.5) rectangle (7.0, 2.5);
+    \node at (4.1, 2.7) {\small PID制御器（標準形）};
 
+    % Nodes
     \node [input] (input) {};
     \node [sum, right=1cm of input] (sum1) {};
     \node [left=0.1cm of sum1] {$+$};
     \node [block, right=0.8cm of sum1] (kp) {$K_P$};
     
-    \node [branch, right=0.5cm of kp] (b2) {};
+    \node [branch, right=0.6cm of kp] (b2) {};
     
-    \node [block, right=1.5cm of kp] (one) {$1$};
-    \node [block, above=1cm of one] (ti) {$\displaystyle \frac{1}{T_I s}$};
-    \node [block, below=1cm of one] (td) {$T_D s$};
+    \node [block, right=1.8cm of kp] (one) {$1$};
+    \node [block, above=1.2cm of one] (ti) {$\displaystyle \frac{1}{T_I s}$};
+    \node [block, below=1.2cm of one] (td) {$T_D s$};
     
     \node [sum, right=1.5cm of one] (sum2) {};
-    \node [block, right=1.0cm of sum2] (plant) {制御対象};
+    \node [block, right=1.2cm of sum2] (plant) {制御対象};
     \node [output, right=1.5cm of plant] (output) {};
 
-    \draw [->] (input) -- node {目標値} (sum1);
-    \draw [->] (sum1) -- node {比例ゲイン} (kp);
+    % Connections
+    \draw [->] (input) -- node {\small 目標値} (sum1);
+    \draw [->] (sum1) -- (kp);
     \draw [-] (kp) -- (b2);
     
     \draw [->] (b2) -- (one);
-    \draw [->] (b2) |- node[midway, above] {積分時間} node[pos=0.9, above] {積分} (ti);
-    \draw [->] (b2) |- node[midway, below] {微分時間} node[pos=0.9, below] {微分} (td);
+    \draw [->] (b2) |- (ti);
+    \draw [->] (b2) |- (td);
     
     \draw [->] (one) -- (sum2);
     \draw [->] (ti) -| (sum2);
     \draw [->] (td) -| (sum2);
     
     \draw [->] (sum2) -- (plant);
-    \draw [->] (plant) -- node [name=y] {出力} (output);
-    \draw [->] (y) -- ++(0,-3) -| node[pos=0.99] {$-$} (sum1);
+    \draw [->] (plant) -- node [name=y] {\small 出力} (output);
+    \draw [->] (y) -- ++(0,-3.5) -| node[pos=0.99] {$-$} (sum1);
   \end{tikzpicture}
-  \caption{PID制御のブロック図（第2形式：標準型）}
+  \caption{PID制御のブロック図（標準型）}
   \label{fig:pid_block2}
 \end{figure}
 
@@ -213,7 +210,7 @@ PID制御器では三つのゲイン $K_P, K_I, K_D$ が用いられるが，制
     \item 表1に示す値に各パラメータを設定する．
 \end{enumerate}
 
-% --- 図2 ステップ応答波形のTikZ再現 ---
+% --- 図2 ステップ応答波形 ---
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[>=Latex, xscale=5, yscale=2.5]
@@ -223,19 +220,17 @@ PID制御器では三つのゲイン $K_P, K_I, K_D$ が用いられるが，制
     
     % Step Input
     \draw[thick] (0,0) -- (0,1) -- (1.1,1);
-    \node at (0.3, 1.3) {ステップ入力};
-    \node at (-0.05, 1) {$1$};
+    \node at (0.3, 1.3) {\small ステップ入力};
+    \node at (-0.05, 1) {\small 1};
 
-    % Step Response Curve (Sigmoid-like approximation)
+    % Step Response Curve
     \draw[thick, domain=0:1.1, smooth, samples=100] plot (\x, {1 / (1 + exp(-20*(\x-0.3))) * 0.6});
-    \node at (0.6, 0.4) {ステップ応答};
+    \node at (0.6, 0.4) {\small ステップ応答};
     
     % K level
     \draw[dashed] (0,0.6) node[left] {$K$} -- (1.1,0.6);
     
-    % Tangent line at inflection point (approx at t=0.3, y=0.3)
-    % Slope R is roughly K/T. Let's draw a line.
-    % Line passing through (0.2, 0) and (0.4, 0.6)
+    % Tangent line
     \draw[thin] (0.15, 0) -- (0.45, 0.7);
     
     % L and T dimensions
@@ -250,13 +245,12 @@ PID制御器では三つのゲイン $K_P, K_I, K_D$ が用いられるが，制
     
     % Point indication
     \node at (0.3, 0.3) [circle,fill,inner sep=1pt]{};
-    \node at (0.25, 0.35) {\small 変曲点};
+    \node at (0.25, 0.35) {\footnotesize 変曲点};
 
   \end{tikzpicture}
   \caption{ステップ応答波形}
   \label{fig:step_response_main}
 \end{figure}
-
 
 \section{実験方法}
 KENTAC3522S 温度制御実習装置を使用し，ヒーターの温度を \SI{100}{\degreeCelsius} に制御する．
@@ -336,9 +330,8 @@ $K_P, T_I$ を上記で求めた値とし，比例・積分・微分制御を行
 \section{考察}
 \begin{enumerate}
     \renewcommand{\labelenumi}{(\roman{enumi})}
-    \item P制御・PI制御・PID制御の特徴と，各制御に関する比例・積分・微分の各パラメータの影響についてまとめよ．（各制御の制御原理をもとに理由を示すこと）
+    \item P制御・PI制御・PID制御の特徴と，各制御に関する比例・積分・微分の各パラメータの影響についてまとめよ．
     \item 3.4と3.5で求めたパラメータと，その値を用いたP制御・PI制御・PID制御による温度変化について，比例・積分・微分のパラメータの違いをもとに比較せよ．
-    （$K_P, K_P/T_I, K_P T_D$ を計算し，比較を行うこと）
 \end{enumerate}
 
 \section{報告事項}
@@ -353,108 +346,5 @@ $K_P, T_I$ を上記で求めた値とし，比例・積分・微分制御を行
 \begin{thebibliography}{9}
 \bibitem{toyohashi} 豊橋技術科学大学・高等専門学校制御工学教育連携プロジェクト (2012)，制御工学，実教出版，pp.146-147
 \end{thebibliography}
-
-\newpage
-% =============================================
-% 補足資料 (PDFの最初のセクション)
-% =============================================
-\appendix
-\section*{補足説明}
-\addcontentsline{toc}{section}{補足説明}
-
-\subsection*{1. KENTAC3522S 温度制御実習装置について}
-\subsubsection*{1.1 (3章) KENTAC3522S 温度制御実習装置の表記について}
-\begin{itemize}
-    \item \textbf{SV (Setting Variable)}: 目標となる値 $\to$ (赤) 目標温度
-    \item \textbf{PV (Process Variable)}: 測定値 $\to$ (緑) センサ計測温度
-    \item \textbf{MV (Manipulated Variable)}: 操作量の大きさ $\to$ (青) 出力 (0～100\%)
-    \item \textbf{Auto}: 制御モード $\to$ \checkmark (制御モード 自動)
-    \item \textbf{Pid設定 P}: $\to$ 比例係数
-    \item \textbf{Pid設定 Ti}: $\to$ 積分時間 (sec)
-    \item \textbf{Pid設定 Td}: $\to$ 微分時間 (sec)
-\end{itemize}
-
-\subsubsection*{1.2 (3.5章) ステップ応答法について}
-ステップ応答法による各パラメータ ($L, T, R$) の算出手順
-
-ステップ応答の画像データをInkscape等の画像編集ソフトに読込み，下記の手順で作図の後，各パラメータを読取り，算出する．
-
-\begin{enumerate}
-    \renewcommand{\labelenumi}{(\roman{enumi})}
-    \item 最終値 ($K$) に直線を引く．
-    \item 開始値 (始めの値の平なところ) に直線を引く．
-    \item ステップ応答の傾きが最大となるような接線を，開始値の直線(ii)と最終値の直線(i)とまで引き，開始値の直線との交点を a 点，最終値の直線との交点を b 点とする．
-    \item (iii)の b 点から垂線を開始値の直線まで引き，交点を c 点とする．
-    \item ステップ入力の開始～a 点までを $L$，a 点～c 点までを $T$ とし，一分間の目盛りとpixel値の比例計算から，$L, T$ を読取り、読取った $T$ から $R$ を算出する．
-\end{enumerate}
-
-% --- 図: 作図法の説明用TikZ ---
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}[>=Latex, scale=1.2]
-    % Coordinates based on image geometry
-    \coordinate (O) at (0,0);
-    \coordinate (EndK) at (6,3); % K level height
-    \coordinate (StartLine) at (0,0.5); % Initial value level
-    
-    % Draw Axes
-    \draw[->] (0,0) -- (6.5,0) node[below] {$t$};
-    \draw[->] (0,0) -- (0,4) node[left] {1};
-    
-    % Step Input
-    \draw[thick] (0,0.5) -- (0.5,0.5) -- (0.5, 3.5) -- (6, 3.5);
-    \node at (2, 3.7) {\small ステップ入力};
-    
-    % Response Curve
-    \draw[thick] plot [smooth] coordinates {(0.5,0.5) (1,0.5) (1.5,0.6) (2,1.2) (2.5,2.5) (3.5,2.9) (5,3) (6,3)};
-    \node at (4.5, 2.5) {\small ステップ応答};
-    
-    % (i) Line at K (Final value)
-    \draw (0,3) -- (6,3);
-    \node at (-0.3, 3) {$K$};
-    \node at (5.8, 3.2) {\footnotesize ①};
-
-    % (ii) Line at Start (Initial value)
-    \draw (0,0.5) -- (6,0.5);
-    \node at (5.8, 0.7) {\footnotesize ②};
-    
-    % Tangent Line Construction
-    % Assume tangent goes from a(1.5, 0.5) to b(2.8, 3)
-    \coordinate (PointA) at (1.5, 0.5);
-    \coordinate (PointB) at (2.8, 3);
-    
-    % (iii) Tangent line
-    \draw (1.0, -0.46) -- (3.3, 3.96); % Extended line
-    \node at (2.0, 1.8) {\footnotesize ③}; % Tangent label
-    \node at (1.4, 1.5) {\footnotesize 変曲点};
-    
-    % Points a and b
-    \fill (PointA) circle (2pt) node[below] {a};
-    \fill (PointB) circle (2pt) node[above] {b};
-    
-    % (iv) Perpendicular from b to c
-    \coordinate (PointC) at (2.8, 0.5);
-    \draw (PointB) -- (PointC);
-    \fill (PointC) circle (2pt) node[below right] {c};
-    \node at (2.9, 1.5) {\footnotesize ④};
-    
-    % (v) L and T
-    % Step start at t=0.5
-    \coordinate (StepStart) at (0.5, 0.5);
-    \draw[<->] (StepStart) -- node[below] {$L$} (PointA);
-    \draw[<->] (PointA) -- node[below] {$T$} (PointC);
-    
-    \node at (2.2, -0.5) {$\displaystyle R = \frac{K}{T}$};
-    
-    % Number circles
-    \node[draw, circle, inner sep=1pt] at (0.2, 0.2) {5}; % Just placing loosely based on figure
-    
-  \end{tikzpicture}
-  \caption{ステップ応答波形とパラメータ算出の作図}
-  \label{fig:step_response_method}
-\end{figure}
-
-\subsection*{2 実際のPID調節器 (温度調節器) について}
-\url{https://www.fa.omron.co.jp/products/category/control-components/temperature-controllers/general-purpose/}
 
 \end{document}
