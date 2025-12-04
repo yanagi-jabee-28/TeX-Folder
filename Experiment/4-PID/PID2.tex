@@ -24,6 +24,9 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{caption}
+\usepackage{subcaption}
+% 画像パスを相対指定（この TeX ファイルから見た image ディレクトリ）
+\graphicspath{{image/}}
 
 % ----- グラフ描画機能 -----
 \usepackage{tikz}
@@ -249,18 +252,92 @@ PID制御 & $\displaystyle \frac{1.2}{RL}$ & $2L$ & $0.5L$ \\
 \subsubsection{ON・OFF制御}
 制御用ソフトウェア（PidMonitor）のAutoモードを解除し，手動によるON・OFF制御を行った．
 MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\degreeCelsius} に到達するまで加熱した．\SI{100}{\degreeCelsius} を超過した時点でMVを 0.0 \% とし，下回った時点で再度 50.0 \% に戻す操作を繰り返し，その際の温度挙動（ハンチング）を確認した．
-
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{手動ONOFF.png}
+      \caption{手動ON/OFF制御時の温度挙動}
+      \label{fig:onoff}
+    \end{figure}
 \subsubsection{P制御}
 積分時間 $T_I = 0$（実験装置仕様），微分時間 $T_D = 0$ とし，比例制御のみを行った．
-比例ゲイン $K_P$ を 1 および 100 に設定した場合の温度変化をそれぞれ測定した．その後，3分以内に目標温度 $\pm \SI{10}{\degreeCelsius}$ の範囲に収束する最適な $K_P$ を試行錯誤により決定した．
+    比例ゲイン $K_P$ を 1，5，および 100 に設定した場合の温度変化を測定した．以下にそれぞれの応答波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_1.png}
+        \caption{$K_P=1$}
+        \label{fig:P1}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5.png}
+        \caption{$K_P=5$}
+        \label{fig:P5}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_100.png}
+        \caption{$K_P=100$}
+        \label{fig:P100}
+      \end{subfigure}
+      \caption{P制御の比較（$K_P$の違い）}
+      \label{fig:P_control}
+    \end{figure}
 
 \subsubsection{PI制御}
 $K_P$ を前項で決定した値に固定し，$T_D = 0$ としてPI制御を行った．
-積分時間 $T_I$ を 1 および 100 に設定した場合の応答を確認した後，3分以内に目標温度 $\pm \SI{0.5}{\degreeCelsius}$ となる最適な $T_I$ を決定した．
+    積分時間 $T_I$ を 1，48，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_1.png}
+        \caption{$T_I=1$}
+        \label{fig:PI_Ti1}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_48.png}
+        \caption{$T_I=48$}
+        \label{fig:PI_Ti48}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_100.png}
+        \caption{$T_I=100$}
+        \label{fig:PI_Ti100}
+      \end{subfigure}
+      \caption{PI制御における積分時間 $T_I$ の影響（$K_P=5$固定）}
+      \label{fig:PI_control}
+    \end{figure}
 
 \subsubsection{PID制御}
 $K_P, T_I$ を前項までに決定した値とし，PID制御を行った．
-微分時間 $T_D$ を 1 および 100 に設定した場合の応答を確認し，2分以内に目標温度 $\pm \SI{0.5}{\degreeCelsius}$ となる最適な $T_D$ を決定した．
+    微分時間 $T_D$ を 1，8.7，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_48-Td1.png}
+        \caption{$T_D=1$}
+        \label{fig:PID_Td1}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_48-Td_8.7.png}
+        \caption{$T_D=8.7$}
+        \label{fig:PID_Td87}
+      \end{subfigure}\hfill
+      \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{P_5-Ti_48-Td_100.png}
+        \caption{$T_D=100$}
+        \label{fig:PID_Td100}
+      \end{subfigure}
+      \caption{PID制御における微分時間 $T_D$ の影響（$K_P=5$, $T_I=48$固定）}
+      \label{fig:PID_control}
+    \end{figure}
 
 \subsubsection{ステップ応答法による同定}
 ステップ応答法を用いて制御対象のパラメータ同定を行った．
@@ -281,7 +358,7 @@ $K_P, T_I$ を前項までに決定した値とし，PID制御を行った．
 % ※ 以下の各サブセクションに対し、得られた実験データ（図表）を提示し、論理的な考察を記述すること。
 
 \subsection{各制御手法における応答特性の比較}
-本実験で観測されたP制御，PI制御，PID制御の応答波形を図Xに示す．
+本実験で観測されたP制御，PI制御，PID制御の応答波形を図\ref{fig:P_control}，図\ref{fig:PI_control}，図\ref{fig:PID_control}に示す．
 P制御では，ゲイン $K_P$ を大きくすることで立ち上がり時間が短縮されたが，残留偏差（オフセット）が確認された．これは原理上，積分要素がないため定常偏差を除去しきれないことに起因する．
 一方，PI制御では $T_I$ の導入により残留偏差が解消された．しかし... [ここに実験結果に基づく考察を記述]
 
