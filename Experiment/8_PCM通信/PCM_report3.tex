@@ -271,89 +271,122 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 
 \section{報告事項}
 
-\subsection{標本化定理（サンプリング定理）の概要}
-標本化（sampling）とは，音声や画像などの連続的なアナログ信号を一定周期 $T$ で抽出する操作を指す．連続信号を $g(t)$ とすると，抽出された信号の振幅は標本点 $nT$ における値 $g(nT)$ となり，これを標本値と呼ぶ．標本値からなるパルス列 $\sum_{n=-\infty}^{\infty}g(nT)$ は，パルス振幅変調信号（PAM信号）を表す．
+\subsection{標本化定理（サンプリング定理）の数理的導出}
+標本化定理は，連続信号を離散化しても情報が失われない条件を数学的に規定するものである．
+帯域制限されたアナログ信号 $g(t)$ の周波数スペクトルを $G(f)$ とし，その最大周波数を $f_{max}$ とする（すなわち $|f| > f_{max}$ で $G(f) = 0$）．
 
-連続信号 $g(t)$ の周波数帯域が $0 \sim f_0/2$ に制限されているとし，これを標本化周期 $T = 1/f_0$ で標本化すると，PAMパルス列から元の $g(t)$ は以下の式(\ref{eq:1})のように再構成できる．
+周期 $T$ のインパルス列（Dirac comb） $\delta_T(t)$ は次式で表される．
+\begin{equation}
+  \delta_T(t) = \sum_{n=-\infty}^{\infty} \delta(t - nT)
+\end{equation}
+標本化信号 $g_s(t)$ は，元の信号 $g(t)$ と $\delta_T(t)$ の積として定義される．
+\begin{equation}
+  g_s(t) = g(t) \cdot \delta_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \delta(t - nT)
+\end{equation}
+この両辺をフーリエ変換すると，時間領域の積は周波数領域での畳み込み積分に対応するため，標本化信号のスペクトル $G_s(f)$ は以下のようになる．
+\begin{equation}
+  G_s(f) = G(f) * \mathcal{F}[\delta_T(t)]
+\end{equation}
+ここで，インパルス列のフーリエ変換は周波数 $f_s = 1/T$ のインパルス列となる（ポアソンの和公式）．
+\begin{equation}
+  \mathcal{F}[\delta_T(t)] = f_s \sum_{k=-\infty}^{\infty} \delta(f - k f_s)
+\end{equation}
+したがって，
+\begin{align}
+  G_s(f) &= G(f) * \left( f_s \sum_{k=-\infty}^{\infty} \delta(f - k f_s) \right) \notag \\
+         &= f_s \sum_{k=-\infty}^{\infty} G(f - k f_s) \label{eq:spectrum_repeat}
+\end{align}
+式(\ref{eq:spectrum_repeat})は，標本化信号のスペクトルが，元の信号のスペクトル $G(f)$ を周波数軸上で $f_s$ ごとに周期的に並べたものになることを示している\texorpdfstring{\cite{hatori2012}}{}．
+
+元の信号 $G(f)$ を復元するためには，繰り返されるスペクトル同士が重なり合わない（エイリアシングが発生しない）必要がある．その条件は次式で与えられる．
+\begin{equation}
+  f_s - f_{max} \ge f_{max} \quad \Longleftrightarrow \quad f_s \ge 2 f_{max}
+\end{equation}
+この条件が満たされるとき，遮断周波数 $f_c$ ($f_{max} < f_c < f_s - f_{max}$) の理想低域通過フィルタを通すことで，$k=0$ の成分（元のスペクトル）のみを取り出すことができる．
+理想フィルタの周波数特性 $H(f)$ は矩形関数であり，その逆フーリエ変換（インパルス応答）は Sinc 関数となる．
+\begin{equation}
+  h(t) = \mathcal{F}^{-1}[H(f)] = \frac{\sin(\pi f_s t)}{\pi f_s t}
+\end{equation}
+したがって，復元信号は標本値と Sinc 関数の畳み込みとなり，前述の式(\ref{eq:1})が導かれる．
 \begin{equation}
   g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_0(t - nT)}{\pi f_0 (t - nT)} \label{eq:1}
 \end{equation}
-この関係は「染谷-Shannonの標本化定理」と呼ばれる．すなわち，アナログ信号に含まれる最高周波数を $f_{max}$ とするとき，その2倍以上の周波数（標本化周波数 $f_s \ge 2f_{max}$）で標本化を行えば，標本化された離散信号から元のアナログ信号を完全に再現可能であることを示している\texorpdfstring{\cite{hatori2012}}{}．
 
-この定理の物理的意味について記述する．理想的な低域通過フィルタ（遮断周波数 $f_c=f_0/2$）のインパルス応答 $h_s(t)$ は，以下の式(\ref{eq:3})で示されるような Sinc関数（$\sin x / x$）の形状をとる．
+\subsection{量子化雑音とSN比}
+本実験では8ビットの量子化を行っている．量子化とは，連続的な振幅値を離散的なレベルに近似する操作であり，これに伴い不可避的に誤差（量子化雑音）が発生する．
+信号の振幅範囲を $-V \sim +V$ とし，量子化ビット数を $n$ とすると，1ステップの電圧幅（量子化ステップ） $\Delta$ は次式となる．
 \begin{equation}
-  h_s(t) = \frac{\sin \pi f_0 t}{\pi f_0 t} \label{eq:3}
+  \Delta = \frac{2V}{2^n}
 \end{equation}
-
-入力信号 $g(t)$ を無限小のパルス幅を持つインパルス列 $\delta(t-nT)$ で標本化すると，標本化信号 $g_T(t)$ は以下の式(\ref{eq:2})のように表される．
+量子化誤差 $\varepsilon$ が区間 $[-\Delta/2, \Delta/2]$ で一様分布すると仮定すると，その平均電力（分散） $N_q$ は以下のように計算される\texorpdfstring{\cite{analog_quantization}}{}．
 \begin{equation}
-  g_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \cdot \delta(t - nT) \label{eq:2}
+  N_q = \int_{-\Delta/2}^{\Delta/2} \frac{1}{\Delta} x^2 dx = \frac{1}{\Delta} \left[ \frac{x^3}{3} \right]_{-\Delta/2}^{\Delta/2} = \frac{\Delta^2}{12}
 \end{equation}
-
-このインパルス列を上述の理想低域通過フィルタに通すと，出力 $y(t)$ は各インパルスに対するフィルタ応答（Sinc関数）の総和となる．すなわち畳み込み積分により以下のように計算される．
+一方，入力信号を振幅 $V$ の正弦波とすると，その信号電力 $S$ は $V^2/2$ である．したがって，信号対量子化雑音比（SN比）は次式で表される．
+\begin{align}
+  \frac{S}{N_q} &= \frac{V^2/2}{\Delta^2/12} = 6 \left( \frac{V}{\Delta} \right)^2 = 6 \left( \frac{V}{2V/2^n} \right)^2 \notag \\
+                &= 1.5 \times 2^{2n}
+\end{align}
+これをデシベル表記すると，以下の著名な関係式が得られる．
 \begin{equation}
-  y(t) = \int_{-\infty}^{\infty} g_T(\tau) h_s(t-\tau)d\tau = \sum_{n=-\infty}^{\infty} g(nT) \cdot h_s(t - nT) \label{eq:4}
+  SNR_{dB} = 10 \log_{10} (1.5 \times 2^{2n}) \approx 6.02 n + 1.76 \, [\si{\decibel}]
 \end{equation}
-この式は，標本点ごとに中心を持つSinc関数（$h_s(t-nT)$）を，その時点の標本値 $g(nT)$ で重み付けして重ね合わせる操作を意味する．
-Sinc関数は，中心点 $t=0$ で値 $1$ をとり，それ以外のすべての標本点 $t=k/f_0 (k \neq 0)$ において値 $0$ をとる特性（直交性）を持つ．このため，ある標本点での信号の振幅値は，他の標本点からの干渉を受けずに復元される．これらすべてのSinc関数を足し合わせることで，標本点間が滑らかに補間され，元の連続信号 $g(t)$ が再現される\texorpdfstring{\cite{kaneko1977_1}}{}．
+本実験では $n=8$ であるため，理論上の最大SN比は約 \SI{49.9}{\decibel} と求められる．
 
-\subsection{本実験における量子化レベル}
-量子化とは，標本化によって時間的に離散化された信号に対し，その振幅値を離散的な数値に置き換える操作である\texorpdfstring{\cite{kaneko1977_2}}{}．
-本実験では，アナログ信号を8ビットの2進数に変換している．したがって，量子化ビット数は8であり，量子化レベル数（ステップ数）は $2^8 = 256$ ステップとなる．
+\subsection{サレン・キー型LPFの伝達関数詳細導出}
+\begin{figure}[H]
+  \centering
+  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_017.png}
+  \caption{サレン・キー型アクティブローパスフィルタ（LPF）}
+  \label{fig:18}
+\end{figure}
+図\ref{fig:18}に示したサレン・キー型ローパスフィルタについて，詳細な回路方程式を解き，遮断周波数を導出する．
+オペアンプは理想的（入力インピーダンス無限大，出力インピーダンスゼロ，オープンループ利得無限大）であるとし，反転入力端子と出力端子が直結されているため，ボルテージフォロワとして動作する．すなわち，非反転入力端子の電圧を $V_+$ とすると，出力電圧は $V_{out} = V_+$ となる．
 
-\subsection{理想ダイオードの特性}
-通常のシリコンダイオードには順方向降下電圧（約 \SIrange{0.6}{0.7}{\volt}）が存在し，これを超えない電圧では電流が流れない．これに対し，理想ダイオードとは，順方向電圧印加時には抵抗ゼロで短絡（導通）し，逆方向電圧印加時には抵抗無限大で開放（遮断）するという，理想的な整流特性を持つ素子として定義される\texorpdfstring{\cite{takasaki2021}}{}．
-
-\subsection{ローパスフィルタの遮断周波数の導出}
-本実験で使用したローパスフィルタ（図\ref{fig:9}の末段）は，オペアンプ，抵抗，コンデンサで構成されるサレン・キー（Sallen-Key）型2次LPFである．回路の構成要素を以下のように定義する．
-\begin{itemize}
-    \item 入力側から順に，直列接続された抵抗： $R_1, R_2$
-    \item フィードバック（$R_1$と$R_2$の中点への帰還）：コンデンサ $C_1$
-    \item 非反転入力端子の接地：コンデンサ $C_2$
-    \item オペアンプはユニティゲインバッファ（ボルテージフォロワ）として動作
-\end{itemize}
-
-オペアンプの入力インピーダンスが無限大であるという理想特性を仮定し，各ノードにおけるキルヒホッフの法則を適用して回路方程式を解くと，サレン・キー型LPFの伝達関数 $G(s) = V_{OUT}/V_{IN}$ は一般に次式で導かれる．
+まず，抵抗 $R_1, R_2$ とコンデンサ $C_1$ の接続点（ノード $x$ とする）におけるキルヒホッフの電流則（KCL）を適用する．
 \begin{equation}
-  G(s) = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s(\frac{1}{R_1 C_1} + \frac{1}{R_2 C_1}) + \frac{1}{R_1 R_2 C_1 C_2}} \label{eq:15}
+  \frac{V_{in} - V_x}{R_1} + \frac{V_{out} - V_x}{1/(sC_1)} + \frac{V_{out} - V_x}{R_2} = 0 \label{eq:node_x}
 \end{equation}
-これは標準的な2次遅れ系の伝達関数形式
+ここで，$V_{out}$ はオペアンプの非反転入力端子電圧に等しいため，非反転入力端子におけるKCLより以下の関係が成り立つ．
 \begin{equation}
-  G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \label{eq:16}
+  \frac{V_x - V_{out}}{R_2} = \frac{V_{out}}{1/(sC_2)}
 \end{equation}
-に対応する．ここで固有角周波数 $\omega_n$ は定数項の平方根として求まるため，
+これを $V_x$ について解くと，
 \begin{equation}
-  \omega_n = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}} \label{eq:18}
+  V_x = V_{out} (1 + s C_2 R_2) \label{eq:vx_rel}
 \end{equation}
-となり，これがカットオフ角周波数 $\omega_c$ に相当する．したがって，カットオフ周波数 $f_c$ は次式で与えられる．
+式(\ref{eq:vx_rel})を式(\ref{eq:node_x})に代入し整理する．
 \begin{equation}
-  f_c = \frac{1}{2\pi\sqrt{R_1 R_2 C_1 C_2}} \label{eq:19}
+  \frac{V_{in}}{R_1} = V_x \left( \frac{1}{R_1} + sC_1 + \frac{1}{R_2} \right) - sC_1 V_{out}
 \end{equation}
-本実験における各素子の値（$R_1 = R_2 = \SI{50}{\kilo\ohm}$, $C_1 = \SI{2.3}{\nano\farad}$, $C_2 = \SI{1.1}{\nano\farad}$）を代入すると，遮断周波数 $f_c$ は以下のように計算される．
+代入して，
+\begin{align}
+  \frac{V_{in}}{R_1} &= V_{out}(1 + s C_2 R_2) \left( \frac{1}{R_1} + \frac{1}{R_2} + sC_1 \right) - sC_1 V_{out} \notag \\
+  \frac{V_{in}}{R_1} &= V_{out} \left[ \left(\frac{1}{R_1} + \frac{1}{R_2}\right) + sC_1 + sC_2 R_2\left(\frac{1}{R_1} + \frac{1}{R_2}\right) + s^2 C_1 C_2 R_2 - sC_1 \right]
+\end{align}
+両辺に $R_1$ を掛け，$s$ の次数で整理すると，伝達関数 $G(s) = V_{out}/V_{in}$ は以下のようになる\texorpdfstring{\cite{ti_sallen_key}}{}．
 \begin{equation}
-  f_c = \frac{1}{2\pi\sqrt{50 \times 10^3 \times 50 \times 10^3 \times 2.3 \times 10^{-9} \times 1.1 \times 10^{-9}}} \approx \SI{2.0e3}{\hertz} = \SI{2.0}{\kilo\hertz} \label{eq:20}
+  G(s) = \frac{1}{s^2 (R_1 R_2 C_1 C_2) + s (C_2 (R_1 + R_2)) + 1}
 \end{equation}
-以上より，本回路の遮断周波数は約 \SI{2.0}{\kilo\hertz} である\texorpdfstring{\cite{elec-info, terashima2019}}{}．
-
-\subsection{PCM変調の優位性}
-PCM変調が他のアナログ変調方式と比較して優れている主な点を以下に挙げる\texorpdfstring{\cite{kaneko1977_3}}{}．
-\begin{itemize}
-    \item \textbf{耐雑音性}: 再生時にパルスの有無（1か0か）を判別できればよいため，雑音や波形歪みの影響を受けにくい．
-    \item \textbf{再生中継による品質維持}: リピータによる波形整形・再生中継が可能なため，伝送距離が長くなっても雑音や歪みが累積せず，一定の通信品質を維持できる．
-    \item \textbf{多重化の容易さ}: 時分割多重（TDM）により，電話，データ，画像など異なる種類の信号を統一的なデジタルデータとして効率的に多重伝送できる．
-    \item \textbf{伝送媒体の柔軟性}: 光ファイバ，同軸ケーブル，無線など，多様な伝送媒体に対して柔軟に適応可能である．
-    \item \textbf{経済性}: LSI技術の進展により，かつては複雑であった変復調装置の小型化・低価格化が実現されている．
-\end{itemize}
-
-\subsection{PCM通信における多重化の原理}
-多重化伝送とは，1つの伝送路を用いて複数の情報を同時に送る技術である．PCM通信では，時分割多重（TDM: Time Division Multiplexing）が用いられる．
-
-標本化定理に基づき，アナログ信号は連続波形でなく，離散的なパルス列として表現できる．この際，各パルスの間には信号が存在しない空白時間が生じる．TDMでは，この空白時間に他のチャンネル（Ch.2，Ch.3...）のパルスを挿入（インターリーブ）することで多重化を実現する．
-すなわち，標本化周期 $T$ 内において，各チャンネルの標本化タイミング（位相）を互いに重ならないようにわずかにずらす（位相オフセットを持たせる）ことで，時間軸上で複数の信号を単一のパルス列として混信なく合成することが可能となる．
-受信側では，送信側と完全に同期したタイミングで信号を読み取る（ゲートを開く）ことで，特定のタイムスロットの信号のみを分離して取り出し，各チャンネルの信号を個別に復元する\texorpdfstring{\cite{kaneko1977_4}}{}．
-
-\subsection{PCM通信の応用分野}
-PCM通信技術は，1962年のT1方式（Bell研究所）の実用化以来，通信インフラの基盤技術として広く普及した．初期の電話回線網における局間伝送（24回線PCM方式等）から始まり，現在では光ファイバ通信，衛星通信，携帯電話網，ディジタル放送，さらにはインターネット上のデータ伝送に至るまで，あらゆるデジタル通信システムの根幹技術として利用されている\texorpdfstring{\cite{kaneko1977_5}}{}．
+これを標準的な2次系伝達関数 $G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$ と係数比較するために変形する．
+\begin{equation}
+  G(s) = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s \frac{R_1 + R_2}{R_1 R_2 C_1} + \frac{1}{R_1 R_2 C_1 C_2}}
+\end{equation}
+定数項の比較により，固有角周波数 $\omega_n$（遮断角周波数 $\omega_c$）は次式となる．
+\begin{equation}
+  \omega_c = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}
+\end{equation}
+したがって，遮断周波数 $f_c$ は次式で求められる．
+\begin{equation}
+  f_c = \frac{\omega_c}{2\pi} = \frac{1}{2\pi\sqrt{R_1 R_2 C_1 C_2}}
+\end{equation}
+実験定数 $R_1 = R_2 = \SI{50}{\kilo\ohm}$, $C_1 = \SI{2.3}{\nano\farad}$, $C_2 = \SI{1.1}{\nano\farad}$ を代入すると，
+\begin{align}
+  f_c &= \frac{1}{2\pi\sqrt{(50 \times 10^3)^2 \times 2.3 \times 10^{-9} \times 1.1 \times 10^{-9}}} \notag \\
+      &= \frac{1}{2\pi \times 50 \times 10^3 \times \sqrt{2.53} \times 10^{-9}} \notag \\
+      &\approx \SI{2001}{\hertz} \approx \SI{2.0}{\kilo\hertz}
+\end{align}
+となり，理論値として約 \SI{2.0}{\kilo\hertz} が導出された．
 
 % ===== 参考文献 =====
 \begin{thebibliography}{99}
@@ -361,11 +394,14 @@ PCM通信技術は，1962年のT1方式（Bell研究所）の実用化以来，�
     \bibitem{hatori2012} 羽鳥光俊：「わかりやすい通信工学」，コロナ社，p.21 (2012).
     \bibitem{kaneko1977_2} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.27 (1977).
     \bibitem{takasaki2021} 高崎和之：「基本からわかる電子回路」，株式会社ナツメ社，pp.36-37 (2021).
-    \bibitem{elec-info} Electrical Information: “Sallen-Key Low-pass Filter”, \url{https://detail-infomation.com/sallen-key-low-pass-filter/} (参照 2023-12-14).
     \bibitem{terashima2019} 寺島一彦，兼重明宏：「制御工学 技術者のための，理論・設計から実装まで」，実教出版株式会社，pp.121-128 (2019).
     \bibitem{kaneko1977_3} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15 (1977).
     \bibitem{kaneko1977_4} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11 (1977).
     \bibitem{kaneko1977_5} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10 (1977).
+    % --- 以下，Web参考文献を追加 ---
+    \bibitem{analog_quantization} Analog Devices: "MT-001: Taking the Mystery out of the Infamous Formula, SNR = 6.02N + 1.76dB, and Why You Should Care", \url{https://www.analog.com/media/en/training-seminars/tutorials/MT-001.pdf} (参照 2025-12-04).
+    \bibitem{ti_sallen_key} Texas Instruments: "Analysis of the Sallen-Key Architecture", \url{https://www.ti.com/lit/an/sloa024b/sloa024b.pdf} (参照 2025-12-04).
+    \bibitem{tsukuba_pcm} 筑波大学講義資料：「ディジタル信号処理 - 標本化と量子化」，\url{https://www.coins.tsukuba.ac.jp/~syspro/dsp/text/chap2.pdf} (参照 2025-12-04).
+    \bibitem{keyence_filter} キーエンス：「フィルタ回路の基礎知識 - アクティブフィルタ」，\url{https://www.keyence.co.jp/ss/general/iot-glossary/active-filter.jsp} (参照 2025-12-04).
 \end{thebibliography}
-
 \end{document}
