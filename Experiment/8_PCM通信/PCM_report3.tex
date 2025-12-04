@@ -23,6 +23,12 @@
 \usepackage{placeins}
 \usepackage[margin=25mm]{geometry}
 
+% ----- グラフ描画機能 (TeX機能による数式の可視化) -----
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning}
+
 % 画像の高さ制限設定
 \setkeys{Gin}{keepaspectratio}
 
@@ -47,6 +53,8 @@
 
 % ===== ここからドキュメント本体 =====
 \begin{document}
+
+\maketitle
 
 \section{目的}
 実機デモおよび回路シミュレータを用いた回路設計・解析を通じて，アナログ信号をパルス信号で変調・復調するパルス符号変復調（PCM）回路の仕組みと，その動作原理を習得することを目的として本実験を実施した．
@@ -283,7 +291,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 \end{enumerate}
 
 
-\subsection{標本化定理（サンプリング定理）の数理的導出}
+\subsection{標本化定理（サンプリング定理）の数理的導出とスペクトル特性}
 標本化定理は，連続信号を離散化しても情報が失われない条件を数学的に規定するものである．
 帯域制限されたアナログ信号 $g(t)$ の周波数スペクトルを $G(f)$ とし，その最大周波数を $f_{max}$ とする（すなわち $|f| > f_{max}$ で $G(f) = 0$）．
 
@@ -295,38 +303,27 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 \begin{equation}
   g_s(t) = g(t) \cdot \delta_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \delta(t - nT)
 \end{equation}
-この両辺をフーリエ変換すると，時間領域の積は周波数領域での畳み込み積分に対応するため，標本化信号のスペクトル $G_s(f)$ は以下のようになる．
-\begin{equation}
-  G_s(f) = G(f) * \mathcal{F}[\delta_T(t)]
-\end{equation}
-ここで，インパルス列のフーリエ変換は周波数 $f_s = 1/T$ のインパルス列となる（ポアソンの和公式）．
-\begin{equation}
-  \mathcal{F}[\delta_T(t)] = f_s \sum_{k=-\infty}^{\infty} \delta(f - k f_s)
-\end{equation}
-したがって，
+この両辺をフーリエ変換すると，時間領域の積は周波数領域での畳み込み積分に対応する．ポアソンの和公式を用いることで，標本化信号のスペクトル $G_s(f)$ は以下のようになる．
 \begin{align}
   G_s(f) &= G(f) * \left( f_s \sum_{k=-\infty}^{\infty} \delta(f - k f_s) \right) \notag \\
          &= f_s \sum_{k=-\infty}^{\infty} G(f - k f_s) \label{eq:spectrum_repeat}
 \end{align}
-式(\ref{eq:spectrum_repeat})は，標本化信号のスペクトルが，元の信号のスペクトル $G(f)$ を周波数軸上で $f_s$ ごとに周期的に並べたものになることを示している\texorpdfstring{\cite{hatori2012}}{}．
+ここで，$f_s = 1/T$ は標本化周波数である．式(\ref{eq:spectrum_repeat})は，標本化信号のスペクトルが，元の信号のスペクトル $G(f)$ を周波数軸上で $f_s$ ごとに周期的に繰り返した形状になることを示している\texorpdfstring{\cite{hatori2012}}{}．
 
-元の信号 $G(f)$ を復元するためには，繰り返されるスペクトル同士が重なり合わない（エイリアシングが発生しない）必要がある．その条件は次式で与えられる．
+元の信号 $G(f)$ を完全に復元するためには，繰り返されるスペクトル（レプリカ）同士が重なり合わない（エイリアシングが発生しない）必要がある．その条件は次式で与えられる．
 \begin{equation}
   f_s - f_{max} \ge f_{max} \quad \Longleftrightarrow \quad f_s \ge 2 f_{max}
 \end{equation}
-この条件が満たされるとき，遮断周波数 $f_c$ ($f_{max} < f_c < f_s - f_{max}$) の理想低域通過フィルタを通すことで，$k=0$ の成分（元のスペクトル）のみを取り出すことができる．
-理想フィルタの周波数特性 $H(f)$ は矩形関数であり，その逆フーリエ変換（インパルス応答）は Sinc 関数となる．
+この条件が満たされるとき，遮断周波数 $f_c$ ($f_{max} < f_c < f_s - f_{max}$) の理想低域通過フィルタを用いることで，元のスペクトルのみを取り出すことができる．
+時間領域での復元式は，標本値と Sinc 関数の畳み込みとして記述される．
 \begin{equation}
-  h(t) = \mathcal{F}^{-1}[H(f)] = \frac{\sin(\pi f_s t)}{\pi f_s t}
-\end{equation}
-したがって，復元信号は標本値と Sinc 関数の畳み込みとなり，前述の式(\ref{eq:1})が導かれる．
-\begin{equation}
-  g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_0(t - nT)}{\pi f_0 (t - nT)} \label{eq:1}
+  g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_s(t - nT)}{\pi f_s (t - nT)} \label{eq:1}
 \end{equation}
 
 \subsection{量子化雑音とSN比}
 本実験では8ビットの量子化を行っている．量子化とは，連続的な振幅値を離散的なレベルに近似する操作であり，これに伴い不可避的に誤差（量子化雑音）が発生する．
-本実験における量子化レベルは，$n=8$ のため $2^8=256$ 段階（256ステップ）である．
+
+本実験における量子化レベルは，$n=8$ のため $2^8=256$ 段階である．
 信号の振幅範囲を $-V \sim +V$ とし，量子化ビット数を $n$ とすると，1ステップの電圧幅（量子化ステップ） $\Delta$ は次式となる．
 \begin{equation}
   \Delta = \frac{2V}{2^n}
@@ -353,64 +350,61 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 PCM通信で多重化（TDM: Time Division Multiplexing）が可能な理由は，各チャネル信号を独立に標本化した標本値を「時間スロット」に割り当て，それらを時分割で直列に送出することにより同一伝送路で複数の信号を伝送できるためである．受信側では送信側と同期を取ることで，所定の時間スロットのデータのみを抽出し，各チャネルの信号を復元することが可能である．
 
 \subsection{PCM通信の主な応用分野}
-PCM通信は，電話交換網や音声伝送（デジタル電話回線），光ファイバ通信，衛星通信，デジタル放送，携帯電話の伝送バックボーン，音声および音楽のデジタル録音・再生など幅広い領域で利用されている．デジタル化とエラー耐性により長距離伝送や高品質伝送が要求される場面で特に有用である．
+PCM通信は，電話交換網や音声伝送（デジタル電話回線），光ファイバ通信，衛星通信，デジタル放送，携帯電話の伝送バックボーン，音声および音楽のデジタル録音・再生など幅広い領域で利用されている．
 
+\subsection{サレン・キー型LPFの伝達関数導出と周波数特性}
+図\ref{fig:19}に示したサレン・キー型ローパスフィルタについて，詳細な回路方程式を解き，遮断周波数および周波数特性を導出する．
 
-\subsection{サレン・キー型LPFの伝達関数詳細導出}
 \begin{figure}[H]
   \centering
   \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_017.png}
   \caption{サレン・キー型アクティブローパスフィルタ（LPF）}
-  \label{fig:18}
+  \label{fig:19}
 \end{figure}
-図\ref{fig:18}に示したサレン・キー型ローパスフィルタについて，詳細な回路方程式を解き，遮断周波数を導出する．
-オペアンプは理想的（入力インピーダンス無限大，出力インピーダンスゼロ，オープンループ利得無限大）であるとし，反転入力端子と出力端子が直結されているため，ボルテージフォロワとして動作する．すなわち，非反転入力端子の電圧を $V_+$ とすると，出力電圧は $V_{out} = V_+$ となる．
 
-まず，抵抗 $R_1, R_2$ とコンデンサ $C_1$ の接続点（ノード $x$ とする）におけるキルヒホッフの電流則（KCL）を適用する．
-\begin{equation}
-  \frac{V_{in} - V_x}{R_1} + \frac{V_{out} - V_x}{1/(sC_1)} + \frac{V_{out} - V_x}{R_2} = 0 \label{eq:node_x}
-\end{equation}
-ここで，$V_{out}$ はオペアンプの非反転入力端子電圧に等しいため，非反転入力端子におけるKCLより以下の関係が成り立つ．
-\begin{equation}
-  \frac{V_x - V_{out}}{R_2} = \frac{V_{out}}{1/(sC_2)}
-\end{equation}
-これを $V_x$ について解くと，
-\begin{equation}
-  V_x = V_{out} (1 + s C_2 R_2) \label{eq:vx_rel}
-\end{equation}
-式(\ref{eq:vx_rel})を式(\ref{eq:node_x})に代入し整理する．
-\begin{equation}
-  \frac{V_{in}}{R_1} = V_x \left( \frac{1}{R_1} + sC_1 + \frac{1}{R_2} \right) - sC_1 V_{out}
-\end{equation}
-代入して，
-\begin{align}
-  \frac{V_{in}}{R_1} &= V_{out}(1 + s C_2 R_2) \left( \frac{1}{R_1} + \frac{1}{R_2} + sC_1 \right) - sC_1 V_{out} \notag \\
-  \frac{V_{in}}{R_1} &= V_{out} \left[ \left(\frac{1}{R_1} + \frac{1}{R_2}\right) + sC_1 + sC_2 R_2\left(\frac{1}{R_1} + \frac{1}{R_2}\right) + s^2 C_1 C_2 R_2 - sC_1 \right]
-\end{align}
-両辺に $R_1$ を掛け，$s$ の次数で整理すると，伝達関数 $G(s) = V_{out}/V_{in}$ は以下のようになる\texorpdfstring{\cite{ti_sallen_key}}{}．
+オペアンプを理想ボルテージフォロワと仮定し，キルヒホッフの法則を適用することで，伝達関数 $G(s)$ は以下の2次系標準形で導出される\texorpdfstring{\cite{ti_sallen_key}}{}．
 \begin{equation}
   G(s) = \frac{1}{s^2 (R_1 R_2 C_1 C_2) + s (C_2 (R_1 + R_2)) + 1}
 \end{equation}
-これを標準的な2次系伝達関数 $G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$ と係数比較するために変形する．
+ここで，実験定数 $R_1 = R_2 = R = \SI{50}{\kilo\ohm}$，$C_1 = \SI{2.3}{\nano\farad}$，$C_2 = \SI{1.1}{\nano\farad}$ を代入し，伝達関数に基づく理論周波数特性（ゲイン $|G(j\omega)|$）をグラフ化したものを図\ref{fig:lpf_bode}に示す．
+遮断周波数 $f_c$ は理論上，次式で与えられる．
 \begin{equation}
-  G(s) = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s \frac{R_1 + R_2}{R_1 R_2 C_1} + \frac{1}{R_1 R_2 C_1 C_2}}
+  f_c = \frac{1}{2\pi\sqrt{R_1 R_2 C_1 C_2}} \approx \SI{2.0}{\kilo\hertz}
 \end{equation}
-定数項の比較により，固有角周波数 $\omega_n$（遮断角周波数 $\omega_c$）は次式となる．
-\begin{equation}
-  \omega_c = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}
-\end{equation}
-したがって，遮断周波数 $f_c$ は次式で求められる．
-\begin{equation}
-  f_c = \frac{\omega_c}{2\pi} = \frac{1}{2\pi\sqrt{R_1 R_2 C_1 C_2}}
-\end{equation}
-実験定数 $R_1 = R_2 = \SI{50}{\kilo\ohm}$, $C_1 = \SI{2.3}{\nano\farad}$, $C_2 = \SI{1.1}{\nano\farad}$ を代入すると，
-\begin{align}
-  f_c &= \frac{1}{2\pi\sqrt{(50 \times 10^3)^2 \times 2.3 \times 10^{-9} \times 1.1 \times 10^{-9}}} \notag \\
-      &= \frac{1}{2\pi \times 50 \times 10^3 \times \sqrt{2.53} \times 10^{-9}} \notag \\
-      &\approx \SI{2001}{\hertz} \approx \SI{2.0}{\kilo\hertz}
-\end{align}
-となり，理論値として約 \SI{2.0}{\kilo\hertz} が導出された．
-図\ref{fig:9} の最終段に設置したローパスフィルタの要素値も本節の設計値に準ずるため，図\ref{fig:9} のローパスフィルタの理論的遮断周波数は概ね \SI{2.0}{\kilo\hertz} と報告できる．
+図\ref{fig:lpf_bode}のボード線図からも，周波数が \SI{2}{\kilo\hertz} 付近から利得が低下し始め，高周波成分が減衰していくローパス特性が確認できる．Q値は約 $0.72$ となり，バターワース特性（$Q \approx 0.707$）に近い平坦な特性であることが数式的にも示される．
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{semilogxaxis}[
+        width=12cm, height=8cm,
+        xlabel={Frequency [Hz]},
+        ylabel={Gain [dB]},
+        grid=both,
+        major grid style={dotted,black},
+        minor grid style={dotted,gray!50},
+        xmin=100, xmax=100000,
+        ymin=-45, ymax=5,
+        domain=100:100000,
+        samples=200,
+        legend pos=south west,
+      ]
+      % Define constants: R=50e3, C1=2.3e-9, C2=1.1e-9
+      % fc = 1/(2*pi*sqrt(R*R*C1*C2)) = 2001 Hz
+      % Q = sqrt(C1/C2)/2 = sqrt(2.3/1.1)/2 = 0.723
+      % Transfer function H(f) magnitude in dB:
+      % 20*log10( 1 / sqrt( (1-(f/fc)^2)^2 + ( (f/fc)/Q )^2 ) )
+      \addplot[thick, blue] {20*log10( 1 / sqrt( (1-(x/2001)^2)^2 + ( (x/2001)/0.723 )^2 ) ) };
+      \addlegendentry{Theoretical Gain}
+      
+      % Mark Cutoff frequency
+      \draw[dashed, red] (axis cs: 2001, -45) -- (axis cs: 2001, 0);
+      \node[red, anchor=south west, fill=white, inner sep=1pt] at (axis cs: 2001, -40) {$f_c \approx \SI{2.0}{\kilo\hertz}$};
+    \end{semilogxaxis}
+  \end{tikzpicture}
+  \caption{サレン・キー型LPFの理論周波数特性（ボード線図）}
+  \label{fig:lpf_bode}
+\end{figure}
 
 % ===== 参考文献 =====
 \begin{thebibliography}{99}
@@ -422,10 +416,12 @@ PCM通信は，電話交換網や音声伝送（デジタル電話回線），�
     \bibitem{kaneko1977_3} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15 (1977).
     \bibitem{kaneko1977_4} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11 (1977).
     \bibitem{kaneko1977_5} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10 (1977).
-    % --- 以下，Web参考文献を追加 ---
+    % --- 以下，Web参考文献 ---
     \bibitem{analog_quantization} Analog Devices: "MT-001: Taking the Mystery out of the Infamous Formula, SNR = 6.02N + 1.76dB, and Why You Should Care", \url{https://www.analog.com/media/en/training-seminars/tutorials/MT-001.pdf} (参照 2025-12-04).
-    \bibitem{ti_sallen_key} Texas Instruments: "Analysis of the Sallen-Key Architecture", \url{https://www.ti.com/lit/an/sloa024b/sloa024b.pdf} (参照 2025-12-04).
-    \bibitem{tsukuba_pcm} 筑波大学講義資料：「ディジタル信号処理 - 標本化と量子化」，\url{https://www.coins.tsukuba.ac.jp/~syspro/dsp/text/chap2.pdf} (参照 2025-12-04).
-    \bibitem{keyence_filter} キーエンス：「フィルタ回路の基礎知識 - アクティブフィルタ」，\url{https://www.keyence.co.jp/ss/general/iot-glossary/active-filter.jsp} (参照 2025-12-04).
+    \bibitem{ti_sallen_key} Texas Instruments: "Analysis of the Sallen-Key Architecture (Rev. B)", \url{https://www.ti.com/lit/an/sloa024b/sloa024b.pdf} (参照 2025-12-04).
+    % ローム株式会社 TechWeb：ADコンバータの動作原理，標本化と量子化に関する技術解説
+    \bibitem{rohm_techweb} ローム株式会社：「TechWeb - ADコンバータの基礎」，\url{https://techweb.rohm.co.jp/product/conversion-logic-circuits/ad-converters/23878/} (参照 2025-12-04).
+    % Engineer Climb：ADコンバータの変換原理とサンプリング・量子化の解説記事
+    \bibitem{engineer_climb} Engineer Climb：「【ADコンバータ】変換原理とサンプリング・量子化を解説」，\url{https://engineer-climb.com/adc-basic/} (参照 2025-12-04).
 \end{thebibliography}
 \end{document}
