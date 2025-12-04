@@ -254,7 +254,7 @@ PID制御 & $\displaystyle \frac{1.2}{RL}$ & $2L$ & $0.5L$ \\
 MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\degreeCelsius} に到達するまで加熱した．\SI{100}{\degreeCelsius} を超過した時点でMVを 0.0 \% とし，下回った時点で再度 50.0 \% に戻す操作を繰り返し，その際の温度挙動（ハンチング）を確認した．
     \begin{figure}[H]
       \centering
-      \includegraphics[width=0.7\linewidth]{手動ONOFF.png}
+      \includegraphics[width=0.65\linewidth]{手動ONOFF.png}
       \caption{手動ON/OFF制御時の温度挙動}
       \label{fig:onoff}
     \end{figure}
@@ -263,21 +263,23 @@ MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\de
     比例ゲイン $K_P$ を 1，5，および 100 に設定した場合の温度変化を測定した．以下にそれぞれの応答波形を示す．
     \begin{figure}[H]
       \centering
-      \begin{subfigure}[b]{0.32\textwidth}
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_1.png}
+        \includegraphics[width=0.8\textwidth]{P_1.png}
         \caption{$K_P=1$}
         \label{fig:P1}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5.png}
+        \includegraphics[width=0.8\textwidth]{P_5.png}
         \caption{$K_P=5$}
         \label{fig:P5}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_100.png}
+        \includegraphics[width=0.8\textwidth]{P_100.png}
         \caption{$K_P=100$}
         \label{fig:P100}
       \end{subfigure}
@@ -292,21 +294,23 @@ MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\de
     積分時間 $T_I$ を 1，48，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
     \begin{figure}[H]
       \centering
-      \begin{subfigure}[b]{0.32\textwidth}
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_1.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_1.png}
         \caption{$T_I=1$}
         \label{fig:PI_Ti1}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_48.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48.png}
         \caption{$T_I=48$}
         \label{fig:PI_Ti48}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_100.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_100.png}
         \caption{$T_I=100$}
         \label{fig:PI_Ti100}
       \end{subfigure}
@@ -319,21 +323,23 @@ MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\de
     微分時間 $T_D$ を 1，8.7，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
     \begin{figure}[H]
       \centering
-      \begin{subfigure}[b]{0.32\textwidth}
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_48-Td1.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td1.png}
         \caption{$T_D=1$}
         \label{fig:PID_Td1}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_48-Td_8.7.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td_8.7.png}
         \caption{$T_D=8.7$}
         \label{fig:PID_Td87}
-      \end{subfigure}\hfill
-      \begin{subfigure}[b]{0.32\textwidth}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{P_5-Ti_48-Td_100.png}
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td_100.png}
         \caption{$T_D=100$}
         \label{fig:PID_Td100}
       \end{subfigure}
