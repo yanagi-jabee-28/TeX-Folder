@@ -38,8 +38,10 @@
 \setkeys{Gin}{keepaspectratio}
 
 % キャプション設定
-\captionsetup[table]{name=表, labelsep=quad, justification=raggedright, singlelinecheck=false}
-\captionsetup[figure]{name=図, labelsep=quad, justification=centerlast}
+% ラベルと本文を本文と同じ（ローマン）フォントに揃える
+% 確実に本文（ローマン）フォントを使用するため、rmfamily を明示
+\captionsetup[table]{name=表, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centering, singlelinecheck=false}
+\captionsetup[figure]{name=図, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centerlast}
 
 % 参考文献の上付き表示設定
 \makeatletter
@@ -55,6 +57,13 @@
 
 % ===== ここからドキュメント本体 =====
 \begin{document}
+
+% 図・表・数式等の番号を本文と同じ（ローマン）フォントにする
+\makeatletter
+\renewcommand{\thefigure}{\normalfont\arabic{figure}}
+\renewcommand{\thetable}{\normalfont\arabic{table}}
+\renewcommand{\theequation}{\normalfont\arabic{equation}}
+\makeatother
 
 \section{目的}
 本実験では，ワンボードマイコンを用いたヒーターの温度制御系を対象として，PID制御の実装およびパラメータ調整を行った．各制御要素（比例・積分・微分）が応答特性に与える影響を定量的に把握するとともに，ステップ応答法による最適なPIDパラメータの設計手法を習得することを目的とした．

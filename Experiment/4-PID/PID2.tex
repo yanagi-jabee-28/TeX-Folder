@@ -38,8 +38,9 @@
 \setkeys{Gin}{keepaspectratio}
 
 % キャプション設定
-\captionsetup[table]{name=表, labelsep=quad, justification=raggedright, singlelinecheck=false}
-\captionsetup[figure]{name=図, labelsep=quad, justification=centerlast}
+% ラベルと本文を本文と同じ（ローマン）フォントに揃える
+\captionsetup[table]{name=表, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centering, singlelinecheck=false}
+\captionsetup[figure]{name=図, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centerlast}
 
 % 参考文献の上付き表示設定
 \makeatletter
@@ -55,6 +56,13 @@
 
 % ===== ここからドキュメント本体 =====
 \begin{document}
+
+% 図・表・数式等の番号を本文と同じ（ローマン）フォントにする
+\makeatletter
+\renewcommand{\thefigure}{\normalfont\arabic{figure}}
+\renewcommand{\thetable}{\normalfont\arabic{table}}
+\renewcommand{\theequation}{\normalfont\arabic{equation}}
+\makeatother
 
 \maketitle
 
