@@ -1,8 +1,6 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % ===== 基本設定 =====
-% 【修正】左右余白を 18mm に変更して描画領域を「広げる」
-% これにより Overfull 警告（最大2.5mmのはみ出し）を完全に吸収します
 \usepackage[top=25mm, bottom=25mm, left=18mm, right=18mm]{geometry}
 \usepackage{array}      
 \usepackage{multirow}   
@@ -12,7 +10,6 @@
 % ===== カスタムコマンド定義 =====
 
 % 1. 下線付きテキストボックス
-% 使い方: \UnderlineBox[線の長さ]{表示する文字}
 \newcommand{\UnderlineBox}[2][3cm]{%
   \underline{\makebox[#1][c]{\vphantom{lp}\large #2}}%
 }
@@ -40,18 +37,16 @@
 \begin{center}
     \vspace*{5mm}
     {\Huge \bfseries 電気電子工学実験報告書}
-    \vspace{20mm}
+    \vspace{15mm}
 \end{center}
 
 % --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
-  % 領域が広がったので 13cm でも余裕で入ります
-  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[1.5em] 
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[2.0em] % 行間を調整
 \end{tabular}
 
 % --- 報告者情報 ---
-% 余白拡大により、ここは修正なしで収まります
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
 \UnderlineBox[1.5cm]{} {\large \textbf{年}} \hspace{0.2em}     
@@ -59,7 +54,7 @@
 {\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}   
 \UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}       
 \UnderlineBox[4.5cm]{}                                         
-\vspace{2.5em} 
+\vspace{2.5em} % 間隔をPDFに合わせて調整
 
 % --- 実験場所・指導担当 ---
 \noindent
@@ -67,45 +62,42 @@
   \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
   \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
 \end{tabular}
-\vspace{2.5em} 
+\vspace{2.5em} % 間隔を調整
 
 % --- 共同実験者 ---
 \noindent
-% ここで出ていた 7.6pt のオーバーフローも余白拡大で解消
 \BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} 
-\vspace{4em} 
+\vspace{3.0em} % 次のセクションへの間隔
 
 % --- 日付セクション ---
-% ここで出ていた 3〜5pt のオーバーフローを解消
+% ボックス幅を0.65cmにして警告を解消、行間を2.0にして見本に合わせる
 \noindent
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
   % 1行目
   \JustifiedLabel{5em}{実験日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & & \\
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
   
   % 2行目
   \JustifiedLabel{5em}{提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
-  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 \\
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
   
   % 3行目
   （ \JustifiedLabel{5em}{再提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
-  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{再提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 ）
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{再提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
 \end{tabular}
 
 \vfill 
 
 % --- 評価テーブル ---
-\renewcommand{\arraystretch}{1.6}
-% 表をページ中央に配置し、実習評価列（左）を少し広げる
+\renewcommand{\arraystretch}{1.5} % 標準的で見やすい高さに
 \begin{center}
-% 【修正】左カラムを少し広げ、全体が \textwidth 内に収まるよう調整
-\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.6cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
 \hline
 \multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
 \hline
