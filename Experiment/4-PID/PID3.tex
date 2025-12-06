@@ -1,69 +1,83 @@
-% ===== ドキュメントクラス =====
-\documentclass[
-  a4paper,
-  11pt,
-  oneside
-]{ltjsarticle}
+\documentclass[a4paper,11pt]{ltjsarticle}
 
-% ----- フォント・数式関連 -----
+% =============================================
+% 1. フォント・数式・記号 (Conflict Free)
+% =============================================
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext}
-\usepackage{newtxmath}
-\usepackage{amsmath}
-\let\Bbbk\relax
-\usepackage{amssymb}
-\usepackage{bm}
+\usepackage[varbb]{newtxmath} % amssymb等の機能も内包（競合回避のためamssymbは削除推奨）
+\usepackage{bm}      % ベクトル太字 (\bm)
+\usepackage{mathtools} % amsmathの拡張版（dcases等が使える）
 
-% ----- 画像・単位・レイアウト関連 -----
-\usepackage{graphicx} 
-\usepackage[export]{adjustbox}
-\usepackage{siunitx}
-\usepackage{float}
-\usepackage{placeins}
+% --- 【賢い機能】微分記号の自動化 ---
+% \diff{y}{x} -> dy/dx, \pdiff{y}{x} -> ∂y/∂x を定義
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% =============================================
+% 2. 図表・単位・レイアウト
+% =============================================
 \usepackage[margin=25mm]{geometry}
-\usepackage{booktabs}
-\usepackage{url}
-\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}  % 美しい罫線 (\toprule, \midrule, \bottomrule)
 \usepackage{subcaption}
-% 画像パスを相対指定（この TeX ファイルから見た image ディレクトリ）
-\graphicspath{{image/}}
 
-% ----- グラフ描画機能 -----
+% --- 【賢い機能】SI単位系の最新規格対応 (v3) ---
+\usepackage{siunitx}
+\sisetup{
+  detect-all,           % 本文フォントに合わせる
+  inter-unit-product=\ensuremath{{}\cdot{}}, % 単位積をドットで表現 (N・m)
+  separate-uncertainty=true % 誤差表記 (±) 対応
+}
+
+% --- 【賢い機能】グラフ描画 (TikZ/PGFPlots) ---
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows.meta, positioning, calc, shapes.geometric}
+\pgfplotsset{compat=newest} % 常に最新の描画エンジンを使用
+\usetikzlibrary{arrows.meta, positioning, calc}
 
-% 画像の高さ制限設定
-\setkeys{Gin}{keepaspectratio}
+% =============================================
+% 3. 相互参照・リンク・引用 (Automation)
+% =============================================
+% 引用を上付き[1]にする（手動定義をやめて専用パッケージを使う）
+\usepackage[superscript]{cite}
 
-% キャプション設定
-% ラベルと本文を本文と同じ（ローマン）フォントに揃える
-% 確実に本文（ローマン）フォントを使用するため、rmfamily を明示
-\captionsetup[table]{name=表, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centering, singlelinecheck=false}
-\captionsetup[figure]{name=図, labelsep=quad, labelfont={bf,rmfamily}, textfont={rmfamily}, justification=centerlast}
+% ハイパーリンク（印刷用に枠を消し、色は黒に統一）
+\usepackage[hidelinks]{hyperref}
 
-% 参考文献の上付き表示設定
-\makeatletter
-\def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
-\makeatother
+% --- 【賢い機能】参照の完全自動化 (cleveref) ---
+% \cref{fig:aaa} と書くだけで「図1」と自動出力。番号変更も追従。
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
 
-\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,anchorcolor=black]{hyperref}
+% =============================================
+% 4. キャプション設定 (Captions)
+% =============================================
+\usepackage{caption}
+\captionsetup{
+  format=hang,          % 複数行になった時のインデントを揃える
+  labelsep=quad,        % ラベルと本文の間を全角空白に
+  font={small},         % キャプションは本文より少し小さく（論文の鉄則）
+  labelfont={bf},       % ラベル（図1）は太字
+  justification=centering % デフォルトは中央揃え
+}
+\captionsetup[figure]{justification=centerlast} % 図の説明が長い場合は左寄せ・最後だけ中央
 
-% ===== ドキュメント情報 =====
+% =============================================
+% 5. ドキュメント情報
+% =============================================
 \title{\textbf{4. PIDによる温度制御}}
 \author{電気電子工学科 5年 234 氏名 栁原魁人} 
 \date{2025年12月4日}
 
-% ===== ここからドキュメント本体 =====
-\begin{document}
+% 画像パス設定
+\graphicspath{{image/}}
 
-% 図・表・数式等の番号を本文と同じ（ローマン）フォントにする
-\makeatletter
-\renewcommand{\thefigure}{\normalfont\arabic{figure}}
-\renewcommand{\thetable}{\normalfont\arabic{table}}
-\renewcommand{\theequation}{\normalfont\arabic{equation}}
-\makeatother
+\begin{document}
+% ここから本文
 
 \section{目的}
 本実験では，ワンボードマイコンを用いたヒーターの温度制御系を対象として，PID制御の実装およびパラメータ調整を行った．各制御要素（比例・積分・微分）が応答特性に与える影響を定量的に把握するとともに，ステップ応答法による最適なPIDパラメータの設計手法を習得することを目的とした．
