@@ -1,7 +1,8 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % ===== 基本設定 =====
-\usepackage[top=25mm, bottom=25mm, left=18mm, right=18mm]{geometry}
+% 下余白を少し詰めて(20mm)、確実に収まるように調整
+\usepackage[top=25mm, bottom=20mm, left=18mm, right=18mm]{geometry}
 \usepackage{array}      
 \usepackage{multirow}   
 \usepackage{fancyhdr}   
@@ -35,15 +36,15 @@
 
 % --- タイトル ---
 \begin{center}
-    \vspace*{5mm}
+    \vspace*{0mm} % 上部の余白を削除
     {\Huge \bfseries 電気電子工学実験報告書}
-    \vspace{15mm}
+    \vspace{10mm} % タイトル下の余白を圧縮 (20mm -> 10mm)
 \end{center}
 
 % --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
-  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[2.0em] % 行間を調整
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[2.0em] 
 \end{tabular}
 
 % --- 報告者情報 ---
@@ -54,7 +55,7 @@
 {\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}   
 \UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}       
 \UnderlineBox[4.5cm]{}                                         
-\vspace{2.5em} % 間隔をPDFに合わせて調整
+\vspace{2.0em} % 余白を圧縮 (3.5em -> 2.0em)
 
 % --- 実験場所・指導担当 ---
 \noindent
@@ -62,15 +63,15 @@
   \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
   \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
 \end{tabular}
-\vspace{2.5em} % 間隔を調整
+\vspace{2.0em} % 余白を圧縮 (3.5em -> 2.0em)
 
 % --- 共同実験者 ---
 \noindent
 \BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} 
-\vspace{3.0em} % 次のセクションへの間隔
+\vspace{2.5em} % 余白を圧縮 (4.0em -> 2.5em)
 
 % --- 日付セクション ---
-% ボックス幅を0.65cmにして警告を解消、行間を2.0にして見本に合わせる
+% 行間を少し詰める (2.5 -> 2.0) それでも十分書きやすい
 \noindent
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
@@ -86,16 +87,17 @@
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
   
   % 3行目
-  （ \JustifiedLabel{5em}{再提出期限} & 
+  （ \JustifiedLabel{6em}{再提出期限} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
-  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{再提出日} & 
+  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
 \end{tabular}
 
 \vfill 
 
 % --- 評価テーブル ---
-\renewcommand{\arraystretch}{1.5} % 標準的で見やすい高さに
+% 行間を調整 (1.8 -> 1.5) PDFの見本に近い密度に戻す
+\renewcommand{\arraystretch}{1.5}
 \begin{center}
 \begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
 \hline
