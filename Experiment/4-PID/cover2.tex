@@ -1,24 +1,23 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % ===== 基本設定 =====
-% 1ページに美しく収めるための余白設定
-\usepackage[top=25mm, bottom=25mm, left=20mm, right=20mm]{geometry}
+% 【修正】左右余白を 18mm に変更して描画領域を「広げる」
+% これにより Overfull 警告（最大2.5mmのはみ出し）を完全に吸収します
+\usepackage[top=25mm, bottom=25mm, left=18mm, right=18mm]{geometry}
 \usepackage{array}      
 \usepackage{multirow}   
 \usepackage{fancyhdr}   
-\usepackage{amssymb}    % 矢印用
+\usepackage{amssymb}    
 
 % ===== カスタムコマンド定義 =====
 
 % 1. 下線付きテキストボックス
 % 使い方: \UnderlineBox[線の長さ]{表示する文字}
-% 文字を空にすれば書き込み用の線になります
 \newcommand{\UnderlineBox}[2][3cm]{%
   \underline{\makebox[#1][c]{\vphantom{lp}\large #2}}%
 }
 
 % 2. 均等割り付けラベル（太字）
-% 使い方: \JustifiedLabel{幅}{テキスト}
 \newcommand{\JustifiedLabel}[2]{%
   \makebox[#1][s]{\large\bfseries #2}%
 }
@@ -28,7 +27,7 @@
   {\large\bfseries #1}%
 }
 
-% ===== フッター設定（学校名） =====
+% ===== フッター設定 =====
 \pagestyle{fancy}
 \fancyhf{} 
 \renewcommand{\headrulewidth}{0pt} 
@@ -47,76 +46,81 @@
 % --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
-  \BoldLabel{テーマ名} & \UnderlineBox[13cm]{} \\[1.5em] % ここにテーマ名を記入
+  % 領域が広がったので 13cm でも余裕で入ります
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[1.5em] 
 \end{tabular}
 
 % --- 報告者情報 ---
+% 余白拡大により、ここは修正なしで収まります
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
-\UnderlineBox[1.5cm]{} {\large \textbf{年}} \hspace{0.2em}     % 年
-（\UnderlineBox[1.5cm]{} {\large \textbf{組}}） \hspace{0.2em} % 組
-{\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}   % 番号
-\UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}       % 班
-\UnderlineBox[4.5cm]{}                                         % 氏名
+\UnderlineBox[1.5cm]{} {\large \textbf{年}} \hspace{0.2em}     
+（\UnderlineBox[1.5cm]{} {\large \textbf{組}}） \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}   
+\UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}       
+\UnderlineBox[4.5cm]{}                                         
 \vspace{2.5em} 
 
 % --- 実験場所・指導担当 ---
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
-  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & % 実験場所
-  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   % 指導担当
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
 \end{tabular}
 \vspace{2.5em} 
 
 % --- 共同実験者 ---
 \noindent
-\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} % 共同実験者
+% ここで出ていた 7.6pt のオーバーフローも余白拡大で解消
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} 
 \vspace{4em} 
 
 % --- 日付セクション ---
-% PDFの絶妙なバランスを再現
+% ここで出ていた 3〜5pt のオーバーフローを解消
 \noindent
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
-  % 1行目: 実験日
+  % 1行目
   \JustifiedLabel{5em}{実験日} & 
-  \hspace{0.5em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & & \\
+  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & & \\
   
-  % 2行目: 提出期限 -> 提出日
+  % 2行目
   \JustifiedLabel{5em}{提出期限} & 
-  \hspace{0.5em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
-  \hspace{1em}$\Rightarrow$\hspace{1em} \JustifiedLabel{4em}{提出日} & 
-  \hspace{0.5em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 \\
+  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
+  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 \\
   
-  % 3行目: (再提出期限 -> 再提出日)
+  % 3行目
   （ \JustifiedLabel{5em}{再提出期限} & 
-  \hspace{0.5em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
-  \hspace{1em}$\Rightarrow$\hspace{1em} \JustifiedLabel{4em}{再提出日} & 
-  \hspace{0.5em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 ）
+  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 & 
+  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{再提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[1cm]{} 年 \UnderlineBox[1cm]{} 月 \UnderlineBox[1cm]{} 日 ）
 \end{tabular}
 
 \vfill 
 
 % --- 評価テーブル ---
 \renewcommand{\arraystretch}{1.6}
-\noindent
-% 表全体の幅を用紙幅に合わせて調整
-\begin{tabular}{|c|m{12.5cm}|c|}
+% 表をページ中央に配置し、実習評価列（左）を少し広げる
+\begin{center}
+% 【修正】左カラムを少し広げ、全体が \textwidth 内に収まるよう調整
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.6cm}|>{\centering\arraybackslash}m{2.4cm}|}
 \hline
-\multicolumn{2}{|c|}{\JustifiedLabel{10em}{評　価　項　目}} & \JustifiedLabel{3em}{評　価} \\
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
 \hline
-\multirow{3}{*}{\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}} 
+\multirow{3}{*}{\parbox[c][4.5em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
  & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
  & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
  & (3) グループ内で協力的に実験が行なえた &  \\
 \hline
-\multirow{4}{*}{\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}} 
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
  & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
  & (2) 結果に対する考察 &  \\ \cline{2-3}
  & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
  & (4) 報告書としての体裁が整っているか &  \\
 \hline
 \end{tabular}
+\end{center}
 
 \end{document}
