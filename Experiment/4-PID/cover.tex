@@ -1,0 +1,117 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+% ===== 基本設定（余白・日本語フォント） =====
+\usepackage[top=25mm, bottom=30mm, left=25mm, right=25mm]{geometry} % フッター用に下の余白を少し確保
+\usepackage{array}      % 表の微調整用
+\usepackage{multirow}   % 表の縦結合用
+\usepackage{fancyhdr}   % フッターを定位置に置くためのパッケージ
+
+% ===== PDFフォーム機能 =====
+\usepackage[hidelinks]{hyperref}
+
+% ===== 入力欄コマンドの定義 =====
+% 下線付き入力欄: \InputLine[幅cm]{識別ID}
+\newcommand{\InputLine}[2][3cm]{%
+  \underline{%
+    \makebox[#1]{%
+      \TextField[name=#2, width=#1, height=1em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
+    }%
+  }%
+}
+% 表の中用（下線なし）: \InputBox[幅cm]{識別ID}
+\newcommand{\InputBox}[2][1.8cm]{%
+  \TextField[name=#2, width=#1, height=1em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
+}
+
+% ===== フッター設定（学校名をページ最下部に固定） =====
+\pagestyle{fancy}
+\fancyhf{} % 既存のヘッダー・フッターをクリア
+\renewcommand{\headrulewidth}{0pt} % ヘッダーの線を消す
+\renewcommand{\footrulewidth}{0pt} % フッターの線を消す
+\cfoot{\large 国立長野高専 電気電子工学科} % フッター中央に配置
+
+\begin{document}
+
+% フォーム環境の開始
+\begin{Form}
+
+% --- タイトル ---
+\begin{center}
+    \vspace*{5mm}
+    {\huge \bfseries 電気電子工学実験報告書}
+    \vspace*{15mm}
+\end{center}
+
+% --- テーマ名 ---
+\noindent
+\begin{tabular}{@{}ll}
+  \large テーマ名 & \InputLine[12cm]{Theme} \\[2em]
+\end{tabular}
+
+% --- 報告者情報 ---
+\noindent
+\textbf{報告者} \hspace{0.5em}
+\InputLine[1.2cm]{Year} 年 \hspace{0.2em}
+（\InputLine[1.2cm]{Class} 組） \hspace{0.2em}
+番号 \InputLine[2.0cm]{Number} \hspace{0.5em}
+\InputLine[1.2cm]{Group} 班 \hspace{1em}
+\InputLine[4.0cm]{Name}
+\vspace{2.5em}
+
+% --- 実験場所・指導担当 ---
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \textbf{実験場所} \hspace{1em} \InputLine[5cm]{Location} & 
+  \textbf{指導担当} \hspace{1em} \InputLine[5cm]{Instructor}
+\end{tabular}
+\vspace{2.5em}
+
+% --- 共同実験者 ---
+% 微調整: 幅を11.9cmにしてOverfullを解消
+\noindent
+\textbf{共同実験者} \hspace{1em} \InputLine[11.9cm]{Partners}
+\vspace{3.5em}
+
+% --- 日付 ---
+\noindent
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l l l l}
+  \textbf{実　験　日} & 
+  令和 \InputLine[0.8cm]{ExpYear} 年 \InputLine[0.8cm]{ExpMonth} 月 \InputLine[0.8cm]{ExpDay} 日 & & \\
+  
+  \textbf{提 出 期 限} & 
+  令和 \InputLine[0.8cm]{DueYear} 年 \InputLine[0.8cm]{DueMonth} 月 \InputLine[0.8cm]{DueDay} 日 & 
+  \hspace{0.2em}$\Rightarrow$\hspace{0.2em} \textbf{提 出 日} & 
+  令和 \InputLine[0.8cm]{SubYear} 年 \InputLine[0.8cm]{SubMonth} 月 \InputLine[0.8cm]{SubDay} 日 \\
+  
+  （ \textbf{再提出期限} & 
+  令和 \InputLine[0.8cm]{ReDueYear} 年 \InputLine[0.8cm]{ReDueMonth} 月 \InputLine[0.8cm]{ReDueDay} 日 & 
+  \hspace{0.2em}$\Rightarrow$\hspace{0.2em} \textbf{再 提 出 日} & 
+  令和 \InputLine[0.8cm]{ReSubYear} 年 \InputLine[0.8cm]{ReSubMonth} 月 \InputLine[0.8cm]{ReSubDay} 日 ）
+\end{tabular}
+\vspace{3em}
+
+% --- 評価テーブル ---
+\renewcommand{\arraystretch}{1.5}
+\noindent
+% 幅調整: 全幅が余白内に収まるように設定
+\begin{tabular}{|c|m{10.8cm}|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{評　価　項　目}} & \textbf{評　価} \\
+\hline
+\multirow{3}{*}{\shortstack{実　習\\[0.2em]評　価}} 
+ & (1) 自ら積極的に実験に取り組めた & \InputBox{Score1} \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた & \InputBox{Score2} \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた & \InputBox{Score3} \\
+\hline
+\multirow{4}{*}{\shortstack{報告書\\[0.2em]評　価}} 
+ & (1) 結果のまとめかた（図表を含む） & \InputBox{Score4} \\ \cline{2-3}
+ & (2) 結果に対する考察 & \InputBox{Score5} \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） & \InputBox{Score6} \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか & \InputBox{Score7} \\
+\hline
+\end{tabular}
+
+\end{Form}
+\end{document}
