@@ -1,111 +1,118 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
-% ===== 基本設定（余白・日本語フォント） =====
-\usepackage[top=25mm, bottom=30mm, left=25mm, right=25mm]{geometry} % フッター用に下の余白を少し確保
-\usepackage{array}      % 表の微調整用
-\usepackage{multirow}   % 表の縦結合用
-\usepackage{fancyhdr}   % フッターを定位置に置くためのパッケージ
+% ===== 基本設定 =====
+% 余白設定（左右20mm確保）
+\usepackage[top=20mm, bottom=20mm, left=20mm, right=20mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
 
 % ===== PDFフォーム機能 =====
 \usepackage[hidelinks]{hyperref}
 
-% ===== 入力欄コマンドの定義 =====
-% 下線付き入力欄: \InputLine[幅cm]{識別ID}
+% ===== 入力欄コマンド =====
 \newcommand{\InputLine}[2][3cm]{%
   \underline{%
     \makebox[#1]{%
-      \TextField[name=#2, width=#1, height=1em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
+      \TextField[name=#2, width=#1, height=1.2em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
     }%
   }%
 }
-% 表の中用（下線なし）: \InputBox[幅cm]{識別ID}
 \newcommand{\InputBox}[2][1.8cm]{%
-  \TextField[name=#2, width=#1, height=1em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
+  \TextField[name=#2, width=#1, height=1.2em, borderwidth=0, backgroundcolor={1 1 1}, align=1]{}%
 }
 
-% ===== フッター設定（学校名をページ最下部に固定） =====
+% ===== ラベル用コマンド =====
+\newcommand{\JustifiedLabel}[2]{%
+  \makebox[#1][s]{\large\bfseries #2}%
+}
+\newcommand{\BoldLabel}[1]{%
+  {\large\bfseries #1}%
+}
+
+% ===== フッター設定 =====
 \pagestyle{fancy}
-\fancyhf{} % 既存のヘッダー・フッターをクリア
-\renewcommand{\headrulewidth}{0pt} % ヘッダーの線を消す
-\renewcommand{\footrulewidth}{0pt} % フッターの線を消す
-\cfoot{\large 国立長野高専 電気電子工学科} % フッター中央に配置
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+\cfoot{\Large \bfseries 国立長野高専 電気電子工学科}
 
 \begin{document}
 
-% フォーム環境の開始
 \begin{Form}
 
 % --- タイトル ---
 \begin{center}
-    \vspace*{5mm}
-    {\huge \bfseries 電気電子工学実験報告書}
-    \vspace*{15mm}
+    \vspace*{-5mm}
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{10mm}
 \end{center}
 
 % --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
-  \large テーマ名 & \InputLine[12cm]{Theme} \\[2em]
+  \BoldLabel{テーマ名} & \InputLine[12.5cm]{Theme} \\[1.5em]
 \end{tabular}
 
 % --- 報告者情報 ---
 \noindent
-\textbf{報告者} \hspace{0.5em}
-\InputLine[1.2cm]{Year} 年 \hspace{0.2em}
-（\InputLine[1.2cm]{Class} 組） \hspace{0.2em}
-番号 \InputLine[2.0cm]{Number} \hspace{0.5em}
-\InputLine[1.2cm]{Group} 班 \hspace{1em}
-\InputLine[4.0cm]{Name}
-\vspace{2.5em}
+\BoldLabel{報告者} \hspace{0.5em}
+\InputLine[1.2cm]{Year} {\large \textbf{年}} \hspace{0.2em}
+（\InputLine[1.2cm]{Class} {\large \textbf{組}}） \hspace{0.2em}
+{\large \textbf{番号}} \InputLine[2.0cm]{Number} \hspace{0.5em}
+\InputLine[1.2cm]{Group} {\large \textbf{班}} \hspace{1em}
+\InputLine[4.2cm]{Name}
+\vspace{2em} 
 
 % --- 実験場所・指導担当 ---
 \noindent
-\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
-  \textbf{実験場所} \hspace{1em} \InputLine[5cm]{Location} & 
-  \textbf{指導担当} \hspace{1em} \InputLine[5cm]{Instructor}
+\begin{tabular}{@{}p{0.47\textwidth} p{0.47\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \InputLine[5.2cm]{Location} & 
+  \BoldLabel{指導担当} \hspace{1em} \InputLine[5.2cm]{Instructor}
 \end{tabular}
-\vspace{2.5em}
+\vspace{2em} 
 
 % --- 共同実験者 ---
-% 微調整: 幅を11.9cmにしてOverfullを解消
 \noindent
-\textbf{共同実験者} \hspace{1em} \InputLine[11.9cm]{Partners}
-\vspace{3.5em}
+\BoldLabel{共同実験者} \hspace{1em} \InputLine[12.0cm]{Partners}
+\vspace{2.5em} 
 
-% --- 日付 ---
+% --- 日付セクション ---
 \noindent
-\renewcommand{\arraystretch}{2}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l l l l}
-  \textbf{実　験　日} & 
-  令和 \InputLine[0.8cm]{ExpYear} 年 \InputLine[0.8cm]{ExpMonth} 月 \InputLine[0.8cm]{ExpDay} 日 & & \\
+\renewcommand{\arraystretch}{1.8}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+  \JustifiedLabel{5em}{実験日} & 
+  % 日付入力欄を 0.6cm に変更（これで数mm稼げます）
+  \hspace{0.5em} 令和 \InputLine[0.6cm]{ExpYear} 年 \InputLine[0.6cm]{ExpMonth} 月 \InputLine[0.6cm]{ExpDay} 日 & & \\
   
-  \textbf{提 出 期 限} & 
-  令和 \InputLine[0.8cm]{DueYear} 年 \InputLine[0.8cm]{DueMonth} 月 \InputLine[0.8cm]{DueDay} 日 & 
-  \hspace{0.2em}$\Rightarrow$\hspace{0.2em} \textbf{提 出 日} & 
-  令和 \InputLine[0.8cm]{SubYear} 年 \InputLine[0.8cm]{SubMonth} 月 \InputLine[0.8cm]{SubDay} 日 \\
+  \JustifiedLabel{5em}{提出期限} & 
+  \hspace{0.5em} 令和 \InputLine[0.6cm]{DueYear} 年 \InputLine[0.6cm]{DueMonth} 月 \InputLine[0.6cm]{DueDay} 日 & 
+  % 矢印周りのスペースを 1em -> 0.5em に短縮
+  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{提出日} & 
+  \hspace{0.5em} 令和 \InputLine[0.6cm]{SubYear} 年 \InputLine[0.6cm]{SubMonth} 月 \InputLine[0.6cm]{SubDay} 日 \\
   
-  （ \textbf{再提出期限} & 
-  令和 \InputLine[0.8cm]{ReDueYear} 年 \InputLine[0.8cm]{ReDueMonth} 月 \InputLine[0.8cm]{ReDueDay} 日 & 
-  \hspace{0.2em}$\Rightarrow$\hspace{0.2em} \textbf{再 提 出 日} & 
-  令和 \InputLine[0.8cm]{ReSubYear} 年 \InputLine[0.8cm]{ReSubMonth} 月 \InputLine[0.8cm]{ReSubDay} 日 ）
+  （ \JustifiedLabel{5em}{再提出期限} & 
+  \hspace{0.5em} 令和 \InputLine[0.6cm]{ReDueYear} 年 \InputLine[0.6cm]{ReDueMonth} 月 \InputLine[0.6cm]{ReDueDay} 日 & 
+  \hspace{0.5em}$\Rightarrow$\hspace{0.5em} \JustifiedLabel{4em}{再提出日} & 
+  \hspace{0.5em} 令和 \InputLine[0.6cm]{ReSubYear} 年 \InputLine[0.6cm]{ReSubMonth} 月 \InputLine[0.6cm]{ReSubDay} 日 ）
 \end{tabular}
-\vspace{3em}
+
+\vfill 
 
 % --- 評価テーブル ---
 \renewcommand{\arraystretch}{1.5}
 \noindent
-% 幅調整: 全幅が余白内に収まるように設定
-\begin{tabular}{|c|m{10.8cm}|c|}
+\begin{tabular}{|c|m{12.2cm}|c|}
 \hline
-\multicolumn{2}{|c|}{\textbf{評　価　項　目}} & \textbf{評　価} \\
+\multicolumn{2}{|c|}{\JustifiedLabel{10em}{評価項目}} & \JustifiedLabel{3em}{評価} \\
 \hline
-\multirow{3}{*}{\shortstack{実　習\\[0.2em]評　価}} 
+\multirow{3}{*}{\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}} 
  & (1) 自ら積極的に実験に取り組めた & \InputBox{Score1} \\ \cline{2-3}
  & (2) 実験装置を適切に使用でき，正確に実験を行なえた & \InputBox{Score2} \\ \cline{2-3}
  & (3) グループ内で協力的に実験が行なえた & \InputBox{Score3} \\
 \hline
-\multirow{4}{*}{\shortstack{報告書\\[0.2em]評　価}} 
+\multirow{4}{*}{\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}} 
  & (1) 結果のまとめかた（図表を含む） & \InputBox{Score4} \\ \cline{2-3}
  & (2) 結果に対する考察 & \InputBox{Score5} \\ \cline{2-3}
  & (3) 報告事項／課題（正しい解答や適切な引用など） & \InputBox{Score6} \\ \cline{2-3}
