@@ -1,0 +1,621 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+% =============================================
+% 1. パッケージ設定 (統合版)
+% =============================================
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varbb]{newtxmath} % 数式フォント (amssymbの代わり)
+\usepackage{bm}      % ベクトル太字
+\usepackage{mathtools}
+
+% レイアウト・図表関連
+% デフォルトは本文用の設定 (margin=25mm)
+\usepackage[margin=25mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+% SI単位・数式処理
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  separate-uncertainty=true
+}
+
+% グラフ描画
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% リンク・参照
+\usepackage[superscript]{cite}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+
+% キャプション
+\usepackage{caption}
+\captionsetup{
+  format=hang,
+  labelsep=quad,
+  font={small},
+  labelfont={bf},
+  justification=centering
+}
+\captionsetup[figure]{justification=centerlast}
+
+% =============================================
+% 2. カスタムコマンド定義
+% =============================================
+
+% --- 表紙用コマンド ---
+\newcommand{\UnderlineBox}[2][3cm]{%
+  \underline{\makebox[#1][c]{\vphantom{lp}\large #2}}%
+}
+\newcommand{\JustifiedLabel}[2]{%
+  \makebox[#1][s]{\large\bfseries #2}%
+}
+\newcommand{\BoldLabel}[1]{%
+  {\large\bfseries #1}%
+}
+
+% --- 本文用コマンド (微分など) ---
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% 画像パス設定 (必要に応じて変更してください)
+\graphicspath{{image/}}
+
+% =============================================
+% 3. 表紙専用のページスタイル定義
+% =============================================
+\fancypagestyle{coverpage}{
+  \fancyhf{} 
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt} 
+  % ページ番号は表示せず、学校名のみ表示
+  \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
+}
+
+% =============================================
+% ドキュメント開始
+% =============================================
+\begin{document}
+
+% /////////////////////////////////////////////
+% ここから表紙 (Cover Page)
+% /////////////////////////////////////////////
+
+% 表紙用に余白を切り替え (レイアウト崩れ防止)
+\newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
+\thispagestyle{coverpage} % 表紙用スタイル適用
+
+% --- タイトル ---
+\begin{center}
+    \vspace*{0mm} 
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{10mm} 
+\end{center}
+
+% --- テーマ名 ---
+\noindent
+\begin{tabular}{@{}ll}
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{4. PIDによる温度制御} \\[2.0em] 
+\end{tabular}
+
+% --- 報告者情報 ---
+\noindent
+\BoldLabel{報告者} \hspace{0.5em}
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}     
+(\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}   
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}       
+\UnderlineBox[4.5cm]{栁原魁人}                                         
+\vspace{2.0em} 
+
+% --- 実験場所・指導担当 ---
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
+\end{tabular}
+\vspace{2.0em} 
+
+% --- 共同実験者 ---
+\noindent
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
+\vspace{2.5em} 
+
+% --- 日付セクション ---
+\noindent
+\renewcommand{\arraystretch}{2.0}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+  % 1行目
+  \JustifiedLabel{5em}{実験日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
+  
+  % 2行目
+  \JustifiedLabel{5em}{提出期限} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+  
+  % 3行目
+  （ \JustifiedLabel{6em}{再提出期限} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
+\end{tabular}
+
+\vfill 
+
+% --- 評価テーブル ---
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\hline
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
+\hline
+\multirow{3}{*}{\parbox[c][4.5em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた &  \\
+\hline
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
+ & (2) 結果に対する考察 &  \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\clearpage % 改ページ
+
+% /////////////////////////////////////////////
+% ここから本文 (Main Body)
+% /////////////////////////////////////////////
+
+% 余白を本文用に復帰
+\restoregeometry 
+% ページ番号を1にリセットし、スタイルを標準に戻す
+\setcounter{page}{1}
+\pagestyle{plain} 
+
+\section{目的}
+本実験では，ワンボードマイコンを用いたヒーターの温度制御系を対象として，PID制御の実装およびパラメータ調整を行った．各制御要素（比例・積分・微分）が応答特性に与える影響を定量的に把握するとともに，ステップ応答法による最適なPIDパラメータの設計手法を習得することを目的とした．
+
+\section{原理}
+PID制御は，フィードバック制御において最も一般的な手法の一つであり，偏差に対する比例（Proportional），積分（Integral），微分（Derivative）の3要素を用いて操作量を決定する．
+
+\subsection{PID制御の伝達関数}
+制御対象への操作量 $u(t)$ は，目標値と出力値の偏差 $e(t)$ を用いて式(\ref{eq:pid_time})のように表される．
+\begin{equation}
+  u(t) = K_P e(t) + K_I \int_{0}^{t} e(\tau) d\tau + K_D \frac{de(t)}{dt}
+  \label{eq:pid_time}
+\end{equation}
+これをラプラス変換し，伝達関数 $K_C(s)$ として表すと式(\ref{eq:pid_tf})となる．
+\begin{equation}
+  K_C(s) = K_P + \frac{K_I}{s} + K_D s = K_P \left( 1 + \frac{1}{T_I s} + T_D s \right)
+  \label{eq:pid_tf}
+\end{equation}
+ここで，$K_P$ は比例ゲイン，$K_I$ は積分ゲイン，$K_D$ は微分ゲインである．また，$T_I (= K_P/K_I)$ は積分時間，$T_D (= K_D/K_P)$ は微分時間と定義される．この制御系のブロック図を図\ref{fig:pid_block1}および図\ref{fig:pid_block2}に示す．
+
+\clearpage
+
+% --- 図1 PID制御ブロック図（並列型） ---
+\begin{figure}[tb]
+  \centering
+  \begin{tikzpicture}[auto, node distance=2.0cm, >=Latex]
+    % Styles
+    \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=4em]
+    \tikzstyle{sum} = [draw, circle, inner sep=1pt]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{branch} = [circle,inner sep=0pt,minimum size=1mm,fill=black,draw=black]
+
+    % Nodes definition
+    \node [input] (input) {};
+    \node [sum, right=1cm of input] (sum1) {};
+    \node [left=0.1cm of sum1] {$+$};
+    \node [branch, right=1cm of sum1] (b1) {};
+    
+    % PID Blocks
+    \node [block, right=1.5cm of b1] (kp) {$K_P$};
+    \node [block, above=1.8cm of kp] (ki) {$\displaystyle \frac{K_I}{s}$}; 
+    \node [block, below=1.8cm of kp] (kd) {$K_D s$}; 
+
+    \node [sum, right=2cm of kp] (sum2) {};
+    
+    % Dashed Frame
+    \draw[dashed] ($(ki.north west)+(-0.8,0.6)$) rectangle ($(kd.south east)+(0.5,-0.6)$);
+    \node at ($(ki.north)+(0,0.4)$) {\small PID制御器 $K_C$};
+
+    % Connections
+    \draw [->] (input) -- node {\small 目標値} (sum1);
+    \draw [-] (sum1) -- (b1);
+    \draw [->] (b1) -- (kp);
+    \draw [->] (b1) |- (ki);
+    \draw [->] (b1) |- (kd);
+    \draw [->] (kp) -- (sum2);
+    \draw [->] (ki) -| (sum2);
+    \draw [->] (kd) -| (sum2);
+
+    \node [block, right=1.5cm of sum2] (plant) {制御対象};
+    \node [output, right=1.5cm of plant] (output) {};
+
+    \draw [->] (sum2) -- (plant);
+    \draw [->] (plant) -- node [name=y] {\small 出力} (output);
+    \draw [->] (y) -- ++(0,-3.5) -| node[pos=0.99] {$-$} (sum1);
+  \end{tikzpicture}
+  \caption{PID制御のブロック図（並列型）}
+  \label{fig:pid_block1}
+\end{figure}
+
+% --- 図2 標準形 ---
+\begin{figure}[tb]
+  \centering
+  \begin{tikzpicture}[auto, node distance=1.5cm, >=Latex]
+    \tikzstyle{block} = [draw, rectangle, minimum height=2.5em, minimum width=3.5em]
+    \tikzstyle{sum} = [draw, circle, inner sep=1pt]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{branch} = [circle,inner sep=0pt,minimum size=1mm,fill=black,draw=black]
+
+    \draw[dashed] (1.2,-2.5) rectangle (7.0, 2.5);
+    \node at (4.1, 2.7) {\small PID制御器（標準形）};
+
+    \node [input] (input) {};
+    \node [sum, right=1cm of input] (sum1) {};
+    \node [left=0.1cm of sum1] {$+$};
+    \node [block, right=0.8cm of sum1] (kp) {$K_P$};
+    \node [branch, right=0.6cm of kp] (b2) {};
+    \node [block, right=1.8cm of kp] (one) {$1$};
+    \node [block, above=1.2cm of one] (ti) {$\displaystyle \frac{1}{T_I s}$};
+    \node [block, below=1.2cm of one] (td) {$T_D s$};
+    \node [sum, right=1.5cm of one] (sum2) {};
+    \node [block, right=1.2cm of sum2] (plant) {制御対象};
+    \node [output, right=1.5cm of plant] (output) {};
+
+    \draw [->] (input) -- node {\small 目標値} (sum1);
+    \draw [->] (sum1) -- (kp);
+    \draw [-] (kp) -- (b2);
+    \draw [->] (b2) -- (one);
+    \draw [->] (b2) |- (ti);
+    \draw [->] (b2) |- (td);
+    \draw [->] (one) -- (sum2);
+    \draw [->] (ti) -| (sum2);
+    \draw [->] (td) -| (sum2);
+    \draw [->] (sum2) -- (plant);
+    \draw [->] (plant) -- node [name=y] {\small 出力} (output);
+    \draw [->] (y) -- ++(0,-3.5) -| node[pos=0.99] {$-$} (sum1);
+  \end{tikzpicture}
+  \caption{PID制御のブロック図（標準型）}
+  \label{fig:pid_block2}
+\end{figure}
+
+各パラメータが制御系に及ぼす影響は以下の通りである\cite{toyohashi}．
+\begin{description}
+    \item[比例動作 ($K_P$)] 偏差に比例した操作量を出力する．$K_P$ の増加に伴い応答速度は向上し定常偏差は減少するが，過大なゲインは振動的な挙動を招く．
+    \item[積分動作 ($K_I$ または $T_I$)] 偏差の積分値に応じた操作量を出力する．低周波成分のゲインが無限大となるため，定常偏差を完全に除去できる．
+    \item[微分動作 ($K_D$ または $T_D$)] 偏差の変化率に応じた操作量を出力する．未来の偏差を予測して補償するため，速応性の向上と振動抑制（ダンピング）に寄与する．
+\end{description}
+
+\subsection{パラメータ調整法（ステップ応答法）}
+制御対象が開ループにおいて安定であり，式(\ref{eq:plant})のような1次遅れ系とむだ時間要素で近似できる場合，ステップ応答法によるパラメータ調整が可能である．
+\begin{equation}
+  G_P(s) = \frac{K}{1+sT}e^{-Ls}
+  \label{eq:plant}
+\end{equation}
+図\ref{fig:step_response_main}に示すステップ応答波形から，むだ時間 $L$ および時定数 $T$（または変曲点の接線から求めた傾き $R$）を読み取り，表\ref{tab:zn_parameter}に基づき各パラメータを設定する．
+
+% --- 図3 ステップ応答波形 ---
+\begin{figure}[tb]
+  \centering
+  \begin{tikzpicture}[>=Latex, xscale=5, yscale=2.5]
+    \draw[->] (-0.1,0) -- (1.2,0) node[below] {$t$};
+    \draw[->] (0,-0.1) -- (0,1.2);
+    \draw[thick] (0,0) -- (0,1) -- (1.1,1);
+    \node at (0.3, 1.3) {\small ステップ入力};
+    \node at (-0.05, 1) {\small 1};
+    \draw[thick, domain=0:1.1, smooth, samples=100] plot (\x, {1 / (1 + exp(-20*(\x-0.3))) * 0.6});
+    \node at (0.6, 0.4) {\small ステップ応答};
+    \draw[dashed] (0,0.6) node[left] {$K$} -- (1.1,0.6);
+    \draw[thin] (0.2, 0) -- (0.45, 0.75);
+    \node at (0.38, 0.62) {\small 接線};
+    \draw[dotted] (0.2, 0) -- (0.2, -0.2);
+    \draw[dotted] (0.4, 0) -- (0.4, -0.2);
+    \draw[<->] (0, -0.1) -- node[fill=white] {$L$} (0.2, -0.1);
+    \draw[<->] (0.2, -0.1) -- node[fill=white] {$T$} (0.4, -0.1);
+    \node at (0.7, 0.25) {$\displaystyle R = \frac{K}{T}$};
+    \node at (0.3, 0.3) [circle,fill,inner sep=1pt]{};
+    \node at (0.25, 0.35) {\footnotesize 変曲点};
+  \end{tikzpicture}
+  \caption{ステップ応答法におけるパラメータの読み取り}
+  \label{fig:step_response_main}
+\end{figure}
+
+\begin{table}[tb]
+\centering
+\caption{ステップ応答法によるPIDパラメータ調整則}
+\label{tab:zn_parameter}
+  \begin{tabular}{lccc}
+    \toprule
+    パラメータ & $K_P$ & $T_I$ & $T_D$ \\
+    \midrule
+    P制御 & $\displaystyle \frac{1}{RL}$ & --- & --- \\
+    PI制御 & $\displaystyle \frac{0.9}{RL}$ & $3.3L$ & --- \\
+    PID制御 & $\displaystyle \frac{1.2}{RL}$ & $2L$ & $0.5L$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{実験方法}
+
+\subsection{使用機器}
+本実験で使用した主要機器を表\ref{tab:equipment}に示す．
+
+\begin{table}[H]
+\centering
+\caption{使用機器一覧}
+\label{tab:equipment}
+\begin{tabular}{lcc}
+\toprule
+品名 & 型番 & 備考 \\
+\midrule
+温度制御実習装置 & KENTAC3522S & ヒーター，温度センサ内蔵 \\
+制御用PC & --- & Windows OS, PidMonitorインストール済 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{実験手順}
+ヒーターの温度を制御量とし，目標温度を \SI{100}{\degreeCelsius} に設定して以下の実験を行った．
+
+\subsubsection{ON・OFF制御}
+制御用ソフトウェア（PidMonitor）のAutoモードを解除し，手動によるON・OFF制御を行った．
+MV（操作量）を 50.0 \% に設定し，PV（現在温度）が \SI{100}{\degreeCelsius} に到達するまで加熱した．\SI{100}{\degreeCelsius} を超過した時点でMVを 0.0 \% とし，下回った時点で再度 50.0 \% に戻す操作を繰り返し，その際の温度挙動（ハンチング）を確認した．
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.65\linewidth]{手動ONOFF.png}
+      \caption{手動ON/OFF制御時の温度挙動}
+      \label{fig:onoff}
+    \end{figure}
+\subsubsection{P制御}
+積分時間 $T_I = 0$（実験装置仕様），微分時間 $T_D = 0$ とし，比例制御のみを行った．
+    比例ゲイン $K_P$ を 1，5，および 100 に設定した場合の温度変化を測定した．以下にそれぞれの応答波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_1.png}
+        \caption{$K_P=1$}
+        \label{fig:P1}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5.png}
+        \caption{$K_P=5$}
+        \label{fig:P5}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_100.png}
+        \caption{$K_P=100$}
+        \label{fig:P100}
+      \end{subfigure}
+      \caption{P制御の比較（$K_P$の違い）}
+      \label{fig:P_control}
+    \end{figure}
+
+      その後，3分以内に目標温度 $\pm \SI{10}{\degreeCelsius}$ の範囲に収束する最適な $K_P=5$ を試行錯誤により決定した．
+
+\subsubsection{PI制御}
+    $K_P$ を $5$ に固定し，$T_D = 0$ としてPI制御を行った．
+    積分時間 $T_I$ を 1，48，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_1.png}
+        \caption{$T_I=1$}
+        \label{fig:PI_Ti1}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48.png}
+        \caption{$T_I=48$}
+        \label{fig:PI_Ti48}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_100.png}
+        \caption{$T_I=100$}
+        \label{fig:PI_Ti100}
+      \end{subfigure}
+      \caption{PI制御における積分時間 $T_I$ の影響（$K_P=5$固定）}
+      \label{fig:PI_control}
+    \end{figure}
+
+\subsubsection{PID制御}
+    $K_P$ および $T_I$ をそれぞれ $5$ および $48$ に固定し，PID制御を行った．
+    微分時間 $T_D$ を 1，8.7，および 100 に設定した場合の応答を確認した．以下に代表的な波形を示す．
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td1.png}
+        \caption{$T_D=1$}
+        \label{fig:PID_Td1}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td_8.7.png}
+        \caption{$T_D=8.7$}
+        \label{fig:PID_Td87}
+      \end{subfigure}
+      \par\medskip
+      \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{P_5-Ti_48-Td_100.png}
+        \caption{$T_D=100$}
+        \label{fig:PID_Td100}
+      \end{subfigure}
+      \caption{PID制御における微分時間 $T_D$ の影響（$K_P=5$, $T_I=48$固定）}
+      \label{fig:PID_control}
+    \end{figure}
+
+    その後，2分以内に目標温度 $\pm \SI{0.5}{\degreeCelsius}$ の範囲に収束する最適な $T_D=8.7$ を決定した．
+
+\subsubsection{ステップ応答法による同定}
+ステップ応答法を用いて制御対象のパラメータ同定を行った．
+\begin{enumerate}
+    \item ヒーター温度が室温で安定している状態から，MVを 10 \% $\sim$ 20 \% の範囲でステップ状に入力した．
+    \item 温度が定常状態に達した際の入力変化幅 $U$ [\%] および温度変化幅 $Y$ [\%] を式(\ref{eq:Y}), (\ref{eq:U})により求めた．
+    \item 定常ゲイン $K$ および，図\ref{fig:step_response_main}に基づく $L, T, R$ を算出した．
+\end{enumerate}
+\begin{align}
+  U &= (\text{最終入力} - \text{初期入力}) \label{eq:U} \\
+  Y &= \frac{(\text{最終温度} - \text{初期温度})}{200} \times 100 \label{eq:Y} \\
+  K &= \frac{Y}{U} \label{eq:K} \\
+  R &= \frac{K}{T} \label{eq:R}
+\end{align}
+得られたパラメータを基に，表\ref{tab:zn_parameter}を用いて $K_P, T_I, T_D$ を算出し，これを用いた制御実験を行った．以下にステップ応答法で算出したパラメータを示す．
+\begin{table}[H]
+  \centering
+  \caption{ステップ応答法で算出したPIDパラメータ}
+  \label{tab:step_response_params}
+  \begin{tabular}{lccc}
+    \toprule
+    制御タイプ & $K_P$ & $T_I$ & $T_D$ \\
+    \midrule
+    P制御 & 8.4 & --- & --- \\
+    PI制御 & 7.6 & 16 & --- \\
+    PID制御 & 10.1 & 9.7 & 2.42 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+これらのパラメータを用いた制御実験の結果を図に示す．
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{P_8.4.png}
+    \caption{P制御 ($K_P=8.4$)}
+    \label{fig:step_P}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{P_7.6-Ti_16.png}
+    \caption{PI制御 ($K_P=7.6$, $T_I=16$)}
+    \label{fig:step_PI}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{P_10.1-Ti_9.7-Td_2.42.png}
+    \caption{PID制御 ($K_P=10.1$, $T_I=9.7$, $T_D=2.42$)}
+    \label{fig:step_PID}
+  \end{subfigure}
+  \caption{ステップ応答法で算出したパラメータを用いた制御実験結果}
+  \label{fig:step_response_experiments}
+\end{figure}
+
+\section{結果および考察}
+
+\subsection{ON・OFF制御の挙動}
+図\ref{fig:onoff}に示すように，ON・OFF制御では操作量が0 \% または 50 \% の2値しかとらないため，温度が目標値の \SI{100}{\degreeCelsius} に留まることができなかった．温度が上がれば切り，下がれば入れるという操作を繰り返した結果，永続的な温度の波打ち（ハンチング）が発生した．このことから，精密な温度制御にはON・OFF制御は不向きであり，操作量を連続的に変化させる制御が必要であることが確認できた．
+
+\subsection{P制御（比例制御）の特性}
+P制御における各ゲインでの応答（図\ref{fig:P_control}）について考察する．
+\begin{itemize}
+    \item \textbf{$K_P=1$ の場合}: 操作量が不足しているため立ち上がりが遅く，時間が経過しても目標温度である \SI{100}{\degreeCelsius} に到達しなかった．このように，P制御だけでは解消できない目標値とのズレを「残留偏差（オフセット）」という．
+    \item \textbf{$K_P=100$ の場合}: ゲインを大きくしすぎたため，少しの偏差に対して操作量が過剰に反応してしまった．その結果，激しい振動が発生し，制御不能となった．
+    \item \textbf{$K_P=5$ の場合}: 立ち上がりの速さと安定性のバランスが比較的良かったが，それでも目標値に対して数度の残留偏差が残った．
+\end{itemize}
+以上の結果から，P制御においてゲイン $K_P$ を上げれば立ち上がりは速くなるが，上げすぎると振動すること，また適切な値に設定しても残留偏差は消せないことがわかった．
+
+\subsection{PI制御（比例・積分制御）の特性}
+PI制御（図\ref{fig:PI_control}）では，積分動作を追加することで，P制御で問題となった残留偏差を解消することができた．積分時間 $T_I$ の違いによる影響は以下の通りである．
+\begin{itemize}
+    \item \textbf{$T_I=1$ の場合}: 積分時間が短すぎる（積分作用が強すぎる）ため，過去の偏差が急速に積み重なり，操作量が過大となった．その結果，目標温度を大きく超える「オーバーシュート」が発生し，収束までに時間がかかった．
+    \item \textbf{$T_I=100$ の場合}: 積分時間が長すぎる（積分作用が弱い）ため，残留偏差を修正する力が弱く，目標温度である \SI{100}{\degreeCelsius} にピタリと合うまでに時間がかかった．
+    \item \textbf{$T_I=48$ の場合}: オーバーシュートを抑えつつ，速やかに残留偏差を解消できており，最も良好な波形となった．
+\end{itemize}
+
+\subsection{PID制御（比例・積分・微分制御）の特性}
+PID制御（図\ref{fig:PID_control}）では，微分動作を加えることで，急激な温度変化に対してブレーキをかける効果が確認された．
+\begin{itemize}
+    \item \textbf{$T_D=100$ の場合}: 微分時間が長すぎるため，わずかな温度変化やセンサのノイズ（雑音）に対しても過敏に反応してしまった．図\ref{fig:PID_Td100}の青線（操作量MV）を見ると，激しくギザギザに変動していることがわかる．これは装置への負担が大きく，制御としても不安定である．
+    \item \textbf{$T_D=8.7$ の場合}: 適度な微分作用により，立ち上がり時のオーバーシュートが抑制され，最も速く安定して目標温度に到達した．図\ref{fig:PID_Td87}を見ると，温度が滑らかに目標値に収束している．
+\end{itemize}
+
+\subsection{理論値（ステップ応答法）と実験値の比較}
+ステップ応答法で算出したパラメータ（表\ref{tab:step_response_params}）と，実際に試行錯誤で決定した最適値を比較すると，大きな差が見られた．
+具体的には，計算で求めた比例ゲイン $K_P=10.1$ は，実験で最適とした $K_P=5$ よりもかなり大きい値であった．計算値をそのまま用いた図\ref{fig:step_PID}では波形が振動的になっており，安定しているとは言い難い．
+
+この不一致の原因として，以下の点が考えられる．
+\begin{itemize}
+    \item \textbf{モデル化の誤差}: 計算式では「理想的な加熱」を仮定しているが，実際の実験装置には熱の逃げや，ヒーター自体の反応の遅れなど，単純な式では表せない複雑な要素が含まれている．
+    \item \textbf{操作量の限界}: 計算上では操作量は無限に出せる前提だが，実際には 0 \% から 100 \% の範囲でしか出力できない（飽和という）．これにより，理論通りの強力な制御ができなかった．
+\end{itemize}
+したがって，ステップ応答法などの計算で求めた値はあくまで「目安」として利用し，最終的には実際の波形を見ながら，少し弱めの設定（ゲインを下げるなど）から微調整を行うことが，現場では重要であると結論付けられる．
+
+\section{報告事項}
+課題として与えられた制御対象 $G(s)$ に対し，前述のステップ応答法（表\ref{tab:zn_parameter}）を用いてPIDパラメータの設計を行った．
+対象の伝達関数は次式で与えられる．
+\begin{equation}
+    G(s) = \frac{5}{2s+4}e^{-3s}
+\end{equation}
+これを1次遅れ系とむだ時間の標準形 $G_P(s) = \frac{K}{1+sT}e^{-Ls}$ に帰着させるため，分母の定数項が1となるよう分母・分子を4で除算し，式変形を行う．
+\begin{equation}
+    G(s) = \frac{5/4}{(2/4)s + 1}e^{-3s} = \frac{1.25}{1+0.5s}e^{-3s}
+\end{equation}
+上式と標準形の係数比較により，以下のシステムパラメータが得られる．
+\begin{itemize}
+    \item システムゲイン $K = 1.25$
+    \item 時定数 $T = 0.5$
+    \item むだ時間 $L = 3.0$
+\end{itemize}
+また，ステップ応答の最大傾斜 $R$ は次式で算出される．
+\begin{equation}
+    R = \frac{K}{T} = \frac{1.25}{0.5} = 2.5
+\end{equation}
+これらの値をPID制御の調整則（$K_P=1.2/RL$, $T_I=2L$, $T_D=0.5L$）に代入し，各パラメータを算出した．結果を表\ref{tab:calc_result}に示す．
+
+\begin{table}[H]
+  \centering
+  \caption{算出されたPIDパラメータ}
+  \label{tab:calc_result}
+  \begin{tabular}{lcc}
+    \toprule
+    パラメータ & 計算式 & 算出値 \\
+    \midrule
+    比例ゲイン $K_P$ & $\displaystyle \frac{1.2}{2.5 \times 3.0}$ & \textbf{0.16} \\
+    積分時間 $T_I$ & $2 \times 3.0$ & \textbf{6.0} \\
+    微分時間 $T_D$ & $0.5 \times 3.0$ & \textbf{1.5} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{thebibliography}{9}
+\bibitem{toyohashi} 豊橋技術科学大学・高等専門学校制御工学教育連携プロジェクト 編: 『制御工学』, 実教出版, pp.146-147, 2012.
+\end{thebibliography}
+
+\end{document}
