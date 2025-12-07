@@ -35,9 +35,20 @@
 \usetikzlibrary{arrows.meta, positioning, calc}
 
 % リンク・参照
-\usepackage[superscript]{cite}
+% cite の superscript オプションを削除: \@cite を自前定義して角括弧付き上付き表示にするため
+\usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
+% ----- 参考文献の上付き表示設定 (hyperref 後に定義して上書きされないようにする) -----
+\makeatletter
+% 参考: system.tex の方法を流用し，実際に動作する形式に揃える
+% こちらは math-mode で上付きの小さい角括弧が表示される形式
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
+\makeatother
+% デバッグ用: 現在の \@cite と \cite の定義内容をログに出す（必要ならコメント解除して log を確認）
+% \typeout{*** DEBUG: \string\@cite -> \meaning\@cite}
+% \typeout{*** DEBUG: \string\cite -> \meaning\cite}
 \crefname{figure}{図}{図}
 \crefname{table}{表}{表}
 \crefname{equation}{式}{式}
