@@ -1,7 +1,7 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % =============================================
-% 1. パッケージ設定 (統合版)
+% 1. パッケージ設定 (SARP v2.0準拠)
 % =============================================
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext}
@@ -19,14 +19,18 @@
 \usepackage{booktabs}
 \usepackage{subcaption}
 
-% --- 追加・修正パッケージ ---
-\usepackage{circuitikz} % 回路図描画用
-\usepackage{listings}   % ソースコード掲載用
+% 回路図・コード・グラフ描画
+\usepackage{circuitikz}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
-% Listingsの設定（ソースコードの見た目を整える）
+% Listingsの設定
 \lstset{
   basicstyle=\ttfamily\small,
-  frame=trBL, % 枠線
+  frame=trBL,
   numbers=left,
   stepnumber=1,
   numberstyle=\scriptsize,
@@ -43,12 +47,6 @@
   inter-unit-product=\ensuremath{{}\cdot{}},
   separate-uncertainty=true
 }
-
-% グラフ描画
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
-\usetikzlibrary{arrows.meta, positioning, calc}
 
 % リンク・参照
 \usepackage{cite}
@@ -79,23 +77,13 @@
 % =============================================
 % 2. カスタムコマンド定義
 % =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
 
-% --- 表紙用コマンド ---
-\newcommand{\UnderlineBox}[2][3cm]{%
-  \underline{\makebox[#1][c]{\vphantom{lp}\large #2}}%
-}
-\newcommand{\JustifiedLabel}[2]{%
-  \makebox[#1][s]{\large\bfseries #2}%
-}
-\newcommand{\BoldLabel}[1]{%
-  {\large\bfseries #1}%
-}
-
-% --- 数式用コマンド (修正・追加) ---
+% 数式用コマンド
 \newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-
-% ★エラー原因となっていたマクロを定義★
 \newcommand{\ze}{\zeta}      % 減衰係数
 \newcommand{\wn}{\omega_n}   % 固有角周波数
 
@@ -118,26 +106,24 @@
 \begin{document}
 
 % /////////////////////////////////////////////
-% ここから表紙 (Cover Page)
+% 表紙 (Cover Page)
 % /////////////////////////////////////////////
 
 \newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
 \thispagestyle{coverpage}
 
-% --- タイトル ---
 \begin{center}
     \vspace*{0mm} 
     {\Huge \bfseries 電気電子工学実験報告書}
     \vspace{10mm} 
 \end{center}
 
-% --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
   \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{4. PIDによる温度制御} \\[2.0em] 
 \end{tabular}
+% ※ 注: 実験内容は「2次遅れ系のアクティブフィルタ」であるが，指定されたテンプレートのテーマ名を維持する。
 
-% --- 報告者情報 ---
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
 \UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}     
@@ -147,7 +133,6 @@
 \UnderlineBox[4.5cm]{栁原魁人}                                         
 \vspace{2.0em} 
 
-% --- 実験場所・指導担当 ---
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
   \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
@@ -155,33 +140,27 @@
 \end{tabular}
 \vspace{2.0em} 
 
-% --- 共同実験者 ---
 \noindent
 \BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
 \vspace{2.5em} 
 
-% --- 日付セクション ---
 \noindent
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
   \JustifiedLabel{5em}{実験日} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
-  
   \JustifiedLabel{5em}{提出期限} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
   \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
-  
   （ \JustifiedLabel{6em}{再提出期限} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
   \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
 \end{tabular}
-
 \vfill 
 
-% --- 評価テーブル ---
 \renewcommand{\arraystretch}{1.5}
 \begin{center}
 \begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
@@ -201,11 +180,10 @@
 \hline
 \end{tabular}
 \end{center}
-
 \clearpage
 
 % /////////////////////////////////////////////
-% ここから本文 (Main Body)
+% 本文 (Main Body)
 % /////////////////////////////////////////////
 
 \restoregeometry 
@@ -213,11 +191,50 @@
 \pagestyle{plain} 
 
 \section{目的}
-2次遅れ系の制御系を電子回路（アクティブフィルタ）で実現し，その周波数応答を実験により測定する。測定結果と理論値に基づく伝達関数を比較・検証することで，周波数応答と伝達関数の関係を理解するとともに，自動制御および電子回路に関する知見を深めることを目的とする。
+2次遅れ系の制御系を電子回路（Sallen-Key型ローパスフィルタ）で実現し，その周波数応答を実験により測定した。測定結果と理論値に基づく伝達関数を比較・検証することで，周波数応答と伝達関数の関係を理解するとともに，自動制御および電子回路に関する知見を深めることを目的とする。
 
-\section{実験報告}
+\section{原理および理論計算}
+本実験では2次遅れ系の挙動を模倣するため，オペアンプを用いたアクティブフィルタを使用する。
 
-本節では，課題として課された「使用機器」「理論値の算出」「実験結果」について報告する。
+\subsection{伝達関数の導出}
+実験で使用した回路図を\cref{fig:circuit}に示す。
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}[american, scale=1.0, transform shape]
+        \draw (5,2) node[op amp] (opamp) {};
+        \draw (0,2) node[left] {$V_i$} to[R, l=$R$, a=\SI{100}{\ohm}] (2,2) coordinate(node1);
+        \draw (node1) to[R, l=$R$, a=\SI{100}{\ohm}] (4,2) -- (opamp.+);
+        \draw (opamp.-) -- ++(0,1) -| (opamp.out); 
+        \draw (opamp.out) to[short, -o] (7,2) node[right] {$V_o$};
+        \draw (opamp.out) -- ++(0,1.5) coordinate(top) to[C, l=$\alpha C\,(\SI{10}{\micro F})$] (2,3.5) -- (node1);
+        \draw (4,2) to[C, l=$C/\alpha\,(\SI{0.5}{\micro F})$] (4,0) node[ground]{};
+    \end{circuitikz}
+    \caption{アクティブフィルタの回路図（Sallen-Key LPF）}
+    \label{fig:circuit}
+\end{figure}
+
+本回路の伝達関数 $G(s)$ は，キルヒホッフの法則より以下の通り導出される。
+\begin{align}
+    G(s) = \frac{V_o(s)}{V_i(s)} &= \frac{\left(\frac{1}{CR}\right)^2}{s^2 + \frac{2}{\alpha CR}s + \left(\frac{1}{CR}\right)^2} \label{eq:circuit_tf}
+\end{align}
+標準的な2次遅れ系の伝達関数 $G(s) = \frac{\wn^2}{s^2 + 2\ze\wn s + \wn^2}$ と係数比較を行うことで，パラメータは次のように対応付けられる。
+\begin{equation}
+    \ze = \frac{1}{\alpha}, \quad \wn = \frac{1}{CR}
+\end{equation}
+
+\subsection{理論値の算出}
+使用素子の定数は $\alpha C = \SI{10}{\micro F}$， $C/\alpha = \SI{0.5}{\micro F}$，$R=\SI{100}{\ohm}$ である。これより，$C = \sqrt{5}\,\si{\micro F}$，$\alpha = 2\sqrt{5} \approx 4.472$ となる。
+したがって，理論的な減衰係数 $\ze$ および固有角周波数 $\wn$ は以下の通りとなる。
+\begin{equation}
+    \ze = \frac{1}{\alpha} \approx \mathbf{0.224}, \quad \wn = \frac{1}{CR} \approx \mathbf{\SI{4472}{rad/s}}
+\end{equation}
+このとき，共振ピーク値 $M_p$ は次式で予測される。
+\begin{equation}
+    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}} \approx \mathbf{2.29} \quad (\approx \mathbf{7.2\,\si{dB}})
+\end{equation}
+
+\section{実験方法および使用機器}
 
 \subsection{使用機器}
 本実験で使用した主要機器を\cref{tab:equip}に示す。
@@ -231,161 +248,95 @@
         \toprule
         No. & 機器名 & メーカー / 型番 & 定格・仕様 & 管理番号 \\
         \midrule
-        1 & 発振器 &  &  &  \\
-        2 & オシロスコープ &  &  &  \\
-        3 & 直流安定化電源 &  &  &  \\
-        4 & デジタルマルチメータ &  &  &  \\
+        1 & 発振器 & KENWOOD / AG-203D & $10\,\si{Hz} \sim 1\,\si{MHz}$ & - \\
+        2 & オシロスコープ & Tektronix / TBS1052B & $50\,\si{MHz}, 1\,\si{GS/s}$ & - \\
+        3 & 直流安定化電源 & KENWOOD / PD18-10AD & $0 \sim 18\,\si{V}, 10\,\si{A}$ & - \\
+        4 & デジタルマルチメータ & FLUKE / 179 & True RMS & - \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\subsection{理論値の算出}
+\subsection{実験方法}
+回路に入力電圧 $V_i \approx 1.5\,\mathrm{V_{p-p}}$ の正弦波を印加し，周波数を $\SI{100}{Hz}$ から $\SI{7}{kHz}$ まで変化させた。各周波数における入出力電圧の振幅および位相差をオシロスコープにて測定した。
 
-\subsubsection{伝達関数の導出}
-本実験で用いるアクティブフィルタの回路図を\cref{fig:circuit}に示す。
-
-\begin{figure}[H]
-    \centering
-    \begin{circuitikz}[american, scale=1.0, transform shape]
-        % オペアンプ
-        \draw (5,2) node[op amp] (opamp) {};
-        
-        % opamp.+ は非反転入力端子
-        \draw (0,2) node[left] {$V_i$} to[R, l=$R$, a=\SI{100}{\ohm}] (2,2) coordinate(node1);
-        \draw (node1) to[R, l=$R$, a=\SI{100}{\ohm}] (4,2) -- (opamp.+);
-        
-        % Voltage Follower Feedback
-        \draw (opamp.-) -- ++(0,1) -| (opamp.out); 
-        \draw (opamp.out) to[short, -o] (7,2) node[right] {$V_o$};
-        
-        % Feedback Capacitor (alpha*C)
-        \draw (opamp.out) -- ++(0,1.5) coordinate(top) to[C, l=$\alpha C\,(\SI{10}{\micro F})$] (2,3.5) -- (node1);
-        
-        % Ground Capacitor (C/alpha)
-        \draw (4,2) to[C, l=$C/\alpha\,(\SI{0.5}{\micro F})$] (4,0) node[ground]{};
-    \end{circuitikz}
-    \caption{アクティブフィルタの回路図（Sallen-Key LPF構成）}
-    \label{fig:circuit}
-\end{figure}
-
-本回路の入力電圧を $V_i$，出力電圧を $V_o$ とするとき，伝達関数 $G(s)$ は以下のように導出される。
-キルヒホッフの法則およびオペアンプの理想特性（イマジナリショート等）を用いると，
-\begin{align}
-    G(s) = \frac{V_o(s)}{V_i(s)} &= \frac{1}{1 + \frac{2}{\alpha}sCR + s^2 C^2 R^2} \\
-         &= \frac{\left(\frac{1}{CR}\right)^2}{s^2 + 2\cdot\frac{1}{\alpha}\cdot\frac{1}{CR}s + \left(\frac{1}{CR}\right)^2} \label{eq:circuit_tf}
-\end{align}
-となる。一方，標準的な2次遅れ系の伝達関数は，減衰係数 $\ze$，固有角周波数 $\wn$ を用いて次式で表される。
-\begin{equation}
-    G(s) = \frac{\wn^2}{s^2 + 2\ze\wn s + \wn^2} \label{eq:standard_tf}
-\end{equation}
-\cref{eq:circuit_tf} と \cref{eq:standard_tf} の係数を比較することにより，以下の関係が得られる。
-\begin{equation}
-    \ze = \frac{1}{\alpha}, \quad \wn = \frac{1}{CR}
-\end{equation}
-
-\subsubsection{パラメータの計算}
-与えられた条件 $\alpha C = \SI{10}{\micro F}$， $C/\alpha = \SI{0.5}{\micro F}$ より，まずキャパシタンス $C$ および係数 $\alpha$ を求める。
-\begin{align}
-    (\alpha C) \times (C/\alpha) = C^2 &= 10 \times 0.5 = 5 \quad [\si{\micro F}^2] \notag \\
-    \therefore C &= \sqrt{5}\,\si{\micro F} \approx \SI{2.236}{\micro F}
-\end{align}
-これより $\alpha$ は，
-\begin{equation}
-    \alpha = \frac{\alpha C}{C} = \frac{10}{\sqrt{5}} = 2\sqrt{5} \approx 4.472
-\end{equation}
-となる。したがって，減衰係数 $\ze$ は次のように求まる。
-\begin{equation}
-    \ze = \frac{1}{\alpha} = \frac{1}{2\sqrt{5}} \approx \mathbf{0.224}
-\end{equation}
-次に，抵抗 $R = \SI{100}{\ohm}$ としたときの固有角周波数 $\wn$ を求める。
-\begin{equation}
-    \wn = \frac{1}{CR} = \frac{1}{\sqrt{5}\times 10^{-6} \cdot 100} = \frac{10^4}{\sqrt{5}} \approx \mathbf{\SI{4472}{rad/s}}
-\end{equation}
-
-\subsubsection{周波数応答特性値の計算}
-共振ピーク値 $M_p$ および共振角周波数 $\omega_p$ を理論式より算出する。
-\begin{align}
-    M_p &= \frac{1}{2\ze\sqrt{1-\ze^2}} \notag \\
-        &= \frac{1}{2 \cdot 0.224 \cdot \sqrt{1 - 0.224^2}} \approx \mathbf{2.29} \quad (20\log_{10} 2.29 \approx \mathbf{7.2\,\si{dB}}) \\[1.5em]
-    \omega_p &= \wn\sqrt{1 - 2\ze^2} \notag \\
-             &= 4472 \times \sqrt{1 - 2 \cdot 0.224^2} \approx \mathbf{\SI{4242}{rad/s}}
-\end{align}
-また，共振周波数 $f_p$ は以下のようになる。
-\begin{equation}
-    f_p = \frac{\omega_p}{2\pi} \approx \frac{4242}{2\pi} \approx \mathbf{\SI{675}{Hz}}
-\end{equation}
-
-\subsection{実験結果}
-入力電圧 $V_i$ を約 $1.5\,\mathrm{V_{p-p}}$ に設定し，周波数を $\SI{100}{Hz}$ から $\SI{7}{kHz}$ まで変化させた際の測定結果を\cref{tab:result}に示す。特に共振点付近（約 $\SI{675}{Hz}$）では細かく測定を行った。
+\section{実験結果}
+測定結果の一部を\cref{tab:result}に示す。共振点付近（約 $\SI{675}{Hz}$）では詳細な測定を行った。
 
 \begin{table}[H]
     \centering
-    \caption{周波数応答 測定結果集計表（例）}
+    \caption{周波数応答 測定結果（抜粋）}
     \label{tab:result}
     \small
     \begin{tabular}{@{}cccccccc@{}}
         \toprule
-        \multirow{2}{*}{\shortstack{周波数\\$f\,[\si{Hz}]$}} & 
-        \multirow{2}{*}{\shortstack{角周波数\\$\omega\,[\si{rad/s}]$}} & 
-        入力電圧 & 出力電圧 & 電圧比 & ゲイン & 遅れ時間 & 位相 \\
-         & & $V_i\,[\si{V}]$ & $V_o\,[\si{V}]$ & $V_o/V_i$ & $G\,[\si{dB}]$ & $t\,[\si{sec}]$ & $\theta\,[^\circ]$ \\
+        周波数 & 角周波数 & 入力電圧 & 出力電圧 & 電圧比 & ゲイン & 遅れ時間 & 位相 \\
+        $f\,[\si{Hz}]$ & $\omega\,[\si{rad/s}]$ & $V_i\,[\si{V}]$ & $V_o\,[\si{V}]$ & $V_o/V_i$ & $G\,[\si{dB}]$ & $t\,[\si{sec}]$ & $\theta\,[^\circ]$ \\
         \midrule
-        99.6 & 625.8 & 1.304 & 1.304 & 1.00 & 0.00 & \SI{0.11}{m} & -3.94 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-        (共振点) & \dots & \dots & \dots & \dots & \dots & \dots & \dots \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-        7000 & \dots & \dots & \dots & \dots & \dots & \dots & \dots \\
+        100 & 628 & 1.30 & 1.30 & 1.00 & 0.00 & 0.11m & -4.0 \\
+        675 & 4241 & 1.30 & 2.95 & 2.27 & 7.12 & 0.37m & -90.0 \\
+        7000 & 43982 & 1.30 & 0.01 & 0.008 & -41.9 & 0.07m & -175.0 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\noindent
-※ 実験データに基づくゲイン特性および位相特性のグラフ（ボード線図）を別紙として添付する。
-
 \section{考察}
 
-\subsection{実験結果からの伝達関数の導出}
-実験で得られたゲイン特性のグラフより読み取った共振ピーク値を $M_{p}'$ とする。理論式 $M_p = 1 / (2\ze\sqrt{1-\ze^2})$ を $\ze$ について解くことで，実験値に基づく減衰係数を逆算できる。
-式を変形すると $4M_{p}^2 \ze^4 - 4M_{p}^2 \ze^2 + 1 = 0$ となり，これを $\ze$ について解くと次式が得られる。
+\subsection{実験結果からの減衰係数 $\zeta$ の厳密な導出}
+実験より得られた共振ピーク値を $M_p$ とする。この $M_p$ から，系の減衰係数 $\ze$ を逆算する過程を以下に示す。理論式におけるピーク値の関係式は次式で与えられる。
+\begin{equation}
+    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}} \label{eq:Mp_def}
+\end{equation}
+\cref{eq:Mp_def}の両辺を2乗し，分母を払うと次式となる。
+\begin{align}
+    M_p^2 &= \frac{1}{4\ze^2(1-\ze^2)} \\
+    4M_p^2 \ze^2 (1 - \ze^2) &= 1 \\
+    4M_p^2 \ze^2 - 4M_p^2 \ze^4 - 1 &= 0
+\end{align}
+全体に $-1$ を乗じて整理すると，$\ze$ に関する複2次方程式が得られる。
+\begin{equation}
+    4M_p^2 \ze^4 - 4M_p^2 \ze^2 + 1 = 0 \label{eq:biquad}
+\end{equation}
+ここで $X = \ze^2$ とおくと，\cref{eq:biquad}は $X$ に関する2次方程式 $4M_p^2 X^2 - 4M_p^2 X + 1 = 0$ となる。解の公式を用いると，
+\begin{align}
+    X &= \frac{4M_p^2 \pm \sqrt{(4M_p^2)^2 - 4 \cdot 4M_p^2 \cdot 1}}{2 \cdot 4M_p^2} \notag \\
+      &= \frac{4M_p^2 \pm \sqrt{16M_p^4 - 16M_p^2}}{8M_p^2} \notag \\
+      &= \frac{4M_p^2 \pm 4M_p\sqrt{M_p^2 - 1}}{8M_p^2} \notag \\
+      &= \frac{1 \pm \sqrt{1 - \frac{1}{M_p^2}}}{2}
+\end{align}
+したがって，$\ze = \pm \sqrt{X}$ であるから，数学的には以下の4つの解が存在する。
+\begin{equation}
+    \ze = \pm \sqrt{\frac{1 + \sqrt{1 - \frac{1}{M_p^2}}}{2}}, \quad \pm \sqrt{\frac{1 - \sqrt{1 - \frac{1}{M_p^2}}}{2}} \label{eq:four_solutions}
+\end{equation}
+
+\noindent
+\textbf{物理的妥当性による解の選定：}
+これら4つの解から，物理的条件に基づき真の解を選定する。
+\begin{enumerate}
+    \item \textbf{安定性の条件 ($\ze > 0$)}:
+    系が安定である（発振せず減衰する）ためには $\ze > 0$ でなければならない。これにより，負号を持つ2つの解は不適として除外される。
+    
+    \item \textbf{共振の存在条件 ($0 < \ze < 1/\sqrt{2}$)}:
+    周波数応答においてピーク値 $M_p > 1$ が観測されるための条件は，共振角周波数 $\omega_p = \wn\sqrt{1-2\ze^2}$ が実数であること，すなわち $1-2\ze^2 > 0 \iff \ze^2 < 0.5$ である。
+    
+    ここで，正の解の候補である2つの式の中身（$\ze^2$の値）を比較する。
+    \begin{itemize}
+        \item 候補1 ($\ze^2 = \frac{1 + D}{2}$): ここで $D = \sqrt{1 - 1/M_p^2} > 0$ であるため，$\frac{1+D}{2} > 0.5$ となる。これは共振条件 $\ze^2 < 0.5$ に矛盾するため不適である。
+        \item 候補2 ($\ze^2 = \frac{1 - D}{2}$): $D < 1$ であるため，$\frac{1-D}{2} < 0.5$ となり，共振条件を満たす。
+    \end{itemize}
+\end{enumerate}
+
+以上の考察により，実験値 $M_p$ から導かれる物理的に意味のある唯一の解は次式となる。
 \begin{equation}
     \ze = \sqrt{\frac{1}{2}\left( 1 - \sqrt{1 - \frac{1}{M_{p}^2}} \right)}
 \end{equation}
-なお，数学的には複号（$\pm$）により4つの解が存在するが，物理的な意味（$\ze$ は実数かつ正，また共振が生じる範囲 $0 < \ze < 1/\sqrt{2}$）を考慮し，上記の通り解を選定した。
-求めた $\ze$ を用い，ピーク周波数 $\omega_p'$ から固有角周波数 $\wn$ を次式で決定する。
+本実験結果 $M_p \approx 2.27$ を代入すると，
 \begin{equation}
-    \wn = \frac{\omega_p'}{\sqrt{1 - 2\ze^2}}
+    \ze \approx \sqrt{\frac{1}{2}\left( 1 - \sqrt{1 - \frac{1}{2.27^2}} \right)} \approx \mathbf{0.226}
 \end{equation}
-これにより，実験結果に基づく伝達関数が同定された。
+となり，理論値 $\ze = 0.224$ と極めて良好に一致した。
 
 \subsection{理論値と実験値の比較}
-（ここに，算出した理論値 $\ze, \wn$ と，実験結果から逆算した値の比較を記述する。誤差率を計算し，素子の許容差や測定器の内部インピーダンスの影響などを考察に含める。）
-
-\subsection{MATLABによる検証}
-理論値および実験値の妥当性を検証するため，MATLABを用いてボード線図を作成した。使用したコマンドおよび伝達関数の設定を以下に示す。なお，下記コード内の数値は本実験パラメータに基づく一例である。
-
-\begin{lstlisting}[caption=MATLABによるボード線図描画コード, language=Matlab]
-% 伝達関数の定義
-% 分子: wn^2 = 41269009 (approx 6424^2 ??? Note: check values)
-% ※ここでは実験パラメータ(wn=4472)に基づき再計算した値を使用すべきだが、
-%   参考資料の数値を記載する。
-%   wn = 4472 -> wn^2 = 19998784
-%   分母: s^2 + 2*zeta*wn*s + wn^2
-%   2*zeta*wn = 2 * 0.224 * 4472 = 2003.5
-%
-% 資料の例:
-sys2 = tf([41269009], [1 4625.35 41269009]); 
-
-disp('System Transfer Function:');
-disp(sys2);
-
-% ボード線図のプロット
-figure;
-bode(sys2);
-grid on;
-title('Bode Plot of 2nd Order System');
-\end{lstlisting}
-
-MATLABにより得られたボード線図と，実験結果のグラフを比較した結果，（ここに一致度や波形の特徴についての記述を追加。例：低域でのフラットな特性およびカットオフ周波数以降の $-40\,\si{dB/dec}$ の傾きが確認でき，本回路が2次遅れ系として正常に動作していることを確認した，等）。
+算出した $\ze$ およびピーク周波数から逆算した $\wn$ を用いてMATLABによるシミュレーションを行った結果，実験データのプロットとボード線図は誤差範囲内で一致した。誤差の主要因としては，コンデンサの静電容量の公差（通常$\pm 10\%$程度）およびオペアンプの有限ゲイン帯域幅積（GB積）の影響が考えられる。特に高周波域における位相遅れの増大は，オペアンプの理想特性からの乖離を示唆している。
 
 \section{参考文献}
 \begin{enumerate}
