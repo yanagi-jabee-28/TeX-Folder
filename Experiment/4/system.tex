@@ -244,7 +244,9 @@
 回路に入力電圧 $V_i \approx 1.5\,\mathrm{V_{p-p}}$ の正弦波を印加し，周波数を $\SI{100}{Hz}$ から $\SI{7}{kHz}$ まで変化させた。各周波数における入出力電圧の振幅および位相差をオシロスコープにて測定した。特に共振点付近では周波数間隔を細かく設定し，ピーク特性の正確な測定を試みた。
 
 \section{実験結果}
-測定結果の抜粋を\cref{tab:result}に，周波数応答のグラフを\cref{fig:bode}に示す。共振周波数付近（$\SI{707.3}{Hz}$）において，明瞭なゲインのピークが観測された。
+測定結果の抜粋を\cref{tab:result}に，周波数応答のグラフを\cref{fig:bode_images}に示す。共振周波数付近（$\SI{707.3}{Hz}$）において，明瞭なゲインのピークが観測された。
+
+また，MATLABによる理論（シミュレーション）ボード線図と，実測値のゲイン・位相プロットを以下に示す。図\ref{fig:bode_images}は，(a) MATLABシミュレーションによるボード線図，(b) 実測のゲインプロット，(c) 実測の位相プロットを示す。
 
 \begin{table}[H]
     \centering
@@ -286,28 +288,33 @@
     }
 \end{table}
 
+% Removed original TikZ/semilog plot; replaced by MATLAB and measurement figures
+
+% --------------- MATLAB and Measurement Figures -----------------
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-    \begin{semilogxaxis}[
-        width=12cm, height=8cm,
-        xlabel={Frequency $f$ [Hz]},
-        ylabel={Gain [dB]},
-        grid=both,
-        ymin=-40, ymax=10,
-        xmin=50, xmax=10000,
-        legend pos=south west
-    ]
-    \addplot[mark=*, blue, thick, mark size=1.5pt] coordinates {
-        (99.6,0) (103.7,0.12) (151.7,0.21) (201.7,0.56) (303.4,1.19)
-        (499.7,3.33) (600,4.21) (650,5.36) (707.3,5.90) (746,5.17)
-        (1013,0.12) (1559,-9.90) (3050,-21.79) (5001,-25.68) (6936,-31.06)
-    };
-    \addlegendentry{Experimental}
-    \end{semilogxaxis}
-    \end{tikzpicture}
-    \caption{実験結果：ゲイン特性（ボード線図）}
-    \label{fig:bode}
+    \begin{subfigure}[b]{0.95\linewidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{B1.jpg}
+        \caption{MATLAB による理論・シミュレーション（ボード線図）}
+        \label{fig:bode_sim}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{bode_gain_plot.png}
+        \caption{実測：ゲインプロット}
+        \label{fig:bode_gain_meas}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{bode_phase_plot.png}
+        \caption{実測：位相プロット}
+        \label{fig:bode_phase_meas}
+    \end{subfigure}
+    \caption{比較図：(a) MATLABシミュレーション, (b) 実測ゲイン, (c) 実測位相}
+    \label{fig:bode_images}
 \end{figure}
 
 \section{考察}
@@ -367,7 +374,7 @@
 \end{enumerate}
 
 \subsection{2次遅れ系としての検証}
-\cref{fig:bode}より，共振周波数以降の減衰特性を確認すると，周波数が10倍になるごとの減衰（ロールオフ）は理論的な $-40\,\si{dB}/\text{dec}$ に近似している（例：$3\,\si{kHz}$ で約$-22\,\si{dB}$，$7\,\si{kHz}$ で約$-31\,\si{dB}$）。また，位相特性においても，低周波域の $0^\circ$ から高周波域の $-180^\circ$ へ推移しており，共振点付近で $-90^\circ$ を通過している。これらの周波数応答の特徴は2次遅れ系の理論的挙動と一致しており，本アクティブフィルタは2次遅れ系として正常に機能していると結論付けられる。
+図\ref{fig:bode_images}より，共振周波数以降の減衰特性を確認すると，周波数が10倍になるごとの減衰（ロールオフ）は理論的な $-40\,\si{dB}/\text{dec}$ に近似している（例：$3\,\si{kHz}$ で約$-22\,\si{dB}$，$7\,\si{kHz}$ で約$-31\,\si{dB}$）。また，位相特性においても，低周波域の $0^\circ$ から高周波域の $-180^\circ$ へ推移しており，共振点付近で $-90^\circ$ を通過している。これらの周波数応答の特徴は2次遅れ系の理論的挙動と一致しており，本アクティブフィルタは2次遅れ系として正常に機能していると結論付けられる。
 
 \section{参考文献}
 \begin{enumerate}
