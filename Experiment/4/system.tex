@@ -304,7 +304,7 @@
     \begin{subfigure}[b]{0.95\linewidth}
         \centering
         \includegraphics[width=0.95\linewidth]{B1.jpg}
-        \caption{MATLAB による理論・シミュレーション（ボード線図）}
+        \caption{MATLAB による理論・シミュレーション（ボード線図）（報告事項③）}
         \label{fig:bode_sim}
     \end{subfigure}
     \\[1em]
@@ -321,13 +321,13 @@
         \caption{実測：位相}
         \label{fig:bode_phase_meas}
     \end{subfigure}
-    \caption{比較図：(a) MATLABシミュレーション, (b) 実測ゲイン, (c) 実測位相}
+    \caption{比較図：(a) MATLABシミュレーション（報告事項③）, (b) 実測ゲイン, (c) 実測位相（報告事項④）}
     \label{fig:bode_images}
 \end{figure}
 
 \section{考察}
 
-\subsection{実験結果からの伝達関数の導出と検証}
+\subsection{実験結果からの伝達関数の導出と検証（報告事項①・④）}
 実験で得られたゲインのピーク値から，実際の伝達関数のパラメータ（$\ze, \wn$）を逆算する。
 
 \subsubsection{$\zeta$ と $\omega_n$ の導出}
@@ -372,7 +372,7 @@ $\ze^2$ についての2次方程式として解の公式を用いると，
   &= \frac{2.2914603\times 10^{7}}{s^2 + 2.514879\times 10^{3}\,s + 2.2914603\times 10^{7}}
 \end{align}
 
-\subsection{理論値と実験値の比較検討}
+\subsection{理論値と実験値の比較検討（報告事項②）}
 理論値と実験値を比較し，その誤差率を\cref{tab:error}にまとめた。
 
 \begin{table}[H]
@@ -401,7 +401,7 @@ $\ze^2$ についての2次方程式として解の公式を用いると，
 
 主な原因として考えられるのは，使用したオペアンプの高周波特性の限界である。高周波ではオペアンプの開ループ利得が下がり，位相余裕が減少するため，閉ループでの理想的な応答を保てなくなる。結果として位相が理論値からずれ，元の予定より早く位相の戻りが生じることがある。
 
-\subsection{2次遅れ系としての検証}
+\subsection{2次遅れ系としての検証（報告事項④）}
 図\ref{fig:bode_images}のグラフを確認すると，共振周波数より高い周波数では，周波数が10倍になるごとにゲインが約$-40\,\si{dB}$低下している（$-40\,\si{dB}/\text{dec}$ の傾きに近い）。また位相も，低周波の $0^\circ$ から高周波の $-180^\circ$ へ変化しており，共振点付近でちょうど $-90^\circ$ を通過している。これらの特徴は2次遅れ系の理論的な挙動と一致しているため，作成した回路は2次遅れ系として正しく動作していると言える。
 
 \section{感想}
