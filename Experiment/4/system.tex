@@ -255,7 +255,10 @@
     % 表全体をページ幅に合わせてリサイズ（フォントを小さくし，列間隔を狭める）
     % Removed \resizebox to preserve font size; use tabular* to stretch to text width without scaling
     \begingroup\normalsize\setlength{\tabcolsep}{1pt}%
-    \begin{tabular}{S[table-format=4.1] S[table-format=5.1] c c c S[table-format=2.2] c c}
+    \setlength{\extrarowheight}{0pt}% make rows tight
+    \renewcommand{\arraystretch}{1.0}% normal line spacing -- tighten row height
+    % Use vertically centered fixed-width columns to reduce height and avoid overfull hbox
+    \begin{tabular}{S[table-format=4.1] S[table-format=5.1] >{\centering\arraybackslash}m{1.2cm} >{\centering\arraybackslash}m{1.2cm} >{\centering\arraybackslash}m{1.2cm} S[table-format=2.2] >{\centering\arraybackslash}m{1.1cm} >{\centering\arraybackslash}m{1.6cm}}
         \toprule
         {周波数 $f$} & {角周波数 $\omega$} & {$V_i$} & {$V_o$} & {電圧比} & {ゲイン $G$} & {遅れ $t$} & {位相 $\theta$} \\
         {[\si{Hz}]} & {[\si{rad/s}]} & {[\si{V}]} & {[\si{V}]} & {$V_o/V_i$} & {[\si{dB}]} & {[\si{ms}]} & {[$^\circ$]} \\ % 修正: ^\circ を $^\circ$ に
