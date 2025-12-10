@@ -303,14 +303,14 @@
     \begin{subfigure}[b]{0.48\linewidth}
         \centering
         \includegraphics[width=0.95\linewidth]{bode_gain_plot.png}
-        \caption{実測：ゲインプロット}
+        \caption{実測：ゲイン}
         \label{fig:bode_gain_meas}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\linewidth}
         \centering
         \includegraphics[width=0.95\linewidth]{bode_phase_plot.png}
-        \caption{実測：位相プロット}
+        \caption{実測：位相}
         \label{fig:bode_phase_meas}
     \end{subfigure}
     \caption{比較図：(a) MATLABシミュレーション, (b) 実測ゲイン, (c) 実測位相}
@@ -337,17 +337,22 @@
 \end{equation}
 となる。ここに実験値 $M_p = 1.973$ を代入すると，
 \begin{equation}
-    \ze_{\text{exp}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}} \approx \mathbf{0.263}
+    \ze_{\text{exp}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}}
+    \approx \mathbf{0.262679} \quad (\text{保留: 有効数字を最大限保持})
 \end{equation}
 と算出される。
 次に，共振角周波数 $\omega_p = 2\pi f_p$ の関係式 $\omega_p = \wn\sqrt{1-2\ze^2}$ より，固有角周波数 $\wn$ を逆算する。
 \begin{equation}
-    \omega_{n,\text{exp}} = \frac{2\pi \cdot 707.3}{\sqrt{1 - 2(0.263)^2}} = \frac{4444.1}{\sqrt{0.8616}} \approx \mathbf{\SI{4787}{rad/s}}
+    \omega_{n,\text{exp}} = \frac{2\pi \cdot 707.3}{\sqrt{1 - 2\ze_{\text{exp}}^2}} 
+    \approx \frac{2\pi \cdot 707.3}{\sqrt{1 - 2(0.262679)^2}} 
+    \approx \mathbf{\SI{4786.92}{rad/s}}
 \end{equation}
 以上より，実験結果に基づく伝達関数 $G_{\text{exp}}(s)$ は次式となる。
-\begin{equation}
-    G_{\text{exp}}(s) = \frac{4787^2}{s^2 + 2(0.263)(4787)s + 4787^2} = \frac{2.29 \times 10^7}{s^2 + 2518s + 2.29 \times 10^7}
-\end{equation}
+\begin{align}
+  G_{\text{exp}}(s) &= \frac{\omega_{n,\text{exp}}^2}{s^2 + 2\ze_{\text{exp}}\omega_{n,\text{exp}}\,s + \omega_{n,\text{exp}}^2} \\
+  &= \frac{(4786.92)^2}{s^2 + 2(0.262679)(4786.92)\,s + (4786.92)^2} \\
+  &= \frac{2.2914603\times 10^{7}}{s^2 + 2.514879\times 10^{3}\,s + 2.2914603\times 10^{7}}
+\end{align}
 
 \subsection{理論値と実験値の比較検討}
 理論値と実験値を比較し，その誤差率を\cref{tab:error}にまとめる。
