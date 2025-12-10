@@ -252,11 +252,6 @@
     \centering
     \caption{周波数応答 測定結果（抜粋）}
     \label{tab:result}
-    % --- 修正: Overfull対策 ---
-    % font: small にして幅を抑える
-    % tabcolsep: 2pt にして少し余裕を持たせつつ幅を節約
-    % m{...}: 固定幅を内容に合わせて最適化 (例: 1.2cm -> 1.0cm)
-    % table-format: ゲイン・位相のマイナス記号対応
     \begingroup
     \small 
     \setlength{\tabcolsep}{2pt}
@@ -339,15 +334,26 @@
 \begin{equation}
     M_p (\text{実験値}) = 1.973 \quad (5.90\,\si{dB}), \qquad f_p = \SI{707.3}{Hz}
 \end{equation}
-理論的に $M_p = 1 / (2\ze\sqrt{1-\ze^2})$ の関係がある。これを $\ze$ について解くため，式を変形する。
+理論的に共振ピーク値 $M_p$ は減衰係数 $\ze$ の関数として次式で与えられる。
+\begin{equation}
+    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}}
+\end{equation}
+この式を $\ze$ について解くために両辺を2乗し，整理を行う。
 \begin{equation}
     M_p^2 = \frac{1}{4\ze^2(1-\ze^2)} \iff 4M_p^2 \ze^4 - 4M_p^2 \ze^2 + 1 = 0
 \end{equation}
-これは $\ze^2$ に関する2次方程式であり，共振条件（$\ze < 1/\sqrt{2}$）を満たす解を選択すると，
+これは $\ze^2$ に関する2次方程式とみなせる。解の公式を用いて $\ze^2$ を求める。
+\begin{align}
+    \ze^2 &= \frac{4M_p^2 \pm \sqrt{(4M_p^2)^2 - 16M_p^2}}{8M_p^2} \notag \\
+          &= \frac{4M_p^2 \pm 4M_p^2 \sqrt{1 - \frac{1}{M_p^2}}}{8M_p^2} \notag \\
+          &= \frac{1 \pm \sqrt{1 - \frac{1}{M_p^2}}}{2}
+\end{align}
+ここで，共振現象が生じる条件は $\ze < 1/\sqrt{2}$ （すなわち $\ze^2 < 1/2$）である。$\sqrt{1 - 1/M_p^2} > 0$ であるため，複号のうち正（$+$）を選択すると $\ze^2 > 1/2$ となり条件を満たさない。したがって，複号は負（$-$）を選択する。
+ゆえに，$\ze$ は次式で表される。
 \begin{equation}
     \ze = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{M_p^2}}}{2}}
 \end{equation}
-となる。ここに実験値 $M_p = 1.973$ を代入すると，
+ここに実験値 $M_p = 1.973$ を代入すると，
 \begin{equation}
     \ze_{\text{exp}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}}
     \approx \mathbf{0.262679} \quad (\text{保留: 有効数字を最大限保持})
@@ -361,9 +367,10 @@
 \end{equation}
 以上より，実験結果に基づく伝達関数 $G_{\text{exp}}(s)$ は次式となる。
 \begin{align}
-  G_{\text{exp}}(s) &= \frac{\omega_{n,\text{exp}}^2}{s^2 + 2\ze_{\text{exp}}\omega_{n,\text{exp}}\,s + \omega_{n,\text{exp}}^2} \\
-  &= \frac{(4786.92)^2}{s^2 + 2(0.262679)(4786.92)\,s + (4786.92)^2} \\
+  G_{\text{exp}}(s) &= \frac{\omega_{n,\text{exp}}^2}{s^2 + 2\ze_{\text{exp}}\omega_{n,\text{exp}}\,s + \omega_{n,\text{exp}}^2} \notag \\
+  &= \frac{(4786.92)^2}{s^2 + 2(0.262679)(4786.92)\,s + (4786.92)^2} \notag \\
   &= \frac{2.2914603\times 10^{7}}{s^2 + 2.514879\times 10^{3}\,s + 2.2914603\times 10^{7}}
+  \label{eq:Gexp}
 \end{align}
 
 \subsection{理論値と実験値の比較検討}
