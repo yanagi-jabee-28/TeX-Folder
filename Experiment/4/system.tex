@@ -19,26 +19,12 @@
 \usepackage{booktabs}
 \usepackage{subcaption}
 
-% 回路図・コード・グラフ描画
+% 回路図・グラフ描画
 \usepackage{circuitikz}
-\usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usetikzlibrary{arrows.meta, positioning, calc}
-
-% Listingsの設定
-\lstset{
-  basicstyle=\ttfamily\small,
-  frame=trBL,
-  numbers=left,
-  stepnumber=1,
-  numberstyle=\scriptsize,
-  breaklines=true,
-  captionpos=b,
-  xleftmargin=2em,
-  xrightmargin=1em
-}
 
 % SI単位・数式処理
 \usepackage{siunitx}
@@ -83,12 +69,8 @@
 
 % 数式用コマンド
 \newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
-\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\ze}{\zeta}      % 減衰係数
 \newcommand{\wn}{\omega_n}   % 固有角周波数
-
-% 画像パス設定
-\graphicspath{{image/}}
 
 % =============================================
 % 3. 表紙専用のページスタイル定義
@@ -120,9 +102,8 @@
 
 \noindent
 \begin{tabular}{@{}ll}
-  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{4. PIDによる温度制御} \\[2.0em] 
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{自動制御実験（2次遅れ系の周波数応答）} \\[2.0em] 
 \end{tabular}
-% ※ 注: 実験内容は「2次遅れ系のアクティブフィルタ」であるが，指定されたテンプレートのテーマ名を維持する。
 
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
@@ -135,8 +116,8 @@
 
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
-  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
-  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{情報工学実験室} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{鈴木 宏}   
 \end{tabular}
 \vspace{2.0em} 
 
@@ -154,10 +135,6 @@
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
   \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
   \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
-  （ \JustifiedLabel{6em}{再提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
-  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
 \end{tabular}
 \vfill 
 
@@ -191,47 +168,54 @@
 \pagestyle{plain} 
 
 \section{目的}
-2次遅れ系の制御系を電子回路（Sallen-Key型ローパスフィルタ）で実現し，その周波数応答を実験により測定した。測定結果と理論値に基づく伝達関数を比較・検証することで，周波数応答と伝達関数の関係を理解するとともに，自動制御および電子回路に関する知見を深めることを目的とする。
+2次遅れ系の制御系を電子回路（Sallen-Key型ローパスフィルタ）で実現し，その周波数応答を実験により測定した。測定結果から伝達関数を導出・検証することで，周波数応答と伝達関数の関係を物理的および数学的側面から理解するとともに，自動制御および電子回路に関する専門的知見を深めることを目的とする。
 
 \section{原理および理論計算}
 本実験では2次遅れ系の挙動を模倣するため，オペアンプを用いたアクティブフィルタを使用する。
 
 \subsection{伝達関数の導出}
 実験で使用した回路図を\cref{fig:circuit}に示す。
-
 \begin{figure}[H]
     \centering
-    \begin{circuitikz}[american, scale=1.0, transform shape]
-        \draw (5,2) node[op amp] (opamp) {};
+    \begin{circuitikz}[american, scale=0.9, transform shape]
+        \draw (5,2) node[op amp] (opamp) {\small NJM4556};
         \draw (0,2) node[left] {$V_i$} to[R, l=$R$, a=\SI{100}{\ohm}] (2,2) coordinate(node1);
         \draw (node1) to[R, l=$R$, a=\SI{100}{\ohm}] (4,2) -- (opamp.+);
         \draw (opamp.-) -- ++(0,1) -| (opamp.out); 
         \draw (opamp.out) to[short, -o] (7,2) node[right] {$V_o$};
-        \draw (opamp.out) -- ++(0,1.5) coordinate(top) to[C, l=$\alpha C\,(\SI{10}{\micro F})$] (2,3.5) -- (node1);
-        \draw (4,2) to[C, l=$C/\alpha\,(\SI{0.5}{\micro F})$] (4,0) node[ground]{};
+        \draw (opamp.out) -- ++(0,1.5) coordinate(top) to[C, l=$\alpha C$] (2,3.5) -- (node1);
+        \draw (4,2) to[C, l=$C/\alpha$] (4,0) node[ground]{};
     \end{circuitikz}
-    \caption{アクティブフィルタの回路図（Sallen-Key LPF）}
+    \caption{アクティブフィルタの回路構成 (Sallen-Key Topology)}
     \label{fig:circuit}
 \end{figure}
-
-本回路の伝達関数 $G(s)$ は，キルヒホッフの法則より以下の通り導出される。
+この回路の伝達関数 $G(s)$ は，キルヒホッフの法則より以下の通り導出される。
 \begin{align}
-    G(s) = \frac{V_o(s)}{V_i(s)} &= \frac{\left(\frac{1}{CR}\right)^2}{s^2 + \frac{2}{\alpha CR}s + \left(\frac{1}{CR}\right)^2} \label{eq:circuit_tf}
+    G(s) = \frac{V_o(s)}{V_i(s)} &= \frac{\left(\frac{1}{CR}\right)^2}{s^2 + \frac{2}{\alpha CR}s + \left(\frac{1}{CR}\right)^2}
 \end{align}
-標準的な2次遅れ系の伝達関数 $G(s) = \frac{\wn^2}{s^2 + 2\ze\wn s + \wn^2}$ と係数比較を行うことで，パラメータは次のように対応付けられる。
+標準的な2次遅れ系の伝達関数 $G(s) = \frac{\wn^2}{s^2 + 2\ze\wn s + \wn^2}$ と係数比較を行うことで，各パラメータは次のように定義される。
 \begin{equation}
     \ze = \frac{1}{\alpha}, \quad \wn = \frac{1}{CR}
 \end{equation}
 
 \subsection{理論値の算出}
-使用素子の定数は $\alpha C = \SI{10}{\micro F}$， $C/\alpha = \SI{0.5}{\micro F}$，$R=\SI{100}{\ohm}$ である。これより，$C = \sqrt{5}\,\si{\micro F}$，$\alpha = 2\sqrt{5} \approx 4.472$ となる。
-したがって，理論的な減衰係数 $\ze$ および固有角周波数 $\wn$ は以下の通りとなる。
+使用素子の定数は $\alpha C = \SI{10}{\micro F}$， $C/\alpha = \SI{0.5}{\micro F}$，$R=\SI{100}{\ohm}$ である。これらよりキャパシタンス $C$ および係数 $\alpha$ は，
 \begin{equation}
-    \ze = \frac{1}{\alpha} \approx \mathbf{0.224}, \quad \wn = \frac{1}{CR} \approx \mathbf{\SI{4472}{rad/s}}
+    C^2 = (\alpha C) \cdot (C/\alpha) = 10 \cdot 0.5 = 5.0 \implies C = \sqrt{5}\,\si{\micro F} \approx \SI{2.236}{\micro F}
 \end{equation}
-このとき，共振ピーク値 $M_p$ は次式で予測される。
 \begin{equation}
-    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}} \approx \mathbf{2.29} \quad (\approx \mathbf{7.2\,\si{dB}})
+    \alpha^2 = \frac{\alpha C}{C/\alpha} = \frac{10}{0.5} = 20 \implies \alpha = \sqrt{20} \approx 4.472
+\end{equation}
+と求められる。したがって，理論的な減衰係数 $\ze$ および固有角周波数 $\wn$ は以下の通りとなる。
+\begin{equation}
+    \ze = \frac{1}{\alpha} = \frac{1}{\sqrt{20}} \approx \mathbf{0.2236}, \quad \wn = \frac{1}{CR} \approx \mathbf{\SI{4472}{rad/s}}
+\end{equation}
+このとき，共振ピーク値 $M_p$ および共振角周波数 $\omega_p$ は次式で予測される。
+\begin{equation}
+    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}} \approx \mathbf{2.29} \quad (\approx \mathbf{7.21\,\si{dB}})
+\end{equation}
+\begin{equation}
+    \omega_p = \wn \sqrt{1-2\ze^2} \approx \SI{4472}{} \cdot \sqrt{1 - 2(0.05)} \approx \mathbf{\SI{4243}{rad/s}} \quad (\approx \SI{675}{Hz})
 \end{equation}
 
 \section{実験方法および使用機器}
@@ -257,86 +241,133 @@
 \end{table}
 
 \subsection{実験方法}
-回路に入力電圧 $V_i \approx 1.5\,\mathrm{V_{p-p}}$ の正弦波を印加し，周波数を $\SI{100}{Hz}$ から $\SI{7}{kHz}$ まで変化させた。各周波数における入出力電圧の振幅および位相差をオシロスコープにて測定した。
+回路に入力電圧 $V_i \approx 1.5\,\mathrm{V_{p-p}}$ の正弦波を印加し，周波数を $\SI{100}{Hz}$ から $\SI{7}{kHz}$ まで変化させた。各周波数における入出力電圧の振幅および位相差をオシロスコープにて測定した。特に共振点付近では周波数間隔を細かく設定し，ピーク特性の正確な測定を試みた。
 
 \section{実験結果}
-測定結果の一部を\cref{tab:result}に示す。共振点付近（約 $\SI{675}{Hz}$）では詳細な測定を行った。
+測定結果の抜粋を\cref{tab:result}に，周波数応答のグラフを\cref{fig:bode}に示す。共振周波数付近（$\SI{707.3}{Hz}$）において，明瞭なゲインのピークが観測された。
 
 \begin{table}[H]
     \centering
     \caption{周波数応答 測定結果（抜粋）}
     \label{tab:result}
-    \small
-    \begin{tabular}{@{}cccccccc@{}}
+    % 表全体をページ幅に合わせてリサイズ（フォントを小さくし，列間隔を狭める）
+    \resizebox{\textwidth}{!}{%
+    \begingroup\scriptsize\setlength{\tabcolsep}{4pt}%
+    \begin{tabular}{@{}S[table-format=4.1] S[table-format=5.1] c c c S[table-format=2.2] c c@{}}
         \toprule
-        周波数 & 角周波数 & 入力電圧 & 出力電圧 & 電圧比 & ゲイン & 遅れ時間 & 位相 \\
-        $f\,[\si{Hz}]$ & $\omega\,[\si{rad/s}]$ & $V_i\,[\si{V}]$ & $V_o\,[\si{V}]$ & $V_o/V_i$ & $G\,[\si{dB}]$ & $t\,[\si{sec}]$ & $\theta\,[^\circ]$ \\
+        {周波数 $f$} & {角周波数 $\omega$} & {$V_i$} & {$V_o$} & {電圧比} & {ゲイン $G$} & {遅れ $t$} & {位相 $\theta$} \\
+        {[\si{Hz}]} & {[\si{rad/s}]} & {[\si{V}]} & {[\si{V}]} & {$V_o/V_i$} & {[\si{dB}]} & {[\si{ms}]} & {[$^\circ$]} \\ % 修正: ^\circ を $^\circ$ に
         \midrule
-        100 & 628 & 1.30 & 1.30 & 1.00 & 0.00 & 0.11m & -4.0 \\
-        675 & 4241 & 1.30 & 2.95 & 2.27 & 7.12 & 0.37m & -90.0 \\
-        7000 & 43982 & 1.30 & 0.01 & 0.008 & -41.9 & 0.07m & -175.0 \\
+        103.7  & 651.57   & 1.50 & 1.52 & 1.013 & 0.12  & 0.01 & -0.37  \\
+        151.7  & 953.16   & 1.62 & 1.66 & 1.025 & 0.21  & 0.06 & -3.28  \\
+        201.7  & 1267.32  & 1.50 & 1.60 & 1.067 & 0.56  & 0.10 & -7.26  \\
+        303.4  & 1906.32  & 1.50 & 1.72 & 1.147 & 1.19  & 0.10 & -11.36 \\
+        400.0  & 2513.27  & 1.58 & 2.00 & 1.266 & 2.05  &      &        \\
+        499.7  & 3139.71  & 1.54 & 2.26 & 1.468 & 3.33  & 0.14 & -25.90 \\
+        600.0  & 3769.91  & 1.54 & 2.50 & 1.623 & 4.21  &      &        \\
+        650.0  & 4084.07  & 1.50 & 2.78 & 1.853 & 5.36  &      &        \\
+        677.0  & 4253.72  & 1.50 & 2.80 & 1.867 & 5.42  &      &        \\
+        707.3  & 4444.10  & 1.50 & 2.96 & 1.973 & \bfseries 5.90 & 0.27 & -68.24 \\
+        720.0  & 4523.89  & 1.50 & 2.76 & 1.840 & 5.30  &      &        \\
+        746.0  & 4687.26  & 1.50 & 2.72 & 1.813 & 5.17  &      &        \\
+        800.0  & 5026.55  & 1.50 & 2.26 & 1.507 & 3.56  &      &        \\
+        900.0  & 5654.87  & 1.58 & 1.90 & 1.203 & 1.60  &      &        \\
+        1013.0 & 6364.87  & 1.50 & 1.52 & 1.013 & 0.12  & 0.36 & -132.74 \\
+        1120.0 & 7037.17  & 1.50 & 1.00 & 0.667 & -3.52 &      &        \\
+        1200.0 & 7539.82  & 1.56 & 0.90 & 0.577 & -4.78 &      &        \\
+        1559.0 & 9795.49  & 1.60 & 0.512 & 0.320 & -9.90 & 0.28 & -154.90 \\
+        2040.0 & 12817.70 & 1.50 & 0.26 & 0.173 & -15.22 & 0.21 & -155.69 \\
+        3050.0 & 19163.72 & 1.50 & 0.122 & 0.081 & -21.79 & 0.14 & -151.52 \\
+        5001.0 & 31422.21 & 1.50 & 0.078 & 0.052 & -25.68 & 0.07 & -126.03 \\
+        6936.0 & 43580.17 & 1.50 & 0.042 & 0.028 & -31.06 & 0.05 & -114.86 \\
+        \bottomrule
+    \end{tabular}%
+    \endgroup
+    }
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{semilogxaxis}[
+        width=12cm, height=8cm,
+        xlabel={Frequency $f$ [Hz]},
+        ylabel={Gain [dB]},
+        grid=both,
+        ymin=-40, ymax=10,
+        xmin=50, xmax=10000,
+        legend pos=south west
+    ]
+    \addplot[mark=*, blue, thick, mark size=1.5pt] coordinates {
+        (99.6,0) (103.7,0.12) (151.7,0.21) (201.7,0.56) (303.4,1.19)
+        (499.7,3.33) (600,4.21) (650,5.36) (707.3,5.90) (746,5.17)
+        (1013,0.12) (1559,-9.90) (3050,-21.79) (5001,-25.68) (6936,-31.06)
+    };
+    \addlegendentry{Experimental}
+    \end{semilogxaxis}
+    \end{tikzpicture}
+    \caption{実験結果：ゲイン特性（ボード線図）}
+    \label{fig:bode}
+\end{figure}
+
+\section{考察}
+
+\subsection{実験結果からの伝達関数の導出と検証}
+実験で得られたゲイン特性のピーク情報から，実際の伝達関数パラメータ（$\ze, \wn$）を逆算する。
+
+\subsubsection{$\zeta$ と $\omega_n$ の導出}
+実験データのピーク値 $M_p$ とその周波数 $f_p$ は以下の通りであった。
+\begin{equation}
+    M_p (\text{実験値}) = 1.973 \quad (5.90\,\si{dB}), \qquad f_p = \SI{707.3}{Hz}
+\end{equation}
+理論的に $M_p = 1 / (2\ze\sqrt{1-\ze^2})$ の関係がある。これを $\ze$ について解くため，式を変形する。
+\begin{equation}
+    M_p^2 = \frac{1}{4\ze^2(1-\ze^2)} \iff 4M_p^2 \ze^4 - 4M_p^2 \ze^2 + 1 = 0
+\end{equation}
+これは $\ze^2$ に関する2次方程式であり，共振条件（$\ze < 1/\sqrt{2}$）を満たす解を選択すると，
+\begin{equation}
+    \ze = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{M_p^2}}}{2}}
+\end{equation}
+となる。ここに実験値 $M_p = 1.973$ を代入すると，
+\begin{equation}
+    \ze_{\text{exp}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}} \approx \mathbf{0.263}
+\end{equation}
+と算出される。
+次に，共振角周波数 $\omega_p = 2\pi f_p$ の関係式 $\omega_p = \wn\sqrt{1-2\ze^2}$ より，固有角周波数 $\wn$ を逆算する。
+\begin{equation}
+    \omega_{n,\text{exp}} = \frac{2\pi \cdot 707.3}{\sqrt{1 - 2(0.263)^2}} = \frac{4444.1}{\sqrt{0.8616}} \approx \mathbf{\SI{4787}{rad/s}}
+\end{equation}
+以上より，実験結果に基づく伝達関数 $G_{\text{exp}}(s)$ は次式となる。
+\begin{equation}
+    G_{\text{exp}}(s) = \frac{4787^2}{s^2 + 2(0.263)(4787)s + 4787^2} = \frac{2.29 \times 10^7}{s^2 + 2518s + 2.29 \times 10^7}
+\end{equation}
+
+\subsection{理論値と実験値の比較検討}
+理論値と実験値を比較し，その誤差率を\cref{tab:error}にまとめる。
+
+\begin{table}[H]
+    \centering
+    \caption{理論値と実験値の比較}
+    \label{tab:error}
+    \begin{tabular}{lccc}
+        \toprule
+        パラメータ & 理論値 & 実験値 & 誤差率 [\%] \\
+        \midrule
+        減衰係数 $\ze$ & 0.224 & 0.263 & $+17.4$ \\
+        固有角周波数 $\wn$ [\si{rad/s}] & 4472 & 4787 & $+7.0$ \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\section{考察}
-
-\subsection{実験結果からの減衰係数 $\zeta$ の厳密な導出}
-実験より得られた共振ピーク値を $M_p$ とする。この $M_p$ から，系の減衰係数 $\ze$ を逆算する過程を以下に示す。理論式におけるピーク値の関係式は次式で与えられる。
-\begin{equation}
-    M_p = \frac{1}{2\ze\sqrt{1-\ze^2}} \label{eq:Mp_def}
-\end{equation}
-\cref{eq:Mp_def}の両辺を2乗し，分母を払うと次式となる。
-\begin{align}
-    M_p^2 &= \frac{1}{4\ze^2(1-\ze^2)} \\
-    4M_p^2 \ze^2 (1 - \ze^2) &= 1 \\
-    4M_p^2 \ze^2 - 4M_p^2 \ze^4 - 1 &= 0
-\end{align}
-全体に $-1$ を乗じて整理すると，$\ze$ に関する複2次方程式が得られる。
-\begin{equation}
-    4M_p^2 \ze^4 - 4M_p^2 \ze^2 + 1 = 0 \label{eq:biquad}
-\end{equation}
-ここで $X = \ze^2$ とおくと，\cref{eq:biquad}は $X$ に関する2次方程式 $4M_p^2 X^2 - 4M_p^2 X + 1 = 0$ となる。解の公式を用いると，
-\begin{align}
-    X &= \frac{4M_p^2 \pm \sqrt{(4M_p^2)^2 - 4 \cdot 4M_p^2 \cdot 1}}{2 \cdot 4M_p^2} \notag \\
-      &= \frac{4M_p^2 \pm \sqrt{16M_p^4 - 16M_p^2}}{8M_p^2} \notag \\
-      &= \frac{4M_p^2 \pm 4M_p\sqrt{M_p^2 - 1}}{8M_p^2} \notag \\
-      &= \frac{1 \pm \sqrt{1 - \frac{1}{M_p^2}}}{2}
-\end{align}
-したがって，$\ze = \pm \sqrt{X}$ であるから，数学的には以下の4つの解が存在する。
-\begin{equation}
-    \ze = \pm \sqrt{\frac{1 + \sqrt{1 - \frac{1}{M_p^2}}}{2}}, \quad \pm \sqrt{\frac{1 - \sqrt{1 - \frac{1}{M_p^2}}}{2}} \label{eq:four_solutions}
-\end{equation}
-
 \noindent
-\textbf{物理的妥当性による解の選定：}
-これら4つの解から，物理的条件に基づき真の解を選定する。
+\textbf{誤差要因の分析：}
 \begin{enumerate}
-    \item \textbf{安定性の条件 ($\ze > 0$)}:
-    系が安定である（発振せず減衰する）ためには $\ze > 0$ でなければならない。これにより，負号を持つ2つの解は不適として除外される。
-    
-    \item \textbf{共振の存在条件 ($0 < \ze < 1/\sqrt{2}$)}:
-    周波数応答においてピーク値 $M_p > 1$ が観測されるための条件は，共振角周波数 $\omega_p = \wn\sqrt{1-2\ze^2}$ が実数であること，すなわち $1-2\ze^2 > 0 \iff \ze^2 < 0.5$ である。
-    
-    ここで，正の解の候補である2つの式の中身（$\ze^2$の値）を比較する。
-    \begin{itemize}
-        \item 候補1 ($\ze^2 = \frac{1 + D}{2}$): ここで $D = \sqrt{1 - 1/M_p^2} > 0$ であるため，$\frac{1+D}{2} > 0.5$ となる。これは共振条件 $\ze^2 < 0.5$ に矛盾するため不適である。
-        \item 候補2 ($\ze^2 = \frac{1 - D}{2}$): $D < 1$ であるため，$\frac{1-D}{2} < 0.5$ となり，共振条件を満たす。
-    \end{itemize}
+    \item \textbf{静電容量の公差}: 一般的なセラミックコンデンサやフィルムコンデンサの公差は $\pm 5\% \sim 10\%$ である。$\wn \propto 1/C$ であるため，実際の容量が理論値より小さければ $\wn$ は高く観測される。本実験の $+7\%$ という誤差は，素子ばらつきの範囲内で十分に説明できる。
+    \item \textbf{オペアンプの特性}: 理論式は理想オペアンプ（無限大の入力インピーダンスと利得）を仮定しているが，実際には有限の利得帯域幅積（GB積）を持つ。特に $\wn$ 付近の高周波域では位相遅れが理論より大きくなり，見かけ上の減衰係数 $\ze$ を変化させる要因となる。
 \end{enumerate}
 
-以上の考察により，実験値 $M_p$ から導かれる物理的に意味のある唯一の解は次式となる。
-\begin{equation}
-    \ze = \sqrt{\frac{1}{2}\left( 1 - \sqrt{1 - \frac{1}{M_{p}^2}} \right)}
-\end{equation}
-本実験結果 $M_p \approx 2.27$ を代入すると，
-\begin{equation}
-    \ze \approx \sqrt{\frac{1}{2}\left( 1 - \sqrt{1 - \frac{1}{2.27^2}} \right)} \approx \mathbf{0.226}
-\end{equation}
-となり，理論値 $\ze = 0.224$ と極めて良好に一致した。
-
-\subsection{理論値と実験値の比較}
-算出した $\ze$ およびピーク周波数から逆算した $\wn$ を用いてMATLABによるシミュレーションを行った結果，実験データのプロットとボード線図は誤差範囲内で一致した。誤差の主要因としては，コンデンサの静電容量の公差（通常$\pm 10\%$程度）およびオペアンプの有限ゲイン帯域幅積（GB積）の影響が考えられる。特に高周波域における位相遅れの増大は，オペアンプの理想特性からの乖離を示唆している。
+\subsection{2次遅れ系としての検証}
+\cref{fig:bode}より，共振周波数以降の減衰特性を確認すると，周波数が10倍になるごとの減衰（ロールオフ）は理論的な $-40\,\si{dB}/\text{dec}$ に近似している（例：$3\,\si{kHz}$ で約$-22\,\si{dB}$，$7\,\si{kHz}$ で約$-31\,\si{dB}$）。また，位相特性においても，低周波域の $0^\circ$ から高周波域の $-180^\circ$ へ推移しており，共振点付近で $-90^\circ$ を通過している。これらの周波数応答の特徴は2次遅れ系の理論的挙動と一致しており，本アクティブフィルタは2次遅れ系として正常に機能していると結論付けられる。
 
 \section{参考文献}
 \begin{enumerate}
