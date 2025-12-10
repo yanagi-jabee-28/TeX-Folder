@@ -129,12 +129,16 @@
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
-  \JustifiedLabel{5em}{実験日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
-  \JustifiedLabel{5em}{提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
-  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{11} 月 \UnderlineBox[0.65cm]{28} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{12} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
 \end{tabular}
 \vfill 
 
@@ -177,15 +181,7 @@
 実験で使用した回路図を\cref{fig:circuit}に示す。
 \begin{figure}[H]
     \centering
-    \begin{circuitikz}[american, scale=0.9, transform shape]
-        \draw (5,2) node[op amp] (opamp) {\small NJM4556};
-        \draw (0,2) node[left] {$V_i$} to[R, l=$R$, a=\SI{100}{\ohm}] (2,2) coordinate(node1);
-        \draw (node1) to[R, l=$R$, a=\SI{100}{\ohm}] (4,2) -- (opamp.+);
-        \draw (opamp.-) -- ++(0,1) -| (opamp.out); 
-        \draw (opamp.out) to[short, -o] (7,2) node[right] {$V_o$};
-        \draw (opamp.out) -- ++(0,1.5) coordinate(top) to[C, l=$\alpha C$] (2,3.5) -- (node1);
-        \draw (4,2) to[C, l=$C/\alpha$] (4,0) node[ground]{};
-    \end{circuitikz}
+    \includegraphics[width=0.65\linewidth]{原理図.png}
     \caption{アクティブフィルタの回路構成 (Sallen-Key Topology)}
     \label{fig:circuit}
 \end{figure}
@@ -227,8 +223,13 @@
     \centering
     \caption{使用機器一覧}
     \label{tab:equip}
+    % --- 修正: Overfull対策 ---
+    % \small化、列幅の調整、余白の圧縮を実行
+    \begingroup
+    \small
+    \setlength{\tabcolsep}{2pt}
     \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{@{}cclcl@{}}
+    \begin{tabular}{@{} >{\centering\arraybackslash}m{0.8cm} >{\raggedright\arraybackslash}m{2.8cm} >{\raggedright\arraybackslash}m{4.0cm} >{\raggedright\arraybackslash}m{3.6cm}@{\hspace{2pt}} >{\raggedright\arraybackslash}m{3.0cm} @{} }
         \toprule
         No. & 機器名 & メーカー / 型番 & 定格・仕様 & 管理番号 \\
         \midrule
@@ -237,6 +238,7 @@
         3 & 直流安定化電源 & KENWOOD / PD18-10AD & $0 \sim 18\,\si{V}, 10\,\si{A}$ & 005153, 005156 \\
         \bottomrule
     \end{tabular}
+    \endgroup
 \end{table}
 
 \subsection{実験方法}
@@ -369,7 +371,6 @@
   G_{\text{exp}}(s) &= \frac{\omega_{n,\text{exp}}^2}{s^2 + 2\ze_{\text{exp}}\omega_{n,\text{exp}}\,s + \omega_{n,\text{exp}}^2} \notag \\
   &= \frac{(4786.92)^2}{s^2 + 2(0.262679)(4786.92)\,s + (4786.92)^2} \notag \\
   &= \frac{2.2914603\times 10^{7}}{s^2 + 2.514879\times 10^{3}\,s + 2.2914603\times 10^{7}}
-  \label{eq:Gexp}
 \end{align}
 
 \subsection{理論値と実験値の比較検討}
