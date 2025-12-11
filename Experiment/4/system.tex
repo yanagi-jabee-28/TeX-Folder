@@ -116,13 +116,13 @@
 
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
-  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{情報工学実験室} & 
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{エレクトロニクス工房} & 
   \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{鈴木 宏}    
 \end{tabular}
 \vspace{2.0em} 
 
 \noindent
-\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{倉科純太郎} 
 \vspace{2.5em} 
 
 \noindent
@@ -134,7 +134,7 @@
     \JustifiedLabel{5em}{提出期限} & 
     \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{12} 日 & 
     \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
-    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{11} 日 \\
     （ \JustifiedLabel{6em}{再提出期限} & 
     \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
     \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
@@ -172,7 +172,7 @@
 \pagestyle{plain} 
 
 \section{目的}
-2次遅れ系となる回路（Sallen-Key型ローパスフィルタ）を作成し，その周波数応答を測定した。測定結果から伝達関数を算出し，理論値と比較することで，周波数応答と伝達関数の関係を理解することを目的とする。
+2次遅れ系となる回路を作成し，その周波数応答を測定した。測定結果から伝達関数を算出し，理論値と比較することで，周波数応答と伝達関数の関係を理解することを目的とする。
 
 \section{原理および理論計算}
 本実験では，オペアンプを用いたアクティブフィルタを使用して2次遅れ系の回路を作成した。
@@ -185,7 +185,7 @@
     \caption{アクティブフィルタの回路構成 (Sallen-Key Topology)}
     \label{fig:circuit}
 \end{figure}
-この回路の伝達関数 $G(s)$ は，キルヒホッフの法則より次のように導出できる。
+この回路の伝達関数 $G(s)$ は，次のように導出できる。
 \begin{align}
     G(s) = \frac{V_o(s)}{V_i(s)} &= \frac{\left(\frac{1}{CR}\right)^2}{s^2 + \frac{2}{\alpha CR}s + \left(\frac{1}{CR}\right)^2}
 \end{align}
@@ -234,8 +234,8 @@
         No. & 機器名 & メーカー / 型番 & 定格・仕様 & 管理番号 \\
         \midrule
         1 & 発振器 & KENWOOD / AG-203D & $10\,\si{Hz} \sim 1\,\si{MHz}$ & 60800025 \\
-        2 & オシロスコープ & Tektronix / TBS1052B & $50\,\si{MHz}, 1\,\si{GS/s}$ & W5022S10030760 \\
-        3 & 直流安定化電源 & KENWOOD / PD18-10AD & $0 \sim 18\,\si{V}, 10\,\si{A}$ & 005153, 005156 \\
+        2 & オシロスコープ & OWON / PDS5022S & $50\,\si{MHz}, 1\,\si{GS/s}$ & W5022S10030760 \\
+        3 & 直流安定化電源 & AND / AD-8724D & $0 \sim 18\,\si{V}, 10\,\si{A}$ & 005153, 005156 \\
         \bottomrule
     \end{tabular}
     \endgroup
