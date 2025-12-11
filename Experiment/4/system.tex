@@ -102,7 +102,7 @@
 
 \noindent
 \begin{tabular}{@{}ll}
-  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{自動制御実験（2次遅れ系の周波数応答）} \\[2.0em] 
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{自動制御実験} \\[2.0em] 
 \end{tabular}
 
 \noindent
@@ -356,18 +356,18 @@ $\ze^2$ についての2次方程式として解の公式を用いると，
 \end{equation}
 ここに実験値 $M_p = 1.973$ を代入して計算すると，以下の値になった。
 \begin{equation}
-    \ze_{\text{exp}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}}
+    \ze_{\text{実験値}} = \sqrt{\frac{1 - \sqrt{1 - \frac{1}{1.973^2}}}{2}}
     \approx \mathbf{0.262679} \quad (\text{計算のため桁数を保持})
 \end{equation}
 次に，共振角周波数 $\omega_p = 2\pi f_p$ の関係式 $\omega_p = \wn\sqrt{1-2\ze^2}$ を変形して，固有角周波数 $\wn$ を求めた。
 \begin{equation}
-    \omega_{n,\text{exp}} = \frac{2\pi \cdot 707.3}{\sqrt{1 - 2\ze_{\text{exp}}^2}} 
+    \omega_{n,\text{実験値}} = \frac{2\pi \cdot 707.3}{\sqrt{1 - 2\ze_{\text{実験値}}^2}} 
     \approx \frac{2\pi \cdot 707.3}{\sqrt{1 - 2(0.262679)^2}} 
     \approx \mathbf{\SI{4786.92}{rad/s}}
 \end{equation}
-以上より，実験結果から求めた伝達関数 $G_{\text{exp}}(s)$ は以下のようになる。
+以上より，実験結果から求めた伝達関数 $G_{\text{実験値}}(s)$ は以下のようになる。
 \begin{align}
-  G_{\text{exp}}(s) &= \frac{\omega_{n,\text{exp}}^2}{s^2 + 2\ze_{\text{exp}}\omega_{n,\text{exp}}\,s + \omega_{n,\text{exp}}^2} \notag \\
+  G_{\text{実験値}}(s) &= \frac{\omega_{n,\text{実験値}}^2}{s^2 + 2\ze_{\text{実験値}}\omega_{n,\text{実験値}}\,s + \omega_{n,\text{実験値}}^2} \notag \\
   &= \frac{(4786.92)^2}{s^2 + 2(0.262679)(4786.92)\,s + (4786.92)^2} \notag \\
   &= \frac{2.2914603\times 10^{7}}{s^2 + 2.514879\times 10^{3}\,s + 2.2914603\times 10^{7}}
 \end{align}
