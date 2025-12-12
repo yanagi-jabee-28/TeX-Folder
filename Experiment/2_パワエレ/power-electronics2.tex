@@ -39,6 +39,8 @@
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
+% ページ内の残り領域が不足する場合のみページ分割を行うためのパッケージ
+\usepackage{needspace}
 
 % 参考文献の上付き表示設定
 \makeatletter
@@ -223,7 +225,8 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     FIAMM 12SPX42 (\SI{12}{V}, \SI{42}{Ah}) $\times$ 4直列
 \end{itemize}
 
-\clearpage % ページ区切りを入れてレイアウトを整理
+% ページが崩れる場合に改ページを行う（余白に余裕があればそのまま続ける）
+\Needspace{10\baselineskip}
 
 \section{実験方法}
 詳細は取扱説明書（昭和電業社作成）にしたがって実験を行います．
@@ -252,18 +255,19 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \item 測定開始してから70秒が経過してから測定データを保存して，「回転数－時間特性」，「電源電力－時間特性」，「インバータ出力電力－時間特性」，「電源電圧－時間特性」を作成する．「インバータ出力電力－時間特性」，「電源電圧－時間特性」から回生動作時のエネルギーの流れについて検討する．
 \end{enumerate}
 
-\subsection{電気自動車実験}
-\begin{enumerate}
-    \item ブレーカをONにする（赤ボタンが点灯する）．
-    \item 緑ボタンを押す（緑ボタンが点灯する）．
-    \item 一度アクセルを踏み込む（レゾルバのZ相が検知できるまでモータがゆっくり回転して，検知できると停止する）．モータが停止したらアクセルを離す．
-    \item 通信ケーブルで電気自動車と計測パソコンとを接続して，アクセルを操作して加減速した場合の電気自動車の特性を測定する．その際，電力計で電圧波形，電流波形を測定する．
-    \item 実験終了後，赤ボタンを押す（赤ボタンが点灯する）．
-    \item ブレーカを切る．
-    \item 測定データを保存して，「速度－時間特性」，「電流設定値－時間特性」，「電流測定値－時間特性」，「モータ電圧－時間特性」，「ボリューム1（アクセルの可変抵抗値）－時間特性」，「ボリューム2（ブレーキの可変抵抗値）－時間特性」を作成する．モータの加減速で各値がどのように変化しているか検討する．
-\end{enumerate}
+% \subsection{電気自動車実験}
+% \begin{enumerate}
+%     \item ブレーカをONにする（赤ボタンが点灯する）．
+%     \item 緑ボタンを押す（緑ボタンが点灯する）．
+%     \item 一度アクセルを踏み込む（レゾルバのZ相が検知できるまでモータがゆっくり回転して，検知できると停止する）．モータが停止したらアクセルを離す．
+%     \item 通信ケーブルで電気自動車と計測パソコンとを接続して，アクセルを操作して加減速した場合の電気自動車の特性を測定する．その際，電力計で電圧波形，電流波形を測定する．
+%     \item 実験終了後，赤ボタンを押す（赤ボタンが点灯する）．
+%     \item ブレーカを切る．
+%     \item 測定データを保存して，「速度－時間特性」，「電流設定値－時間特性」，「電流測定値－時間特性」，「モータ電圧－時間特性」，「ボリューム1（アクセルの可変抵抗値）－時間特性」，「ボリューム2（ブレーキの可変抵抗値）－時間特性」を作成する．モータの加減速で各値がどのように変化しているか検討する．
+% \end{enumerate}
 
-\clearpage % 結果の前に改ページ
+% 結果セクションをページ先頭にしたいが，ページに十分余白がある場合はそのまま続ける
+\clearpage
 
 \section{実験結果}
 % 修正: Overfull \hbox対策として、widthを0.95\linewidthから0.90\linewidthに変更
@@ -306,6 +310,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \label{fig:regeneration-results}
 \end{figure}
 
+% 必要ならページ区切りを行う
 \clearpage
 
 \subsection{電流制御実験の結果}
@@ -334,6 +339,9 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \label{fig:current-control-results}
 \end{figure}
 
+% 必要ならページ区切りを行う
+\clearpage
+
 \subsection{速度制御実験の結果}
 \begin{figure}[htbp]
     \centering
@@ -360,35 +368,39 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \label{fig:speed-control-results}
 \end{figure}
 
+% 必要ならページ区切りを行う
 \clearpage
 
-\subsection{電気自動車実験の結果}
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.95\textwidth}
-        \centering
-        \begin{tikzpicture}
-        \begin{axis}[xlabel=時間(秒),ylabel=速度(\,rpm\,),width=0.90\linewidth,height=5cm]
-            \addplot[brown, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=5] {1205/自動車20251205Simtrol_data(in).csv};
-        \end{axis}
-        \end{tikzpicture}
-        \caption{速度－時間特性}
-    \end{subfigure}
-    \vspace{1em}
-    \begin{subfigure}[b]{0.95\textwidth}
-        \centering
-        \begin{tikzpicture}
-        \begin{axis}[xlabel=時間(秒),ylabel=電流設定値/測定値(\,A\,),width=0.90\linewidth,height=5cm]
-            \addplot[black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=3] {1205/自動車20251205Simtrol_data(in).csv};
-            \addplot[dashed, red, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=4] {1205/自動車20251205Simtrol_data(in).csv};
-        \legend{設定値,測定値}
-        \end{axis}
-        \end{tikzpicture}
-        \caption{電流設定値－測定値の時間変化}
-    \end{subfigure}
-    \caption{電気自動車実験の測定結果}
-    \label{fig:ev-results}
-\end{figure}
+% \subsection{電気自動車実験の結果}
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{0.95\textwidth}
+%         \centering
+%         \begin{tikzpicture}
+%         \begin{axis}[xlabel=時間(秒),ylabel=速度(\,rpm\,),width=0.90\linewidth,height=5cm]
+%             \addplot[brown, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=5] {1205/自動車20251205Simtrol_data(in).csv};
+%         \end{axis}
+%         \end{tikzpicture}
+%         \caption{速度－時間特性}
+%     \end{subfigure}
+%     \vspace{1em}
+%     \begin{subfigure}[b]{0.95\textwidth}
+%         \centering
+%         \begin{tikzpicture}
+%         \begin{axis}[xlabel=時間(秒),ylabel=電流設定値/測定値(\,A\,),width=0.90\linewidth,height=5cm]
+%             \addplot[black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=3] {1205/自動車20251205Simtrol_data(in).csv};
+%             \addplot[dashed, red, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=4] {1205/自動車20251205Simtrol_data(in).csv};
+%         \legend{設定値,測定値}
+%         \end{axis}
+%         \end{tikzpicture}
+%         \caption{電流設定値－測定値の時間変化}
+%     \end{subfigure}
+%     \caption{電気自動車実験の測定結果}
+%     \label{fig:ev-results}
+% \end{figure}
+
+% % 必要ならページ区切りを行う
+% \Needspace{8\baselineskip}
 
 \section{報告事項}
 (1) 回生実験において得られた「電源電圧－時間特性」から，減速開始時の電圧の変化量を求め，理論値と比較して，なぜ値が異なるのか検討せよ．
