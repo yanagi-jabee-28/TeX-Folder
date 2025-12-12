@@ -24,6 +24,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
 \usetikzlibrary{arrows.meta, positioning, calc}
 
 % SI単位・数式処理
@@ -222,6 +223,8 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     FIAMM 12SPX42 (\SI{12}{V}, \SI{42}{Ah}) $\times$ 4直列
 \end{itemize}
 
+\clearpage % ページ区切りを入れてレイアウトを整理
+
 \section{実験方法}
 詳細は取扱説明書（昭和電業社作成）にしたがって実験を行います．
 
@@ -249,8 +252,6 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \item 測定開始してから70秒が経過してから測定データを保存して，「回転数－時間特性」，「電源電力－時間特性」，「インバータ出力電力－時間特性」，「電源電圧－時間特性」を作成する．「インバータ出力電力－時間特性」，「電源電圧－時間特性」から回生動作時のエネルギーの流れについて検討する．
 \end{enumerate}
 
-% [図2 エネルギー回生実習装置用ソフトウェアの画面 挿入箇所]
-
 \subsection{電気自動車実験}
 \begin{enumerate}
     \item ブレーカをONにする（赤ボタンが点灯する）．
@@ -262,7 +263,134 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
     \item 測定データを保存して，「速度－時間特性」，「電流設定値－時間特性」，「電流測定値－時間特性」，「モータ電圧－時間特性」，「ボリューム1（アクセルの可変抵抗値）－時間特性」，「ボリューム2（ブレーキの可変抵抗値）－時間特性」を作成する．モータの加減速で各値がどのように変化しているか検討する．
 \end{enumerate}
 
-% [図3 電気自動車実習装置用ソフトウェア (Simtrol-m) のモニタ画面 挿入箇所]
+\clearpage % 結果の前に改ページ
+
+\section{実験結果}
+% 警告回避のポイント: 
+% 1. header=false を追加し、数値データの誤読を防ぐ
+% 2. width=0.95\linewidth に設定し、Overfull \hbox を回避
+
+\subsection{回生実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.95\linewidth,height=5cm]
+            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/回生20251205 141847(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{回転数－時間特性}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=電源電圧(\,V\,),width=0.95\linewidth,height=5cm]
+            \addplot[red, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=3] {1205/回生20251205 141847(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{電源電圧－時間特性}
+    \end{subfigure}
+    
+    \vspace{1em} % 上下の間隔を確保
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=インバータ出力電力(\,W\,),width=0.95\linewidth,height=5cm]
+            \addplot[teal, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=9] {1205/回生20251205 141847(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{インバータ出力電力－時間特性}
+    \end{subfigure}
+    \caption{回生実験の測定結果}
+    \label{fig:regeneration-results}
+\end{figure}
+
+\clearpage
+
+\subsection{電流制御実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.95\linewidth,height=5cm]
+            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/電流制御20251205 134918(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{回転数－時間特性}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=トルク(\,Nm\,),width=0.95\linewidth,height=5cm]
+            \addplot[orange, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=6] {1205/電流制御20251205 134918(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{トルク－時間特性}
+    \end{subfigure}
+    \caption{電流制御の測定結果}
+    \label{fig:current-control-results}
+\end{figure}
+
+\subsection{速度制御実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.95\linewidth,height=5cm]
+            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/速度制御20251205 135730(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{回転数－時間特性}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=電源電力(\,W\,),width=0.95\linewidth,height=5cm]
+            \addplot[magenta, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=4] {1205/速度制御20251205 135730(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{電源電力－時間特性}
+    \end{subfigure}
+    \caption{速度制御の測定結果}
+    \label{fig:speed-control-results}
+\end{figure}
+
+\clearpage
+
+\subsection{電気自動車実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=速度(\,rpm\,),width=0.95\linewidth,height=5cm]
+            \addplot[brown, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=5] {1205/自動車20251205Simtrol_data(in).csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{速度－時間特性}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[xlabel=時間(秒),ylabel=電流設定値/測定値(\,A\,),width=0.95\linewidth,height=5cm]
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=3] {1205/自動車20251205Simtrol_data(in).csv};
+            \addplot[dashed, red, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=4] {1205/自動車20251205Simtrol_data(in).csv};
+        \legend{設定値,測定値}
+        \end{axis}
+        \end{tikzpicture}
+        \caption{電流設定値－測定値の時間変化}
+    \end{subfigure}
+    \caption{電気自動車実験の測定結果}
+    \label{fig:ev-results}
+\end{figure}
 
 \section{報告事項}
 (1) 回生実験において得られた「電源電圧－時間特性」から，減速開始時の電圧の変化量を求め，理論値と比較して，なぜ値が異なるのか検討せよ．
@@ -293,5 +421,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
 \begin{equation}
     E = \frac{1}{2}C({V_{1}}^{2}-{V_{0}}^{2}) = \frac{1}{2} \times 38.6 \times ({V_{1}}^{2}-24^{2}) = 1549.8 \, [\unit{J}]
 \end{equation}
+
+実測値：図\ref{fig:regeneration-results}に示すように，減速開始後の電源電圧は最大で約\SI{24.5}{V}まで上昇した。したがって，初期電圧\SI{24}{V}との差は約\SI{0.5}{V}であり，理論値（\SI{1.61}{V}）より小さい．この差は，回生効率（変換ロス），インバータの損失，配線抵抗や測定誤差が寄与したと考えられる．
 
 \end{document}
