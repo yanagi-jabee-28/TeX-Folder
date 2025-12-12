@@ -287,7 +287,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.90\linewidth,height=5cm]
-            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/回生20251205 141847(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/回生20251205 141847(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{回転数－時間特性}
@@ -297,7 +297,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=電源電圧(\,V\,),width=0.90\linewidth,height=5cm]
-            \addplot[red, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=3] {1205/回生20251205 141847(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=3] {1205/回生20251205 141847(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{電源電圧－時間特性}
@@ -309,7 +309,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=インバータ出力電力(\,W\,),width=0.90\linewidth,height=5cm]
-            \addplot[teal, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=9] {1205/回生20251205 141847(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=9] {1205/回生20251205 141847(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{インバータ出力電力－時間特性}
@@ -328,7 +328,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.90\linewidth,height=5cm]
-            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/電流制御20251205 134918(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/電流制御20251205 134918(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{回転数－時間特性}
@@ -338,7 +338,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=トルク(\,Nm\,),width=0.90\linewidth,height=5cm]
-            \addplot[orange, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=6] {1205/電流制御20251205 134918(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=6] {1205/電流制御20251205 134918(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{トルク－時間特性}
@@ -357,7 +357,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=回転数(\,rpm\,),width=0.90\linewidth,height=5cm]
-            \addplot[blue, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/速度制御20251205 135730(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=5] {1205/速度制御20251205 135730(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{回転数－時間特性}
@@ -367,7 +367,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
         \centering
         \begin{tikzpicture}
         \begin{axis}[xlabel=時間(秒),ylabel=電源電力(\,W\,),width=0.90\linewidth,height=5cm]
-            \addplot[magenta, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=4] {1205/速度制御20251205 135730(in).csv};
+            \addplot[black, thick] table[col sep=comma, header=false, skip first n=2, x index=1, y index=4] {1205/速度制御20251205 135730(in).csv};
         \end{axis}
         \end{tikzpicture}
         \caption{電源電力－時間特性}
@@ -386,7 +386,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
 %         \centering
 %         \begin{tikzpicture}
 %         \begin{axis}[xlabel=時間(秒),ylabel=速度(\,rpm\,),width=0.90\linewidth,height=5cm]
-%             \addplot[brown, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=5] {1205/自動車20251205Simtrol_data(in).csv};
+%             \addplot[black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=5] {1205/自動車20251205Simtrol_data(in).csv};
 %         \end{axis}
 %         \end{tikzpicture}
 %         \caption{速度－時間特性}
@@ -397,7 +397,7 @@ ACサーボモータは同期電動機に位置付けされ，別名「ブラシ
 %         \begin{tikzpicture}
 %         \begin{axis}[xlabel=時間(秒),ylabel=電流設定値/測定値(\,A\,),width=0.90\linewidth,height=5cm]
 %             \addplot[black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=3] {1205/自動車20251205Simtrol_data(in).csv};
-%             \addplot[dashed, red, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=4] {1205/自動車20251205Simtrol_data(in).csv};
+%             \addplot[dashed, black, thick] table[col sep=comma, header=false, skip first n=1, x index=0, y index=4] {1205/自動車20251205Simtrol_data(in).csv};
 %         \legend{設定値,測定値}
 %         \end{axis}
 %         \end{tikzpicture}
