@@ -188,7 +188,7 @@ Before outputting, perform this final check:
 % --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
-  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{4. PIDによる温度制御} \\[2.0em] 
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[2.0em] 
 \end{tabular}
 
 % --- 報告者情報 ---
