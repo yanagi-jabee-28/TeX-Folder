@@ -1,0 +1,297 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+% =============================================
+% 1. パッケージ設定 (SARP v2.0準拠)
+% =============================================
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varbb]{newtxmath} % 数式フォント
+\usepackage{bm}      % ベクトル太字
+\usepackage{mathtools}
+
+% レイアウト・図表関連
+\usepackage[margin=25mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+% 回路図・グラフ描画
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% SI単位・数式処理
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  separate-uncertainty=true
+}
+
+% リンク・参照
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+% 参考文献の上付き表示設定
+\makeatletter
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
+\makeatother
+
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+
+% キャプション設定
+\usepackage{caption}
+\captionsetup{
+  format=hang,
+  labelsep=quad,
+  font={small},
+  labelfont={bf},
+  justification=centering
+}
+\captionsetup[figure]{justification=centerlast}
+
+% =============================================
+% 2. カスタムコマンド定義
+% =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
+
+% 数式用コマンド
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+
+% =============================================
+% 3. 表紙専用のページスタイル定義
+% =============================================
+\fancypagestyle{coverpage}{
+  \fancyhf{} 
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt} 
+  \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
+}
+
+% =============================================
+% ドキュメント開始
+% =============================================
+\begin{document}
+
+% /////////////////////////////////////////////
+% 表紙 (Cover Page)
+% /////////////////////////////////////////////
+
+\newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
+\thispagestyle{coverpage}
+
+\begin{center}
+    \vspace*{0mm} 
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{10mm} 
+\end{center}
+
+\noindent
+\begin{tabular}{@{}ll}
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{パワーエレクトロニクス実験（インバータ）} \\[2.0em] 
+\end{tabular}
+
+\noindent
+\BoldLabel{報告者} \hspace{0.5em}
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}      
+(\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{栁原魁人}                                   
+\vspace{2.0em} 
+
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{エレクトロニクス工房} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{鈴木 宏}    
+\end{tabular}
+\vspace{2.0em} 
+
+\noindent
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{倉科純太郎} 
+\vspace{2.5em} 
+
+\noindent
+\renewcommand{\arraystretch}{2.0}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{11} 月 \UnderlineBox[0.65cm]{28} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{12} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{11} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
+\end{tabular}
+\vfill 
+
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\hline
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
+\hline
+\multirow{3}{*}{\parbox[c][4.5em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた &  \\
+\hline
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
+ & (2) 結果に対する考察 &  \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか &  \\
+\hline
+\end{tabular}
+\end{center}
+\clearpage
+
+% /////////////////////////////////////////////
+% 本文 (Main Body)
+% /////////////////////////////////////////////
+
+\restoregeometry 
+\setcounter{page}{1}
+\pagestyle{plain} 
+
+\section{目的}
+インバータを利用した電動機制御技術と，インバータの応用例として電気自動車の動作原理について理解する．さらには，電力の有効活用として回生について学ぶ．
+
+\section{原理}
+
+\subsection{三相インバータ}
+図1に三相インバータの動作原理図を示した．インテリジェントパワーモジュール（IPM，3相 \SI{600}{V}, \SI{30}{A}, 6素子内蔵）とマイクロコンピュータ（ルネサスエレクトロニクス, SH2 7085）とを組み合わせて，三相交流を発生する．
+
+三相インバータの出力はACサーボモータ（ブラシレスDCモータ，同期電動機の一種）に接続され，速度制御などが行われる．
+
+% [図1 三相インバータの動作原理図 挿入箇所]
+
+\subsection{ACサーボモータ}
+ACサーボモータは同期電動機に位置付けされ，別名「ブラシレスDCモータ」とも呼ばれている．このモータは回転子（ロータ）が永久磁石，固定子（ステータ）が三相巻線となっている．
+モータと回転角を検出するレゾルバ（回転角度を二相の交流電圧で検出するセンサ），電流センサの信号を利用してマイクロコンピュータが回転角に応じた適切な制御を行うため，モータには機械的なブラシが存在しない．
+
+\subsection{ACサーボモータの制御}
+トルク制御とは，モータ電流を制御することによってモータのトルクを制御するもので，電気自動車などの制御に用いられている．本装置ではベクトル制御技術を使ってマイクロコンピュータからPWM信号を発生させて，インバータを動作させている．
+
+速度制御とは，レゾルバを用いてモータの回転速度を測定して，速度設定値と比較してPID制御 (Proportional-Integral-Derivative Controller) をすることで速度を制御するもので，これにより電気自動車が快適な走行（クルーズコントロールなどの名称の機能）を行うことができる．
+
+\section{使用機器}
+
+\subsection{エネルギー回生実習装置（主な構成品）}
+\begin{itemize}
+    \item \textbf{ACサーボモータ} \\
+    ワコー技研 ANR020-C308 (\SI{200}{W}, \SI{14.5}{A}, \SI{2000}{rpm}, 8極, レゾルバ付)
+    \item \textbf{フライホイール} \\
+    昭和電業社 (質量 \SI{17.65}{kg}, 慣性モーメント \SI{0.07069}{kg \cdot m^2})
+    \item \textbf{ブレーキ} \\
+    三菱電機 ZHA-20A (トルク \SI{2}{Nm}, \SI{2000}{rpm})
+    \item \textbf{電気二重層コンデンサ} \\
+    日本ケミコン MDLA15R0V116FB0 (\SI{38.6}{F} $\times$ 3 = \SI{115.8}{F})
+    \item \textbf{電源} \\
+    昭和電業社 (DC \SIrange{0}{30}{V}, \SI{10}{A}, 回生機能内蔵)
+    \item \textbf{インバータ} \\
+    昭和電業社 (IPM使用)
+    \item \textbf{計測装置} \\
+    昭和電業社
+    \item \textbf{ブレーキ用電源} \\
+    昭和電業社 (DC \SI{24}{V}, \SI{1}{A})
+    \item \textbf{トルク検出器} \\
+    小野測器 SS-050 (\SI{5}{Nm}, \SI{6000}{rpm}, トルク表示器と組)
+\end{itemize}
+
+\subsection{電気自動車実習装置（主な構成品）}
+\begin{itemize}
+    \item \textbf{ACサーボモータ} \\
+    ワコー技研 B751E-D4R (\SI{48}{V}, \SI{750}{W}, \SI{21}{A}, \SI{2000}{rpm}, レゾルバ付)
+    \item \textbf{バッテリー} \\
+    FIAMM 12SPX42 (\SI{12}{V}, \SI{42}{Ah}) $\times$ 4直列
+\end{itemize}
+
+\section{実験方法}
+詳細は取扱説明書（昭和電業社作成）にしたがって実験を行います．
+
+\subsection{ACブラシレスモータのトルク制御}
+\begin{enumerate}
+    \item 機器を準備した後，軸継手を用いてモータ，トルク検出器，ブレーキを連結する．
+    \item 電源装置の電圧を \SI{9}{V} に設定して，計測ソフトウェアの設定数値画面で「制御方法：電流制御（トルク制御）」，「出力変動方法：手動」，「一定制御時間：120秒」に設定して，「開始」ボタンを押した後に「電流」の数値を変化させることでモータの回転数が変化することを確認する．
+    \item 電源装置の電圧を \SI{10}{V} に設定した後に，計測ソフトウェアの設定数値画面で「制御方法：電流制御（トルク制御）」，「出力変動方法：自動」に設定して，サンプルパターンをロードしてから「開始」ボタンを押してモータのトルク－回転数特性を測定する．
+    \item 測定データを保存して「トルク制御した場合のトルク－回転数特性」を作成する．
+\end{enumerate}
+
+\subsection{ACブラシレスモータの速度制御}
+\begin{enumerate}
+    \item 電源装置の電圧を \SI{15}{V} に設定して，計測ソフトウェアの設定数値画面で「制御方法：速度制御」，「出力変動方法：手動」，「一定制御時間：120秒」に設定して，「開始」ボタンを押した後に「速度」の数値を変化させることでモータの回転数が変化することを確認する．また，回転させているときに「ブレーキ電流」の数値を変化させることでモータの回転数が変化することを確認する．
+    \item 電源装置の電圧を \SI{15}{V} に設定した後に，計測ソフトウェアの設定数値画面で「制御方法：速度制御」，「出力変動方法：自動」に設定して，サンプルパターンをロードしてから「開始」ボタンを押してモータのトルク－回転数特性を測定する．
+    \item 測定データを保存して「速度制御した場合のトルク－回転数特性」を作成する．「トルク制御した場合のトルク－回転数特性」と「速度制御した場合のトルク－回転数特性」とを重ねたグラフを作成して，比較検討を行う．
+\end{enumerate}
+
+\subsection{ACブラシレスモータの回生実験}
+\begin{enumerate}
+    \item 機器を準備した後，軸継手を用いてモータとフライホイールを連結する．
+    \item 電源装置の電圧を \SI{24}{V} に設定して，計測ソフトウェアの設定数値画面で「制御方法：速度制御」，「出力変動方法：加減速」，「加速時間：20秒」，「一定制御時間：20秒」，「減速時間：20秒」，「停止後計測時間：10秒」，「速度の設定：\SI{2000}{rpm}」に設定して（出力パターンが台形になっていることを確認），「開始」ボタンを押す．測定開始後20秒間で \SI{2000}{rpm} に達していることを確認する．
+    \item 測定開始してから30秒（\SI{2000}{rpm} 一定速度で回転している状態）経過したら電源装置の出力スイッチをOFFにする．
+    \item 測定開始してから40秒後から減速を開始して，60秒後にモータが停止する．このとき，モータはフライホイールの慣性力により発電動作を行い，インバータを経由して電気二重層コンデンサに回生エネルギーとして戻される．
+    \item 測定開始してから70秒が経過してから測定データを保存して，「回転数－時間特性」，「電源電力－時間特性」，「インバータ出力電力－時間特性」，「電源電圧－時間特性」を作成する．「インバータ出力電力－時間特性」，「電源電圧－時間特性」から回生動作時のエネルギーの流れについて検討する．
+\end{enumerate}
+
+% [図2 エネルギー回生実習装置用ソフトウェアの画面 挿入箇所]
+
+\subsection{電気自動車実験}
+\begin{enumerate}
+    \item ブレーカをONにする（赤ボタンが点灯する）．
+    \item 緑ボタンを押す（緑ボタンが点灯する）．
+    \item 一度アクセルを踏み込む（レゾルバのZ相が検知できるまでモータがゆっくり回転して，検知できると停止する）．モータが停止したらアクセルを離す．
+    \item 通信ケーブルで電気自動車と計測パソコンとを接続して，アクセルを操作して加減速した場合の電気自動車の特性を測定する．その際，電力計で電圧波形，電流波形を測定する．
+    \item 実験終了後，赤ボタンを押す（赤ボタンが点灯する）．
+    \item ブレーカを切る．
+    \item 測定データを保存して，「速度－時間特性」，「電流設定値－時間特性」，「電流測定値－時間特性」，「モータ電圧－時間特性」，「ボリューム1（アクセルの可変抵抗値）－時間特性」，「ボリューム2（ブレーキの可変抵抗値）－時間特性」を作成する．モータの加減速で各値がどのように変化しているか検討する．
+\end{enumerate}
+
+% [図3 電気自動車実習装置用ソフトウェア (Simtrol-m) のモニタ画面 挿入箇所]
+
+\section{報告事項}
+(1) 回生実験において得られた「電源電圧－時間特性」から，減速開始時の電圧の変化量を求め，理論値と比較して，なぜ値が異なるのか検討せよ．
+
+コンデンサの電圧の理論値は以下の式より $V_1 = \SI{25.61}{V}$ となり，コンデンサの初期電圧（=電源電圧） $V_0$ と比較して \SI{1.61}{V} 増加することになる．
+
+ここで，各変数は以下の通りである．
+\begin{itemize}
+    \item $m$: 質量 [\unit{kg}]
+    \item $D$: 直径 [\unit{m}]
+    \item $J$: 慣性モーメント [\unit{kg \cdot m^2}]
+    \item $\omega$: 回転速度 [\unit{rad/s}]
+    \item $C$: 静電容量 [\unit{F}]
+    \item $V_0$: コンデンサの初期電圧 [\unit{V}]
+\end{itemize}
+
+フライホイールの慣性モーメント $I$:
+\begin{equation}
+    I = \frac{1}{8}mD^{2} = \frac{1}{8} \times 17.65 \times 0.179^{2} = 0.07069 \, [\unit{kg \cdot m^{2}}]
+\end{equation}
+
+フライホイールの運動エネルギー $E$:
+\begin{equation}
+    E = \frac{1}{2}J\omega^{2} = \frac{1}{2} \times 0.07069 \times \left(\frac{2000}{60} \times 2\pi\right)^{2} = 1549.8 \, [\unit{J}]
+\end{equation}
+
+コンデンサの蓄積エネルギー $E$（100\%回生された場合）:
+\begin{equation}
+    E = \frac{1}{2}C({V_{1}}^{2}-{V_{0}}^{2}) = \frac{1}{2} \times 38.6 \times ({V_{1}}^{2}-24^{2}) = 1549.8 \, [\unit{J}]
+\end{equation}
+
+\end{document}
