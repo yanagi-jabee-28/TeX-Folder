@@ -75,6 +75,9 @@
 % 数式用コマンド
 \newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 
+% 箇条書き（enumerate）を (1) 形式にする
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
 % =============================================
 % 3. 表紙専用のページスタイル定義
 % =============================================
@@ -194,7 +197,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.8\textwidth]{fig1.png} % 図1の画像をここに挿入
-    \fbox{\parbox{10cm}{\centering \vspace{3cm} 図1画像プレースホルダ \vspace{3cm}}}
+    \IfFileExists{image/img1.png}{\includegraphics[width=0.8\textwidth]{image/img1.png}}{\fbox{\parbox{10cm}{\centering \vspace{3cm} 図1画像プレースホルダ \vspace{3cm}}}}
     \caption{伝送線路とRLGCモデル}
     \label{fig:RLGC}
 \end{figure}
@@ -265,7 +268,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.8\textwidth]{fig2.png} % 図2の画像をここに挿入
-    \fbox{\parbox{10cm}{\centering \vspace{3cm} 図2画像プレースホルダ \vspace{3cm}}}
+    \IfFileExists{image/img2.png}{\includegraphics[width=0.8\textwidth]{image/img2.png}}{\fbox{\parbox{10cm}{\centering \vspace{3cm} 図2画像プレースホルダ \vspace{3cm}}}}
     \caption{入射波と反射波の時間変化による定在波の変化}
     \label{fig:standing_wave}
 \end{figure}
@@ -285,7 +288,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.6\textwidth]{fig3.png} % 図3の画像をここに挿入
-    \fbox{\parbox{8cm}{\centering \vspace{2cm} 図3画像プレースホルダ \vspace{2cm}}}
+    \IfFileExists{image/img3.png}{\includegraphics[width=0.6\textwidth]{image/img3.png}}{\fbox{\parbox{8cm}{\centering \vspace{2cm} 図3画像プレースホルダ \vspace{2cm}}}}
     \caption{マイクロストリップ線路の特性インピーダンスに用いる変数}
     \label{fig:microstrip}
 \end{figure}
@@ -296,7 +299,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.7\textwidth]{fig4.png} % 図4の画像をここに挿入
-    \fbox{\parbox{10cm}{\centering \vspace{2cm} 図4画像プレースホルダ \vspace{2cm}}}
+    \IfFileExists{image/img4.png}{\includegraphics[width=0.7\textwidth]{image/img4.png}}{\fbox{\parbox{10cm}{\centering \vspace{2cm} 図4画像プレースホルダ \vspace{2cm}}}}
     \caption{磁界プローブによる近傍磁界の測定概要図}
     \label{fig:probe_overview}
 \end{figure}
@@ -304,7 +307,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.7\textwidth]{fig5.png} % 図5の画像をここに挿入
-    \fbox{\parbox{10cm}{\centering \vspace{2cm} 図5画像プレースホルダ \vspace{2cm}}}
+    \IfFileExists{image/img5.png}{\includegraphics[width=0.7\textwidth]{image/img5.png}}{\fbox{\parbox{10cm}{\centering \vspace{2cm} 図5画像プレースホルダ \vspace{2cm}}}}
     \caption{測定系（断面）}
     \label{fig:setup_cross_section}
 \end{figure}
@@ -328,7 +331,7 @@
 \begin{figure}[H]
     \centering
     % \includegraphics[width=0.6\textwidth]{fig6.png} % 図6の画像をここに挿入
-    \fbox{\parbox{8cm}{\centering \vspace{3cm} 図6画像プレースホルダ \vspace{3cm}}}
+    \IfFileExists{image/img6.png}{\includegraphics[width=0.6\textwidth]{image/img6.png}}{\fbox{\parbox{8cm}{\centering \vspace{3cm} 図6画像プレースホルダ \vspace{3cm}}}}
     \caption{磁界プローブのアンテナ係数}
     \label{fig:antenna_factor}
 \end{figure}
