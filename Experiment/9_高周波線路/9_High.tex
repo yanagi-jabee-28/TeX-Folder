@@ -16,7 +16,9 @@
 \usepackage{fancyhdr}   
 \usepackage{graphicx}
 % 画像検索パス
-\graphicspath{{./}{image/}}
+% 最適化画像があれば優先して参照する（scripts/optimize-images.ps1 を実行して作成）
+% 使い方（リポジトリルートで）: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\optimize-images.ps1`
+\graphicspath{{./}{image/optimized/}{image/}}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{subcaption}
