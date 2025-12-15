@@ -69,24 +69,33 @@ Before outputting, perform this final check:
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % =============================================
-% 1. パッケージ設定 (統合版)
+% 1. パッケージ設定 (SARP v2.0準拠)
 % =============================================
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext}
-\usepackage[varbb]{newtxmath} % 数式フォント (amssymbの代わり)
+\usepackage[varbb]{newtxmath} % 数式フォント
 \usepackage{bm}      % ベクトル太字
 \usepackage{mathtools}
 
 % レイアウト・図表関連
-% デフォルトは本文用の設定 (margin=25mm)
 \usepackage[margin=25mm]{geometry}
 \usepackage{array}      
 \usepackage{multirow}   
 \usepackage{fancyhdr}   
 \usepackage{graphicx}
+% 画像検索パス（カレントディレクトリとサブフォルダ）
+\graphicspath{{./}{1205/}{image/}}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{subcaption}
+
+% 回路図・グラフ描画
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
 % SI単位・数式処理
 \usepackage{siunitx}
@@ -96,32 +105,24 @@ Before outputting, perform this final check:
   separate-uncertainty=true
 }
 
-% グラフ描画
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
-\usetikzlibrary{arrows.meta, positioning, calc}
-
 % リンク・参照
-% cite の superscript オプションを削除: \@cite を自前定義して角括弧付き上付き表示にするため
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
-% ----- 参考文献の上付き表示設定 (hyperref 後に定義して上書きされないようにする) -----
+% ページ内の残り領域が不足する場合のみページ分割を行うためのパッケージ
+\usepackage{needspace}
+
+% 参考文献の上付き表示設定
 \makeatletter
-% 参考: system.tex の方法を流用し，実際に動作する形式に揃える
-% こちらは math-mode で上付きの小さい角括弧が表示される形式
 \def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
 \def\@biblabel#1{[#1]}
 \makeatother
-% デバッグ用: 現在の \@cite と \cite の定義内容をログに出す（必要ならコメント解除して log を確認）
-% \typeout{*** DEBUG: \string\@cite -> \meaning\@cite}
-% \typeout{*** DEBUG: \string\cite -> \meaning\cite}
+
 \crefname{figure}{図}{図}
 \crefname{table}{表}{表}
 \crefname{equation}{式}{式}
 
-% キャプション
+% キャプション設定
 \usepackage{caption}
 \captionsetup{
   format=hang,
@@ -135,24 +136,12 @@ Before outputting, perform this final check:
 % =============================================
 % 2. カスタムコマンド定義
 % =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
 
-% --- 表紙用コマンド ---
-\newcommand{\UnderlineBox}[2][3cm]{%
-  \underline{\makebox[#1][c]{\vphantom{lp}\large #2}}%
-}
-\newcommand{\JustifiedLabel}[2]{%
-  \makebox[#1][s]{\large\bfseries #2}%
-}
-\newcommand{\BoldLabel}[1]{%
-  {\large\bfseries #1}%
-}
-
-% --- 本文用コマンド (微分など) ---
+% 数式用コマンド
 \newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
-\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-
-% 画像パス設定 (必要に応じて変更してください)
-\graphicspath{{image/}}
 
 % =============================================
 % 3. 表紙専用のページスタイル定義
@@ -161,7 +150,6 @@ Before outputting, perform this final check:
   \fancyhf{} 
   \renewcommand{\headrulewidth}{0pt} 
   \renewcommand{\footrulewidth}{0pt} 
-  % ページ番号は表示せず、学校名のみ表示
   \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
 }
 
@@ -171,74 +159,60 @@ Before outputting, perform this final check:
 \begin{document}
 
 % /////////////////////////////////////////////
-% ここから表紙 (Cover Page)
+% 表紙 (Cover Page)
 % /////////////////////////////////////////////
 
-% 表紙用に余白を切り替え (レイアウト崩れ防止)
 \newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
-\thispagestyle{coverpage} % 表紙用スタイル適用
+\thispagestyle{coverpage}
 
-% --- タイトル ---
 \begin{center}
     \vspace*{0mm} 
     {\Huge \bfseries 電気電子工学実験報告書}
     \vspace{10mm} 
 \end{center}
 
-% --- テーマ名 ---
 \noindent
 \begin{tabular}{@{}ll}
   \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{} \\[2.0em] 
 \end{tabular}
 
-% --- 報告者情報 ---
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
-\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}     
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}      
 (\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
-{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}   
-\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}       
-\UnderlineBox[4.5cm]{栁原魁人}                                         
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{栁原魁人}                                   
 \vspace{2.0em} 
 
-% --- 実験場所・指導担当 ---
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
   \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
-  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}   
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}    
 \end{tabular}
 \vspace{2.0em} 
 
-% --- 共同実験者 ---
 \noindent
 \BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
 \vspace{2.5em} 
 
-% --- 日付セクション ---
 \noindent
 \renewcommand{\arraystretch}{2.0}
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
-  % 1行目
-  \JustifiedLabel{5em}{実験日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
-  
-  % 2行目
-  \JustifiedLabel{5em}{提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
-  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
-  
-  % 3行目
-  （ \JustifiedLabel{6em}{再提出期限} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
-  \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
-  \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ）
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{11} 月 \UnderlineBox[0.65cm]{28} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{12} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{11} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
 \end{tabular}
-
 \vfill 
 
-% --- 評価テーブル ---
 \renewcommand{\arraystretch}{1.5}
 \begin{center}
 \begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
@@ -258,16 +232,13 @@ Before outputting, perform this final check:
 \hline
 \end{tabular}
 \end{center}
-
-\clearpage % 改ページ
+\clearpage
 
 % /////////////////////////////////////////////
-% ここから本文 (Main Body)
+% 本文 (Main Body)
 % /////////////////////////////////////////////
 
-% 余白を本文用に復帰
 \restoregeometry 
-% ページ番号を1にリセットし、スタイルを標準に戻す
 \setcounter{page}{1}
 \pagestyle{plain} 
 ```
