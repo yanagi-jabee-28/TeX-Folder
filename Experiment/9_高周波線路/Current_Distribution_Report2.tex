@@ -1,0 +1,376 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+% =============================================
+% 1. パッケージ設定 (SARP v2.0準拠)
+% =============================================
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varbb]{newtxmath} % 数式フォント
+\usepackage{bm}      % ベクトル太字
+\usepackage{mathtools}
+
+% レイアウト・図表関連
+\usepackage[margin=25mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
+\usepackage{graphicx}
+% 画像検索パス
+\graphicspath{{./}{image/}}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+% 回路図・グラフ描画
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% SI単位・数式処理
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  separate-uncertainty=true
+}
+
+% リンク・参照
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{needspace}
+
+% 参考文献の上付き表示設定
+\makeatletter
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
+\makeatother
+
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+
+% キャプション設定
+\usepackage{caption}
+\captionsetup{
+  format=hang,
+  labelsep=quad,
+  font={small},
+  labelfont={bf},
+  justification=centering
+}
+\captionsetup[figure]{justification=centerlast}
+
+% =============================================
+% 2. カスタムコマンド定義
+% =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
+
+% 数式用コマンド
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+
+% =============================================
+% 3. 表紙専用のページスタイル定義
+% =============================================
+\fancypagestyle{coverpage}{
+  \fancyhf{} 
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt} 
+  \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
+}
+
+% =============================================
+% ドキュメント開始
+% =============================================
+\begin{document}
+
+% /////////////////////////////////////////////
+% 表紙 (Cover Page)
+% /////////////////////////////////////////////
+
+\newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
+\thispagestyle{coverpage}
+
+\begin{center}
+    \vspace*{0mm} 
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{10mm} 
+\end{center}
+
+\noindent
+\begin{tabular}{@{}ll}
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{9. 高周波線路の電流分布特性} \\[2.0em] 
+\end{tabular}
+
+\noindent
+\BoldLabel{報告者} \hspace{0.5em}
+\UnderlineBox[1.5cm]{} {\large \textbf{年}} \hspace{0.2em}      
+(\UnderlineBox[1.5cm]{} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{}                                   
+\vspace{2.0em} 
+
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}    
+\end{tabular}
+\vspace{2.0em} 
+
+\noindent
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} 
+\vspace{2.5em} 
+
+\noindent
+\renewcommand{\arraystretch}{2.0}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
+\end{tabular}
+\vfill 
+
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\hline
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
+\hline
+\multirow{3}{*}{\parbox[c][4.5em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた &  \\
+\hline
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
+ & (2) 結果に対する考察 &  \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか &  \\
+\hline
+\end{tabular}
+\end{center}
+\clearpage
+
+% /////////////////////////////////////////////
+% 本文 (Main Body)
+% /////////////////////////////////////////////
+
+\restoregeometry 
+\setcounter{page}{1}
+\pagestyle{plain} 
+
+\section{目的}
+高周波帯における信号伝送特性について理解するため，プリント線路上の磁界測定から電流を推定し，定在波分布について考察する。
+
+\section{原理}
+
+\subsection{分布定数回路における電圧と電流}
+高周波を扱う回路では，信号波長の大きさによって集中定数回路と分布定数回路に分けられる．ある信号の周波数を $f$，信号の伝搬速度を $v$ とすると，波長 $\lambda$ は以下の式で表される．
+
+\begin{equation}
+    \lambda = \frac{v}{f}
+    \label{eq:lambda}
+\end{equation}
+
+波長 $\lambda$ よりも十分に短い線路を集中定数回路，波長 $\lambda$ と同等もしくは短い線路を分布定数回路として取り扱う。
+
+伝送線路には，平行銅線や同軸ケーブルなど，様々な形のものがある。導体には抵抗やインダクタ成分などの寄生成分が存在する。導体間にはキャパシタ成分や，微小な漏れ電流も考えられる。単位長さ当たりの抵抗 $R$，インダクタンス $L$，線間のキャパシタ $C$，コンダクタンスを $G$ とする。代表的な平行導線について，微小区間ごとに区切り寄生成分やそれによる電圧の変化について考える。分布定数線路内における寄生成分を\cref{fig:RLGC}に示す。ここで，$v_s$ および \SI{50}{\ohm} は入力電圧と入力抵抗であり，$Z_L$ は終端負荷である。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{fig1.png} % 図1の画像をここに挿入
+    \fbox{\parbox{10cm}{\centering \vspace{3cm} 図1画像プレースホルダ \vspace{3cm}}}
+    \caption{伝送線路とRLGCモデル}
+    \label{fig:RLGC}
+\end{figure}
+
+伝送線路内を伝搬する伝搬定数は
+\begin{equation}
+    \gamma = \sqrt{ZY} = \sqrt{(R + j\omega L)(G + j\omega C)}
+    \label{eq:gamma}
+\end{equation}
+として表される。一方，特性インピーダンス $Z_0$ は以下の式により求められ，無損失線路では $L$ と $C$ のみで表される．
+
+\begin{equation}
+    Z_0 = \sqrt{\frac{R + j\omega L}{G + j\omega C}} \cong \sqrt{\frac{L}{C}}
+    \label{eq:Z0}
+\end{equation}
+
+伝送線路を伝搬する信号は，進行波と反射波の合成により成り立つ。\cref{eq:VI_x}に距離 $x$ における電圧と電流を示す。
+
+\begin{equation}
+    \begin{dcases}
+        V(x) = \frac{V_1 - Z_0 I_1}{2} e^{+\gamma x} + \frac{V_1 + Z_0 I_1}{2} e^{-\gamma x} \\
+        I(x) = -\frac{V_1 - Z_0 I_1}{2Z_0} e^{+\gamma x} + \frac{V_1 + Z_0 I_1}{2Z_0} e^{-\gamma x}
+    \end{dcases}
+    \label{eq:VI_x}
+\end{equation}
+
+ここで，$e^{+\gamma x}$ の項は進行波を表しており，$e^{-\gamma x}$ の項は反射波を表している。オイラーの公式
+\begin{equation}
+    \begin{dcases}
+        \frac{e^{+\gamma x} + e^{-\gamma x}}{2} = \cosh \gamma x \\
+        \frac{e^{+\gamma x} - e^{-\gamma x}}{2} = \sinh \gamma x
+    \end{dcases}
+\end{equation}
+を用いると，伝送線路の基礎方程式は\cref{eq:matrix}のように表される。
+
+\begin{equation}
+    \begin{pmatrix} V(x) \\ I(x) \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cosh \gamma x & -Z_0 \sinh \gamma x \\
+        -\frac{1}{Z_0} \sinh \gamma x & \cosh \gamma x
+    \end{pmatrix}
+    \begin{pmatrix} V_1 \\ I_1 \end{pmatrix}
+    \label{eq:matrix}
+\end{equation}
+
+線路終端において，特性インピーダンス $Z_0$ と終端負荷 $Z_L$ が不整合の場合，進行してきた波は $Z_L$ で吸収されず反射する。反射係数は\cref{eq:gamma_L}により表される。
+
+\begin{equation}
+    \Gamma_L = \frac{v_0^-}{v_0^+} = \frac{Z_L - Z_0}{Z_L + Z_0}
+    \label{eq:gamma_L}
+\end{equation}
+
+反射係数を用いて，距離 $x$ における電圧と電流は\cref{eq:V_abs,eq:I_abs}となる。
+
+\begin{equation}
+    |V(x)| = |v_i| \left| 1 + |\Gamma| e^{-j(\phi + 2\beta x)} \right|
+    \label{eq:V_abs}
+\end{equation}
+
+\begin{equation}
+    |I(x)| = \frac{|v_i|}{Z_0} \left| 1 - |\Gamma| e^{-j(\phi + 2\beta x)} \right|
+    \label{eq:I_abs}
+\end{equation}
+
+終端の負荷条件により，反射波の大きさが変化する。例えば，終端開放の場合は反射係数 $\Gamma_L = 1$ となり，正の波が反射する。一方，短絡の場合は，反射係数 $\Gamma_L = -1$ となり，負の波が反射する。反射波は進行波と合成され，定在波が分布する。\cref{fig:standing_wave}にそれぞれの波の反射による定在波の分布を示す。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{fig2.png} % 図2の画像をここに挿入
+    \fbox{\parbox{10cm}{\centering \vspace{3cm} 図2画像プレースホルダ \vspace{3cm}}}
+    \caption{入射波と反射波の時間変化による定在波の変化}
+    \label{fig:standing_wave}
+\end{figure}
+
+特性インピーダンスとの不整合は，負荷へのエネルギー供給効率の低下となり，定在波はコモンモードによるノイズ放射の原因となり，高周波（MHz～GHz）帯で対策が必要となる。
+
+\subsection{マイクロストリップ線路}
+高周波回路にはプリント基板が用いられる。裏面が全面銅箔（GND）で，表面に信号線路がある基板をマイクロストリップ線路という。\cref{fig:microstrip}に示すマイクロストリップ線路における特性インピーダンスは，
+
+\begin{equation}
+    Z_0 = \frac{87.0}{\sqrt{\varepsilon_r + 1.41}} \ln \left( \frac{5.98H}{0.8W + T} \right)
+    \label{eq:Z0_microstrip}
+\end{equation}
+
+により求められる[1]。ここで，$W$ は線路幅，$H$ は基板の厚さ，$T$ は線路銅箔の厚さ，$\varepsilon_r$ は比誘電率であり，ガラスエポキシ基板の比誘電率 $\varepsilon_r$ は 4.4（公称）である。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{fig3.png} % 図3の画像をここに挿入
+    \fbox{\parbox{8cm}{\centering \vspace{2cm} 図3画像プレースホルダ \vspace{2cm}}}
+    \caption{マイクロストリップ線路の特性インピーダンスに用いる変数}
+    \label{fig:microstrip}
+\end{figure}
+
+\subsection{近磁界プローブ}
+プリント基板上の電流分布は，構造上の問題から直接測定することができない。このため，プリント線路上の磁界を測定することで，等価的に電流分布を推定する方法が用いられる。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{fig4.png} % 図4の画像をここに挿入
+    \fbox{\parbox{10cm}{\centering \vspace{2cm} 図4画像プレースホルダ \vspace{2cm}}}
+    \caption{磁界プローブによる近傍磁界の測定概要図}
+    \label{fig:probe_overview}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{fig5.png} % 図5の画像をここに挿入
+    \fbox{\parbox{10cm}{\centering \vspace{2cm} 図5画像プレースホルダ \vspace{2cm}}}
+    \caption{測定系（断面）}
+    \label{fig:setup_cross_section}
+\end{figure}
+
+線路から発生した磁界が磁界プローブに鎖交することで，プローブ端に誘導起電力が発生する。この検出電圧 $V$ をスペクトラムアナライザで測定することで，磁界測定が可能となる。磁界プローブは，波長よりも十分短い微小磁界プローブが一般的に用いられる。これは，広帯域で連続的磁界測定が可能となるためである。
+
+スペクトラムアナライザで測定される値は検出電圧 $V$ であるため，磁界 $H$ に換算する必要がある。電圧 $V$ に\cref{fig:antenna_factor}に示すアンテナ係数（$AF$）を掛け合わせることで磁界 $H$ に変換できる[2]。
+
+\begin{equation}
+    H = AF \cdot V \quad \text{[A/m]}
+    \label{eq:H_AF_V}
+\end{equation}
+
+電磁界測定の場合，測定値は dB で測定する場合が多いため，dB 表記では\cref{eq:H_AF_V_dB}のようになる．
+
+\begin{equation}
+    H = AF + V \quad \text{[dB}\mu\text{A/m]}
+    \label{eq:H_AF_V_dB}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{fig6.png} % 図6の画像をここに挿入
+    \fbox{\parbox{8cm}{\centering \vspace{3cm} 図6画像プレースホルダ \vspace{3cm}}}
+    \caption{磁界プローブのアンテナ係数}
+    \label{fig:antenna_factor}
+\end{figure}
+
+\section{実験方法}
+\begin{enumerate}
+    \item 使用機器を揃える。
+    \begin{itemize}
+        \item スペクトラムアナライザ，磁界プローブ（NEC：CP-2S），3軸ステージ，プリント基板，同軸ケーブル（$\times 2$）
+    \end{itemize}
+    \item 3軸ステージの同軸ケーブルに磁界プローブをセットする。同軸ケーブルはスペクトラムアナライザの RFIN に接続する。
+    \item 3軸ステージにプリント基板（開放）を設置する。プリント基板の SMA コネクタとスペクトラムアナライザの TG を同軸ケーブルに接続する。
+    \item スペクトラムアナライザを以下の通りセットする。
+    \begin{itemize}
+        \item Center Frequency：\SI{1}{GHz} \quad Span：\SI{10}{MHz} \quad BW：\SI{10}{kHz} \quad Sweep：auto
+        \item Reference：(最初の確認作業では) \SI{107}{dB\mu V}, \\
+              (測定時は) \SI{87}{dB\mu V} に変えて, Pre amp.を ON ,
+        \item Attenuation：\SI{0}{dB}，TG 出力：\SI{107}{dB\mu V} .
+    \end{itemize}
+    \item 磁界プローブをプリント線路終端位置にあわせる。この際，\SI{100}{mm} 移動させるため，3軸ステージの $x$ 軸を右側に移動させておくこと。また，プローブ先端は基板上 \SI{1}{mm} になるようにセットする。※プリント線路の両端の高さを可能な限り同じ高さに（水平に）する。\SI{0.1}{mm} 以下のずれにすること。
+    \item \SI{5}{mm} 間隔でデータを読む。ただし，定在波の節の部分は細かく読むこと。
+    \item プリント基板（短絡），（整合），（負荷）に交換して同様の実験を行う。
+    \item 測定値にアンテナ係数 $AF$ をかけて磁界に変換する。
+\end{enumerate}
+
+ここで，校正係数は次式で表される[2]。
+\begin{equation}
+    AF = -8.1 \ln f + 106.2
+\end{equation}
+※$f$ は MHz オーダーで計算すること。例）\SI{1}{GHz} は $f=1000$ で計算する。
+
+\section{報告事項}
+\begin{enumerate}
+    \item 測定結果より波長 $\lambda$，伝搬速度 $v$ を算出しなさい。速度 $v$ が光速よりも遅くなる理由について述べなさい。
+    \item プリント基板（負荷）の結果より，定在波比 SWR を求めなさい。
+    \item 反射係数 $\Gamma$ を求めなさい。また，接続した負荷抵抗の値を算出しなさい。
+    \item 終端開放と短絡させた線路の入力インピーダンスを導出しなさい。両者を掛け合わせることで線路の特性インピーダンスが求められることを証明しなさい。
+\end{enumerate}
+
+% 参考文献
+\begin{thebibliography}{9}
+\bibitem{montrose} Mark I. Montrose 著，出口・田上共訳，プリント基板の EMC 設計，P.95，オーム社.
+\bibitem{nec_manual} 磁界プローブ CP-2S 取扱説明書，NEC
+\end{thebibliography}
+
+\end{document}
