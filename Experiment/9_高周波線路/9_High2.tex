@@ -285,7 +285,7 @@
     \label{eq:Z0_microstrip}
 \end{equation}
 
-により求められる[1]。ここで，$W$ は線路幅，$H$ は基板の厚さ，$T$ は線路銅箔の厚さ，$\varepsilon_r$ は比誘電率であり，ガラスエポキシ基板の比誘電率 $\varepsilon_r$ は 4.4（公称）である。
+    により求められる[1]。ここで，$W$ は線路幅，$H$ は基板の厚さ，$T$ は線路銅箔の厚さ，$\varepsilon_r$ は比誘電率であり，ガラスエポキシ基板の比誘電率 $\varepsilon_r$ は 4.4（公称）とされる\cite{panasonic_fr4}。
 
 \begin{figure}[H]
     \centering
@@ -373,7 +373,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡 (dB/V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=short,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -382,7 +382,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放 (dB/V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=open,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -393,7 +393,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合 (dB/V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=matched,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -402,14 +402,14 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの (dB/V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=half,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
         \caption{半端もの}
     \end{subfigure}
 
-    \caption{各終端条件における位置 $x$ に対する測定値（データは dB 表示の可能性あり）}
+    \caption{各終端条件における位置 $x$ に対する測定値（単位: dB/V）}
     \label{fig:measurement_plots}
 \end{figure}
 
@@ -436,11 +436,28 @@
 
     「半端もの（負荷）」を接続した際の測定結果（\cref{fig:measurement_plots}(d)）より、定在波の最大値（腹）と最小値（節）を読み取る。
     グラフおよびデータより、最大値 $V_{\mathrm{max}(\mathrm{dB})} \approx \SI{12.0}{dB\mu V}$（$x=75.0$等）、最小値 $V_{\mathrm{min}(\mathrm{dB})} \approx \SI{6.5}{dB\mu V}$（$x=25.0$等）と読み取れる。
-    電圧定在波比 $\rho$（SWR）は次式で算出される。
+    電圧定在波比 $\rho$（SWR）は電圧の比で定義される。
     \begin{equation}
-        \mathrm{SWR} = 10^{\frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20}} = 10^{\frac{12.0 - 6.5}{20}} = 10^{0.275} \approx 1.88
+        \mathrm{SWR} = \frac{V_{\mathrm{max}}}{V_{\mathrm{min}}}
     \end{equation}
-    よって、定在波比は \num{1.9} である。
+
+    電圧を dB 表示に変換する式 $V_{(\mathrm{dB})} = 20\log_{10} V$ を用いると，最大値と最小値の差は
+    \begin{align}
+        V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})} &= 20\log_{10}V_{\mathrm{max}} - 20\log_{10}V_{\mathrm{min}} \\
+        &= 20\log_{10}\left(\frac{V_{\mathrm{max}}}{V_{\mathrm{min}}}\right) = 20\log_{10}(\mathrm{SWR})
+    \end{align}
+
+    これを SWR について解くと，
+    \begin{equation}
+        \log_{10}(\mathrm{SWR}) = \frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20},\qquad
+        \mathrm{SWR} = 10^{\frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20}}.
+    \end{equation}
+
+    実測値 $V_{\mathrm{max}(\mathrm{dB})} \approx \SI{12.0}{dB\mu V}$，$V_{\mathrm{min}(\mathrm{dB})} \approx \SI{6.5}{dB\mu V}$ を代入すると，
+    \begin{equation}
+        \mathrm{SWR} = 10^{\frac{12.0 - 6.5}{20}} = 10^{0.275} \approx 1.88
+    \end{equation}
+    よって，定在波比は \num{1.9} である。
 
     \item \textbf{反射係数 $\Gamma$ および負荷抵抗値の算出}
 
@@ -487,6 +504,7 @@
 \begin{thebibliography}{9}
 \bibitem{montrose} Mark I. Montrose 著，出口・田上共訳，プリント基板の EMC 設計，P.95，オーム社.
 \bibitem{nec_manual} 磁界プローブ CP-2S 取扱説明書，NEC
+\bibitem{panasonic_fr4} パナソニック インダストリアル株式会社，ガラスエポキシ基板（FR-4）製品ページ，https://industrial.panasonic.com/jp/products/pt/glass-epoxy-multi/ger1766（参照日: 2025年12月15日）
 \end{thebibliography}
 
 \end{document}
