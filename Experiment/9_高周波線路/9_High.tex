@@ -359,6 +359,54 @@
 \end{equation}
 ※$f$ は MHz オーダーで計算すること。例）\SI{1}{GHz} は $f=1000$ で計算する。
 
+\section{測定結果}
+測定データを \texttt{data1\_clean.csv} から読み込み，各終端条件（短絡，解放，整合，半端もの）について磁界（検出電圧）分布をプロットする．
+\pgfplotstableread[col sep=comma]{data1_clean.csv}\datatable
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡}, grid=both, unbounded coords=jump]
+            \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=short,col sep=comma]{data1_clean.csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{短絡}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放}, grid=both, unbounded coords=jump]
+            \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=open,col sep=comma]{data1_clean.csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{解放}
+    \end{subfigure}
+
+    \vspace{6pt}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合}, grid=both, unbounded coords=jump]
+            \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=matched,col sep=comma]{data1_clean.csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{整合}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの}, grid=both, unbounded coords=jump]
+            \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=half,col sep=comma]{data1_clean.csv};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{半端もの}
+    \end{subfigure}
+
+    \caption{各終端条件における位置 $x$ に対する測定値（データは dB 表示の可能性あり）}
+    \label{fig:measurement_plots}
+\end{figure}
+
 \section{報告事項}
 \begin{enumerate}
     \item 測定結果より波長 $\lambda$，伝搬速度 $v$ を算出しなさい。速度 $v$ が光速よりも遅くなる理由について述べなさい。
