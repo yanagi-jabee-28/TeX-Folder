@@ -414,11 +414,73 @@
 \end{figure}
 
 \section{報告事項}
+
 \begin{enumerate}
-    \item 測定結果より波長 $\lambda$，伝搬速度 $v$ を算出しなさい。速度 $v$ が光速よりも遅くなる理由について述べなさい。
-    \item プリント基板（負荷）の結果より，定在波比 SWR を求めなさい。
-    \item 反射係数 $\Gamma$ を求めなさい。また，接続した負荷抵抗の値を算出しなさい。
-    \item 終端開放と短絡させた線路の入力インピーダンスを導出しなさい。両者を掛け合わせることで線路の特性インピーダンスが求められることを証明しなさい。
+    \item \textbf{波長 $\lambda$ および伝搬速度 $v$ の算出と、光速との差異についての考察}
+
+    測定結果より、短絡時の定在波の節（極小点）は $x = \SI{35.0}{mm}$、開放時の節は $x = \SI{77.5}{mm}$ 付近に現れている。理論上、短絡と開放の定在波分布は位相が $\pi/2$（距離にして $\lambda/4$）ずれるため、この節の距離差が $\lambda/4$ に相当する。
+    
+    したがって、波長 $\lambda$ は次式より求められる。
+    \begin{equation}
+        \frac{\lambda}{4} = |77.5 - 35.0| = \SI{42.5}{mm} \quad \therefore \lambda = \SI{170}{mm} = \SI{0.170}{m}
+    \end{equation}
+    
+    また、周波数は $f = \SI{1}{GHz} = \SI{1.0e9}{Hz}$ であることから、伝搬速度 $v$ は以下のようになる。
+    \begin{equation}
+        v = f \lambda = \SI{1.0e9}{Hz} \times \SI{0.170}{m} = \SI{1.70e8}{m/s}
+    \end{equation}
+    
+    真空中（空気中）の光速 $c \approx \SI{3.00e8}{m/s}$ と比較して速度が遅くなっている理由は、マイクロストリップ線路の周囲にある誘電体（ガラスエポキシ基板）の影響によるものである。電磁波の伝搬速度は、媒体の実効比誘電率を $\varepsilon_{\mathrm{eff}}$ とすると $v = c / \sqrt{\varepsilon_{\mathrm{eff}}}$ で表される。本実験結果から $\varepsilon_{\mathrm{eff}} = (c/v)^2 \approx (3.0/1.7)^2 \approx 3.1$ と見積もられ、これは一般的なFR-4基板の比誘電率（$\varepsilon_r \approx 4.4$）を用いたマイクロストリップ線路の実効比誘電率として妥当な値である。
+
+    \item \textbf{定在波比 (SWR) の算出}
+
+    「半端もの（負荷）」を接続した際の測定結果（\cref{fig:measurement_plots}(d)）より、定在波の最大値（腹）と最小値（節）を読み取る。
+    グラフおよびデータより、最大値 $V_{\mathrm{max}(\mathrm{dB})} \approx \SI{12.0}{dB\mu V}$（$x=75.0$等）、最小値 $V_{\mathrm{min}(\mathrm{dB})} \approx \SI{6.5}{dB\mu V}$（$x=25.0$等）と読み取れる。
+    電圧定在波比 $\rho$（SWR）は次式で算出される。
+    \begin{equation}
+        \mathrm{SWR} = 10^{\frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20}} = 10^{\frac{12.0 - 6.5}{20}} = 10^{0.275} \approx 1.88
+    \end{equation}
+    よって、定在波比は \num{1.9} である。
+
+    \item \textbf{反射係数 $\Gamma$ および負荷抵抗値の算出}
+
+    定在波比 $\mathrm{SWR} = 1.88$ を用いて、反射係数の絶対値 $|\Gamma|$ を求める。
+    \begin{equation}
+        |\Gamma| = \frac{\mathrm{SWR} - 1}{\mathrm{SWR} + 1} = \frac{1.88 - 1}{1.88 + 1} = \frac{0.88}{2.88} \approx 0.306
+    \end{equation}
+    
+    次に負荷抵抗 $R_L$ を推定する。負荷接続時の節の位置（$x=\SI{25.0}{mm}$）は、短絡時の節の位置（$x=\SI{35.0}{mm}$）に近接しており、開放時の節（$x=\SI{77.5}{mm}$）とは異なる。短絡は $Z_L=0$ であり、負荷接続時の定在波の位相が短絡時に近いことから、負荷は特性インピーダンス $Z_0$ よりも低い抵抗値（$R_L < Z_0$）であると判断できる。
+    特性インピーダンスを $Z_0 = \SI{50}{\Omega}$ と仮定すると、負荷抵抗 $R_L$ は次式となる。
+    \begin{equation}
+        R_L = \frac{Z_0}{\mathrm{SWR}} = \frac{50}{1.88} \approx \SI{26.6}{\Omega}
+    \end{equation}
+    以上より、接続された負荷抵抗は約 $\SI{27}{\Omega}$（公称値 $\SI{25}{\Omega}$ 等）であると考えられる。
+
+    \item \textbf{開放および短絡入力インピーダンスによる特性インピーダンスの導出証明}
+
+    損失のない線路の入力インピーダンス $Z_{\mathrm{in}}$ は、特性インピーダンス $Z_0$、位相定数 $\beta$、線路長 $l$、終端負荷 $Z_L$ を用いて次式で表される。
+    \begin{equation}
+        Z_{\mathrm{in}} = Z_0 \frac{Z_L + j Z_0 \tan \beta l}{Z_0 + j Z_L \tan \beta l}
+    \end{equation}
+    
+    終端開放の場合、$Z_L \to \infty$ であるため、分母・分子を $Z_L$ で割り極限をとると、
+    \begin{equation}
+        Z_{\mathrm{open}} = \lim_{Z_L \to \infty} Z_0 \frac{1 + j (Z_0/Z_L) \tan \beta l}{(Z_0/Z_L) + j \tan \beta l} = Z_0 \frac{1}{j \tan \beta l} = -j Z_0 \cot \beta l
+    \end{equation}
+    となる。一方、終端短絡の場合、$Z_L = 0$ を代入すると、
+    \begin{equation}
+        Z_{\mathrm{short}} = Z_0 \frac{0 + j Z_0 \tan \beta l}{Z_0 + 0} = j Z_0 \tan \beta l
+    \end{equation}
+    となる。これら両者の積をとると、
+    \begin{equation}
+        Z_{\mathrm{open}} \cdot Z_{\mathrm{short}} = (-j Z_0 \cot \beta l) \cdot (j Z_0 \tan \beta l) = Z_0^2 (-j \cdot j) (\cot \beta l \cdot \tan \beta l) = Z_0^2
+    \end{equation}
+    したがって、
+    \begin{equation}
+        Z_0 = \sqrt{Z_{\mathrm{open}} \cdot Z_{\mathrm{short}}}
+    \end{equation}
+    となり、開放および短絡時の入力インピーダンスから特性インピーダンスが求められることが証明された。
+
 \end{enumerate}
 
 % 参考文献
