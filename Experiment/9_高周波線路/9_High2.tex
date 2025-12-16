@@ -1,7 +1,7 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % =============================================
-% 1. パッケージ設定 (SARP v2.0準拠)
+% 1. パッケージ設定 (SARP v3.0準拠)
 % =============================================
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext}
@@ -16,8 +16,6 @@
 \usepackage{fancyhdr}   
 \usepackage{graphicx}
 % 画像検索パス
-% 最適化画像があれば優先して参照する（scripts/optimize-images.ps1 を実行して作成）
-% 使い方（リポジトリルートで）: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\optimize-images.ps1`
 \graphicspath{{./}{image/optimized/}{image/}}
 \usepackage{float}
 \usepackage{booktabs}
@@ -36,7 +34,8 @@
 \sisetup{
   detect-all,
   inter-unit-product=\ensuremath{{}\cdot{}},
-  separate-uncertainty=true
+  separate-uncertainty=true,
+  number-unit-product = \hspace{0.5em}
 }
 
 % リンク・参照
@@ -373,7 +372,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡 (dB/V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡 (dB$\mu$V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=short,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -382,7 +381,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放 (dB/V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放 (dB$\mu$V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=open,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -393,7 +392,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合 (dB/V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合 (dB$\mu$V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=matched,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -402,14 +401,14 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの (dB/V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの (dB$\mu$V)}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=half,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
         \caption{半端もの}
     \end{subfigure}
 
-    \caption{各終端条件における位置 $x$ に対する測定値（単位: dB/V）}
+    \caption{各終端条件における位置 $x$ に対する測定値（単位: dB$\mu$V）}
     \label{fig:measurement_plots}
 \end{figure}
 
@@ -436,24 +435,29 @@
 
     「半端もの（負荷）」を接続した際の測定結果（\cref{fig:measurement_plots}(d)）より、定在波の最大値（腹）と最小値（節）を読み取る。
     グラフおよびデータより、最大値 $V_{\mathrm{max}(\mathrm{dB})} \approx \SI{12.0}{dB\mu V}$（$x=75.0$等）、最小値 $V_{\mathrm{min}(\mathrm{dB})} \approx \SI{6.5}{dB\mu V}$（$x=25.0$等）と読み取れる。
-    電圧定在波比 $\rho$（SWR）は電圧の比で定義される。
+    
+    電圧定在波比 $\mathrm{SWR}$ は電圧の比で定義される。
     \begin{equation}
         \mathrm{SWR} = \frac{V_{\mathrm{max}}}{V_{\mathrm{min}}}
     \end{equation}
 
-    電圧を dB 表示に変換する式 $V_{(\mathrm{dB})} = 20\log_{10} V$ を用いると，最大値と最小値の差は
+    ここで、測定値は基準電圧 $V_0 = \SI{1}{\mu V}$ に対する比の対数（dB$\mu$V）で得られている。
+    \begin{equation}
+        V_{(\mathrm{dB}\mu\mathrm{V})} = 20\log_{10} \left( \frac{V}{V_0} \right)
+    \end{equation}
+    最大値と最小値の差をとると基準電圧 $V_0$ は相殺され、電圧比の対数となる。
     \begin{align}
-        V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})} &= 20\log_{10}V_{\mathrm{max}} - 20\log_{10}V_{\mathrm{min}} \\
+        V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})} 
+        &= 20\log_{10} \left( \frac{V_{\mathrm{max}}}{V_0} \right) - 20\log_{10} \left( \frac{V_{\mathrm{min}}}{V_0} \right) \\
         &= 20\log_{10}\left(\frac{V_{\mathrm{max}}}{V_{\mathrm{min}}}\right) = 20\log_{10}(\mathrm{SWR})
     \end{align}
 
-    これを SWR について解くと，
+    これを SWR について解くと，以下の式が得られる。
     \begin{equation}
-        \log_{10}(\mathrm{SWR}) = \frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20},\qquad
-        \mathrm{SWR} = 10^{\frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20}}.
+        \mathrm{SWR} = 10^{\frac{V_{\mathrm{max}(\mathrm{dB})} - V_{\mathrm{min}(\mathrm{dB})}}{20}}
     \end{equation}
 
-    実測値 $V_{\mathrm{max}(\mathrm{dB})} \approx \SI{12.0}{dB\mu V}$，$V_{\mathrm{min}(\mathrm{dB})} \approx \SI{6.5}{dB\mu V}$ を代入すると，
+    実測値を代入すると，
     \begin{equation}
         \mathrm{SWR} = 10^{\frac{12.0 - 6.5}{20}} = 10^{0.275} \approx 1.88
     \end{equation}
