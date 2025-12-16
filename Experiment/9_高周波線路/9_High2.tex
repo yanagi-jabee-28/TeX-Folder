@@ -372,7 +372,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡 (dB$\mu$V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={短絡 (dB$\mu$V)}, label style={font=\small,align=center}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=short,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -381,7 +381,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放 (dB$\mu$V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={解放 (dB$\mu$V)}, label style={font=\small,align=center}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=open,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -392,7 +392,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合 (dB$\mu$V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={整合 (dB$\mu$V)}, label style={font=\small,align=center}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=matched,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
@@ -401,7 +401,7 @@
     \begin{subfigure}{0.48\textwidth}
         \centering
         \begin{tikzpicture}
-        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの (dB$\mu$V)}, grid=both, unbounded coords=jump]
+        \begin{axis}[width=\linewidth, xlabel={位置 $x$ (mm)}, ylabel={半端もの (dB$\mu$V)}, label style={font=\small,align=center}, grid=both, unbounded coords=jump]
             \addplot[only marks, mark=*, mark options={fill=black}] table[x=x,y=half,col sep=comma]{data1_clean.csv};
         \end{axis}
         \end{tikzpicture}
