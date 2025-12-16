@@ -69,7 +69,7 @@
 % =============================================
 % 2. カスタムコマンド定義
 % =============================================
-\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][l]{\vphantom{lp}\large #2}}}
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
 \newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
 \newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
 
@@ -114,22 +114,22 @@
 
 \noindent
 \BoldLabel{報告者} \hspace{0.5em}
-\UnderlineBox[1.5cm]{} {\large \textbf{年}} \hspace{0.2em}      
-(\UnderlineBox[1.5cm]{} {\large \textbf{組}}) \hspace{0.2em} 
-{\large \textbf{番号}} \UnderlineBox[2.0cm]{} \hspace{0.5em}    
-\UnderlineBox[1.5cm]{} {\large \textbf{班}} \hspace{1em}        
-\UnderlineBox[4.5cm]{}                                   
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}      
+(\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{栁原 魁人}                                   
 \vspace{2.0em} 
 
 \noindent
 \begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
-  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{} & 
-  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{}    
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{鈴木研究室} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{斎藤 栄輔}
 \end{tabular}
 \vspace{2.0em} 
 
 \noindent
-\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{} 
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
 \vspace{2.5em} 
 
 \noindent
@@ -137,11 +137,11 @@
 \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
     \JustifiedLabel{5em}{実験日} & 
-    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & & \\
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{9} 月 \UnderlineBox[0.65cm]{26} 日 & & \\
     \JustifiedLabel{5em}{提出期限} & 
-    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{31} 日 & 
     \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
-    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 \\
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{16} 日 \\
     （ \JustifiedLabel{6em}{再提出期限} & 
     \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
     \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
@@ -504,11 +504,14 @@
 
 \end{enumerate}
 
+本報告の式・導出およびSWR等の扱いの根拠は西山先生の資料\cite{nishiyama2023}を参照した。
+
 % 参考文献
 \begin{thebibliography}{9}
 \bibitem{montrose} Mark I. Montrose 著，出口・田上共訳，プリント基板の EMC 設計，P.95，オーム社.
 \bibitem{nec_manual} 磁界プローブ CP-2S 取扱説明書，NEC
 \bibitem{panasonic_fr4} パナソニック インダストリアル株式会社，ガラスエポキシ基板（FR-4）製品ページ，https://industrial.panasonic.com/jp/products/pt/glass-epoxy-multi/ger1766（参照日: 2025年12月15日）
+\bibitem{nishiyama2023} 西山先生，伝送線路の基礎（スライド），IEICE 九州支部, 2023. \url{https://www.ieice.org/kyushu/wp-content/uploads/2023/11/KK-23-2_伝送線路の基礎（西山先生）.pdf} (参照日: 2025-12-16)
 \end{thebibliography}
 
 \end{document}
