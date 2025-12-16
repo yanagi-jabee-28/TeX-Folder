@@ -1,60 +1,185 @@
-% ===== ドキュメントクラス =====
-% LuaLaTeXでのコンパイルを前提としたクラス設定
-\documentclass[
-  a4paper,
-  11pt,
-]{ltjsarticle}
+\documentclass[a4paper,11pt]{ltjsarticle}
 
-% ----- フォント・数式関連 -----
+% =============================================
+% 1. パッケージ設定 (SARP v3.0準拠)
+% =============================================
+\usepackage[T1]{fontenc}
 \usepackage{newtxtext}
-\usepackage{newtxmath}
-\usepackage{amsmath}
-% newtxmathとの競合回避
-\let\Bbbk\relax
-\usepackage{amssymb}
-\usepackage{bm} % ベクトル太字用
+\usepackage[varbb]{newtxmath} % 数式フォント
+\usepackage{bm}      % ベクトル太字
+\usepackage{mathtools}
 
-% ----- 画像・単位・レイアウト関連 -----
-% 【重要】コンパイラの自動判定設定
-\usepackage{graphicx} 
-\usepackage[export]{adjustbox}
-\usepackage{siunitx}
-\usepackage{float}
-\usepackage{placeins}
+% レイアウト・図表関連
 \usepackage[margin=25mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
+\usepackage{graphicx}
+% 画像検索パス
+\graphicspath{{./}{image/optimized/}{image/}}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{subcaption}
+% Allow \includegraphics to use `max size`-like behavior and provide \FloatBarrier
+\usepackage{adjustbox}
+\usepackage{placeins}
 
-% ----- グラフ描画機能 (TeX機能による数式の可視化) -----
+% 回路図・グラフ描画
+\usepackage{circuitikz}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows.meta, positioning}
+\pgfplotsset{compat=newest, filter discard warning=false}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
-% 画像の高さ制限設定
-\setkeys{Gin}{keepaspectratio}
+% SI単位・数式処理
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  separate-uncertainty=true,
+  number-unit-product = \hspace{0.5em}
+}
 
-% 便利マクロ: max size をデフォルトで使うラッパー
-\newcommand{\includefig}[2][]{\includegraphics[max size={\textwidth}{0.45\textheight},#1]{#2}}
+% リンク・参照
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{needspace}
 
-% ページ下部の余白調整
-\raggedbottom
-
-% ----- 参考文献の上付き表示設定 -----
+% 参考文献の上付き表示設定
 \makeatletter
-\def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
 \makeatother
 
-% ----- ハイパーリンク -----
-\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,anchorcolor=black]{hyperref}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
 
-% ===== ドキュメント情報 =====
-\title{PCM通信 実験報告書}
-\author{電気電子工学科 X年 X組 番号 氏名} % 氏名は適宜変更してください
-\date{2025年12月3日}
+% キャプション設定
+\usepackage{caption}
+\captionsetup{
+  format=hang,
+  labelsep=quad,
+  font={small},
+  labelfont={bf},
+  justification=centering
+}
+\captionsetup[figure]{justification=centerlast}
 
-% ===== ここからドキュメント本体 =====
+% =============================================
+% 2. カスタムコマンド定義
+% =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
+
+% 数式用コマンド
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+
+% 箇条書き（enumerate）を (1) 形式にする
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+% =============================================
+% 3. 表紙専用のページスタイル定義
+% =============================================
+\fancypagestyle{coverpage}{
+  \fancyhf{} 
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt} 
+  \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
+}
+
+% =============================================
+% ドキュメント開始
+% =============================================
 \begin{document}
 
-\maketitle
+% /////////////////////////////////////////////
+% 表紙 (Cover Page)
+% /////////////////////////////////////////////
+
+\newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
+\thispagestyle{coverpage}
+
+\begin{center}
+    \vspace*{0mm} 
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{10mm} 
+\end{center}
+
+\noindent
+\begin{tabular}{@{}ll}
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{PCM通信} \\[2.0em] 
+\end{tabular}
+
+\noindent
+\BoldLabel{報告者} \hspace{0.5em}
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}      
+(\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{栁原 魁人}                                   
+\vspace{2.0em} 
+
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{鈴木研究室} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{斎藤 栄輔}
+\end{tabular}
+\vspace{2.0em} 
+
+\noindent
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
+\vspace{2.5em} 
+
+\noindent
+\renewcommand{\arraystretch}{2.0}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{9} 月 \UnderlineBox[0.65cm]{26} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{31} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{16} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
+\end{tabular}
+\vfill 
+
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\hline
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
+\hline
+\multirow{3}{*}{\parbox[c][4.5em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた &  \\
+\hline
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
+ & (2) 結果に対する考察 &  \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか &  \\
+\hline
+\end{tabular}
+\end{center}
+\clearpage
+
+% /////////////////////////////////////////////
+% 本文 (Main Body)
+% /////////////////////////////////////////////
+
+\restoregeometry 
+\setcounter{page}{1}
+\pagestyle{plain} 
 
 \section{目的}
 実機デモおよび回路シミュレータを用いた回路設計・解析を通じて，アナログ信号をパルス信号で変調・復調するパルス符号変復調（PCM）回路の仕組みと，その動作原理を習得することを目的として本実験を実施した．
@@ -69,7 +194,7 @@ PCM変調回路は，入力切換回路で選択された入力信号を標本�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_000.png}
+  \includegraphics[width=0.6\textwidth,height=0.45\textheight,keepaspectratio]{image/img_000.png}
   \caption{PCM通信の基本方式}
   \label{fig:1}
 \end{figure}
@@ -85,7 +210,7 @@ JKフリップフロップ回路では，JおよびK入力の双方がHighレベ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_001.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_001.png}
   \caption{タイミングパルス発生回路とカルノー図}
   \label{fig:2}
 \end{figure}
@@ -97,7 +222,7 @@ U1のクロック信号によってアナログスイッチSW3およびSW4のオ
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_002.png}
+  \includegraphics[width=0.6\textwidth,height=0.45\textheight,keepaspectratio]{image/img_002.png}
   \caption{切換回路}
   \label{fig:3}
 \end{figure}
@@ -111,14 +236,14 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_003.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_003.png}
   \caption{標本化回路（サンプル\&ホールド回路）}
   \label{fig:4}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_004.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_004.png}
   \caption{サンプル\&ホールド回路におけるR1の影響検証}
   \label{fig:5}
 \end{figure}
@@ -130,7 +255,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_005.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_005.png}
   \caption{シフトレジスタ（パラレルシリアル変換回路）}
   \label{fig:6}
 \end{figure}
@@ -142,7 +267,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_006.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_006.png}
   \caption{波形合成・分離回路}
   \label{fig:7}
 \end{figure}
@@ -157,7 +282,7 @@ U1のクロックパルスがHighレベルとなる期間，SW1がオンとな�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.6\textwidth}{0.45\textheight}]{image/img_007.png}
+  \includegraphics[width=0.6\textwidth,height=0.45\textheight,keepaspectratio]{image/img_007.png}
   \caption{波形合成・分離回路の動作原理}
   \label{fig:8}
 \end{figure}
@@ -173,7 +298,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_008.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_008.png}
   \caption{AD・DA変換回路とローパスフィルタ}
   \label{fig:9}
 \end{figure}
@@ -185,7 +310,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_009.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_009.png}
   \caption{タイミングパルス発生回路のマクロ化}
   \label{fig:10}
 \end{figure}
@@ -208,7 +333,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_010.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_010.png}
   \caption{タイミングパルス発生回路の過渡特性}
   \label{fig:11}
 \end{figure}
@@ -220,7 +345,7 @@ D/A変換直後の出力波形VDAは階段状であるため，最終段のロ�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_011.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_011.png}
   \caption{切替回路の過渡特性}
   \label{fig:12}
 \end{figure}
@@ -232,7 +357,7 @@ Voutの波形を確認すると，Vclockが立ち上がるタイミングで入�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_012.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_012.png}
   \caption{標本化回路の過渡特性}
   \label{fig:13}
 \end{figure}
@@ -244,7 +369,7 @@ OUTPUT波形を確認すると，ロード信号T3の入力後に，設定した
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_013.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_013.png}
   \caption{シフトレジスタの過渡特性}
   \label{fig:14}
 \end{figure}
@@ -256,7 +381,7 @@ OUTPUT波形を確認すると，ロード信号T3の入力後に，設定した
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_014.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_014.png}
   \caption{波形合成・分離回路の過渡特性}
   \label{fig:15}
 \end{figure}
@@ -272,7 +397,7 @@ AD-DA変換回路およびLPF（図\ref{fig:9}）のシミュレーション結�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.75\textwidth}{0.45\textheight}]{image/img_015.png}
+  \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{image/img_015.png}
   \caption{AD-DA変換回路，ローパスフィルタの過渡特性}
   \label{fig:16}
 \end{figure}
@@ -357,7 +482,7 @@ PCM通信は，電話交換網や音声伝送（デジタル電話回線），�
 
 \begin{figure}[H]
   \centering
-  \includegraphics[max size={0.7\textwidth}{0.45\textheight}]{image/img_017.png}
+  \includegraphics[width=0.7\textwidth,height=0.45\textheight,keepaspectratio]{image/img_017.png}
   \caption{サレン・キー型アクティブローパスフィルタ（LPF）}
   \label{fig:19}
 \end{figure}
