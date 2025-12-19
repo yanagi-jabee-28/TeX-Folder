@@ -92,7 +92,8 @@
 % 他パッケージ（例: siunitx）で既に \unit が定義されている場合があるため，
 % 再定義でエラーとならないように \providecommand を使用する．
 \providecommand{\unit}[1]{\,\mathrm{#1}}
-\newcommand{\rom}[1]{\mathrm{#1}}
+% ローマン体をテキストモードで安全に出力するマクロ（\mathrm は数式専用なので \textup を使う）
+\newcommand{\rom}[1]{\textup{#1}}
 
 % =============================================
 % 3. 表紙専用のページスタイル定義
@@ -330,7 +331,6 @@ AD 変換されたデータは再び DA コンバータ MV95308 に入力しア�
 
 \section{使用機器}
 本実験では，シミュレーションソフト「TINA-TI」を用いた．TINA は DesignSoft の製品であり，TEXAS INSTRUMENTS 社専用で，無償で提供されている．
-
 
 \section{実験結果及び考察}
 
