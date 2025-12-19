@@ -41,9 +41,13 @@
 
 % リンク・参照
 \usepackage{cite}
+% improve URL line breaks
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{needspace}
+% allow breaks within URLs to avoid large inter-word spacing
+\Urlmuskip=0mu plus 1mu
 % セクション直後に余分な垂直スペースを入れない設定（セクション前の余白は維持）
 \usepackage{titlesec}
 \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{0pt}
@@ -417,7 +421,7 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
         \label{eq:sampling1}
     \end{equation}
     
-    この関係は，染谷―Shannon の標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が $f_0$ であるとき，標本化周波数が $2f_0$ 以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が \SI{4}{\kilo\hertz} であれば，標本化周波数は \SI{8}{\kilo\hertz} でよいことになる．）[2]．
+    この関係は，染谷―Shannon の標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が $f_0$ であるとき，標本化周波数が $2f_0$ 以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が \SI{4}{\kilo\hertz} であれば，標本化周波数は \SI{8}{\kilo\hertz} でよいことになる．）\cite{hatori2012}．
     
     この式の持つ物理的意味を説明する．いま入力信号 $g(t)$ を無限小のパルス幅のインパルス $\delta(t)$ の列で標本化すると，標本化パルス列は，
     
@@ -444,25 +448,25 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
     となり，\cref{eq:sampling1} で表される元の波形 $g(t)$ と等しくなる．すなわち，標本化された信号 $g_T(t)$ は，\cref{eq:sampling3}の補間フィルタ $h_s(t)$ によって元の連続信号に復調することができるということである．
     
     $h_s(t)$ は標本化関数，または，補間関数といわれ，そのインパルス応答は，\cref{fig:sampling_theory}（c）に示すように $t = \SI{0}{\second}$ で 1，ほかの標本点 $nT$ で 0 になる関数である．
-    したがって，インパルス列 $g(0)$，$g(1T)$，$g(2T)$，$\dots$ に対するフィルタの応答波形は，\cref{fig:sampling_theory}（c），（d），（e）に示すように，$h_s(t)$ を $T$ ずつ時間的にずらした波形に標本値振幅を掛け合わせたものになる．各標本値に対するこのような応答波形をすべて総和したものが，最終的な補間・復調された波形で，\cref{fig:sampling_theory}（f）のように連続波形に合成される．[1]
+    したがって，インパルス列 $g(0)$，$g(1T)$，$g(2T)$，$\dots$ に対するフィルタの応答波形は，\cref{fig:sampling_theory}（c），（d），（e）に示すように，$h_s(t)$ を $T$ ずつ時間的にずらした波形に標本値振幅を掛け合わせたものになる．各標本値に対するこのような応答波形をすべて総和したものが，最終的な補間・復調された波形で，\cref{fig:sampling_theory}（f）のように連続波形に合成される．\cite{kaneko1977}
 
     \begin{figure}[H]
         \centering
         \includegraphics[max size={0.6\linewidth}{0.5\textheight},keepaspectratio]{image/img_016.png}
-        \caption{標本化とその復調 [1]}
+        \caption{標本化とその復調\cite{kaneko1977}}
         \label{fig:sampling_theory}
     \end{figure}
 
     \item \textbf{本実験における量子化レベルはいくらかを報告する．}
     
-    量子化とは，標本化が時間的に離散的な信号抽出をするのに対し，振幅軸方向で離散的な値をとることである．[3]
+    量子化とは，標本化が時間的に離散的な信号抽出をするのに対し，振幅軸方向で離散的な値をとることである．\cite{kaneko1977}
     本実験では，アナログ信号を 8 桁の 2 進数に変換している．したがって，量子化ビット数は 8 である．8 ビット符号化の場合は $2^8$ の出力レベル数があり，256 ステップで表現されている．
 
     \item \textbf{理想ダイオードとはどういうものかを報告する．}
     
-    通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では開放である特性を持つ．[4]
+    通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では開放である特性を持つ．\cite{takasaki2021}
 
-    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数はいくらかを報告する．[5]，[6]}
+    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数はいくらかを報告する．\cite{electricalinfo2023,terashima2019}}
     
     \cref{fig:ad_da_circuit}のローパスフィルタ（LPF）はサレン・キー型 LPF と呼ばれるもので，オペアンプと抵抗 $R$，コンデンサ $C$ で構成されている 2 次 LPF である．入力電圧 $V_{\rom{IN}}$ の低周波成分を通過させ，高周波成分を遮断する．
 
@@ -560,7 +564,7 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
     \end{equation}
     ただし，\cref{fig:ad_da_circuit}において\cref{fig:sallen_key}に対応する素子の値は，$R_1 = R_2 = \SI{50}{\kilo\ohm}$，$C_1 = \SI{2.3}{\nano\farad}$，$C_2 = \SI{1.1}{\nano\farad}$ である．
 
-    \item \textbf{PCM 変調がほかの変調方式に比べて優れている点を述べる．[7]}
+    \item \textbf{PCM 変調がほかの変調方式に比べて優れている点を述べる．\cite{kaneko1977}}
     
     PCM 変調がほかの変調方式に比べて優れている点をいかに示す．
     \begin{enumerate}
@@ -582,31 +586,28 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
     多重化伝送とは，1 本のケーブルあるいは 1 つの無線周波数などの伝送媒体を通して，複数の情報源を伝送することをいう．多重化する方法としては，時間的に重なり合いがないように多重化する方法である TDM（Time Division Multiplex：時分割多重化）がある．
     
     PCM 変調で標本化をする際に，時間的に少しずつずらして標本化すると，互いに重なり合わない AM パルス列となり，これを合成することによって時分割多重化が行われ，TDM-PAM 信号が得られる．\cref{fig:tdm}に，TDM の原理を示す．
-    受信する際は標本周期と同じタイミングで信号を受信すれば，正しく信号を受けることができる．[8]
+    受信する際は標本周期と同じタイミングで信号を受信すれば，正しく信号を受けることができる．\cite{kaneko1977}
 
     \begin{figure}[H]
         \centering
         \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_018.png}
-        \caption{時分割多重化（TDM）[8]}
+        \caption{時分割多重化（TDM）\cite{kaneko1977}}
         \label{fig:tdm}
     \end{figure}
 
     \item \textbf{PCM 通信はどのようなところで用いられているかを簡単に説明する．}
     
-    Bell 電話研究所の研究により，1962 年に T1 方式が世界初の商用化された PCM 通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によって PCM の研究が開始された．1965 年には，24 回戦 PCM 方式が日本電信電話公社により商用化されるに至った．その後，高次群 PCM の開発，マイクロ PCM，同軸 PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのように PCM 技術が用いられている．[9]
+    Bell 電話研究所の研究により，1962 年に T1 方式が世界初の商用化された PCM 通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によって PCM の研究が開始された．1965 年には，24 回戦 PCM 方式が日本電信電話公社により商用化されるに至った．その後，高次群 PCM の開発，マイクロ PCM，同軸 PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのように PCM 技術が用いられている．\cite{kaneko1977}
 \end{enumerate}
 
 \section{参考文献}
-\begin{enumerate}
-    \item[1] 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.17-19（1977）
-    \item[2] 羽鳥光俊：「わかりやすい通信工学」，コロナ社，p.21（2012）
-    \item[3] 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.27（1977）
-    \item[4] 高崎和之：「基本からわかる電子回路」，株式会社ナツメ社，pp.36-37（2021）
-    \item[5] 「Electrical Information」，https://detail-infomation.com/sallen-key-low-pass-filter/（2023 年 12 月 14 日参照）
-    \item[6] 寺島一彦，兼重明宏：「制御工学 技術者のための，理論・設計から実装まで」，実教出版株式会社，pp.121-128（2019）
-    \item[7] 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15（1977）
-    \item[8] 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11（1977）
-    \item[9] 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10（1977）
-\end{enumerate}
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{kaneko1977} 金子尚志：「PCM 通信の技術」，産報出版株式会社，1977．
+\bibitem{hatori2012} 羽鳥光俊：「わかりやすい通信工学」，コロナ社，2012．
+\bibitem{takasaki2021} 高崎和之：「基本からわかる電子回路」，株式会社ナツメ社，2021．
+\bibitem{electricalinfo2023} 「Electrical Information」，\url{https://detail-infomation.com/sallen-key-low-pass-filter/}（参照 2023 年 12 月 14 日）．
+\bibitem{terashima2019} 寺島一彦，兼重明宏：「制御工学 技術者のための，理論・設計から実装まで」，実教出版株式会社，2019．
+\end{thebibliography}
 
 \end{document}
