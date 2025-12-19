@@ -107,7 +107,7 @@
 % 表紙 (Cover Page)
 % /////////////////////////////////////////////
 
-\newgeometry{top=30mm, bottom=18mm, left=18mm, right=18mm}
+\newgeometry{top=25mm, bottom=15mm, left=15mm, right=15mm}
 \thispagestyle{coverpage}
 
 \begin{center}
@@ -227,6 +227,76 @@
     \item 「回転数－時間特性」，「電源電力－時間特性」，「インバータ出力電力－時間特性」，「電源電圧－時間特性」を作成する。「インバータ出力電力－時間特性」，「電源電圧－時間特性」から回生動作時のエネルギーの流れについて検討する。
 \end{enumerate}
 
+\clearpage
+
+\section{実験結果}
+\subsection{電流制御実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.86\linewidth]{data/torque_control_torque_vs_rpm.png}
+        \caption{トルク－回転数特性（電流制御）}
+    \end{subfigure}
+    \caption{電流制御の測定結果}
+    \label{fig:current-control-results}
+\end{figure}
+
+\clearpage
+
+\subsection{速度制御実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.84\linewidth]{data/speed_control_torque_vs_rpm.png}
+        \caption{トルク－回転数特性（速度制御）}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.84\linewidth]{data/torque_speed_control_comparison.png}
+        \caption{トルク制御と速度制御の比較}
+    \end{subfigure}
+    \caption{速度制御の測定結果}
+    \label{fig:speed-control-results}
+\end{figure}
+
+\clearpage
+
+\subsection{回生実験の結果}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.86\linewidth]{data/regen_rotational_speed_time.png}
+        \caption{回転数－時間特性}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.86\linewidth]{data/regen_power_supply_voltage_time.png}
+        \caption{電源電圧－時間特性}
+    \end{subfigure}
+    \caption{回生実験の測定結果（1/2）}
+    \label{fig:regeneration-results-part1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.86\linewidth]{data/regen_inverter_output_power_time.png}
+        \caption{インバータ出力電力－時間特性}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.95\textwidth}
+        \centering
+        \includegraphics[width=0.86\linewidth]{data/regen_power_supply_power_time.png}
+        \caption{電源電力－時間特性}
+    \end{subfigure}
+    \caption{回生実験の測定結果（2/2）}
+    \label{fig:regeneration-results-part2}
+\end{figure}
 \section{報告事項}
 (1) 回生実験において得られた「電源電圧－時間特性」から，減速開始時の電圧の変化量を求め，理論値と比較して，なぜ値が異なるのか検討せよ。コンデンサの電圧の理論値は以下の式より $V_1 = \unit{25.61}{V}$ となり，コンデンサの初期電圧（= 電源電圧）$V_0$ と比較して \unit{1.61}{V} 増加することになる。
 
