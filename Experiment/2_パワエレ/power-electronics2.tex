@@ -1,11 +1,11 @@
 \documentclass[a4paper,11pt]{ltjsarticle}
 
 % =============================================
-% 1. パッケージ設定 (SARP v2.0準拠)
+% 1. パッケージ設定 (SARP v3.0 NNCT-EE準拠)
 % =============================================
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext}
-\usepackage[varbb]{newtxmath} % 数式フォント
+\usepackage[varbb]{newtxmath} % 数式フォント Times系
 \usepackage{bm}      % ベクトル太字
 \usepackage{mathtools}
 
@@ -20,6 +20,7 @@
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{subcaption}
+\usepackage[export]{adjustbox}
 
 % 回路図・グラフ描画
 \usepackage{circuitikz}
@@ -34,17 +35,24 @@
 \sisetup{
   detect-all,
   inter-unit-product=\ensuremath{{}\cdot{}},
-  separate-uncertainty=true
+  separate-uncertainty=true,
+  number-unit-product = \hspace{0.5em} % 単位前の半角スペース強制
 }
 
 % リンク・参照
 \usepackage{cite}
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
-% ページ内の残り領域が不足する場合のみページ分割を行うためのパッケージ
 \usepackage{needspace}
+\Urlmuskip=0mu plus 1mu
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{0pt}
+\titlespacing*{\subsection}{0pt}{2.5ex plus .5ex minus .2ex}{0pt}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus .3ex minus .2ex}{0pt}
+\usepackage{indentfirst}
 
-% 参考文献の上付き表示設定
+% 参考文献の上付き表示設定 [1]形式
 \makeatletter
 \def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
 \def\@biblabel#1{[#1]}
@@ -72,8 +80,13 @@
 \newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
 \newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
 
-% 数式用コマンド
+% 微分記号（ローマン体 d）
 \newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% 単位記号・ローマン体コマンド
+\providecommand{\unit}[1]{\,\mathrm{#1}}
+\newcommand{\rom}[1]{\mathrm{#1}}
 
 % =============================================
 % 3. 表紙専用のページスタイル定義
@@ -82,7 +95,7 @@
   \fancyhf{} 
   \renewcommand{\headrulewidth}{0pt} 
   \renewcommand{\footrulewidth}{0pt} 
-  \cfoot{\vspace{5mm}\Large \bfseries 国立長野高専 電気電子工学科}
+  \cfoot{\vspace{2mm}\footnotesize \bfseries 国立長野高専 電気電子工学科}
 }
 
 % =============================================
@@ -94,7 +107,7 @@
 % 表紙 (Cover Page)
 % /////////////////////////////////////////////
 
-\newgeometry{top=25mm, bottom=20mm, left=18mm, right=18mm}
+\newgeometry{top=30mm, bottom=18mm, left=18mm, right=18mm}
 \thispagestyle{coverpage}
 
 \begin{center}
