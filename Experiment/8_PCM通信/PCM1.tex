@@ -44,6 +44,13 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{needspace}
+% セクション直後に余分な垂直スペースを入れない設定（セクション前の余白は維持）
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{0pt}
+\titlespacing*{\subsection}{0pt}{2.5ex plus .5ex minus .2ex}{0pt}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus .3ex minus .2ex}{0pt}
+% 見出し直後の段落も字下げする
+\usepackage{indentfirst}
 
 % 参考文献の上付き表示設定 [1]形式
 \makeatletter
