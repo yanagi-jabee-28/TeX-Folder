@@ -73,6 +73,14 @@
 }
 \captionsetup[figure]{justification=centerlast}
 
+% フロート・キャプション間隔の調整（全体の縦余白を詰める）
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}   % テキスト上・下のフロート間隔
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}       % フロート同士の間隔
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}      % インラインフロートの上下余白
+\setlength{\abovecaptionskip}{6pt}   % キャプション上の余白
+\setlength{\belowcaptionskip}{6pt}   % キャプション下の余白
+\captionsetup{skip=4pt}
+
 % =============================================
 % 2. カスタムコマンド定義
 % =============================================
@@ -332,5 +340,47 @@
 
 \vspace{2em}
 \noindent
+
+\subsection*{【解答】}
+
+\subsubsection*{1. 実測値の導出}
+回生実験の結果（\cref{fig:regeneration-results-part1}）より，減速開始直前（$t=40\unit{s}$付近）の電源電圧 $V_0$ および，減速動作中に観測された最大電圧 $V_1$ は以下の通りである。
+
+\begin{itemize}
+    \item 減速開始直前電圧： $V_0 = 23.40 \unit{V}$
+    \item 最大到達電圧： $V_1 = 24.60 \unit{V}$
+\end{itemize}
+
+したがって，実測による電圧の変化量 $\Delta V_{\mathrm{exp}}$ は次のように求められる。
+\begin{equation}
+    \Delta V_{\mathrm{exp}} = V_1 - V_0 = 24.60 - 23.40 = 1.20 \unit{V}
+\end{equation}
+
+\subsubsection*{2. 理論値との比較}
+課題で与えられた理論値 $\Delta V_{\mathrm{th}} = 1.61 \unit{V}$ と実測値 $\Delta V_{\mathrm{exp}} = 1.20 \unit{V}$ を比較すると，実測値のほうが $0.41 \unit{V}$ 小さい値となった。これは理論値に対して約 25\% の減少に相当する。
+
+\subsubsection*{3. 誤差要因の検討}
+理論計算式では，フライホイールの運動エネルギー $E$ が損失なく $100\%$ コンデンサの静電エネルギーに変換されると仮定している（エネルギー保存則）。しかし，実際の実験系ではエネルギー変換および伝送の過程で複数の損失が発生する。
+これら損失により，コンデンサに回収されるエネルギーが減少し，電圧上昇量が理論値よりも小さくなったと考えられる。具体的な損失要因を以下に挙げる。
+
+\noindent\textbf{(1) モータ内部における損失}\par
+\begin{itemize}
+    \item \textbf{機械損}: 減速時においてもロータは回転しているため，軸受の摩擦やフライホイールの空気抵抗（風損）によって運動エネルギーの一部が熱として消費される。これは発電機としての入力エネルギーそのものを減少させる要因となる。
+    \item \textbf{鉄損}: モータコア内の磁束変化により，ヒステリシス損および渦電流損が発生する。これらは回転数（周波数）に依存してエネルギーを消費する。
+    \item \textbf{銅損}: 発電された回生電流がモータの巻線を流れる際，巻線抵抗 $R_{\mathrm{motor}}$ によりジュール熱（$P_{\mathrm{cu}} = 3 R_{\mathrm{motor}} I^2$）が発生し，電力が消費される。
+\end{itemize}
+
+\noindent\textbf{(2) インバータおよび回路における損失}\par
+\begin{itemize}
+    \item \textbf{パワーデバイスの損失}: インバータを構成するスイッチング素子（IGBT等）や還流ダイオードにおいて以下の損失が発生する。
+    \begin{itemize}
+        \item \textbf{オン損失（導通損失）}: 素子に電流が流れる際のオン電圧（$V_{\mathrm{CE(sat)}}$ や $V_{\mathrm{F}}$）による電力損失。
+        \item \textbf{スイッチング損失}: 素子がオン・オフする遷移期間における電圧・電流の重なりによる電力損失。
+    \end{itemize}
+    \item \textbf{配線の損失}: モータからインバータ，およびインバータからコンデンサまでの配線抵抗によるジュール熱損失。
+    \item \textbf{コンデンサの内部損失}: 電気二重層コンデンサの等価直列抵抗（ESR）に回生電流が流れることで電力損失が発生する。
+\end{itemize}
+
+以上の要因により，フライホイールが持っていた運動エネルギーの一部は熱エネルギーとして散逸し，最終的にコンデンサに蓄積されたエネルギーは理論値よりも小さくなったと結論付けられる。
 
 \end{document}
