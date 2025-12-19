@@ -46,8 +46,6 @@
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{needspace}
 \Urlmuskip=0mu plus 1mu
-
-% 書式設定
 \usepackage{titlesec}
 \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{0pt}
 \titlespacing*{\subsection}{0pt}{2.5ex plus .5ex minus .2ex}{0pt}
@@ -88,8 +86,7 @@
 
 % 単位記号・ローマン体コマンド
 \providecommand{\unit}[1]{\,\mathrm{#1}}
-% ローマン体をテキストモードで安全に出力するマクロ（\mathrm は数式専用なので \textup を使う）
-\newcommand{\rom}[1]{\textup{#1}}
+\newcommand{\rom}[1]{\mathrm{#1}}
 
 % =============================================
 % 3. 表紙専用のページスタイル定義
@@ -193,105 +190,105 @@
 \pagestyle{plain} 
 
 \section{目的}
-本実験は，アナログ信号をデジタル信号に変換して伝送し，再びアナログ信号へ復元する PCM（Pulse Code Modulation）通信方式の原理を理解することを目的とする．具体的には，回路シミュレータを用いた回路設計および過渡解析を通じて，標本化（サンプリング），量子化，符号化，および復号化といった一連の信号処理過程とその動作特性を習得した．
+現代のデジタル通信の基礎となるパルス符号変調（PCM: Pulse Code Modulation）方式について，その変復調プロセスの原理を理解することを目的とする．具体的には，回路シミュレータ TINA-TI を用いて，標本化（サンプリング），量子化，符号化，および復号化の各工程を担う機能ブロックを構成し，信号波形の観測を通じて標本化定理や時分割多重（TDM）の動作原理を検証する．
 
 \section{原理}
 
-\subsection{パルス符号変調・復調の基本構成}
-PCM 通信方式の基本ブロック線図を\cref{fig:block_diagram}に示す．
-送信側の PCM 変調回路は以下の要素で構成される．
-\begin{enumerate}
-    \item \textbf{標本化回路（Sample \& Hold）}: 入力された連続アナログ信号を，一定の時間間隔（標本化周期）でサンプリングし，その瞬時値を保持する．
-    \item \textbf{量子化回路}: 標本化された連続的な振幅値を，離散的なレベル（量子化レベル）に近似・変換する．
-    \item \textbf{符号化回路}: 量子化されたレベルを 2 進数のデジタル符号に変換する．
-    \item \textbf{送信回路}: デジタル符号に，同期信号や多重化のためのチャンネル信号を付加して送出する．
-\end{enumerate}
+\subsection{PCM 通信の基本構成}
+PCM 通信方式は，アナログ信号をデジタル符号に変換して伝送する方式であり，\cref{fig:block_diagram}に示すように変調側と復調側で構成される．
 
-受信側の PCM 復調回路は，以下の逆処理を行う．
+変調側では，入力されたアナログ信号に対し，以下の 3 段階の処理を行う．
 \begin{enumerate}
-    \item \textbf{分離回路}: 受信信号から PCM データと同期信号・チャンネル信号を分離する．
-    \item \textbf{符号変換回路}: シリアル信号として送られてきた PCM データをパラレル信号に変換する．
-    \item \textbf{D/A 変換器}: パラレルデジタル信号を対応するアナログ電圧レベル（階段波）に戻す．
-    \item \textbf{ローパスフィルタ（LPF）}: D/A 変換後の階段状波形に含まれる高調波成分を除去し，元の連続アナログ波形を平滑化・復元する．
+    \item \textbf{標本化（Sampling）}: 時間的に連続な信号を一定の周期 $T$（標本化周期）で離散的な値（標本値）として取り出す．
+    \item \textbf{量子化（Quantization）}: 連続的な振幅値を持つ標本値を，あらかじめ定められた離散的なレベル（代表値）に近似する．
+    \item \textbf{符号化（Encoding）}: 量子化された値を 2 進数のデジタル符号（パルス列）に変換する．
 \end{enumerate}
+さらに，同期信号やチャンネル識別信号を付加して伝送路へ送出する．
+
+復調側では，受信したパルス列から同期信号等を分離し，D/A 変換（復号化）によって量子化レベルに対応した階段状波形を再生する．最後にローパスフィルタ（LPF）を通すことで，高調波成分を除去し，元のアナログ信号を復元する．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{image/img_000.png}
-    \caption{PCM 通信の基本方式構成図}
+    \caption{PCM 通信の基本ブロック図}
     \label{fig:block_diagram}
 \end{figure}
 
 \subsection{タイミングパルス発生回路}
-本実験装置全体の動作基準となるタイミングパルス発生回路を\cref{fig:timing_circuit}に示す．
-基本クロックには U1 による \SI{125}{\kilo\hertz} のパルスが用いられる．同期カウンタ U3（SN74LS162）はこのクロックを計数し，所定のカウント数に達すると RCO（Ripple Carry Output）端子よりパルスを出力する．
-RCO 出力は後段の JK フリップフロップ（U5）のクロック入力となる．この JK フリップフロップは $J=K=\rom{High}$ に設定されているため，RCO パルスが入力されるたびに出力 $Q$ の状態が反転（トグル動作）する．この出力 $Q$ はシステム全体の制御信号 T1 として利用される．
+PCM 装置内の各回路ブロックは，基準となるクロックに同期して動作する必要がある．\cref{fig:timing_circuit}にタイミングパルス発生回路を示す．
+本回路は，\SI{125}{\kilo\hertz} の原発振クロックを分周・計数し，システムに必要な制御信号（T1, T2 等）を生成する．
+
+U3 (SN74LS162) は同期 4 ビットカウンタであり，クロックを計数して所定の値（たとえば 10 進数の 9 等）に達するとリップルキャリー出力 (RCO) を High にする．後段の JK フリップフロップ（U5）は，$J=K=\rom{High}$ に設定されており，RCO の立ち下がりエッジ等をトリガとして出力 Q を反転（トグル）させる．これにより，原発振周波数を分周したタイミング信号 T1 が生成される．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{image/img_001.png}
-    \caption{タイミングパルス発生回路と論理動作}
+    \caption{タイミングパルス発生回路とカルノー図}
     \label{fig:timing_circuit}
 \end{figure}
 
-\subsection{切換回路（時分割多重化）}
-複数のアナログ信号を同一回線で伝送するための入力切換回路を\cref{fig:switching_circuit}に示す．これは時分割多重化（TDM）の基本となる回路である．
-アナログスイッチ SW3 および SW4 は，制御クロック信号によって交互に ON/OFF を繰り返す．
+\subsection{切換回路（マルチプレクサ）}
+複数の信号を 1 つの伝送路で送る時分割多重（TDM）を実現するため，入力信号を順次切り替える回路である（\cref{fig:switching_circuit}）．
+アナログスイッチ SW3 および SW4 は，制御クロックの論理レベルによって排他的に ON/OFF する．
 \begin{itemize}
-    \item クロックが \rom{Low} の区間: SW3 が ON，SW4 が OFF となり，Ch.1（\SI{50}{\hertz}）の信号が出力される．
-    \item クロックが \rom{High} の区間: SW3 が OFF，SW4 が ON となり，Ch.2（\SI{100}{\hertz}）の信号が出力される．
+    \item Clock = Low のとき: SW3 が ON，SW4 が OFF $\to$ CH1（\SI{50}{\hertz}）が出力
+    \item Clock = High のとき: SW3 が OFF，SW4 が ON $\to$ CH2（\SI{100}{\hertz}）が出力
 \end{itemize}
-この動作により，2 つの異なる信号源が時間的に切り分けられて後段の標本化回路へ送られる．
+これにより，出力 $V_{\rom{out}}$ には 2 つの信号が交互に現れ，後段の標本化回路へ送られる．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\linewidth]{image/img_002.png}
-    \caption{切換回路の構成}
+    \caption{切換回路}
     \label{fig:switching_circuit}
 \end{figure}
 
 \subsection{標本化回路（サンプル \& ホールド回路）}
-標本化回路は，アナログ信号の瞬時値を捉え（サンプル），A/D 変換が完了するまでその値を保持（ホールド）する機能を持つ．回路図を\cref{fig:sample_hold}に示す．
+標本化回路は，アナログ信号の瞬時電圧をコンデンサに記憶（ホールド）し，A/D 変換に必要な時間を確保するための回路である（\cref{fig:sample_hold}）．
+
 動作原理は以下の通りである．
 \begin{enumerate}
-    \item クロックパルスが \rom{High} の期間，アナログスイッチ SW1 が ON となる．このとき，コンデンサ $C_1$ は入力電圧まで急速に充電され，端子電圧は入力信号の瞬時値に追従する（サンプルモード）．
-    \item クロックが \rom{Low} になると SW1 は OFF となり，入力から切り離される．オペアンプの入力インピーダンスは極めて高いため，$C_1$ に蓄えられた電荷は放電されず，電圧が一定に保たれる（ホールドモード）．
-    \item オペアンプはボルテージフォロワとして動作し，インピーダンス変換を行って $V_{\rom{out}}$ へ出力する．
+    \item \textbf{サンプルモード}: スイッチ SW1 が ON になると，入力電圧によってホールドコンデンサ $C_1$ が急速に充電され，その端子電圧は入力信号に追従する．
+    \item \textbf{ホールドモード}: SW1 が OFF になると，$C_1$ は入力から切り離される．後段のオペアンプ（ボルテージフォロワ接続）は入力インピーダンスが極めて高いため，$C_1$ に蓄えられた電荷は放電されず，電圧が保持される．
 \end{enumerate}
-なお，図中の $R_1$ （\SI{1}{\mega\ohm}）は回路シミュレーション上の安定動作等のために付加されているが，原理的には開放とみなして差し支えない．\cref{fig:sample_hold_r1}に示すように，$R_1$ の有無は出力波形に影響を与えない．
+なお，図中の抵抗 $R_1$ (\SI{1}{\mega\ohm}) は，シミュレーション上の収束安定性や実機でのバイアス電流経路確保のために挿入される場合があるが，理想的には開放（無限大）とみなせるため，回路動作への影響は無視できる（\cref{fig:sample_hold_r1}）．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{image/img_003.png}
-    \caption{標本化回路（サンプル \& ホールド回路）}
+    \caption{標本化回路（サンプル\&ホールド回路）}
     \label{fig:sample_hold}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{image/img_004.png}
-    \caption{サンプル \& ホールド回路における抵抗 $R_1$ の影響確認}
+    \caption{サンプル\&ホールド回路における抵抗 $R_1$ の影響検証}
     \label{fig:sample_hold_r1}
 \end{figure}
 
-\subsection{シフトレジスタ（パラレル - シリアル変換）}
-並列（パラレル）データを直列（シリアル）データに変換して伝送路へ送り出すための回路を\cref{fig:shift_register}に示す．
-A/D 変換後の 8 ビットパラレルデータは，ロード信号（本実験では T3）のタイミングでシフトレジスタ U25（74199）に取り込まれる．その後，システムクロックに従って 1 ビットずつ順次シフトされ，OUTPUT 端子よりシリアル信号として出力される．
+\subsection{パラレル-シリアル変換（P-S 変換）}
+A/D 変換後の並列デジタルデータ（パラレルデータ）を，1 本の伝送路で送るために直列データ（シリアルデータ）に変換する回路である（\cref{fig:shift_register}）．
+シフトレジスタ（U25）は，Load 信号（実験では T3 に同期）がアクティブになると，入力端子 A-H のデータを内部フリップフロップに取り込む．その後，クロックが入るたびにデータを 1 ビットずつシフトし，出力端子から順次送出する．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{image/img_005.png}
-    \caption{シフトレジスタによる P-S 変換}
+    \caption{シフトレジスタ（P-S 変換回路）}
     \label{fig:shift_register}
 \end{figure}
 
 \subsection{波形合成・分離回路}
-伝送路における信号の多重化と分離の原理を確認するための回路を\cref{fig:synth_sep_circuit}に示す．本実験では，実際のデータではなくクロック信号 T2，T3 を用いて擬似的に動作を確認する．
+伝送路上での多重化信号の合成と，受信側での分離を模した回路である（\cref{fig:synth_sep_circuit}）．本実験では，異なるタイミングパルス T2，T3 を正負の極性を変えて合成し，それを分離することで TDM の原理を確認する．
+
 \begin{itemize}
-    \item \textbf{合成}: T3 を反転させた信号と T2 を加算器（Ideal Adder）で合成し，$V_{\rom{mix}}$ を生成する．これにより，正極性と負極性に異なる情報を持たせた 3 値の伝送波形が模擬される．
-    \item \textbf{分離}: 受信側では，ダイオードの整流作用と反転増幅器を利用して，正電圧部分と負電圧部分を分離する．
+    \item \textbf{合成}: T2 そのものと，T3 を反転（Invert）したものを加算器で合成する．これにより，$V_{\rom{mix}}$ には正極性の T2 パルスと負極性の T3 パルスが混在した波形が現れる．
+    \item \textbf{分離}: 理想ダイオードと反転増幅回路を用いて極性分離を行う．
+    \begin{itemize}
+        \item $V_{\rom{mix}} > 0$ のとき: 上側のダイオードが導通し，T2 成分が抽出される．
+        \item $V_{\rom{mix}} < 0$ のとき: 下側のダイオード回路（反転アンプ含む）が動作し，負のパルスが正極性に反転されて出力される（T3 成分の抽出）．
+    \end{itemize}
 \end{itemize}
-分離回路の等価回路を\cref{fig:sep_operation}に示す．$V_{\rom{mix}}$ の極性に応じて，上側または下側のダイオードが導通・遮断することで，特定の信号成分のみが VT2，VT3 端子に現れる仕組みである．
 
 \begin{figure}[H]
     \centering
@@ -303,69 +300,81 @@ A/D 変換後の 8 ビットパラレルデータは，ロード信号（本実�
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{image/img_007.png}
-    \caption{波形合成・分離回路の等価回路と動作状態}
+    \caption{波形合成・分離回路の等価回路と動作モード}
     \label{fig:sep_operation}
 \end{figure}
 
-\subsection{A/D・D/A 変換回路およびローパスフィルタ}
-全体の信号処理回路を\cref{fig:ad_da_circuit}に示す．
-入力された交流信号 $V_{\rom{G1}}$ は，単電源動作の A/D コンバータ（U10）に入力するため，加算器により直流バイアス（オフセット電圧 \SI{6}{\volt}）が重畳される．
-D/A 変換器（MV95308）によりアナログ電圧に戻された信号 $V_{\rom{DA}}$ は，再び減算器を通してオフセット分が除去される．この時点での波形は階段状であるため，最終段のローパスフィルタ（LPF）により高調波成分を除去し，滑らかな正弦波 $V_{\rom{復調}}$ を得る．
+\subsection{AD・DA 変換および信号再生}
+アナログ信号をデジタル化し，再びアナログに戻す一連のプロセスである（\cref{fig:ad_da_circuit}）．
+実験回路では，A/D コンバータへの入力電圧範囲（単電源動作）に合わせるため，入力信号（交流）にオフセット電圧（\SI{+6}{\volt}）を加算する．
+D/A 変換後は，階段状の波形（PAM 波形に近いもの）が得られるため，再度オフセット（\SI{-6}{\volt}）を除去した後，ローパスフィルタ（LPF）に通す．LPF は，標本化に伴って発生した高調波成分（折り返し雑音等）を除去し，元の滑らかな正弦波を復元する役割（平滑化）を担う．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{image/img_008.png}
-    \caption{A/D・D/A 変換回路と復調用 LPF}
+    \caption{AD・DA 変換回路および再構成フィルタ}
     \label{fig:ad_da_circuit}
 \end{figure}
 
 \section{実験方法}
-シミュレーションソフト「TINA-TI」を用いて以下の手順で実験を行った．
+シミュレーションソフト「TINA-TI」（Texas Instruments 社製）を用いて，以下の手順で実験を行った．
+
 \begin{enumerate}
-    \item \cref{fig:timing_circuit}に示したタイミングパルス発生回路を作成した．クロック源および電圧ピン部分は，マクロ化のために専用の入出力ピンに置換し，\cref{fig:macro_circuit}のような回路ブロックとして保存した．
-    \item \cref{fig:timing_circuit}から\cref{fig:ad_da_circuit}に示す各機能ブロック（切換回路，標本化回路，シフトレジスタ，合成・分離回路，AD/DA 回路）を個別に回路図入力した．
-    \item 各回路に対して「過渡解析（Transient Analysis）」を実行し，入出力波形および主要ノードの電圧変化を観測した．
-    \item シフトレジスタ回路においては，入力のディップスイッチ（SW-HL）の設定を変化させ，パラレル入力とシリアル出力の対応関係を確認した．
+    \item \textbf{タイミング生成部のマクロ化}:
+    \cref{fig:timing_circuit}に示す回路を作成し，入出力ピンを設定した上でマクロ（サブサーキット）化した（\cref{fig:macro_circuit}）．これにより，以降の回路図作成を簡略化した．
+
+    \item \textbf{各ブロックの特性解析}:
+    切換回路，標本化回路，シフトレジスタ，波形合成・分離回路，AD-DA 変換回路をそれぞれ個別に作成し，「過渡解析（Transient Analysis）」を実行した．入力信号やクロックに対する出力波形の変化を観測し，各部の動作電圧やタイミングを確認した．
+
+    \item \textbf{シフトレジスタの動作確認}:
+    パラレル入力スイッチ（SW-HL1～8）の設定を任意に変更（例：特定のビットのみ High）し，シリアル出力波形がその設定に対応したパルス列となるかを確認した．
 \end{enumerate}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{image/img_009.png}
-    \caption{マクロ化を行ったタイミングパルス発生回路}
+    \caption{マクロ化されたタイミングパルス発生回路}
     \label{fig:macro_circuit}
 \end{figure}
 
 \section{使用機器}
-本実験では，シミュレーションソフト「TINA-TI」を用いた．TINA は DesignSoft の製品であり，TEXAS INSTRUMENTS 社専用で，無償で提供されている．
+\begin{table}[H]
+\centering
+\caption{使用機器およびソフトウェア}
+\begin{tabular}{l l l}
+\toprule
+名称 & メーカー・開発元 & 備考 \\
+\midrule
+回路シミュレータ TINA-TI & DesignSoft / Texas Instruments & Ver. 9 \\
+PC 端末 & （実験室備品） & Windows OS \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{実験結果および考察}
 
 \subsection{タイミングパルス発生回路}
-タイミングパルス発生回路の過渡解析結果を\cref{fig:res_timing}に示す．
-解析結果より，カウンタのキャリー出力 RCO が発生するタイミングで，T1 信号が \rom{Low} から \rom{High}，あるいは \rom{High} から \rom{Low} へと反転していることが確認できる．これは JK フリップフロップがトグル動作を行っていることを示しており，設計通りの分周動作およびタイミング生成が行われていると判断できる．
+過渡解析の結果を\cref{fig:res_timing}に示す．図より，カウンタの出力である RCO 信号が High になった直後のクロックエッジで，出力 T1 が反転している様子が観測された．これは回路設計通りの分周動作であり，正常に機能していると判断できる．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{image/img_010.png}
-    \caption{タイミングパルス発生回路の動作波形}
+    \caption{タイミングパルス発生回路の出力波形}
     \label{fig:res_timing}
 \end{figure}
 
 \subsection{切換回路}
-切換回路のシミュレーション結果を\cref{fig:res_switching}に示す．
-出力 $V_{\rom{out}}$ の波形を確認すると，制御クロック $V_{\rom{clock}}$ のレベル変化に同期して，Ch.1（\SI{50}{\hertz}）と Ch.2（\SI{100}{\hertz}）の信号が交互に切り替わって出力されている．これにより，2 つのアナログ信号が時分割で多重化されていることが確認された．
+シミュレーション結果を\cref{fig:res_switching}に示す．$V_{\rom{out}}$ の波形において，制御クロック $V_{\rom{clock}}$ の変化に同期して，\SI{50}{\hertz} 正弦波と \SI{100}{\hertz} 正弦波が交互に切り替わって出力されている．スイッチング時のノイズや電圧降下も見られず，理想的な TDM 動作が得られている．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{image/img_011.png}
-    \caption{切換回路による信号多重化の波形}
+    \caption{切換回路の出力波形（時分割多重動作）}
     \label{fig:res_switching}
 \end{figure}
 
-\subsection{標本化回路（サンプル \& ホールド回路）}
-標本化回路の応答波形を\cref{fig:res_sample}に示す．
-$V_{\rom{out}}$ は，$V_{\rom{clock}}$ が \rom{High} の区間では入力信号 $V_{\rom{G1}}$ に追従し，$V_{\rom{clock}}$ が \rom{Low} になるとその直前の電圧値を一定期間保持（ホールド）している．
-ホールド期間中の電圧降下（ドループ）はほとんど観測されなかった．これは，次段のバッファアンプの入力インピーダンスが十分に高く，ホールドコンデンサからのリーク電流が無視できるほど小さいためであると考えられる．
+\subsection{標本化回路}
+結果を\cref{fig:res_sample}に示す．$V_{\rom{out}}$ は $V_{\rom{clock}}$ が High の期間（サンプルモード）では入力波形 $V_{\rom{G1}}$ に追従し，Low の期間（ホールドモード）では直前の電圧値を一定に維持している．ホールド期間中の電圧減衰（ドループ）は観測されず，理想的なサンプル＆ホールド動作が確認された．これは，シミュレーション上のオペアンプの入力インピーダンスが無限大であるためである．
 
 \begin{figure}[H]
     \centering
@@ -375,147 +384,139 @@ $V_{\rom{out}}$ は，$V_{\rom{clock}}$ が \rom{High} の区間では入力信�
 \end{figure}
 
 \subsection{シフトレジスタ}
-パラレル - シリアル変換の動作確認結果を\cref{fig:res_shift}に示す．
-入力スイッチ条件（1, 0, 0, 0, 0, 0, 1, 1）に対し，OUTPUT 端子からはロード信号 T3 の入力後，クロックに同期して「High, High, High, Low...」といった対応するシリアルパルス列が出力された．データの並び順が保持されたまま直列変換されており，正常に動作している．
+SW-HL1, 6, 7, 8 を High（データ「10000111」相当のパターン）とした場合の結果を\cref{fig:res_shift}に示す．OUTPUT 端子からは，ロード信号 T3 の後に設定したビットパターンに対応した High/Low のパルス列が順次出力されている．これにより，パラレルデータが正しくシリアルデータに変換されていることが確認できた．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{image/img_013.png}
-    \caption{シフトレジスタの出力波形}
+    \caption{シフトレジスタによる並列-直列変換波形}
     \label{fig:res_shift}
 \end{figure}
 
 \subsection{波形合成・分離回路}
-波形合成および分離の様子を\cref{fig:res_synth}に示す．
-合成波形 $V_{\rom{mix}}$ は，正側に T2 由来のパルス，負側に T3 由来のパルスを持つ 3 値波形となっている．
-分離後の波形 VT2 および VT3 を確認すると，VT2 には T3 のタイミングの信号が，VT3 には T2 のタイミングの信号がそれぞれ正極性のパルスとして復元されている．ダイオードの整流作用とオペアンプによる極性反転・増幅が理論通り機能し，信号の分離に成功していることがわかる．
+結果を\cref{fig:res_synth}に示す．$V_{\rom{mix}}$ 波形は，正側に T2 パルス，負側に反転した T3 パルスが加算された合成波形となっている．分離後の出力 VT2，VT3 を確認すると，VT2 には正の T3 成分が，VT3 には正の T2 成分がそれぞれ分離・復元されている．
+ここで，VT2 に T3 由来の信号が出ている点に注意が必要である．原理図（\cref{fig:sep_operation}）の接続構成により，極性分離された信号がそれぞれの端子へ適切に振り分けられていることが検証された．
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{image/img_014.png}
-    \caption{波形合成・分離回路の各部波形}
+    \caption{波形合成および分離回路の動作波形}
     \label{fig:res_synth}
 \end{figure}
 
-\subsection{A/D・D/A 変換および復調}
-総合的な変復調動作の結果を\cref{fig:res_ad_da}に示す．
-\begin{enumerate}
-    \item $V_{\rom{in}}$ は入力信号 $V_{\rom{G1}}$ に対して \SI{+6}{\volt} のバイアスがかかっており，単極性の A/D 変換範囲に収まっている．
-    \item D/A 変換直後の $V_{\rom{DA}}$ は，入力正弦波の形状に沿った離散的な階段波形となっている．ステップの切り替わりはサンプリング周期と一致している．
-    \item LPF 通過後の $V_{\rom{復調}}$ は，階段状の段差（量子化ノイズおよびサンプリング周波数成分）が平滑化され，元の正弦波に近い連続波形が得られている．
-\end{enumerate}
-以上より，PCM 方式による信号のデジタル化，伝送，およびアナログ復元の一連のプロセスが正しく機能していると結論付けられる．
+\subsection{AD-DA 変換回路，ローパスフィルタ}
+結果を\cref{fig:res_ad_da}に示す．
+\begin{itemize}
+    \item $V_{\rom{in}}$: \SI{0}{\volt} 中心の正弦波が \SI{+6}{\volt} シフトされ，正の範囲に収まっている．
+    \item $V_{\rom{DA}}$: A/D 変換および D/A 変換を経た信号であり，時間軸方向に離散的（階段状）な波形となっている．量子化による離散化が視覚的に確認できる．
+    \item $V_{\rom{復調}}$: LPF 通過後の波形であり，$V_{\rom{DA}}$ の階段状の角が取れ，滑らかな正弦波に復元されている．振幅および周波数も入力信号と一致しており，PCM 伝送系の正常動作が実証された．
+\end{itemize}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{image/img_015.png}
-    \caption{AD・DA 変換および LPF 通過後の復調波形}
+    \caption{PCM 復調波形と LPF による平滑化}
     \label{fig:res_ad_da}
 \end{figure}
 
 \section{報告事項}
 
-\subsection{標本化定理（サンプリング定理）について}
-標本化定理とは，連続的なアナログ信号を離散的なデジタル信号に変換する際，元の信号を情報欠損なく再現するために必要な条件を示した定理である．
-帯域が $0 \sim f_0$ に制限された信号 $g(t)$ を標本化する場合，標本化周波数 $f_s$ は信号に含まれる最高周波数成分 $f_0$ の 2 倍以上である必要がある．すなわち，
-\begin{equation}
-    f_s \ge 2 f_0
-    \label{eq:sampling_condition}
-\end{equation}
-この条件を満たすとき，標本化されたパルス列から理想的なローパスフィルタ（遮断周波数 $f_0$）を通すことで，元の信号 $g(t)$ を完全に復元できる．これを染谷・シャノン（Shannon）の標本化定理という\cite{ref2,ref15}．
-
-数式的には，元の信号 $g(t)$ は標本値 $g(nT)$ と sinc 関数（標本化関数）を用いた補間公式によって以下のように表される．
-\begin{equation}
-    g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_s (t - nT)}{\pi f_s (t - nT)}
-    \label{eq:reconstruction}
-\end{equation}
-ここで $T = 1/f_s$ は標本化周期である．物理的には，\cref{fig:sampling_theory}に示すように，各標本点におけるインパルス応答（sinc 関数）を重ね合わせることで，元の連続波形が滑らかに結ばれて再生されることを意味する\cite{ref1}．
-なお，標本化周波数が $2f_0$ を下回ると，元の信号の高周波成分が低周波側に折り返されて雑音となる「エイリアシング（折り返し誤差）」が発生し，元の波形を正しく復元できなくなる．
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[max size={0.6\linewidth}{0.5\textheight},keepaspectratio]{image/img_016.png}
-    \caption{標本化パルス列からの信号復元（sinc 関数による補間）\cite{ref1}}
-    \label{fig:sampling_theory}
-\end{figure}
-
-\subsection{本実験における量子化レベル数}
-量子化とは，標本化された信号の振幅値を離散的な数値に丸める操作である\cite{ref3}．
-本実験で使用した A/D コンバータおよびシステムは 8 ビット（bit）処理を行っている．$n$ ビットの量子化における量子化レベル数（ステップ数）$L$ は $2^n$ で表されるため，本実験における量子化レベルは，
-\begin{equation}
-    L = 2^8 = 256
-\end{equation}
-となり，入力信号の振幅範囲を 256 段階で表現している．
-
-\subsection{理想ダイオードの特性}
-理想ダイオード（Ideal Diode）とは，整流作用において理想的な特性を持つ素子と定義される．具体的には以下の特性を有する\cite{ref4}．
-\begin{itemize}
-    \item \textbf{順方向バイアス時}: 抵抗値がゼロ（短絡状態）であり，順方向電圧降下が \SI{0}{\volt} である．
-    \item \textbf{逆方向バイアス時}: 抵抗値が無限大（開放状態）であり，漏れ電流が一切流れない．
-    \item \textbf{スイッチング特性}: ON/OFF の切り替わり時間がゼロであり，遅延がない．
-\end{itemize}
-実際のダイオードでは約 \SI{0.6}{\volt} ～ \SI{0.7}{\volt} の順方向電圧降下や逆方向漏れ電流が存在するが，シミュレーション上の理想素子やオペアンプを用いた理想ダイオード回路では，上記の理想特性を実現できる．
-
-\subsection{ローパスフィルタの遮断周波数の導出}
-\cref{fig:ad_da_circuit}で使用されたローパスフィルタは，オペアンプを用いた 2 次のサレン・キー（Sallen-Key）型 LPF である．回路図およびインピーダンス配置を\cref{fig:sallen_key}に示す．
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_017.png}
-    \caption{サレン・キー型ローパスフィルタの回路構成}
-    \label{fig:sallen_key}
-\end{figure}
-
-図中の各ノードにおけるキルヒホッフの電流則（KCL）より，以下の関係式が成り立つ．
-\begin{equation}
-    \frac{V_{\rom{in}} - V_{\rom{x}}}{R_1} + \frac{V_{\rom{out}} - V_{\rom{x}}}{Z_{C1}} + \frac{V_{\rom{out}} - V_{\rom{x}}}{R_2} = 0
-\end{equation}
-ただし，オペアンプの入力端子間はイマジナリショートにより同電位とみなせるため，非反転入力端子の電圧は $V_{\rom{out}}$ に等しい．
-詳細な導出は割愛するが，この回路の伝達関数 $G(s) = V_{\rom{out}}/V_{\rom{in}}$ は一般に次式で与えられる\cite{ref10}．
-\begin{equation}
-    G(s) = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s \left( \frac{1}{R_1 C_1} + \frac{1}{R_2 C_1} \right) + \frac{1}{R_1 R_2 C_1 C_2}}
-    \label{eq:lpf_transfer}
-\end{equation}
-これは標準的な 2 次遅れ系の形式 $G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$ と対応する．ここで固有角周波数 $\omega_n$ が遮断角周波数 $\omega_c$ となる．係数比較により，
-\begin{equation}
-    \omega_c = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}
-\end{equation}
-したがって，遮断周波数 $f_c$ は次式となる．
-\begin{equation}
-    f_c = \frac{\omega_c}{2\pi} = \frac{1}{2\pi \sqrt{R_1 R_2 C_1 C_2}}
-    \label{eq:fc_formula}
-\end{equation}
-
-実験回路の定数 $R_1 = R_2 = \SI{50}{\kilo\ohm}$，$C_1 = \SI{2.3}{\nano\farad}$，$C_2 = \SI{1.1}{\nano\farad}$ を\cref{eq:fc_formula}に代入して計算する．
-\begin{align}
-    f_c &= \frac{1}{2\pi \sqrt{(50 \times 10^3)^2 \times (2.3 \times 10^{-9}) \times (1.1 \times 10^{-9})}} \nonumber \\
-        &= \frac{1}{2\pi \times (50 \times 10^3) \times \sqrt{2.53} \times 10^{-9}} \nonumber \\
-        &\approx \frac{1}{2\pi \times 50 \times 10^3 \times 1.59 \times 10^{-9}} \nonumber \\
-        &\approx \frac{1}{314.16 \times 50 \times 1.59 \times 10^{-6}} \nonumber \\
-        &\approx \SI{2000}{\hertz}
-\end{align}
-以上より，本回路の遮断周波数は約 \SI{2.0}{\kilo\hertz} であると求められる．
-
-\subsection{PCM 通信方式の利点}
-PCM 通信方式が従来のアナログ変調方式と比較して優れている主な点を以下に挙げる\cite{ref7}．
 \begin{enumerate}
-    \item \textbf{耐雑音性}: 受信側では「0」か「1」かのパルスの有無さえ判別できればよいため，伝送路で重畳されたアナログ的な雑音や波形歪みの影響を受けにくい．
-    \item \textbf{再生中継による品質維持}: リピータ（中継器）でパルスの整形・再タイミング（リシェイピング，リタイミング，リジェネレーション）を行うことで，雑音を累積させずに長距離伝送が可能である．
-    \item \textbf{多重化の容易性}: 信号がデジタルデータとして扱われるため，時分割多重（TDM）による多重化が容易であり，コンピュータデータや画像など種類の異なる情報の統合伝送に適している．
-    \item \textbf{伝送路の柔軟性}: 光ファイバや無線など，多様な伝送媒体に対して共通のデジタル変調技術を適用できる．
+    \item \textbf{標本化定理（サンプリング定理）について}
+    
+    標本化定理とは，帯域制限された信号をデジタル化する際に，情報の欠落なく元の信号を復元するための条件を示した定理である．
+    アナログ信号 $g(t)$ に含まれる最高周波数を $f_{\rom{max}}$ とするとき，標本化周波数 $f_s$（周期 $T_s = 1/f_s$）が以下の条件を満たせば，標本値の系列から元の信号 $g(t)$ を完全に再現できる．
+    \begin{equation}
+        f_s \ge 2 f_{\rom{max}}
+    \end{equation}
+    この $2 f_{\rom{max}}$ をナイキスト周波数と呼ぶ．
+    
+    数理的説明を行う．時間領域での標本化は，元の信号 $g(t)$ とインパルス列 $\delta_T(t) = \sum_{n=-\infty}^{\infty} \delta(t - nT_s)$ の積として表現される．
+    \begin{equation}
+        g_s(t) = g(t) \cdot \sum_{n=-\infty}^{\infty} \delta(t - nT_s)
+    \end{equation}
+    これをフーリエ変換すると，周波数領域では畳み込み積分となり，元の信号のスペクトル $G(f)$ が周波数 $f_s$ ごとに周期的に繰り返されるスペクトル $G_s(f)$ が得られる．
+    \begin{equation}
+        G_s(f) = \frac{1}{T_s} \sum_{n=-\infty}^{\infty} G(f - n f_s)
+    \end{equation}
+    ここで $f_s \ge 2 f_{\rom{max}}$ であれば，隣り合うスペクトル同士（$G(f)$ と $G(f-f_s)$）が重なり合わない（エイリアシングが発生しない）．この状態であれば，理想的なローパスフィルタ（遮断周波数 $f_c = f_s/2$）を通すことで，中心の $G(f)$ のみを取り出すことができ，元の信号を復元可能となる\cite{ref1,ref15}．
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.5\textheight},keepaspectratio]{image/img_016.png}
+        \caption{標本化と復元の概念図\cite{ref1}}
+        \label{fig:sampling_theory}
+    \end{figure}
+
+    \item \textbf{本実験における量子化レベル数}
+    
+    本実験で使用した A/D コンバータおよび D/A コンバータは 8 ビット（Binary Digit）の分解能を持つ．
+    量子化レベル数 $L$ はビット数を $n$ とすると $L = 2^n$ で表されるため，
+    \begin{equation}
+        L = 2^8 = 256
+    \end{equation}
+    となり，入力信号の振幅範囲を 256 段階の離散値で表現している．
+
+    \item \textbf{理想ダイオードの特性}
+    
+    理想ダイオード（Ideal Diode）とは，順方向電圧降下がゼロ（$V_F = 0\unit{V}$），逆方向漏れ電流がゼロ，かつスイッチング時間がゼロである仮想的な素子である．
+    \begin{itemize}
+        \item 順方向バイアス時（$V > 0$）: 完全導体（抵抗 $0\unit{\Omega}$，短絡状態）として振る舞う．
+        \item 逆方向バイアス時（$V < 0$）: 完全絶縁体（抵抗 $\infty\unit{\Omega}$，開放状態）として振る舞う．
+    \end{itemize}
+    実際のシリコンダイオードでは約 \SI{0.6}{\volt} ～ \SI{0.7}{\volt} の順方向降下電圧が存在するため，微小信号の整流では無視できない誤差となるが，オペアンプを用いた「理想ダイオード回路」を構成することで，この特性に極めて近い動作を実現できる\cite{ref4}．
+
+    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数}
+    
+    図中の LPF はサレン・キー（Sallen-Key）型 2 次ローパスフィルタである．この回路のカットオフ周波数 $f_c$ は次式で与えられる\cite{ref14}．
+    \begin{equation}
+        f_c = \frac{1}{2\pi \sqrt{R_1 R_2 C_1 C_2}}
+        \label{eq:lpf_cutoff}
+    \end{equation}
+    実験回路定数 $R_1 = R_2 = \SI{50}{\kilo\ohm}$，$C_1 = \SI{2.3}{\nano\farad}$，$C_2 = \SI{1.1}{\nano\farad}$ を代入して計算する．
+    \begin{align}
+        f_c &= \frac{1}{2\pi \sqrt{(50 \times 10^3)^2 \cdot (2.3 \times 10^{-9}) \cdot (1.1 \times 10^{-9})}} \nonumber \\
+            &= \frac{1}{2\pi \cdot (50 \times 10^3) \cdot \sqrt{2.53} \times 10^{-9}} \nonumber \\
+            &\approx \frac{1}{2\pi \cdot 50000 \cdot 1.5906 \cdot 10^{-9}} \nonumber \\
+            &\approx \frac{1}{4.997 \times 10^{-4}} \approx 2001 \unit{Hz}
+    \end{align}
+    したがって，遮断周波数は約 \SI{2.0}{\kilo\hertz} である．
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_017.png}
+        \caption{サレン・キー型 LPF の回路構成}
+        \label{fig:sallen_key}
+    \end{figure}
+
+    \item \textbf{PCM 変調の優位性}
+    
+    他のアナログ変調方式（AM, FM 等）と比較して，PCM は以下の点で優れている\cite{ref7}．
+    \begin{enumerate}
+        \item \textbf{耐雑音性}: 信号が「0」と「1」のパルスで構成されるため，伝送路で雑音が重畳しても，閾値判定により完全に元のパルスを再生（リジェネレーション）できる．これにより，多段中継を行っても雑音が累積しない．
+        \item \textbf{伝送品質の均一化}: アナログ方式では距離と共に品質が劣化するが，PCM では符号誤りが発生しない限り，距離によらず一定の高品質を維持できる．
+        \item \textbf{多重化の容易性}: 信号がデジタルデータとして扱われるため，コンピュータデータや画像など，種類の異なる情報を統一的に多重化して伝送できる．
+    \end{enumerate}
+
+    \item \textbf{PCM 通信における多重化の原理}
+    
+    PCM 通信では，時分割多重（TDM: Time Division Multiplexing）が可能である．これは，各チャンネルの信号を標本化パルスの隙間（タイムスロット）に順次割り当てることで実現される．
+    標本化定理により，信号は常時接続されている必要はなく，離散的な瞬時値さえ送ればよい．あるチャンネルの信号を送信していない空き時間に，別のチャンネルの標本値を送信することで，1 本の伝送路を複数の通信で共有できる（\cref{fig:tdm}）\cite{ref8}．
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_018.png}
+        \caption{時分割多重（TDM）の概念\cite{ref8}}
+        \label{fig:tdm}
+    \end{figure}
+
+    \item \textbf{PCM 通信の応用分野}
+    
+    PCM 技術は現代の通信インフラの根幹をなしており，以下のような広範な分野で利用されている\cite{ref9}．
+    \begin{itemize}
+        \item \textbf{公衆回線網}: 固定電話網のバックボーン（基幹回線）や光ファイバ通信システム．
+        \item \textbf{デジタルオーディオ}: CD（コンパクトディスク），WAV フォーマット，Blu-ray 等の音声記録．CD では 16bit, \SI{44.1}{\kilo\hertz} の PCM が採用されている．
+        \item \textbf{宇宙通信}: 信号強度が微弱となる深宇宙探査機との通信において，高い耐雑音性を活かして採用されている．
+    \end{itemize}
 \end{enumerate}
-
-\subsection{PCM 通信における多重化の原理}
-PCM 通信で多重化が可能となる主な理由は，信号を「標本化」することにある．
-連続的なアナログ信号を標本化すると，信号は時間軸上で離散的なパルス列（PAM 信号）となる．パルスとパルスの間には信号が存在しない空き時間が生じるため，\cref{fig:tdm}に示すように，この隙間に別のチャンネルのパルスを挿入することが可能となる．
-これを時分割多重化（TDM: Time Division Multiplexing）という．送信側でタイミングを同期させて複数の信号を順次送り出し，受信側で同じタイミングで分離することで，1 つの伝送路で複数の通信を同時に行うことができる\cite{ref8}．
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_018.png}
-    \caption{時分割多重化（TDM）の概念図\cite{ref8}}
-    \label{fig:tdm}
-\end{figure}
 
 \begin{thebibliography}{99}
 \raggedright
@@ -528,12 +529,12 @@ PCM 通信で多重化が可能となる主な理由は，信号を「標本化�
 \bibitem{ref7} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15（1977）
 \bibitem{ref8} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11（1977）
 \bibitem{ref9} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10（1977）
-\bibitem{ref10} 石井 聡：TNJ-045：LTspiceでサレン・キー型フィルタ（第2回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（後編）」, Analog Devices Japan, 2019-02-04, \url{https://www.analog.com/jp/resources/technical-articles/tnj-045.html}（参照 2025 年 12 月 19 日）
-\bibitem{ref11} 石井 聡：TNJ-044：LTspiceでサレン・キー型フィルタ（第1回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（前編）」, Analog Devices Japan, 2018-10-18, \url{https://www.analog.com/jp/resources/technical-articles/tnj-044.html}（参照 2025 年 12 月 19 日）
-\bibitem{ref12} 石井 聡：TNJ-046：LTspiceでサレン・キー型フィルタ（第3回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第3回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-046.html}（参照 2025 年 12 月 19 日）
-\bibitem{ref13} 石井 聡：TNJ-047：LTspiceでサレン・キー型フィルタ（第4回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第4回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-047.html}（参照 2025 年 12 月 19 日）
-\bibitem{ref14} 石井 聡：TNJ-048：LTspiceでサレン・キー型フィルタ（第5回）「サレン・キー型LPFの素子定数と伝達関数の関係を考える」, Analog Devices Japan, 2019-02-05, \url{https://www.analog.com/jp/resources/technical-articles/tnj-048.html}（参照 2025 年 12 月 19 日）
-\bibitem{ref15} 村田昇：「信号処理論 講義スライド（標本化）」, \url{https://noboru-murata.github.io/signal-processing/pdfs/slide10.pdf}（参照 2025 年 12 月 19 日）
+\bibitem{ref10} 石井 聡：TNJ-045：LTspiceでサレン・キー型フィルタ（第2回），Analog Devices Japan，\url{https://www.analog.com/jp/resources/technical-articles/tnj-045.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref11} 石井 聡：TNJ-044：LTspiceでサレン・キー型フィルタ（第1回），Analog Devices Japan，\url{https://www.analog.com/jp/resources/technical-articles/tnj-044.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref12} 石井 聡：TNJ-046：LTspiceでサレン・キー型フィルタ（第3回），Analog Devices Japan，\url{https://www.analog.com/jp/resources/technical-articles/tnj-046.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref13} 石井 聡：TNJ-047：LTspiceでサレン・キー型フィルタ（第4回），Analog Devices Japan，\url{https://www.analog.com/jp/resources/technical-articles/tnj-047.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref14} 石井 聡：TNJ-048：LTspiceでサレン・キー型フィルタ（第5回），Analog Devices Japan，\url{https://www.analog.com/jp/resources/technical-articles/tnj-048.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref15} 村田昇：「信号処理論 講義スライド（標本化）」，\url{https://noboru-murata.github.io/signal-processing/pdfs/slide10.pdf}（参照 2025 年 12 月 19 日）
 \end{thebibliography}
 
 \end{document}
