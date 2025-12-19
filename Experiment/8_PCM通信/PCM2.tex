@@ -1,0 +1,622 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+% =============================================
+% 1. パッケージ設定 (SARP v3.0 NNCT-EE準拠)
+% =============================================
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varbb]{newtxmath} % 数式フォント Times系
+\usepackage{bm}      % ベクトル太字
+\usepackage{mathtools}
+
+% レイアウト・図表関連
+\usepackage[margin=25mm]{geometry}
+\usepackage{array}      
+\usepackage{multirow}   
+\usepackage{fancyhdr}   
+\usepackage{graphicx}
+% 画像検索パス
+\graphicspath{{./}{image/}}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+
+% 回路図・グラフ描画
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% SI単位・数式処理
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  separate-uncertainty=true,
+  number-unit-product = \hspace{0.5em} % 単位前の半角スペース強制
+}
+
+% リンク・参照
+\usepackage{cite}
+% improve URL line breaks
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{needspace}
+% allow breaks within URLs to avoid large inter-word spacing
+\Urlmuskip=0mu plus 1mu
+% セクション直後に余分な垂直スペースを入れない設定（セクション前の余白は維持）
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{0pt}
+\titlespacing*{\subsection}{0pt}{2.5ex plus .5ex minus .2ex}{0pt}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus .3ex minus .2ex}{0pt}
+% 見出し直後の段落も字下げする
+\usepackage{indentfirst}
+
+% 参考文献の上付き表示設定 [1]形式
+\makeatletter
+\def\@cite#1#2{$^{\mbox{\scriptsize[#1\if@tempswa , #2\fi]}}$}
+\def\@biblabel#1{[#1]}
+\makeatother
+
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+
+% キャプション設定
+\usepackage{caption}
+\captionsetup{
+  format=hang,
+  labelsep=quad,
+  font={small},
+  labelfont={bf},
+  justification=centering
+}
+\captionsetup[figure]{justification=centerlast}
+
+% =============================================
+% 2. カスタムコマンド定義
+% =============================================
+\newcommand{\UnderlineBox}[2][3cm]{\underline{\makebox[#1][c]{\vphantom{lp}\large #2}}}
+\newcommand{\JustifiedLabel}[2]{\makebox[#1][s]{\large\bfseries #2}}
+\newcommand{\BoldLabel}[1]{{\large\bfseries #1}}
+
+% 微分記号（ローマン体 d）
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% 単位記号・ローマン体コマンド（ショートカット）
+% 他パッケージ（例: siunitx）で既に \unit が定義されている場合があるため，
+% 再定義でエラーとならないように \providecommand を使用する．
+\providecommand{\unit}[1]{\,\mathrm{#1}}
+\newcommand{\rom}[1]{\mathrm{#1}}
+
+% =============================================
+% 3. 表紙専用のページスタイル定義
+% =============================================
+\fancypagestyle{coverpage}{
+  \fancyhf{} 
+  \renewcommand{\headrulewidth}{0pt} 
+  \renewcommand{\footrulewidth}{0pt} 
+  \cfoot{\vspace{2mm}\footnotesize \bfseries 国立長野高専 電気電子工学科}
+}
+
+% =============================================
+% ドキュメント開始
+% =============================================
+\begin{document}
+
+% /////////////////////////////////////////////
+% 表紙 (Cover Page)
+% /////////////////////////////////////////////
+
+\newgeometry{top=30mm, bottom=18mm, left=18mm, right=18mm}
+\thispagestyle{coverpage}
+
+\begin{center}
+    \vspace*{0mm} 
+    {\Huge \bfseries 電気電子工学実験報告書}
+    \vspace{6mm} 
+\end{center}
+
+\noindent
+\begin{tabular}{@{}ll}
+  \BoldLabel{テーマ名} & \UnderlineBox[13.5cm]{PCM通信} \\[2.0em] 
+\end{tabular}
+
+\noindent
+\BoldLabel{報告者} \hspace{0.5em}
+\UnderlineBox[1.5cm]{5} {\large \textbf{年}} \hspace{0.2em}      
+(\UnderlineBox[1.5cm]{E} {\large \textbf{組}}) \hspace{0.2em} 
+{\large \textbf{番号}} \UnderlineBox[2.0cm]{234} \hspace{0.5em}    
+\UnderlineBox[1.5cm]{B} {\large \textbf{班}} \hspace{1em}        
+\UnderlineBox[4.5cm]{栁原 魁人}                                   
+\vspace{0.3em} 
+
+\noindent
+\begin{tabular}{@{}p{0.48\textwidth} p{0.48\textwidth}}
+  \BoldLabel{実験場所} \hspace{1em} \UnderlineBox[5.5cm]{エレクトロニクス工房} & 
+  \BoldLabel{指導担当} \hspace{1em} \UnderlineBox[5.5cm]{斎藤 栄輔}    
+\end{tabular}
+\vspace{0.8em} 
+
+\noindent
+\BoldLabel{共同実験者} \hspace{1em} \UnderlineBox[12.5cm]{石坂知尋，倉科純太郎，中井智大，中澤耕平} 
+\vspace{1.5em} 
+
+\noindent
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+    \JustifiedLabel{5em}{実験日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{9} 月 \UnderlineBox[0.65cm]{26} 日 & & \\
+    \JustifiedLabel{5em}{提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{31} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{4em}{提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{7} 年 \UnderlineBox[0.65cm]{12} 月 \UnderlineBox[0.65cm]{16} 日 \\
+    （ \JustifiedLabel{6em}{再提出期限} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 & 
+    \hspace{0.3em}$\Rightarrow$\hspace{0.3em} \JustifiedLabel{5em}{再提出日} & 
+    \hspace{0.3em} 令和 \UnderlineBox[0.65cm]{} 年 \UnderlineBox[0.65cm]{} 月 \UnderlineBox[0.65cm]{} 日 ） \\
+\end{tabular}
+\vspace{40mm}
+
+\renewcommand{\arraystretch}{1.6}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.4cm}|>{\raggedright\arraybackslash}m{12.1cm}|>{\centering\arraybackslash}m{2.4cm}|}
+\hline
+\multicolumn{2}{|c|}{\JustifiedLabel{11em}{評　価　項　目}} & \JustifiedLabel{4em}{評　価} \\
+\hline
+\multirow{3}{*}{\parbox[c][5.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 実　習\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 自ら積極的に実験に取り組めた &  \\ \cline{2-3}
+ & (2) 実験装置を適切に使用でき，正確に実験を行なえた &  \\ \cline{2-3}
+ & (3) グループ内で協力的に実験が行なえた &  \\
+\hline
+\multirow{4}{*}{\parbox[c][6.0em][c]{2.4cm}{\centering\shortstack{\large\bfseries 報告書\\[0.3em]\large\bfseries 評　価}}} 
+ & (1) 結果のまとめかた（図表を含む） &  \\ \cline{2-3}
+ & (2) 結果に対する考察 &  \\ \cline{2-3}
+ & (3) 報告事項／課題（正しい解答や適切な引用など） &  \\ \cline{2-3}
+ & (4) 報告書としての体裁が整っているか &  \\
+\hline
+\end{tabular}
+\end{center}
+\vspace*{0mm}
+\enlargethispage{30pt}
+\clearpage
+
+% /////////////////////////////////////////////
+% 本文 (Main Body)
+% /////////////////////////////////////////////
+
+\restoregeometry 
+\setcounter{page}{1}
+\pagestyle{plain} 
+
+\section{目的}
+実機デモとシミュレータでの回路作成を通じて，アナログ信号をパルス信号で変調，復調するパルス符号変・復調回路の仕組みと，その動作を習得することを目的として本実験を実施した．
+
+\section{原理}
+
+\subsection{パルス符号・復調}
+\cref{fig:block_diagram}に PCM 変・復調回路の基本方式を示す．PCM 変調回路は，\cref{fig:block_diagram}に示すように入力切換回路で選択された入力信号を，標本化パルスにより標本化する標本化回路，標本化された入力信号を量子化レベルに変換する量子化回路，量子化レベルを 2 進符号化信号に変換する符号化回路，および同期信号，チャンネル信号を挿入して送信する送信回路より構成されている．
+
+また，PCM 復調回路は，受信信号のチャンネル信号と PCM 変調信号を分離する分離回路，分離されたチャンネル信号を解読するチャンネル判別回路，PCM 変調信号を並列信号に変換する符号変換回路，並列信号に変換された PCM 変調信号をチャンネル別に復調する D/A 変換器，および高周波成分を除去する LPF 回路より構成されている．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/img_000.png}
+    \caption{基本方式}
+    \label{fig:block_diagram}
+\end{figure}
+
+\subsection{タイミングパルス発生回路}
+タイミングパルス発生回路は 1 つの発振器をもとにして，装置各部の回路に必要なタイミングパルスを発生する回路である．タイミングパルス発生回路の回路図を\cref{fig:timing_circuit}に示す．
+
+U3 SN74LS162 の CLK には，U1 の \SI{125}{\kilo\hertz} のクロックパルスが入力されている．U3 SN74LS162 はこのパルスをカウントし，一定の数をカウントしたら RCO から信号が出力される（キャリーオーバー CO が出力されるという．）．\cref{fig:timing_circuit}では，RCO の信号が JK フリップフロップ回路に出力されるようになっている．
+
+\cref{fig:timing_circuit}の JK フリップフロップ回路において，J と K のどちらも High レベルが入力されているので，JK フリップフロップ回路の 1 番に信号が入力されると現在の出力 Q を反転して出力する．JK フリップフロップ回路の 1 番には RCO が入力されているので，U1 のクロックパルスが一定数カウントされて RCO から信号が出力されると Q が反転するということである．なお，Q は T1 として出力されている．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/img_001.png}
+    \caption{タイミングパルス発生回路とカルノー図}
+    \label{fig:timing_circuit}
+\end{figure}
+
+\subsection{切換回路}
+PCM 通信を多重化するための切換回路を\cref{fig:switching_circuit}に示す．この場合上と下に 2 チャンネルの入力信号源がある．この回路出力は標本化回路の入力となる．
+
+\cref{fig:switching_circuit}では，U1 のクロックによって SW3 と SW4 のスイッチが切り替えられる．クロックが Low レベルのとき SW3 のスイッチが ON，SW4 のスイッチが OFF となり，上の信号源（\SI{50}{\hertz} の正弦波）が $V_{\rom{out}}$ に出力される．クロックが High レベルのとき SW3 のスイッチが OFF，SW4 のスイッチが ON となり，下の信号源（\SI{100}{\hertz} の正弦波）が $V_{\rom{out}}$ に出力される．このように，順番に複数のチャンネルの信号を切り替えて標本化回路に出力し，順番に標本化している．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{image/img_002.png}
+    \caption{切換回路}
+    \label{fig:switching_circuit}
+\end{figure}
+
+\subsection{標本化回路（サンプル\&ホールド回路）}
+アナログ信号をある時間間隔でサンプリングし，次のタイミングまでその値を保持する回路である．回路図を\cref{fig:sample_hold}に示す．
+
+\cref{fig:sample_hold}において，U1 のクロックパルスが High レベルになったタイミングで SW1 が ON になる．SW1 が ON になると，変調波（入力信号，SW1 の下にある信号源のマーク）が回路に入力されるようになる．回路に入った信号の電圧はコンデンサ C1 を充電し，C1 の電圧は入力信号の瞬時値と同じ値になる．その後，コンデンサ C1 の電圧は右のオペアンプで構成されるバッファ回路（ボルテージフォロワのような原理）を通って，同じ電圧で $V_{\rom{out}}$ に出力される（場合によっては増幅器を挟む場合もあるが，今回は利得は \SI{0}{\decibel}）．クロックパルス U1 が Low レベルになって SW1 が OFF になっても，C1 の電圧は充電電圧のまま保たれてオペアンプに入力されて $V_{\rom{out}}$ の出力は一定になる．これは，オペアンプの入力インピーダンスが非常に高く，C1 から電荷がほとんど出ていかないためである．$V_{\rom{out}}$ の出力を保っている間に，$V_{\rom{out}}$ の出力は A/D コンバータに入力されて二進数に変換される．A/D 変換が終わった後にまた U1 が High になり入力信号の瞬時値がサンプリングされ，その値をホールドし A/D 変換をするということを繰り返すことで入力信号がデジタル信号に変換される．
+
+なお，\cref{fig:sample_hold}には R1 の抵抗がつけられているが，回路の安定性のためのものである．R1 は \SI{1}{\mega\ohm} という非常に大きな値なので，理論上では開放と考えてもよい．開放と考えるとよくあるボルテージフォロワ回路と同じ回路になる．試しに R1 を取り外してシミュレーションをした結果が\cref{fig:sample_hold_r1}であるが，波形は変わらない．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/img_003.png}
+    \caption{標本化回路（サンプル\&ホールド回路）}
+    \label{fig:sample_hold}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/img_004.png}
+    \caption{サンプル\&ホールド回路の R1 の役割}
+    \label{fig:sample_hold_r1}
+\end{figure}
+
+\subsection{シフトレジスタ（パラレルシリアル変換）}
+8 ビット並列に入ってきた信号を直列にして 1 つずつ送信する回路である．回路図を\cref{fig:shift_register}に示す．
+
+U17～U24 までには，本来は A/D 変換されて並列に送られてきたデジタル信号の二進数が入力されるが，今回の実験では代わりにスイッチを前段に設けている．T3 が ON になったタイミングでデジタル信号がシフトレジスタ U25 74199 に入力される．シフトレジスタではパラレルに送られてきた信号を順番に出力してシリアル信号にして Clock のタイミングで OUTPUT に出力する．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/img_005.png}
+    \caption{シフトレジスタ}
+    \label{fig:shift_register}
+\end{figure}
+
+\subsection{波形合成・分離回路}
+実際の装置では，データとチャンネル信号を合成しているが，本実験ではその代わりに clock 回路の出力 T2 と T3 を用いてこの回路の動作を理解する．回路図を\cref{fig:synth_sep_circuit}に示す．
+
+T3 の波形を反転させるために Ideal inverter を使う．Ideal inverter の出力と T2 を Ideal adder を使い加算する．その波形は $V_{\rom{mix}}$ 端子に出力される．
+
+合成した波形は，理想ダイオード 2 つと反転増幅器を用いた分離回路で元の波形に戻す．
+ここで，理想ダイオードによる分離回路について説明する．\cref{fig:synth_sep_circuit}の等価回路を\cref{fig:sep_operation}に示す．$V_{\rom{mix}}$ が \SI{0}{\volt} のときは V1 の \SI{5}{\volt} によってダイオードが導通するので，VT2 と VT3 の電圧は\cref{fig:sep_operation}（b）と（c）のようにただの導線の電圧を測っていることになり，電圧は \SI{0}{\volt} が出力される．
+
+$V_{\rom{mix}}$ が \SI{5}{\volt} のときは上のダイオードが OFF，下のダイオードが反転増幅回路を通ることによって ON になるので，（d）のように VT3 に \SI{-5}{\volt} が出力される．実際の回路ではオペアンプの回路で反転されるので，\SI{5}{\volt} が出力される．
+
+$V_{\rom{mix}}$ が \SI{-5}{\volt} のときは上のダイオードが ON，下のダイオードが反転増幅回路を通ることによって OFF になるので，（f）のように VT2 に \SI{-5}{\volt} が出力される．実際の回路ではオペアンプの回路で反転されるので，\SI{5}{\volt} が出力される．
+
+このように，Ideal adder で合成された $V_{\rom{mix}}$ の波形は分離回路によって T2 由来の信号が VT3 に，T3 由来の信号が VT2 にそれぞれプラスの電圧で出力され，分離できたという状態になる．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/img_006.png}
+    \caption{波形合成・分離回路}
+    \label{fig:synth_sep_circuit}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/img_007.png}
+    \caption{波形合成・分離回路の動作}
+    \label{fig:sep_operation}
+\end{figure}
+
+\subsection{AD-DA 変換回路，ローパスフィルタ}
+\cref{fig:ad_da_circuit}に回路図を示す．VG1 より交流 $V_{\rom{m}}=\SI{5}{\volt}$，$f=\SI{500}{\hertz}$ を供給する．AD コンバータ U10 は負の電圧は変換できないので Ideal adder で \SI{6}{\volt} を加え全体が正の電圧になるようにシフトアップする．
+
+U1 74199 はラッチといい，クロック T2 の負電圧のタイミングで取り込み，正の電圧の区間値を保持している．
+
+AD 変換されたデータは再び DA コンバータ MV95308 に入力しアナログ値に戻す．AD コンバータ側で \SI{6}{\volt} シフトアップしてあるので，DA コンバータの出力から Ideal subtracter で \SI{6}{\volt} を差し引く．
+電圧ピン $V_{\rom{DA}}$ の波形は，階段状の波形なので，ローパスフィルタを通し，滑らかな波形とする．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/img_008.png}
+    \caption{AD・DA変換回路とローパスフィルタ}
+    \label{fig:ad_da_circuit}
+\end{figure}
+
+\section{実験方法}
+\cref{fig:timing_circuit}中のクロックと電圧ピンを取り去り，そこに「特殊」タブにあるマクロピンを接続した．\cref{fig:macro_circuit}に\cref{fig:timing_circuit}を変更した回路を示す．\cref{fig:macro_circuit}の回路をマクロ化（1 チップ化）した．「ツール」中の新規マクロ・ウィザードでマクロ化し，回路図に読み込み（「挿入」－＞「マクロ」），この回路を保存した．
+
+\cref{fig:timing_circuit}から\cref{fig:ad_da_circuit}まで（\cref{fig:sample_hold_r1}，\cref{fig:sep_operation}を除く）の各機能ブロックごとにシミュレータで作成し，「解析」－＞「過渡解析」を実行して波形を観測した．
+
+なお，\cref{fig:shift_register}のシフトレジスタについては，入力の HL スイッチの値を変えて，OUTPUT の波形がどのようになるか確認した．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/img_009.png}
+    \caption{マクロ用回路}
+    \label{fig:macro_circuit}
+\end{figure}
+
+\section{使用機器}
+本実験では，シミュレーションソフト「TINA-TI」を用いた．TINA は DesignSoft の製品であり，TEXAS INSTRUMENTS 社専用で，無償で提供されている．
+
+
+\section{実験結果及び考察}
+
+\subsection{タイミングパルス発生回路}
+\cref{fig:timing_circuit}のタイミングパルス発生回路を作成して過渡現象のシミュレーションを実行した結果を\cref{fig:res_timing}に示す．\cref{fig:res_timing}の結果より，T1 は，RCO が出力されるタイミングで反転している．また，さっき示した\cref{fig:timing_circuit}の回路の真理値表通りに動作しているので，理論通りであるといえる．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/img_010.png}
+    \caption{タイミングパルス発生回路の過渡特性}
+    \label{fig:res_timing}
+\end{figure}
+
+\subsection{切替回路}
+\cref{fig:res_switching}に\cref{fig:switching_circuit}の切替回路を組んで過渡現象をシミュレーションした結果を示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{image/img_011.png}
+    \caption{切替回路の過渡特性}
+    \label{fig:res_switching}
+\end{figure}
+
+$V_{\rom{out}}$ を見ると，$V_{\rom{clock}}$ のタイミングで \SI{100}{\hertz} の信号と \SI{50}{\hertz} の信号が交互に出力されていることがわかる．したがって，理論通りであるといえる．
+
+\subsection{標本化回路（サンプル\&ホールド回路）}
+\cref{fig:res_sample}に\cref{fig:sample_hold}の標本化回路を組んで過渡現象シミュレーションを実行した結果を示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{image/img_012.png}
+    \caption{標本化回路の過渡特性}
+    \label{fig:res_sample}
+\end{figure}
+
+$V_{\rom{out}}$ の波形を見ると，$V_{\rom{clock}}$ の立ち上がりのタイミングで VG1 の電圧になっており，$V_{\rom{clock}}$ が 0 になって SW1 が OFF になってからも電圧が維持されていることがわかる．したがって，理論通りであるといえる．
+
+\subsection{シフトレジスタ（パラレルシリアル変換）}
+\cref{fig:res_shift}に\cref{fig:shift_register}のシフトレジスタを組んでシミュレーションした過渡現象を示す．パラレル信号は SW-HL1，SW-HL6，SW-HL7，SW-HL8 を High とし，それ以外を Low とした．OUTPUT を見ると，T3 が出力された後に，High，High，High，Low，Low，Low，Low，High が出力されており，SW-HL8 から順番にパラレル信号が出力されている．したがって，理論通りであるといえる．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{image/img_013.png}
+    \caption{シフトレジスタの過渡特性}
+    \label{fig:res_shift}
+\end{figure}
+
+\subsection{波形合成・分離回路}
+\cref{fig:res_synth}に\cref{fig:synth_sep_circuit}の波形合成・分離回路を組んで過渡現象をシミュレーションした結果を示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{image/img_014.png}
+    \caption{波形合成・分離回路の過渡特性}
+    \label{fig:res_synth}
+\end{figure}
+
+$V_{\rom{mix}}$ を見ると，T2 の波形はプラスで，T3 の波形はマイナスで合成されている．また，VT2 には T3 と同じ形状の波形が，VT3 には T2 と同じ形状の波形が出力されている．なお，VT2 と VT3 の波形は振幅が \SI{5.00}{\volt} になっている．したがって，理論通りである．
+
+\subsection{AD-DA 変換回路，ローパスフィルタ}
+\cref{fig:res_ad_da}に\cref{fig:ad_da_circuit}の AD-DA 変換回路，ローパスフィルタを組んで過渡現象をシミュレーションした結果を示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{image/img_015.png}
+    \caption{AD-DA変換回路，ローパスフィルタの過渡特性}
+    \label{fig:res_ad_da}
+\end{figure}
+
+$V_{\rom{in}}$ を見ると，VG1 の波形が \SI{+6}{\volt} 上にシフトされていることがわかる．したがって，理論通りであるといえる．
+
+$V_{\rom{DA}}$ は，U1 74199 で AD 変換された信号を MV95308 でアナログ信号に戻して V1 で加えた \SI{6}{\volt} 分を引いた後の波形である．振幅値をカーソルを当てて調べると，T2 のクロックごとに振幅の値が変化している．したがって，T2 のタイミングで入力されているデジタル信号に対応した電圧を出力しているので，理論通りであるといえる．
+
+$V_{\rom{QA}}$ と $V_{\rom{QH}}$ については，VG1 の値が変化するごとに \SI{0}{\volt} と \SI{4}{\volt} のどちらかに変化している．したがって，理論通りである．
+
+$V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごとに変化していた振幅が連続的に変化するようになった．また，最大振幅は \SI{-0.07}{\volt} を中心にとると \SI{5.00}{\volt} である．よって，理論通りである．
+
+\section{報告事項}
+\begin{enumerate}
+    \item \textbf{標本化定理（サンプリング定理）について述べる．}
+    
+    標本化（sampling）とは，音声や画像信号などの入力連続信号を一定周期 $T$ で抽出することをいう．連続信号を $g(t)$ とすると，抽出された信号の振幅は入力信号の標本点 $nT$ の振幅 $g(nT)$ に等しく，標本値といわれる．したがって，標本値よりなるパルス列 $\sum_{n=-\infty}^{\infty} g(nT)$ は，パルス振幅変調信号（PAM 信号）を表している．
+    
+    連続信号 $g(t)$ は帯域が $0 \sim f_0/2$ に制限されているとし，標本化周期 $T = 1/f_0$ で標本化すると，PAM パルス列は $g(t)$ とは以下の\cref{eq:sampling1}のようにあらわせる．
+    
+    \begin{equation}
+        g(t) = \sum_{n=-\infty}^{\infty} g(nT) \frac{\sin \pi f_0 (t - nT)}{\pi f_0 (t - nT)}
+        \label{eq:sampling1}
+    \end{equation}
+    
+    この関係は，染谷―Shannon の標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が $f_0$ であるとき，標本化周波数が $2f_0$ 以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が \SI{4}{\kilo\hertz} であれば，標本化周波数は \SI{8}{\kilo\hertz} でよいことになる．）\cite{ref2,ref15}．
+    
+    この式の持つ物理的意味を説明する．いま入力信号 $g(t)$ を無限小のパルス幅のインパルス $\delta(t)$ の列で標本化すると，標本化パルス列は，
+    
+    \begin{equation}
+        g_T(t) = \sum_{n=-\infty}^{\infty} g(nT) \cdot \delta(t - nT)
+        \label{eq:sampling2}
+    \end{equation}
+    
+    であり，\cref{fig:sampling_theory}（b）のようにあらわせる．これをインパルス応答 $h_s(t)$ が，
+    
+    \begin{equation}
+        h_s(t) = \frac{\sin \pi f_0 t}{\pi f_0 t}
+        \label{eq:sampling3}
+    \end{equation}
+    
+    で表されるフィルタに通すと，その出力信号 $y(t)$ は，
+    
+    \begin{align}
+        y(t) &= \int_{-\infty}^{\infty} g_T(\tau) \cdot h_s(t - \tau) \diff{\tau}{} \nonumber \\
+             &= \sum_{n=-\infty}^{\infty} g(nT) \cdot h_s(t - nT)
+        \label{eq:sampling4}
+    \end{align}
+    
+    となり，\cref{eq:sampling1} で表される元の波形 $g(t)$ と等しくなる．すなわち，標本化された信号 $g_T(t)$ は，\cref{eq:sampling3}の補間フィルタ $h_s(t)$ によって元の連続信号に復調することができるということである．
+    
+    $h_s(t)$ は標本化関数，または，補間関数といわれ，そのインパルス応答は，\cref{fig:sampling_theory}（c）に示すように $t = \SI{0}{\second}$ で 1，ほかの標本点 $nT$ で 0 になる関数である．
+    したがって，インパルス列 $g(0)$，$g(1T)$，$g(2T)$，$\dots$ に対するフィルタの応答波形は，\cref{fig:sampling_theory}（c），（d），（e）に示すように，$h_s(t)$ を $T$ ずつ時間的にずらした波形に標本値振幅を掛け合わせたものになる．各標本値に対するこのような応答波形をすべて総和したものが，最終的な補間・復調された波形で，\cref{fig:sampling_theory}（f）のように連続波形に合成される．\cite{ref1}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.5\textheight},keepaspectratio]{image/img_016.png}
+        \caption{標本化とその復調\cite{ref1}}
+        \label{fig:sampling_theory}
+    \end{figure}
+
+    \item \textbf{本実験における量子化レベルはいくらかを報告する．}
+    
+    量子化とは，標本化が時間的に離散的な信号抽出をするのに対し，振幅軸方向で離散的な値をとることである．\cite{ref3}
+    本実験では，アナログ信号を 8 桁の 2 進数に変換している．したがって，量子化ビット数は 8 である．8 ビット符号化の場合は $2^8$ の出力レベル数があり，256 ステップで表現されている．
+
+    \item \textbf{理想ダイオードとはどういうものかを報告する．}
+    
+    通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では開放である特性を持つ．\cite{ref4}
+
+    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数はいくらかを報告する．\cite{ref5,ref6,ref10,ref11,ref12,ref13,ref14}}
+    
+    \cref{fig:ad_da_circuit}のローパスフィルタ（LPF）はサレン・キー型 LPF と呼ばれるもので，オペアンプと抵抗 $R$，コンデンサ $C$ で構成されている 2 次 LPF である．入力電圧 $V_{\rom{IN}}$ の低周波成分を通過させ，高周波成分を遮断する．
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_017.png}
+        \caption{サレン・キー型アクティブローパスフィルタ（LPF）の回路図}
+        \label{fig:sallen_key}
+    \end{figure}
+
+    \cref{fig:sallen_key}のサレン・キー型 LPF の伝達関数を求める．\cref{fig:sallen_key}より，各電流は
+    \begin{equation}
+        I_1 = \frac{V_{\rom{IN}} - V_{\rom{x}}}{Z_1}
+        \label{eq:lpf1}
+    \end{equation}
+    \begin{equation}
+        I_2 = \frac{V_{\rom{OUT}} - V_{\rom{x}}}{Z_2}
+        \label{eq:lpf2}
+    \end{equation}
+    \begin{equation}
+        I_3 = \frac{V_{\rom{x}}}{Z_3 + Z_4}
+        \label{eq:lpf3}
+    \end{equation}
+    \begin{equation}
+        I_3 = \frac{V_{\rom{OUT}}}{Z_4}
+        \label{eq:lpf4}
+    \end{equation}
+    \begin{equation}
+        I_3 = I_1 + I_2
+        \label{eq:lpf5}
+    \end{equation}
+    \cref{eq:lpf3}と\cref{eq:lpf4}を用いると，電圧 $V_{\rom{x}}$ は\cref{eq:lpf6}で表すことができる．
+    \begin{equation}
+        \frac{V_{\rom{x}}}{Z_3 + Z_4} = \frac{V_{\rom{OUT}}}{Z_4} \implies V_{\rom{x}} = \frac{Z_3 + Z_4}{Z_4} V_{\rom{OUT}}
+        \label{eq:lpf6}
+    \end{equation}
+    \cref{eq:lpf6}を\cref{eq:lpf1}と\cref{eq:lpf2}に代入すると，電流 $I_1$ と $I_2$ は次式で表すことができる．
+    \begin{equation}
+        I_1 = \frac{V_{\rom{IN}} - \frac{Z_3 + Z_4}{Z_4} V_{\rom{OUT}}}{Z_1} = \frac{Z_4 V_{\rom{IN}} - (Z_3 + Z_4) V_{\rom{OUT}}}{Z_1 Z_4}
+        \label{eq:lpf7}
+    \end{equation}
+    \begin{equation}
+        I_2 = \frac{V_{\rom{OUT}} - \frac{Z_3 + Z_4}{Z_4} V_{\rom{OUT}}}{Z_2} = \frac{Z_4 V_{\rom{OUT}} - (Z_3 + Z_4) V_{\rom{OUT}}}{Z_2 Z_4} = -\frac{Z_3}{Z_2 Z_4} V_{\rom{OUT}}
+        \label{eq:lpf8}
+    \end{equation}
+    \cref{eq:lpf4}, \cref{eq:lpf6}, \cref{eq:lpf7}, \cref{eq:lpf8} より，
+    \begin{equation}
+        \frac{V_{\rom{OUT}}}{Z_4} = \frac{Z_4 V_{\rom{IN}} - (Z_3 + Z_4) V_{\rom{OUT}}}{Z_1 Z_4} - \frac{Z_3}{Z_2 Z_4} V_{\rom{OUT}}
+        \label{eq:lpf9}
+    \end{equation}
+    \cref{eq:lpf9} の両辺に $Z_1 Z_2 Z_4$ をかけると，電圧 $V_{\rom{OUT}}$ は
+    \begin{align}
+        Z_1 Z_2 V_{\rom{OUT}} &= Z_2 Z_4 V_{\rom{IN}} - Z_2 (Z_3 + Z_4) V_{\rom{OUT}} - Z_1 Z_3 V_{\rom{OUT}} \nonumber \\
+        &= Z_2 Z_4 V_{\rom{IN}} - Z_2 Z_3 V_{\rom{OUT}} - Z_2 Z_4 V_{\rom{OUT}} - Z_1 Z_3 V_{\rom{OUT}} \nonumber \\
+        (Z_1 Z_3 + Z_1 Z_2 &+ Z_2 Z_3 + Z_2 Z_4) V_{\rom{OUT}} = Z_2 Z_4 V_{\rom{IN}} \nonumber \\
+        V_{\rom{OUT}} &= \frac{Z_2 Z_4}{Z_1 Z_3 + Z_1 Z_2 + Z_2 Z_3 + Z_2 Z_4} V_{\rom{IN}} \nonumber \\
+        &= \frac{1}{\frac{Z_1 Z_3}{Z_2 Z_4} + \frac{Z_1 + Z_3}{Z_4} + 1} V_{\rom{IN}}
+        \label{eq:lpf10}
+    \end{align}
+    ここで，インピーダンスは $Z_1 = R_1$, $Z_2 = \frac{1}{\mathrm{j}\omega C_1} = \frac{1}{sC_1}$, $Z_3 = R_3$, $Z_4 = \frac{1}{\mathrm{j}\omega C_2} = \frac{1}{sC_2}$ より，\cref{eq:lpf10}に代入して，電圧 $V_{\rom{OUT}}$ は
+    \begin{align}
+        V_{\rom{OUT}} &= \frac{1}{\frac{R_1 R_3}{\frac{1}{sC_1} \cdot \frac{1}{sC_2}} + \frac{R_1 + R_3}{\frac{1}{sC_2}} + 1} V_{\rom{IN}} \nonumber \\
+        &= \frac{1}{s^2 R_1 R_3 C_1 C_2 + sC_2(R_1 + R_3) + 1} V_{\rom{IN}} \nonumber \\
+        &= \frac{\frac{1}{R_1 R_3 C_1 C_2}}{s^2 + s \left( \frac{1}{R_1 C_1} + \frac{1}{R_3 C_1} \right) + \frac{1}{R_1 R_3 C_1 C_2}} V_{\rom{IN}}
+    \end{align}
+    したがって，\cref{fig:sallen_key}のサレン・キー型 LPF の伝達関数 $G(\mathrm{j}\omega)$ は
+    \begin{equation}
+        G(\mathrm{j}\omega) = \frac{V_{\rom{OUT}}}{V_{\rom{IN}}} = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s \left( \frac{1}{R_1 C_1} + \frac{1}{R_2 C_1} \right) + \frac{1}{R_1 R_2 C_1 C_2}}
+        \label{eq:lpf11}
+    \end{equation}
+    この回路の伝達関数（2 次遅れ系）は\cref{eq:lpf11}で表される．ただし，$\omega_n$ は固有角周波数 [\unit{rad/s}]，$\zeta$ は減衰係数である．\cite{ref10}
+    \begin{equation}
+        G(\mathrm{j}\omega) = \frac{\omega_n^2}{s^2 + 2\zeta \omega_n s + \omega_n^2}
+        \label{eq:lpf12}
+    \end{equation}
+    また，共振の鋭さ $Q$ と減衰係数 $\zeta$ には $\zeta = 1/2Q$ の関係があるので，\cref{eq:lpf11}は\cref{eq:lpf12}に変形することができる．
+    \begin{equation}
+        G(\mathrm{j}\omega) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
+        \label{eq:lpf13}
+    \end{equation}
+    \cref{eq:lpf11}と\cref{eq:lpf12}より，固有角周波数 $\omega_n$ は次式で表される．
+    \begin{equation}
+        \omega_n = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}
+        \label{eq:lpf14}
+    \end{equation}
+    \cref{eq:lpf14}の固有角周波数 $\omega_n$ はサレン・キー型 LPF のカットオフ角周波数 $\omega_C$ となる．したがって，サレン・キー型 LPF のカットオフ周波数 $f_C$ は
+    \begin{equation}
+        \omega_n = \omega_C = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}} \implies f_C = \frac{1}{2\pi \sqrt{R_1 R_2 C_1 C_2}}
+        \label{eq:lpf15}
+    \end{equation}
+    以上より，求める遮断周波数 $f_C$ は
+    \begin{equation}
+        f_C = \frac{1}{2\pi \sqrt{50 \times 10^3 \times 50 \times 10^3 \times 2.3 \times 10^{-9} \times 1.1 \times 10^{-9}}} = 2.0 \times 10^3 \unit{Hz}
+        \label{eq:lpf_val}
+    \end{equation}
+    ただし，\cref{fig:ad_da_circuit}において\cref{fig:sallen_key}に対応する素子の値は，$R_1 = R_2 = \SI{50}{\kilo\ohm}$，$C_1 = \SI{2.3}{\nano\farad}$，$C_2 = \SI{1.1}{\nano\farad}$ である．
+
+    \item \textbf{PCM 変調がほかの変調方式に比べて優れている点を述べる．\cite{ref7}}
+    
+    PCM 変調がほかの変調方式に比べて優れている点をいかに示す．
+    \begin{enumerate}
+        \item 雑音妨害に対して強い．（PCM では再生に際して 1 か 0 かを検出すればよいからである．）
+        \item 雑音や漏話，ひずみが相加しない．（再生中継を行うため）
+        \item 多中継伝送に適している．（符号誤りとジッタの相加はあるものの，雑音や漏話，ひずみが少ないため，本質的には適している．）
+        \item アナログ伝送方式と異なり量子化雑音がある．
+        \item 伝送品質が距離や網の構成によらず，ほぼ一定で，すべての加入者に対して同一の通信品質を提供できる．（情報伝送品質はほとんど端局のみで決まるため．）
+        \item 安定度が極めて高く，レベル変動のない通信品質が得られる．
+        \item 異なる情報源の伝送に対する融通性があり，電話，テレビ信号，データ，ファックスなど，デジタル化されればほとんど区別することなく，多重化・伝送できる．
+        \item 異なる伝送媒体間の融通性があり，ケーブル・マイクロなどが比較的安価なインターフェイス装置で相互変換できる．
+        \item 伝送特性の悪い媒体や，新しい伝送媒体への適用性が大きい．
+        \item 高価なフィルタを必要とするアナログ FDM 通信に対し，PCM 端局は経済的である．
+        \item 端局・中継器が一般的に複雑であり，PCM の初期には大きな欠点として考えられていたが，半導体素子，IC の急速な発展により，複雑さ事態は大きな問題ではなくなってきている．
+    \end{enumerate}
+
+    \item \textbf{PCM 通信で多重化できる理由を述べる．}
+    
+    多重化伝送とは，1 本のケーブルあるいは 1 つの無線周波数などの伝送媒体を通して，複数の情報源を伝送することをいう．多重化する方法としては，時間的に重なり合いがないように多重化する方法である TDM（Time Division Multiplex：時分割多重化）がある．
+    
+    PCM 変調で標本化をする際に，時間的に少しずつずらして標本化すると，互いに重なり合わない AM パルス列となり，これを合成することによって時分割多重化が行われ，TDM-PAM 信号が得られる．\cref{fig:tdm}に，TDM の原理を示す．
+    受信する際は標本周期と同じタイミングで信号を受信すれば，正しく信号を受けることができる．\cite{ref8}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[max size={0.6\linewidth}{0.45\textheight},keepaspectratio]{image/img_018.png}
+        \caption{時分割多重化（TDM）\cite{ref8}}
+        \label{fig:tdm}
+    \end{figure}
+
+    \item \textbf{PCM 通信はどのようなところで用いられているかを簡単に説明する．}
+    
+    Bell 電話研究所の研究により，1962 年に T1 方式が世界初の商用化された PCM 通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によって PCM の研究が開始された．1965 年には，24 回戦 PCM 方式が日本電信電話公社により商用化されるに至った．その後，高次群 PCM の開発，マイクロ PCM，同軸 PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのように PCM 技術が用いられている．\cite{ref9}
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{ref1} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.17-19（1977）
+\bibitem{ref2} 羽鳥光俊：「わかりやすい通信工学」，コロナ社，p.21（2012）
+\bibitem{ref3} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.27（1977）
+\bibitem{ref4} 高崎和之：「基本からわかる電子回路」，株式会社ナツメ社，pp.36-37（2021）
+\bibitem{ref5} 「Electrical Information」，\url{https://detail-infomation.com/sallen-key-low-pass-filter/}（2023 年 12 月 14 日参照）
+\bibitem{ref6} 寺島一彦，兼重明宏：「制御工学 技術者のための，理論・設計から実装まで」，実教出版株式会社，pp.121-128（2019）
+\bibitem{ref7} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15（1977）
+\bibitem{ref8} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11（1977）
+\bibitem{ref9} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10（1977）
+\bibitem{ref10} 石井 聡：TNJ-045：LTspiceでサレン・キー型フィルタ（第2回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（後編）」, Analog Devices Japan, 2019-02-04, \url{https://www.analog.com/jp/resources/technical-articles/tnj-045.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref11} 石井 聡：TNJ-044：LTspiceでサレン・キー型フィルタ（第1回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（前編）」, Analog Devices Japan, 2018-10-18, \url{https://www.analog.com/jp/resources/technical-articles/tnj-044.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref12} 石井 聡：TNJ-046：LTspiceでサレン・キー型フィルタ（第3回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第3回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-046.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref13} 石井 聡：TNJ-047：LTspiceでサレン・キー型フィルタ（第4回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第4回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-047.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref14} 石井 聡：TNJ-048：LTspiceでサレン・キー型フィルタ（第5回）「サレン・キー型LPFの素子定数と伝達関数の関係を考える」, Analog Devices Japan, 2019-02-05, \url{https://www.analog.com/jp/resources/technical-articles/tnj-048.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref15} 村田昇：「信号処理論 講義スライド（標本化）」, \url{https://noboru-murata.github.io/signal-processing/pdfs/slide10.pdf}（参照 2025 年 12 月 19 日）
+\end{thebibliography}
+
+\end{document}
