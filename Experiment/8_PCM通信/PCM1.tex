@@ -421,7 +421,7 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
         \label{eq:sampling1}
     \end{equation}
     
-    この関係は，染谷―Shannon の標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が $f_0$ であるとき，標本化周波数が $2f_0$ 以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が \SI{4}{\kilo\hertz} であれば，標本化周波数は \SI{8}{\kilo\hertz} でよいことになる．）\cite{ref2}．
+    この関係は，染谷―Shannon の標本化定理と呼ばれている．つまり，アナログ信号に含まれる最高周波数が $f_0$ であるとき，標本化周波数が $2f_0$ 以上あれば，標本化されたパルス波から，元のアナログ信号を再現できるということを示している（例えば，アナログ信号の最高周波数が \SI{4}{\kilo\hertz} であれば，標本化周波数は \SI{8}{\kilo\hertz} でよいことになる．）\cite{ref2,ref15}．
     
     この式の持つ物理的意味を説明する．いま入力信号 $g(t)$ を無限小のパルス幅のインパルス $\delta(t)$ の列で標本化すると，標本化パルス列は，
     
@@ -466,7 +466,7 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
     
     通常のシリコンのダイオードでは順方向降下電圧があるので，それ以上の電圧を加えないと電流が流れ始めない．一方で，理想ダイオードは順方向電圧では短絡，逆方向電圧では開放である特性を持つ．\cite{ref4}
 
-    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数はいくらかを報告する．\cite{ref5,ref6}}
+    \item \textbf{\cref{fig:ad_da_circuit}のローパスフィルタの遮断周波数はいくらかを報告する．\cite{ref5,ref6,ref10,ref11,ref12,ref13,ref14}}
     
     \cref{fig:ad_da_circuit}のローパスフィルタ（LPF）はサレン・キー型 LPF と呼ばれるもので，オペアンプと抵抗 $R$，コンデンサ $C$ で構成されている 2 次 LPF である．入力電圧 $V_{\rom{IN}}$ の低周波成分を通過させ，高周波成分を遮断する．
 
@@ -537,7 +537,7 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
         G(\mathrm{j}\omega) = \frac{V_{\rom{OUT}}}{V_{\rom{IN}}} = \frac{\frac{1}{R_1 R_2 C_1 C_2}}{s^2 + s \left( \frac{1}{R_1 C_1} + \frac{1}{R_2 C_1} \right) + \frac{1}{R_1 R_2 C_1 C_2}}
         \label{eq:lpf11}
     \end{equation}
-    この回路の伝達関数（2 次遅れ系）は\cref{eq:lpf11}で表される．ただし，$\omega_n$ は固有角周波数 [\unit{rad/s}]，$\zeta$ は減衰係数である．
+    この回路の伝達関数（2 次遅れ系）は\cref{eq:lpf11}で表される．ただし，$\omega_n$ は固有角周波数 [\unit{rad/s}]，$\zeta$ は減衰係数である．\cite{ref10}
     \begin{equation}
         G(\mathrm{j}\omega) = \frac{\omega_n^2}{s^2 + 2\zeta \omega_n s + \omega_n^2}
         \label{eq:lpf12}
@@ -600,11 +600,10 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
     Bell 電話研究所の研究により，1962 年に T1 方式が世界初の商用化された PCM 通信として登場した．日本においても戦後いち早く日本電信電話公社電気通信研究所や大学の研究機関によって PCM の研究が開始された．1965 年には，24 回戦 PCM 方式が日本電信電話公社により商用化されるに至った．その後，高次群 PCM の開発，マイクロ PCM，同軸 PCM，ミリ波・準ミリ波通信，データ端局，画像符号化，統合網，衛星通信，さらには最近の光ファイバ通信などのように PCM 技術が用いられている．\cite{ref9}
 \end{enumerate}
 
-\section{参考文献}
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 \raggedright
 \bibitem{ref1} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.17-19（1977）
-\bibitem{ref2} 羽鳥光俊：わかりやすい通信工学」，コロナ社，p.21（2012）
+\bibitem{ref2} 羽鳥光俊：「わかりやすい通信工学」，コロナ社，p.21（2012）
 \bibitem{ref3} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.27（1977）
 \bibitem{ref4} 高崎和之：「基本からわかる電子回路」，株式会社ナツメ社，pp.36-37（2021）
 \bibitem{ref5} 「Electrical Information」，\url{https://detail-infomation.com/sallen-key-low-pass-filter/}（2023 年 12 月 14 日参照）
@@ -612,6 +611,12 @@ $V_{\rom{復調}}$ を見ると，$V_{\rom{DA}}$ では T2 のクロックごと
 \bibitem{ref7} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.14-15（1977）
 \bibitem{ref8} 金子尚志：「PCM 通信の技術」，産報出版株式会社，pp.10-11（1977）
 \bibitem{ref9} 金子尚志：「PCM 通信の技術」，産報出版株式会社，p.10（1977）
+\bibitem{ref10} 石井 聡：TNJ-045：LTspiceでサレン・キー型フィルタ（第2回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（後編）」, Analog Devices Japan, 2019-02-04, \url{https://www.analog.com/jp/resources/technical-articles/tnj-045.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref11} 石井 聡：TNJ-044：LTspiceでサレン・キー型フィルタ（第1回）「教科書で見る理解不能な伝達関数の式と実際の回路との関係はどうなるのか（前編）」, Analog Devices Japan, 2018-10-18, \url{https://www.analog.com/jp/resources/technical-articles/tnj-044.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref12} 石井 聡：TNJ-046：LTspiceでサレン・キー型フィルタ（第3回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第3回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-046.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref13} 石井 聡：TNJ-047：LTspiceでサレン・キー型フィルタ（第4回）「理解不能な伝達関数多項式と実回路の関係をより深く考える（第4回）」, Analog Devices Japan, 2019, \url{https://www.analog.com/jp/resources/technical-articles/tnj-047.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref14} 石井 聡：TNJ-048：LTspiceでサレン・キー型フィルタ（第5回）「サレン・キー型LPFの素子定数と伝達関数の関係を考える」, Analog Devices Japan, 2019-02-05, \url{https://www.analog.com/jp/resources/technical-articles/tnj-048.html}（参照 2025 年 12 月 19 日）
+\bibitem{ref15} 村田昇：「信号処理論 講義スライド（標本化）」, \url{https://noboru-murata.github.io/signal-processing/pdfs/slide10.pdf}（参照 2025 年 12 月 19 日）
 \end{thebibliography}
 
 \end{document}
