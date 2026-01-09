@@ -1,0 +1,468 @@
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+\documentclass[a4paper, 11pt]{ltjsarticle}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}           % 数式
+\usepackage{booktabs}          % 表
+\usepackage{siunitx}           % 単位
+\usepackage{graphicx}          % 画像読み込み
+\usepackage{float}             % 画像配置の制御
+\usepackage{luatexja-fontspec} % 和文フォント
+\usepackage{listings}          % ソースコード
+\usepackage{xcolor}            % 色
+
+% listings の設定
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red!60!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    columns=fullflexible,
+    showstringspaces=false,
+    language=Python,
+    inputencoding=utf8,
+    captionpos=b
+}
+
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
+
+% --- 和文フォント設定 ---
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+
+% --- ドキュメント情報 ---
+\title{画像処理・画像処理工学 レポート課題1}
+\author{画像処理工学科　学籍番号: 21239　組番号:234　5E　氏名:栁原　魁人}
+\date{\today}
+
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage
+
+本レポートの作成にあたり、GitHub Copilotにより作成したTeXの雛形を使用しました。また、Markdown形式の原稿をTeX構文に変換する際に、Google AI StudioおよびGitHub Copilot内の生成AIを活用しました。
+
+\section{問題1}
+
+\subsection{1) 複合レンズ系による結像}
+
+本問では、凸レンズの公式 $\frac{1}{a} + \frac{1}{b} = \frac{1}{f}$ を用い、レンズAによる像を求めた後、その像をレンズBの物体として再度計算を行う。
+
+\subsubsection{凸レンズAによる像（中間像）の計算}
+レンズAについて、物体距離 $a_A = 16\,\text{cm}$、焦点距離 $f_A = 12\,\text{cm}$ である。像の位置 $b_A$ を求める。
+\[
+\frac{1}{16} + \frac{1}{b_A} = \frac{1}{12}
+\]
+\[
+\frac{1}{b_A} = \frac{1}{12} - \frac{1}{16}
+\]
+\[
+\frac{1}{b_A} = \frac{4}{48} - \frac{3}{48}
+\]
+\[
+\frac{1}{b_A} = \frac{1}{48}
+\]
+よって、$b_A = 48\,\text{cm}$ である。これはレンズAの後方 $48\,\text{cm}$ の位置に実像ができることを示す。
+
+次に倍率 $m_A$ を求める。
+\[
+m_A = -\frac{b_A}{a_A} = -\frac{48}{16} = -3
+\]
+物体の大きさ $h = 2.0\,\text{cm}$ より、中間像の大きさ $h'_A$ は以下のようになる。
+\[
+h'_A = |m_A| \times h = 3 \times 2.0 = 6.0\,\text{cm}
+\]
+
+\subsubsection{凸レンズBによる像（最終像）の計算}
+レンズAとレンズBの間隔は $63\,\text{cm}$ である。レンズAによる像（レンズAの後方 $48\,\text{cm}$）をレンズBに対する物体とみなす。
+レンズBから見た物体距離 $a_B$ は以下の通りである。
+\[
+a_B = 63 - 48 = 15\,\text{cm}
+\]
+レンズBの焦点距離 $f_B = 10\,\text{cm}$ を用い、最終像の位置 $b_B$ を求める。
+\[
+\frac{1}{15} + \frac{1}{b_B} = \frac{1}{10}
+\]
+移項して通分を行う。
+\[
+\frac{1}{b_B} = \frac{1}{10} - \frac{1}{15}
+\]
+\[
+\frac{1}{b_B} = \frac{3}{30} - \frac{2}{30}
+\]
+\[
+\frac{1}{b_B} = \frac{1}{30}
+\]
+よって、$b_B = 30\,\text{cm}$ である。
+
+倍率 $m_B$ を求める。
+\[
+m_B = -\frac{b_B}{a_B} = -\frac{30}{15} = -2
+\]
+最終的な像の大きさ $h'_{B}$ は、中間像の大きさ $h'_A$ に倍率を乗じて求められる。
+\[
+h'_{B} = |m_B| \times h'_A = 2 \times 6.0 = 12.0\,\text{cm}
+\]
+
+\subsubsection*{解答}
+\begin{itemize}
+    \item 像の位置: 凸レンズBの後方 \textbf{30 cm}
+    \item 像の大きさ: \textbf{12.0 cm}
+\end{itemize}
+\hrulefill
+
+\subsection{2) デバイスのppi比較}
+
+画素密度 ppi (pixels per inch) は、画面解像度の幅 $w$、高さ $h$、および対角線インチ数 $d$ を用いて以下の式で定義される。
+\[
+\text{ppi} = \frac{\sqrt{w^2 + h^2}}{d}
+\]
+
+\subsubsection{Google Pixel 10}
+$d=6.3$インチ, $w=1080$, $h=2424$ を代入する。
+まず対角線の画素数を計算する。
+\[
+\sqrt{1080^2 + 2424^2} = \sqrt{1166400 + 5875776} = \sqrt{7042176} \approx 2653.71
+\]
+インチ数で除算する。
+\[
+\text{ppi} = \frac{2653.71}{6.3} \approx 421.22
+\]
+
+\subsubsection{iPad (A16)}
+$d=10.9$インチ, $w=2360$, $h=1640$ を代入する。
+\[
+\sqrt{2360^2 + 1640^2} = \sqrt{5569600 + 2689600} = \sqrt{8259200} \approx 2873.88
+\]
+\[
+\text{ppi} = \frac{2873.88}{10.9} \approx 263.65
+\]
+
+\subsubsection{EIZO EV2740S}
+$d=27.0$インチ, $w=3840$, $h=2160$ を代入する。
+\[
+\sqrt{3840^2 + 2160^2} = \sqrt{14745600 + 4665600} = \sqrt{19411200} \approx 4405.81
+\]
+\[
+\text{ppi} = \frac{4405.81}{27.0} \approx 163.17
+\]
+
+\subsubsection*{解答}
+整数値で比較すると以下の通りとなる。
+\begin{itemize}
+    \item Google Pixel 10: \textbf{421 ppi}
+    \item iPad (A16): \textbf{264 ppi}
+    \item EIZO EV2740S: \textbf{163 ppi}
+\end{itemize}
+\hrulefill
+
+\subsection{3) 8近傍鮮鋭化フィルタの導出}
+
+\subsubsection{ラプラシアンフィルタの導出}
+注目画素を $f(i, j)$ とし、各方向の2次差分を以下のように定義する。
+
+\begin{itemize}
+    \item \textbf{x方向 ($f_{xx}$):}
+    隣接画素との1次差分の差分をとる。
+    \[
+    \begin{aligned}
+    f_{xx} &= \{f(i+1, j) - f(i, j)\} - \{f(i, j) - f(i-1, j)\} \\
+           &= f(i-1, j) + f(i+1, j) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    \item \textbf{y方向 ($f_{yy}$):}
+    \[
+    \begin{aligned}
+    f_{yy} &= \{f(i, j+1) - f(i, j)\} - \{f(i, j) - f(i, j-1)\} \\
+           &= f(i, j-1) + f(i, j+1) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    \item \textbf{斜め方向1 (左上-右下, $f_{d1}$):}
+    \[
+    \begin{aligned}
+    f_{d1} &= \{f(i+1, j+1) - f(i, j)\} - \{f(i, j) - f(i-1, j-1)\} \\
+           &= f(i-1, j-1) + f(i+1, j+1) - 2f(i, j)
+    \end{aligned}
+    \]
+
+    \item \textbf{斜め方向2 (右上-左下, $f_{d2}$):}
+    \[
+    \begin{aligned}
+    f_{d2} &= \{f(i+1, j-1) - f(i, j)\} - \{f(i, j) - f(i-1, j+1)\} \\
+           &= f(i-1, j+1) + f(i+1, j-1) - 2f(i, j)
+    \end{aligned}
+    \]
+\end{itemize}
+
+8近傍ラプラシアン $\nabla^2 f$ は、これら4方向の2次差分の総和である。
+\[
+\nabla^2 f = f_{xx} + f_{yy} + f_{d1} + f_{d2}
+\]
+上式に各差分式を代入して整理すると、注目画素 $f(i, j)$ の係数は $-2 \times 4 = -8$ となり、周囲8近傍の画素 $f(i\pm 1, j\pm 1)$ 等の係数はすべて $1$ となる。
+したがって、対応するオペレータ$H_L$ は以下の通り導出される。
+\[
+H_L =
+\begin{pmatrix}
+1 & 1 & 1 \\
+1 & -8 & 1 \\
+1 & 1 & 1
+\end{pmatrix}
+\]
+
+\subsubsection{鮮鋭化フィルタの導出}
+鮮鋭化（アンシャープマスキング）は、元画像からラプラシアン（エッジ成分の2次微分）を引くことで行われる。
+\[
+g(x,y) = f(x,y) - \nabla^2 f(x,y)
+\]
+これを行列演算として記述する。元画像を表す単位オペレータを $H_I$ とすると、鮮鋭化フィルタ $H_S$ は $H_I - H_L$ で求められる。
+\[
+H_S = H_I - H_L =
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 0
+\end{pmatrix}
+-
+\begin{pmatrix}
+1 & 1 & 1 \\
+1 & -8 & 1 \\
+1 & 1 & 1
+\end{pmatrix}
+\]
+各要素ごとの引き算を行う。
+\[
+H_S =
+\begin{pmatrix}
+0-1 & 0-1 & 0-1 \\
+0-1 & 1-(-8) & 0-1 \\
+0-1 & 0-1 & 0-1
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & -1 & -1 \\
+-1 & 9 & -1 \\
+-1 & -1 & -1
+\end{pmatrix}
+\]
+
+\subsubsection*{解答}
+導出された8近傍鮮鋭化フィルタのオペレータ：
+\[
+\begin{pmatrix}
+-1 & -1 & -1 \\
+-1 & 9 & -1 \\
+-1 & -1 & -1
+\end{pmatrix}
+\]
+\hrulefill
+
+\subsection{4) Sobelフィルタによるエッジ解析}
+
+Sobelフィルタのカーネル $S_x$（水平微分）、$S_y$（垂直微分）を以下のように定義する。
+\[
+S_x = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}, \quad
+S_y = \begin{pmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{pmatrix}
+\]
+エッジ強度 $G$ と方向 $\theta$ は次式で求められる。
+\[
+G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)
+\]
+
+\subsubsection{注目画素A (1,1) の計算}
+図A-3より、注目画素Aを中心とする $3 \times 3$ 近傍領域の画素値を以下のように読み取る。
+\[
+\text{Image}_A =
+\begin{pmatrix}
+50 & 50 & 100 \\
+50 & 50 & 100 \\
+100 & 100 & 150
+\end{pmatrix}
+\]
+
+\paragraph{x方向微分 $G_x$}
+右列と左列の差分を計算する。
+\[
+\begin{aligned}
+G_x &= (1 \cdot 100 + 2 \cdot 100 + 1 \cdot 150) - (1 \cdot 50 + 2 \cdot 50 + 1 \cdot 100) \\
+    &= (100 + 200 + 150) - (50 + 100 + 100) \\
+    &= 450 - 250 = 200
+\end{aligned}
+\]
+
+\paragraph{y方向微分 $G_y$}
+下行と上行の差分を計算する。
+\[
+\begin{aligned}
+G_y &= (1 \cdot 100 + 2 \cdot 100 + 1 \cdot 150) - (1 \cdot 50 + 2 \cdot 50 + 1 \cdot 100) \\
+    &= (100 + 200 + 150) - (50 + 100 + 100) \\
+    &= 450 - 250 = 200
+\end{aligned}
+\]
+
+\paragraph{エッジ強度と方向}
+\[
+G_A = \sqrt{200^2 + 200^2} = \sqrt{80000} \approx 282.84
+\]
+\[
+\theta_A = \arctan\left(\frac{200}{200}\right) = \arctan(1) = 45^\circ
+\]
+
+\subsubsection{注目画素B (3,3) の計算}
+同様に、注目画素Bを中心とする近傍領域を以下のように読み取る。
+\[
+\text{Image}_B =
+\begin{pmatrix}
+150 & 250 & 250 \\
+150 & 150 & 250 \\
+100 & 100 & 200
+\end{pmatrix}
+\]
+
+\paragraph{x方向微分 $G_x$}
+\[
+\begin{aligned}
+G_x &= (1 \cdot 250 + 2 \cdot 250 + 1 \cdot 200) - (1 \cdot 150 + 2 \cdot 150 + 1 \cdot 100) \\
+    &= (250 + 500 + 200) - (150 + 300 + 100) \\
+    &= 950 - 550 = 400
+\end{aligned}
+\]
+
+\paragraph{y方向微分 $G_y$}
+\[
+\begin{aligned}
+G_y &= (1 \cdot 100 + 2 \cdot 100 + 1 \cdot 200) - (1 \cdot 150 + 2 \cdot 250 + 1 \cdot 250) \\
+    &= (100 + 200 + 200) - (150 + 500 + 250) \\
+    &= 500 - 900 = -400
+\end{aligned}
+\]
+
+\paragraph{エッジ強度と方向}
+\[
+G_B = \sqrt{400^2 + (-400)^2} = \sqrt{320000} \approx 565.69
+\]
+\[
+\theta_B = \arctan\left(\frac{-400}{400}\right) = \arctan(-1) = -45^\circ
+\]
+
+\subsubsection*{比較結果}
+\begin{itemize}
+    \item \textbf{強度}: 画素Bのエッジ強度($\approx 566$)は、画素A($\approx 283$)の約2倍である。
+    \item \textbf{方向}: 画素Aは $45^\circ$（右下がり方向の輝度変化）、画素Bは $-45^\circ$（右上がり方向の輝度変化）のエッジを示している。
+\end{itemize}
+
+\clearpage
+
+\section{問題2}
+
+\subsection{1) 線形変換によるコントラスト強調}
+図A-4のグラフから、入力画素値 $f$ と出力画素値 $g$ の関係式（トーンカーブ）を導出した。
+グラフは入力範囲 $0 \le f \le 200$ において直線的に増加し、$200 < f \le 255$ では飽和している。
+直線の始点は $(0, 15)$、終点は $(200, 255)$ であるため、傾き $a$ は以下のようになる。
+\[
+a = \frac{255 - 15}{200 - 0} = \frac{240}{200} = 1.2
+\]
+切片は15であるため、変換式は以下の通りである。
+\[
+g(f) = \begin{cases} 1.2f + 15 & (0 \le f \le 200) \\ 255 & (200 < f \le 255) \end{cases}
+\]
+この変換を適用した結果、元画像で低輝度に集中していた分布が全体的に明るい方向へシフトし、ヒストグラムの幅が広がった。これにより画像のコントラストが強調され、視認性が向上したことが確認できた。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{gray_image.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{transformed_image.png}
+  \caption{元画像と変換後画像}
+  \label{fig:contrast_enhancement}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{Histogram_gray_image.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{Histogram_transformed_image.png}
+  \caption{元画像のヒストグラムと変換後画像のヒストグラム}
+  \label{fig:histograms}
+\end{figure}
+
+\subsection{2) 輝度反転}
+画像の輝度反転を行うため、以下の変換式を用いた。
+\[
+g(f) = 255 - f
+\]
+これは8ビット画像の最大輝度255から入力値を引く操作であり、黒(0)は白(255)に、白(255)は黒(0)に変換される。
+処理結果として、元画像の明暗が完全に逆転した画像が得られた。ヒストグラムにおいても、輝度分布が左右反転（高輝度側と低輝度側が入れ替わる）していることが確認でき、理論通りの結果となった。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{building.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{inverted_image.png}
+    \caption{輝度反転の比較: 元画像 (building.png) と反転後 (inverted\_image.png)}
+    \label{fig:inversion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Histogram_building.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{Histogram_inverted_image.png}
+    \caption{輝度反転前後のヒストグラム比較: 元画像のヒストグラムと反転後のヒストグラム}
+    \label{fig:histogram_inversion}
+\end{figure}
+
+\subsection{3) 空間フィルタリングによるノイズ除去}
+ノイズ除去には\textbf{メディアンフィルタ}（サイズ $3 \times 3$）を採用した。
+選択の理由は、対象画像に含まれるノイズが、ランダムに白や黒の点が現れる「ごま塩ノイズ（インパルスノイズ）」であったためである。平均化フィルタではノイズ成分が周囲にぼやけて広がってしまうのに対し、メディアンフィルタは注目画素周辺の中央値を出力するため、突発的な外れ値であるインパルスノイズを効果的に除去しつつ、物体の輪郭（エッジ）を比較的保存できる特性がある。
+適用結果として、エッジの鋭さを保ったままノイズのみがきれいに除去された画像が得られた。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{noisy_image.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{denoised_image.png}
+    \caption{ノイズ除去の比較: 処理前と処理後}
+    \label{fig:median_denoise}
+\end{figure}
+
+\subsection{4) Canny法によるエッジ検出}
+ノイズ除去後の画像に対し、Canny法によるエッジ検出を行った。本手法では2つのしきい値（Threshold 1, Threshold 2）の設定が重要となるため、値を変化させて比較を行った。
+しきい値を極端に低くすると、壁面の微細な模様やノイズ，空の模様まで過剰に検出された。逆に高くしすぎると、建物の主要な輪郭線が途切れてしまった。
+試行錯誤の結果、\textbf{Threshold 1 = 75, Threshold 2 = 92} に設定した際、ノイズを拾わず、かつ建物の形状を正確に抽出できる最適な結果が得られた。
+ただし、まだより最適な数値が存在する可能性はあるものの、今回はここで妥協した。違いが分かりづらい部分があるため、今後はエッジ検出の精度を定量的に評価する調整方法を調査したい。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{canny_edge_image.png}
+    \caption{Canny法によるエッジ検出結果}
+    \label{fig:canny_edge_image}
+\end{figure}
+
+\section*{付録: プログラムリスト}
+本レポートの課題2で使用したPythonプログラムを以下に示す．
+
+\lstinputlisting[caption={画像処理プログラム}, label={lst:code}]{report_image_analysis3.py}
+
+\end{document}
