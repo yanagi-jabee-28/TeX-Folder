@@ -171,83 +171,21 @@ $$= 1.40 \times 10^{9}\ \mathrm{s^{-1}}$$
 
 ## 課題 3
 
-**条件**: $D=1.0\times10^{-2}\ \mathrm{m},\ V_a=100\ \mathrm{V},\ B_z=0.1\ \mathrm{T}$. 初期: $(x,y)=(0,0),\ v_0=0$. 電界||x, B||z.
+**条件**: $D=1.0\times10^{-2}\ \mathrm{m},\ V_a=100\ \mathrm{V},\ B_z=0.1\ \mathrm{T}$. 初期: $(x,y)=(0,0),\ v_0=0$.
 
-### ① $x_m$ を求める
+**式(最小限)**:
 
-**式:**
+$$E=\frac{V_a}{D}=1.00\times10^{4}\ \mathrm{V/m},\quad S\equiv\frac{mE}{eB^2}$$
 
-$E=-dV/dx=-V_a/D$. 方程式: $m\dot v_x=-eE-e v_yB$, $m\dot v_y=e v_xB$. $\omega=eB/m$ とおくと解は以下。
-
-ここで，$\omega = \frac{eB}{m}$ とおくと
-
-$$\frac{dv_x}{dt} = \frac{e|E|}{m} - \omega v_y$$
-
-$$\frac{dv_y}{dt} = \omega v_x$$
-
-これらを解くと，初期条件 $v_x(0) = v_y(0) = 0$ より
-
-$$v_x(t) = \frac{|E|}{B}\sin(\omega t)$$
-
-$$v_y(t) = \frac{|E|}{B}(1 - \cos(\omega t))$$
-
-位置は速度を積分して
-
-$$x(t) = \int_0^t v_x \, dt = \frac{|E|}{B\omega}(1 - \cos(\omega t)) = \frac{m|E|}{eB^2}(1 - \cos(\omega t))$$
-
-$$y(t) = \int_0^t v_y \, dt = \frac{|E|}{B}\left(t - \frac{\sin(\omega t)}{\omega}\right) = \frac{|E|}{B}t - \frac{m|E|}{eB^2}\sin(\omega t)$$
-
-$x(t)$ の最大値は $\cos(\omega t) = -1$ のとき，すなわち $\omega t = \pi$ のときに得られる
-
-$$x_m = \frac{m|E|}{eB^2}(1 - (-1)) = \frac{2m|E|}{eB^2}$$
+$$x_m=2S,\quad y_m=2\pi S$$
 
 **代入:**
 
-$$|E| = \frac{V_a}{D} = \frac{100}{1.0 \times 10^{-2}} = 1.00 \times 10^{4}\ \mathrm{V/m}$$
+$$S=\frac{9.11\times10^{-31}\times1.00\times10^{4}}{1.60\times10^{-19}\times(0.10)^2}=5.69\times10^{-6}\mathrm{m}$$
 
-$x_m$ を計算:
+$$x_m=2S=1.14\times10^{-5}\ \mathrm{m},\quad y_m=2\pi S=3.58\times10^{-5}\ \mathrm{m}$$
 
-$$x_m = \frac{2 \times 9.11 \times 10^{-31} \times 1.00 \times 10^{4}}{1.60 \times 10^{-19} \times (0.10)^2}$$
-
-$$= \frac{1.822 \times 10^{-26}}{1.60 \times 10^{-21}}$$
-
-$$= 1.14 \times 10^{-5}\ \mathrm{m}$$
-
-**解**: $x_m = 1.14 \times 10^{-5}\ \mathrm{m}$
-
-### ② $y_m$ を求める
-
-**式:**
-
-$x(t)$ が最大値 $x_m$ をとるとき $\omega t = \pi$ であるから，このときの $y$ 座標 $y_m$ は
-
-$$y_m = \frac{|E|}{B} \cdot \frac{\pi}{\omega} - \frac{m|E|}{eB^2}\sin(\pi)$$
-
-$\sin(\pi) = 0$ より
-
-$$y_m = \frac{|E|}{B} \cdot \frac{\pi}{\omega} = \frac{|E|}{B} \cdot \frac{\pi m}{eB} = \frac{\pi m|E|}{eB^2}$$
-
-これは $x_m = \frac{2m|E|}{eB^2}$ を用いて
-
-$$y_m = \frac{\pi}{2} \cdot \frac{2m|E|}{eB^2} = \frac{\pi}{2} x_m$$
-
-あるいは，直接計算して
-
-$$y_m = \frac{2\pi m|E|}{eB^2}$$
-
-**代入:**
-
-$$y_m = \frac{2\pi \times 9.11 \times 10^{-31} \times 1.00 \times 10^{4}}{1.60 \times 10^{-19} \times (0.10)^2}$$
-
-$$= \frac{5.73 \times 10^{-26}}{1.60 \times 10^{-21}}$$
-
-$$= 3.58 \times 10^{-5}\ \mathrm{m}$$
-
-または，$x_m$ の値を用いて
-
-$$y_m = \pi \times \frac{x_m}{2} = \pi \times \frac{1.14 \times 10^{-5}}{2} = 3.58 \times 10^{-5}\ \mathrm{m}$$
-
-**解**: $y_m = 3.58 \times 10^{-5}\ \mathrm{m}$
+**解**: $x_m=1.14\times10^{-5}\ \mathrm{m},\ \ y_m=3.58\times10^{-5}\ \mathrm{m}$
 
 ---
 
