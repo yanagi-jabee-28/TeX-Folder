@@ -121,7 +121,7 @@ $$y(t)=\int_0^t v_y\,\mathrm{d}t=\frac{E}{B}\Bigl(t-\frac{\sin(\omega t)}{\omega
 
 $x(t)$ の最大は $\cos(\omega t)=-1$（$t=\pi/\omega$）で
 
-$$x_m=2\frac{mE}{eB^2},\quad y_m=\frac{E}{B}\frac{\pi}{\omega}=\pi\frac{mE}{eB^2}.$$ 
+$$x_m=2\frac{mE}{eB^2},\quad y_m=\frac{E}{B}\frac{2\pi}{\omega}=2\pi\frac{mE}{eB^2}.$$
 
 4) 数値代入
 
@@ -129,9 +129,9 @@ $$E=\frac{V_a}{D}=\frac{100}{1.0\times10^{-2}}=1.00\times10^{4}\ \mathrm{V/m},$$
 
 $$S\equiv\frac{mE}{eB^2}=\frac{9.11\times10^{-31}\times1.00\times10^{4}}{1.60\times10^{-19}\times(0.10)^2}=5.69\times10^{-6}\ \mathrm{m},$$
 
-$$x_m=2S=1.14\times10^{-5}\ \mathrm{m},\quad y_m=\pi S=1.79\times10^{-5}\ \mathrm{m}.$$ 
+$$x_m=2S=1.14\times10^{-5}\ \mathrm{m},\quad y_m=2\pi S=3.58\times10^{-5}\ \mathrm{m}.$$ 
 
-（答） $x_m=1.14\times10^{-5}\ \mathrm{m},\ y_m=1.79\times10^{-5}\ \mathrm{m}$.
+（答） $x_m=1.14\times10^{-5}\ \mathrm{m},\ y_m=3.58\times10^{-5}\ \mathrm{m}$.
 
 ---
 
@@ -154,7 +154,7 @@ $$x_m=2S=1.14\times10^{-5}\ \mathrm{m},\quad y_m=\pi S=1.79\times10^{-5}\ \mathr
 
 - 問3
   - $x_m$ = 1.138750e-5 → $1.14\times10^{-5}\ \mathrm{m}$
-  - $y_m$ = 1.788744e-5 → $1.79\times10^{-5}\ \mathrm{m}$
+  - $y_m$ = 3.577488e-5 → $3.58\times10^{-5}\ \mathrm{m}$
 
 注: スクリプトと本文の差は丸め（有効数字3桁）によるものであり，物理的には一致しています。
 
@@ -214,4 +214,4 @@ $$f=\frac{eB_z}{2\pi m}\approx1.40\times10^{9}\ \mathrm{Hz}$$
 
 "= m V_a / (e D B^2) \times 2\pi = 9.11\times10^{-31} \times 100 / (1.6\times10^{-19} \times 1\times10^{-2} \times 0.1^2) \times 2\pi = 3.58\times10^{-5}\ [m]"
 
-注: 手書きは $y_m$ を $\omega_c t=2\pi$ として評価して $2\pi S\ (=3.58\times10^{-5}\ \mathrm{m})$ を示している。本文では $x_m$ 時点 ($\omega_c t=\pi$) に対応する $y$ を $\pi S\ (=1.79\times10^{-5}\ \mathrm{m})$ としている。
+注: 手書きは $y_m$ を $\omega_c t=2\pi$ として評価して $2\pi S\ (=3.58\times10^{-5}\ \mathrm{m})$ を示している。本稿でも $y_m$ を $2\pi S\ (=3.58\times10^{-5}\ \mathrm{m})$ として採用した。
