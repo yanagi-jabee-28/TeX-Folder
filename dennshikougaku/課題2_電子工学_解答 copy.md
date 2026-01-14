@@ -4,214 +4,251 @@
 
 ---
 
-**使用する物理定数（与えられた値）**
-- $k=1.38\times10^{-23}\ \mathrm{J\,K^{-1}}$
-- $e=1.60\times10^{-19}\ \mathrm{C}$
-- $m=9.11\times10^{-31}\ \mathrm{kg}$
-- $h=6.63\times10^{-34}\ \mathrm{J\,s}$
-- $c=3.00\times10^{8}\ \mathrm{m/s}$
+**使用する物理定数**
+- $k = 1.38 \times 10^{-23}\ \mathrm{J \cdot K^{-1}}$
+- $e = 1.60 \times 10^{-19}\ \mathrm{C}$
+- $m = 9.11 \times 10^{-31}\ \mathrm{kg}$
+- $h = 6.63 \times 10^{-34}\ \mathrm{J \cdot s}$
+- $c = 3.00 \times 10^{8}\ \mathrm{m/s}$
 
-(有効数字は最終答を3桁で表記)
-
----
-
-## 問1
-
-条件: 電極間距離 $d=1.0\times10^{-2}\ \mathrm{m}$，電圧差 $\Delta V=200\ \mathrm{V}$，初速度 $0$.
-
-1) 電界 $E$
-
-$$E=-\frac{\mathrm{d}V}{\mathrm{d}x}=-\frac{\Delta V}{d}=-\frac{200}{1.0\times10^{-2}}=-2.00\times10^{4}\ \mathrm{V/m}.$$ 
-
-2) 加速度 $a$
-
-電荷 $q=-e$ により $F=qE$，加速度の大きさ
-
-$$a=\frac{|qE|}{m}=\frac{e|E|}{m}. $$
-
-数値代入:
-
-$$a=\frac{1.60\times10^{-19}\times2.00\times10^{4}}{9.11\times10^{-31}}=3.515\times10^{15}\ \mathrm{m/s^{2}}\approx3.52\times10^{15}\ \mathrm{m/s^{2}}.$$ 
-
-3) 陽極までの時間 $t$
-
-初速度 $0$，移動距離 $d$ より
-
-$$t=\sqrt{\frac{2d}{a}}.$$
-
-数値代入:
-
-$$t=\sqrt{\frac{2\times1.0\times10^{-2}}{3.515\times10^{15}}}=\sqrt{5.689\times10^{-18}}=2.39\times10^{-9}\ \mathrm{s}.$$ 
-
-4) 陽極到達時の速度 $v$
-
-$$v=\sqrt{2ad}=\sqrt{\frac{2e\Delta V}{m}}.$$
-
-数値代入:
-
-$$v=\sqrt{\frac{2\times1.60\times10^{-19}\times200}{9.11\times10^{-31}}}=8.38\times10^{6}\ \mathrm{m/s}.$$ 
-
-5) 陽極に与えるエネルギー $\Delta K$
-
-$$\Delta K=e\Delta V=1.60\times10^{-19}\times200=3.20\times10^{-17}\ \mathrm{J}=200\ \mathrm{eV}.$$ 
+**計算における有効数字**: 3桁
 
 ---
 
-## 問2
+## 課題 1
 
-条件: 初期エネルギー $100\ \mathrm{eV}$，磁束密度 $B=0.05\ \mathrm{T}$，入射は磁場に直交.
+**条件**: $d=1.0\times10^{-2}\ \mathrm{m},\ V=200\ \mathrm{V},\ v_0=0$. 求: ①〜③.
 
-1) 速度 $v$
+### ① 陽極に達するまでの時間
 
-$$\mathrm{KE}=100\ \mathrm{eV}=100\times1.60\times10^{-19}=1.60\times10^{-17}\ \mathrm{J},$$
+**式:**
 
-$$v=\sqrt{\frac{2\mathrm{KE}}{m}}=\sqrt{\frac{2\times1.60\times10^{-17}}{9.11\times10^{-31}}}=5.93\times10^{6}\ \mathrm{m/s}.$$ 
+$$E = \frac{V}{d}$$
 
-2) 円運動の半径 $r$
+$F=eE\Rightarrow a=F/m=\dfrac{eE}{m}=\dfrac{eV}{md}$
 
-$$r=\frac{mv}{eB}.$$
+初速度0: $d=\tfrac{1}{2}at^2\Rightarrow t=\sqrt{\dfrac{2d}{a}}=\sqrt{\dfrac{2md^2}{eV}}$
 
-数値代入:
+**代入:**
 
-$$r=\frac{9.11\times10^{-31}\times5.93\times10^{6}}{1.60\times10^{-19}\times0.05}=6.75\times10^{-4}\ \mathrm{m}.$$ 
+$$t = \sqrt{\frac{2 \times 9.11 \times 10^{-31} \times (1.0 \times 10^{-2})^2}{1.60 \times 10^{-19} \times 200}}$$
 
-3) 毎秒の回転数 $f$
+$$= \sqrt{\frac{2 \times 9.11 \times 10^{-31} \times 1.0 \times 10^{-4}}{3.20 \times 10^{-17}}}$$
 
-$$\omega=\frac{eB}{m},\quad f=\frac{\omega}{2\pi}=\frac{eB}{2\pi m}.$$
+$$= \sqrt{\frac{1.822 \times 10^{-34}}{3.20 \times 10^{-17}}}$$
 
-数値代入:
+$$= \sqrt{5.69 \times 10^{-18}}$$
 
-$$f=\frac{1.60\times10^{-19}\times0.05}{2\pi\times9.11\times10^{-31}}=1.40\times10^{9}\ \mathrm{s^{-1}}.$$ 
+$$= 2.39 \times 10^{-9}\ \mathrm{s}$$
 
----
+**解**: $t = 2.39 \times 10^{-9}\ \mathrm{s}$
 
-## 問3
+### ② 陽極に達したときの速度
 
-条件: $D=1.0\times10^{-2}\ \mathrm{m}$, $V_a=100\ \mathrm{V}$, $V(x)=V_a x/D$, $B_z=0.1\ \mathrm{T}$, 初期位置 $(x,y)=(0,0)$, 初速度 $0$.
+**式:**
 
-1) 電界 $E$
+エネルギー保存則より，電子が電位差 $V$ で加速されたときの運動エネルギーは
 
-$$E=-\frac{\mathrm{d}V}{\mathrm{d}x}=-\frac{V_a}{D}=-\frac{100}{1.0\times10^{-2}}=-1.00\times10^{4}\ \mathrm{V/m}.$$ 
+$$\frac{1}{2}mv^2 = eV$$
 
-2) 運動方程式
+これを $v$ について解くと
 
-$q=-e$，$m$，$B=(0,0,B)$ とおくと
+$$v = \sqrt{\frac{2eV}{m}}$$
 
-$$m\frac{\mathrm{d}v_x}{\mathrm{d}t}=qE+qv_yB,\quad m\frac{\mathrm{d}v_y}{\mathrm{d}t}=-qv_xB.$$ 
+**代入:**
 
-$q=-e$ を代入し，$\omega\equiv eB/m$ とすると
+$$v = \sqrt{\frac{2 \times 1.60 \times 10^{-19} \times 200}{9.11 \times 10^{-31}}}$$
 
-$$\frac{\mathrm{d}v_x}{\mathrm{d}t}=\frac{eE}{m}-\omega v_y,\quad \frac{\mathrm{d}v_y}{\mathrm{d}t}=\omega v_x.$$ 
+$$= \sqrt{\frac{6.40 \times 10^{-17}}{9.11 \times 10^{-31}}}$$
 
-これらを組合せると
+$$= \sqrt{7.025 \times 10^{13}}$$
 
-$$\frac{\mathrm{d}^2 v_x}{\mathrm{d}t^2}=-\omega^2 v_x.$$ 
+$$= 8.38 \times 10^{6}\ \mathrm{m/s}$$
 
-初期条件 $v_x(0)=v_y(0)=0$ より解は
+**解**: $v = 8.38 \times 10^{6}\ \mathrm{m/s}$
 
-$$v_x(t)=\frac{E}{B}\sin(\omega t),\quad v_y(t)=\frac{E}{B}\bigl(1-\cos(\omega t)\bigr).$$ 
+### ③ 陽極に与えるエネルギー
 
-位置は積分して
+**式:**
 
-$$x(t)=\int_0^t v_x\,\mathrm{d}t=\frac{E}{B}\frac{1-\cos(\omega t)}{\omega}=\frac{mE}{eB^2}\bigl(1-\cos(\omega t)\bigr),$$
+電子が電位差 $V$ で加速されて得る運動エネルギーは，電子が陽極に与えるエネルギーに等しい。したがって
 
-$$y(t)=\int_0^t v_y\,\mathrm{d}t=\frac{E}{B}\Bigl(t-\frac{\sin(\omega t)}{\omega}\Bigr)=\frac{E}{B}t-\frac{mE}{eB^2}\sin(\omega t).$$ 
+$$\Delta K = eV$$
 
-3) 最大値 $x_m$ と対応する $y_m$
+**代入:**
 
-$x(t)$ の最大は $\cos(\omega t)=-1$（$t=\pi/\omega$）で
+$$\Delta K = 1.60 \times 10^{-19} \times 200$$
 
-$$x_m=2\frac{mE}{eB^2},\quad y_m=\frac{E}{B}\frac{2\pi}{\omega}=2\pi\frac{mE}{eB^2}.$$
+$$= 3.20 \times 10^{-17}\ \mathrm{J}$$
 
-4) 数値代入
+また，これを電子ボルト (eV) で表すと
 
-$$E=\frac{V_a}{D}=\frac{100}{1.0\times10^{-2}}=1.00\times10^{4}\ \mathrm{V/m},$$
+$$\Delta K = 200\ \mathrm{eV}$$
 
-$$S\equiv\frac{mE}{eB^2}=\frac{9.11\times10^{-31}\times1.00\times10^{4}}{1.60\times10^{-19}\times(0.10)^2}=5.69\times10^{-6}\ \mathrm{m},$$
+補足: 問②で求めた速度 $v=8.38\times10^{6}\ \mathrm{m/s}$ を用いて運動エネルギーを計算すると
 
-$$x_m=2S=1.14\times10^{-5}\ \mathrm{m},\quad y_m=2\pi S=3.58\times10^{-5}\ \mathrm{m}.$$ 
+$$\frac{1}{2}mv^2 = \frac{1}{2} \times 9.11 \times 10^{-31} \times (8.38 \times 10^{6})^2 = 3.20 \times 10^{-17}\ \mathrm{J},$$
 
-（答） $x_m=1.14\times10^{-5}\ \mathrm{m},\ y_m=3.58\times10^{-5}\ \mathrm{m}$.
+となり，電位差から求めた $\Delta K$ の値と一致する（丸めによる僅差を除く）。
 
----
-
-## 検算
-
-検算に用いたスクリプト: `verify_calc.py`（ワークスペースに保存）。スクリプトで再計算した値と，最終的に本文で採用した有効数字3桁での表示を示す。
-
-計算結果（スクリプトでの高精度出力 → 採用値（有効数字3桁））:
-
-- 問1
-  - $a$ = 3.512623e15 → $3.52\times10^{15}\ \mathrm{m/s^2}$
-  - $t$ = 2.386158e-9 → $2.39\times10^{-9}\ \mathrm{s}$
-  - $v$ = 8.381675e6 → $8.38\times10^{6}\ \mathrm{m/s}$
-  - $\Delta K$ = 3.200000e-17 J → $3.20\times10^{-17}\ \mathrm{J}$
-
-- 問2
-  - $v$ = 5.926739e6 → $5.93\times10^{6}\ \mathrm{m/s}$
-  - $r$ = 6.749074e-4 → $6.75\times10^{-4}\ \mathrm{m}$
-  - $f$ = 1.397628e9 → $1.40\times10^{9}\ \mathrm{s^{-1}}$
-
-- 問3
-  - $x_m$ = 1.138750e-5 → $1.14\times10^{-5}\ \mathrm{m}$
-  - $y_m$ = 3.577488e-5 → $3.58\times10^{-5}\ \mathrm{m}$
-
-注: スクリプトと本文の差は丸め（有効数字3桁）によるものであり，物理的には一致しています。
-
-以上。
+**解**: $\Delta K = 3.20 \times 10^{-17}\ \mathrm{J}$ （または $200\ \mathrm{eV}$） 
 
 ---
 
-## 付録 — 手書きメモ（文字起こし）
+## 課題 2
 
-以下は資料画像（手書きノート）の文字起こし（原文に忠実）です。
+**条件**: $K=100\ \mathrm{eV},\ B=0.05\ \mathrm{T},\ \theta=90^\circ$.
 
-1. 問1 (V = 200, D = 1×10^{-2})
+### ① 電子の円運動の半径
 
-(1)
-$$t=D\sqrt{\frac{2m}{eV_a}}=\sqrt{\frac{2mD^2}{eV_a}}$$
-数値代入:
-$$t=1\times10^{-2}\sqrt{\frac{2\times9.11\times10^{-31}}{1.6\times10^{-19}\times200}}=2.39\times10^{-9}\ \mathrm{s}$$
+**式:**
 
-(2)
-$$v=\sqrt{\frac{2eV}{m}}=\sqrt{\frac{2\times1.6\times10^{-19}\times200}{9.11\times10^{-31}}}=8.38\times10^{6}\ \mathrm{m/s}$$
+まず，電子の速度 $v$ を求める。初期運動エネルギー $K$ が与えられているので
 
-(3)
-運動エネルギー:
-$$\frac{1}{2}mv^2=\frac{1}{2}\times9.11\times10^{-31}\times(8.38\times10^{6})^2=3.20\times10^{-17}\ \mathrm{J}$$
+$$K = \frac{1}{2}mv^2$$
 
-2. 問2 (初期エネルギー = 100 eV, B_z = 0.05 T)
+より
 
-(1)
-円運動半径:
-$$r=\frac{mv}{eB_z}\ (\sin\theta=1\text{ for }\theta=\pi/2)$$
-数値代入:
-$$r=\frac{9.11\times10^{-31}\times\sqrt{2\times100\times1.6\times10^{-19}/9.11\times10^{-31}}}{1.6\times10^{-19}\times0.05}=6.75\times10^{-4}\ \mathrm{m}$$
+$$v = \sqrt{\frac{2K}{m}}$$
 
-(2)
-回転数（周波数）:
-$$f=\frac{eB_z}{2\pi m}\approx1.40\times10^{9}\ \mathrm{Hz}$$
+ここで，$K = 100\ \mathrm{eV}$ （$=100\times1.60\times10^{-19}\ \mathrm{J}$）。
 
-3. 問3 — 手書き原稿（逐語文字起こし）
+磁界中で等速円運動する電子には，ローレンツ力が向心力として働くので
 
-(1) $x_m$ のとき $\omega_c t=\pi$ より
+$$evB = \frac{mv^2}{r}$$
 
-手書き:
+これを $r$ について解くと
 
-"x_m = A / \omega_c^2 (1 - \cos\omega_c t) = e m^2 V_a / e^2 m D B^2 (1 - \cos\pi)"
+$$r = \frac{mv}{eB}$$
 
-手書きの途中計算:
+**代入:**
 
-"m V_a / (D e B^2) = 9.11\times10^{-31} \times 100 / (1\times10^{-2} \times 1.6\times10^{-19} \times 0.1^2) = 5.69\times10^{-6}\ [m]"
+$$K = 100 \times 1.60 \times 10^{-19} = 1.60 \times 10^{-17}\ \mathrm{J}$$
 
-(2) $y_m$ のとき $\omega_c t=2\pi$
+速度を計算:
 
-手書き:
+$$v = \sqrt{\frac{2 \times 1.60 \times 10^{-17}}{9.11 \times 10^{-31}}}$$
 
-"y_m = A / \omega_c^2 (\omega_c t - \sin\omega_c t) = e m^2 V_a / e^2 m D B^2 (2\pi - \sin 2\pi)"
+$$= \sqrt{\frac{3.20 \times 10^{-17}}{9.11 \times 10^{-31}}}$$
 
-手書きの途中計算:
+$$= \sqrt{3.513 \times 10^{13}}$$
 
-"= m V_a / (e D B^2) \times 2\pi = 9.11\times10^{-31} \times 100 / (1.6\times10^{-19} \times 1\times10^{-2} \times 0.1^2) \times 2\pi = 3.58\times10^{-5}\ [m]"
+$$= 5.93 \times 10^{6}\ \mathrm{m/s}$$
 
-注: 手書きは $y_m$ を $\omega_c t=2\pi$ として評価して $2\pi S\ (=3.58\times10^{-5}\ \mathrm{m})$ を示している。本稿でも $y_m$ を $2\pi S\ (=3.58\times10^{-5}\ \mathrm{m})$ として採用した。
+円運動の半径を計算:
+
+$$r = \frac{9.11 \times 10^{-31} \times 5.93 \times 10^{6}}{1.60 \times 10^{-19} \times 0.05}$$
+
+$$= \frac{5.40 \times 10^{-24}}{8.00 \times 10^{-21}}$$
+
+$$= 6.75 \times 10^{-4}\ \mathrm{m}$$
+
+**解**: $r = 6.75 \times 10^{-4}\ \mathrm{m}$
+
+### ② 毎秒の回転数
+
+**式:**
+
+円運動の角速度を $\omega$ とすると
+
+$$\omega = \frac{v}{r} = \frac{eB}{m}$$
+
+毎秒の回転数（周波数）$f$ は
+
+$$f = \frac{\omega}{2\pi} = \frac{eB}{2\pi m}$$
+
+**代入:**
+
+$$f = \frac{1.60 \times 10^{-19} \times 0.05}{2\pi \times 9.11 \times 10^{-31}}$$
+
+$$= \frac{8.00 \times 10^{-21}}{5.724 \times 10^{-30}}$$
+
+$$= 1.40 \times 10^{9}\ \mathrm{s^{-1}}$$
+
+**解**: $f = 1.40 \times 10^{9}\ \mathrm{s^{-1}}$ 
+
+---
+
+## 課題 3
+
+**条件**: $D=1.0\times10^{-2}\ \mathrm{m},\ V_a=100\ \mathrm{V},\ B_z=0.1\ \mathrm{T}$. 初期: $(x,y)=(0,0),\ v_0=0$. 電界||x, B||z.
+
+### ① $x_m$ を求める
+
+**式:**
+
+$E=-dV/dx=-V_a/D$. 方程式: $m\dot v_x=-eE-e v_yB$, $m\dot v_y=e v_xB$. $\omega=eB/m$ とおくと解は以下。
+
+ここで，$\omega = \frac{eB}{m}$ とおくと
+
+$$\frac{dv_x}{dt} = \frac{e|E|}{m} - \omega v_y$$
+
+$$\frac{dv_y}{dt} = \omega v_x$$
+
+これらを解くと，初期条件 $v_x(0) = v_y(0) = 0$ より
+
+$$v_x(t) = \frac{|E|}{B}\sin(\omega t)$$
+
+$$v_y(t) = \frac{|E|}{B}(1 - \cos(\omega t))$$
+
+位置は速度を積分して
+
+$$x(t) = \int_0^t v_x \, dt = \frac{|E|}{B\omega}(1 - \cos(\omega t)) = \frac{m|E|}{eB^2}(1 - \cos(\omega t))$$
+
+$$y(t) = \int_0^t v_y \, dt = \frac{|E|}{B}\left(t - \frac{\sin(\omega t)}{\omega}\right) = \frac{|E|}{B}t - \frac{m|E|}{eB^2}\sin(\omega t)$$
+
+$x(t)$ の最大値は $\cos(\omega t) = -1$ のとき，すなわち $\omega t = \pi$ のときに得られる
+
+$$x_m = \frac{m|E|}{eB^2}(1 - (-1)) = \frac{2m|E|}{eB^2}$$
+
+**代入:**
+
+$$|E| = \frac{V_a}{D} = \frac{100}{1.0 \times 10^{-2}} = 1.00 \times 10^{4}\ \mathrm{V/m}$$
+
+$x_m$ を計算:
+
+$$x_m = \frac{2 \times 9.11 \times 10^{-31} \times 1.00 \times 10^{4}}{1.60 \times 10^{-19} \times (0.10)^2}$$
+
+$$= \frac{1.822 \times 10^{-26}}{1.60 \times 10^{-21}}$$
+
+$$= 1.14 \times 10^{-5}\ \mathrm{m}$$
+
+**解**: $x_m = 1.14 \times 10^{-5}\ \mathrm{m}$
+
+### ② $y_m$ を求める
+
+**式:**
+
+$x(t)$ が最大値 $x_m$ をとるとき $\omega t = \pi$ であるから，このときの $y$ 座標 $y_m$ は
+
+$$y_m = \frac{|E|}{B} \cdot \frac{\pi}{\omega} - \frac{m|E|}{eB^2}\sin(\pi)$$
+
+$\sin(\pi) = 0$ より
+
+$$y_m = \frac{|E|}{B} \cdot \frac{\pi}{\omega} = \frac{|E|}{B} \cdot \frac{\pi m}{eB} = \frac{\pi m|E|}{eB^2}$$
+
+これは $x_m = \frac{2m|E|}{eB^2}$ を用いて
+
+$$y_m = \frac{\pi}{2} \cdot \frac{2m|E|}{eB^2} = \frac{\pi}{2} x_m$$
+
+あるいは，直接計算して
+
+$$y_m = \frac{2\pi m|E|}{eB^2}$$
+
+**代入:**
+
+$$y_m = \frac{2\pi \times 9.11 \times 10^{-31} \times 1.00 \times 10^{4}}{1.60 \times 10^{-19} \times (0.10)^2}$$
+
+$$= \frac{5.73 \times 10^{-26}}{1.60 \times 10^{-21}}$$
+
+$$= 3.58 \times 10^{-5}\ \mathrm{m}$$
+
+または，$x_m$ の値を用いて
+
+$$y_m = \pi \times \frac{x_m}{2} = \pi \times \frac{1.14 \times 10^{-5}}{2} = 3.58 \times 10^{-5}\ \mathrm{m}$$
+
+**解**: $y_m = 3.58 \times 10^{-5}\ \mathrm{m}$
+
+---
+
+**以上**
