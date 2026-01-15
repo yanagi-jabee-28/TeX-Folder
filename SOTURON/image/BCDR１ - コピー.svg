@@ -6,7 +6,7 @@
    overflow="hidden"
    version="1.1"
    id="svg1"
-   sodipodi:docname="BCDR１.svg"
+   sodipodi:docname="BCDR１ - コピー.svg"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -22,12 +22,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="0.13972769"
-     inkscape:cx="-633.37483"
-     inkscape:cy="1037.7328"
-     inkscape:window-width="2520"
-     inkscape:window-height="1469"
-     inkscape:window-x="4309"
-     inkscape:window-y="184"
+     inkscape:cx="-633.37482"
+     inkscape:cy="1034.1544"
+     inkscape:window-width="2880"
+     inkscape:window-height="1694"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2" /><defs
      id="defs1"><inkscape:path-effect
@@ -48,7 +48,7 @@
        link_styles="false" /><inkscape:path-effect
        effect="mirror_symmetry"
        start_point="3896.8654,-1207.0166"
-       end_point="3896.8654,-901.12155"
+       end_point="3896.8654,-901.12159"
        center_point="3896.8654,-1054.0691"
        id="path-effect7"
        is_visible="true"
@@ -119,7 +119,7 @@
        x="-1240.6483"
        y="-291.13965" /><g
        id="g9"
-       transform="translate(0,-121.45455)"><g
+       transform="translate(0,-121.4546)"><g
          id="g5"
          transform="matrix(1.5897674,0,0,1.5897674,-2087.1824,-412.3243)"><g
            id="g2"
@@ -235,7 +235,7 @@
            x="3591.1672"
            y="-571.41949" /></g><text
          xml:space="preserve"
-         style="font-size:136.063px;font-family:Meiryo;-inkscape-font-specification:Meiryo;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
          x="1196.4371"
          y="-684.31311"
          id="text8"><tspan
@@ -243,9 +243,9 @@
            id="tspan8"
            x="1196.4371"
            y="-684.31311"
-           style="font-size:136.063px">誘電体シート</tspan></text><text
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho'">誘電体シート</tspan></text><text
          xml:space="preserve"
-         style="font-size:136.063px;font-family:Meiryo;-inkscape-font-specification:Meiryo;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
          x="1328.8129"
          y="-1801.515"
          id="text8-9"><tspan
@@ -253,9 +253,9 @@
            id="tspan8-6"
            x="1328.8129"
            y="-1801.515"
-           style="font-size:136.063px">円板銅箔</tspan></text><text
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho'">円板銅箔</tspan></text><text
          xml:space="preserve"
-         style="font-size:136.063px;font-family:Meiryo;-inkscape-font-specification:Meiryo;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:15;stroke-dasharray:none;stroke-dashoffset:0"
          x="1258.4229"
          y="-2417.3254"
          id="text8-9-2"><tspan
@@ -263,7 +263,7 @@
            id="tspan8-6-9"
            x="1258.4229"
            y="-2417.3254"
-           style="font-size:136.063px">同軸励振線</tspan></text><path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:136.063px;font-family:'MS Mincho';-inkscape-font-specification:'MS Mincho'">同軸励振線</tspan></text><path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-dasharray:none;stroke-dashoffset:0"
          d="M 1162.9764,-737.14811 729.73702,-1179.101"
          id="path8"
@@ -285,7 +285,7 @@
          id="path8-6"
          sodipodi:nodetypes="cc" /></g><g
        id="g12"
-       transform="translate(0,-3.2382806)"><g
+       transform="translate(0,-3.2383)"><g
          id="g11"><path
            id="path4-4-5"
            style="fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:15.8977;stroke-dasharray:none;stroke-dashoffset:0"
