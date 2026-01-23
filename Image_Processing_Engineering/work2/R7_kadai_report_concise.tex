@@ -17,6 +17,7 @@
 \usepackage{luatexja-fontspec} % 和文フォント
 \usepackage{listings}          % ソースコード
 \usepackage{xcolor}            % 色
+\usepackage{colortbl}          % 表のセル色付け
 
 % listings の設定
 \lstset{
@@ -69,7 +70,26 @@
 
 \subsubsection{計算・導出過程}
 
-図A-1に示す4×5画素の画像に対してメディアンカット量子化法を適用し、4色に量子化します。全ピクセル値は以下の通りです。
+図A-1に示す4×5画素の画像に対してメディアンカット量子化法を適用し、4色に量子化します。
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		102 & 179 & 92 & 14 & 106 \\
+		\hline
+		74 & 202 & 87 & 116 & 99 \\
+		\hline
+		151 & 130 & 149 & 52 & 1 \\
+		\hline
+		235 & 157 & 37 & 129 & 191 \\
+		\hline
+	\end{tabular}
+	\caption{量子化前の4×5ピクセル画像（数値表示）}
+	\label{fig:before_quantization}
+\end{figure}
+
+全ピクセル値は以下の通りです。
 \begin{center}
 	102, 179, 92, 14, 106, 74, 202, 87, 116, 99, 151, 130, 149, 52, 1, 235, 157, 37, 129, 191
 \end{center}
@@ -85,30 +105,57 @@
 	\centering
 	\begin{tabular}{|c|c|c|}
 		\hline
-		グループ & ピクセル値 & 代表色（中央値） \\
+		\cellcolor{gray!20}グループ & \cellcolor{gray!20}ピクセル値 & \cellcolor{gray!20}代表色（中央値） \\
 		\hline
-		1 & 1, 14, \textbf{37}, 52, 74 & 37 \\
-		2 & 87, 92, \textbf{99}, 102, 106 & 99 \\
-		3 & 116, 129, \textbf{130}, 149, 151 & 130 \\
-		4 & 157, 179, \textbf{191}, 202, 235 & 191 \\
+		\cellcolor{blue!30}1 & \cellcolor{blue!15}1, 14, \textbf{37}, 52, 74 & \cellcolor{blue!30}37 \\
+		\cellcolor{red!30}2 & \cellcolor{red!15}87, 92, \textbf{99}, 102, 106 & \cellcolor{red!30}99 \\
+		\cellcolor{green!30}3 & \cellcolor{green!15}116, 129, \textbf{130}, 149, 151 & \cellcolor{green!30}130 \\
+		\cellcolor{yellow!40}4 & \cellcolor{yellow!20}157, 179, \textbf{191}, 202, 235 & \cellcolor{yellow!40}191 \\
 		\hline
 	\end{tabular}
 \end{table}
 
-上記に基づく量子化結果を以下に示します。
-\begin{center}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		99 & 191 & 99 & 37 & 99 \\
-		\hline
-		37 & 191 & 99 & 130 & 99 \\
-		\hline
-		130 & 130 & 130 & 37 & 37 \\
-		\hline
-		191 & 191 & 37 & 130 & 191 \\
-		\hline
-	\end{tabular}
-\end{center}
+上記に基づく量子化前後の比較を図で示します。
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      \cellcolor{red!30}102 & \cellcolor{yellow!40}179 & \cellcolor{red!30}92 & \cellcolor{blue!30}14 & \cellcolor{red!30}106 \\
+      \hline
+      \cellcolor{blue!30}74 & \cellcolor{yellow!40}202 & \cellcolor{red!30}87 & \cellcolor{green!30}116 & \cellcolor{red!30}99 \\
+      \hline
+      \cellcolor{green!30}151 & \cellcolor{green!30}130 & \cellcolor{green!30}149 & \cellcolor{blue!30}52 & \cellcolor{blue!30}1 \\
+      \hline
+      \cellcolor{yellow!40}235 & \cellcolor{yellow!40}157 & \cellcolor{blue!30}37 & \cellcolor{green!30}129 & \cellcolor{yellow!40}191 \\
+      \hline
+    \end{tabular}
+    \vspace{0.5mm}
+    \small (a) 量子化前（グループ別色分け）
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      \cellcolor{red!30}99 & \cellcolor{yellow!40}191 & \cellcolor{red!30}99 & \cellcolor{blue!30}37 & \cellcolor{red!30}99 \\
+      \hline
+      \cellcolor{blue!30}37 & \cellcolor{yellow!40}191 & \cellcolor{red!30}99 & \cellcolor{green!30}130 & \cellcolor{red!30}99 \\
+      \hline
+      \cellcolor{green!30}130 & \cellcolor{green!30}130 & \cellcolor{green!30}130 & \cellcolor{blue!30}37 & \cellcolor{blue!30}37 \\
+      \hline
+      \cellcolor{yellow!40}191 & \cellcolor{yellow!40}191 & \cellcolor{blue!30}37 & \cellcolor{green!30}130 & \cellcolor{yellow!40}191 \\
+      \hline
+    \end{tabular}
+    \vspace{0.5mm}
+    \small (b) 量子化後（代表色）
+  \end{minipage}
+  \caption{量子化前（左）と量子化後（右）の比較}
+  \label{fig:quantization_comparison}
+\end{figure}
 
 \subsubsection{結果}
 
