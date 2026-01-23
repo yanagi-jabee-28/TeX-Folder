@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """問題2_1.ipynb"""
 
-# ドライブのマウント
+# ドライブのマウントとファイル操作用モジュール
 from google.colab import drive
+from google.colab import files
 drive.mount('/content/drive')
 
 # モジュールのインポート
@@ -18,8 +19,7 @@ filename = 'a2-3_binary_image.png'
 # 画像読み込み
 img = cv2.imread(common_path + filename, cv2.IMREAD_GRAYSCALE)
 
-# カーネルサイズのリスト（3から15まで2ずつ増やす）
-# 学生がパラメータを変えて試行錯誤した様子
+# カーネルサイズのリスト
 kernel_sizes = list(range(3, 17, 2))
 total_images = 1 + len(kernel_sizes)
 
@@ -27,7 +27,7 @@ total_images = 1 + len(kernel_sizes)
 cols = 4
 rows = math.ceil(total_images / cols)
 
-# 実行結果の表示
+# 実行結果の表示設定
 plt.figure(figsize=(15, 4 * rows))
 
 # オリジナル画像
@@ -38,10 +38,9 @@ plt.axis('off')
 
 # カーネルサイズを変えて処理
 for i, k in enumerate(kernel_sizes):
-    # カーネル作成（矩形）
+    # カーネル作成
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (k, k))
-    
-    # オープニング処理（収縮→膨張）でノイズ除去
+    # オープニング処理
     result = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
     
     # 表示
@@ -51,4 +50,9 @@ for i, k in enumerate(kernel_sizes):
     plt.axis('off')
 
 plt.tight_layout()
+
+# 画像を保存してダウンロード
+save_filename = 'problem2_1_result.png'
+plt.savefig(save_filename)
 plt.show()
+files.download(save_filename)
