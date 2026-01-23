@@ -1,0 +1,166 @@
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+\documentclass[a4paper, 11pt]{ltjsarticle}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}           % 数式
+\usepackage{booktabs}          % 表
+\usepackage{siunitx}           % 単位
+\usepackage{graphicx}          % 画像読み込み
+\usepackage{float}             % 画像配置の制御
+\usepackage{luatexja-fontspec} % 和文フォント
+\usepackage{listings}          % ソースコード
+\usepackage{xcolor}            % 色
+
+% listings の設定
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue}\bfseries,
+	commentstyle=\color{green!40!black},
+	stringstyle=\color{red!60!black},
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	columns=fullflexible,
+	showstringspaces=false,
+	language=Python,
+	inputencoding=utf8,
+	captionpos=b
+}
+
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
+
+% --- 和文フォント設定 ---
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+
+% --- ドキュメント情報 ---
+\title{画像処理・画像処理工学 レポート課題1}
+\author{画像処理工学科　学籍番号: 21239　組番号:234　5E　氏名:栁原　魁人}
+\date{\today}
+
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage
+
+\section{課題2概要}
+このレポートでは、画像処理・画像処理工学の課題2に取り組みます。以下の4つの問題について、理論、プログラムリスト、結果、考察を含めて報告します。
+
+\section{問題1: モルフォロジー処理によるノイズ除去}
+
+\subsection{理論}
+モルフォロジー処理は、二値画像に対して幾何学的な形態操作を行う処理です。主な操作には以下があります：
+\begin{itemize}
+	\item \textbf{膨張(Dilation)}：画像内の白領域を拡大する処理
+	\item \textbf{収縮(Erosion)}：画像内の白領域を縮小する処理
+	\item \textbf{開処理(Opening)}：収縮の後に膨張を行う処理。小さなノイズを除去する
+	\item \textbf{閉処理(Closing)}：膨張の後に収縮を行う処理。小さな黒いノイズを埋める
+\end{itemize}
+
+
+\subsection{結果}
+開処理により小さな孤立ノイズが効果的に除去されました。閉処理により、黒いノイズも埋められました。
+
+\subsection{考察}
+開処理と閉処理を組み合わせることで、効果的にノイズを除去できます。構造要素のサイズを調整することで、除去するノイズの大きさを制御できます。
+
+\clearpage
+
+\section{問題2: JPEG品質と圧縮率の関係}
+
+\subsection{理論}
+JPEG圧縮では、品質パラメータ（0-100）により圧縮率と画質が変化します。品質が低いほど圧縮率は高くなりますが、画質が低下します。SSIM（Structural Similarity Index）を用いて画質を定量的に評価できます：
+\[
+\text{SSIM} = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2)}
+\]
+
+
+\subsection{結果}
+JPEG品質と圧縮率の関係を分析すると、品質70〜80では十分な画質を保ちながら高い圧縮率を達成できます。
+
+\subsection{考察}
+推奨されるJPEG品質は75〜85の範囲です。この範囲では、視覚的な品質低下が最小限に抑えられながら、データ圧縮率が30\%程度達成できます。
+
+\clearpage
+
+\section{問題3: 2次元FFTと振幅スペクトル}
+
+\subsection{理論}
+2次元フーリエ変換は、画像を周波数領域に変換します。振幅スペクトルは周波数成分の大きさを表します。対数スケール変換により、弱い周波数成分も可視化できます：
+\[
+S(\omega_x, \omega_y) = \log(1 + |F(\omega_x, \omega_y)|)
+\]
+
+
+\subsection{結果}
+振幅スペクトルより、低周波成分が中心に集中していることが観察されました。
+
+\subsection{考察}
+自然画像では通常、低周波成分が支配的です。スペクトルの分布から、画像の周波数特性が理解できます。
+
+\clearpage
+
+\section{問題4: 周波数フィルタの応用}
+
+\subsection{理論}
+周波数フィルタは周波数領域で画像を処理します。主なフィルタ種類：
+\begin{itemize}
+	\item \textbf{ローパスフィルタ}：低周波を通す。ノイズ除去に使用
+	\item \textbf{ハイパスフィルタ}：高周波を通す。エッジ検出に使用
+	\item \textbf{理想フィルタ}：遮断周波数で急峻に変化
+	\item \textbf{ガウシアンフィルタ}：滑らかに変化。リンギングが少ない
+\end{itemize}
+
+\subsection{結果}
+ローパスフィルタはノイズを除去して画像を平滑化し、ハイパスフィルタはエッジを強調しました。
+
+\subsection{考察}
+ガウシアンフィルタは理想フィルタと異なり、周波数応答が滑らかに変化するため、逆FFT後のリンギング成分が少なく、実用的です。カットオフ周波数の選択により、処理結果の特性を制御できます。
+
+\clearpage
+
+\clearpage
+
+\section*{付録: プログラムリスト}
+本レポートの課題2で使用したPythonプログラムを以下に示す．
+
+\subsection*{問題1: モルフォロジー処理}
+
+\lstinputlisting[caption={問題1 モルフォロジー処理によるノイズ除去}, label={lst:code1}, language=Python]{../問題2_1.py}
+
+\clearpage
+
+\subsection*{問題2: JPEG品質と圧縮率}
+
+\lstinputlisting[caption={問題2 JPEG品質と圧縮率の関係調査}, label={lst:code2}, language=Python]{../問題2_2.py}
+
+\clearpage
+
+\subsection*{問題3: 2次元FFTと振幅スペクトル}
+
+\lstinputlisting[caption={問題3 2次元FFTと振幅スペクトル}, label={lst:code3}, language=Python]{../問題2_3.py}
+
+\clearpage
+
+\subsection*{問題4: 周波数フィルタの応用}
+
+\lstinputlisting[caption={問題4 周波数フィルタの応用}, label={lst:code4}, language=Python]{../問題2_4.py}
+
+\end{document}

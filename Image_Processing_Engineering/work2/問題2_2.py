@@ -63,7 +63,6 @@ for i, quality in enumerate(range(0, 101, 10)):
     compressed_img_rgb = cv2.cvtColor(compressed_img, cv2.COLOR_BGR2RGB)
 
     # 4. SSIM (画質評価値) の計算
-    # win_sizeは画像サイズより小さくある必要があるため、小さい画像の場合は調整が必要ですが通常はデフォルトでOK
     # channel_axis=2 はカラー画像(マルチチャンネル)であることを指定
     score = ssim(original_img_rgb, compressed_img_rgb, win_size=3, channel_axis=2, data_range=255)
 
