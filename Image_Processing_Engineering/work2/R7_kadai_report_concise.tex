@@ -291,20 +291,38 @@ Q & サイズ比(\%) & SSIM \\
 \section{問題3: 2次元FFTと振幅スペクトル}
 
 \subsection{概要}
-画像を周波数領域に変換し、スペクトル特性を分析。
+グレースケール画像を2次元FFTで周波数領域に変換し、振幅スペクトルを分析。
 
 \subsection{結果}
-低周波成分が中心に集中。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{a2-5_gray_image_magnitude_spectrum.png}
+\caption{グレースケール画像の2次元振幅スペクトル（中央化）}
+\label{fig:fft_magnitude}
+\end{figure}
+
+振幅スペクトルの中心に強い明るさを示す領域がある。これはDC成分（0周波数）と低周波成分が画像の主要成分であることを示す。周辺部は暗く、高周波成分（細かなエッジやノイズ）が少ないことを表す。垂直・水平方向に弱い構造が見られるのは、画像内に規則的な境界や勾配が存在することを示唆している。
 
 \clearpage
 
 \section{問題4: 周波数フィルタの応用}
 
 \subsection{概要}
-ローパスフィルタ、ハイパスフィルタを適用し効果を比較。
+理想的ローパスフィルタ（ILPF）とガウシアンハイパスフィルタ（GHPF）をCutoff=30で適用し、効果を比較。
 
 \subsection{結果}
-ローパスフィルタはノイズ除去、ハイパスフィルタはエッジ検出に有効。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{a2-5_gray_image_output_filters_result.png}
+\caption{ローパスフィルタとハイパスフィルタの適用結果比較（Cutoff=30）}
+\label{fig:filter_comparison}
+\end{figure}
+
+\textbf{ローパスフィルタ（ILPF）}: 低周波成分のみを通し、高周波（ノイズ・細部）を除去。結果は全体的にぼかされ、目や顔の大型構造は保持される一方、毛並みなどの細かいテクスチャは消失。ノイズ除去やスムージングに有効。
+
+\textbf{ハイパスフィルタ（GHPF）}: DC成分と低周波を除去し、高周波のみを通す。結果はエッジが明るく浮き出ち、目・口・毛並みなどの細部が強調される。大きな領域は暗くなり、画像全体はコントラストが低下。エッジ検出と細部抽出に有効。
 
 \clearpage
 
