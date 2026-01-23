@@ -254,10 +254,10 @@
 \begin{align*}
 L &= 0.30 \times 2 + 0.02 \times 5 + 0.06 \times 4 + 0.04 \times 4 \\
   &\quad + 0.01 \times 5 + 0.05 \times 4 + 0.20 \times 2 + 0.32 \times 2 \\
-  &= 2.39 \text{ bits/シンボル}
+  &= 2.39 \text{ ビット}
 \end{align*}
 
-等長符号（3 bits/シンボル）との比較：削減量 $= 3 - 2.39 = 0.61$ bits（約20\%削減）
+等長符号（3ビット）との比較：削減量 $= 3 - 2.39 = 0.61$ ビット（約20\%削減）
 
 \subsubsection{結果}
 
@@ -347,7 +347,74 @@ Q & サイズ比(\%) & SSIM \\
 \label{fig:fft_magnitude}
 \end{figure}
 
-振幅スペクトルの中心に強い明るさを示す領域がある。これはDC成分（0周波数）と低周波成分が画像の主要成分であることを示す。周辺部は暗く、高周波成分（細かなエッジやノイズ）が少ないことを表す。垂直・水平方向に弱い構造が見られるのは、画像内に規則的な境界や勾配が存在することを示唆している。
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.32\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_3_result_0.png}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_3_result_1.png}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_3_result_2.png}
+\end{minipage}
+
+\vspace{6pt}
+
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_3_result_3.png}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_3_result_4.png}
+\end{minipage}
+\caption{振幅スペクトル（複数表示）：低周波・対数スケール・中心化など（左上→右下: 0,1,2,3,4）}
+\label{fig:fft_magnitude_multi}
+\end{figure}
+
+振幅スペクトルの中央が明るくなっていることは、DC成分（0周波数）や低周波成分が画像の主要な成分であることを示している。周辺が暗いことは高周波成分（細かいエッジやノイズ）が少ないことを意味する。また、スペクトル上に縦横方向の弱い線状パターンが見られる。これは画像内に規則的な境界や周期的な構造（繰り返しのエッジや勾配）が存在すると考えられる。
+
+\subsubsection*{考察}
+FFT（高速フーリエ変換）による周波数解析では、**規則的なパターン、細かいテクスチャ、鋭いエッジ（高周波成分）**を多く含む画像ほど、振幅スペクトルに興味深い特徴（星状の点、十字、広がりなど）が現れる。逆に、ぼんやりした画像や単調な画像では、中心の輝き以外に目立った特徴が現れない。
+
+\paragraph{画像タイプ別プロンプト例}
+以下は、FFTの結果が「映える」画像を生成するためのプロンプト例（Midjourney / DALL-E 3 / Stable Diffusion 等で使用可）である。
+
+\begin{description}
+\item[パターン1：幾何学的・周期的な構造] \hfill \\
+\textbf{Prompt:}
+\begin{quote}\texttt{Hyper-intricate kaleidoscope pattern, complex geometric fractal, high contrast black and white, mathematical symmetry, sharp edges, detailed mandala, optical illusion art, 8k resolution --ar 1:1}\end{quote}
+
+\item[パターン2：細かい線描・版画調] \hfill \\
+\textbf{Prompt:}
+\begin{quote}\texttt{Detailed cross-hatching illustration in the style of Gustave Dor\'e, antique etching of a dense forest, intricate ink lines, engraving style, high detail, sharp texture, masterpiece --ar 1:1}\end{quote}
+
+\item[パターン3：人工的なグリッド・都市・回路] \hfill \\
+\textbf{Prompt:}
+\begin{quote}\texttt{Aerial top-down view of a futuristic cyber city, dense skyscrapers, intricate circuit board texture, metallic surfaces, high contrast, greeble details, sci-fi architecture, sharp focus --ar 1:1}\end{quote}
+
+\item[パターン4：自然界のランダムなテクスチャ] \hfill \\
+\textbf{Prompt:}
+\begin{quote}\texttt{Macro photography of intricate bird feathers, extreme close-up of insect wing texture, biological cells patterns, fibrous texture, sharp details, high texture quality, monochrome photography --ar 1:1}\end{quote}
+
+\item[パターン5：ハーフトーン・モアレ（ドット）] \hfill \\
+\textbf{Prompt:}
+\begin{quote}
+\raggedright\ttfamily
+Halftone dot pattern portrait, pop art style, comic book shading, distinct dots, moire pattern effect, glitch art, high contrast, monochrome --ar 1:1
+\end{quote}
+\end{description}
+
+\paragraph{生成時のコツ}
+\begin{itemize}
+\item アスペクト比は本解析ではクロップしていないため、生成時は元画像と同じアスペクト比を用いるか、解析目的で正方形（例：512×512）にトリミングしてから使用することをおすすめします。
+\item "Intricate"、"Detailed"、"Dense"、"High contrast" といった語を含めると、周波数的に特徴が出やすくなる。
+\item コントラストを高めるとエッジ成分が強調され、FFT結果が見やすくなる。
+\end{itemize}
 
 \clearpage
 
