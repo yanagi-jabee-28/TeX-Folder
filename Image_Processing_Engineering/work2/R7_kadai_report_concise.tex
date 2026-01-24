@@ -174,8 +174,6 @@
 	\label{fig:median_cut}
 \end{figure}
 
-\clearpage
-
 \subsection{問題1-2: ラベリング処理}
 
 \subsubsection{理論}
@@ -217,8 +215,6 @@
 	\caption{ラベリング処理の結果}
 	\label{fig:labeling}
 \end{figure}
-
-\clearpage
 
 \subsection{問題1-3: ハフマン符号化}
 
@@ -276,8 +272,6 @@ L &= 0.30 \times 2 + 0.02 \times 5 + 0.06 \times 4 + 0.04 \times 4 \\
 	\label{fig:huffman}
 \end{figure}
 
-\clearpage
-
 \section{課題2}
 
 \section{問題1: モルフォロジー処理によるノイズ除去}
@@ -296,8 +290,6 @@ L &= 0.30 \times 2 + 0.02 \times 5 + 0.06 \times 4 + 0.04 \times 4 \\
 \end{figure}
 
 	カーネルサイズ9以上では外観上の変化が小さいため、本実験では9を選定した。15は本例では過剰である。
-
-\clearpage
 
 \section{問題2: JPEG品質と圧縮率の関係}
 
@@ -338,8 +330,6 @@ Q & サイズ比(\%) & SSIM \\
 \end{figure}
 
 \textbf{Q=80} でSSIM=0.783、\textbf{Q=90} でSSIM=0.825 と向上するが、サイズ比は 11.8\%→17.7\%へ増加。視覚・数値の両面から、実用的には \textbf{Q=80～90} が妥当。\textbf{Q=100} はSSIM向上が小さい一方でサイズ比 45.5\% と非効率。 視覚的評価では \textbf{Q=10} の画像が許容され得る場合もある（\autoref{fig:jpeg_q_grid}）。一方で SSIM は 0.520 と低く、数値的評価では劣るため、用途に応じて容量削減を優先する場合に \textbf{Q=10} の採用が検討される。
-
-\clearpage
 
 \section{問題3: 2次元FFTと振幅スペクトル}
 
@@ -388,9 +378,12 @@ Q & サイズ比(\%) & SSIM \\
 \vspace{6pt}
 
 \begin{center}
-  \includegraphics[width=0.48\linewidth]{problem2_3_result_4.png}
-  \vspace{1mm}
-  \small (e) 入力画像5の振幅スペクトル
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{problem2_3_result_4.png}
+    \vspace{1mm}
+    \small (e) 入力画像5の振幅スペクトル
+  \end{minipage}
 \end{center}
 \caption{同一の2次元FFT処理を別入力画像に適用した結果（左上→右下: (a)〜(e)）。}
 \label{fig:fft_magnitude_multi}
@@ -433,8 +426,6 @@ Halftone dot pattern portrait, pop art style, comic book shading, distinct dots,
 \item "Intricate"、"Detailed"、"Dense"、"High contrast" といった語を含めると、周波数的に特徴が出やすくなる。
 \item コントラストを高めるとエッジ成分が強調され、FFT結果が見やすくなる。
 \end{itemize}
-
-\clearpage
 
 \section{問題4: 周波数フィルタの応用}
 
@@ -483,9 +474,12 @@ Halftone dot pattern portrait, pop art style, comic book shading, distinct dots,
 \vspace{6pt}
 
 \begin{center}
-  \includegraphics[width=0.48\linewidth]{problem2_4_result_4.png}
-  \vspace{1mm}
-  \small (e) 入力画像5の比較
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{problem2_4_result_4.png}
+    \vspace{1mm}
+    \small (e) 入力画像5の比較
+  \end{minipage}
 \end{center}
 \caption{同一のフィルタ処理を別入力画像で試した結果（左上→右下: (a)〜(e)）。}
 \label{fig:filter_results_multi}
