@@ -18,6 +18,14 @@
 \usepackage{listings}          % ソースコード
 \usepackage{xcolor}            % 色
 \usepackage{colortbl}          % 表のセル色付け
+% ハイパーリンク（図番号などをクリック可能にする）
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+% 日本語の自動参照名を設定（\autoref を用いたときに '図' が付くようにする）
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\renewcommand{\figureautorefname}{図}
+\renewcommand{\tableautorefname}{表}
 
 % listings の設定
 \lstset{
@@ -329,7 +337,7 @@ Q & サイズ比(\%) & SSIM \\
 \label{fig:jpeg_q_grid}
 \end{figure}
 
-\textbf{Q=80} でSSIM=0.783、\textbf{Q=90} でSSIM=0.825 と向上するが、サイズ比は 11.8\%→17.7\%へ増加。視覚・数値の両面から、実用的には \textbf{Q=80～90} が妥当。\textbf{Q=100} はSSIM向上が小さい一方でサイズ比 45.5\% と非効率。 ただし、視覚的には \textbf{Q=10} の画像でも許容できると判断される場合がある（図\ref{fig:jpeg_q_grid}を参照）。SSIMは0.520と低めのため数値的には劣るが、用途によっては容量削減を優先して \textbf{Q=10} を採用することは妥当である。
+\textbf{Q=80} でSSIM=0.783、\textbf{Q=90} でSSIM=0.825 と向上するが、サイズ比は 11.8\%→17.7\%へ増加。視覚・数値の両面から、実用的には \textbf{Q=80～90} が妥当。\textbf{Q=100} はSSIM向上が小さい一方でサイズ比 45.5\% と非効率。 ただし、視覚的には \textbf{Q=10} の画像でも許容できると判断される場合がある（\autoref{fig:jpeg_q_grid}を参照）。SSIMは0.520と低めのため数値的には劣るが、用途によっては容量削減を優先して \textbf{Q=10} を採用することは妥当である。
 
 \clearpage
 
@@ -376,13 +384,10 @@ Q & サイズ比(\%) & SSIM \\
 \label{fig:fft_magnitude_multi}
 \end{figure}
 
-振幅スペクトルの中央が明るくなっていることは、DC成分（0周波数）や低周波成分が画像の主要な成分であることを示している。周辺が暗いことは高周波成分（細かいエッジやノイズ）が少ないことを意味する。また、スペクトル上に縦横方向の弱い線状パターンが見られる。これは画像内に規則的な境界や周期的な構造（繰り返しのエッジや勾配）が存在すると考えられる。
-
-\subsubsection*{考察}
-FFT（高速フーリエ変換）による周波数解析では、**規則的なパターン、細かいテクスチャ、鋭いエッジ（高周波成分）**を多く含む画像ほど、振幅スペクトルに興味深い特徴（星状の点、十字、広がりなど）が現れる。逆に、ぼんやりした画像や単調な画像では、中心の輝き以外に目立った特徴が現れない。
+% 考察は本問題では省略します。
 
 \paragraph{画像タイプ別プロンプト例}
-以下は、FFTの結果が「映える」画像を生成するためのプロンプト例（Midjourney / DALL-E 3 / Stable Diffusion 等で使用可）である。
+今回のレポートで示した、特に問題2-3で処理対象とした入力画像は、以下に示すプロンプトを用いてNanoBananaProで生成したものです。
 
 \begin{description}
 \item[パターン1：幾何学的・周期的な構造] \hfill \\
@@ -411,7 +416,6 @@ Halftone dot pattern portrait, pop art style, comic book shading, distinct dots,
 
 \paragraph{生成時のコツ}
 \begin{itemize}
-\item アスペクト比は本解析ではクロップしていないため、生成時は元画像と同じアスペクト比を用いるか、解析目的で正方形（例：512×512）にトリミングしてから使用することをおすすめします。
 \item "Intricate"、"Detailed"、"Dense"、"High contrast" といった語を含めると、周波数的に特徴が出やすくなる。
 \item コントラストを高めるとエッジ成分が強調され、FFT結果が見やすくなる。
 \end{itemize}
