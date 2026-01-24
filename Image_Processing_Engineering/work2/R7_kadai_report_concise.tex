@@ -286,7 +286,7 @@ L &= 0.30 \times 2 + 0.02 \times 5 + 0.06 \times 4 + 0.04 \times 4 \\
 開処理と閉処理を用いてノイズを除去。
 
 \subsection{結果}
-開処理（Opening = 収縮→膨張）により、白色の孤立ノイズを除去した。収縮処理で小領域が消失し、その後の膨張で主要な図形領域を復元する。本画像では白色ノイズが支配的であるため開処理を選択した。実験の結果、構造要素は十字型（\texttt{MORPH\_CROSS}）より矩形（\texttt{MORPH\_RECT}）を用いた方が孤立した小ノイズの除去に優れていることがわかった。実務的には矩形で開処理（opening）を行った後、楕円形（\texttt{MORPH\_ELLIPSE}）のカーネルで追い処理を行うことで、矩形処理後に残存した微小なノイズをさらに効果的に除去できることを確認した。矩形→楕円の順で処理することで、形状保持と雑音除去のバランスが良好になった。閉処理（Closing = 膨張→収縮）は黒いノイズの埋め込みに有効だが、本課題では不要と判断した。
+開処理（Opening = 収縮→膨張）により、白色の孤立ノイズが除去された。収縮処理で小領域が消失し、その後の膨張で主要な図形領域が復元された。本画像では白色ノイズが優勢であったため開処理を採用した。実験により、矩形構造要素（\texttt{MORPH\_RECT}）は十字構造要素（\texttt{MORPH\_CROSS}）よりも孤立した小ノイズの除去に有効であることが示された。実践手順として、矩形カーネルによる開処理の後に楕円形カーネル（\texttt{MORPH\_ELLIPSE}）で追処理を行うことで、矩形処理後に残存する微小ノイズをさらに低減できることが確認された。矩形→楕円の順で処理を行うと形状保持と雑音除去のバランスが良好となる。閉処理（Closing = 膨張→収縮）は黒色ノイズの埋め込みに有効であるが、本課題の対象画像では適用しなかった。
 
 \begin{figure}[H]
 	\centering
@@ -295,7 +295,7 @@ L &= 0.30 \times 2 + 0.02 \times 5 + 0.06 \times 4 + 0.04 \times 4 \\
 	\label{fig:morph_kernel15}
 \end{figure}
 
-	カーネルサイズ9以降は見た目の変化が小さく、9で十分。15にする必要はない。
+	カーネルサイズ9以上では外観上の変化が小さいため、本実験では9を選定した。15は本例では過剰である。
 
 \clearpage
 
@@ -337,7 +337,7 @@ Q & サイズ比(\%) & SSIM \\
 \label{fig:jpeg_q_grid}
 \end{figure}
 
-\textbf{Q=80} でSSIM=0.783、\textbf{Q=90} でSSIM=0.825 と向上するが、サイズ比は 11.8\%→17.7\%へ増加。視覚・数値の両面から、実用的には \textbf{Q=80～90} が妥当。\textbf{Q=100} はSSIM向上が小さい一方でサイズ比 45.5\% と非効率。 ただし、視覚的には \textbf{Q=10} の画像でも許容できると判断される場合がある（\autoref{fig:jpeg_q_grid}を参照）。SSIMは0.520と低めのため数値的には劣るが、用途によっては容量削減を優先して \textbf{Q=10} を採用することは妥当である。
+\textbf{Q=80} でSSIM=0.783、\textbf{Q=90} でSSIM=0.825 と向上するが、サイズ比は 11.8\%→17.7\%へ増加。視覚・数値の両面から、実用的には \textbf{Q=80～90} が妥当。\textbf{Q=100} はSSIM向上が小さい一方でサイズ比 45.5\% と非効率。 視覚的評価では \textbf{Q=10} の画像が許容され得る場合もある（\autoref{fig:jpeg_q_grid}）。一方で SSIM は 0.520 と低く、数値的評価では劣るため、用途に応じて容量削減を優先する場合に \textbf{Q=10} の採用が検討される。
 
 \clearpage
 
@@ -357,32 +357,46 @@ Q & サイズ比(\%) & SSIM \\
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.32\textwidth}
+\begin{minipage}{0.48\textwidth}
   \centering
   \includegraphics[width=\linewidth]{problem2_3_result_0.png}
+  \vspace{1mm}
+  \small (a) 入力画像1の振幅スペクトル
 \end{minipage}\hfill
-\begin{minipage}{0.32\textwidth}
+\begin{minipage}{0.48\textwidth}
   \centering
   \includegraphics[width=\linewidth]{problem2_3_result_1.png}
-\end{minipage}\hfill
-\begin{minipage}{0.32\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{problem2_3_result_2.png}
+  \vspace{1mm}
+  \small (b) 入力画像2の振幅スペクトル
 \end{minipage}
 
 \vspace{6pt}
 
 \begin{minipage}{0.48\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{problem2_3_result_3.png}
+  \includegraphics[width=\linewidth]{problem2_3_result_2.png}
+  \vspace{1mm}
+  \small (c) 入力画像3の振幅スペクトル
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{problem2_3_result_4.png}
+  \includegraphics[width=\linewidth]{problem2_3_result_3.png}
+  \vspace{1mm}
+  \small (d) 入力画像4の振幅スペクトル
 \end{minipage}
-\caption{振幅スペクトル（複数表示）：低周波・対数スケール・中心化など（左上→右下: 0,1,2,3,4）}
+
+\vspace{6pt}
+
+\begin{center}
+  \includegraphics[width=0.48\linewidth]{problem2_3_result_4.png}
+  \vspace{1mm}
+  \small (e) 入力画像5の振幅スペクトル
+\end{center}
+\caption{同一の2次元FFT処理を別入力画像に適用した結果（左上→右下: (a)〜(e)）。}
 \label{fig:fft_magnitude_multi}
 \end{figure}
+
+\noindent 図\ref{fig:fft_magnitude_multi}は、図\ref{fig:fft_magnitude}と同一の処理を別入力画像に適用した結果である。各サブ図はそれぞれ異なる入力画像に対する結果を示す。
 
 % 考察は本問題では省略します。
 
@@ -425,16 +439,59 @@ Halftone dot pattern portrait, pop art style, comic book shading, distinct dots,
 \section{問題4: 周波数フィルタの応用}
 
 \subsection{概要}
-理想的ローパスフィルタ（ILPF）とガウシアンハイパスフィルタ（GHPF）をCutoff=30で適用し、効果を比較。
+理想的ローパスフィルタ（ILPF）とガウシアンハイパスフィルタ（GHPF）を、カットオフ周波数 $D_0$ を 10/30/60 と変化させ適用し、効果を比較。
 
 \subsection{結果}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{problem2_4_result.png}
-\caption{ローパスフィルタとハイパスフィルタの適用結果比較（Cutoff=30）}
+\caption{ローパスフィルタとハイパスフィルタの適用結果比較（代表例）}
 \label{fig:filter_comparison}
 \end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_4_result_0.png}
+  \vspace{1mm}
+  \small (a) 入力画像1の比較
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_4_result_1.png}
+  \vspace{1mm}
+  \small (b) 入力画像2の比較
+\end{minipage}
+
+\vspace{6pt}
+
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_4_result_2.png}
+  \vspace{1mm}
+  \small (c) 入力画像3の比較
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{problem2_4_result_3.png}
+  \vspace{1mm}
+  \small (d) 入力画像4の比較
+\end{minipage}
+
+\vspace{6pt}
+
+\begin{center}
+  \includegraphics[width=0.48\linewidth]{problem2_4_result_4.png}
+  \vspace{1mm}
+  \small (e) 入力画像5の比較
+\end{center}
+\caption{同一のフィルタ処理を別入力画像で試した結果（左上→右下: (a)〜(e)）。}
+\label{fig:filter_results_multi}
+\end{figure}
+
+\noindent 図\ref{fig:filter_results_multi}は、図\ref{fig:filter_comparison}と同一の処理を別入力画像に適用した結果である。各サブ図に示したカットオフ周波数 $D_0$ はサブキャプション（(a)～(e)）に記載してある。
 
 \textbf{ローパスフィルタ（ILPF）}: 低周波成分のみを通し、高周波（ノイズ・細部）を除去。結果は全体的にぼかされ、目や顔の大型構造は保持される一方、毛並みなどの細かいテクスチャは消失。ノイズ除去やスムージングに有効。
 
