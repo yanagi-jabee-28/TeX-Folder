@@ -20,7 +20,8 @@ filenames = [
     'a2-5_gray_image_1.png',
     'a2-5_gray_image_2.png',
     'a2-5_gray_image_3.png',
-    'a2-5_gray_image_4.png'
+    'a2-5_gray_image_4.png',
+    'a2-5_gray_image.png'
 ]
 
 # ループで各画像を個別に処理・保存
@@ -46,7 +47,7 @@ for i, filename in enumerate(filenames):
 
     # --- 表示と保存（1枚ずつ個別のFigureを作成） ---
     plt.figure(figsize=(10, 5))
-    
+
     # 左側：トリミング画像
     plt.subplot(1, 2, 1)
     plt.title(f'{filename}\n(Size: {crop_size}x{crop_size})')
