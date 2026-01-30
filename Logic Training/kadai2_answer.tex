@@ -1,0 +1,150 @@
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+% ===== ドキュメントクラス =====
+\documentclass[
+	a4paper,
+	11pt
+]{ltjsreport}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+
+% ===== フォント・言語設定 (LuaLaTeX専用) =====
+\usepackage{luatexja-fontspec}
+\usepackage{lmodern} % フォントサイズの置き換えを防ぐため
+
+% ===== レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+
+% ===== 数式・物理単位関連 =====
+\usepackage{amsmath}
+\usepackage{amssymb} % \mathbb等の数学記号
+\usepackage{siunitx}
+\usepackage{bm} % ベクトルを太字にするため (\bm)
+
+% ===== その他 =====
+\usepackage{url} % URLを適切に表示
+\usepackage{xurl} % Improved line breaking for long URLs
+\urlstyle{same}
+\Urlmuskip=0mu plus 2mu
+\usepackage[
+  hidelinks,
+]{hyperref}
+\usepackage[super,square]{natbib} % 引用を上付き角括弧に
+
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
+
+% ===== フォント設定 =====
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+\DeclareMathSizes{11}{11}{7}{5} % 数学フォントサイズの調整
+
+% ===== ドキュメント情報 =====
+\title{論理トレーニング \\ レポート課題}
+\author{科　　番　　氏名}
+\date{\today}
+
+% ===== 数式用カスタムコマンド =====
+\providecommand{\dd}{\mathrm{d}} % 微分演算子 d
+\newcommand{\mi}{\mathrm{j}} % 虚数単位 j
+
+%==============================================================================
+% ドキュメント本体 (Body)
+%==============================================================================
+\begin{document}
+\sloppy % allow more flexible spacing to reduce overfull \hbox warnings
+
+\maketitle
+
+\chapter*{問題}
+
+\section*{1. 命題論理の同値変形}
+
+$p, q, r, s$ を命題とするとき、次の (1), (2) を同値変形により示せ。
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation}
+(p \land q) \lor (r \land s) \equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s)
+\end{equation}
+
+\item[(2)] 
+\begin{equation}
+(p \lor q) \land (r \lor s) \equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s)
+\end{equation}
+\end{enumerate}
+
+\section*{2. 述語論理と量化子}
+
+命題関数 $p(x), q(x) \ (x \in X)$ に対して、次が成り立つ。
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation}
+\forall x \ p(x) \land \forall x \ q(x) \equiv \forall x \ (p(x) \land q(x))
+\end{equation}
+
+\item[(2)] 
+\begin{equation}
+\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x))
+\end{equation}
+
+\item[(3)] 
+\begin{equation}
+\exists x \ (p(x) \lor q(x)) \equiv \exists x \ p(x) \lor \exists x \ q(x)
+\end{equation}
+
+\item[(4)] 
+\begin{equation}
+\exists x \ (p(x) \land q(x)) \Rightarrow \exists x \ p(x) \land \exists x \ q(x)
+\end{equation}
+\end{enumerate}
+
+$X = \{a_1, a_2\}$ とするとき、同値変形により (2) を示せ。
+
+\vspace{0.3cm}
+\noindent
+（Hint: $\forall x \ p(x) \lor \forall x \ q(x) \rightarrow \forall x \ (p(x) \lor q(x)) \equiv I$ を示す。）
+
+\section*{3. 命題関数の真理値判定}
+
+次の命題関数 $p(\epsilon, N)$ に対して、(1), (2) はそれぞれどんな命題か。また、その真理値を答えよ。
+\begin{align}
+\epsilon &\in \{x \in \mathbb{R} \mid x > 0\} \\
+N &\in \mathbb{N} \\
+p(\epsilon, N) &: N\epsilon > 1
+\end{align}
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation}
+\forall \epsilon \ \exists N \ p(\epsilon, N)
+\end{equation}
+
+\item[(2)] 
+\begin{equation}
+\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}
+\end{equation}
+\end{enumerate}
+
+\section*{4. ε-N論法による極限証明}
+
+$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ であることを、ε-N論法を用いて証明せよ。
+
+\section*{5. ε-δ論法による極限証明}
+
+$\displaystyle \lim_{x \to 1} x^2 = 1$ であることを、ε-δ論法を用いて証明せよ。
+
+\end{document}
