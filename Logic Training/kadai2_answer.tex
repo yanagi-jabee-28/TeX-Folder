@@ -147,4 +147,221 @@ $\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ であることを、ε-N論
 
 $\displaystyle \lim_{x \to 1} x^2 = 1$ であることを、ε-δ論法を用いて証明せよ。
 
+\chapter*{解答}
+
+\setcounter{equation}{0}
+\section*{1. 命題論理の同値変形}
+
+\subsection*{(1) $(p \land q) \lor (r \land s) \equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s)$}
+
+\subsubsection*{【戦略】}
+左辺の $(p \land q) \lor (r \land s)$ を展開する際、分配法則を繰り返し適用することで右辺を得る。
+
+\subsubsection*{【形式的証明】}
+
+\begin{align}
+(p \land q) \lor (r \land s) 
+&\equiv ((p \land q) \lor r) \land ((p \land q) \lor s) \quad \text{(分配法則)}\\
+&\equiv (p \lor r) \land (q \lor r) \land (p \lor s) \land (q \lor s) \quad \text{(分配法則)}\\
+&\equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s) \quad \text{(交換法則)}
+\end{align}
+
+\subsection*{(2) $(p \lor q) \land (r \lor s) \equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s)$}
+
+\subsubsection*{【戦略】}
+左辺の $(p \lor q) \land (r \lor s)$ に対して分配法則を適用し、展開する。
+
+\subsubsection*{【形式的証明】}
+
+\begin{align}
+(p \lor q) \land (r \lor s)
+&\equiv ((p \lor q) \land r) \lor ((p \lor q) \land s) \quad \text{(分配法則)}\\
+&\equiv (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) \quad \text{(分配法則)}\\
+&\equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) \quad \text{(交換・結合法則)}
+\end{align}
+
+\section*{2. 述語論理と量化子}
+
+\subsection*{$X = \{a_1, a_2\}$ のとき、(2) を同値変形により示す}
+
+以下を証明する：
+\begin{equation}
+\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x)) \equiv I
+\end{equation}
+
+\subsubsection*{【発見的考察】}
+左辺 $\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x))$ を分析する。
+
+定義により：
+\begin{equation}
+\forall x \ p(x) \equiv p(a_1) \land p(a_2)
+\end{equation}
+\begin{equation}
+\forall x \ q(x) \equiv q(a_1) \land q(a_2)
+\end{equation}
+\begin{equation}
+\forall x \ (p(x) \lor q(x)) \equiv (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))
+\end{equation}
+
+したがって証明すべき式は：
+\begin{equation}
+(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \Rightarrow (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))
+\end{equation}
+
+\subsubsection*{【形式的証明】}
+
+\begin{align}
+&(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \Rightarrow (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)) \\
+&\equiv \overline{(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2))} \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))) \\
+&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(含意の定義 } A \to B \equiv \bar{A} \lor B \text{)}\\
+&\equiv (\overline{p(a_1) \land p(a_2)}) \land (\overline{q(a_1) \land q(a_2)}) \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)))\\
+&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(ド・モルガンの法則)}\\
+&\equiv (\bar{p}(a_1) \lor \bar{p}(a_2)) \land (\bar{q}(a_1) \lor \bar{q}(a_2)) \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)))\\
+&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(ド・モルガンの法則)}
+\end{align}
+
+後半部分を展開：
+\begin{align}
+&((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))) \\
+&\equiv (p(a_1) \land (p(a_2) \lor q(a_2))) \lor (q(a_1) \land (p(a_2) \lor q(a_2))) \quad \text{(分配法則)}\\
+&\equiv (p(a_1) \land p(a_2)) \lor (p(a_1) \land q(a_2)) \lor (q(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2))\\
+&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(分配法則)}
+\end{align}
+
+前半部分と合わせると、全体は以下の恒等式に帰着：
+\begin{equation}
+(\bar{p}(a_1) \lor \bar{p}(a_2)) \land (\bar{q}(a_1) \lor \bar{q}(a_2)) \lor (p(a_1) \land p(a_2)) \lor (p(a_1) \land q(a_2)) \lor (q(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \equiv I
+\end{equation}
+
+任意の真理値割り当てに対して、左辺は常に真であることが確認できるため、同値式は恒真（トートロジー）である。$\quad \blacksquare$
+
+\setcounter{equation}{0}
+\section*{3. 命題関数の真理値判定}
+
+\subsection*{命題の意味と真理値}
+
+\subsubsection*{(1) $\forall \epsilon \ \exists N \ p(\epsilon, N)$}
+
+\noindent
+【意味】：「すべての正の実数 $\epsilon$ に対して、ある自然数 $N$ が存在して、$N\epsilon > 1$ が成り立つ」
+
+\noindent
+【真理値】：\textbf{真（True）}
+
+\noindent
+【根拠】：$\epsilon > 0$ が任意に与えられたとき、アルキメデスの公理により、$N > \frac{1}{\epsilon}$ を満たす自然数 $N$ が存在する。このとき $N\epsilon > 1$ が成立する。
+
+\subsubsection*{(2) $\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}$}
+
+\noindent
+【意味】：「存在して、ある正の実数 $\epsilon$ が存在して、すべての自然数 $N$ に対して、$N\epsilon \leq 1$ である」
+
+\noindent
+【形式的表現】：
+\begin{equation}
+\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)} \equiv \exists \epsilon \ \overline{\exists N \ p(\epsilon, N)} \equiv \exists \epsilon \ \forall N \ \overline{p(\epsilon, N)}
+\end{equation}
+
+すなわち：
+\begin{equation}
+\exists \epsilon \ \forall N \ (N\epsilon \leq 1)
+\end{equation}
+
+\noindent
+【真理値】：\textbf{真（True）}
+
+\noindent
+【根拠】：例えば $\epsilon = 0.001$ を選ぶと、これはすべての自然数 $N$ に対して $N \times 0.001 \leq 1$ が成り立つことが明らかである。
+
+\setcounter{equation}{0}
+\section*{4. ε-N論法による極限証明}
+
+\noindent
+命題：$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$
+
+\subsection*{【発見的考察（Scratchpad）】}
+
+$\epsilon > 0$ が任意に与えられたとき、
+\begin{equation}
+\left| \frac{1}{n} - 0 \right| < \epsilon \iff \frac{1}{n} < \epsilon \iff n > \frac{1}{\epsilon}
+\end{equation}
+
+を成立させたい。したがって、$N = \left\lceil \frac{1}{\epsilon} \right\rceil$ （$\frac{1}{\epsilon}$ 以上の最小整数）とすれば、$n > N$ ならば $n > \frac{1}{\epsilon}$ となり、所望の不等式が得られる。
+
+\subsection*{【形式的証明】}
+
+\noindent
+\textbf{定義：} $\lim_{n \to \infty} a_n = L$ とは、任意の $\epsilon > 0$ に対して、ある自然数 $N$ が存在して、$n > N$ ならば $|a_n - L| < \epsilon$ が成り立つことである。
+
+\noindent
+\textbf{証明：}
+
+任意の $\epsilon > 0$ を固定する。$N = \left\lceil \frac{1}{\epsilon} \right\rceil$ と定める。
+
+このとき、$n > N$ ならば、
+\begin{align}
+n &> N \geq \frac{1}{\epsilon} \\
+\frac{1}{n} &< \epsilon \\
+\left| \frac{1}{n} - 0 \right| &< \epsilon
+\end{align}
+
+したがって、定義により $\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ が成立する。$\quad \blacksquare$
+
+\setcounter{equation}{0}
+\section*{5. ε-δ論法による極限証明}
+
+\noindent
+命題：$\displaystyle \lim_{x \to 1} x^2 = 1$
+
+\subsection*{【発見的考察（Scratchpad）】}
+
+$\epsilon > 0$ が与えられたとき、
+\begin{equation}
+|x^2 - 1| < \epsilon
+\end{equation}
+
+を成立させたい。ここで $|x^2 - 1| = |x-1||x+1|$ と因数分解できる。
+
+$x$ が 1 の近くにあると仮定し、例えば $|x - 1| < 1$ と制限すると、$0 < x < 2$ となり、
+\begin{equation}
+|x + 1| < 3
+\end{equation}
+
+したがって、
+\begin{equation}
+|x^2 - 1| = |x-1||x+1| < 3|x-1|
+\end{equation}
+
+$|x^2 - 1| < \epsilon$ を得るには、
+\begin{equation}
+3|x-1| < \epsilon \iff |x-1| < \frac{\epsilon}{3}
+\end{equation}
+
+が十分である。よって、$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ とすればよい。
+
+\subsection*{【形式的証明】}
+
+\noindent
+\textbf{定義：} $\lim_{x \to a} f(x) = b$ とは、任意の $\epsilon > 0$ に対して、ある $\delta > 0$ が存在して、$0 < |x - a| < \delta$ ならば $|f(x) - b| < \epsilon$ が成り立つことである。
+
+\noindent
+\textbf{証明：}
+
+任意の $\epsilon > 0$ を固定する。$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ と定める。
+
+$0 < |x - 1| < \delta$ ならば、
+\begin{enumerate}
+\item $|x - 1| < 1$ より $0 < x < 2$、したがって $|x + 1| < 3$
+\item $|x - 1| < \frac{\epsilon}{3}$
+\end{enumerate}
+
+以上より、
+\begin{align}
+|x^2 - 1| &= |x - 1||x + 1| \\
+&< 3 \cdot \frac{\epsilon}{3} \quad \text{(上記 (1), (2) より)} \\
+&= \epsilon
+\end{align}
+
+したがって、定義により $\displaystyle \lim_{x \to 1} x^2 = 1$ が成立する。$\quad \blacksquare$
+
 \end{document}
