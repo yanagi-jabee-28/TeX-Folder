@@ -1,367 +1,144 @@
 % !TEX program = lualatex
-%==============================================================================
-% プリアンブル (Preamble)
-%==============================================================================
+\documentclass[a4paper,11pt]{ltjsreport}
 
-% ===== ドキュメントクラス =====
-\documentclass[
-	a4paper,
-	11pt
-]{ltjsreport}
-
-%------------------------------------------------------------------------------
-% パッケージ読み込み
-%------------------------------------------------------------------------------
-
-% ===== フォント・言語設定 (LuaLaTeX専用) =====
-\usepackage{luatexja-fontspec}
-\usepackage{lmodern} % フォントサイズの置き換えを防ぐため
-
-% ===== レイアウト関連 =====
+% 最小限のパッケージのみ読み込み
+\usepackage{amsmath, amssymb}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{graphicx}
+\usepackage{bm}
 
-% ===== 数式・物理単位関連 =====
-\usepackage{amsmath}
-\usepackage{amssymb} % \mathbb等の数学記号
-\usepackage{siunitx}
-\usepackage{bm} % ベクトルを太字にするため (\bm)
+% 便利なコマンド
+\newcommand{\qedbox}{\hfill $\blacksquare$}
 
-% ===== その他 =====
-\usepackage{url} % URLを適切に表示
-\usepackage{xurl} % Improved line breaking for long URLs
-\urlstyle{same}
-\Urlmuskip=0mu plus 2mu
-\usepackage[
-  hidelinks,
-]{hyperref}
-\usepackage[super,square]{natbib} % 引用を上付き角括弧に
-
-%------------------------------------------------------------------------------
-% 各種設定
-%------------------------------------------------------------------------------
-
-% ===== フォント設定 =====
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
-\setmonofont{Latin Modern Mono}
-\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
-\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
-\DeclareMathSizes{11}{11}{7}{5} % 数学フォントサイズの調整
-
-% ===== ドキュメント情報 =====
-\title{論理トレーニング \\ レポート課題}
-\author{科　　番　　氏名}
+\title{論理トレーニング レポート課題}
+\author{氏名}
 \date{\today}
 
-% ===== 数式用カスタムコマンド =====
-\providecommand{\dd}{\mathrm{d}} % 微分演算子 d
-\newcommand{\mi}{\mathrm{j}} % 虚数単位 j
-
-%==============================================================================
-% ドキュメント本体 (Body)
-%==============================================================================
 \begin{document}
-\sloppy % allow more flexible spacing to reduce overfull \hbox warnings
 
 \maketitle
 
-\chapter*{問題}
-
-\section*{1. 命題論理の同値変形}
-
-$p, q, r, s$ を命題とするとき、次の (1), (2) を同値変形により示せ。
-
-\begin{enumerate}
-\item[(1)] 
-\begin{equation}
-(p \land q) \lor (r \land s) \equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s)
-\end{equation}
-
-\item[(2)] 
-\begin{equation}
-(p \lor q) \land (r \lor s) \equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s)
-\end{equation}
-\end{enumerate}
-
-\section*{2. 述語論理と量化子}
-
-命題関数 $p(x), q(x) \ (x \in X)$ に対して、次が成り立つ。
-
-\begin{enumerate}
-\item[(1)] 
-\begin{equation}
-\forall x \ p(x) \land \forall x \ q(x) \equiv \forall x \ (p(x) \land q(x))
-\end{equation}
-
-\item[(2)] 
-\begin{equation}
-\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x))
-\end{equation}
-
-\item[(3)] 
-\begin{equation}
-\exists x \ (p(x) \lor q(x)) \equiv \exists x \ p(x) \lor \exists x \ q(x)
-\end{equation}
-
-\item[(4)] 
-\begin{equation}
-\exists x \ (p(x) \land q(x)) \Rightarrow \exists x \ p(x) \land \exists x \ q(x)
-\end{equation}
-\end{enumerate}
-
-$X = \{a_1, a_2\}$ とするとき、同値変形により (2) を示せ。
-
-\vspace{0.3cm}
-\noindent
-（Hint: $\forall x \ p(x) \lor \forall x \ q(x) \rightarrow \forall x \ (p(x) \lor q(x)) \equiv I$ を示す。）
-
-\section*{3. 命題関数の真理値判定}
-
-次の命題関数 $p(\epsilon, N)$ に対して、(1), (2) はそれぞれどんな命題か。また、その真理値を答えよ。
-\begin{align}
-\epsilon &\in \{x \in \mathbb{R} \mid x > 0\} \\
-N &\in \mathbb{N} \\
-p(\epsilon, N) &: N\epsilon > 1
-\end{align}
-
-\begin{enumerate}
-\item[(1)] 
-\begin{equation}
-\forall \epsilon \ \exists N \ p(\epsilon, N)
-\end{equation}
-
-\item[(2)] 
-\begin{equation}
-\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}
-\end{equation}
-\end{enumerate}
-
-\section*{4. ε-N論法による極限証明}
-
-$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ であることを、ε-N論法を用いて証明せよ。
-
-\section*{5. ε-δ論法による極限証明}
-
-$\displaystyle \lim_{x \to 1} x^2 = 1$ であることを、ε-δ論法を用いて証明せよ。
-
 \chapter*{解答}
 
-\setcounter{equation}{0}
 \section*{1. 命題論理の同値変形}
 
 \subsection*{(1) $(p \land q) \lor (r \land s) \equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s)$}
 
-\subsubsection*{【戦略】}
-左辺の $(p \land q) \lor (r \land s)$ を展開する際、分配法則を繰り返し適用することで右辺を得る。
-
-\subsubsection*{【形式的証明】}
-
-\begin{align}
-(p \land q) \lor (r \land s) 
-&\equiv ((p \land q) \lor r) \land ((p \land q) \lor s) \quad \text{(分配法則)}\\
-&\equiv (p \lor r) \land (q \lor r) \land (p \lor s) \land (q \lor s) \quad \text{(分配法則)}\\
-&\equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s) \quad \text{(交換法則)}
-\end{align}
+\textbf{証明：}
+右辺を展開して、左辺と一致することを示す。
+右辺に対し、分配法則 $(A \lor B) \land (A \lor C) \equiv A \lor (B \land C)$ を適用して整理する。
+\begin{align*}
+(\text{右辺}) 
+&= \bigl( (p \lor r) \land (p \lor s) \bigr) \land \bigl( (q \lor r) \land (q \lor s) \bigr) \\
+&= \bigl( p \lor (r \land s) \bigr) \land \bigl( q \lor (r \land s) \bigr) \quad \text{（分配法則の逆向き）} \\
+&= (r \land s) \lor (p \land q) \quad \text{（分配法則）} \\
+&= (p \land q) \lor (r \land s) \\
+&= (\text{左辺})
+\end{align*}
+よって示された。\qedbox
 
 \subsection*{(2) $(p \lor q) \land (r \lor s) \equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s)$}
 
-\subsubsection*{【戦略】}
-左辺の $(p \lor q) \land (r \lor s)$ に対して分配法則を適用し、展開する。
-
-\subsubsection*{【形式的証明】}
-
-\begin{align}
-(p \lor q) \land (r \lor s)
-&\equiv ((p \lor q) \land r) \lor ((p \lor q) \land s) \quad \text{(分配法則)}\\
-&\equiv (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) \quad \text{(分配法則)}\\
-&\equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) \quad \text{(交換・結合法則)}
-\end{align}
+\textbf{証明：}
+左辺に対し、分配法則を順次適用して展開する。
+\begin{align*}
+(\text{左辺}) 
+&= (p \lor q) \land (r \lor s) \\
+&= \bigl( (p \lor q) \land r \bigr) \lor \bigl( (p \lor q) \land s \bigr) \quad \text{（分配法則）} \\
+&= (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) \quad \text{（分配法則）} \\
+&= (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) \quad \text{（交換法則・結合法則）} \\
+&= (\text{右辺})
+\end{align*}
+よって示された。\qedbox
 
 \section*{2. 述語論理と量化子}
 
-\subsection*{$X = \{a_1, a_2\}$ のとき、(2) を同値変形により示す}
+$X = \{a_1, a_2\}$ のとき、以下を示す。
+\[ \forall x \, p(x) \lor \forall x \, q(x) \implies \forall x \, (p(x) \lor q(x)) \]
 
-以下を証明する：
-\begin{equation}
-\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x)) \equiv I
-\end{equation}
+\textbf{証明：}
+$p(a_i)$ を $p_i$、$q(a_i)$ を $q_i$ と略記する。
+このとき、それぞれの命題は以下のように書き下せる。
+\begin{align*}
+\text{左辺} (\text{仮定}) &: (p_1 \land p_2) \lor (q_1 \land q_2) \\
+\text{右辺} (\text{結論}) &: (p_1 \lor q_1) \land (p_2 \lor q_2)
+\end{align*}
 
-\subsubsection*{【発見的考察】}
-左辺 $\forall x \ p(x) \lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \lor q(x))$ を分析する。
+ここで、結論（右辺）を分配法則で展開してみる。
+\begin{align*}
+(\text{右辺}) 
+&= (p_1 \lor q_1) \land (p_2 \lor q_2) \\
+&= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) \quad \text{（分配法則）}
+\end{align*}
+展開した式の中に、左辺の「$(p_1 \land p_2)$」と「$(q_1 \land q_2)$」が含まれていることがわかる。
+「$A$ ならば $A \lor B$」は恒真（同一律・包含律）であるため、
+\[ (\text{左辺}) \implies (\text{右辺}) \]
+は成り立つ。\qedbox
 
-定義により：
-\begin{equation}
-\forall x \ p(x) \equiv p(a_1) \land p(a_2)
-\end{equation}
-\begin{equation}
-\forall x \ q(x) \equiv q(a_1) \land q(a_2)
-\end{equation}
-\begin{equation}
-\forall x \ (p(x) \lor q(x)) \equiv (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))
-\end{equation}
-
-したがって証明すべき式は：
-\begin{equation}
-(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \Rightarrow (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))
-\end{equation}
-
-\subsubsection*{【形式的証明】}
-
-\begin{align}
-&(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \Rightarrow (p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)) \\
-&\equiv \overline{(p(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2))} \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))) \\
-&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(含意の定義 } A \to B \equiv \bar{A} \lor B \text{)}\\
-&\equiv (\overline{p(a_1) \land p(a_2)}) \land (\overline{q(a_1) \land q(a_2)}) \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)))\\
-&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(ド・モルガンの法則)}\\
-&\equiv (\bar{p}(a_1) \lor \bar{p}(a_2)) \land (\bar{q}(a_1) \lor \bar{q}(a_2)) \lor ((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2)))\\
-&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(ド・モルガンの法則)}
-\end{align}
-
-後半部分を展開：
-\begin{align}
-&((p(a_1) \lor q(a_1)) \land (p(a_2) \lor q(a_2))) \\
-&\equiv (p(a_1) \land (p(a_2) \lor q(a_2))) \lor (q(a_1) \land (p(a_2) \lor q(a_2))) \quad \text{(分配法則)}\\
-&\equiv (p(a_1) \land p(a_2)) \lor (p(a_1) \land q(a_2)) \lor (q(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2))\\
-&\quad \quad \quad \quad \quad \quad \quad \quad \quad \text{(分配法則)}
-\end{align}
-
-前半部分と合わせると、全体は以下の恒等式に帰着：
-\begin{equation}
-(\bar{p}(a_1) \lor \bar{p}(a_2)) \land (\bar{q}(a_1) \lor \bar{q}(a_2)) \lor (p(a_1) \land p(a_2)) \lor (p(a_1) \land q(a_2)) \lor (q(a_1) \land p(a_2)) \lor (q(a_1) \land q(a_2)) \equiv I
-\end{equation}
-
-任意の真理値割り当てに対して、左辺は常に真であることが確認できるため、同値式は恒真（トートロジー）である。$\quad \blacksquare$
-
-\setcounter{equation}{0}
 \section*{3. 命題関数の真理値判定}
 
-\subsection*{命題の意味と真理値}
+$p(\epsilon, N) : N\epsilon > 1$ とする。
 
-\subsubsection*{(1) $\forall \epsilon \ \exists N \ p(\epsilon, N)$}
+\subsection*{(1) $\forall \epsilon \, \exists N \, p(\epsilon, N)$}
 
-\noindent
-【意味】：「すべての正の実数 $\epsilon$ に対して、ある自然数 $N$ が存在して、$N\epsilon > 1$ が成り立つ」
+\textbf{答え：真}
 
-\noindent
-【真理値】：\textbf{真（True）}
+\textbf{理由：}
+どんなに小さな正の数 $\epsilon$ に対しても、それより逆数が大きい自然数 $N$（つまり $N > 1/\epsilon$）を選ぶことができる（アルキメデスの公理）からである。
 
-\noindent
-【根拠】：$\epsilon > 0$ が任意に与えられたとき、アルキメデスの公理により、$N > \frac{1}{\epsilon}$ を満たす自然数 $N$ が存在する。このとき $N\epsilon > 1$ が成立する。
+\subsection*{(2) $\overline{\forall \epsilon \, \exists N \, p(\epsilon, N)}$}
 
-\subsubsection*{(2) $\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}$}
+この命題は否定をとると、「ある $\epsilon$ があって、すべての $N$ で $N\epsilon \le 1$」という意味になる。
 
-\noindent
-【意味】：「ある正の実数 $\epsilon$ が存在して、すべての自然数 $N$ に対して、$N\epsilon \leq 1$ が成り立つ」
+\textbf{答え：偽}
 
-\noindent
-【形式的表現】：
-\begin{equation}
-\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)} \equiv \exists \epsilon \ \overline{\exists N \ p(\epsilon, N)} \equiv \exists \epsilon \ \forall N \ \overline{p(\epsilon, N)}
-\end{equation}
+\textbf{理由：}
+もしこれが正しいとすると、ある数 $\epsilon$ に対して $N \le 1/\epsilon$ が全ての自然数 $N$ で成り立つことになってしまう。しかし、自然数 $N$ はいくらでも大きくできるため、上限があることはありえない。よって矛盾するので偽である。
 
-すなわち：
-\begin{equation}
-\exists \epsilon \ \forall N \ (N\epsilon \leq 1)
-\end{equation}
+\section*{4. $\epsilon-N$ 論法による極限証明}
 
-\noindent
-【真理値】：\textbf{真（True）}
+$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ を示す。
 
-\noindent
-【根拠】：例えば $\epsilon = 0.001$ を選ぶと、これはすべての自然数 $N$ に対して $N \times 0.001 \leq 1$ が成り立つことが明らかである。
-
-\setcounter{equation}{0}
-\section*{4. ε-N論法による極限証明}
-
-\noindent
-命題：$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$
-
-\subsection*{【発見的考察（Scratchpad）】}
-
-$\epsilon > 0$ が任意に与えられたとき、
-\begin{equation}
-\left| \frac{1}{n} - 0 \right| < \epsilon \iff \frac{1}{n} < \epsilon \iff n > \frac{1}{\epsilon}
-\end{equation}
-
-を成立させたい。したがって、$N = \left\lceil \frac{1}{\epsilon} \right\rceil$ （$\frac{1}{\epsilon}$ 以上の最小整数）とすれば、$n > N$ ならば $n > \frac{1}{\epsilon}$ となり、所望の不等式が得られる。
-
-\subsection*{【形式的証明】}
-
-\noindent
-\textbf{定義：} $\lim_{n \to \infty} a_n = L$ とは、任意の $\epsilon > 0$ に対して、ある自然数 $N$ が存在して、$n > N$ ならば $|a_n - L| < \epsilon$ が成り立つことである。
-
-\noindent
 \textbf{証明：}
+任意の $\epsilon > 0$ をとる。
+これに対して、$\frac{1}{\epsilon} < N$ となる自然数 $N$ をひとつ選ぶ（アルキメデスの公理により、このような $N$ は必ず存在する）。
 
-任意の $\epsilon > 0$ を固定する。$N = \left\lceil \frac{1}{\epsilon} \right\rceil$ と定める。
+このとき、$n > N$ となる全ての $n$ について、
+\[ n > N > \frac{1}{\epsilon} \]
+が成り立つ（実数の順序の推移律）。逆数をとると不等号が逆転して、
+\[ \frac{1}{n} < \epsilon \]
+となる（正の数の逆数をとると不等号が反転する性質）。したがって、
+\[ \left| \frac{1}{n} - 0 \right| = \frac{1}{n} < \epsilon \]
+が言えるので、極限値は $0$ である。\qedbox
 
-このとき、$n > N$ ならば、
-\begin{align}
-n &> N \geq \frac{1}{\epsilon} \\
-\frac{1}{n} &< \epsilon \\
-\left| \frac{1}{n} - 0 \right| &< \epsilon
-\end{align}
+\section*{5. $\epsilon-\delta$ 論法による極限証明}
 
-したがって、定義により $\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ が成立する。$\quad \blacksquare$
+$\displaystyle \lim_{x \to 1} x^2 = 1$ を示す。
 
-\setcounter{equation}{0}
-\section*{5. ε-δ論法による極限証明}
-
-\noindent
-命題：$\displaystyle \lim_{x \to 1} x^2 = 1$
-
-\subsection*{【発見的考察（Scratchpad）】}
-
-$\epsilon > 0$ が与えられたとき、
-\begin{equation}
-|x^2 - 1| < \epsilon
-\end{equation}
-
-を成立させたい。ここで $|x^2 - 1| = |x-1||x+1|$ と因数分解できる。
-
-$x$ が 1 の近くにあると仮定し、例えば $|x - 1| < 1$ と制限すると、$0 < x < 2$ となり、
-\begin{equation}
-|x + 1| < 3
-\end{equation}
-
-したがって、
-\begin{equation}
-|x^2 - 1| = |x-1||x+1| < 3|x-1|
-\end{equation}
-
-$|x^2 - 1| < \epsilon$ を得るには、
-\begin{equation}
-3|x-1| < \epsilon \iff |x-1| < \frac{\epsilon}{3}
-\end{equation}
-
-が十分である。よって、$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ とすればよい。
-
-\subsection*{【形式的証明】}
-
-\noindent
-\textbf{定義：} $\lim_{x \to a} f(x) = b$ とは、任意の $\epsilon > 0$ に対して、ある $\delta > 0$ が存在して、$0 < |x - a| < \delta$ ならば $|f(x) - b| < \epsilon$ が成り立つことである。
-
-\noindent
 \textbf{証明：}
+任意の $\epsilon > 0$ をとる。
+ここで、$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ と定める。
 
-任意の $\epsilon > 0$ を固定する。$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ と定める。
+$|x - 1| < \delta$ のとき、$|x^2 - 1|$ がどうなるか計算する。
+まず、$|x^2 - 1| = |x - 1| \, |x + 1|$ である（因数分解と絶対値の積の性質）。
 
-$0 < |x - 1| < \delta$ ならば、
-\begin{enumerate}
-\item $|x - 1| < 1$ より $0 < x < 2$、したがって $|x + 1| < 3$
-\item $|x - 1| < \frac{\epsilon}{3}$
-\end{enumerate}
+さらに $|x-1|<1$ を仮定すれば $0<x<2$ となり、よって $|x+1|<3$ が得られる（実数の順序の性質）。
+したがって
+\[
+|x^2-1|=|x-1||x+1|<3|x-1|
+\]
+となる。ここで $|x^2-1|<\epsilon$ を保証したいので、
+\[
+3|x-1|<\epsilon \quad \Longleftrightarrow \quad |x-1|<\frac{\epsilon}{3}
+\]
+を満たせば十分である（不等式の同値変形）。
+
+1. $\delta \le 1$ なので、$|x - 1| < 1$ である。
+   これより $0 < x < 2$ となるので、$|x + 1| < 3$ と評価できる。
+2. また、$\delta \le \frac{\epsilon}{3}$ なので、$|x - 1| < \frac{\epsilon}{3}$ である。
 
 以上より、
-\begin{align}
-|x^2 - 1| &= |x - 1||x + 1| \\
-&< 3 \cdot \frac{\epsilon}{3} \quad \text{(上記 (1), (2) より)} \\
-&= \epsilon
-\end{align}
-
-したがって、定義により $\displaystyle \lim_{x \to 1} x^2 = 1$ が成立する。$\quad \blacksquare$
+\[ |x^2 - 1| = |x - 1| \, |x + 1| < \frac{\epsilon}{3} \cdot 3 = \epsilon \quad \text{（積の不等式）} \]
+となり、$|x^2 - 1| < \epsilon$ が示された。
+よって、極限値は $1$ である。\qedbox
 
 \end{document}
