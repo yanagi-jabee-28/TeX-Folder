@@ -1,16 +1,19 @@
 % !TEX program = lualatex
 \documentclass[a4paper,11pt]{ltjsreport}
 
-% 最小限のパッケージのみ読み込み
-\usepackage{amsmath, amssymb}
+%==============================================================================
+% Packages & Settings
+%==============================================================================
+\usepackage{amsmath, amssymb, amsthm}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{bm}
 
-% 便利なコマンド
-\newcommand{\qedbox}{\hfill $\blacksquare$}
+% Redefine proof symbol
+\renewcommand{\qedsymbol}{$\blacksquare$}
 
+% Title Info
 \title{論理トレーニング レポート課題}
-\author{氏名}
+\author{学籍番号 氏名}
 \date{\today}
 
 \begin{document}
@@ -21,124 +24,115 @@
 
 \section*{1. 命題論理の同値変形}
 
+$p, q, r, s$ を命題とする。
+
 \subsection*{(1) $(p \land q) \lor (r \land s) \equiv (p \lor r) \land (p \lor s) \land (q \lor r) \land (q \lor s)$}
 
-\textbf{証明：}
-右辺を展開して、左辺と一致することを示す。
-右辺に対し、分配法則 $(A \lor B) \land (A \lor C) \equiv A \lor (B \land C)$ を適用して整理する。
+\begin{proof}
+右辺に対し、分配法則 $A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$ を適用して整理する。
 \begin{align*}
-(\text{右辺}) 
-&= \bigl( (p \lor r) \land (p \lor s) \bigr) \land \bigl( (q \lor r) \land (q \lor s) \bigr) \\
-&= \bigl( p \lor (r \land s) \bigr) \land \bigl( q \lor (r \land s) \bigr) \quad \text{（分配法則の逆向き）} \\
-&= (r \land s) \lor (p \land q) \quad \text{（分配法則）} \\
+\text{RHS} 
+&= \bigl[ (p \lor r) \land (p \lor s) \bigr] \land \bigl[ (q \lor r) \land (q \lor s) \bigr] \\
+&= \bigl[ p \lor (r \land s) \bigr] \land \bigl[ q \lor (r \land s) \bigr] && (\because \text{Distributive Law}) \\
+&= (r \land s) \lor (p \land q) && (\because \text{Distributive Law}) \\
 &= (p \land q) \lor (r \land s) \\
-&= (\text{左辺})
+&= \text{LHS}
 \end{align*}
-よって示された。\qedbox
+\end{proof}
 
 \subsection*{(2) $(p \lor q) \land (r \lor s) \equiv (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s)$}
 
-\textbf{証明：}
+\begin{proof}
 左辺に対し、分配法則を順次適用して展開する。
 \begin{align*}
-(\text{左辺}) 
+\text{LHS} 
 &= (p \lor q) \land (r \lor s) \\
-&= \bigl( (p \lor q) \land r \bigr) \lor \bigl( (p \lor q) \land s \bigr) \quad \text{（分配法則）} \\
-&= (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) \quad \text{（分配法則）} \\
-&= (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) \quad \text{（交換法則・結合法則）} \\
-&= (\text{右辺})
+&= \bigl( (p \lor q) \land r \bigr) \lor \bigl( (p \lor q) \land s \bigr) && (\because \text{Distributive Law}) \\
+&= (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) && (\because \text{Distributive Law}) \\
+&= (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) && (\because \text{Commutativity}) \\
+&= \text{RHS}
 \end{align*}
-よって示された。\qedbox
+\end{proof}
 
 \section*{2. 述語論理と量化子}
 
-$X = \{a_1, a_2\}$ のとき、以下を示す。
-\[ \forall x \, p(x) \lor \forall x \, q(x) \implies \forall x \, (p(x) \lor q(x)) \]
+$X = \{a_1, a_2\}$ とする。
+\[ \forall x \in X, p(x) \lor \forall x \in X, q(x) \implies \forall x \in X, (p(x) \lor q(x)) \]
 
-\textbf{証明：}
-$p(a_i)$ を $p_i$、$q(a_i)$ を $q_i$ と略記する。
-このとき、それぞれの命題は以下のように書き下せる。
-\begin{align*}
-\text{左辺} (\text{仮定}) &: (p_1 \land p_2) \lor (q_1 \land q_2) \\
-\text{右辺} (\text{結論}) &: (p_1 \lor q_1) \land (p_2 \lor q_2)
-\end{align*}
+\begin{proof}
+定義域が有限集合であるため、$\forall x$ を要素ごとの論理積に書き換える。
+$p(a_i) = p_i, \ q(a_i) = q_i$ とおく。
 
-ここで、結論（右辺）を分配法則で展開してみる。
 \begin{align*}
-(\text{右辺}) 
+\text{Conclusion (RHS)} 
 &= (p_1 \lor q_1) \land (p_2 \lor q_2) \\
-&= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) \quad \text{（分配法則）}
+&= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) && (\text{展開})
 \end{align*}
-展開した式の中に、左辺の「$(p_1 \land p_2)$」と「$(q_1 \land q_2)$」が含まれていることがわかる。
-「$A$ ならば $A \lor B$」は恒真（同一律・包含律）であるため、
-\[ (\text{左辺}) \implies (\text{右辺}) \]
-は成り立つ。\qedbox
+
+一方、仮定（LHS）は $(p_1 \land p_2) \lor (q_1 \land q_2)$ である。
+論理和の導入則 $A \implies A \lor B$ より、
+\[ (p_1 \land p_2) \lor (q_1 \land q_2) \implies (p_1 \land p_2) \lor (q_1 \land q_2) \lor \underbrace{(p_1 \land q_2) \lor (q_1 \land p_2)}_{\text{Additional terms}} \]
+したがって、LHS $\implies$ RHS が成立する。
+\end{proof}
 
 \section*{3. 命題関数の真理値判定}
 
-$p(\epsilon, N) : N\epsilon > 1$ とする。
+定義：$p(\epsilon, N) : N\epsilon > 1 \quad (\epsilon > 0, N \in \mathbb{N})$
 
-\subsection*{(1) $\forall \epsilon \, \exists N \, p(\epsilon, N)$}
+\subsection*{(1) $\forall \epsilon \ \exists N \ p(\epsilon, N)$}
 
-\textbf{答え：真}
+\textbf{真理値：真}
 
-\textbf{理由：}
-どんなに小さな正の数 $\epsilon$ に対しても、それより逆数が大きい自然数 $N$（つまり $N > 1/\epsilon$）を選ぶことができる（アルキメデスの公理）からである。
+アルキメデスの公理（Archimedean Property）より、任意の $\epsilon > 0$ に対し、
+\[ \exists N \in \mathbb{N} \quad \text{s.t.} \quad N > \frac{1}{\epsilon} \]
+このとき $N\epsilon > 1$ が成り立つ。
 
-\subsection*{(2) $\overline{\forall \epsilon \, \exists N \, p(\epsilon, N)}$}
+\subsection*{(2) $\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}$}
 
-この命題は否定をとると、「ある $\epsilon$ があって、すべての $N$ で $N\epsilon \le 1$」という意味になる。
+\textbf{真理値：偽}
 
-\textbf{答え：偽}
-
-\textbf{理由：}
-もしこれが正しいとすると、ある数 $\epsilon$ に対して $N \le 1/\epsilon$ が全ての自然数 $N$ で成り立つことになってしまう。しかし、自然数 $N$ はいくらでも大きくできるため、上限があることはありえない。よって矛盾するので偽である。
+命題 (1) の否定を考える。
+\[ \neg (\forall \epsilon \exists N, N\epsilon > 1) \equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, N\epsilon \le 1 \]
+これは「ある定数 $1/\epsilon$ が全ての自然数 $N$ の上界である」ことを意味するが、$\mathbb{N}$ は上に有界ではないため矛盾。
+よって元の命題は偽である。
 
 \section*{4. $\epsilon-N$ 論法による極限証明}
 
-$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ を示す。
+命題：$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$
 
-\textbf{証明：}
-任意の $\epsilon > 0$ をとる。
-これに対して、$\frac{1}{\epsilon} < N$ となる自然数 $N$ をひとつ選ぶ（アルキメデスの公理により、このような $N$ は必ず存在する）。
-
-このとき、$n > N$ となる全ての $n$ について、
-\[ n > N > \frac{1}{\epsilon} \]
-が成り立つ（実数の順序の推移律）。逆数をとると不等号が逆転して、
-\[ \frac{1}{n} < \epsilon \]
-となる（正の数の逆数をとると不等号が反転する性質）。したがって、
+\begin{proof}
+$\forall \epsilon > 0$ に対し、アルキメデスの公理より
+\[ \exists N \in \mathbb{N} \quad \text{s.t.} \quad N > \frac{1}{\epsilon} \]
+が存在する。任意の $n > N$ について、
+\begin{align*}
+n > N > \frac{1}{\epsilon} \implies \frac{1}{n} < \epsilon
+\end{align*}
+よって、
 \[ \left| \frac{1}{n} - 0 \right| = \frac{1}{n} < \epsilon \]
-が言えるので、極限値は $0$ である。\qedbox
+以上より、$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$。
+\end{proof}
 
 \section*{5. $\epsilon-\delta$ 論法による極限証明}
 
-$\displaystyle \lim_{x \to 1} x^2 = 1$ を示す。
+命題：$\displaystyle \lim_{x \to 1} x^2 = 1$
 
-\textbf{証明：}
-任意の $\epsilon > 0$ をとる。
-ここで、$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ と定める。
+\begin{proof}
+$\forall \epsilon > 0$ に対し、$\delta = \min\left\{1, \frac{\epsilon}{3}\right\}$ とおく。
 
-$|x - 1| < \delta$ のとき、$|x^2 - 1|$ がどうなるか計算する。
-まず、$|x^2 - 1| = |x - 1| \, |x + 1|$ である（因数分解と絶対値の積の性質）。
-
-さらに $|x-1|<1$ を仮定すれば $0<x<2$ となり、よって $|x+1|<3$ が得られる（実数の順序の性質）。
-したがって
-\[
-|x^2-1|=|x-1||x+1|<3|x-1|
-\]
-となる。ここで $|x^2-1|<\epsilon$ を保証したいので、
-\[
-3|x-1|<\epsilon \quad \Longleftrightarrow \quad |x-1|<\frac{\epsilon}{3}
-\]
-を満たせば十分である（不等式の同値変形）。
-
-1. $\delta \le 1$ なので、$|x - 1| < 1$ である。
-   これより $0 < x < 2$ となるので、$|x + 1| < 3$ と評価できる。
-2. また、$\delta \le \frac{\epsilon}{3}$ なので、$|x - 1| < \frac{\epsilon}{3}$ である。
-
-以上より、
-\[ |x^2 - 1| = |x - 1| \, |x + 1| < \frac{\epsilon}{3} \cdot 3 = \epsilon \quad \text{（積の不等式）} \]
-となり、$|x^2 - 1| < \epsilon$ が示された。
-よって、極限値は $1$ である。\qedbox
+$0 < |x - 1| < \delta$ なる $x$ について評価を行う。
+\begin{enumerate}
+    \item $\delta \le 1$ より、
+    \[ |x - 1| < 1 \implies 0 < x < 2 \implies |x + 1| < 3 \]
+    \item $\delta \le \frac{\epsilon}{3}$ より、
+    \[ |x - 1| < \frac{\epsilon}{3} \]
+\end{enumerate}
+したがって、
+\begin{align*}
+|x^2 - 1| &= |x - 1||x + 1| \\
+&< \frac{\epsilon}{3} \cdot 3 \\
+&= \epsilon
+\end{align*}
+$\therefore \displaystyle \lim_{x \to 1} x^2 = 1$
+\end{proof}
 
 \end{document}
