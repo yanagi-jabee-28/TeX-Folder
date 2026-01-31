@@ -111,12 +111,12 @@ $p, q, r, s$ を命題とする。
 \begin{proof}
 右辺に対し、分配法則 $A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$ を適用して整理する。
 \begin{align*}
-\text{RHS} 
+\text{右辺} 
 &= \bigl[ (p \lor r) \land (p \lor s) \bigr] \land \bigl[ (q \lor r) \land (q \lor s) \bigr] \\
 &= \bigl[ p \lor (r \land s) \bigr] \land \bigl[ q \lor (r \land s) \bigr] && (\because \text{Distributive Law}) \\
 &= (r \land s) \lor (p \land q) && (\because \text{Distributive Law}) \\
 &= (p \land q) \lor (r \land s) \\
-&= \text{LHS}
+&= \text{左辺}
 \end{align*}
 \end{proof}
 
@@ -125,12 +125,12 @@ $p, q, r, s$ を命題とする。
 \begin{proof}
 左辺に対し、分配法則を順次適用して展開する。
 \begin{align*}
-\text{LHS} 
+\text{左辺} 
 &= (p \lor q) \land (r \lor s) \\
 &= \bigl( (p \lor q) \land r \bigr) \lor \bigl( (p \lor q) \land s \bigr) && (\because \text{Distributive Law}) \\
 &= (p \land r) \lor (q \land r) \lor (p \land s) \lor (q \land s) && (\because \text{Distributive Law}) \\
 &= (p \land r) \lor (p \land s) \lor (q \land r) \lor (q \land s) && (\because \text{Commutativity}) \\
-&= \text{RHS}
+&= \text{右辺}
 \end{align*}
 \end{proof}
 
@@ -144,15 +144,15 @@ $X = \{a_1, a_2\}$ とする。
 $p(a_i) = p_i, \ q(a_i) = q_i$ とおく。
 
 \begin{align*}
-\text{Conclusion (RHS)} 
+\text{結論（右辺）} 
 &= (p_1 \lor q_1) \land (p_2 \lor q_2) \\
 &= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) && (\text{展開})
 \end{align*}
 
-一方、仮定（LHS）は $(p_1 \land p_2) \lor (q_1 \land q_2)$ である。
+一方、仮定（左辺）は $(p_1 \land p_2) \lor (q_1 \land q_2)$ である。
 論理和の導入則 $A \implies A \lor B$ より、
-\[ (p_1 \land p_2) \lor (q_1 \land q_2) \implies (p_1 \land p_2) \lor (q_1 \land q_2) \lor \underbrace{(p_1 \land q_2) \lor (q_1 \land p_2)}_{\text{Additional terms}} \]
-したがって、LHS $\implies$ RHS が成立する。
+\[ (p_1 \land p_2) \lor (q_1 \land q_2) \implies (p_1 \land p_2) \lor (q_1 \land q_2) \lor \underbrace{(p_1 \land q_2) \lor (q_1 \land p_2)}_{\text{追加項}} \]
+したがって、左辺 $\implies$ 右辺 が成立する。
 \end{proof}
 
 \section*{3. 命題関数の真理値判定}
@@ -161,20 +161,41 @@ $p(a_i) = p_i, \ q(a_i) = q_i$ とおく。
 
 \subsection*{(1) $\forall \epsilon \ \exists N \ p(\epsilon, N)$}
 
+\textbf{意味：}「任意の正数 $\epsilon$ に対し、$N\epsilon > 1$ を満たす自然数 $N$ が存在する」
+
 \textbf{真理値：真}
 
-アルキメデスの公理（Archimedean Property）より、任意の $\epsilon > 0$ に対し、
-\[ \exists N \in \mathbb{N} \quad \text{s.t.} \quad N > \frac{1}{\epsilon} \]
-このとき $N\epsilon > 1$ が成り立つ。
+\begin{align*}
+\forall \epsilon > 0, \ \exists N \in \mathbb{N} \text{ s.t. } N > \frac{1}{\epsilon}
+\end{align*}
+
+このとき，
+\begin{align*}
+N > \frac{1}{\epsilon} \implies N\epsilon > 1
+\end{align*}
+（Archimedean Property）
 
 \subsection*{(2) $\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}$}
 
 \textbf{真理値：偽}
 
-命題 (1) の否定を考える。
-\[ \neg (\forall \epsilon \exists N, N\epsilon > 1) \equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, N\epsilon \le 1 \]
-これは「ある定数 $1/\epsilon$ が全ての自然数 $N$ の上界である」ことを意味するが、$\mathbb{N}$ は上に有界ではないため矛盾。
-よって元の命題は偽である。
+\begin{align*}
+\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)} 
+&\equiv \exists \epsilon \ \overline{\exists N \ p(\epsilon, N)} && (\text{De Morgan}) \\
+&\equiv \exists \epsilon \ \forall N \ \overline{p(\epsilon, N)} && (\text{De Morgan}) \\
+&\equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, \overline{p(\epsilon, N)} \\
+&\equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, \overline{N\epsilon > 1} && (p(\epsilon, N) \text{ の定義より}) \\
+&\equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, N\epsilon \le 1 \\
+&\equiv \exists \epsilon > 0, \forall N \in \mathbb{N}, N \le \frac{1}{\epsilon}
+\end{align*}
+
+\textbf{意味：}「ある正数 $\epsilon$ が存在して、全ての自然数 $N$ に対して $N\epsilon \le 1$ が成り立つ」
+
+しかし、任意の実数 $M = \frac{1}{\epsilon} > 0$ に対して，$N > M$ を満たす自然数 $N$ が存在する（アルキメデスの公理）。
+したがって、いかなる $\epsilon > 0$ に対しても、$N\epsilon > 1$ を満たす自然数が存在し，命題と矛盾する。
+\begin{align*}
+\therefore \text{(2) の命題は偽}
+\end{align*}
 
 \section*{4. $\epsilon-N$ 論法による極限証明}
 
@@ -196,56 +217,23 @@ n > N > \frac{1}{\epsilon} \implies \frac{1}{n} < \epsilon
 
 \subsection*{【ノート】$\delta$ の導出過程}
 
-証明を構成するため、$\delta$ がどのように定められるべきかを逆算する。
+$|x - 1| < \delta$ ならば $|x^2 - 1| < \epsilon$ となる $\delta$ を逆算する。
 
-\noindent
-\textbf{目標：} $|x - 1| < \delta$ ならば $|x^2 - 1| < \epsilon$ とする $\delta$ を見つける。
-
-\noindent
-\textbf{Step 1: $|x^2 - 1|$ を因数分解}
 \begin{align*}
-|x^2 - 1| &= |(x - 1)(x + 1)| \\
-&= |x - 1| \cdot |x + 1|
+|x^2 - 1| &= |(x - 1)(x + 1)| = |x - 1| \cdot |x + 1|
 \end{align*}
 
-\noindent
-\textbf{Step 2: $|x + 1|$ を制御する}
-
-$|x - 1|$ に上界を課す。$\delta \le 1$ と設定すれば、
+$\delta \le 1$ と設定すれば、
 \begin{align*}
-|x - 1| < \delta \le 1 
-&\implies -1 < x - 1 < 1 \\
+|x - 1| < 1 &\implies -1 < x - 1 < 1 \\
 &\implies 0 < x < 2 \\
-&\implies 1 < x + 1 < 3 \\
 &\implies |x + 1| < 3
 \end{align*}
 
-\noindent
-\textbf{Step 3: $|x - 1|$ に他の条件を課す}
-
-$|x^2 - 1| < \epsilon$ にするには、
-\begin{align*}
-|x - 1| \cdot |x + 1| < \epsilon
-\end{align*}
-と Step 2 から $|x + 1| < 3$ であるから、
-\begin{align*}
-|x - 1| \cdot 3 < \epsilon
-\implies |x - 1| < \frac{\epsilon}{3}
-\end{align*}
-
-\noindent
-\textbf{Step 4: 両条件を満たす $\delta$ を選ぶ}
-
-Step 2 から $\delta \le 1$、Step 3 から $\delta \le \frac{\epsilon}{3}$ が必要。両方を満たすには、
+したがって $|x^2 - 1| = |x - 1| \cdot |x + 1| < 3|x - 1|$。これが $\epsilon$ より小さくするには、$|x - 1| < \frac{\epsilon}{3}$ が必要。両条件を満たすため，
 \[
 \delta = \min\left\{1, \frac{\epsilon}{3}\right\}
 \]
-とすればよい。これにより：
-\begin{itemize}
-  \item $\delta \le 1$ より $|x + 1| < 3$ が保証
-  \item $\delta \le \frac{\epsilon}{3}$ より $|x - 1| < \frac{\epsilon}{3}$ が保証
-  \item 結果として $|x^2 - 1| < \epsilon$
-\end{itemize}
 
 \subsection*{【証明】}
 
