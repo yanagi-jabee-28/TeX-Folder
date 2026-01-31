@@ -20,6 +20,86 @@
 
 \maketitle
 
+\chapter*{問題}
+
+\section*{1. 命題論理の同値変形}
+
+$p, q, r, s$ を命題とするとき、次の (1), (2) を同値変形により示せ。
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation*}
+(p \land q) \\lor (r \land s) \equiv (p \\lor r) \land (p \\lor s) \land (q \\lor r) \land (q \\lor s)
+\end{equation*}
+
+\item[(2)] 
+\begin{equation*}
+(p \\lor q) \land (r \\lor s) \equiv (p \land r) \\lor (p \land s) \\lor (q \land r) \\lor (q \land s)
+\end{equation*}
+\end{enumerate}
+
+\section*{2. 述語論理と量化子}
+
+命題関数 $p(x), q(x) \ (x \in X)$ に対して、次が成り立つ。
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation*}
+\forall x \ p(x) \land \forall x \ q(x) \equiv \forall x \ (p(x) \land q(x))
+\end{equation*}
+
+\item[(2)] 
+\begin{equation*}
+\forall x \ p(x) \\lor \forall x \ q(x) \Rightarrow \forall x \ (p(x) \\lor q(x))
+\end{equation*}
+
+\item[(3)] 
+\begin{equation*}
+\exists x \ (p(x) \\lor q(x)) \equiv \exists x \ p(x) \\lor \exists x \ q(x)
+\end{equation*}
+
+\item[(4)] 
+\begin{equation*}
+\exists x \ (p(x) \land q(x)) \Rightarrow \exists x \ p(x) \land \exists x \ q(x)
+\end{equation*}
+\end{enumerate}
+
+$X = \{a_1, a_2\}$ とするとき、同値変形により (2) を示せ。
+
+\vspace{0.3cm}
+\noindent
+（Hint: $\forall x \ p(x) \lor \forall x \ q(x) \rightarrow \forall x \ (p(x) \lor q(x)) \equiv I$ を示す。）
+
+\section*{3. 命題関数の真理値判定}
+
+次の命題関数 $p(\epsilon, N)$ に対して、(1), (2) はそれぞれどんな命題か。また、その真理値を答えよ。
+\begin{align*}
+\epsilon &\in \{x \in \mathbb{R} \mid x > 0\} \\ 
+N &\in \mathbb{N} \\ 
+p(\epsilon, N) &: N\epsilon > 1
+\end{align*}
+
+\begin{enumerate}
+\item[(1)] 
+\begin{equation*}
+\forall \epsilon \ \exists N \ p(\epsilon, N)
+\end{equation*}
+
+\item[(2)] 
+\begin{equation*}
+\overline{\forall \epsilon \ \exists N \ p(\epsilon, N)}
+\end{equation*}
+\end{enumerate}
+
+\section*{4. ε-N論法による極限証明}
+
+$\displaystyle \lim_{n \to \infty} \frac{1}{n} = 0$ であることを、ε-N論法を用いて証明せよ。
+
+\section*{5. ε-δ論法による極限証明}
+
+$\displaystyle \lim_{x \to 1} x^2 = 1$ であることを、ε-δ論法を用いて証明せよ。
+
+
 \chapter*{解答}
 
 \section*{1. 命題論理の同値変形}
@@ -113,6 +193,61 @@ n > N > \frac{1}{\epsilon} \implies \frac{1}{n} < \epsilon
 \end{proof}
 
 \section*{5. $\epsilon-\delta$ 論法による極限証明}
+
+\subsection*{【ノート】$\delta$ の導出過程}
+
+証明を構成するため、$\delta$ がどのように定められるべきかを逆算する。
+
+\noindent
+\textbf{目標：} $|x - 1| < \delta$ ならば $|x^2 - 1| < \epsilon$ とする $\delta$ を見つける。
+
+\noindent
+\textbf{Step 1: $|x^2 - 1|$ を因数分解}
+\begin{align*}
+|x^2 - 1| &= |(x - 1)(x + 1)| \\
+&= |x - 1| \cdot |x + 1|
+\end{align*}
+
+\noindent
+\textbf{Step 2: $|x + 1|$ を制御する}
+
+$|x - 1|$ に上界を課す。$\delta \le 1$ と設定すれば、
+\begin{align*}
+|x - 1| < \delta \le 1 
+&\implies -1 < x - 1 < 1 \\
+&\implies 0 < x < 2 \\
+&\implies 1 < x + 1 < 3 \\
+&\implies |x + 1| < 3
+\end{align*}
+
+\noindent
+\textbf{Step 3: $|x - 1|$ に他の条件を課す}
+
+$|x^2 - 1| < \epsilon$ にするには、
+\begin{align*}
+|x - 1| \cdot |x + 1| < \epsilon
+\end{align*}
+と Step 2 から $|x + 1| < 3$ であるから、
+\begin{align*}
+|x - 1| \cdot 3 < \epsilon
+\implies |x - 1| < \frac{\epsilon}{3}
+\end{align*}
+
+\noindent
+\textbf{Step 4: 両条件を満たす $\delta$ を選ぶ}
+
+Step 2 から $\delta \le 1$、Step 3 から $\delta \le \frac{\epsilon}{3}$ が必要。両方を満たすには、
+\[
+\delta = \min\left\{1, \frac{\epsilon}{3}\right\}
+\]
+とすればよい。これにより：
+\begin{itemize}
+  \item $\delta \le 1$ より $|x + 1| < 3$ が保証
+  \item $\delta \le \frac{\epsilon}{3}$ より $|x - 1| < \frac{\epsilon}{3}$ が保証
+  \item 結果として $|x^2 - 1| < \epsilon$
+\end{itemize}
+
+\subsection*{【証明】}
 
 命題：$\displaystyle \lim_{x \to 1} x^2 = 1$
 
