@@ -30,8 +30,7 @@
     *   例: $\varepsilon_r = \varepsilon_r' - j\varepsilon_r''$
 *   **専門用語**: `AGENTS_GENESIS v5.0 Section 6` の用語定義に従う。
     *   NG: 「誘電損失係数」「誘電体損」
-    *   OK: 「誘電損失 (Dielectric loss)」「誘電正接 (Loss tangent, $\tan\delta$)」
-
+    *   OK: 「誘電損失 (Dielectric loss)」「誘電正接 (Loss tangent, $\tan\delta$)」*   **句読点（日本語／英語）**：日本語本文では句点・読点を**全角**（「．」「，」）に統一する。英文中・数式内・コード/コマンド/URL中は**半角**（`.` `,`）を保持すること。具体例：`\\SI{65.3}{\\giga\\hertz}`内の小数点、英語著者名の区切り（例：`Gold, Lomakin`）は変更しない。数式やLaTeXコマンドの中での置換は行わないこと。
 ### 2.2 章立て標準 (Standard Structure)
 予稿（数ページ）を卒論（数十ページ）へ拡張する際は、以下の構成比率を意識せよ。
 
