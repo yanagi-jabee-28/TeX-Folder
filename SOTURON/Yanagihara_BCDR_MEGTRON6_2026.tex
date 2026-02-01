@@ -88,7 +88,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 % 概要
 %------------------------------------------------------------------------------
 \begin{abstract}
-人工知能（AI）やクラウドコンピューティング，第5世代移動通信システム（5G）の普及により，データセンターおよびバックボーンネットワークにおける伝送帯域は年率40\%以上で増大している．第6世代移動通信システム（6G）では\SI{100}{\giga\hertz}帯を超えるミリ波・サブテラヘルツ帯の利用が想定されており，この周波数域ではプリント基板における信号減衰が伝送品質を左右する主要因となる．信号減衰は誘電体内部のエネルギー散逸に起因する誘電損失と，配線導体でのジュール熱に起因する導体損失の総和で決定されるが，従来の測定手法では誘電体の評価が主眼に置かれ，導体表面粗さ（Surface Roughness）が表皮効果と相互作用して高周波抵抗を増大させる現象については定量的評価が不十分であった．本研究では，TM$_{0m0}$モードを利用した平衡形円板共振器法（BCDR）を用い，低損失基板材料MEGTRON6の複素誘電率および実効導電率を\SIrange{10}{67}{\giga\hertz}（本文解析範囲；測定有効点は最大\SI{65.3}{\giga\hertz}）において評価した．測定の結果，平均比誘電率は$\varepsilon_r' \approx 3.59$で周波数依存性は小さい一方，実効導電率$\sigma_{\mathrm{eff}}(f)$は周波数上昇に伴って1--2桁低下することが明らかとなった（例：\SI{12.7}{\giga\hertz}で \SI{2.41e7}{\siemens\per\metre}，\SI{23.3}{\giga\hertz}で \SI{8.23e6}{\siemens\per\metre}，\SI{65.3}{\giga\hertz}で \SI{3.44e6}{\siemens\per\metre}）.本文の結論は\SI{67}{\giga\hertz}以下の測定帯域に基づく.
+人工知能（AI）やクラウドコンピューティング，第5世代移動通信システム（5G）の普及により，データセンターおよびバックボーンネットワークにおける伝送帯域は年率40\%以上で増大している．第6世代移動通信システム（6G）では\SI{100}{\giga\hertz}帯を超えるミリ波・サブテラヘルツ帯の利用が想定されており，この周波数域ではプリント基板における信号減衰が伝送品質を左右する主要因となる．信号減衰は誘電体内部のエネルギー散逸に起因する誘電損失と，配線導体でのジュール熱に起因する導体損失の総和で決定されるが，従来の測定手法では誘電体の評価が主眼に置かれ，導体表面粗さ（Surface Roughness）が表皮効果と相互作用して高周波抵抗を増大させる現象については定量的評価が不十分であった．本研究では，TM$_{0m0}$モードを利用した平衡形円板共振器法（BCDR）を用い，低損失基板材料MEGTRON6の複素誘電率および実効導電率を\SIrange{10}{67}{\giga\hertz}（本文解析範囲；測定有効点は最大\SI{65.3}{\giga\hertz}）において評価した．測定の結果，平均比誘電率は$\varepsilon_r' \approx 3.59$で周波数依存性は小さい一方，実効導電率$\sigma_{\mathrm{eff}}(f)$は周波数上昇に伴って1--2桁低下することが明らかとなった（例：\SI{12.7}{\giga\hertz}で \SI{2.41e7}{\siemens\per\metre}，\SI{23.3}{\giga\hertz}で \SI{8.23e6}{\siemens\per\metre}，\SI{65.3}{\giga\hertz}で \SI{3.44e6}{\siemens\per\metre}）．本文の結論は\SI{67}{\giga\hertz}以下の測定帯域に基づく．測定は複数日にわたり合計20回実施し，本文で示す各データ点および図は20回の測定の平均値である．付録は付けていない．
 \end{abstract}
 
 \tableofcontents
@@ -116,7 +116,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 \end{equation}
 ここで，$f$は周波数，$\mu_0$は真空の透磁率，$\sigma$は導電率であり，$\delta_s$は周波数の平方根に反比例する．銅の導電率を$\sigma = 5.8 \times 10^7\ \mathrm{S/m}$とすると，$\delta_s = \SI{66.1}{\micro\meter} / \sqrt{f\,[\si{\giga\hertz}]}$と表され，30~GHzで約0.36~$\mu$m，60~GHzで約0.25~$\mu$m，100~GHzでは約0.21~$\mu$mとなる．このようにサブミクロンオーダの表皮深さになると，導体表面の微細な凹凸（表面粗さ）が実効的な導電率に大きな影響を与える．
 
-プリント基板の銅箔は，密着強度確保のために二乗平均平方根粗さ（RMS roughness）$R_q \approx \SI{1}{\micro\metre}\text{--}\SI{3}{\micro\metre}$程度を有する（JPCA‑KHS01，Fukuda\cite{fukuda2021transmission}）.このレンジでは\SI{100}{\giga\hertz}帯で$R_q/\delta_s\approx 5\text{--}15$となり，表皮深さを大きく上回る.簡易的な幾何学見積りでは実効経路長は概ね $\sqrt{1+(R_q/\delta_s)^2}$ 程度まで増大すると評価できるが，局所的な磁界集中や突起形状に伴う増分（いわゆる「雪玉」効果）は Huray や Hammerstad 系のモデルで厳密に扱う必要がある.したがって，本稿では上記の幾何学見積りを「概算」として提示し，定量評価や設計適用には Huray/Hammerstad または最近の波導モデル（Gold, Lomakin ら）による補正を併用することを推奨する\cite{fukuda2021transmission,kato2023dband,huray2010,gold2017physical,lomakin2018analytical}.
+プリント基板の銅箔は，密着強度確保のために二乗平均平方根粗さ（RMS roughness）$R_q \approx \SI{1}{\micro\metre}\text{--}\SI{3}{\micro\metre}$程度を有する（JPCA‑KHS01，Fukuda\cite{fukuda2021transmission}）．このレンジでは\SI{100}{\giga\hertz}帯で$R_q/\delta_s\approx 5\text{--}15$となり，表皮深さを大きく上回る．簡易的な幾何学見積りでは実効経路長は概ね $\sqrt{1+(R_q/\delta_s)^2}$ 程度まで増大すると評価できるが，局所的な磁界集中や突起形状に伴う増分（いわゆる「雪玉」効果）は Huray や Hammerstad 系のモデルで厳密に扱う必要がある．したがって，本稿では上記の幾何学見積りを「概算」として提示し，定量評価や設計適用には Huray/Hammerstad または最近の波導モデル（Gold, Lomakin ら）による補正を併用することを推奨する\cite{fukuda2021transmission,kato2023dband,huray2010,gold2017physical,lomakin2018analytical}．
 
 従来の測定では，主に低周波から数十GHz帯までの誘電損失が評価されてきたが，表面粗さを含めた実効導電率の周波数特性については十分に検討されていない．特に6G帯へ向けて100~GHz以上の周波数帯での導体損失の評価は，基板開発において不可欠な要素となっている．
 
@@ -128,13 +128,13 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 
 \section{本研究の目的と意義}
 
-本研究の目的は，ミリ波帯（10~GHz--67~GHz）における基板材料の損失評価手法として平衡形円板共振器法（Balanced-Type Circular Disk Resonator: BCDR法）を適用し，誘電損失と導体損失を高精度に分離測定する手法を確立するとともに，導体表面粗さが伝送特性に与える影響を定量的に解明することである．具体的には，低損失基板材料として次世代高速回路に用いられるPanasonic製MEGTRON6（ガラスエポキシ系複合材料）を対象とし，以下の3段階の研究を遂行する（本稿では測定帯域を67~GHz以下に制限し解析を行う）.
+本研究の目的は，ミリ波帯（10~GHz--67~GHz）における基板材料の損失評価手法として平衡形円板共振器法（Balanced-Type Circular Disk Resonator: BCDR法）を適用し，誘電損失と導体損失を高精度に分離測定する手法を確立するとともに，導体表面粗さが伝送特性に与える影響を定量的に解明することである．具体的には，低損失基板材料として次世代高速回路に用いられるPanasonic製MEGTRON6（ガラスエポキシ系複合材料）を対象とし，以下の3段階の研究を遂行する（本稿では測定帯域を67~GHz以下に制限し解析を行う）．
 
-1. BCDR法を用いて，10~GHzから67~GHzの帯域における基板材料の複素誘電率（比誘電率 $\varepsilon_r'$ および誘電正接 $\tan\delta$）を測定する.測定には鏡面研磨銅板（標準導体）を用いて誘電体寄与を抽出する.
+1. BCDR法を用いて，10~GHzから67~GHzの帯域における基板材料の複素誘電率（比誘電率 $\varepsilon_r'$ および誘電正接 $\tan\delta$）を測定する．測定には鏡面研磨銅板（標準導体）を用いて誘電体寄与を抽出する．
 
-2. 同一手法により，製造処理済み銅箔を用いて実効導電率 $\sigma_{\mathrm{eff}}(f)$ を導出する.
+2. 同一手法により，製造処理済み銅箔を用いて実効導電率 $\sigma_{\mathrm{eff}}(f)$ を導出する．
 
-3. 得られた材料定数に基づき，マイクロストリップ線路の減衰定数 $\alpha(f)$ を算出し，従来モデルとの乖離を定量的に評価する.
+3. 得られた材料定数に基づき，マイクロストリップ線路の減衰定数 $\alpha(f)$ を算出し，従来モデルとの乖離を定量的に評価する．
 
 本研究により，6G向けの基板開発において，材料の誘電特性と導体特性の両者を同時に評価する方法論を確立することの重要性を実証する．特に，導体表面の微細な凹凸が実効導電率に与える周波数依存性の定量化は，次世代デバイスの低損失化設計における重要な知見を提供するものである．
 
@@ -275,7 +275,7 @@ MEGTRON6のような低損失基板は，5G/6G時代の高周波回路設計に�
 \varepsilon = \varepsilon' - \mi\varepsilon'' = \varepsilon_0 \varepsilon_r' (1 - \mi \tan\delta)
 \label{eq:complex_permittivity}
 \end{equation}
-ここで$\varepsilon_0$は真空の誘電率，$\varepsilon'$は比誘電率（実部,エネルギー蓄積に関連），$\varepsilon''$は誘電損失（虚部,エネルギー散逸に関連）である．
+ここで$\varepsilon_0$は真空の誘電率，$\varepsilon'$は比誘電率（実部，エネルギー蓄積に関連），$\varepsilon''$は誘電損失（虚部，エネルギー散逸に関連）である．
 
 \subsection{誘電損失と誘電正接}
 
@@ -349,7 +349,7 @@ Q_u = \frac{f_0}{\Delta f_{\text{3dB}}}
 低損失な材料ほどエネルギーの散逸が少ないためQ値は高くなり，鋭い共振ピークを示す．共振法は，この$f_0$と$Q_u$の精密な測定を通じて，微小な誘電損失を評価することに優れている．
 
 \paragraph{解析帯域の限定}
-本稿では測定装置の仕様により最大で\SI{100}{\giga\hertz}までの測定を行ったが，データの信頼性と解析の一貫性を考慮し，本解析および考察は\SI{67}{\giga\hertz}以下の帯域に限定する.以降，特に断りのない限り「測定帯域」は\SI{67}{\giga\hertz}以下を指す．
+本稿では測定装置の仕様により最大で\SI{100}{\giga\hertz}までの測定を行ったが，データの信頼性と解析の一貫性を考慮し，本解析および考察は\SI{67}{\giga\hertz}以下の帯域に限定する．以降，特に断りのない限り「測定帯域」は\SI{67}{\giga\hertz}以下を指す．
 
 %------------------------------------------------------------------------------
 \section{平衡形円板共振器法（BCDR）}
@@ -357,19 +357,19 @@ Q_u = \frac{f_0}{\Delta f_{\text{3dB}}}
 
 \subsection{BCDR法の原理}
 
-BCDR法は共振法の一種であり，高周波帯での複素誘電率と実効導電率の同時測定に適している.本手法は加藤・堀部らによって開発され,\SIrange{10}{170}{\giga\hertz}の超広帯域測定が実証されている\cite{kato2019broadband}.
+BCDR法は共振法の一種であり，高周波帯での複素誘電率と実効導電率の同時測定に適している．本手法は加藤・堀部らによって開発され，\SIrange{10}{170}{\giga\hertz}の超広帯域測定が実証されている\cite{kato2019broadband}．
 
 \paragraph{構造と励振メカニズム}
-測定では,測定対象の誘電体基板2枚を準備し,中央に厚さ$t_c = 0.06$~mm,直径$D$の銅円板電極を挟み込み,上下から銅平板電極で圧着する.銅平板の中央には直径$2a$の励振孔が設けられており,同軸線路で電界結合励振を行う.
+測定では，測定対象の誘電体基板2枚を準備し，中央に厚さ$t_c = 0.06$~mm，直径$D$の銅円板電極を挟み込み，上下から銅平板電極で圧着する．銅平板の中央には直径$2a$の励振孔が設けられており，同軸線路で電界結合励振を行う．
 
-この構造の最大の特徴は,\textbf{円板中心軸上の対称性}により,TM$_{0m0}$モード（$m=1, 2, 3, \ldots$）のみが選択的に励振され,他の不要モードが十分に抑制される点にある.これにより,モード干渉の問題を回避し,高次モードを用いた広帯域測定が可能となる.
+この構造の最大の特徴は，\textbf{円板中心軸上の対称性}により，TM$_{0m0}$モード（$m=1, 2, 3, \ldots$）のみが選択的に励振され，他の不要モードが十分に抑制される点にある．これにより，モード干渉の問題を回避し，高次モードを用いた広帯域測定が可能となる．
 
 \paragraph{Mode-Matching法による厳密解析}
-BCDR法では,励振孔まで厳密に考慮したMode-Matching法による電磁界解析が用いられる\cite{kato2019broadband}.解析では,共振器内部を複数の領域に分割し,各領域で固有モード展開を行い,境界条件で結合させる.これにより,共振周波数$f_{0m0}$と比誘電率$\varepsilon_r'$の関係式が導出される：
+BCDR法では，励振孔まで厳密に考慮したMode-Matching法による電磁界解析が用いられる\cite{kato2019broadband}．解析では，共振器内部を複数の領域に分割し，各領域で固有モード展開を行い，境界条件で結合させる．これにより，共振周波数$f_{0m0}$と比誘電率$\varepsilon_r'$の関係式が導出される：
 \begin{equation}
 \det H(\varepsilon_r'; f_{0m0}, R+\Delta R, a, M, t) = 0
 \end{equation}
-ここで,$R$は銅円板半径,$\Delta R$は縁端効果による補正量,$a$は励振孔半径,$M$は励振孔長さ,$t$は誘電体厚さである.
+ここで，$R$は銅円板半径，$\Delta R$は縁端効果による補正量，$a$は励振孔半径，$M$は励振孔長さ，$t$は誘電体厚さである．
 
 \paragraph{改良型フルウェーブ・モーダル解析}
 
@@ -390,7 +390,7 @@ BCDR法では,励振孔まで厳密に考慮したMode-Matching法による電�
 
 \begin{enumerate}
 \item \textbf{比誘電率$\varepsilon_r'$}：共振周波数$f_{0m0}$から上記の改良型フルウェーブ解析により数値的に決定
-\item \textbf{誘電正接$\tan\delta$}：無負荷Q値$Q_u$から導出.導体損失の影響を分離するため,次式を用いる：
+\item \textbf{誘電正接$\tan\delta$}：無負荷Q値$Q_u$から導出．導体損失の影響を分離するため，次式を用いる：
 \begin{equation}
 \tan\delta = \frac{1}{Q_u}\left(1 - \frac{R_s}{B}\right)(1+A)
 \end{equation}
@@ -398,7 +398,7 @@ BCDR法では,励振孔まで厳密に考慮したMode-Matching法による電�
 \end{enumerate}
 
 \paragraph{周波数可変性と広帯域測定}
-BCDR法の特筆すべき特徴は,銅円板直径$D$を変えることで測定周波数を調整できる点である.同一の誘電体試料に対し,異なる直径の円板（例：$D = 9, 12, 15, 18, 21$~mm）を用いることで,10～100~GHz超の広帯域で複素誘電率を測定できる\cite{kato2023dband,kaneko2011balanced}.
+BCDR法の特筆すべき特徴は，銅円板直径$D$を変えることで測定周波数を調整できる点である．同一の誘電体試料に対し，異なる直径の円板（例：$D = 9, 12, 15, 18, 21$~mm）を用いることで，10～100~GHz超の広帯域で複素誘電率を測定できる\cite{kato2023dband,kaneko2011balanced}．
 
 \subsection{測定手順と実効導電率の算出}
 
@@ -444,7 +444,7 @@ Mode-matching解析により比誘電率$\varepsilon_r'$を決定し，さらに
 \begin{itemize}
 \item \textbf{ベクトル・ネットワーク・アナライザ}：Keysight N5222B（\SI{10}{\mega\hertz}～\SI{100}{\giga\hertz}）
 \item \textbf{平衡形円板共振器}：BCDR Advance（Ver.1.6.10 HF-120G）
-\item \textbf{測定周波数範囲}：\SIrange{10}{100}{\giga\hertz}（装置仕様）.本稿の解析範囲は\textbf{\SI{67}{\giga\hertz}}以下（測定有効点は最大\SI{65.3}{\giga\hertz}）.
+\item \textbf{測定周波数範囲}：\SIrange{10}{100}{\giga\hertz}（装置仕様）．本稿の解析範囲は\textbf{\SI{67}{\giga\hertz}}以下（測定有効点は最大\SI{65.3}{\giga\hertz}）．測定は複数日にわたり合計20回実施し，各周波数点は20回の測定の平均値を用いている．付録は付けていない．
 \item \textbf{標準銅円板電極}：直径$\phi$15~mm，厚さ0.06~mm
 \item \textbf{誘電体基板試料}：MEGTRON6，厚さ0.3～0.5~mm，複数枚用意
 \end{itemize}
@@ -499,21 +499,21 @@ $S_{22}$ & ポート2の反射係数 \\
 \section{複素誘電率の測定結果}
 %------------------------------------------------------------------------------
 
-MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）.比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）.周波数依存性は小さく，設計上は定数近似が妥当である.
+MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．周波数依存性は小さく，設計上は定数近似が妥当である．
 
 一方，誘電損失を表す$\varepsilon_r'\tan\delta$は周波数の上昇とともに増加する傾向が確認される．\SI{10}{\giga\hertz}帯では$\tan\delta \approx \num{2e-3}\text{--}\num{3e-3}$であったのに対し，\SI{100}{\giga\hertz}帯では$\tan\delta \approx \num{4e-3}\text{--}\num{5e-3}$となり，約1.7--2.0倍に増加した．この周波数依存性は，高分子鎖の局所的な配向緩和による吸収増大，あるいはガラス繊維と樹脂の界面における分極遅延効果の顕在化が原因である可能性がある．
 
 \begin{figure}[H]
   \centering
   \includesvg[width=0.85\textwidth]{data/permittivity.svg}
-  \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（測定日: 2025-12-10）} 
+  \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
   \label{fig:permittivity}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includesvg[width=0.85\textwidth]{data/dielectricloss.svg}
-  \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（測定日: 2025-12-10）.注：元CSV列は $\varepsilon_r'\tan\delta\times10^{3}$（Scale=1000）で格納されているため，本図は実値（$\times10^{-3}$）で表示している.}
+  \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．}
   \label{fig:dielectricloss}
 \end{figure}
 
@@ -531,7 +531,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 
 \begin{enumerate}
     \item \textbf{低周波域の挙動}: \SI{12.7}{\giga\hertz}付近では $\sigma_{\mathrm{eff}} = (\num{2.41e7} \pm \num{0.24e7})\,\si{\siemens\per\metre}$（測定点の代表値）であった．
-\item \textbf{中–高周波域での低下}: 周波数上昇に伴い$\sigma_{\mathrm{eff}}$は大幅に低下した.代表値として\SI{23.3}{\giga\hertz}で \SI{8.23e6}{\siemens\per\metre}，\SI{65.3}{\giga\hertz}で \SI{3.44e6}{\siemens\per\metre} を得た（出典: 本研究の測定データ）.\SI{96.5}{\giga\hertz}などの高周波点は本文解析帯域外であり，本文の結論は\SI{67}{\giga\hertz}以下のデータに基づく.
+\item \textbf{中–高周波域での低下}: 周波数上昇に伴い$\sigma_{\mathrm{eff}}$は大幅に低下した．代表値として\SI{23.3}{\giga\hertz}で \SI{8.23e6}{\siemens\per\metre}，\SI{65.3}{\giga\hertz}で \SI{3.44e6}{\siemens\per\metre} を得た（出典: 本研究の測定データ）．\SI{96.5}{\giga\hertz}などの高周波点は本文解析帯域外であり，本文の結論は\SI{67}{\giga\hertz}以下のデータに基づく．
     \item \textbf{設計上の意味}: これらは直流導電率$\sigma_{\mathrm{DC}}=5.8\times10^{7}~\mathrm{S/m}$に比して，周波数に応じて数\%〜数十\%のオーダーまで低下することを示しており，単一値の導電率仮定は高周波帯で導体損失を大きく過小評価する可能性がある．
 \end{enumerate}
 
@@ -540,7 +540,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \begin{figure}[H]
   \centering
   \includesvg[width=0.85\textwidth]{data/conductivity.svg}
-  \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（測定日: 2025-12-10）} 
+  \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
   \label{fig:conductivity}
 \end{figure}
 
@@ -778,7 +778,7 @@ Y. Kato and M. Horibe,
 情報通信研究機構, 2010.
 
 \bibitem{kitahara2017fr4}
-北原廉,
+北原廉，
 ``GHz帯におけるFR-4基板の複素誘電率と伝送特性に関する研究,''
 長野工業高等専門学校卒業論文, 平成29年度.
 
@@ -810,7 +810,7 @@ Ver.1.6.10 HF-120G, Rev.2023.2.16.
 産業技術総合研究所計量標準総合センター, 平成24年度.
 
 \bibitem{fukuda2021transmission}
-福田 元也, 大野 憲一,
+福田 元也， 大野 憲一，
 ``高周波用銅張積層板の伝送損失特性 ～表面粗さと処理技術の影響～,''
 有限会社フクダ応用, 技術報告書, 2021.
 
