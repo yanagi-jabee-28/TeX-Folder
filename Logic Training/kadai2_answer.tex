@@ -137,22 +137,35 @@ $p, q, r, s$ を命題とする。
 \section*{2. 述語論理と量化子}
 
 $X = \{a_1, a_2\}$ とする。
-\[ \forall x \in X, p(x) \lor \forall x \in X, q(x) \implies \forall x \in X, (p(x) \lor q(x)) \]
 
 \begin{proof}
-定義域が有限集合であるため、$\forall x$ を要素ごとの論理積に書き換える。
+$X = \{a_1, a_2\}$ に対し、
+\begin{align*}
+\forall x \, p(x) &\equiv p(a_1) \land p(a_2), \quad \exists x \, p(x) \equiv p(a_1) \lor p(a_2)
+\end{align*}
 $p(a_i) = p_i, \ q(a_i) = q_i$ とおく。
 
+\noindent
+\textbf{左辺：}
 \begin{align*}
-\text{結論（右辺）} 
-&= (p_1 \lor q_1) \land (p_2 \lor q_2) \\
-&= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) && (\text{展開})
+\forall x \, p(x) \lor \forall x \, q(x) &\equiv (p_1 \land p_2) \lor (q_1 \land q_2)
 \end{align*}
 
-一方、仮定（左辺）は $(p_1 \land p_2) \lor (q_1 \land q_2)$ である。
-論理和の導入則 $A \implies A \lor B$ より、
-\[ (p_1 \land p_2) \lor (q_1 \land q_2) \implies (p_1 \land p_2) \lor (q_1 \land q_2) \lor \underbrace{(p_1 \land q_2) \lor (q_1 \land p_2)}_{\text{追加項}} \]
-したがって、左辺 $\implies$ 右辺 が成立する。
+\noindent
+\textbf{右辺：}
+\begin{align*}
+\forall x \, (p(x) \lor q(x)) &\equiv (p_1 \lor q_1) \land (p_2 \lor q_2) \\
+&= (p_1 \land (p_2 \lor q_2)) \lor (q_1 \land (p_2 \lor q_2)) && (\text{分配}) \\
+&= (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2) && (\text{分配})
+\end{align*}
+
+\noindent
+左辺は右辺に含まれるため、
+\[
+(p_1 \land p_2) \lor (q_1 \land q_2) \implies (p_1 \land p_2) \lor (p_1 \land q_2) \lor (q_1 \land p_2) \lor (q_1 \land q_2)
+\]
+
+$\therefore \ \text{左辺} \implies \text{右辺}$。
 \end{proof}
 
 \section*{3. 命題関数の真理値判定}
@@ -223,7 +236,7 @@ $|x - 1| < \delta$ ならば $|x^2 - 1| < \epsilon$ となる $\delta$ を逆算
 |x^2 - 1| &= |(x - 1)(x + 1)| = |x - 1| \cdot |x + 1|
 \end{align*}
 
-$\delta \le 1$ と設定すれば、
+$\delta \le 1$ ととれば、
 \begin{align*}
 |x - 1| < 1 &\implies -1 < x - 1 < 1 \\
 &\implies 0 < x < 2 \\
