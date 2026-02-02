@@ -1,0 +1,53 @@
+% !TEX program = lualatex
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{newtxmath}
+\usepackage[margin=25mm]{geometry}
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue]{hyperref}
+
+\title{演習問題 解答 — 述語論理と量化子 (2)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{問題 2}
+次の命題を示せ：
+\[
+\forall x\,p(x)\ \lor\ \forall x\,q(x)\ \Longrightarrow\ \forall x\,(p(x)\lor q(x)).
+\]
+
+\subsection*{【思考プロセス（下書き）】}
+$X=\{a_1,a_2\}$ という有限集合なので，量化子 $\forall$ を論理積 $\land$ に書き換えて命題論理に落とし込む．
+題意は LHS $\Rightarrow$ RHS の証明である．
+LHS（仮定）は $p$ が全員真 または $q$ が全員真．
+RHS（結論）は 各個体について $p$ か $q$ のどちらかが真．
+表記簡略化のため $p_i:=p(a_i),\ q_i:=q(a_i)\ (i=1,2)$ とおく．
+
+方針：RHS を分配律で展開し，その中に LHS の項が含まれていることを示す（命題論理の恒真式 $A\implies A\lor B$ を用いる）。
+
+\subsection*{【解答（清書）】}
+$p_i=p(a_i),\ q_i=q(a_i)\ (i=1,2)$ とおく．定義より
+\begin{align*}
+\mathrm{LHS} &= (p_1\land p_2)\lor (q_1\land q_2),\\
+\mathrm{RHS} &= (p_1\lor q_1)\land(p_2\lor q_2).
+\end{align*}
+RHS を分配律で展開すると
+\begin{align*}
+\mathrm{RHS}
+&\equiv ((p_1\lor q_1)\land p_2)\lor((p_1\lor q_1)\land q_2)\\
+&\equiv (p_1\land p_2)\lor(q_1\land p_2)\lor(p_1\land q_2)\lor(q_1\land q_2)\\
+&\equiv (p_1\land p_2)\lor(q_1\land q_2)\lor(p_1\land q_2)\lor(q_1\land p_2).
+\end{align*}
+ここで $(p_1\land p_2)\lor(q_1\land q_2)$ は仮定（LHS）に他ならない．命題論理において $A\implies A\lor B$ は恒真であるから，
+\[
+\mathrm{LHS}\implies\mathrm{RHS}
+\]
+が成り立つ．すなわち
+\[
+\forall x\,p(x)\ \lor\ \forall x\,q(x)\ \Longrightarrow\ \forall x\,(p(x)\lor q(x))
+\]
+が示された．\hfill$\blacksquare$
+
+\end{document}
