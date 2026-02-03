@@ -212,6 +212,7 @@ MEGTRON6のような低損失基板は，5G/6G時代の高周波回路設計に�
 高周波伝送線路の伝送損失$\alpha$は以下の二つの要因で構成される：
 \begin{equation}
 \alpha = \alpha_d + \alpha_c
+\label{eq:alpha_total}
 \end{equation}
 
 ここで$\alpha_d$は誘電損失による減衰定数，$\alpha_c$は導体損失による減衰定数である．
@@ -304,12 +305,14 @@ $\tan\delta$は，誘電体内部で熱エネルギーとして散逸される�
 \subsubsection{（1）誘電損失による減衰定数 $\alpha_d$}
 \begin{equation}
 \alpha_d = \frac{\pi f}{c} \cdot \varepsilon_r'\tan\delta \cdot \frac{\sqrt{\varepsilon_{re}}(\varepsilon_{re}-1)}{\varepsilon_{re}(\varepsilon_r' - 1)}
+\label{eq:alpha_d}
 \end{equation}
 ここで$f$は周波数，$c$は光速，$\varepsilon_{re}$は有効比誘電率である．誘電損失による減衰は周波数の上昇に伴い増加する．
 
 \subsubsection{（2）導体損失による減衰定数 $\alpha_c$}
 \begin{equation}
 \alpha_c = \frac{R_s}{Z_0 W}
+\label{eq:alpha_c}
 \end{equation}
 ここで$R_s = \sqrt{\pi f \mu_0 / \sigma}$は表面抵抗，$Z_0$は特性インピーダンス，$W$は線路幅である．
 
@@ -448,13 +451,13 @@ Mode-matching解析により比誘電率$\varepsilon_r'$を決定し，さらに
 % === 測定法（簡潔記述） ===
 本研究の測定は平衡形円板共振器法（BCDR）により実施した（VNAを用いてSパラメータを取得）．解析帯域は\SI{10}{\giga\hertz}以上で，本稿の解析は\SI{67}{\giga\hertz}以下に限定する．
 
-伝送線路の減衰定数$\alpha$は誘電損失$\alpha_d$と導体損失$\alpha_c$の和で表される：
-\begin{align}
-\alpha &= \alpha_d + \alpha_c \\
-\alpha_d &= \frac{\pi f}{c} \cdot \varepsilon_r'\tan\delta \cdot \frac{\sqrt{\varepsilon_{re}}(\varepsilon_{re}-1)}{\varepsilon_{re}(\varepsilon_r' - 1)} \\
-\alpha_c &= \frac{R_s}{Z_0 W}
-\end{align}
-ここで，表面抵抗$R_s = \sqrt{\pi f \mu_0 / \sigma}$，特性インピーダンス$Z_0$，線路幅$W$である．
+総減衰は第2章で示した理論式（式\ref{eq:alpha_total}--\ref{eq:alpha_c}）により定義される．本文では解析で使用した簡潔形を再掲する：
+\begin{equation}
+\alpha = \alpha_d + \alpha_c,
+\qquad
+\alpha_c = \frac{R_s}{Z_0 W},
+\end{equation}
+ここで表面抵抗$R_s=\sqrt{\pi f\mu_0/\sigma}$（定義: 式\ref{eq:skin_depth_intro}）である．実際の数値評価は第2章の定義式に測定値を代入して行い，結果は付録Aに示す。
 
 %==============================================================================
 % 第4章 測定結果
