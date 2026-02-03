@@ -1,5 +1,22 @@
 Initial Win CP for (console input, console output, system): (CP932, CP932, CP932)
 I changed them all to CP932
+Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
+Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
 Rc files read:
   C:/Users/kaito/.latexmkrc
 Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
@@ -242,8 +259,6 @@ Latexmk: Using bibtex to make bibliography file(s).
 Create bibtex out/Yanagihara_BCDR_MEGTRON6_2026
 Latexmk: Found bibliography file(s):
   ./references.bib
-Latexmk: Bst file not found in search path:
-  junsrt.bst
 Latexmk: applying rule 'bibtex out/Yanagihara_BCDR_MEGTRON6_2026'...
 Rule 'bibtex out/Yanagihara_BCDR_MEGTRON6_2026':  Reasons for rerun
 Category 'other':
@@ -263,7 +278,7 @@ Running 'upbibtex  "Yanagihara_BCDR_MEGTRON6_2026"'
 ------------
 This is upBibTeX, Version 0.99d-j0.36-u2.00 (utf8.uptex) (TeX Live 2025)
 The top-level auxiliary file: Yanagihara_BCDR_MEGTRON6_2026.aux
-The style file: junsrt.bst
+The style file: unsrt.bst
 Database file #1: references.bib
 Latexmk: Change directory back to 'c:/Users/kaito/TeX-Folder/SOTURON'
 Latexmk: applying rule 'lualatex'...
@@ -466,9 +481,9 @@ Package natbib Warning: Citation(s) may have changed.
 (see the transcript file for additional information)
  1836 words of node memory still in use:
    11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 544 attribute, 59 glue_spec, 61 attribute_list, 2 write, 14 user_defined nodes
-   avail lists: 1:22,2:53269,3:443,4:441,5:241,6:91,7:5940,8:62,9:2516,10:40,11:285
+   avail lists: 1:22,2:53269,3:443,4:441,5:231,6:91,7:5940,8:62,9:2516,10:40,11:285
 <c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1423414 bytes).
+Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1426423 bytes).
 
 SyncTeX written on Yanagihara_BCDR_MEGTRON6_2026.synctex.gz.
 Transcript written on Yanagihara_BCDR_MEGTRON6_2026.log.
@@ -482,8 +497,6 @@ Latexmk: Using bibtex to make bibliography file(s).
   ===Source file 'out/Yanagihara_BCDR_MEGTRON6_2026.bbl' for 'lualatex'
 Latexmk: Found bibliography file(s):
   ./references.bib
-Latexmk: Bst file not found in search path:
-  junsrt.bst
 Latexmk: applying rule 'bibtex out/Yanagihara_BCDR_MEGTRON6_2026'...
 Rule 'bibtex out/Yanagihara_BCDR_MEGTRON6_2026':  Reasons for rerun
 Changed files or newly in use/created:
@@ -502,7 +515,7 @@ Running 'upbibtex  "Yanagihara_BCDR_MEGTRON6_2026"'
 ------------
 This is upBibTeX, Version 0.99d-j0.36-u2.00 (utf8.uptex) (TeX Live 2025)
 The top-level auxiliary file: Yanagihara_BCDR_MEGTRON6_2026.aux
-The style file: junsrt.bst
+The style file: unsrt.bst
 Database file #1: references.bib
 Latexmk: Change directory back to 'c:/Users/kaito/TeX-Folder/SOTURON'
 Latexmk: applying rule 'lualatex'...
@@ -553,9 +566,9 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 (see the transcript file for additional information)
  1836 words of node memory still in use:
    11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 544 attribute, 59 glue_spec, 61 attribute_list, 2 write, 14 user_defined nodes
-   avail lists: 1:20,2:53449,3:443,4:441,5:241,6:91,7:5935,8:62,9:2533,10:40,11:285
+   avail lists: 1:20,2:53449,3:443,4:441,5:231,6:91,7:5935,8:62,9:2533,10:40,11:285
 <c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1424621 bytes).
+Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1427627 bytes).
 
 SyncTeX written on Yanagihara_BCDR_MEGTRON6_2026.synctex.gz.
 Transcript written on Yanagihara_BCDR_MEGTRON6_2026.log.
@@ -568,7 +581,32 @@ Latexmk: Using bibtex to make bibliography file(s).
   ===Source file 'out/Yanagihara_BCDR_MEGTRON6_2026.bbl' for 'lualatex'
 Latexmk: Found bibliography file(s):
   ./references.bib
-Latexmk: Bst file not found in search path:
-  junsrt.bst
 Latexmk: All targets (out/Yanagihara_BCDR_MEGTRON6_2026.pdf) are up-to-date
+------------
+Running 'perl -e 'use File::Spec; my  = q{};
+  # 安全防御: 出力ディレクトリが無ければ何もしない
+  unless(defined  && -d ){ exit }
+  opendir(my , ) or exit;
+  while(my  = readdir ){
+    next unless  =~ /.(?:bbl|fls|aux|blg|log|fdb_latexmk|synctex.gz|toc|lof|lot|idx|ilg|ind)
+i;
+    my  = File::Spec->catfile(,);
+    next unless defined  && -f ;
+    unlink  or warn "latexmk: unable to unlink : 
+";
+    print "latexmk: removed 
+";
+  }
+  closedir ;' '
+------------
+Wide character in print at c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl line 4805.
+Can't find string terminator "'" anywhere before EOF at -e line 1.
 
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.aux
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.bbl
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.blg
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.fdb_latexmk
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.fls
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.log
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.synctex.gz
+latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.toc
