@@ -13,9 +13,8 @@
             "name": "Latexmk (LuaLaTeX)",
             "command": "latexmk",
             "args": [
-                "-f",
-                "-gg",
-                "-pv",
+                // "-f", // エラーがあっても強行するオプション（通常は不要）
+                // "-gg", // 常時「全消去して再ビルド」は非常に重いため削除を推奨
                 "-lualatex",
                 "-synctex=1",
                 "-interaction=nonstopmode",
