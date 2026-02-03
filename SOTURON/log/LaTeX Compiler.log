@@ -1,22 +1,5 @@
 Initial Win CP for (console input, console output, system): (CP932, CP932, CP932)
 I changed them all to CP932
-Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $d in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $f in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $p in concatenation (.) or string at (eval 10) line 117.
-Use of uninitialized value $dh in concatenation (.) or string at (eval 10) line 117.
 Rc files read:
   C:/Users/kaito/.latexmkrc
 Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
@@ -582,31 +565,4 @@ Latexmk: Using bibtex to make bibliography file(s).
 Latexmk: Found bibliography file(s):
   ./references.bib
 Latexmk: All targets (out/Yanagihara_BCDR_MEGTRON6_2026.pdf) are up-to-date
-------------
-Running 'perl -e 'use File::Spec; my  = q{};
-  # 安全防御: 出力ディレクトリが無ければ何もしない
-  unless(defined  && -d ){ exit }
-  opendir(my , ) or exit;
-  while(my  = readdir ){
-    next unless  =~ /.(?:bbl|fls|aux|blg|log|fdb_latexmk|synctex.gz|toc|lof|lot|idx|ilg|ind)
-i;
-    my  = File::Spec->catfile(,);
-    next unless defined  && -f ;
-    unlink  or warn "latexmk: unable to unlink : 
-";
-    print "latexmk: removed 
-";
-  }
-  closedir ;' '
-------------
-Wide character in print at c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl line 4805.
-Can't find string terminator "'" anywhere before EOF at -e line 1.
 
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.aux
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.bbl
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.blg
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.fdb_latexmk
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.fls
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.log
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.synctex.gz
-latexmk: removed C:\Users\kaito\TeX-Folder\SOTURON\out\Yanagihara_BCDR_MEGTRON6_2026.toc
