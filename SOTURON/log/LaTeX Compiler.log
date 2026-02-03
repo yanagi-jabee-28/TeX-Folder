@@ -34,7 +34,7 @@ For additional information on amsmath, use the `?' option.
 *geometry* detected driver: luatex
 (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) ("|'inkscape' -V ") (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1]
 No file Yanagihara_BCDR_MEGTRON6_2026.toc.
@@ -42,173 +42,139 @@ No file Yanagihara_BCDR_MEGTRON6_2026.toc.
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1]
 第1章
-
-Package natbib Warning: Citation `soumu2022beyond5g' on page 2 undefined on input line 104.
-
-
-Package natbib Warning: Citation `ieee802.3bz' on page 2 undefined on input line 106.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 2 undefined on input line 106.
-
-
-Package natbib Warning: Citation `kato2024mag' on page 2 undefined on input line 108.
-
-[2]
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `huray2010' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `lomakin2018analytical' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `tomioka2025' on page 3 undefined on input line 129.
-
-[3] [4]
+[2] [3] [4]
 第2章
-
-LaTeX Warning: Reference `tab:substrate_materials' on page 5 undefined on input line 168.
-
- [5] [6]
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 242.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 243.
-
-
-Package natbib Warning: Citation `kido2023copper' on page 7 undefined on input line 244.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 7 undefined on input line 245.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `kido2023copper' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `nakata2021laser' on page 7 undefined on input line 248.
-
-[7] [8] [9]
+[5] [6] [7] [8] [9]
 第3章
-
-Package natbib Warning: Citation `kato2012dielectric' on page 10 undefined on input line 333.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 10 undefined on input line 337.
-
-
-Package natbib Warning: Citation `fujii2010' on page 10 undefined on input line 342.
-
-[10]
-
-Package natbib Warning: Citation `kato2019broadband' on page 11 undefined on input line 363.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 11 undefined on input line 371.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 11 undefined on input line 381.
-
-[11]
-
-Package natbib Warning: Citation `kato2023dband' on page 12 undefined on input line 389.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 12 undefined on input line 405.
-
-[12]
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 429.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 432.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 433.
-
-[13] [14]
+[10] [11] [12] [13] [14]
 第4章
-(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [15] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [16<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [17<./svg-inkscape/permittivity_svg-tex.pdf>] [18<./svg-inkscape/dielectricloss_svg-tex.pdf>]
-
-LaTeX Warning: Reference `fig:attenuation' on page 19 undefined on input line 583.
-
-(./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [19<./svg-inkscape/conductivity_svg-tex.pdf>] [20<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
+(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [15] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [16<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [17<./svg-inkscape/permittivity_svg-tex.pdf>] [18<./svg-inkscape/dielectricloss_svg-tex.pdf>] (./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [19<./svg-inkscape/conductivity_svg-tex.pdf>] [20<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
 第5章
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 616.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 618.
-
-[21]
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 637.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 22 undefined on input line 637.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 641.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 645.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 648.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 22 undefined on input line 658.
-
-[22] [23]
+[21] [22] [23]
 第6章
-
-Package natbib Warning: Citation `kato2012dielectric' on page 24 undefined on input line 684.
-
-
-Package natbib Warning: Citation `kato2024subthz' on page 24 undefined on input line 684.
-
-[24]
-
-Package natbib Warning: Citation `kato2023dband' on page 25 undefined on input line 693.
-
-
-Package natbib Warning: Citation `kato2024subthz' on page 25 undefined on input line 693.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 25 undefined on input line 698.
-
-
-Package natbib Warning: Citation `kitahara2017fr4' on page 25 undefined on input line 700.
-
-No file Yanagihara_BCDR_MEGTRON6_2026.bbl.
-
-Package natbib Warning: There were undefined citations.
-
-[25] [26] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux)
-
-LaTeX Warning: There were undefined references.
-
+[24] [25] [26]
+付録A
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<recently read> }
+                 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<recently read> }
+                 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+(./out/Yanagihara_BCDR_MEGTRON6_2026.bbl [27] [28] [29]) [30] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -219,11 +185,11 @@ Package rerunfilecheck Warning: File `Yanagihara_BCDR_MEGTRON6_2026.out' has cha
 
 )
 (see the transcript file for additional information)
- 1836 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 544 attribute, 59 glue_spec, 61 attribute_list, 2 write, 14 user_defined nodes
-   avail lists: 1:17,2:53269,3:443,4:326,5:163,6:70,7:5940,8:62,9:2516,10:40,11:48
-{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (28 pages, 1393959 bytes).
+ 1890 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 568 attribute, 59 glue_spec, 64 attribute_list, 2 write, 14 user_defined nodes
+   avail lists: 1:17,2:64775,3:453,4:1040,5:405,6:70,7:5989,8:62,9:2545,10:44,11:285
+<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (32 pages, 1457601 bytes).
 
 SyncTeX written on Yanagihara_BCDR_MEGTRON6_2026.synctex.gz.
 Transcript written on Yanagihara_BCDR_MEGTRON6_2026.log.
@@ -232,8 +198,7 @@ Latexmk: Examining 'out/Yanagihara_BCDR_MEGTRON6_2026.fls'
 Latexmk: Examining 'out/Yanagihara_BCDR_MEGTRON6_2026.log'
 Latexmk: Missing input file 'Yanagihara_BCDR_MEGTRON6_2026.toc' message in .log file:
   No file Yanagihara_BCDR_MEGTRON6_2026.toc.
-Latexmk: Missing bbl file 'out/Yanagihara_BCDR_MEGTRON6_2026.bbl' in following:
- No file Yanagihara_BCDR_MEGTRON6_2026.bbl.
+Latexmk: Found input bbl file 'out/Yanagihara_BCDR_MEGTRON6_2026.bbl'
 Latexmk: References changed.
 Latexmk: References changed.
 Latexmk: Log file says output to 'Yanagihara_BCDR_MEGTRON6_2026.pdf'
@@ -268,7 +233,6 @@ Latexmk: applying rule 'lualatex'...
 Rule 'lualatex':  Reasons for rerun
 Changed files or newly in use/created:
   out/Yanagihara_BCDR_MEGTRON6_2026.aux
-  out/Yanagihara_BCDR_MEGTRON6_2026.bbl
   out/Yanagihara_BCDR_MEGTRON6_2026.toc
 
 ------------
@@ -295,178 +259,153 @@ For additional information on amsmath, use the `?' option.
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) (./out/Yanagihara_BCDR_MEGTRON6_2026.out) (./out/Yanagihara_BCDR_MEGTRON6_2026.out) (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1] (./out/Yanagihara_BCDR_MEGTRON6_2026.toc)
+[1] (./out/Yanagihara_BCDR_MEGTRON6_2026.toc
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1]
+[1]) [2]
 第1章
-
-Package natbib Warning: Citation `soumu2022beyond5g' on page 2 undefined on input line 104.
-
-
-Package natbib Warning: Citation `ieee802.3bz' on page 2 undefined on input line 106.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 2 undefined on input line 106.
-
-
-Package natbib Warning: Citation `kato2024mag' on page 2 undefined on input line 108.
-
-[2]
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `huray2010' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `lomakin2018analytical' on page 3 undefined on input line 123.
-
-
-Package natbib Warning: Citation `tomioka2025' on page 3 undefined on input line 129.
-
-[3] [4]
+[3] [4] [5]
 第2章
-[5] [6]
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 242.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 243.
-
-
-Package natbib Warning: Citation `kido2023copper' on page 7 undefined on input line 244.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 7 undefined on input line 245.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `kido2023copper' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `otr235transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `fukuda2021transmission' on page 7 undefined on input line 248.
-
-
-Package natbib Warning: Citation `nakata2021laser' on page 7 undefined on input line 248.
-
-[7] [8] [9]
+[6] [7] [8] [9] [10]
 第3章
-
-Package natbib Warning: Citation `kato2012dielectric' on page 10 undefined on input line 333.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 10 undefined on input line 337.
-
-
-Package natbib Warning: Citation `fujii2010' on page 10 undefined on input line 342.
-
-[10]
-
-Package natbib Warning: Citation `kato2019broadband' on page 11 undefined on input line 363.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 11 undefined on input line 371.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 11 undefined on input line 381.
-
-[11]
-
-Package natbib Warning: Citation `kato2023dband' on page 12 undefined on input line 389.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 12 undefined on input line 405.
-
-[12]
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 429.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 432.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 13 undefined on input line 433.
-
-[13] [14]
+[11] [12] [13] [14] [15]
 第4章
-(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [15] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [16<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [17<./svg-inkscape/permittivity_svg-tex.pdf>] [18<./svg-inkscape/dielectricloss_svg-tex.pdf>] (./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [19<./svg-inkscape/conductivity_svg-tex.pdf>] [20<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
+(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [16] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [17<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [18<./svg-inkscape/permittivity_svg-tex.pdf>] [19<./svg-inkscape/dielectricloss_svg-tex.pdf>] (./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [20<./svg-inkscape/conductivity_svg-tex.pdf>] [21<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
 第5章
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 606.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 616.
-
-
-Package natbib Warning: Citation `kato2023dband' on page 21 undefined on input line 618.
-
-[21]
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 637.
-
-
-Package natbib Warning: Citation `keysight2023bcdr' on page 22 undefined on input line 637.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 641.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 645.
-
-
-Package natbib Warning: Citation `kato2019broadband' on page 22 undefined on input line 648.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 22 undefined on input line 658.
-
-[22] [23]
+[22] [23] [24]
 第6章
+[25] [26] [27]
+付録A
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<recently read> }
+                 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<recently read> }
+                 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+(./out/Yanagihara_BCDR_MEGTRON6_2026.bbl [28] [29] [30]) [31] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux)
 
-Package natbib Warning: Citation `kato2012dielectric' on page 24 undefined on input line 684.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package natbib Warning: Citation `kato2024subthz' on page 24 undefined on input line 684.
-
-[24]
-
-Package natbib Warning: Citation `kato2023dband' on page 25 undefined on input line 693.
-
-
-Package natbib Warning: Citation `kato2024subthz' on page 25 undefined on input line 693.
-
-
-Package natbib Warning: Citation `obikata2024freespace' on page 25 undefined on input line 698.
-
-
-Package natbib Warning: Citation `kitahara2017fr4' on page 25 undefined on input line 700.
-
-(./out/Yanagihara_BCDR_MEGTRON6_2026.bbl [25] [26] [27])
-
-Package natbib Warning: There were undefined citations.
-
-[28] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-))
+)
 (see the transcript file for additional information)
- 1836 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 544 attribute, 59 glue_spec, 61 attribute_list, 2 write, 14 user_defined nodes
-   avail lists: 1:22,2:53269,3:443,4:441,5:231,6:91,7:5940,8:62,9:2516,10:40,11:285
-<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-bold.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1426423 bytes).
+ 1890 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 568 attribute, 59 glue_spec, 64 attribute_list, 2 write, 14 user_defined nodes
+   avail lists: 1:21,2:64775,3:453,4:1040,5:405,6:92,7:5989,8:62,9:2545,10:44,11:285
+<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (33 pages, 1463830 bytes).
 
 SyncTeX written on Yanagihara_BCDR_MEGTRON6_2026.synctex.gz.
 Transcript written on Yanagihara_BCDR_MEGTRON6_2026.log.
@@ -506,6 +445,7 @@ Rule 'lualatex':  Reasons for rerun
 Changed files or newly in use/created:
   out/Yanagihara_BCDR_MEGTRON6_2026.aux
   out/Yanagihara_BCDR_MEGTRON6_2026.out
+  out/Yanagihara_BCDR_MEGTRON6_2026.toc
 
 ------------
 Run number 3 of rule 'lualatex'
@@ -531,27 +471,149 @@ For additional information on amsmath, use the `?' option.
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)) (c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) (./out/Yanagihara_BCDR_MEGTRON6_2026.out) (./out/Yanagihara_BCDR_MEGTRON6_2026.out) (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1] (./out/Yanagihara_BCDR_MEGTRON6_2026.toc)
+[1] (./out/Yanagihara_BCDR_MEGTRON6_2026.toc
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1]
+[1]) [2]
 第1章
-[2] [3] [4]
+[3] [4] [5]
 第2章
-[5] [6] [7] [8] [9]
+[6] [7] [8] [9] [10]
 第3章
-[10] [11] [12] [13] [14]
+[11] [12] [13] [14] [15]
 第4章
-(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [15] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [16<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [17<./svg-inkscape/permittivity_svg-tex.pdf>] [18<./svg-inkscape/dielectricloss_svg-tex.pdf>] (./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [19<./svg-inkscape/conductivity_svg-tex.pdf>] [20<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
+(./svg-inkscape/S21sementsweep_svg-tex.pdf_tex) (./svg-inkscape/permittivity_svg-tex.pdf_tex) (./svg-inkscape/dielectricloss_svg-tex.pdf_tex) [16] (./svg-inkscape/conductivity_svg-tex.pdf_tex) [17<./svg-inkscape/S21sementsweep_svg-tex.pdf>] [18<./svg-inkscape/permittivity_svg-tex.pdf>] [19<./svg-inkscape/dielectricloss_svg-tex.pdf>] (./svg-inkscape/attenuation_graph_svg-tex.pdf_tex) [20<./svg-inkscape/conductivity_svg-tex.pdf>] [21<./svg-inkscape/attenuation_graph_svg-tex.pdf>]
 第5章
-[21] [22] [23]
+[22] [23] [24]
 第6章
-[24] (./out/Yanagihara_BCDR_MEGTRON6_2026.bbl [25] [26] [27]) [28] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux))
+[25] [26] [27]
+付録A
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Extra }, or forgotten $.
+<recently read> }
+                 
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing $ inserted.
+<inserted text> 
+                $
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:756: Missing } inserted.
+<inserted text> 
+                }
+l.756 ...k[c]{Mean\\$\varepsilon_r'\\tan\delta$} &
+                                                   \shortstack[c]{Std\\$\var...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Extra }, or forgotten $.
+<recently read> }
+                 
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing $ inserted.
+<inserted text> 
+                $
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:757: Missing } inserted.
+<inserted text> 
+                }
+l.757 \midrule
+              
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...c]{$\alpha_{c,\\mathrm{CuRho}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Extra }, or forgotten $.
+<template> }
+            \unskip \mb@r \endtemplate 
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing } inserted.
+<inserted text> 
+                }
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing $ inserted.
+<inserted text> 
+                $
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026.tex:806: Missing { inserted.
+<inserted text> 
+                {
+l.806 ...k[c]{$\alpha_{\\mathrm{total}}$\\(dB/m)}}
+                                                   & \multicolumn{1}{c}{\sho...
+(./out/Yanagihara_BCDR_MEGTRON6_2026.bbl [28] [29] [30]) [31] (./out/Yanagihara_BCDR_MEGTRON6_2026.aux))
 (see the transcript file for additional information)
- 1836 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 544 attribute, 59 glue_spec, 61 attribute_list, 2 write, 14 user_defined nodes
-   avail lists: 1:20,2:53449,3:443,4:441,5:231,6:91,7:5935,8:62,9:2533,10:40,11:285
-<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (30 pages, 1427627 bytes).
+ 1890 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 568 attribute, 59 glue_spec, 64 attribute_list, 2 write, 14 user_defined nodes
+   avail lists: 1:21,2:64775,3:453,4:1040,5:405,6:92,7:5989,8:62,9:2545,10:44,11:285
+<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/Windows/Fonts/yumindb.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf>{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans17-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/Windows/Fonts/YuGothR.ttc><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/Windows/Fonts/yumin.ttf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on Yanagihara_BCDR_MEGTRON6_2026.pdf (33 pages, 1463889 bytes).
 
 SyncTeX written on Yanagihara_BCDR_MEGTRON6_2026.synctex.gz.
 Transcript written on Yanagihara_BCDR_MEGTRON6_2026.log.
@@ -564,5 +626,10 @@ Latexmk: Using bibtex to make bibliography file(s).
   ===Source file 'out/Yanagihara_BCDR_MEGTRON6_2026.bbl' for 'lualatex'
 Latexmk: Found bibliography file(s):
   ./references.bib
-Latexmk: All targets (out/Yanagihara_BCDR_MEGTRON6_2026.pdf) are up-to-date
+Latexmk: Errors, in force_mode: so I tried finishing targets
+Collected error summary (may duplicate other messages):
+  lualatex: Command for 'lualatex' gave return code 1
+      Refer to 'out/Yanagihara_BCDR_MEGTRON6_2026.log' and/or above output for details
 
+C:\texlive\2025\bin\windows\runscript.tlu:933: command failed with exit code 12:
+perl.exe c:\texlive\2025\texmf-dist\scripts\latexmk\latexmk.pl -f -gg -pv -lualatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=c:/Users/kaito/TeX-Folder/SOTURON/out c:/Users/kaito/TeX-Folder/SOTURON/Yanagihara_BCDR_MEGTRON6_2026

@@ -496,21 +496,21 @@ $S_{22}$ & ポート2の反射係数 \\
 \section{複素誘電率の測定結果}
 %------------------------------------------------------------------------------
 
-MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．周波数依存性は小さく，設計上は定数近似が妥当である．
+MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．周波数依存性は小さく，設計上は定数近似が妥当である．全周波数点の mean ± std（n=20）は付録A 表A.1--A.4 に転記してある（単位・スケール注記あり）．
 
 一方，誘電損失を表す$\varepsilon_r'\tan\delta$は周波数の上昇とともに増加する傾向が確認される．\SI{10}{\giga\hertz}帯では$\tan\delta \approx \num{2e-3}\text{--}\num{3e-3}$であったのに対し，\SI{100}{\giga\hertz}帯では$\tan\delta \approx \num{4e-3}\text{--}\num{5e-3}$となり，約1.7--2.0倍に増加した．この周波数依存性は，高分子鎖の局所的な配向緩和による吸収増大，あるいはガラス繊維と樹脂の界面における分極遅延効果の顕在化が原因である可能性がある．
 
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/permittivity.svg}
-  \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
+  \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.1に掲載する．} 
   \label{fig:permittivity}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/dielectricloss.svg}
-  \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．}
+  \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.2に掲載する．}
   \label{fig:dielectricloss}
 \end{figure}
 
@@ -537,18 +537,18 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/conductivity.svg}
-  \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
+  \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.3に掲載する．} 
   \label{fig:conductivity}
 \end{figure}
 
 % -- 代表値サマリ表 (測定データ出典: 本研究の測定データ) --
 \begin{table}[htbp]
-\centering
+\centering\small
   \caption{代表周波数における測定結果の要約（出典: 本研究の測定データ）.注: >67\,GHz の高分散点は本文解析帯域外である} 
 \label{tab:meas_summary}
 \begin{tabular}{r r r r r}
 \toprule
-周波数 (\si{\giga\hertz}) & $\varepsilon_r'$ & $\tan\delta$ & $\sigma_{\mathrm{eff}}$ (\si{\siemens\per\metre}) & $\alpha_{\mathrm{total}}$ (\si{\decibel\per\metre}) \\
+\shortstack[c]{周波数\\(\si{\giga\hertz})} & \shortstack[c]{\ensuremath{\varepsilon_r'}} & \shortstack[c]{\ensuremath{\tan\delta}} & \shortstack[c]{\ensuremath{\sigma_{\mathrm{eff}}}\\(\si{\siemens\per\metre})} & \shortstack[c]{\ensuremath{\alpha_{\mathrm{total}}}\\(\si{\decibel\per\metre})} \\
  & & & & \\
 \midrule
 \SI{23.3}{\giga\hertz} & 3.5906 & \num{5.38e-3} & \SI{8.23e6}{\siemens\per\metre} & \num{2.25} \\
@@ -717,6 +717,115 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 %==============================================================================
 % 参考文献
 %==============================================================================
+% 参考データ（付録A）: 本稿で使用した全測定点の mean ± std（n=20）を付録Aに転記してある．図を参照せずとも本文の数値が検証できる．
+% 注: 以下の表は原データをSI単位で表記したものである（スケール変換済み）。
+\appendix
+\chapter{測定データ（mean ± std, n=20）}
+\label{appendix:rawdata}
+
+付録Aには，本文図表で用いた全周波数点の数値（平均値と標準偏差）を転記した．これにより，図を参照しなくてもすべての数値を確認できる．表中の数値は最終集計値（n=20）である．
+
+\begin{table}[htbp]
+\centering
+\begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
+\caption{周波数ごとの比誘電率 $\varepsilon_r'$（mean ± std, n=20）}
+\label{tab:app_permittivity}
+\begin{tabular}{r S[table-format=1.4] S[table-format=1.4]}
+\toprule
+\shortstack[c]{Frequency\\(\si{\giga\hertz})} & \shortstack[c]{Mean\\\ensuremath{\varepsilon_r'}} & \shortstack[c]{Std\\\ensuremath{\varepsilon_r'}} \\
+\midrule
+12.6915 & 3.6009 & 0.0063 \\
+23.3084 & 3.5838 & 0.0274 \\
+33.8721 & 3.5826 & 0.0274 \\
+44.4253 & 3.5835 & 0.0272 \\
+54.9713 & 3.5852 & 0.0272 \\
+65.4813 & 3.5898 & 0.0286 \\
+75.9782 & 3.5927 & 0.0310 \\
+86.5899 & 3.5838 & 0.0248 \\
+96.6554 & 3.6115 & 0.0238 \\
+107.0115 & 3.5921 & 0.0161 \\
+\bottomrule
+\end{tabular}\endgroup\end{table}
+
+\begin{table}[htbp]
+\centering
+\begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
+\caption{周波数ごとの誘電損失 $\varepsilon_r'\tan\delta$（mean ± std, n=20） — 表中は実数（単位なし）}
+\label{tab:app_dielectricloss}
+\begin{tabular}{r S[table-format=1.5] S[table-format=1.5]}
+\toprule
+\shortstack[c]{Frequency\\(\si{\giga\hertz})} & \shortstack[c]{Mean\\\ensuremath{\varepsilon_r'\tan\delta}} & \shortstack[c]{Std\\\ensuremath{\varepsilon_r'\tan\delta}} \\
+\midrule
+12.6915 & 0.0171067 & 0.0007323 \\
+23.3084 & 0.0192863 & 0.0008484 \\
+33.8721 & 0.0210164 & 0.0008971 \\
+44.4253 & 0.0224190 & 0.0010718 \\
+54.9713 & 0.0239117 & 0.0008743 \\
+65.4813 & 0.0256537 & 0.0012315 \\
+75.9782 & 0.0287547 & 0.0018832 \\
+86.5899 & 0.0451278 & 0.0181521 \\
+96.6554 & 0.0358969 & 0.0030009 \\
+107.0115 & 0.0335130 & 0.0015775 \\
+\bottomrule
+\end{tabular}
+\endgroup
+\vspace{1mm}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
+\caption{周波数ごとの実効導電率 $\sigma_{\mathrm{eff}}$（mean ± std, n=20） — 単位: S/m}
+\label{tab:app_conductivity}
+\begin{tabular}{r S[scientific-notation=true] S[scientific-notation=true]}
+\toprule
+\shortstack[c]{Frequency\\(\si{\giga\hertz})} & \shortstack[c]{Mean\\\ensuremath{\sigma_{\mathrm{eff}}}\\(\si{\siemens\per\metre})} & \shortstack[c]{Std\\(\si{\siemens\per\metre})} \\
+\midrule
+12.6638 & 2.4146e7 & 2.4072e6 \\
+23.2561 & 8.2279e6 & 1.6116e6 \\
+33.7960 & 4.9135e6 & 1.1691e6 \\
+44.3247 & 3.6321e6 & 9.6109e5 \\
+54.8473 & 2.6096e6 & 1.0277e6 \\
+65.3264 & 3.4419e6 & 2.7636e6 \\
+75.7767 & 1.4033e6 & 1.6201e6 \\
+86.4699 & 3.4072e5 & 7.1732e5 \\
+96.5272 & 1.0772e6 & 1.8638e6 \\
+106.9216 & 3.6553e5 & 3.0212e4 \\
+\bottomrule
+\end{tabular}
+\endgroup
+\vspace{1mm}
+\begin{flushleft}\footnotesize
+注: 表中の数値は SI 単位（S/m）で示す．
+\end{flushleft}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{伝送減衰算出結果の全点（代表的入力と出力，単位は表中参照）}
+\label{tab:app_attenuation}
+\begingroup\setlength{\tabcolsep}{6pt}\footnotesize\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{r c c c c c r c c}
+\toprule
+\multicolumn{1}{c}{\shortstack[c]{Freq\\(\si{\giga\hertz})}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{Z_0}\\(\si{\ohm})}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\alpha_c}\\(dB/m)}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\alpha_{c,\mathrm{CuRho}}}\\(dB/m)}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\alpha_d}\\(dB/m)}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\alpha_{\mathrm{total}}}\\(dB/m)}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\sigma}\\(\si{\siemens\per\metre})}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\tan\delta}}} & \multicolumn{1}{c}{\shortstack[c]{\ensuremath{\varepsilon_r'}}} \\
+\midrule
+23.256 & 43.80 & 1.90 & 0.73 & 0.345 & 2.25 & 8.23e6 & 5.38e-3 & 3.591 \\
+33.796 & 43.80 & 2.97 & 0.88 & 0.547 & 3.52 & 4.91e6 & 5.87e-3 & 3.590 \\
+44.325 & 43.80 & 3.96 & 1.01 & 0.766 & 4.72 & 3.63e6 & 6.26e-3 & 3.591 \\
+54.847 & 43.79 & 5.19 & 1.12 & 1.010 & 6.20 & 2.61e6 & 6.67e-3 & 3.592 \\
+65.326 & 43.77 & 4.94 & 1.22 & 1.290 & 6.23 & 3.44e6 & 7.15e-3 & 3.597 \\
+75.777 & 43.75 & 8.33 & 1.32 & 1.644 & 9.98 & 1.40e6 & 7.85e-3 & 3.601 \\
+96.527 & 43.73 & 10.74 & 1.49 & 2.646 & 13.38 & 1.08e6 & 9.91e-3 & 3.605 \\
+106.922 & 43.81 & 19.37 & 1.56 & 2.752 & 22.12 & 3.66e5 & 9.33e-3 & 3.587 \\
+\bottomrule
+\end{tabular}
+\endgroup
+\vspace{1mm}
+\begin{flushleft}\footnotesize
+注: 表は本文で用いた算出結果（主要出力）を再掲したものである．ここに示す $\sigma$ は実効導電率 $\sigma_{\mathrm{eff}}$（S/m）である．
+\end{flushleft}
+\end{table}
+
 % 参考文献を外部BibTeXデータベースに移行しました。
 % コンパイル: latexmk は自動的に bibtex を実行します。
 \bibliographystyle{unsrt}
