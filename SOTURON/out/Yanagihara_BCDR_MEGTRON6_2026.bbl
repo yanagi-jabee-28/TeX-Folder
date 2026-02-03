@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{soumu2022beyond5g}
+{総務省}.
+\newblock Beyond 5g に向けた情報通信技術戦略の在り方.
+\newblock 中間答申, 情報通信審議会, June 2022.
+
+\bibitem{ieee802.3bz}
+Ieee 802.3bz — higher speed ethernet specifications (100 gbps).
+\newblock IEEE Standard.
+
+\bibitem{otr235transmission}
+OTR235.
+\newblock 5gおよび6g向け低損失基板材料の開発と伝送損失評価.
+\newblock 研究報告書, 総務省 総合通信基盤局, 2024.
+
+\bibitem{kato2024mag}
+加藤悠人.
+\newblock 高速無線通信の拡大をけん引するサブテラヘルツ帯材料計測技術.
+\newblock 通信ソサイエティマガジン, Vol. No.70, pp. 167--171, 2024.
+
+\bibitem{fukuda2021transmission}
+福田元也, 大野憲一.
+\newblock 高周波用銅張積層板の伝送損失特性 ～表面粗さと処理技術の影響～.
+\newblock 技術報告書, 有限会社フクダ応用, 2021.
+
+\bibitem{huray2010}
+P.~G. Huray, O.~Oluwafemi, J.~Loyer, E.~Bogatin, and X.~Ye.
+\newblock Impact of copper surface texture on loss: A model that works.
+\newblock In {\em DesignCon}, pp. 462--483, 2010.
+
+\bibitem{lomakin2018analytical}
+K.~Lomakin, G.~Gold, and K.~Helmreich.
+\newblock Analytical waveguide model precisely predicting loss and delay including surface roughness.
+\newblock {\em IEEE Transactions on Microwave Theory and Techniques}, Vol.~66, No.~6, pp. 2649--2662, June 2018.
+
+\bibitem{tomioka2025}
+M.~Tomioka, et~al.
+\newblock Measurement of complex permittivity of printed circuit boards using bcdr and free-space method up to 90 ghz, 2025.
+\newblock conference / in-prep.
+
+\bibitem{kido2023copper}
+Seiya Kido.
+\newblock Flat bonding and adhesion reliability of ultra-low-profile copper foils for high-speed communications.
+\newblock {\em IEEE Transactions on Components, Packaging and Manufacturing Technology}, Vol.~13, No.~3, pp. 412--420, March 2023.
+
+\bibitem{nakata2021laser}
+中田臣弥, 岡本健, 森岡伸哲.
+\newblock レーザー顕微鏡を用いた高周波基板用銅箔の表面粗さの評価.
+\newblock Technical report, 福田技報, 2021.
+
+\bibitem{kato2012dielectric}
+加藤悠人.
+\newblock 誘電率等材料定数の測定技術と標準供給に関する調査研究.
+\newblock Technical report, 産業技術総合研究所 計量標準総合センター, 2012.
+
+\bibitem{obikata2024freespace}
+大日方快至.
+\newblock フリースペース法による高速通信用基板材料の複素誘電率測定.
+\newblock 卒業論文, 長野工業高等専門学校, 2024.
+
+\bibitem{fujii2010}
+藤井勝巳.
+\newblock 周波数領域の信号計測技術 ネットワークアナライザ編.
+\newblock 情報通信研究機構, 2010.
+
+\bibitem{kato2019broadband}
+Y.~Kato and M.~Horibe.
+\newblock Broadband permittivity measurements up to 170-ghz using balanced-type circular-disk resonator excited by 0.8-mm coaxial line.
+\newblock {\em IEEE Transactions on Instrumentation and Measurement}, Vol.~68, No.~6, pp. 1796--1805, June 2019.
+
+\bibitem{kato2023dband}
+Y.~Kato.
+\newblock D-band material characterization using a balanced-type circular disk resonator with waveguide interfaces and a modified full-wave modal analysis.
+\newblock {\em IEEE Transactions on Instrumentation and Measurement}, Vol.~72, , 2023.
+\newblock Art. no. 6009210.
+
+\bibitem{keysight2023bcdr}
+Keysight Technologies.
+\newblock {\em BCDR Advance Operation Guide}.
+\newblock Keysight Technologies, ver.1.6.10 hf-120g edition, February 2023.
+
+\bibitem{kato2024subthz}
+Y.~Kato and M.~Horibe.
+\newblock Submillimeter-wave complex permittivity measurements up to 330 ghz using waveguide-interfaced balanced-type circular disk resonator.
+\newblock {\em IEEE Transactions on Terahertz Science and Technology}, 2024.
+\newblock in press.
+
+\bibitem{kitahara2017fr4}
+北原廉.
+\newblock Ghz帯におけるfr-4基板の複素誘電率と伝送特性に関する研究.
+\newblock 卒業論文, 長野工業高等専門学校, 2017.
+
+\end{thebibliography}

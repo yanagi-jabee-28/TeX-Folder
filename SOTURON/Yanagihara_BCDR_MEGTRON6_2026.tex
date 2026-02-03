@@ -40,9 +40,6 @@
 \usepackage{xurl} % Improved line breaking for long URLs
 \urlstyle{same}
 \Urlmuskip=0mu plus 2mu
-\usepackage[
-  hidelinks,
-]{hyperref}
 \usepackage[super,square]{natbib} % 引用を上付き角括弧に
 
 % ===== SVG画像埋め込み =====
@@ -51,6 +48,9 @@
   inkscapearea=page,
   width=0.8\textwidth
 }
+
+% ===== ハイパーリンク設定（最後に読み込む） =====
+\usepackage[hidelinks]{hyperref}
 
 %------------------------------------------------------------------------------
 % 各種設定
@@ -167,7 +167,7 @@ v = \frac{c}{\sqrt{\varepsilon_r'}}
 
 高周波基板に用いられる一般的な材料と特性を表~\ref{tab:substrate_materials}に示す．
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{高周波基板材料の特性}
 \label{tab:substrate_materials}
@@ -463,7 +463,7 @@ Mode-matching解析により比誘電率$\varepsilon_r'$を決定し，さらに
 
 BCDR法による測定では，ベクトル・ネットワーク・アナライザ（VNA）を用いてSパラメータを測定する．2ポート回路のSパラメータは以下のように定義される：
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{2ポート回路のSパラメータ定義}
 \label{tab:sparameter}
@@ -481,7 +481,7 @@ $S_{22}$ & ポート2の反射係数 \\
 
 本研究では，共振器の透過係数$S_{21}$を測定して共振周波数と$Q$値を決定する．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{image/S21sementsweep.svg}
   \caption{VNAで測定したS$_{21}$の周波数応答例（共振周波数$f_0$と無負荷Q値$Q_u$の決定）}
@@ -496,14 +496,14 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 
 一方，誘電損失を表す$\varepsilon_r'\tan\delta$は周波数の上昇とともに増加する傾向が確認される．\SI{10}{\giga\hertz}帯では$\tan\delta \approx \num{2e-3}\text{--}\num{3e-3}$であったのに対し，\SI{100}{\giga\hertz}帯では$\tan\delta \approx \num{4e-3}\text{--}\num{5e-3}$となり，約1.7--2.0倍に増加した．この周波数依存性は，高分子鎖の局所的な配向緩和による吸収増大，あるいはガラス繊維と樹脂の界面における分極遅延効果の顕在化が原因である可能性がある．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/permittivity.svg}
   \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
   \label{fig:permittivity}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/dielectricloss.svg}
   \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．}
@@ -530,7 +530,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 
 この単調減少特性は，周波数上昇に伴い表皮深さ$\delta_s = 1/\sqrt{\pi f \mu_0 \sigma}$が$f^{-1/2}$で減少し，表面粗さとの相対比$R_q / \delta_s$が増大することで，電流経路の実効長が増加した結果と解釈される．従来の回路設計で広く用いられる「導電率一定」の仮定は，ミリ波帯では最大40\%程度の導電率過大評価を招き，導体損失の見積もり誤差の主要因となることが実験的に示された．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/conductivity.svg}
   \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．} 
@@ -538,7 +538,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \end{figure}
 
 % -- 代表値サマリ表 (測定データ出典: 本研究の測定データ) --
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
   \caption{代表周波数における測定結果の要約（出典: 本研究の測定データ）.注: >67\,GHz の高分散点は本文解析帯域外である} 
 \label{tab:meas_summary}
@@ -584,7 +584,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 
 以上の結果は，直流導電率を一定値として用いる従来の設計手法が，ミリ波帯においては導体損失を過小評価する重大な欠陥を持つことを定量的に実証するものである．
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{image/attenuation_graph.svg}
   \caption{伝送線路の減衰定数$\alpha$の周波数特性（理想導電率と実効導電率の比較）}
@@ -713,144 +713,11 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 %==============================================================================
 % 参考文献
 %==============================================================================
-\begin{thebibliography}{99}
+% 参考文献を外部BibTeXデータベースに移行しました。
+% コンパイル: latexmk は自動的に bibtex を実行します。
+\bibliographystyle{junsrt}
+\bibliography{references}
 
-\bibitem{kato2024mag}
-加藤悠人,
-``高速無線通信の拡大をけん引するサブテラヘルツ帯材料計測技術,''
-通信ソサイエティマガジン, No.70, pp.167--171, 2024.
-
-\bibitem{soumu2022beyond5g}
-総務省,
-``Beyond 5G に向けた情報通信技術戦略の在り方,''
-情報通信審議会中間答申, 2022年6月.
-
-\bibitem{tomioka2025}
-M. Tomioka, et al.,
-``Measurement of Complex Permittivity of Printed Circuit Boards Using BCDR and Free-Space Method Up to 90 GHz,''
-2025.
-
-\bibitem{iec2020}
-IEC 63185:2020,
-``Measurement of complex permittivity for low-loss dielectric substrates (planar type) using the balanced-type circular disk resonator method in the microwave to millimetre-wave range,''
-2020.
-
-\bibitem{obikata2024freespace}
-大日方快至,
-``フリースペース法による高速通信用基板材料の複素誘電率測定,''
-長野工業高等専門学校卒業論文, 令和6年度.
-
-\bibitem{ieee802.3bz}
-IEEE 802.3bz,
-``Higher Speed Ethernet Specifications (100 Gbps),''
-IEEE Standard.
-
-\bibitem{kato2019broadband}
-Y. Kato and M. Horibe,
-``Broadband permittivity measurements up to 170-GHz using balanced-type circular-disk resonator excited by 0.8-mm coaxial line,''
-\textit{IEEE Trans. Instrum. Meas.}, vol.~68, no.~6, pp.~1796--1805, June 2019.
-
-%\bibitem{kato2021broadband}
-%Y. Kato and M. Horibe,
-%``Broadband conductivity measurement technique at millimeter-wave bands using a balanced-type circular disk resonator,''
-%\textit{IEEE Trans. Microw. Theory Tech.}, vol.~69, no.~1, pp.~861--873, Jan. 2021.
-
-\bibitem{kato2023dband}
-Y. Kato,
-``D-band material characterization using a balanced-type circular disk resonator with waveguide interfaces and a modified full-wave modal analysis,''
-\textit{IEEE Trans. Instrum. Meas.}, vol.~72, Art. no.~6009210, 2023.
-
-\bibitem{kato2024subthz}
-Y. Kato and M. Horibe,
-``Submillimeter-wave complex permittivity measurements up to 330~GHz using waveguide-interfaced balanced-type circular disk resonator,''
-\textit{IEEE Trans. Terahertz Sci. Technol.}, 2024 (in press).
-
-\bibitem{fujii2010}
-藤井勝巳,
-``周波数領域の信号計測技術 ネットワークアナライザ編,''
-情報通信研究機構, 2010.
-
-\bibitem{kitahara2017fr4}
-北原廉，
-``GHz帯におけるFR-4基板の複素誘電率と伝送特性に関する研究,''
-長野工業高等専門学校卒業論文, 平成29年度.
-
-\bibitem{kaneko2011balanced}
-金子彰吾, 小林禧夫, 馬哲旺,
-``平衡形円板共振器法を用いた6～60GHzにわたる誘電体基板の複素誘電率測定,''
-第25回エレクトロニクス実装学会春季講演大会論文集, pp.~357--358, 2011.
-
-\bibitem{huray2010}
-P. G. Huray, O. Oluwafemi, J. Loyer, E. Bogatin, and X. Ye,
-"Impact of copper surface texture on loss: A model that works," in \textit{DesignCon}, pp. 462--483, 2010.
-
-\bibitem{gold2017physical}
-G. Gold and K. Helmreich,
-"A physical surface roughness model and its applications," \textit{IEEE Trans. Microw. Theory Tech.}, vol.~65, no.~10, pp.~3720--3732, Oct. 2017.
-
-\bibitem{lomakin2018analytical}
-K. Lomakin, G. Gold, and K. Helmreich,
-"Analytical waveguide model precisely predicting loss and delay including surface roughness," \textit{IEEE Trans. Microw. Theory Tech.}, vol.~66, no.~6, pp.~2649--2662, Jun. 2018.
-
-\bibitem{keysight2023bcdr}
-Keysight Technologies,
-``BCDR Advance Operation Guide,''
-Ver.1.6.10 HF-120G, Rev.2023.2.16.
-
-\bibitem{kato2012dielectric}
-加藤悠人,
-``誘電率等材料定数の測定技術と標準供給に関する調査研究,''
-産業技術総合研究所計量標準総合センター, 平成24年度.
-
-\bibitem{fukuda2021transmission}
-福田 元也， 大野 憲一，
-``高周波用銅張積層板の伝送損失特性 ～表面粗さと処理技術の影響～,''
-有限会社フクダ応用, 技術報告書, 2021.
-
-\bibitem{otr235transmission}
-OTR235,
-``5Gおよび6G向け低損失基板材料の開発と伝送損失評価,''
-総務省総合通信基盤局技術研究開発助成事業報告書, 2024.
-
-\bibitem{megtron6datasheet}
-Panasonic,
-``MEGTRON6 Laminate Material Datasheet,''
-Panasonic Industrial Devices and Solutions Company, 2023.
-
-\bibitem{roughness2023materials}
-Maier et al.,
-``Characterizing surface roughness evolution in copper conductors under mechanical and thermal stress,''
-\textit{Materialwissenschaft Werkst}, vol.~54, no.~2, pp.~187--201, 2025.
-
-\bibitem{kido2023copper}
-Seiya Kido,
-``Flat bonding and adhesion reliability of ultra-low-profile copper foils for high-speed communications,''
-\textit{IEEE Trans. Compon. Packag. Manuf. Technol.}, vol.~13, no.~3, pp.~412--420, March 2023.
-
-\bibitem{transmission_line_theory}
-電気通信主任技術者試験対策委員会,
-``通信線路解説メモ（メタリック分野） β2.2版,''
-電気通信主任技術者総合情報, 平成30年度.
-
-\bibitem{sij_parameters}
-堀部雅志,
-``S-パラメータの基礎と応用―ネットワークアナライザを使った高周波測定―,''
-エレクトロニクス実装学会教科書, 2019.
-
-\bibitem{bcdr_manual}
-平衡形円板共振器BCDR標準マニュアル,
-``実効導電率測定手順書 Ver.1.6.10,''
-キーサイト・テクノロジー(株), 2023年2月.
-
-\bibitem{metrological_standards}
-産業技術総合研究所計量標準総合センター,
-``複素誘電率の国家計量標準とトレーサビリティ確立,''
-平成12～31年度研究成果報告書, 2019.
-
-\bibitem{nakata2021laser}
-中田臣弥, 岡本健, 森岡伸哲, "レーザー顕微鏡を用いた高周波基板用銅箔の表面粗さの評価," 福田技報, 2021.
-
-\end{thebibliography}
 
 \end{document}
 
