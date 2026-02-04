@@ -518,11 +518,18 @@ $S_{22}$ & ポート2の反射係数 \\
   \label{fig:s21measurement}
 \end{figure}
 
+\begin{figure}[htbp]
+  \centering
+  \includesvg[width=0.85\textwidth]{image/セグメントスイープ3.svg}
+  \caption{セグメントスイープによるS$_{21}$測定例（周波数分割掃引）．本図は測定手順上の分割スイープで取得した生データの一例を示す．可視化は利便性のため広帯域（~\SI{110}{\giga\hertz}付近まで）を含むが，本稿の主要な定量解析は引き続き\SI{67}{\giga\hertz}以下に限定している点に注意する．}
+  \label{fig:segment_sweep}
+\end{figure}
+
 %------------------------------------------------------------------------------
 \section{複素誘電率の測定結果}
 %------------------------------------------------------------------------------
 
-MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．周波数依存性は小さく，設計上は定数近似が妥当である．全周波数点の mean ± std（n=20）は付録A 表A.1--A.4 に転記してある（単位・スケール注記あり）．
+MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率$\varepsilon_r'$は本解析帯域で$\varepsilon_r' = 3.583$--$3.597$の範囲にあり，代表値は$\varepsilon_r' = 3.5906 \pm 0.03$であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．周波数依存性は小さく，設計上は定数近似が妥当である．図\ref{fig:dielectricloss_extended}は解析帯域の制限を加えず，得られた測定データを最大約\SI{110}{\giga\hertz}までそのまま表示したものである．
 
 一方，誘電損失を表す$\varepsilon_r'\tan\delta$は周波数の上昇とともに増加する傾向が確認される．\SI{10}{\giga\hertz}帯では$\tan\delta \approx \num{2e-3}\text{--}\num{3e-3}$であったのに対し，\SI{100}{\giga\hertz}帯では$\tan\delta \approx \num{4e-3}\text{--}\num{5e-3}$となり，約1.7--2.0倍に増加した．この周波数依存性は，高分子鎖の局所的な配向緩和による吸収増大，あるいはガラス繊維と樹脂の界面における分極遅延効果の顕在化が原因である可能性がある．
 
@@ -538,6 +545,14 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
   \includesvg[width=0.85\textwidth]{data/dielectricloss.svg}
   \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.2に掲載する．}
   \label{fig:dielectricloss}
+\end{figure}
+
+% --- 拡張図（110 GHz 付近まで可視化） ---
+\begin{figure}[htbp]
+  \centering
+  \includesvg[width=0.85\textwidth]{image/dielectricloss_quick_1e+01-1e+02GHz.svg}
+  \caption{MEGTRON6基板の誘電損失（拡張表示）．本図は解析帯域の制限を加えず，得られた生データを最大約\SI{110}{\giga\hertz}までそのまま表示したものである．図中の>\SI{67}{\giga\hertz}の点は可視化目的で掲載しており，主要な定量解析および論旨は引き続き\SI{67}{\giga\hertz}以下のデータに基づく点に留意されたい．}
+  \label{fig:dielectricloss_extended}
 \end{figure}
 
 \subsubsection{測定値（代表値）}
