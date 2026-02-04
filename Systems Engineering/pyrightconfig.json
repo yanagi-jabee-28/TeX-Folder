@@ -1,0 +1,8 @@
+{
+  "venvPath": "C:/Users/kaito/TeX-Folder/Systems Engineering",
+  "venv": ".venv",
+  "reportMissingImports": false,
+  "reportMissingModuleSource": false,
+  "typeCheckingMode": "basic",
+  "exclude": [".venv"]
+}

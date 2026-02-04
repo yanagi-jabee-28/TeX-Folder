@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\kaito\\TeX-Folder\\Systems Engineering\\.venv\\Scripts\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/work2"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+  "editor.formatOnSave": false
+}
