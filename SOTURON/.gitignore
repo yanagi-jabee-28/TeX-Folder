@@ -1,0 +1,8 @@
+# Local overrides for files in this module
+# The repository-level .gitignore contains a global `*.svg` rule which ignores
+# all SVGs. Allow specific SVG figures used in the thesis to be tracked here.
+
+# Re-include SVGs in the thesis image folder (must come after the global ignore)
+!image/*.svg
+# Explicitly allow files with non-ASCII names (optional, safe to keep)
+!image/セグメントスイープ3.svg
