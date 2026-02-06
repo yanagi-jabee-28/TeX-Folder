@@ -510,10 +510,9 @@ $S_{22}$ & ポート2の反射係数 \\
 \end{table}
 
 本研究では，共振器の透過係数$S_{21}$を測定して共振周波数と$Q$値を決定する．
-% (図を統合したため削除) 
-% 元: S21sementsweep.svg — 参照は図\ref{fig:segment_sweep}に統合済み。
+% 図を統合済み（旧ファイル名は履歴参照）．参照は図\ref{fig:segment_sweep}を用いる．
 
-図\ref{fig:segment_sweep}はS$_{21}$の代表的な周波数応答（mean, n=20）であり，ここから共振周波数$f_0$と無負荷Q値$Q_u$を決定した．測定・決定手順の詳細は本文の測定手順の記述に従う。
+図\ref{fig:segment_sweep}はS$_{21}$の代表的な周波数応答（mean, n=20）であり，ここから共振周波数$f_0$と無負荷Q値$Q_u$を決定した．図は可視化の便宜上最大約\SI{110}{\giga\hertz}まで表示しているが，本稿の定量解析は\SI{67}{\giga\hertz}以下に限定する．測定・決定手順の詳細は本文の測定手順の記述に従う。
 
 \begin{figure}[htbp]
   \centering
@@ -528,21 +527,21 @@ $S_{22}$ & ポート2の反射係数 \\
 \section{複素誘電率の測定結果}
 %------------------------------------------------------------------------------
 
-MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率 $\varepsilon_r'$ は本解析帯域で $\varepsilon_r' = 3.583$--$3.597$ の範囲にあり，代表値は $\varepsilon_r' = 3.5906 \pm 0.03$ であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．全点の数値（mean ± std, n=20）は付録A 表A.1に掲載する．周波数依存性は小さく，設計上は定数近似が妥当である．図\ref{fig:dielectricloss_extended}は解析帯域の制限を加えず，得られた測定データを最大約\SI{110}{\giga\hertz}までそのまま表示したものである．
+MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\,GHzに限定して解析）．比誘電率 $\varepsilon_r'$ は本解析帯域で $\varepsilon_r' = 3.583$--$3.597$ の範囲にあり，代表値は $\varepsilon_r' = 3.5906 \pm 0.03$ であった（出典: 本研究の測定データ）．測定は複数日にわたり合計20回実施し，本節で示す数値は各周波数点における20回の測定の平均値である．全点の数値（mean ± std, n=20）は付録A 表A.1に掲載する．周波数依存性は小さく，設計上は定数近似が妥当である．図\ref{fig:dielectricloss_extended}は解析帯域の制限を加えず，得られた測定データを最大約\SI{110}{\giga\hertz}まで表示したものである．本稿の定量解析は\SI{67}{\giga\hertz}以下に限定する．
 
 一方，誘電損失を表す $\varepsilon_r'\tan\delta$ は周波数の上昇とともに増加する傾向が確認される．\SI{10}{\giga\hertz}帯では $\tan\delta \approx \num{2e-3}\text{--}\num{3e-3}$ であったのに対し，\SI{100}{\giga\hertz}帯では $\tan\delta \approx \num{4e-3}\text{--}\num{5e-3}$ となり，約1.7--2.0倍に増加した．全点の数値（mean ± std, n=20）は付録A 表A.2に掲載する．この周波数依存性は，高分子鎖の局所的な配向緩和による吸収増大，あるいはガラス繊維と樹脂の界面における分極遅延効果の顕在化が原因である可能性がある．
 
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/permittivity.svg}
-  \caption{MEGTRON6基板の比誘電率$\varepsilon_r'$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.1に掲載する．} 
+  \caption{MEGTRON6の比誘電率 $\varepsilon_r'$（mean, n=20）}
   \label{fig:permittivity}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/dielectricloss.svg}
-  \caption{MEGTRON6基板の誘電損失$\varepsilon_r'\tan\delta$の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.2に掲載する．}
+  \caption{MEGTRON6の誘電損失 $\varepsilon_r'\tan\delta$（mean, n=20）}
   \label{fig:dielectricloss}
 \end{figure}
 
@@ -550,7 +549,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{image/dielectricloss_quick_1e+01-1e+02GHz.svg}
-  \caption{誘電損失（拡張表示）}
+  \caption{誘電損失（拡張表示）} 
   \label{fig:dielectricloss_extended}
 \end{figure}
 
@@ -564,7 +563,7 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \section{実効導電率の測定結果}
 %------------------------------------------------------------------------------
 
-次に，実効導電率の測定結果を示す．本節で報告する値は，表面粗さによる損失を含む周波数依存の実効導電率 $\sigma_{\mathrm{eff}}(f)$ である．全点の数値（mean ± std, n=20）は付録A 表A.3に掲載する．測定された $\sigma_{\mathrm{eff}}(f)$ の周波数特性から，以下の定量的知見が得られた．
+次に，実効導電率の測定結果を示す．本節で報告する値は，表面粗さによる損失を含む周波数依存の実効導電率 $\sigma_{\mathrm{eff}}(f)$ である．図は可視化の便宜上高周波側の点を含むことがあるが，本節の定量解析は\SI{67}{\giga\hertz}以下に限定する．全点の数値（mean ± std, n=20）は付録A 表A.3に掲載する．測定された $\sigma_{\mathrm{eff}}(f)$ の周波数特性から，以下の定量的知見が得られた．
 
 \begin{enumerate}
     \item \textbf{低周波域の挙動}: \SI{12.7}{\giga\hertz}付近では $\sigma_{\mathrm{eff}} = (\num{2.41e7} \pm \num{0.24e7})\,\si{\siemens\per\metre}$（測定点の代表値）であった．
@@ -577,14 +576,14 @@ MEGTRON6基板の複素誘電率測定結果を以下に示す（本文は≤67\
 \begin{figure}[htbp]
   \centering
   \includesvg[width=0.85\textwidth]{data/conductivity.svg}
-  \caption{MEGTRON6基板銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$ の周波数特性（代表測定日: 2025-12-10）．図は20回の測定の平均値を示す．全点の数値（mean ± std, n=20）は付録A 表A.3に掲載する．} 
+  \caption{MEGTRON6銅箔の実効導電率 $\sigma_{\mathrm{eff}}(f)$（mean, n=20）}
   \label{fig:conductivity}
 \end{figure}
 
 % -- 代表値サマリ表 (測定データ出典: 本研究の測定データ) --
 \begin{table}[htbp]
 \centering\small
-  \caption{代表周波数における測定結果の要約（出典: 本研究の測定データ）.注: >67\,GHz の高分散点は本文解析帯域外である} 
+  \caption{代表周波数における測定結果の要約}
 \label{tab:meas_summary}
 \begin{tabular}{r r r r r}
 \toprule
@@ -768,7 +767,7 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 \begin{table}[htbp]
 \centering
 \begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
-\caption{周波数ごとの比誘電率 $\varepsilon_r'$（mean ± std, n=20）}
+\caption{比誘電率 $\varepsilon_r'$（mean ± std, n=20）}
 \label{tab:app_permittivity}
 \begin{tabular}{r S[table-format=1.4] S[table-format=1.4]}
 \toprule
@@ -790,7 +789,7 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 \begin{table}[htbp]
 \centering
 \begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
-\caption{周波数ごとの誘電損失 $\varepsilon_r'\tan\delta$（mean ± std, n=20） — 表中は実数（単位なし）}
+\caption{誘電損失 $\varepsilon_r'\tan\delta$（mean ± std, n=20）}
 \label{tab:app_dielectricloss}
 \begin{tabular}{r S[table-format=1.5] S[table-format=1.5]}
 \toprule
@@ -815,7 +814,7 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 \begin{table}[htbp]
 \centering
 \begingroup\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}
-\caption{周波数ごとの実効導電率 $\sigma_{\mathrm{eff}}$（mean ± std, n=20） — 単位: S/m}
+\caption{実効導電率 $\sigma_{\mathrm{eff}}$（mean ± std, n=20）}
 \label{tab:app_conductivity}
 \begin{tabular}{r S[scientific-notation=true] S[scientific-notation=true]}
 \toprule
@@ -842,7 +841,7 @@ MEGTRON6の比誘電率実部は本測定（≤67\,GHz）で平均$\varepsilon_r
 
 \begin{table}[htbp]
 \centering
-\caption{伝送減衰算出結果の全点（代表的入力と出力，単位は表中参照）}
+\caption{伝送減衰算出結果（代表点）}
 \label{tab:app_attenuation}
 \begingroup\setlength{\tabcolsep}{6pt}\footnotesize\renewcommand{\arraystretch}{1.05}
 \begin{tabular}{r c c c c c r c c}
