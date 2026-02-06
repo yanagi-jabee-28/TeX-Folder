@@ -140,7 +140,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 
 \section{既存研究の現状と本研究の位置づけ}
 
-これまで，FR-4やMEGTRON6などの基板材料について，平衡形円板共振器法（BCDR）により複素誘電率を測定し，誘電損失を評価する研究は行われてきた\cite{tomioka2025}.
+これまで，FR-4やMEGTRON6などの基板材料について，平衡形円板共振器法（BCDR）により複素誘電率を測定し，誘電損失を評価する研究は行われてきた\cite{tomioka2025,kaneko2011balanced}.
 
 しかし，信号減衰のもう一つの重要な要因である導体損失について，銅箔の表面粗さが実効的な導電率に与える影響を広帯域で定量的に評価した研究は十分ではなかった．
 
@@ -203,7 +203,7 @@ kHz～MHz帯では安価なフェノールやFR-4が用いられるが，数十G
 
 \subsection{低損失基板MEGTRON6の特性}
 
-本研究ではMEGTRON6（パナソニック製，低損失高周波基板）を測定対象とした．MEGTRON6は20~GHz以上での使用を想定し，従来のFR-4より大幅に誘電損失を低減している低損失エポキシ樹脂基板である．
+本研究ではMEGTRON6（パナソニック製，低損失高周波基板）を測定対象とした\cite{megtron6datasheet}．MEGTRON6は20~GHz以上での使用を想定し，従来のFR-4より大幅に誘電損失を低減している低損失エポキシ樹脂基板である．
 
 MEGTRON6の主な特徴は以下の通りである：
 
@@ -219,7 +219,7 @@ MEGTRON6のような低損失基板は，5G/6G時代の高周波回路設計に�
 
 \subsection{ミリ波帯における基板材料の伝送損失}
 
-高周波伝送線路の伝送損失$\alpha$は以下の二つの要因で構成される：
+高周波伝送線路の伝送損失$\alpha$は以下の二つの要因で構成される\cite{transmission_line_theory}：
 \begin{equation}
 \alpha = \alpha_d + \alpha_c
 \label{eq:alpha_total}
@@ -245,7 +245,7 @@ MEGTRON6のような低損失基板は，5G/6G時代の高周波回路設計に�
 \item \textbf{表皮深さ << 表面粗さ}：表面粗さの詳細な形状が支配的になる．
 \end{itemize}
 
-6G帯（\SI{100}{\giga\hertz}--\SI{300}{\giga\hertz}）では，表皮深さが\SI{0.1}{\micro\metre}オーダに達するため，サブミクロンの凹凸でさえも無視できない影響を与える\cite{fukuda2021transmission}．このため，高周波基板用銅箔には，従来の化学的粗化ではなく，より平滑な表面を持つ低プロファイル銅箔や，特殊な表面処理が施された製品が採用され始めている\cite{kido2023copper,otr235transmission}．
+本研究では，\SI{100}{\giga\hertz}--\SI{300}{\giga\hertz}）では，表皮深さが\SI{0.1}{\micro\metre}オーダに達するため，サブミクロンの凹凸でさえも無視できない影響を与える\cite{fukuda2021transmission,gold2017physical,roughness2023materials}．このため，高周波基板用銅箔には，従来の化学的粗化ではなく，より平滑な表面を持つ低プロファイル銅箔や，特殊な表面処理が施された製品が採用され始めている\cite{kido2023copper,otr235transmission}．
 
 \subsection{高周波用銅箔の表面処理技術}
 
@@ -356,7 +356,7 @@ $\tan\delta$は，誘電体内部で熱エネルギーとして散逸される�
 \end{description}
 
 \subsubsection{Sパラメータと高周波測定の基礎}
-高周波回路の特性評価では，インピーダンスやアドミタンスの代わりにSパラメータ（Scattering parameter, 散乱行列）が広く用いられる．これは，高周波領域では電圧・電流を直接測定することが困難であるのに対し，電力の進行波・反射波はベクトル・ネットワーク・アナライザ（VNA）を用いて安定して測定できるためである．2ポート回路では，ポート1, 2への入射波を$a_1, a_2$，出射波を$b_1, b_2$とすると，Sパラメータは次式で定義される\cite{fujii2010}：
+高周波回路の特性評価では，インピーダンスやアドミタンスの代わりにSパラメータ（Scattering parameter, 散乱行列）が広く用いられる．これは，高周波領域では電圧・電流を直接測定することが困難であるのに対し，電力の進行波・反射波はベクトル・ネットワーク・アナライザ（VNA）を用いて安定して測定できるためである．2ポート回路では，ポート1, 2への入射波を$a_1, a_2$，出射波を$b_1, b_2$とすると，Sパラメータは次式で定義される\cite{fujii2010,sij_parameters}：
 \begin{equation}
 \begin{bmatrix} b_1 \\ b_2 \end{bmatrix} = \begin{bmatrix} S_{11} & S_{12} \\ S_{21} & S_{22} \end{bmatrix} \begin{bmatrix} a_1 \\ a_2 \end{bmatrix}
 \end{equation}
