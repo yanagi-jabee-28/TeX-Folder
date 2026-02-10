@@ -1,0 +1,148 @@
+\documentclass[a4paper,11pt]{ltjsreport}
+\usepackage{amsmath,amssymb}
+\usepackage{luatexja-fontspec}
+\usepackage{lmodern}
+% 自動幅調整用: 表が本文幅を超える問題を防ぐ
+\usepackage{tabularx}
+\usepackage{array} % \newcolumntype のため
+% X 列を左寄せにした簡易列型（表記を短くするため）
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}% enumitem を読み込む（description の表示は本文側で明示的に書く）
+\usepackage{enumitem}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{電子工学 — 後期期末達成度試験：完全対策資料}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+提示された手書き講義資料（PDF）および試験範囲のテキスト情報に基づく、\textbf{試験直前の完全対策ノート}。
+物理的意味と導出プロセスに重点を置き、計算・記述ともに試験で得点しやすい形に整理してある。
+\end{abstract}
+
+\section{基本戦略}
+\begin{enumerate}
+  \item \textbf{計算問題}: 公式を暗記するだけでなく、必ず運動方程式（例: $F=ma$）から導出できるようにする。
+  \item \textbf{記述問題}: 因果関係（「なぜそうなるか」）を短く明確に説明できるようにする。
+  \item \textbf{式の導出}: タウンゼント理論などは等比級数の和へ落とし込むことが鍵。過程を書けることを重視。
+\end{enumerate}
+
+\section{1. 静磁界中の電子の運動（計算・導出）}
+\subsection{出題ポイント}
+運動方程式から加速度・速度・位置・軌跡（円運動・螺旋運動）を導く。
+
+\subsection{基礎知識}
+\begin{itemize}
+  \item 磁束密度: $\vec{B}$ [T]
+  \item 電子の電荷: $-e$ [C]
+  \item 電子の速度: $\vec{v}$ [m/s]
+  \item ローレンツ力: $\vec{F} = -e(\vec{v}\times\vec{B})$（大きさ $F = evB\sin\theta$）
+\end{itemize}
+
+\subsection{垂直入射時（円運動）}
+ローレンツ力を向心力とみなして
+\begin{equation}
+  m\frac{v^2}{r} = evB
+\end{equation}
+より軌道半径と角周波数は
+\begin{equation}
+  r = \frac{mv}{eB},\qquad T = \frac{2\pi m}{eB},\qquad f=\frac{1}{2\pi}\frac{eB}{m}.
+\end{equation}
+特に周期・周波数は速度に依存しない（サイクロトロンの原理）。
+
+\subsection{斜め入射時（螺旋運動）}
+速度の分解: $v_{\perp}=v\sin\theta,\; v_{\parallel}=v\cos\theta$.\
+$ v_{\perp}$ 成分は円運動（半径 $r=\dfrac{m(v\sin\theta)}{eB}$）、$v_{\parallel}$ は等速直線運動。
+
+\section{2. 気体分子の電離現象（説明）}
+\subsection{出題ポイント}
+3 種類の電離を区別して説明できること。
+
+% 自動幅（X 列のみ）に任せつつ、表を少しだけ縮めて余白は自動に任せる
+% - 使用幅は \linewidth にし、フォントサイズを小さくして overfull を防ぐ
+\noindent\small
+\begin{tabularx}{\linewidth}{YYY}
+\hline
+\textbf{電離の種類} & \textbf{要点} & \textbf{備考}\\
+\hline
+電界電離 & 衝突で増幅される & タウンゼント作用 \\
+熱電離 & 熱運動で電離する & アーク放電 \\
+光電離 & 光吸収で電離する & 初期電子供給 \\
+\hline
+\end{tabularx}
+\normalsize\par
+
+% 詳細は見出しを独立行にして記述（labelwidth に依存しない）
+\noindent\textbf{電界電離（衝突電離）}\mbox{}\\
+電界により加速された自由電子が気体分子と衝突し、分子を電離して二次電子を生成する現象。タウンゼント放電の基礎となる。
+
+\noindent\textbf{熱電離（衝突電離）}\mbox{}\\
+高温下で分子の熱運動が激しくなり、衝突エネルギーで電離が起きる。アーク放電において顕著である。
+
+\noindent\textbf{光電離}\mbox{}\\
+外来光（紫外線など）を吸収して電離が起きる現象。条件は $h\nu\ge W$ で、放電の種火（初期電子）を供給する。
+
+\section{3. タウンゼントの理論と火花放電の条件（導出）}
+\subsection{定義と記号}
+$\alpha$ : 単位長あたりに作られる電子・正イオン対数（一次増幅）\\
+$\gamma$ : 陰極に衝突した陽イオン1つ当たりの二次電子放出数\\
+$\ell$ : 電極間距離,\; $n_0$ : 陰極から出た初期電子数
+
+\subsection{導出（要点）}
+陰極から出た $n_0$ 個が陽極に到達するまでに一次増幅を受けると
+\begin{equation}
+  n_1 = n_0 e^{\alpha\ell}.
+\end{equation}
+発生した陽イオン数は $n_0(e^{\alpha\ell}-1)$。これが陰極へ戻り二次電子を出す数は
+\begin{equation}
+  \gamma n_0(e^{\alpha\ell}-1).
+\end{equation}
+この過程が繰り返されると全通過電子数 $N$ は無限等比級数となり、
+\begin{equation}
+  N = \frac{n_0 e^{\alpha\ell}}{1-\gamma(e^{\alpha\ell}-1)}.
+\end{equation}
+分母がゼロになると発散して火花放電が起きるため、タウンゼントの発火条件は
+\begin{equation}
+  \boxed{\;\gamma(e^{\alpha\ell}-1)=1\;}
+\end{equation}
+
+\section{4. パッシェンの法則（説明）}
+放電開始電圧 $V_c$ は $p\ell$ の関数であり、ある $p\ell$ で最小値（パッシェン・ミニマム）を持つ。
+
+\subsection{物理的説明（要点）}
+\begin{itemize}
+  \item $p\ell$ が大きい側: 分子密度が高く電子がすぐ散逸するため、電離に必要なエネルギーを与えにくい → 高い電圧が必要。
+  \item $p\ell$ が小さい側: 衝突相手が少なく効率的な電離が起きにくい → 高い電圧が必要。
+\end{itemize}
+
+\section{5. グロー放電を利用した機器}
+\begin{itemize}
+  \item ネオン管（ネオンサイン） — 低圧で安定発光を利用。
+  \item 蛍光灯 — グロー放電で紫外線を生成し蛍光体で可視光へ変換。
+  \item プラズマディスプレイ（PDP） — マイクロセル内でのグロー放電を利用。
+  \item スパッタリング装置 — ターゲット表面の原子蒸発にグロー放電を利用。
+\end{itemize}
+
+\section{6. アーク放電を利用した機器}
+\begin{itemize}
+  \item アーク溶接 — 高温アークで母材を溶融して接合。
+  \item アーク炉 — スクラップの溶解。
+  \item 高輝度放電ランプ（HID） — スタジアム照明など。
+  \item 遮断器のアーク消弧 — スイッチ開閉時のアーク対策（利用というより設計課題）。
+\end{itemize}
+
+\section{試験直前チェックリスト}
+\begin{itemize}
+  \item 計算: $r=mv/(eB)$ の式変形がスムーズか（速度・周期を求められるか）。
+  \item 導出: $N$ を等比級数の和の形に整理できるか。
+  \item 記述: パッシェンの法則で「衝突しすぎるからダメ（右側）」と「衝突相手がいないからダメ（左側）」を明快に書き分けられるか。
+  \item 用語: $\alpha$(電子なだれ), $\gamma$(二次電子放出), $\alpha\ell$, $V_c$。
+\end{itemize}
+
+\section*{参考}
+講義ノート（手書きPDF）に準拠。健闘を祈ります。
+
+\end{document}

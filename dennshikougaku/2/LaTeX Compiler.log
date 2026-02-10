@@ -1,0 +1,97 @@
+Initial Win CP for (console input, console output, system): (CP932, CP932, CP932)
+I changed them all to CP932
+Rc files read:
+  C:/Users/kaito/.latexmkrc
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: Doing full clean up for 'c:/Users/kaito/TeX-Folder/dennshikougaku/2/2-MATOME.tex'
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Force everything to be remade.
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'lualatex' forced or previously required:
+    Reason or flag: 'go_mode'
+
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode -shell-escape "c:/Users/kaito/TeX-Folder/dennshikougaku/2/2-MATOME.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ system commands enabled.
+(c:/Users/kaito/TeX-Folder/dennshikougaku/2/2-MATOME.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsreport.cls
+Document Class: ltjsreport 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (./out/2-MATOME.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1]
+Overfull \hbox (10.12563pt too wide) in paragraph at lines 75--77
+[][][][] 
+[1] [2] [3] (./out/2-MATOME.aux))
+(see the transcript file for additional information)
+ 1300 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 313 attribute, 55 glue_spec, 40 attribute_list, 1 write, 14 user_defined nodes
+   avail lists: 1:5,2:28149,3:371,4:208,5:139,6:56,7:2989,8:34,9:1458,10:20
+{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on 2-MATOME.pdf (5 pages, 177057 bytes).
+
+SyncTeX written on 2-MATOME.synctex.gz.
+Transcript written on 2-MATOME.log.
+Latexmk: Getting log file 'out/2-MATOME.log'
+Latexmk: Examining 'out/2-MATOME.fls'
+Latexmk: Examining 'out/2-MATOME.log'
+Latexmk: Log file says output to '2-MATOME.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: applying rule 'lualatex'...
+Rule 'lualatex':  Reasons for rerun
+Changed files or newly in use/created:
+  out/2-MATOME.aux
+
+------------
+Run number 2 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="out"  -synctex=1 -interaction=nonstopmode -shell-escape "c:/Users/kaito/TeX-Folder/dennshikougaku/2/2-MATOME.tex"'
+------------
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025) 
+ system commands enabled.
+(c:/Users/kaito/TeX-Folder/dennshikougaku/2/2-MATOME.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+ (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltjsreport.cls
+Document Class: ltjsreport 2025-05-26 ltjsclasses 
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-core.sty (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexbase/luatexbase.sty (c:/texlive/2025/texmf-dist/tex/luatex/ctablestack/ctablestack.sty)) (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)) (c:/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex (c:/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval.tex)))) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (c:/texlive/2025/texmf-dist/tex/latex/everyhook/everyhook.sty (c:/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-base.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/ltj-latex.sty (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty (c:/texlive/2025/texmf-dist/tex/latex/base/tuenc.def)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+(c:/texlive/2025/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-luatex.def))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty)))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty)) (c:/texlive/2025/texmf-dist/tex/platex/jsclasses/jslogo.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty)) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty) (c:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-fontspec.sty) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty)) (c:/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty) (c:/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty)) (c:/texlive/2025/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty) (./out/2-MATOME.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+(c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd) (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1]
+Overfull \hbox (10.12563pt too wide) in paragraph at lines 75--77
+[][][][] 
+[1] [2] [3] (./out/2-MATOME.aux))
+(see the transcript file for additional information)
+ 1300 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 313 attribute, 55 glue_spec, 40 attribute_list, 1 write, 14 user_defined nodes
+   avail lists: 1:5,2:28149,3:371,4:208,5:139,6:56,7:2989,8:34,9:1458,10:20
+{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on 2-MATOME.pdf (5 pages, 177057 bytes).
+
+SyncTeX written on 2-MATOME.synctex.gz.
+Transcript written on 2-MATOME.log.
+Latexmk: Getting log file 'out/2-MATOME.log'
+Latexmk: Examining 'out/2-MATOME.fls'
+Latexmk: Examining 'out/2-MATOME.log'
+Latexmk: Log file says output to '2-MATOME.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: All targets (out/2-MATOME.pdf) are up-to-date
+
