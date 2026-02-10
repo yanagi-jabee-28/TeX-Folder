@@ -18,6 +18,25 @@ Sub LaTeXToWordMath_XITS()
 
     Set rng = ActiveDocument.Content
 
+    ' Convert display equations $$...$$ first to avoid double-processing
+    With rng.Find
+        .ClearFormatting
+        .Text = "\$\$([!$]@)\$\$"
+        .MatchWildcards = True
+        .Wrap = wdFindStop
+
+        Do While .Execute
+            Set mathRng = ActiveDocument.Range(Start:=rng.Start + 2, End:=rng.End - 2)
+            rng.Text = mathRng.Text
+            rng.OMaths.Add rng
+            rng.OMaths(1).BuildUp
+            rng.OMaths(1).Type = wdOMathDisplay
+            rng.Collapse Direction:=wdCollapseEnd
+        Loop
+    End With
+
+    Set rng = ActiveDocument.Content
+
     With rng.Find
         .ClearFormatting
         .Text = "\$([!$]@)\$"
