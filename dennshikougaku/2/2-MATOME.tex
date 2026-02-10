@@ -30,6 +30,76 @@
   \item \textbf{式の導出}: タウンゼント理論などは等比級数の和へ落とし込むことが鍵。過程を書けることを重視。
 \end{enumerate}
 
+\chapter{真空中の電子の運動（電位分布・静電界）}
+\section{電位分布と電界の基本}
+\begin{itemize}
+  \item 電界と電位: $E = -\dfrac{dV}{dx}$（1次元）
+  \item 電束密度: $D=\epsilon_0 E$（真空中）
+  \item 空間電荷密度: $\rho$ [C/m$^3$]
+\end{itemize}
+
+\section{ポアッソン・ラプラス方程式}
+\begin{itemize}
+  \item ポアッソン方程式: $\nabla^2 V = -\dfrac{\rho}{\epsilon_0}$
+  \item ラプラス方程式（$\rho=0$）: $\nabla^2 V = 0$
+\end{itemize}
+
+\section{平行平板電極の電位分布}
+\subsection{空間電荷なし}
+$y,z$ 方向の変化を無視すると
+\begin{equation}
+  \frac{\partial^2 V}{\partial x^2} = 0
+\end{equation}
+境界条件 $V(0)=0$, $V(D)=V_a$ より
+\begin{equation}
+  V = \frac{V_a}{D}x, \qquad E_x = -\frac{V_a}{D}.
+\end{equation}
+
+\subsection{空間電荷あり（$\rho\neq 0$ の場合）}
+ポアッソン方程式
+\begin{equation}
+  \frac{d^2 V}{dx^2} = -\frac{\rho}{\epsilon_0}
+\end{equation}
+を解く必要がある。講義資料の例として $\rho=-kx^{-1/2}$ を仮定すると、
+\begin{equation}
+  \frac{d^2 V}{dx^2} = \frac{k}{\epsilon_0}x^{-1/2}
+\end{equation}
+となり、積分して
+\begin{equation}
+  \frac{dV}{dx} = \frac{2k}{\epsilon_0}x^{1/2} + C_1,
+  \qquad V = \frac{4k}{3\epsilon_0}x^{3/2} + C_1 x + C_2.
+\end{equation}
+境界条件で整理した結果は資料の式に従うが、重要なのは\textbf{電位分布が直線ではなく下に凸になる}点である（空間電荷が電位を押し下げる）。
+
+\section{静電界中の電子の運動}
+\subsection{運動方程式}
+\begin{equation}
+  m\frac{d\vec{v}}{dt} = -e\vec{E}
+\end{equation}
+平行平板（$E_x=-V_a/D$）で初速度0なら
+\begin{equation}
+  \frac{d^2 x}{dt^2} = \frac{e}{m}\frac{V_a}{D},\quad
+  v_x = \frac{e}{m}\frac{V_a}{D}t,\quad
+  x = \frac{1}{2}\frac{e}{m}\frac{V_a}{D}t^2.
+\end{equation}
+到達時間（走行時間）は
+\begin{equation}
+  \tau = \sqrt{\frac{2m}{eV_a}}\,D.
+\end{equation}
+
+\subsection{電子ボルトと速度}
+エネルギー保存より
+\begin{equation}
+  \frac{1}{2}mv^2 = eV,\qquad v=\sqrt{\frac{2eV}{m}}.
+\end{equation}
+
+\section{静電偏向（CRT の基本式）}
+加速電圧 $V_0$、偏向板長さ $l$、間隔 $d$、偏向電圧 $V$、スクリーンまでの距離 $L$ のとき、
+\begin{equation}
+  y_1 = \frac{eVlL}{2dV_0}.
+\end{equation}
+偏向感度は $V_0$ に反比例する。
+
 \chapter{静磁界中の電子の運動（計算・導出）}
 \section{出題ポイント}
 運動方程式から加速度・速度・位置・軌跡（円運動・螺旋運動）を導く。
@@ -57,9 +127,46 @@
 速度の分解: $v_{\perp}=v\sin\theta,\; v_{\parallel}=v\cos\theta$.\
 $ v_{\perp}$ 成分は円運動（半径 $r=\dfrac{m(v\sin\theta)}{eB}$）、$v_{\parallel}$ は等速直線運動。
 
-\chapter{気体分子の電離現象（説明）}
+\section{一様磁界中の周期と角周波数}
+\begin{equation}
+  T = \frac{2\pi m}{eB},\qquad \omega_c = \frac{eB}{m}.
+\end{equation}
+
+\section{静電磁界中（$\vec{E}\perp\vec{B}$）の運動}
+直交電磁界では運動方程式が連立となり、軌跡はサイクロイドになる。代表解は
+\begin{equation}
+  x = \frac{A}{\omega_c^2}(1-\cos\omega_c t),\quad
+  y = \frac{A}{\omega_c^2}(\omega_c t-\sin\omega_c t),
+\end{equation}
+ただし $A=\dfrac{eV_a}{mD}$、$\omega_c=\dfrac{eB}{m}$。
+
+\chapter{気体中の放電と電離（説明）}
 \section{出題ポイント}
 3 種類の電離を区別して説明できること.
+
+\section{電離・励起・発光の基本}
+\begin{itemize}
+  \item 電離: 外部から $eV_i$ 以上のエネルギーを与えると電子が飛び出し、原子は $+$ イオンとなる。
+  \item 基底状態: 軌道電子のエネルギーが最低の状態。
+  \item 電離電圧: 電離エネルギー $eV_i$ に対応する電圧 $V_i$。
+  \item 励起: $eV_i$ 未満のエネルギーで軌道が高い準位へ遷移。
+  \item 発光: 励起状態から基底状態へ戻るとき、$\Delta E = h\nu$ を放射。
+\end{itemize}
+
+\section{準安定電圧と電離電圧（代表値）}
+\noindent\small
+\begin{tabularx}{\linewidth}{YYYY}
+\hline
+\textbf{気体} & \textbf{元素記号} & \textbf{準安定電圧 [V]} & \textbf{電離電圧 [V]}\\
+\hline
+ヘリウム & He & 19.81 & 24.580 \\
+ネオン & Ne & 16.62 & 21.559 \\
+アルゴン & Ar & 11.53 & 15.755 \\
+キセノン & Xe & 8.28 & 12.127 \\
+水銀 & Hg & 4.67 & 10.434 \\
+\hline
+\end{tabularx}
+\normalsize\par
 
 % 自動幅（X 列のみ）に任せつつ、表を少しだけ縮めて余白は自動に任せる
 % - 使用幅は \linewidth にし、フォントサイズを小さくして overfull を防ぐ
@@ -85,6 +192,43 @@ $ v_{\perp}$ 成分は円運動（半径 $r=\dfrac{m(v\sin\theta)}{eB}$）、$v_
 \noindent\textbf{光電離}\mbox{}\\
 外来光（紫外線など）を吸収して電離が起きる現象。条件は $h\nu\ge W$ で、放電の種火（初期電子）を供給する。
 
+\section{電離の要因と消滅}
+\begin{itemize}
+  \item 要因: 自然放射線・宇宙線・核種壊変由来の放射線など。
+  \item 電離プロセス: 気体分子 $\to$ 電子 $+$ 陽イオン。
+  \item 消滅: 拡散・再結合により電子と陽イオンが消滅。
+\end{itemize}
+
+\section{放電の電圧-電流特性（低圧気体）}
+電圧上昇で暗電流 $\to$ タウンゼント放電 $\to$ グロー放電 $\to$ アーク放電の順に遷移する。
+\begin{itemize}
+  \item 暗電流: $10^{-15}$--$10^{-10}$ A 程度。外因（光・放射線）が遮断されると停止。
+  \item タウンゼント放電: $10^{-10}$--$10^{-5}$ A 程度。電圧 $V_s$ で急増。
+  \item グロー放電: $10^{-4}$--$10^{-1}$ A 程度。電圧はほぼ一定。
+  \item アーク放電: $10^0$--$10^2$ A 以上。電圧が数十 V まで低下。
+\end{itemize}
+
+\section{重要グラフ（描画対策）}
+以下のグラフは概形を描けるようにしておくこと。
+\begin{itemize}
+  \item \textbf{放電の $V$--$I$ 特性}: 横軸 $V$、縦軸 $\log I$。暗電流（一定）→タウンゼント（立ち上がり）→グロー（定電圧）→アーク（低電圧・大電流）。
+  \item \textbf{パッシェン曲線}: 横軸 $p\ell$、縦軸 $V_c$。下に凸の U 字型で最小値を持つ。
+  \item \textbf{電位分布}: 空間電荷なし（直線）と空間電荷あり（下に凸）の比較。
+\end{itemize}
+
+\section{暗電流と電子なだれ}
+光電子放出や自然放射線で生じた電子が微弱電流を形成する。電界が強くなると衝突電離が進み、電子数が
+$2,4,8,\ldots$ と指数的に増加する（電子なだれ）。
+
+\subsection*{補足：電子とイオンの運動}
+\begin{itemize}
+  \item 質量比: $m_p / m_e \approx 1836$。
+  \item 陽イオンは電子に比べて質量が大きく加速されにくいため、初期の衝突電離（$\beta$ 作用）は小さく、$\alpha$ 作用が支配的となる（$\alpha \gg \beta$）。
+\end{itemize}
+
+\section{グロー放電の空間構造（名称）}
+アストン暗部、陰極グロー、陰極暗部、負グロー、ファラデー暗部、陽光柱。発光色は気体に依存。
+
 \chapter{タウンゼントの理論と火花放電の条件（導出）}
 \section{定義と記号}
 $\alpha$ : 単位長あたりに作られる電子・正イオン対数（一次増幅）\\
@@ -100,9 +244,10 @@ $\ell$ : 電極間距離,\; $n_0$ : 陰極から出た初期電子数
 \begin{equation}
   \gamma n_0(e^{\alpha\ell}-1).
 \end{equation}
-この過程が繰り返されると全通過電子数 $N$ は無限等比級数となり、
+この過程が無限に繰り返されると、全通過電子数 $N$ は初項 $n_1$、公比 $\gamma(e^{\alpha\ell}-1)$ の無限等比級数となる。
 \begin{equation}
-  N = \frac{n_0 e^{\alpha\ell}}{1-\gamma(e^{\alpha\ell}-1)}.
+  N = n_1 + n_1[\gamma(e^{\alpha\ell}-1)] + n_1[\gamma(e^{\alpha\ell}-1)]^2 + \cdots
+    = \frac{n_1}{1-\gamma(e^{\alpha\ell}-1)}.
 \end{equation}
 分母がゼロになると発散して火花放電が起きるため、タウンゼントの発火条件は
 \begin{equation}
@@ -149,22 +294,23 @@ $\ell$ : 電極間距離,\; $n_0$ : 陰極から出た初期電子数
 \section{パッシェンの法則（説明）}
 放電開始電圧 $V_c$ は $p\ell$ の関数であり、ある $p\ell$ で最小値（パッシェン・ミニマム）を持つ。
 
-\subsection{物理的説明（要点）}
-\begin{itemize}
-  \item $p\ell$ が大きい側: 分子密度が高く電子がすぐ散逸するため、電離に必要なエネルギーを与えにくい → 高い電圧が必要。
-  \item $p\ell$ が小さい側: 衝突相手が少なく効率的な電離が起きにくい → 高い電圧が必要。
-\end{itemize}
+\subsection{物理的理由（記述対策）}
+$V_c$ が最小値（パッシェン・ミニマム）を持つ理由は、電子のエネルギー獲得と衝突回数のトレードオフによる。
+\begin{description}
+  \item[右側（$p\ell$ 大 / 高気圧）] 分子密度が高く平均自由行程が短い。電子は加速される前に衝突し、電離に必要なエネルギーを得にくい $\to$ $V_c$ 上昇。
+  \item[左側（$p\ell$ 小 / 低気圧）] 電子は十分加速されるが、分子密度が低すぎて衝突回数が不足する $\to$ $V_c$ 上昇。
+\end{description}
 
 \chapter{グロー放電を利用した機器}
 \section{動作原理（要点）}
 グロー放電は低〜中圧の気体中で、電子・イオンの局所的な衝突電離と再結合により安定な放電輝線（発光）を維持する現象である。電子温度は比較的低く、放電は管壁近傍に集中することが多い。
 
-\subsection{代表的な機器と用途}
+\subsection{代表的な機器と用途（名称中心）}
 \begin{itemize}
-  \item \textbf{ネオン管（ネオンサイン）}: 希ガスの輝線を直接利用する低圧封入管。色は封入ガスと蛍光体で決まる。
-  \item \textbf{蛍光灯}: グロー放電で水銀蒸気を励起し発生する紫外線を蛍光体で可視光に変換する。
-  \item \textbf{プラズマディスプレイ（PDP）}: 微小セル内のグロー放電で紫外線を発生させ、各セルの蛍光体を発光させる（マイクロセル単位でスイッチング）。
-  \item \textbf{スパッタリング（薄膜堆積）}: 低圧アルゴン雰囲気でグロー放電を発生させ、アルゴンイオンをターゲットに衝突させて材料原子をはじき出す（物理蒸着）。
+  \item \textbf{ネオン管（ネオンサイン）}: 希ガスの発光を利用する低圧封入管。
+  \item \textbf{蛍光灯}: グロー放電による紫外線を蛍光体で可視光に変換。
+  \item \textbf{プラズマディスプレイ（PDP）}: グロー放電を表示に利用する方式（詳細は講義範囲に合わせる）。
+  \item \textbf{スパッタリング（薄膜堆積）}: 低圧放電を用いる薄膜形成法（詳細は講義範囲に合わせる）。
 \end{itemize}
 
 \subsection{代表的仕様（概数・試験で押さえる点）}
@@ -192,12 +338,12 @@ $\ell$ : 電極間距離,\; $n_0$ : 陰極から出た初期電子数
 \section{動作原理（要点）}
 アーク放電は高電流密度・高温度で電流が流れる状態で、電子衝突と熱電子放出が支配的となる。プラズマ温度は非常に高く（数千〜万 K）、電極近傍での熱的・電気的作用が顕著である。
 
-\subsection{代表的な機器と用途}
+\subsection{代表的な機器と用途（名称中心）}
 \begin{itemize}
-  \item \textbf{アーク溶接}: 電極と母材間のアークにより金属を局所的に融解して接合する。電流は数十〜数百 A、電圧は数十 V 程度。
-  \item \textbf{アーク炉}: 大電流アークで高温を作り、鉄スクラップ等を溶解する（製鉄用途）。
-  \item \textbf{高輝度放電ランプ（HID）}: 水銀や金属ハライドを用いたアーク放電で高効率・高輝度の光源を実現（スタジアム灯など）。
-  \item \textbf{遮断器のアーク消弧}: 開閉時に発生するアークを短時間で消弧する技術（ガス置換、磁場で引き延ばして細断、アークチャンバで冷却等）。
+  \item \textbf{アーク溶接}: アークで金属を局所的に融解して接合する。
+  \item \textbf{アーク炉}: 大電流アークで高温を作り金属を溶解する。
+  \item \textbf{高輝度放電ランプ（HID）}: アーク放電を用いた高輝度光源。
+  \item \textbf{遮断器のアーク消弧}: 開閉時のアークを消弧する技術（詳細は講義範囲に合わせる）。
 \end{itemize}
 
 \subsection{代表的仕様（概数・試験で押さえる点）}
