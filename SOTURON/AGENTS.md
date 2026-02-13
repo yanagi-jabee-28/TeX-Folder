@@ -55,6 +55,30 @@
     *   得られた知見の要約。
     *   今後の課題。
 
+### 2.3 参照資料（必須）
+以下の資料を参照し、該当内容は本文または参考文献に反映せよ。
+
+*   資料/5_TA2_Paul_Huray_formatted.md
+*   資料/9_215_formatted.md
+*   資料/18_167_formatted.md
+*   資料/25_357_formatted.md
+*   資料/134_R2_formatted.md
+*   資料/2010_14_60_formatted.md
+*   資料/000952936_formatted.md
+*   資料/BCDRマニュアル.md
+*   資料/BCDRマニュアル導電率.md
+*   資料/Broadband_Permittivity_Measurements_up_to_170-GHz_Using_Balanced-Type_Circular-Disk_Resonator_Excited_by_0.8-mm_Coaxial_Line_formatted.md
+*   資料/D-Band_Material_Characterization_Using_a_Balanced-Type_Circular_Disk_Resonator_With_Waveguide_Interfaces_and_a_Modified_Full-Wave_Modal_Analysis_formatted.md
+*   資料/E40&S19_02 - Seiya Kido_formatted.md
+*   資料/Fukuda-Giho(2021.10)_formatted.md
+*   資料/jemc_basic_03_formatted.md
+*   資料/Materialwissenschaft Werkst - 2025 - Maier - Characterizing surface roughness evolution in copper conductors under_formatted.md
+*   資料/otr235_r04_formatted.md
+*   資料/Transmission_Line_formatted.md
+*   資料/V9N1P99_formatted.md
+*   資料/卒業論文大日方快至_formatted.md
+*   資料/卒論北原さん_formatted.md
+
 ## 3. Execution Process (思考プロセス)
 
 出力前に以下のステップを内部実行せよ。
