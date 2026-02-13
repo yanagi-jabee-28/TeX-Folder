@@ -58,6 +58,8 @@
   inkscapearea=page,
   width=0.8\textwidth
 }
+% 回り込み図（図の横に本文を配置）
+\usepackage{wrapfig}
 
 % ===== ハイパーリンク設定（最後に読み込む） =====
 \usepackage[hidelinks]{hyperref}
@@ -115,7 +117,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 
 これまで本研究室では，誘電損失の評価が主に行われ，その評価手法は確立されてきた\cite{tomioka2025}．しかし，周波数が高くなると，電流は導体の表面の浅い部分に集中する．この現象は表皮効果と呼ばれる．高周波ほど電流が表面の浅い部分により強く集中し，配線表面のわずかな粗さ（凸凹）が損失を増大させることが知られている\cite{fukuda2021transmission}．銅箔は基板への接着性を高めるために粗化処理されている．
 
-本研究の目的は，この「表面粗さを含めた導体損失」を実測し，実際の信号減衰にどれくらい影響するかを明らかにすることである．
+本研究の目的は，表面粗さを含めた導体損失を実測により評価し，実際の信号減衰にどれくらい影響するかを明らかにすることである．本実験では表面粗さの詳細なモデル化はまだ行っていない．
 
 %==============================================================================
 % 第2章 測定原理および方法
@@ -127,25 +129,54 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 
 この手法の最大のメリットは，以下の手順を踏むことで，「材料の損失（誘電損失）」と「表面の損失（導体損失）」を切り分けて評価できる点にある．
 
-\begin{figure}[htbp]
-  \centering
-  % 元のファイルにある図を使用（構成図などが適しているが、ここではS21の例を表示）
-  \includesvg[width=0.85\textwidth]{image/セグメントスイープ3.svg}
-  \caption{BCDR法による共振波形の測定例（S$_{21}$）}
-  \label{fig:segment_sweep}
-\end{figure}
-
 \section{測定手順}
 
 測定は以下の2ステップで行った．
 
 \subsection*{ステップ1：基準となる誘電率の測定}
-まず，基板（MEGTRON6）の銅箔をすべて溶かして取り除き，代わりに表面が平滑な標準銅円板（直径\SI{15}{\milli\metre}）を挟んで測定を行う．
-標準銅板の性質は既知であるため，この測定で基板そのものの「比誘電率（$\varepsilon_r'$）」と「誘電正接（$\tan\delta$）」を正確に決めることができる．
+
+\noindent % 段落下げを防止
+% 左側：テキスト（幅55%）
+\begin{minipage}[t]{0.55\textwidth}
+  \vspace{0pt} % 上揃えのための調整
+  まず，基板（MEGTRON6）の銅箔をすべて溶かして取り除き，代わりに表面が平滑な標準銅円板（直径\SI{15}{\milli\metre}）を挟んで測定を行う．標準銅板の性質は既知であるため，この測定で基板そのものの「比誘電率（$\varepsilon_r'$）」と「誘電正接（$\tan\delta$）」を正確に決めることができる．
+\end{minipage}%
+\hfill % 左右の間のスペースを自動調整
+% 右側：画像（幅40%）
+\begin{minipage}[t]{0.40\textwidth}
+  \vspace{0pt} % 上揃えのための調整
+  \centering
+  \includesvg[width=\linewidth]{image/BCDR説明1-1.svg}
+  % minipage内でキャプションを使うための呪文
+  \makeatletter\def\@captype{figure}\makeatother
+  \caption{プロセス1の概略}
+  \label{fig:process1}
+\end{minipage}
+
+\vspace{1cm} % ステップ間の余白
 
 \subsection*{ステップ2：実効導電率の測定}
-次に，基板にもともと付いている銅箔を円形（直径\SI{15}{\milli\metre}）に残したサンプルを作成し，同様に測定を行う．
-ステップ1で基板の性質はわかっているので，ステップ1とステップ2の結果の「差」を見れば，元々の銅箔が持っている表面粗さの影響（実効導電率 $\sigma_{\mathrm{eff}}$）を逆算することができる．
+
+\noindent
+% 左側：テキスト
+\begin{minipage}[t]{0.55\textwidth}
+  \vspace{0pt}
+  次に，基板にもともと付いている銅箔を円形（直径\SI{15}{\milli\metre}）に残したサンプルを作成し，同様に測定を行う．ステップ1で基板の性質はわかっているので，ステップ1とステップ2の結果の「差」を見れば，元々の銅箔が持っている表面粗さの影響（実効導電率 $\sigma_{\mathrm{eff}}$）を逆算することができる．
+\end{minipage}%
+\hfill
+% 右側：画像
+\begin{minipage}[t]{0.40\textwidth}
+  \vspace{0pt}
+  \centering
+  \includesvg[width=\linewidth]{image/BCDR説明1-2.svg}
+  \makeatletter\def\@captype{figure}\makeatother
+  \caption{プロセス2の概略}
+  \label{fig:process2}
+\end{minipage}
+
+\par \vspace{1em}
+\FloatBarrier
+
 
 %==============================================================================
 % 第3章 測定結果
@@ -158,8 +189,14 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}}
 基板材料（MEGTRON6）の比誘電率$\varepsilon_r'$は，周波数が変わっても約3.59でほぼ一定であった（図\ref{fig:permittivity}）．一方で，損失の割合を示す誘電損失 $\varepsilon_r'\tan\delta$ は，周波数が高くなるにつれて増加する傾向が見られた（図\ref{fig:dielectricloss}）．
 
 \begin{figure}[htbp]
-  \centering
-  \includesvg[width=0.85\textwidth]{data/permittivity.svg}
+  \centering  % 元のファイルにある図を使用（構成図などが適しているが、ここではS21の例を表示）
+  \includesvg[width=0.85\textwidth]{image/セグメントスイープ3.svg}
+  \caption{BCDR法による共振波形の測定例（S$_{21}$）}
+  \label{fig:segment_sweep}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering  \includesvg[width=0.85\textwidth]{data/permittivity.svg}
   \caption{MEGTRON6の比誘電率 $\varepsilon_r'$（mean, n=20）}
   \label{fig:permittivity}
 \end{figure}
