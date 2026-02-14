@@ -6,7 +6,7 @@
 % ===== ドキュメントクラス =====
 \documentclass[
   a4paper,
-  11pt,
+  12pt,
   openany % 章の開始を右ページに限定しない（空白ページ削減）
 ]{ltjsreport}
 
@@ -53,6 +53,11 @@
 \usepackage{xurl}
 \urlstyle{same}
 \usepackage[super,square,sort&compress]{natbib} % 引用設定
+% ===== セクション直後の字下げを有効化 =====
+% セクション直後の最初の段落にも字下げを入れる
+\usepackage{indentfirst}
+% 字下げ幅を明示（標準的な英字幅に合わせて1emを使用）
+\setlength{\parindent}{1em}
 
 % ===== SVG画像埋め込み =====
 \usepackage{svg}
@@ -60,6 +65,16 @@
   inkscapearea=page,
   width=0.8\textwidth
 }
+
+% ===== 見出し間隔調整 =====
+% 章／節の前後余白を小さくして空白を詰める
+\usepackage{titlesec}
+% 章番号と章タイトルを同一行に表示（例: 第1章　序論）
+\titleformat{\chapter}[hang]{\normalfont\LARGE\bfseries}{第\arabic{chapter}章}{1em}{}
+% 値の順序: {left}{before-sep}{after-sep}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
 
 % ===== ハイパーリンク設定 =====
 \usepackage[hidelinks]{hyperref}
@@ -102,7 +117,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
 
 \section{研究背景}
 近年，人工知能（AI）やクラウドサービスの普及に伴い，データセンター等で扱うデータ通信量は飛躍的に増大している．これに対応するため，5G（第5世代移動通信システム）やその先の6G通信においては，\SI{100}{\giga\hertz}帯におよぶ高周波帯域の利用が検討されている\cite{soumu2022beyond5g}．
-このような高周波帯域では，信号がプリント基板を伝搬する際の減衰が顕著となるため，通信機器のハードウェア設計において，基板材料の損失特性を正確に把握することが不可欠となっている．
+このような高周波帯域では，信号がプリント基板を伝搬する際の減衰が大きくなるため，通信機器のハードウェア設計において，基板材料の損失特性を正確に把握することが不可欠となっている．
 
 \section{本研究の目的と課題}
 プリント基板における信号減衰の主な要因として，以下の2点が挙げられる．
@@ -111,7 +126,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
     \item \textbf{導体損失}：配線導体（銅箔）の電気抵抗による損失．
 \end{enumerate}
 
-これまで本研究室では，主に誘電損失に着目し，低損失基板の複素誘電率測定および評価を行ってきた\cite{tomioka2025}．しかし，高周波帯域では表皮効果により電流が導体表面に集中するため，導体表面の微細な凹凸（表面粗さ）が電流経路を実質的に長くし，導体損失を増大させることが知られている\cite{fukuda2021transmission}．一般に，プリント基板の銅箔は樹脂との密着性を高めるために粗化処理が施されているが，従来の評価ではこの表面粗さによる損失の影響が十分に考慮されていなかった．
+これまで本研究室では，主に誘電損失に着目し，低損失基板の複素誘電率測定および評価を行ってきた\cite{kato2019broadband,obikata2024freespace}．しかし，高周波帯域では表皮効果により電流が導体表面に集中するため，導体表面の微細な凹凸（表面粗さ）が電流経路を実質的に長くし，導体損失を増大させることが知られている\cite{fukuda2021transmission}．一般に，プリント基板の銅箔は樹脂との密着性を高めるために粗化処理が施されているが，従来の評価ではこの表面粗さによる損失の影響が十分に考慮されていなかった．
 
 そこで本研究では，平衡形円板共振器法（Balanced Disk Circular Resonator: BCDR法）を用いて，低損失基板材料（MEGTRON6）の複素誘電率と，表面粗さを考慮した実効的な導電率を測定する．得られた測定値から伝送線路の減衰定数を算出し，表面粗さが信号伝送特性に与える影響を明らかにすることを目的とする．
 
@@ -172,7 +187,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
 
 \section{複素誘電率の測定結果}
 MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性を図\ref{fig:permittivity}および図\ref{fig:dielectricloss}に示す．
-比誘電率 $\varepsilon_r'$ は，測定周波数範囲において約 3.59 でほぼ一定の値を示した．一方，誘電損失 $\varepsilon_r'\tan\delta$ は周波数の上昇とともに増加する傾向が確認された．これは一般的な誘電体材料に見られる傾向と一致しており，BCDR法により妥当な測定が行われたと考えられる．
+比誘電率 $\varepsilon_r'$ は，測定周波数範囲において約 3.59 でほぼ一定の値を示した．一方，誘電損失 $\varepsilon_r'\tan\delta$ は周波数の上昇とともに増加する傾向が確認された．これは先行研究の報告と一致しており，BCDR法による測定が妥当であることを示している\cite{kato2019broadband,obikata2024freespace}．
 
 \begin{figure}[H]
   \centering
