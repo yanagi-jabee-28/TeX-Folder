@@ -125,6 +125,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
     \item \textbf{誘電損失}：基板の絶縁材料（誘電体）内部での熱エネルギーへの変換による損失．
     \item \textbf{導体損失}：配線導体（銅箔）の電気抵抗による損失．
 \end{enumerate}
+複素誘電率は $\varepsilon_r^* = \varepsilon_r^{\prime} - j\varepsilon_r^{\prime\prime}$ と表され，誘電正接は $\tan\delta = \varepsilon_r^{\prime\prime}/\varepsilon_r^{\prime}$ で定義される．
 
 これまで本研究室では，主に誘電損失に着目し，低損失基板の複素誘電率測定および評価を行ってきた\cite{kato2019broadband,obikata2024freespace}．しかし，高周波帯域では表皮効果により電流が導体表面に集中するため，導体表面の微細な凹凸（表面粗さ）が電流経路を実質的に長くし，導体損失を増大させることが知られている\cite{fukuda2021transmission}．一般に，プリント基板の銅箔は樹脂との密着性を高めるために粗化処理が施されているが，従来の評価ではこの表面粗さによる損失の影響が十分に考慮されていなかった．
 
@@ -138,6 +139,7 @@ Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
 \section{BCDR法の概要}
 本研究では，測定手法としてBCDR法を用いた．BCDR法は，2枚の誘電体基板で円板状の共振器を挟み込み，特定の共振モード（TM$_{0m0}$モード）を励振させることで，材料定数を測定する手法である\cite{kato2019broadband}．
 本手法は，非放射性の共振モードを利用するため外部への放射損失が極めて小さく，高いQ値が得られるという特徴がある．これにより，低損失な材料であっても高精度な測定が可能である．また，導体損失と誘電損失を分離して評価できる利点を有する．
+共振器の損失分離は近似的に $1/Q = 1/Q_d + 1/Q_c + 1/Q_r$ と表され，低損失誘電体では $Q_d \approx 1/\tan\delta$ とみなせる．
 BCDR法の利点は次のとおりである．TM$_{0m0}$モードだけを選択的に使うため不要なモードの影響を抑えやすい．円板電極の直径を変えるだけで共振周波数が大きく変わるので，同じ装置で広い周波数帯を測れる\cite{kato2019broadband}．試料は板状のまま挟み込むだけでよく，形状加工の手間が小さい．
 
 \section{測定手順}
@@ -228,6 +230,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 \alpha_c &= 0.17372 \times \frac{\sqrt{\pi f \mu_0 \rho}}{Z_0 W} \quad [\mathrm{dB}/20\mathrm{mm}] \\
 \alpha_d &= 0.17372 \times \frac{f \pi}{c} \cdot \varepsilon_r^{\prime\prime} \frac{\sqrt{\varepsilon_{re}}(\varepsilon_{re} - 1)}{\varepsilon_{re}(\varepsilon_r^{\prime} - 1)} \quad [\mathrm{dB}/20\mathrm{mm}]
 \end{align}
+これらの式はマイクロストリップ線路の準TEM近似に基づく近似式である．
 ここで，$H$ は基板厚さ，$W$ は導体幅，$T$ は導体厚さ，$f$ は周波数，$\mu_0$ は真空の透磁率，$\rho$ は導体の体積抵抗率，$c$ は真空中の光速，$\varepsilon_r^{\prime}$ は比誘電率の実部，$\varepsilon_r^{\prime\prime}$ は比誘電率の虚部，$\varepsilon_{re}$ は実効比誘電率，$Z_0$ は特性インピーダンス，$\alpha_c$ は導体損失による減衰定数，$\alpha_d$ は誘電体損失による減衰定数，$\alpha$ は全減衰定数である．
 ここでは，導電率が周波数によらず一定であると仮定した「理想モデル」と，本研究で得られた実効導電率を用いた「実測モデル」を比較した．
 その結果，周波数が高くなるほど両者の差が大きくなり，実測モデルの方が減衰が大きいことが分かった．これは，従来の設計手法のように導電率を定数として扱うと，実際の信号損失を過小評価する危険性があることを示唆している．
