@@ -98,8 +98,8 @@
 % ===== ドキュメント情報 =====
 \title{BCDRを用いた基板の誘電損失と\\
 表面粗さによる電気伝導性の測定\\[0.5cm]
-\large Measurement of Substrate Dielectric Loss and Surface-Roughness-Induced\\
-Effective Conductivity Using a Balanced-Type Circular-Disk Resonator (BCDR)}
+\large Measurement of Substrate Dielectric Loss and Electrical Conductivity\\
+considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCDR)}
 
 \author{長野工業高等専門学校\\
 電気電子工学科　5年　栁原 魁人\\
@@ -216,14 +216,6 @@ Sパラメータの大きさは，広いダイナミックレンジを扱うた�
 \end{equation}
 で換算する\cite{jemc_basic_03_s-parameter}．例えば，$|S_{ij}|=1$は\SI{0}{\decibel}，$|S_{ij}|=1/\sqrt{2}$は\SI{-3}{\decibel}に対応する．
 
-\subsection{差動伝送とミックストモードSパラメータ}
-差動線路の評価では，シングルエンドのSパラメータを拡張したミックストモードSパラメータが用いられる\cite{jemc_basic_03_s-parameter}．差動伝送では，2本の導体に逆相の信号を印加するディファレンシャルモードが主信号であり，同相成分はコモンモードとして扱われる．4ポートVNAで得られたシングルエンドSパラメータから変換することで，差動モードとコモンモードの伝送特性やモード変換量を評価できる．代表的な成分は以下のとおりである．
-\begin{itemize}
-  \item $S_{dd21}$：差動透過係数．差動信号が差動信号として出力される割合を表す．
-  \item $S_{cc21}$：コモンモード透過係数．コモンモード信号の伝搬のしやすさを表す．
-  \item $S_{dc21}$，$S_{cd21}$：差動-コモンモード間の変換量．線路の不平衡性の指標となる．
-\end{itemize}
-
 \section{VNAの基礎}
 ベクトルネットワークアナライザ（VNA）は，$S$ パラメータの振幅と位相を測定する装置である\cite{fujii2010}．振幅のみを測るスカラーネットワークアナライザと比べて，位相情報まで取得できる点が特徴である．高周波帯では理想的な整合状態を作ることが難しい．そこでVNAは測定系のずれを補正し，校正で基準面を決めて測定する\cite{fujii2010}．
 
@@ -240,7 +232,11 @@ BCDR法では測定された共振周波数 $f_r$ と無負荷Q値 $Q_u$ から�
 \begin{equation}
   \frac{1}{Q_u} = \frac{1}{Q_d} + \frac{1}{Q_c} + \frac{1}{Q_r}
 \end{equation}
-ここで，$Q_r$ は放射損失に対応するQ値である．BCDR法は非放射性モードを用いるため，$Q_r$ は十分大きく，近似的に無視できる．導体損失は導体の表皮深さ $\delta_s$ を用いて近似できる\cite{kato2019broadband,kato2023dband}．
+ここで，$Q_r$ は放射損失に対応するQ値である．BCDR法は非放射性モードを用いるため，$Q_r$ は十分大きく，近似的に無視できる．そのため，導体損失成分は
+\begin{equation}
+  \frac{1}{Q_c} \approx \frac{1}{Q_u} - \frac{1}{Q_d}
+\end{equation}
+と表せる．$Q_d$ は標準銅円板を用いた測定で得た誘電体損失に対応するQ値，$Q_u$ は実基板（粗化面を含む）で得た無負荷Q値である．導体損失は導体の表皮深さ $\delta_s$ を用いて近似できる\cite{kato2019broadband,kato2023dband}．
 \begin{align}
   \delta_s &= \frac{1}{\sqrt{\pi f_r \mu_0 \sigma}} \\
   Q_c &= \frac{t_c}{\delta_s} = t_c \sqrt{\pi f_r \mu_0 \sigma} \\
@@ -335,7 +331,7 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \end{figure}
 
 \section{減衰定数への影響}
-得られた複素誘電率と実効導電率を用いて，伝送線路における減衰定数 $\alpha$ を算出した結果を図\ref{fig:attenuation}に示す．
+得られた複素誘電率と実効導電率を用いて，伝送線路における減衰定数 $\alpha$ を算出した結果を図\ref{fig:attenuation}に示す．本研究では線路長 $l = \SI{20}{\milli\metre}$ の損失を評価対象としたため，減衰定数の単位を \si{\neper\per\metre} から \si{\decibel/20\milli\metre} へ換算する係数 $K = 20 \log_{10} e \times 0.02 \approx 0.17372$ を用いた．
 高周波領域では，減衰定数 $\alpha$ は導体損失による項 $\alpha_c$ と誘電損失による項 $\alpha_d$ の和として，次式のように近似できる\cite{transmission_line_theory}．
 \begin{equation}
   \alpha \approx \alpha_c + \alpha_d = \frac{R}{2}\sqrt{\frac{C}{L}} + \frac{G}{2}\sqrt{\frac{L}{C}}
@@ -350,7 +346,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 \end{align}
 これらの式はマイクロストリップ線路の準TEM近似に基づく近似式である．
 ここで，$H$ は基板厚さ，$W$ は導体幅，$T$ は導体厚さ，$f$ は周波数，$\mu_0$ は真空の透磁率，$\rho$ は導体の体積抵抗率，$c$ は真空中の光速，$\varepsilon_r^{\prime}$ は比誘電率の実部，$\varepsilon_r^{\prime\prime}$ は比誘電率の虚部，$\varepsilon_{re}$ は実効比誘電率，$Z_0$ は特性インピーダンス，$\alpha_c$ は導体損失による減衰定数，$\alpha_d$ は誘電体損失による減衰定数，$\alpha$ は全減衰定数である．導体の体積抵抗率は導電率の逆数であり，$\rho = 1/\sigma$ の関係がある．本研究の実測モデルでは，この $\sigma$ に測定から得られた $\sigma_{\mathrm{eff}}(f)$ を代入した．
-ここでは，導電率を周波数に依らず一定とした「理想モデル」と，実測した実効導電率を用いた「実測モデル」を比較した．その結果，周波数が高くなるほど両者の差が大きくなり，実測モデルの方が減衰が大きいことが分かった．これは，導電率を定数として扱うと，実際の信号損失を過小評価するおそれがあることを示している．
+ここでは，導電率を周波数に依らず一定とした「理想モデル」と，実測した実効導電率を用いた「実測モデル」を比較した．理想モデルでは純銅の直流導電率 $\sigma = \SI{5.8e7}{\siemens\per\metre}$ を用いた．その結果，周波数が高くなるほど両者の差が大きくなり，実測モデルの方が減衰が大きいことが分かった．これは，導電率を定数として扱うと，実際の信号損失を過小評価するおそれがあることを示している．
 
 \begin{figure}[H]
   \centering
