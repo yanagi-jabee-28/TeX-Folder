@@ -1,0 +1,575 @@
+% !TEX program = lualatex
+%==============================================================================
+% プリアンブル (Preamble)
+%==============================================================================
+
+% ===== ドキュメントクラス =====
+\documentclass[
+  a4paper,
+  12pt,
+  openany % 章の開始を右ページに限定しない（空白ページ削減）
+]{ltjsreport}
+
+%------------------------------------------------------------------------------
+% パッケージ読み込み
+%------------------------------------------------------------------------------
+
+% ===== フォント・言語設定 (LuaLaTeX専用) =====
+\usepackage{luatexja-fontspec}
+\usepackage{lmodern}
+
+% ===== レイアウト関連 =====
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{needspace}
+\usepackage{graphicx}
+\usepackage{here} % 図の強制配置用
+
+% 図の配置パラメータ調整
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{1}
+\setcounter{totalnumber}{3}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+
+% ===== 数式・物理単位関連 =====
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\sisetup{
+  detect-all = true,
+  per-mode = symbol,
+  range-phrase = {--},
+  exponent-product = \times,
+  separate-uncertainty = true
+}
+\usepackage{bm}
+
+% ===== その他 =====
+\usepackage{url}
+\usepackage{xurl}
+\urlstyle{same}
+\usepackage[super,square,sort&compress]{natbib} % 引用設定
+% ===== セクション直後の字下げを有効化 =====
+% セクション直後の最初の段落にも字下げを入れる
+\usepackage{indentfirst}
+% 字下げ幅を明示（標準的な英字幅に合わせて1emを使用）
+\setlength{\parindent}{1em}
+
+% ===== SVG画像埋め込み =====
+\usepackage{svg}
+\svgsetup{
+  inkscapearea=page,
+  width=0.8\textwidth
+}
+% CSV表出力用
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.17} % pgfplots/pgfplotstable の互換設定
+
+% ===== 見出し間隔調整 =====
+% 章／節の前後余白を小さくして空白を詰める
+\usepackage{titlesec}
+% 章番号と章タイトルを同一行に表示（例: 第1章　序論）
+\titleformat{\chapter}[hang]{\normalfont\LARGE\bfseries}{第\arabic{chapter}章}{1em}{}
+% 値の順序: {left}{before-sep}{after-sep}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+
+% ===== ハイパーリンク設定 =====
+\usepackage[hidelinks]{hyperref}
+% Prevent hyperref warnings for common math tokens in PDF strings
+\pdfstringdefDisableCommands{%
+  \def\varepsilon{epsilon}%
+  \def\varepsilon_r{eps_r}%
+  \def\tan{tan}%
+  \def\delta{delta}%
+  \def\sigma{sigma}%
+  \def\mathrm#1{#1}%
+}
+
+%------------------------------------------------------------------------------
+% 各種設定
+%------------------------------------------------------------------------------
+
+% ===== フォント設定 =====
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\setmainjfont[Renderer=HarfBuzz]{Yu Mincho}
+\setsansjfont[Renderer=HarfBuzz]{Yu Gothic}
+
+% ===== 本文フォントサイズ調整 =====
+\makeatletter
+\renewcommand\normalsize{\@setfontsize\normalsize{13pt}{19pt}}
+\makeatother
+
+% ===== ドキュメント情報 =====
+\title{BCDRを用いた基板の誘電損失と\\
+表面粗さによる電気伝導性の測定\\[0.5cm]
+\large Measurement of Substrate Dielectric Loss and Electrical Conductivity\\
+considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCDR)}
+
+\author{長野工業高等専門学校\\
+電気電子工学科　5年　栁原 魁人\\
+（指導教員 春日 貴志）}
+\date{令和7年2月}
+
+%==============================================================================
+% ドキュメント本体
+%==============================================================================
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+%==============================================================================
+% 第1章 序論
+%==============================================================================
+\chapter{序論}
+
+\section{研究背景}
+近年，人工知能（AI）やクラウドサービスの普及に伴い，データセンター等で扱うデータ通信量は増大している．これに対応するため，5G（第5世代移動通信システム）やその先のBeyond 5G/6Gでは，高周波帯域の利用とネットワークの高度化が政策として進められている\cite{soumu2024beyond5g}．
+
+高周波帯域では，信号がプリント基板を伝搬する際の減衰が大きくなるため，通信機器のハードウェア設計において，基板材料の損失特性を正確に把握することは欠かせない．高周波電子部品の設計では，材料定数の測定結果が機器の性能評価に直結するため，測定の信頼性を意識した評価が必要である\cite{kato2012dielectric}．
+
+プリント基板は，誘電体基材の両面に銅箔を貼り合わせた構造である．銅箔は樹脂との密着性を高めるために表面を粗化したものが使われる．高周波では電流が導体の表面近くに集中するため，粗化による微細な凹凸が電流の流れに影響しやすくなる．
+
+また，導体損失は表皮効果の影響を強く受けるため，信号周波数が高くなるほど電流が導体表面に集中する．表皮深さは周波数の増加で浅くなり，例えば \SI{3}{\giga\hertz} で約 \SI{1.1}{\micro\metre}，\SI{30}{\giga\hertz} で約 \SI{0.36}{\micro\metre} と報告されている\cite{fukuda2021laser}．このように表皮深さが浅くなると，銅箔表面の微細な凹凸が電流の流れ方に影響し，導体損失が増える可能性がある．この可能性を測定で確かめることが，本研究の目的である．
+
+\section{基板材料の概要と本研究の対象}
+基板材料は，用途と使用周波数に応じて使い分ける必要がある．一般的な電子機器では，価格と加工性の観点からFR-4が広く使われる．一方，高周波用途では，誘電損失が小さい材料が必要になる\cite{hirakawa_pwb_materials}．
+
+ミリ波帯で候補となる材料として，LCP，PPE，PTFE，MPI，LTCCが報告されている\cite{okude_mmwave_materials}．ただし，これらの材料はコストと加工性が同一ではないため，目的に合わせた選定が必要である\cite{okude_mmwave_materials}．
+
+本研究では，低損失基板材料としてMEGTRON6を測定対象とし，この材料の複素誘電率と実効導電率を評価する\cite{obikata2024freespace,megtron6datasheet}．他の基板材料は本研究で測定していないため，背景情報としてのみ扱う．
+
+\section{本研究の目的と課題}
+プリント基板における信号減衰の主な要因として，以下の2点が挙げられる．
+\begin{enumerate}
+    \item \textbf{誘電損失}：基板の絶縁材料（誘電体）内部での熱エネルギーへの変換による損失．
+    \item \textbf{導体損失}：配線導体（銅箔）の電気抵抗による損失．
+\end{enumerate}
+
+複素誘電率は $\varepsilon_r^* = \varepsilon_r^{\prime} - j\varepsilon_r^{\prime\prime}$ と表され，誘電正接は $\tan\delta = \varepsilon_r^{\prime\prime}/\varepsilon_r^{\prime}$ で定義される．
+
+これまで本研究室では，主に誘電損失に着目し，低損失基板の複素誘電率測定と評価を行ってきた\cite{kato2019broadband,obikata2024freespace}．
+
+一方，高周波帯では表皮効果により電流が導体表面に集中する．そのため，導体表面の微細な凹凸（表面粗さ）が実際の電流経路を長くし，導体損失を増加させることが報告されている\cite{fukuda2021laser}．
+
+プリント基板の銅箔には，樹脂との密着性を高めるための粗化処理が施されることが多い．しかし従来の評価では，この表面粗さが損失へ与える影響を十分に考慮できていなかった．
+
+高周波信号が導体を伝搬する際，電流は導体内部に均一に流れず，表面近傍に集中する表皮効果が顕著になる．電流が流れる領域の深さの目安である表皮深さ $\delta$ は次式で与えられる\cite{fukuda2021laser}．
+\begin{equation}
+  \delta = \frac{1}{\sqrt{\pi f \mu \sigma}}
+\end{equation}
+．
+ここで，$f$ は周波数，$\mu$ は透磁率，$\sigma$ は導電率である．式から，周波数が高くなるほど表皮深さが浅くなり，導体表面の凹凸が電流経路に与える影響が大きくなることが分かる．
+
+そこで本研究では，平衡形円板共振器（Balanced Circular Disk Resonator: 以下，BCDR）法を用いて，低損失基板材料（MEGTRON6）の複素誘電率と，表面粗さを考慮した実効的な導電率を測定する．得られた測定値から伝送線路の減衰定数を算出し，表面粗さが信号伝送特性に与える影響を明らかにすることを目的とする．
+
+%==============================================================================
+% 第2章 測定基礎（Sパラメータとベクトルネットワークアナライザ計測）
+%==============================================================================
+\chapter{測定基礎（Sパラメータとベクトルネットワークアナライザ計測）}
+\section{誘電分極と複素誘電率}
+誘電体に電界を加えると，物質中の正電荷と負電荷がわずかにずれ，内部に電気双極子が生じる．この電荷のずれを誘電分極という．電界を取り除くと，双極子は元の状態へ戻るため，分極は消える．
+
+誘電分極は，主に次の3種類に分けられる．
+
+電子分極は，原子核に対して電子雲がわずかにずれることで生じる分極である．ほとんどすべての物質で見られる．
+
+イオン分極は，正イオンと負イオンが逆方向へ変位することで生じる分極である．イオン結晶のように，イオン配列を持つ材料で現れやすい．
+
+双極子分極（配向分極）は，永久双極子が電界方向へ向きをそろえることで生じる分極である．水のように分子自体が双極子を持つ材料で大きくなる．
+
+交流電界では，分極の応答が電界変化より遅れる．この遅れにより，電界エネルギーの一部が熱へ変換される．これが誘電損失の原因である．
+
+分極ごとに追随できる周波数範囲は異なる．周波数を上げると，まず双極子分極が追随しにくくなり，次にイオン分極が追随しにくくなる．さらに高い周波数では，主に電子分極が寄与する．そのため，比誘電率は周波数の増加とともに小さくなる傾向を示す．
+
+この周波数依存性を表すため，本研究では電束密度 $D$ と電界 $E$ の関係を複素誘電率で表す．
+\begin{equation}
+  D = \epsilon^* E = \epsilon_0 (\varepsilon_r' - j\varepsilon_r'') E
+\end{equation}
+．
+ここで，$\varepsilon_r'$ は比誘電率の実部，$\varepsilon_r''$ は誘電損失である．
+誘電損失の大きさは，誘電正接 $\tan\delta = \varepsilon_r''/\varepsilon_r'$ で表す．
+本研究では，これらの量を測定して基板材料の損失特性を評価する．
+
+\section{導体損失の原因}
+導体損失は，導体の抵抗によって電力が熱に変わる現象である．直流では電流が導体の断面全体に広がるが，高周波では表皮効果により電流が表面付近に集中するため，有効な電流の通り道が狭くなり，抵抗が大きくなりやすい\cite{transmission_line_theory}．
+表皮効果が強くなる周波数帯では，電流が流れる領域の深さ（表皮深さ）が浅くなるため，導体表面の状態が損失に影響しやすい\cite{fukuda2021laser}．このため，導体損失の評価では表皮効果と表面粗さの両方を意識する必要がある．
+
+\section{代表的な複素誘電率測定法}
+複素誘電率の測定法は，測定したい周波数帯や材料損失の大小に応じて選択される．本研究で関係が深い代表例を，集中定数法，反射伝送法，共振法の3つに分けて述べる\cite{kato2012dielectric}．
+
+\subsection{集中定数法}
+試料を平行平板電極で挟み，コンデンサとして扱う方法である．静電容量 $C$ とコンダクタンス $G$ を測定し，試料寸法を用いて $\varepsilon_r'$ と $\varepsilon_r''$ を求める．このとき，測定系は並列の $C$ と $G$ の等価回路で表されるとみなす．低周波帯で用いられるが，高周波では電極間隔が無視できず，空隙（エアギャップ）や端部の電界の広がりが誤差の原因になりやすい．
+
+\subsection{反射伝送法（Sパラメータ法）}
+試料に電磁波を入射し，反射波と透過波の振幅と位相をベクトルネットワークアナライザ（Vector Network Analyzer: 以下，VNA）で測定して複素誘電率を求める方法である．導波管や同軸線路内に試料を置く方法に加え，アンテナを用いるフリースペース法がある．高周波では分布定数回路として扱う必要があり，Sパラメータから逆算して材料定数を求める．広帯域の特性が得られる一方で，低損失材料では信号変化が小さく，測定誤差の影響を受けやすい．
+
+\subsection{共振法}
+共振器に試料を入れ，共振周波数の変化とQ値の低下から $\varepsilon_r'$ と $\tan\delta$ を求める方法である．共振現象を使うため低損失材料でも高い精度で測定できるが，測定できる周波数は共振器の構造で決まる．本研究のBCDR法は共振法に分類され，高次モードを使うことで広い周波数帯で測定できる点が特徴である．
+
+\section{Sパラメータの基礎}
+高周波回路の評価では，電圧や電流を直接測ることが難しい．これは，測定プローブが回路へ影響を与えることや，導波管のように電圧・電流の定義が曖昧になる伝送路があるためである．そこで，高周波領域では回路網をブラックボックスとして捉え，入射波と反射・透過波の関係から特性を評価する方法が広く使われる．この関係を表す量がSパラメータ（Scattering parameter）である\cite{jemc_basic_03_s-parameter,fujii2010}．
+
+\subsection{Sパラメータの定義}
+2ポート回路網を例に，ポート1，2への入射波を$a_1, a_2$，出射波を$b_1, b_2$とすると，Sパラメータは次式で定義される\cite{fujii2010,jemc_basic_03_s-parameter}．
+\begin{equation}
+\begin{bmatrix} b_1 \\ b_2 \end{bmatrix} =
+\begin{bmatrix} S_{11} & S_{12} \\ S_{21} & S_{22} \end{bmatrix}
+\begin{bmatrix} a_1 \\ a_2 \end{bmatrix}
+\label{eq:s_matrix}
+\end{equation}
+．
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.8\textwidth]{image/S21sementsweep.svg}
+  \caption{2ポート回路網におけるSパラメータの概念図（今回の実験で得たSパラメータの例）}
+  \label{fig:s_parameter_concept}
+\end{figure}
+
+各Sパラメータは，一方のポートを整合終端（反射が生じない終端）にし，他方から信号を入射したときの比で定義される．整合終端とは，ポートの入力インピーダンスを基準インピーダンス $Z_0$ に一致させ，反射を起こさない終端である．実験では通常50\,\si{\ohm}のダミーロードを用いる．整合が不十分だと反射が混ざり，Sパラメータが歪むため注意が必要である．例えば，ポート2を整合終端にして$a_2=0$とすると，
+\begin{itemize}
+  \item $S_{11} = \left. \frac{b_1}{a_1} \right|_{a_2=0}$：反射係数．入射波のうちポート1に戻る成分の比である．
+  \item $S_{21} = \left. \frac{b_2}{a_1} \right|_{a_2=0}$：透過係数．入射波のうちポート2へ通過する成分の比である．
+\end{itemize}
+と表される．$S_{11}$はリターンロス，$S_{21}$は挿入損失として評価されることが多い．
+
+\subsection{基準インピーダンスとデシベル表記}
+Sパラメータは基準インピーダンス $Z_0$ に対する相対量として定義される．高周波測定では $Z_0=\SI{50}{\ohm}$ が一般的である\cite{jemc_basic_03_s-parameter}．あるポートの入力インピーダンスを$Z_{in}$とすると，反射係数は
+\begin{equation}
+  S_{11} = \frac{Z_{in} - Z_0}{Z_{in} + Z_0}
+\end{equation}
+で表される．よって，$Z_{in}=Z_0$のとき$S_{11}=0$となり，反射が生じない．
+
+Sパラメータの大きさは，広いダイナミックレンジを扱うためデシベル（dB）で表すことが多い．Sパラメータは電力比の平方根に相当するため，
+\begin{equation}
+  S_{ij} \, [\mathrm{dB}] = 20 \log_{10} |S_{ij}|
+\end{equation}
+で換算する\cite{jemc_basic_03_s-parameter}．例えば，$|S_{ij}|=1$は\SI{0}{\decibel}，$|S_{ij}|=1/\sqrt{2}$は\SI{-3}{\decibel}に対応する．
+
+\section{ベクトルネットワークアナライザ（VNA）の基礎}
+ベクトルネットワークアナライザ（VNA）は，$S$ パラメータの振幅と位相を測定する装置である\cite{fujii2010}．振幅のみを測るスカラーネットワークアナライザと比べて，位相情報まで取得できる点が特徴である．高周波帯では理想的な整合状態を作ることが難しい．そこでVNAは測定系のずれを補正し，校正で基準面を決めて測定する\cite{fujii2010}．
+
+%==============================================================================
+% 第3章 BCDR法と測定方法
+%==============================================================================
+\chapter{BCDR法と測定方法}
+
+\section{BCDR法の概要}
+本研究では平衡形円板共振器（Balanced Circular Disk Resonator: BCDR）法を用いた．BCDR法は，2枚の誘電体基板で円板状の共振器を挟み，特定の共振モード（TM$_{0m0}$モード）を励振して材料定数を測定する手法である\cite{kato2019broadband}．
+この共振モードは外部への放射が小さいため，放射損失を抑えた高いQ値が得られる．その結果，低損失材料でも精度よく測定できる．また，導体損失と誘電体損失を分けて評価しやすい．
+共振器の損失は近似的に $1/Q = 1/Q_d + 1/Q_c + 1/Q_r$ と表され，低損失誘電体では $Q_d \approx 1/\tan\delta$ とみなせる．
+BCDR法では共振周波数 $f_r$ と無負荷Q値 $Q_u$ を測定し，これらから材料定数を求める．
+Q値は共振周波数と半値幅の比で定義され，
+\begin{equation}
+  Q = \frac{f_r}{\Delta f_{1/2}}
+\end{equation}
+．
+ここで $\Delta f_{1/2}$ は共振ピークの半値幅（半電力幅，-3\,dB 帯域）を表す．
+無負荷Q値は共振器内の全損失を表し，誘電体損失と導体損失は次式のように分離して扱う\cite{kato2019broadband,kato2023dband}．
+\begin{equation}
+  \frac{1}{Q_u} = \frac{1}{Q_d} + \frac{1}{Q_c} + \frac{1}{Q_r}
+\end{equation}
+．
+ここで，$Q_r$ は放射損失に対応するQ値である．BCDR法は非放射性モードを用いるため，$Q_r$ は十分大きく，近似的に無視できる．そのため，導体損失成分は
+\begin{equation}
+  \frac{1}{Q_c} \approx \frac{1}{Q_u} - \frac{1}{Q_d}
+\end{equation}
+と表せる．$Q_d$ は標準銅円板を用いた測定で得た誘電体損失に対応するQ値，$Q_u$ は実基板（粗化面を含む）で得た無負荷Q値である．導体損失は導体の表皮深さ $\delta_s$ を用いて近似できる\cite{kato2019broadband,kato2023dband}．
+\begin{align}
+  \delta_s &= \frac{1}{\sqrt{\pi f_r \mu_0 \sigma}} \\
+  Q_c &= \frac{t_c}{\delta_s} = t_c \sqrt{\pi f_r \mu_0 \sigma} \\
+  R_s &= \sqrt{\frac{\pi f_r \mu_0}{\sigma}}
+\end{align}
+．
+ここで，$t_c$ は円板電極の厚さ，$\sigma$ は導電率，$\mu_0$ は真空の透磁率である．
+BCDR法の利点は次のとおりである．TM$_{0m0}$モードだけを選択的に使うため不要なモードの影響を抑えやすい．円板電極の直径を変えるだけで共振周波数が大きく変わるので，同じ装置で広い周波数帯を測定できる\cite{kato2019broadband}．試料は板状のまま挟み込むだけでよく，形状加工の手間が小さい．
+
+\section{測定手順}
+本研究では，以下の2段階のプロセスにより，基板の誘電特性と導体の実効導電率を分離して測定した．
+
+\subsection{基準複素誘電率の測定}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    まず，エッチング処理により銅箔をすべて除去したMEGTRON6基板を用意し，表面が平滑な標準銅円板（直径 \SI{15}{\milli\metre}）を挟み込んでBCDR測定を行う（図\ref{fig:process1}）．今後は直径 \SI{18}{\milli\metre} の円板でも測定を行い，円板径の違いが測定結果に与える影響を確認する必要がある．また，同一の円板径だけで測定すると不要モードが重なってピーク形状が崩れる場合があるため，円板径を変えた測定系でも確認する必要がある\cite{keysight2023bcdr}．
+    標準銅円板の導電率は既知であるため，この測定により基板材料自体の比誘電率 $\varepsilon_r'$ および誘電正接 $\tan\delta$ を算出できる．
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    \centering
+    \includesvg[width=\linewidth]{image/BCDR説明1-1.svg} % ファイル名は適宜変更してください
+    \vspace{2mm}
+    \caption{標準銅円板を用いた誘電特性の測定概要}
+    \label{fig:process1}
+  \end{minipage}
+\end{figure}
+
+\subsection{実効導電率の測定}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    次に，測定対象の基板にあらかじめ付着している銅箔を，直径 \SI{15}{\milli\metre} の円板状に残すようにエッチング処理を行い，同様にBCDR測定を行う（図\ref{fig:process2}）．
+        ここでは，前節で求めた基板の複素誘電率を既知の値として用いる．標準銅円板を用いた場合と比較してQ値が低下する分を，銅箔の表面粗さに起因する損失として捉え，実効導電率 $\sigma_{\mathrm{eff}}$ を逆算する．
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    \centering
+    \includesvg[width=\linewidth]{image/BCDR説明1-2.svg} % ファイル名は適宜変更してください
+    \vspace{2mm}
+    \caption{実基板の銅箔を用いた実効導電率の測定概要}
+    \label{fig:process2}
+  \end{minipage}
+\end{figure}
+
+具体的には，次式の関係を用いる\cite{kato2019broadband,kato2023dband}．
+\begin{align}
+  \frac{1}{Q_c} &\approx \frac{1}{Q_u} - \frac{1}{Q_d}
+\end{align}
+．
+ここで，$Q_u$ は測定された無負荷Q値，$Q_d$ は基準測定で得られた誘電体損失に対応するQ値である．粗化表面の試料で得られた $Q_u$ から $Q_d$ を差し引いて $Q_c$ を求め，$R_s$ を介して $\sigma_{\mathrm{eff}}$ を算出する．
+
+\subsection{圧着と位置合わせの管理}
+BCDR法では，円板電極と試料の位置ずれや接触状態の違いが共振ピークの形に影響し，誘電正接と実効導電率の算出結果にも影響する．そのため，測定時は上下電極と試料をクランプで圧着し，トルクレンチで締め付け強さを管理した\,\cite{keysight2023bcdr}．円板電極はセンタリング用のリングシート（Shimシート）で位置決めし，円板の縁がシートに重ならないように合わせて，不要モードの励振を抑えた．また，試料の中心がずれると共振トレースが歪み，誘電正接が変動しやすいと報告されているため，位置合わせと圧着を複数回確認し，ピーク形状が安定した状態で本測定に入った\,\cite{keysight2023bcdr}．
+
+%==============================================================================
+% 第3章 測定結果と考察
+%==============================================================================
+\chapter{測定結果と考察}
+
+ベクトルネットワークアナライザ（Keysight N5222B）を用い，周波数 \SI{10}{\giga\hertz} から \SI{110}{\giga\hertz} の範囲で測定を行った．測定は複数日にわたり合計20回実施し，各周波数点は20回の平均値（誤差棒は標準偏差）で示す．
+
+本測定系は1mmコネクタで構成している．ただし，他の1.85mmコネクタ系の結果と比較しやすくするため，議論の周波数範囲は1.85mmコネクタの運用範囲である \SI{67}{\giga\hertz} 以下にそろえた\cite{totoku_microwave_cable}．また，\SI{67}{\giga\hertz} を超える帯域では，不要モードの重なりで共振ピーク形状が崩れる場合があった\cite{keysight2023bcdr,kato2019broadband}．
+
+\section{複素誘電率の測定結果}
+MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性を図\ref{fig:permittivity}および図\ref{fig:dielectricloss}に示す．
+比誘電率 $\varepsilon_r'$ は，測定周波数範囲において約 3.59 でほぼ一定の値を示した．一方，誘電損失 $\varepsilon_r'\tan\delta$ は周波数の上昇とともに増加する傾向が見られた．これは先行研究の報告と一致しており，BCDR法による測定が妥当であることを示している\cite{kato2019broadband,obikata2024freespace}．
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.8\textwidth]{data/permittivity.svg}
+  \caption[比誘電率 eps_r']{MEGTRON6の比誘電率 $\varepsilon_r'$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
+  \label{fig:permittivity}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.8\textwidth]{data/dielectricloss.svg}
+  \caption[誘電損失 eps_r' tan delta]{MEGTRON6の誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
+  \label{fig:dielectricloss}
+\end{figure}
+
+\section{実効導電率と表面粗さの影響}
+図\ref{fig:conductivity}に，算出した銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数特性を示す．以下では，\SI{67}{\giga\hertz} 以下の範囲に絞って議論する．銅の直流導電率（約 \SI{5.8e7}{\siemens\per\metre}）と比べると，低周波側では近い値を示す一方で，高周波側では直流導電率から離れた値になる．
+
+\SI{67}{\giga\hertz} 以下で見ると，\SI{12.66}{\giga\hertz} での $\sigma_{\mathrm{eff}}$ は約 $2.41\times10^7$ \si{\siemens\per\metre} であり，\SI{60}{\giga\hertz} 近傍では直流導電率より十分小さい値となる．この結果から，周波数が高いほど，導体損失を計算するときに導電率を一定値で扱うのは難しく，周波数ごとの値を使う必要があると分かる．
+
+この低下は，周波数上昇で表皮深さが小さくなり，電流が導体表面に集まりやすくなることと整合する．さらに，表面の凹凸により電流経路が長くなると，見かけの抵抗は大きくなる．ただし，本研究では銅箔表面の粗さパラメータ（$R_a, R_z, S_a$）を直接測定していないため，酸化膜や加工履歴の影響を完全には分離できていない．
+
+文献では，高周波用銅箔の表面粗さとして $S_a=\SIrange{0.04}{0.31}{\micro\metre}$，$Rz_{jis}=\SIrange{0.2}{1.0}{\micro\metre}$ が報告されている\cite{fukuda2021laser}．また，銅の表皮深さは \SI{10}{\giga\hertz} で約 \SI{0.66}{\micro\metre}，\SI{110}{\giga\hertz} で約 \SI{0.20}{\micro\metre} とされる．粗さの代表値と表皮深さが同程度になる条件では，表面形状が導体損失に影響しやすいという既報\cite{kido2023copper,roughness2023materials}と整合する．
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.8\textwidth]{data/conductivity.svg}
+  \caption[実効導電率 sigma_eff]{MEGTRON6銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
+  \label{fig:conductivity}
+\end{figure}
+
+\section{減衰定数への影響}
+得られた複素誘電率と実効導電率を用いて，伝送線路における減衰定数 $\alpha$ を算出した結果を図\ref{fig:attenuation}に示す．以下の比較も，\SI{67}{\giga\hertz} 以下の範囲を中心に述べる．本研究では線路長 $l = \SI{20}{\milli\metre}$ の損失を評価対象としたため，減衰定数の単位を \si{\neper\per\metre} から \si{\decibel/20\milli\metre} へ換算する係数 $K = 20 \log_{10} e \times 0.02 \approx 0.17372$ を用いた．
+高周波領域では，減衰定数 $\alpha$ は導体損失による項 $\alpha_c$ と誘電損失による項 $\alpha_d$ の和として，次式のように近似できる\cite{transmission_line_theory}．
+\begin{equation}
+  \alpha \approx \alpha_c + \alpha_d = \frac{R}{2}\sqrt{\frac{C}{L}} + \frac{G}{2}\sqrt{\frac{L}{C}}
+\end{equation}
+．
+ここで，$R, L, G, C$ は線路の一次定数（抵抗，インダクタンス，コンダクタンス，キャパシタンス）である．本研究で評価対象とするマイクロストリップ線路では，形状パラメータと材料定数を用いて次の近似式を用いた．
+\begin{align}
+Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0.8W + T} \right) \\
+\varepsilon_{re} &= \frac{\varepsilon_r^{\prime} + 1}{2} + \frac{\varepsilon_r^{\prime} - 1}{2} \left( 1 + \frac{10H}{W} \right)^{-\frac{1}{2}} \\
+\alpha &= \alpha_c + \alpha_d \\
+\alpha_c &= 0.17372 \times \frac{\sqrt{\pi f \mu_0 \rho}}{Z_0 W} \quad [\mathrm{dB}/20\mathrm{mm}] \\
+\alpha_d &= 0.17372 \times \frac{f \pi}{c} \cdot \varepsilon_r^{\prime\prime} \frac{\sqrt{\varepsilon_{re}}(\varepsilon_{re} - 1)}{\varepsilon_{re}(\varepsilon_r^{\prime} - 1)} \quad [\mathrm{dB}/20\mathrm{mm}]
+\end{align}
+．
+
+これらの式はマイクロストリップ線路の準TEM近似に基づく近似式である．
+ここで，$H$ は基板厚さ，$W$ は導体幅，$T$ は導体厚さ，$f$ は周波数，$\mu_0$ は真空の透磁率，$\rho$ は導体の体積抵抗率，$c$ は真空中の光速，$\varepsilon_r^{\prime}$ は比誘電率の実部，$\varepsilon_r^{\prime\prime}$ は比誘電率の虚部，$\varepsilon_{re}$ は実効比誘電率，$Z_0$ は特性インピーダンス，$\alpha_c$ は導体損失による減衰定数，$\alpha_d$ は誘電体損失による減衰定数，$\alpha$ は全減衰定数である．
+
+導体の体積抵抗率は導電率の逆数であり，$\rho = 1/\sigma$ の関係がある．本研究の実測モデルでは，この $\sigma$ に測定から得られた $\sigma_{\mathrm{eff}}(f)$ を代入した．
+
+ここでは，導電率を周波数に依らず一定とした「理想モデル」と，実測した実効導電率を用いた「実測モデル」を比較した．理想モデルでは純銅の直流導電率 $\sigma = \SI{5.8e7}{\siemens\per\metre}$ を用いた．\SI{67}{\giga\hertz} 以下の範囲では，周波数が上がるにつれて両者の差は広がり，実測モデルの方が減衰は大きくなる．この結果から，導電率を一定と仮定した計算では，実際の信号損失を小さく見積もってしまう可能性があることが分かる．
+
+\SI{60}{\giga\hertz} 近傍では，実測モデルの導体損失は理想モデルより大きかった．差は，\SI{54.85}{\giga\hertz} で約 $4.08\,\mathrm{dB}/20\mathrm{mm}$（$0.204\,\mathrm{dB}/\mathrm{mm}$），\SI{65.33}{\giga\hertz} で約 $3.72\,\mathrm{dB}/20\mathrm{mm}$（$0.186\,\mathrm{dB}/\mathrm{mm}$）であり，\SI{60}{\giga\hertz} 近傍では約 $0.19\sim0.20\,\mathrm{dB}/\mathrm{mm}$ の損失増加となった．
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=0.8\textwidth]{image/attenuation_graph.svg}
+  \caption[減衰定数 alpha]{伝送線路の減衰定数 $\alpha$ の周波数特性比較．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
+  \label{fig:attenuation}
+\end{figure}
+
+%==============================================================================
+% 第4章 結論
+%==============================================================================
+\chapter{結論}
+
+本研究では，BCDR法を用いて高周波用基板材料（MEGTRON6）の誘電特性および導体特性の評価を行った．
+
+なお，結論で示す比較と考察は，1.85mmコネクタ系との比較のしやすさと，共振ピーク形状の安定性を考えて，\SI{67}{\giga\hertz} 以下のデータを中心にまとめた\cite{totoku_microwave_cable,keysight2023bcdr,kato2019broadband}．
+
+比誘電率と誘電正接の測定に加え，表面粗さの影響を含んだ実効導電率を周波数依存性として求めた結果，以下の知見が得られた．
+
+\begin{enumerate}
+  \item 比誘電率 $\varepsilon_r'$ は測定帯域で $3.5826\sim3.6115$ の範囲であり，変動幅は約 $0.029$ であった．一方，誘電損失 $\varepsilon_r'\tan\delta$ は，\SI{12.69}{\giga\hertz} の $0.0171$ から \SI{107.01}{\giga\hertz} の $0.0335$ へ増加し，約 $1.96$ 倍となった．
+  \item 実効導電率 $\sigma_{\mathrm{eff}}$ は，\SI{12.66}{\giga\hertz} で約 $2.41\times10^7$ \si{\siemens\per\metre}，\SI{106.92}{\giga\hertz}（\SI{110}{\giga\hertz}帯）で約 $3.66\times10^5$ \si{\siemens\per\metre} であり，約 $1/66$ に低下した．この低下は，表皮効果によって電流が表面に集中し，表面の凹凸によって電流経路が長くなる影響が大きいと考えられる．
+  \item 減衰計算では，理想導電率モデルよりも実測モデルの方が損失は大きかった．\SI{60}{\giga\hertz} 近傍での追加損失は約 $0.19\sim0.20\,\mathrm{dB}/\mathrm{mm}$（$3.72\sim4.08\,\mathrm{dB}/20\mathrm{mm}$）であり，周波数が高くなるほど差が大きくなった．
+\end{enumerate}
+
+本研究で見られた $\sigma_{\mathrm{eff}}$ の低下は，表面粗さの影響を強く示す結果である．ただし，本研究では粗さを直接測定していないため，「表面粗さだけが原因」とは断定できない．今後は，酸化状態や加工履歴の影響も含めて，要因を切り分けて評価する必要がある．
+
+表面粗さが低い銅箔では，触針式粗さ計の先端が細かな凹凸に十分届かず，形状を正確に追いにくい場合があるため，共焦点レーザー顕微鏡を用いた三次元評価が有効とされている\cite{fukuda2021laser}．
+
+今後は，レーザー顕微鏡などを用いて銅箔表面の三次元粗さパラメータ（算術平均高さ $S_a$ など）を測定し，その指標と$\sigma_{\mathrm{eff}}$の関係を定量的に評価することが課題である\cite{fukuda2021laser}．さらに，Hurayの球状突起モデル\cite{huray2010}などを参照し，測定された表面形状から導体損失を理論的に予測するモデルの構築も検討する．
+
+以上の結果より，ミリ波帯などの高周波回路設計においては，基板の誘電損失だけでなく，表面粗さを考慮した導体損失の評価が不可欠であると結論できる．
+
+今後は，FDTD法による電磁界解析を行い，表面粗さをモデル化した条件で，導体損失の計算式がどの程度妥当かを検証する予定である．これにより，本測定手法と測定結果の妥当性を，より確かに確認できると考える．
+
+%==============================================================================
+% 謝辞
+%==============================================================================
+\chapter*{謝辞}
+\addcontentsline{toc}{chapter}{謝辞}
+
+本研究の実施と本論文の作成にあたり，春日貴志教授には終始にわたるご指導を賜った．ここに深謝する．
+日頃の研究活動では，専攻科の内藤さくら氏，小池凛氏をはじめとする研究室の皆様から多くの助言を賜った．謝意を表する．
+また，本研究の審査をご担当いただいた姜天水教授に感謝する．
+
+%------------------ 付録（CSVデータ表）をここに挿入 ------------------
+\appendix
+\chapter{付録：測定データ（平均 ± 標準偏差, n=20）}
+本付録には本文で示した代表図の元データ（平均値と標準偏差）を記載する．
+
+\section{比誘電率（付録表A.1）}
+\needspace{16\baselineskip}
+\begin{samepage}
+\begin{center}
+  \textbf{付録表 A.1: 比誘電率}\\[2mm]
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Mean_epsilon_r,Std_epsilon_r},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/Mean_epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,column type={c},sci,precision=3},
+  columns/Std_epsilon_r/.style={column name=標準偏差,column type={c},sci,precision=3}
+]{data/permittivity_epsilon_r_avg_20251210_174318.csv}
+\endgroup
+\end{center}
+\end{samepage}
+
+\section{誘電損失（付録表A.2）}
+\needspace{16\baselineskip}
+\begin{samepage}
+\begin{center}
+  \textbf{付録表 A.2: 誘電損失}\\[2mm]
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  create on use/eps_tand/.style={create col/expr={\thisrow{Mean_dielectric_loss}/1000}},
+  create on use/eps_tand_std/.style={create col/expr={\thisrow{Std_dielectric_loss}/1000}},
+  columns={Frequency_GHz,eps_tand,eps_tand_std},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/eps_tand/.style={column name=\ensuremath{\varepsilon_r^{\prime}\tan\delta} ,column type={c},sci,precision=3},
+  columns/eps_tand_std/.style={column name=標準偏差,column type={c},sci,precision=3}
+]{data/dielectricloss_dielectric_loss_avg_20251210_174234.csv}
+\endgroup
+\end{center}
+\end{samepage}
+
+\section{実効導電率（付録表A.3）}
+\needspace{16\baselineskip}
+\begin{samepage}
+\begin{center}
+  \textbf{付録表 A.3: 実効導電率}\\[2mm]
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  create on use/sigma_sperm/.style={create col/expr={\thisrow{Mean_conductivity}*1e7}},
+  create on use/sigma_sperm_std/.style={create col/expr={\thisrow{Std_conductivity}*1e7}},
+  columns={Frequency_GHz,sigma_sperm,sigma_sperm_std},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/sigma_sperm/.style={column name=\ensuremath{\sigma_{\mathrm{eff}}} (S/m),column type={c},sci,precision=3},
+  columns/sigma_sperm_std/.style={column name=標準偏差 (S/m),column type={c},sci,precision=3}
+]{data/conductivity_conductivity_avg_20251210_174401.csv}
+\endgroup
+\end{center}
+\end{samepage}
+
+\section{伝送線路算出結果（付録表A.4）}
+\needspace{20\baselineskip}
+\begin{samepage}
+\begin{center}
+  \textbf{付録表 A.4a: 伝送線路特性（インピーダンス・減衰）}\\[2mm]
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Z0,Alpha_Conductor,Alpha_Dielectric,Alpha_Total},
+  columns/Frequency_GHz/.style={column name={\shortstack{周波数\\(GHz)}},column type={c},sci,precision=3},
+  columns/Z0/.style={column name={\shortstack{\ensuremath{Z_0}\\(\si{\ohm})}},column type={c},sci,precision=3},
+  columns/Alpha_Conductor/.style={column name={\shortstack{\ensuremath{\alpha_c}\\(dB/20mm)}},column type={c},sci,precision=3},
+  columns/Alpha_Dielectric/.style={column name={\shortstack{\ensuremath{\alpha_d}\\(dB/20mm)}},column type={c},sci,precision=3},
+  columns/Alpha_Total/.style={column name={\shortstack{\ensuremath{\alpha}\\(dB/20mm)}},column type={c},sci,precision=3}
+]{data/calculated_attenuation_result.csv}
+\endgroup
+\end{center}
+\end{samepage}
+
+\begin{samepage}
+\needspace{18\baselineskip}
+\begin{center}
+  \textbf{付録表 A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}\\[2mm]
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Sigma,TanD,Epsilon_r},
+  columns/Frequency_GHz/.style={column name={\shortstack{周波数\\(GHz)}},column type={c},sci,precision=3},
+  columns/Sigma/.style={column name={\shortstack{\ensuremath{\sigma}\\(S/m)}},column type={c},sci,precision=3},
+  columns/TanD/.style={column name={\shortstack{\ensuremath{\tan\delta}\\(無次元)}},column type={c},sci,precision=3},
+  columns/Epsilon_r/.style={column name={\shortstack{\ensuremath{\varepsilon_r^{\prime}}\\(無次元)}},column type={c},sci,precision=3}
+]{data/calculated_attenuation_result.csv}
+\endgroup
+\end{center}
+\end{samepage}
+
+%-----------------------------------------------------------------------
+
+%==============================================================================
+% 参考文献
+%==============================================================================
+\addcontentsline{toc}{chapter}{参考文献}
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
