@@ -351,6 +351,8 @@ BCDR法では，円板電極と試料の位置ずれや接触状態の違いが�
 
 ベクトルネットワークアナライザ（Keysight N5222B）を用い，周波数 \SI{10}{\giga\hertz} から \SI{110}{\giga\hertz} の範囲で測定を行った．測定は複数日にわたり合計20回実施し，各周波数点は20回の平均値（誤差棒は標準偏差）で示す．
 
+本測定系は1mmコネクタで構成している．ただし，他の1.85mmコネクタ系の結果と比較しやすくするため，議論の周波数範囲は1.85mmコネクタの運用範囲である \SI{67}{\giga\hertz} 以下にそろえた\cite{totoku_microwave_cable}．また，\SI{67}{\giga\hertz} を超える帯域では，不要モードの重なりで共振ピーク形状が崩れる場合があった\cite{keysight2023bcdr,kato2019broadband}．
+
 \section{複素誘電率の測定結果}
 MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性を図\ref{fig:permittivity}および図\ref{fig:dielectricloss}に示す．
 比誘電率 $\varepsilon_r'$ は，測定周波数範囲において約 3.59 でほぼ一定の値を示した．一方，誘電損失 $\varepsilon_r'\tan\delta$ は周波数の上昇とともに増加する傾向が見られた．これは先行研究の報告と一致しており，BCDR法による測定が妥当であることを示している\cite{kato2019broadband,obikata2024freespace}．
@@ -370,13 +372,13 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \end{figure}
 
 \section{実効導電率と表面粗さの影響}
-図\ref{fig:conductivity}に，算出した銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数依存性を示す．比較のために銅の直流導電率（約 \SI{5.8e7}{\siemens\per\metre}）と比べると，低周波域では近い値であるが，周波数の上昇とともに実効導電率は低下する．特に \SI{60}{\giga\hertz} 以上では，直流導電率の数分の一程度まで低下が見られた．
+図\ref{fig:conductivity}に，算出した銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数特性を示す．以下では，\SI{67}{\giga\hertz} 以下の範囲に絞って議論する．銅の直流導電率（約 \SI{5.8e7}{\siemens\per\metre}）と比べると，低周波側では近い値を示す一方で，高周波側では直流導電率から離れた値になる．
 
-定量的には，\SI{12.66}{\giga\hertz} での $\sigma_{\mathrm{eff}}$ は約 $2.41\times10^7$ \si{\siemens\per\metre}，\SI{106.92}{\giga\hertz}（\SI{110}{\giga\hertz}帯）では約 $3.66\times10^5$ \si{\siemens\per\metre} であり，約 $1/66$ に低下した．
+\SI{67}{\giga\hertz} 以下で見ると，\SI{12.66}{\giga\hertz} での $\sigma_{\mathrm{eff}}$ は約 $2.41\times10^7$ \si{\siemens\per\metre} であり，\SI{60}{\giga\hertz} 近傍では直流導電率より十分小さい値となる．この結果から，周波数が高いほど，導体損失を計算するときに導電率を一定値で扱うのは難しく，周波数ごとの値を使う必要があると分かる．
 
-この傾向は，周波数が上がると表皮深さが小さくなり，電流が導体表面に集中することが主な理由だと考えられる．さらに，表面の凹凸によって電流の通り道が長くなるため，見かけの抵抗が大きくなる可能性がある．ただし，本研究では銅箔表面の粗さパラメータ（$R_a, R_z, S_a$）を直接測定していないため，酸化膜や加工硬化など，ほかの要因の影響を完全には切り分けられていない．
+この低下は，周波数上昇で表皮深さが小さくなり，電流が導体表面に集まりやすくなることと整合する．さらに，表面の凹凸により電流経路が長くなると，見かけの抵抗は大きくなる．ただし，本研究では銅箔表面の粗さパラメータ（$R_a, R_z, S_a$）を直接測定していないため，酸化膜や加工履歴の影響を完全には分離できていない．
 
-この点を補うために文献を見ると，高周波用銅箔の表面粗さは $S_a=\SIrange{0.04}{0.31}{\micro\metre}$，$Rz_{jis}=\SIrange{0.2}{1.0}{\micro\metre}$ 程度と報告されている\cite{fukuda2021laser}．また，銅の表皮深さは \SI{10}{\giga\hertz} で約 \SI{0.66}{\micro\metre}，\SI{110}{\giga\hertz} で約 \SI{0.20}{\micro\metre} であり，粗さの大きさと同程度になる．この関係は，ミリ波帯で表面粗さが導体損失に効くという既報\cite{kido2023copper,roughness2023materials}とも一致する．
+文献では，高周波用銅箔の表面粗さとして $S_a=\SIrange{0.04}{0.31}{\micro\metre}$，$Rz_{jis}=\SIrange{0.2}{1.0}{\micro\metre}$ が報告されている\cite{fukuda2021laser}．また，銅の表皮深さは \SI{10}{\giga\hertz} で約 \SI{0.66}{\micro\metre}，\SI{110}{\giga\hertz} で約 \SI{0.20}{\micro\metre} とされる．粗さの代表値と表皮深さが同程度になる条件では，表面形状が導体損失に影響しやすいという既報\cite{kido2023copper,roughness2023materials}と整合する．
 
 \begin{figure}[H]
   \centering
@@ -386,7 +388,7 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \end{figure}
 
 \section{減衰定数への影響}
-得られた複素誘電率と実効導電率を用いて，伝送線路における減衰定数 $\alpha$ を算出した結果を図\ref{fig:attenuation}に示す．本研究では線路長 $l = \SI{20}{\milli\metre}$ の損失を評価対象としたため，減衰定数の単位を \si{\neper\per\metre} から \si{\decibel/20\milli\metre} へ換算する係数 $K = 20 \log_{10} e \times 0.02 \approx 0.17372$ を用いた．
+得られた複素誘電率と実効導電率を用いて，伝送線路における減衰定数 $\alpha$ を算出した結果を図\ref{fig:attenuation}に示す．以下の比較も，\SI{67}{\giga\hertz} 以下の範囲を中心に述べる．本研究では線路長 $l = \SI{20}{\milli\metre}$ の損失を評価対象としたため，減衰定数の単位を \si{\neper\per\metre} から \si{\decibel/20\milli\metre} へ換算する係数 $K = 20 \log_{10} e \times 0.02 \approx 0.17372$ を用いた．
 高周波領域では，減衰定数 $\alpha$ は導体損失による項 $\alpha_c$ と誘電損失による項 $\alpha_d$ の和として，次式のように近似できる\cite{transmission_line_theory}．
 \begin{equation}
   \alpha \approx \alpha_c + \alpha_d = \frac{R}{2}\sqrt{\frac{C}{L}} + \frac{G}{2}\sqrt{\frac{L}{C}}
@@ -407,7 +409,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 
 導体の体積抵抗率は導電率の逆数であり，$\rho = 1/\sigma$ の関係がある．本研究の実測モデルでは，この $\sigma$ に測定から得られた $\sigma_{\mathrm{eff}}(f)$ を代入した．
 
-ここでは，導電率を周波数に依らず一定とした「理想モデル」と，実測した実効導電率を用いた「実測モデル」を比較した．理想モデルでは純銅の直流導電率 $\sigma = \SI{5.8e7}{\siemens\per\metre}$ を用いた．その結果，周波数が高くなるほど両者の差が大きくなり，実測モデルの方が減衰が大きいことが分かった．これは，導電率を定数として扱うと，実際の信号損失を過小評価するおそれがあることを示している．
+ここでは，導電率を周波数に依らず一定とした「理想モデル」と，実測した実効導電率を用いた「実測モデル」を比較した．理想モデルでは純銅の直流導電率 $\sigma = \SI{5.8e7}{\siemens\per\metre}$ を用いた．\SI{67}{\giga\hertz} 以下の範囲では，周波数が上がるにつれて両者の差は広がり，実測モデルの方が減衰は大きくなる．この結果から，導電率を一定と仮定した計算では，実際の信号損失を小さく見積もってしまう可能性があることが分かる．
 
 \SI{60}{\giga\hertz} 近傍では，実測モデルの導体損失は理想モデルより大きかった．差は，\SI{54.85}{\giga\hertz} で約 $4.08\,\mathrm{dB}/20\mathrm{mm}$（$0.204\,\mathrm{dB}/\mathrm{mm}$），\SI{65.33}{\giga\hertz} で約 $3.72\,\mathrm{dB}/20\mathrm{mm}$（$0.186\,\mathrm{dB}/\mathrm{mm}$）であり，\SI{60}{\giga\hertz} 近傍では約 $0.19\sim0.20\,\mathrm{dB}/\mathrm{mm}$ の損失増加となった．
 
@@ -425,6 +427,8 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 
 本研究では，BCDR法を用いて高周波用基板材料（MEGTRON6）の誘電特性および導体特性の評価を行った．
 
+なお，結論で示す比較と考察は，1.85mmコネクタ系との比較のしやすさと，共振ピーク形状の安定性を考えて，\SI{67}{\giga\hertz} 以下のデータを中心にまとめた\cite{totoku_microwave_cable,keysight2023bcdr,kato2019broadband}．
+
 比誘電率と誘電正接の測定に加え，表面粗さの影響を含んだ実効導電率を周波数依存性として求めた結果，以下の知見が得られた．
 
 \begin{enumerate}
@@ -441,7 +445,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 
 以上の結果より，ミリ波帯などの高周波回路設計においては，基板の誘電損失だけでなく，表面粗さを考慮した導体損失の評価が不可欠であると結論できる．
 
-今後は，FDTD法などの電磁界シミュレーションを用いた解析を行い，本測定手法および結果の妥当性についてさらなる検証を進める予定である．
+今後は，FDTD法による電磁界解析を行い，表面粗さをモデル化した条件で，導体損失の計算式がどの程度妥当かを検証する予定である．これにより，本測定手法と測定結果の妥当性を，より確かに確認できると考える．
 
 %==============================================================================
 % 謝辞
