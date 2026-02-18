@@ -65,6 +65,9 @@
   inkscapearea=page,
   width=0.8\textwidth
 }
+% CSV表出力用
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.17} % pgfplots/pgfplotstable の互換設定
 
 % ===== 見出し間隔調整 =====
 % 章／節の前後余白を小さくして空白を詰める
@@ -78,6 +81,15 @@
 
 % ===== ハイパーリンク設定 =====
 \usepackage[hidelinks]{hyperref}
+% Prevent hyperref warnings for common math tokens in PDF strings
+\pdfstringdefDisableCommands{%
+  \def\varepsilon{epsilon}%
+  \def\varepsilon_r{eps_r}%
+  \def\tan{tan}%
+  \def\delta{delta}%
+  \def\sigma{sigma}%
+  \def\mathrm#1{#1}%
+}
 
 %------------------------------------------------------------------------------
 % 各種設定
@@ -253,7 +265,13 @@ Sパラメータの大きさは，広いダイナミックレンジを扱うた�
 本研究ではBCDR法を用いた．BCDR法は，2枚の誘電体基板で円板状の共振器を挟み，特定の共振モード（TM$_{0m0}$モード）を励振して材料定数を測定する手法である\cite{kato2019broadband}．
 この共振モードは外部への放射が小さいため，放射損失を抑えた高いQ値が得られる．その結果，低損失材料でも精度よく測定できる．また，導体損失と誘電体損失を分けて評価しやすい．
 共振器の損失は近似的に $1/Q = 1/Q_d + 1/Q_c + 1/Q_r$ と表され，低損失誘電体では $Q_d \approx 1/\tan\delta$ とみなせる．
-BCDR法では共振周波数 $f_r$ と無負荷Q値 $Q_u$ を測定し，これらから材料定数を求める．無負荷Q値は共振器内の全損失を表し，誘電体損失と導体損失は次式のように分離して扱う\cite{kato2019broadband,kato2023dband}．
+BCDR法では共振周波数 $f_r$ と無負荷Q値 $Q_u$ を測定し，これらから材料定数を求める．
+Q値は共振周波数と半値幅の比で定義され，
+\begin{equation}
+  Q = \frac{f_r}{\Delta f_{1/2}}
+\end{equation}
+ここで $\Delta f_{1/2}$ は共振ピークの半値幅（半電力幅，-3\,dB 帯域）を表す．
+無負荷Q値は共振器内の全損失を表し，誘電体損失と導体損失は次式のように分離して扱う\cite{kato2019broadband,kato2023dband}．
 \begin{equation}
   \frac{1}{Q_u} = \frac{1}{Q_d} + \frac{1}{Q_c} + \frac{1}{Q_r}
 \end{equation}
@@ -323,7 +341,7 @@ BCDR法では，円板電極と試料の位置ずれや接触状態の違いが�
 %==============================================================================
 \chapter{測定結果と考察}
 
-ベクトルネットワークアナライザ（Keysight N5222B）を用い，周波数 \SI{10}{\giga\hertz} から \SI{110}{\giga\hertz} の範囲で測定を行った．
+ベクトルネットワークアナライザ（Keysight N5222B）を用い，周波数 \SI{10}{\giga\hertz} から \SI{110}{\giga\hertz} の範囲で測定を行った．測定は複数日にわたり合計20回実施し，各周波数点は20回の平均値（誤差棒は標準偏差）で示す．
 
 \section{複素誘電率の測定結果}
 MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性を図\ref{fig:permittivity}および図\ref{fig:dielectricloss}に示す．
@@ -332,14 +350,14 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \begin{figure}[H]
   \centering
   \includesvg[width=0.8\textwidth]{data/permittivity.svg}
-  \caption{MEGTRON6の比誘電率 $\varepsilon_r'$ の周波数特性}
+  \caption[比誘電率 eps_r']{MEGTRON6の比誘電率 $\varepsilon_r'$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
   \label{fig:permittivity}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includesvg[width=0.8\textwidth]{data/dielectricloss.svg}
-  \caption{MEGTRON6の誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性}
+  \caption[誘電損失 eps_r' tan delta]{MEGTRON6の誘電損失 $\varepsilon_r'\tan\delta$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
   \label{fig:dielectricloss}
 \end{figure}
 
@@ -351,7 +369,7 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \begin{figure}[H]
   \centering
   \includesvg[width=0.8\textwidth]{data/conductivity.svg}
-  \caption{MEGTRON6銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数特性}
+  \caption[実効導電率 sigma_eff]{MEGTRON6銅箔の実効導電率 $\sigma_{\mathrm{eff}}$ の周波数特性．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
   \label{fig:conductivity}
 \end{figure}
 
@@ -380,7 +398,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 \begin{figure}[H]
   \centering
   \includesvg[width=0.8\textwidth]{image/attenuation_graph.svg}
-  \caption{伝送線路の減衰定数 $\alpha$ の周波数特性比較}
+  \caption[減衰定数 alpha]{伝送線路の減衰定数 $\alpha$ の周波数特性比較．各点は平均値，誤差棒は標準偏差（n=20）を示す．}
   \label{fig:attenuation}
 \end{figure}
 
@@ -415,9 +433,98 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 \chapter*{謝辞}
 \addcontentsline{toc}{chapter}{謝辞}
 
-本研究の実施と本論文の作成にあたり，春日貴志教授から終始丁寧なご指導をいただきました．深く感謝申し上げます．
-日頃の研究活動では，専攻科の内藤さくら氏，小池凛氏をはじめとする研究室の皆様から多くの助言をいただきました．心より感謝いたします．
-また，本研究の審査をご担当いただいた姜天水教授に感謝申し上げます．
+本研究の実施と本論文の作成にあたり，春日貴志教授には終始にわたるご指導を賜った．ここに深謝する．
+日頃の研究活動では，専攻科の内藤さくら氏，小池凛氏をはじめとする研究室の皆様から多くの助言を賜った．謝意を表する．
+また，本研究の審査をご担当いただいた姜天水教授に感謝する．
+
+%------------------ 付録（CSVデータ表）をここに挿入 ------------------
+\appendix
+\chapter{付録：測定データ（平均 ± 標準偏差, n=20）}
+本付録には本文で示した代表図の元データ（平均値と標準偏差）を記載する．各表の数値はCSVファイル（workspaceの data/ 配下）から直接導出した．
+
+\section{比誘電率（付録表A.1）}
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Mean_epsilon_r,Std_epsilon_r},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
+  columns/Mean_epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,fixed,precision=4},
+  columns/Std_epsilon_r/.style={column name=標準偏差,fixed,precision=4}
+]{data/permittivity_epsilon_r_avg_20251210_174318.csv}
+\endgroup
+
+\section{誘電損失（付録表A.2）}
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  create on use/eps_tand/.style={create col/expr={\thisrow{Mean_dielectric_loss}/1000}},
+  create on use/eps_tand_std/.style={create col/expr={\thisrow{Std_dielectric_loss}/1000}},
+  columns={Frequency_GHz,eps_tand,eps_tand_std},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
+  columns/eps_tand/.style={column name=\ensuremath{\varepsilon_r^{\prime}\tan\delta} ,fixed,precision=4},
+  columns/eps_tand_std/.style={column name=標準偏差,fixed,precision=4}
+]{data/dielectricloss_dielectric_loss_avg_20251210_174234.csv}
+\endgroup
+
+
+\section{実効導電率（付録表A.3）}
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  create on use/sigma_sperm/.style={create col/expr={\thisrow{Mean_conductivity}*1e7}},
+  create on use/sigma_sperm_std/.style={create col/expr={\thisrow{Std_conductivity}*1e7}},
+  columns={Frequency_GHz,sigma_sperm,sigma_sperm_std},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
+  columns/sigma_sperm/.style={column name=\ensuremath{\sigma_{\mathrm{eff}}} (S/m),fixed,precision=3},
+  columns/sigma_sperm_std/.style={column name=標準偏差 (S/m),fixed,precision=3}
+]{data/conductivity_conductivity_avg_20251210_174401.csv}
+\endgroup
+
+\section{伝送線路算出結果（付録表A.4）}
+
+\subsection*{付録表A.4a: 伝送線路特性（インピーダンス・減衰）}
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Z0,Alpha_Conductor,Alpha_Dielectric,Alpha_Total},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,precision=2},
+  columns/Z0/.style={column name=\ensuremath{Z_0} (\si{\ohm}),fixed,precision=3},
+  columns/Alpha_Conductor/.style={column name=\ensuremath{\alpha_c} (dB/20mm),fixed,precision=3},
+  columns/Alpha_Dielectric/.style={column name=\ensuremath{\alpha_d} (dB/20mm),fixed,precision=3},
+  columns/Alpha_Total/.style={column name=\ensuremath{\alpha} (dB/20mm),fixed,precision=3}
+]{data/calculated_attenuation_result.csv}
+\endgroup
+
+\bigskip
+
+\subsection*{付録表A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}
+\begingroup\small
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule},
+  columns={Frequency_GHz,Sigma,TanD,Epsilon_r},
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,precision=2},
+  columns/Sigma/.style={column name=\ensuremath{\sigma} (S/m),sci,precision=4},
+  columns/TanD/.style={column name=\ensuremath{\tan\delta},fixed,precision=4},
+  columns/Epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,fixed,precision=4}
+]{data/calculated_attenuation_result.csv}
+\endgroup
+
+%-----------------------------------------------------------------------
 
 %==============================================================================
 % 参考文献
