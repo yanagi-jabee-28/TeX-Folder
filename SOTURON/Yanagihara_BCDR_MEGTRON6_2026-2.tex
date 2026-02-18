@@ -168,14 +168,15 @@ considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCD
 \begin{equation}
   \delta = \frac{1}{\sqrt{\pi f \mu \sigma}}
 \end{equation}
+．
 ここで，$f$ は周波数，$\mu$ は透磁率，$\sigma$ は導電率である．式から，周波数が高くなるほど表皮深さが浅くなり，導体表面の凹凸が電流経路に与える影響が大きくなることが分かる．
 
-そこで本研究では，平衡形円板共振器法（Balanced Disk Circular Resonator: BCDR法）を用いて，低損失基板材料（MEGTRON6）の複素誘電率と，表面粗さを考慮した実効的な導電率を測定する．得られた測定値から伝送線路の減衰定数を算出し，表面粗さが信号伝送特性に与える影響を明らかにすることを目的とする．
+そこで本研究では，平衡形円板共振器（Balanced Circular Disk Resonator: 以下，BCDR）法を用いて，低損失基板材料（MEGTRON6）の複素誘電率と，表面粗さを考慮した実効的な導電率を測定する．得られた測定値から伝送線路の減衰定数を算出し，表面粗さが信号伝送特性に与える影響を明らかにすることを目的とする．
 
 %==============================================================================
-% 第2章 測定基礎（SパラメータとVNA計測）
+% 第2章 測定基礎（Sパラメータとベクトルネットワークアナライザ計測）
 %==============================================================================
-\chapter{測定基礎（SパラメータとVNA計測）}
+\chapter{測定基礎（Sパラメータとベクトルネットワークアナライザ計測）}
 \section{誘電分極と複素誘電率}
 誘電体に電界を加えると，物質中の正電荷と負電荷がわずかにずれ，内部に電気双極子が生じる．この電荷のずれを誘電分極という．電界を取り除くと，双極子は元の状態へ戻るため，分極は消える．
 
@@ -195,6 +196,7 @@ considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCD
 \begin{equation}
   D = \epsilon^* E = \epsilon_0 (\varepsilon_r' - j\varepsilon_r'') E
 \end{equation}
+．
 ここで，$\varepsilon_r'$ は比誘電率の実部，$\varepsilon_r''$ は誘電損失である．
 誘電損失の大きさは，誘電正接 $\tan\delta = \varepsilon_r''/\varepsilon_r'$ で表す．
 本研究では，これらの量を測定して基板材料の損失特性を評価する．
@@ -210,7 +212,7 @@ considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCD
 試料を平行平板電極で挟み，コンデンサとして扱う方法である．静電容量 $C$ とコンダクタンス $G$ を測定し，試料寸法を用いて $\varepsilon_r'$ と $\varepsilon_r''$ を求める．このとき，測定系は並列の $C$ と $G$ の等価回路で表されるとみなす．低周波帯で用いられるが，高周波では電極間隔が無視できず，空隙（エアギャップ）や端部の電界の広がりが誤差の原因になりやすい．
 
 \subsection{反射伝送法（Sパラメータ法）}
-試料に電磁波を入射し，反射波と透過波の振幅と位相をVNAで測定して複素誘電率を求める方法である．導波管や同軸線路内に試料を置く方法に加え，アンテナを用いるフリースペース法がある．高周波では分布定数回路として扱う必要があり，Sパラメータから逆算して材料定数を求める．広帯域の特性が得られる一方で，低損失材料では信号変化が小さく，測定誤差の影響を受けやすい．
+試料に電磁波を入射し，反射波と透過波の振幅と位相をベクトルネットワークアナライザ（Vector Network Analyzer: 以下，VNA）で測定して複素誘電率を求める方法である．導波管や同軸線路内に試料を置く方法に加え，アンテナを用いるフリースペース法がある．高周波では分布定数回路として扱う必要があり，Sパラメータから逆算して材料定数を求める．広帯域の特性が得られる一方で，低損失材料では信号変化が小さく，測定誤差の影響を受けやすい．
 
 \subsection{共振法}
 共振器に試料を入れ，共振周波数の変化とQ値の低下から $\varepsilon_r'$ と $\tan\delta$ を求める方法である．共振現象を使うため低損失材料でも高い精度で測定できるが，測定できる周波数は共振器の構造で決まる．本研究のBCDR法は共振法に分類され，高次モードを使うことで広い周波数帯で測定できる点が特徴である．
@@ -226,6 +228,7 @@ considering Surface Roughness Using a Balanced-Type Circular-Disk Resonator (BCD
 \begin{bmatrix} a_1 \\ a_2 \end{bmatrix}
 \label{eq:s_matrix}
 \end{equation}
+．
 
 \begin{figure}[H]
   \centering
@@ -254,7 +257,7 @@ Sパラメータの大きさは，広いダイナミックレンジを扱うた�
 \end{equation}
 で換算する\cite{jemc_basic_03_s-parameter}．例えば，$|S_{ij}|=1$は\SI{0}{\decibel}，$|S_{ij}|=1/\sqrt{2}$は\SI{-3}{\decibel}に対応する．
 
-\section{VNAの基礎}
+\section{ベクトルネットワークアナライザ（VNA）の基礎}
 ベクトルネットワークアナライザ（VNA）は，$S$ パラメータの振幅と位相を測定する装置である\cite{fujii2010}．振幅のみを測るスカラーネットワークアナライザと比べて，位相情報まで取得できる点が特徴である．高周波帯では理想的な整合状態を作ることが難しい．そこでVNAは測定系のずれを補正し，校正で基準面を決めて測定する\cite{fujii2010}．
 
 %==============================================================================
@@ -263,7 +266,7 @@ Sパラメータの大きさは，広いダイナミックレンジを扱うた�
 \chapter{BCDR法と測定方法}
 
 \section{BCDR法の概要}
-本研究ではBCDR法を用いた．BCDR法は，2枚の誘電体基板で円板状の共振器を挟み，特定の共振モード（TM$_{0m0}$モード）を励振して材料定数を測定する手法である\cite{kato2019broadband}．
+本研究では平衡形円板共振器（Balanced Circular Disk Resonator: BCDR）法を用いた．BCDR法は，2枚の誘電体基板で円板状の共振器を挟み，特定の共振モード（TM$_{0m0}$モード）を励振して材料定数を測定する手法である\cite{kato2019broadband}．
 この共振モードは外部への放射が小さいため，放射損失を抑えた高いQ値が得られる．その結果，低損失材料でも精度よく測定できる．また，導体損失と誘電体損失を分けて評価しやすい．
 共振器の損失は近似的に $1/Q = 1/Q_d + 1/Q_c + 1/Q_r$ と表され，低損失誘電体では $Q_d \approx 1/\tan\delta$ とみなせる．
 BCDR法では共振周波数 $f_r$ と無負荷Q値 $Q_u$ を測定し，これらから材料定数を求める．
@@ -271,11 +274,13 @@ Q値は共振周波数と半値幅の比で定義され，
 \begin{equation}
   Q = \frac{f_r}{\Delta f_{1/2}}
 \end{equation}
+．
 ここで $\Delta f_{1/2}$ は共振ピークの半値幅（半電力幅，-3\,dB 帯域）を表す．
 無負荷Q値は共振器内の全損失を表し，誘電体損失と導体損失は次式のように分離して扱う\cite{kato2019broadband,kato2023dband}．
 \begin{equation}
   \frac{1}{Q_u} = \frac{1}{Q_d} + \frac{1}{Q_c} + \frac{1}{Q_r}
 \end{equation}
+．
 ここで，$Q_r$ は放射損失に対応するQ値である．BCDR法は非放射性モードを用いるため，$Q_r$ は十分大きく，近似的に無視できる．そのため，導体損失成分は
 \begin{equation}
   \frac{1}{Q_c} \approx \frac{1}{Q_u} - \frac{1}{Q_d}
@@ -286,6 +291,7 @@ Q値は共振周波数と半値幅の比で定義され，
   Q_c &= \frac{t_c}{\delta_s} = t_c \sqrt{\pi f_r \mu_0 \sigma} \\
   R_s &= \sqrt{\frac{\pi f_r \mu_0}{\sigma}}
 \end{align}
+．
 ここで，$t_c$ は円板電極の厚さ，$\sigma$ は導電率，$\mu_0$ は真空の透磁率である．
 BCDR法の利点は次のとおりである．TM$_{0m0}$モードだけを選択的に使うため不要なモードの影響を抑えやすい．円板電極の直径を変えるだけで共振周波数が大きく変わるので，同じ装置で広い周波数帯を測定できる\cite{kato2019broadband}．試料は板状のまま挟み込むだけでよく，形状加工の手間が小さい．
 
@@ -332,6 +338,7 @@ BCDR法の利点は次のとおりである．TM$_{0m0}$モードだけを選択
 \begin{align}
   \frac{1}{Q_c} &\approx \frac{1}{Q_u} - \frac{1}{Q_d}
 \end{align}
+．
 ここで，$Q_u$ は測定された無負荷Q値，$Q_d$ は基準測定で得られた誘電体損失に対応するQ値である．粗化表面の試料で得られた $Q_u$ から $Q_d$ を差し引いて $Q_c$ を求め，$R_s$ を介して $\sigma_{\mathrm{eff}}$ を算出する．
 
 \subsection{圧着と位置合わせの管理}
@@ -380,6 +387,7 @@ MEGTRON6基板の比誘電率 $\varepsilon_r'$ および誘電損失 $\varepsilo
 \begin{equation}
   \alpha \approx \alpha_c + \alpha_d = \frac{R}{2}\sqrt{\frac{C}{L}} + \frac{G}{2}\sqrt{\frac{L}{C}}
 \end{equation}
+．
 ここで，$R, L, G, C$ は線路の一次定数（抵抗，インダクタンス，コンダクタンス，キャパシタンス）である．本研究で評価対象とするマイクロストリップ線路では，形状パラメータと材料定数を用いて次の近似式を用いた．
 \begin{align}
 Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0.8W + T} \right) \\
@@ -388,6 +396,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 \alpha_c &= 0.17372 \times \frac{\sqrt{\pi f \mu_0 \rho}}{Z_0 W} \quad [\mathrm{dB}/20\mathrm{mm}] \\
 \alpha_d &= 0.17372 \times \frac{f \pi}{c} \cdot \varepsilon_r^{\prime\prime} \frac{\sqrt{\varepsilon_{re}}(\varepsilon_{re} - 1)}{\varepsilon_{re}(\varepsilon_r^{\prime} - 1)} \quad [\mathrm{dB}/20\mathrm{mm}]
 \end{align}
+．
 
 これらの式はマイクロストリップ線路の準TEM近似に基づく近似式である．
 ここで，$H$ は基板厚さ，$W$ は導体幅，$T$ は導体厚さ，$f$ は周波数，$\mu_0$ は真空の透磁率，$\rho$ は導体の体積抵抗率，$c$ は真空中の光速，$\varepsilon_r^{\prime}$ は比誘電率の実部，$\varepsilon_r^{\prime\prime}$ は比誘電率の虚部，$\varepsilon_{re}$ は実効比誘電率，$Z_0$ は特性インピーダンス，$\alpha_c$ は導体損失による減衰定数，$\alpha_d$ は誘電体損失による減衰定数，$\alpha$ は全減衰定数である．
