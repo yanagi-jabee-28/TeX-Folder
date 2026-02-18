@@ -440,10 +440,12 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 %------------------ 付録（CSVデータ表）をここに挿入 ------------------
 \appendix
 \chapter{付録：測定データ（平均 ± 標準偏差, n=20）}
-本付録には本文で示した代表図の元データ（平均値と標準偏差）を記載する．各表の数値はCSVファイル（workspaceの data/ 配下）から直接導出した．
+本付録には本文で示した代表図の元データ（平均値と標準偏差）を記載する．
 
 \section{比誘電率（付録表A.1）}
+\begin{samepage}
 \begin{center}
+  \textbf{付録表 A.1: 比誘電率}\\[2mm]
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
@@ -456,9 +458,12 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 ]{data/permittivity_epsilon_r_avg_20251210_174318.csv}
 \endgroup
 \end{center}
+\end{samepage}
 
 \section{誘電損失（付録表A.2）}
+\begin{samepage}
 \begin{center}
+  \textbf{付録表 A.2: 誘電損失}\\[2mm]
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
@@ -473,10 +478,12 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 ]{data/dielectricloss_dielectric_loss_avg_20251210_174234.csv}
 \endgroup
 \end{center}
-
+\end{samepage}
 
 \section{実効導電率（付録表A.3）}
+\begin{samepage}
 \begin{center}
+  \textbf{付録表 A.3: 実効導電率}\\[2mm]
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
@@ -491,12 +498,12 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 ]{data/conductivity_conductivity_avg_20251210_174401.csv}
 \endgroup
 \end{center}
+\end{samepage}
 
 \section{伝送線路算出結果（付録表A.4）}
+\begin{samepage}
 \begin{center}
-  \textbf{付録表 A.4a: 伝送線路特性（インピーダンス・減衰）}
-\end{center}
-\begin{center}
+  \textbf{付録表 A.4a: 伝送線路特性（インピーダンス・減衰）}\\[2mm]
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
@@ -511,11 +518,11 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 ]{data/calculated_attenuation_result.csv}
 \endgroup
 \end{center}
+\end{samepage}
 
+\begin{samepage}
 \begin{center}
-  \textbf{付録表 A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}
-\end{center}
-\begin{center}
+  \textbf{付録表 A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}\\[2mm]
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
@@ -529,6 +536,7 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 ]{data/calculated_attenuation_result.csv}
 \endgroup
 \end{center}
+\end{samepage}
 
 %-----------------------------------------------------------------------
 
