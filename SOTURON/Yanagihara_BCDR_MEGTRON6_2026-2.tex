@@ -443,86 +443,92 @@ Z_0 &= \frac{87}{\sqrt{\varepsilon_r^{\prime} + 1.41}} \ln \left( \frac{5.98H}{0
 本付録には本文で示した代表図の元データ（平均値と標準偏差）を記載する．各表の数値はCSVファイル（workspaceの data/ 配下）から直接導出した．
 
 \section{比誘電率（付録表A.1）}
+\begin{center}
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
-  string type,
   every head row/.style={before row=\toprule,after row=\midrule},
   every last row/.style={after row=\bottomrule},
   columns={Frequency_GHz,Mean_epsilon_r,Std_epsilon_r},
-  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
-  columns/Mean_epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,fixed,precision=4},
-  columns/Std_epsilon_r/.style={column name=標準偏差,fixed,precision=4}
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/Mean_epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,column type={c},sci,precision=3},
+  columns/Std_epsilon_r/.style={column name=標準偏差,column type={c},sci,precision=3}
 ]{data/permittivity_epsilon_r_avg_20251210_174318.csv}
 \endgroup
+\end{center}
 
 \section{誘電損失（付録表A.2）}
+\begin{center}
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
-  string type,
   every head row/.style={before row=\toprule,after row=\midrule},
   every last row/.style={after row=\bottomrule},
   create on use/eps_tand/.style={create col/expr={\thisrow{Mean_dielectric_loss}/1000}},
   create on use/eps_tand_std/.style={create col/expr={\thisrow{Std_dielectric_loss}/1000}},
   columns={Frequency_GHz,eps_tand,eps_tand_std},
-  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
-  columns/eps_tand/.style={column name=\ensuremath{\varepsilon_r^{\prime}\tan\delta} ,fixed,precision=4},
-  columns/eps_tand_std/.style={column name=標準偏差,fixed,precision=4}
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/eps_tand/.style={column name=\ensuremath{\varepsilon_r^{\prime}\tan\delta} ,column type={c},sci,precision=3},
+  columns/eps_tand_std/.style={column name=標準偏差,column type={c},sci,precision=3}
 ]{data/dielectricloss_dielectric_loss_avg_20251210_174234.csv}
 \endgroup
+\end{center}
 
 
 \section{実効導電率（付録表A.3）}
+\begin{center}
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
-  string type,
   every head row/.style={before row=\toprule,after row=\midrule},
   every last row/.style={after row=\bottomrule},
   create on use/sigma_sperm/.style={create col/expr={\thisrow{Mean_conductivity}*1e7}},
   create on use/sigma_sperm_std/.style={create col/expr={\thisrow{Std_conductivity}*1e7}},
   columns={Frequency_GHz,sigma_sperm,sigma_sperm_std},
-  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,sci zerofill,precision=2},
-  columns/sigma_sperm/.style={column name=\ensuremath{\sigma_{\mathrm{eff}}} (S/m),fixed,precision=3},
-  columns/sigma_sperm_std/.style={column name=標準偏差 (S/m),fixed,precision=3}
+  columns/Frequency_GHz/.style={column name=周波数 (GHz),column type={c},sci,precision=3},
+  columns/sigma_sperm/.style={column name=\ensuremath{\sigma_{\mathrm{eff}}} (S/m),column type={c},sci,precision=3},
+  columns/sigma_sperm_std/.style={column name=標準偏差 (S/m),column type={c},sci,precision=3}
 ]{data/conductivity_conductivity_avg_20251210_174401.csv}
 \endgroup
+\end{center}
 
 \section{伝送線路算出結果（付録表A.4）}
-
-\subsection*{付録表A.4a: 伝送線路特性（インピーダンス・減衰）}
+\begin{center}
+  \textbf{付録表 A.4a: 伝送線路特性（インピーダンス・減衰）}
+\end{center}
+\begin{center}
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
-  string type,
   every head row/.style={before row=\toprule,after row=\midrule},
   every last row/.style={after row=\bottomrule},
   columns={Frequency_GHz,Z0,Alpha_Conductor,Alpha_Dielectric,Alpha_Total},
-  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,precision=2},
-  columns/Z0/.style={column name=\ensuremath{Z_0} (\si{\ohm}),fixed,precision=3},
-  columns/Alpha_Conductor/.style={column name=\ensuremath{\alpha_c} (dB/20mm),fixed,precision=3},
-  columns/Alpha_Dielectric/.style={column name=\ensuremath{\alpha_d} (dB/20mm),fixed,precision=3},
-  columns/Alpha_Total/.style={column name=\ensuremath{\alpha} (dB/20mm),fixed,precision=3}
+  columns/Frequency_GHz/.style={column name={\shortstack{周波数\\(GHz)}},column type={c},sci,precision=3},
+  columns/Z0/.style={column name={\shortstack{\ensuremath{Z_0}\\(\si{\ohm})}},column type={c},sci,precision=3},
+  columns/Alpha_Conductor/.style={column name={\shortstack{\ensuremath{\alpha_c}\\(dB/20mm)}},column type={c},sci,precision=3},
+  columns/Alpha_Dielectric/.style={column name={\shortstack{\ensuremath{\alpha_d}\\(dB/20mm)}},column type={c},sci,precision=3},
+  columns/Alpha_Total/.style={column name={\shortstack{\ensuremath{\alpha}\\(dB/20mm)}},column type={c},sci,precision=3}
 ]{data/calculated_attenuation_result.csv}
 \endgroup
+\end{center}
 
-\bigskip
-
-\subsection*{付録表A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}
+\begin{center}
+  \textbf{付録表 A.4b: 材料パラメータ（導電率・誘電正接・比誘電率）}
+\end{center}
+\begin{center}
 \begingroup\small
 \pgfplotstabletypeset[
   col sep=comma,
-  string type,
   every head row/.style={before row=\toprule,after row=\midrule},
   every last row/.style={after row=\bottomrule},
   columns={Frequency_GHz,Sigma,TanD,Epsilon_r},
-  columns/Frequency_GHz/.style={column name=周波数 (GHz),fixed,precision=2},
-  columns/Sigma/.style={column name=\ensuremath{\sigma} (S/m),sci,precision=4},
-  columns/TanD/.style={column name=\ensuremath{\tan\delta},fixed,precision=4},
-  columns/Epsilon_r/.style={column name=\ensuremath{\varepsilon_r^{\prime}} ,fixed,precision=4}
+  columns/Frequency_GHz/.style={column name={\shortstack{周波数\\(GHz)}},column type={c},sci,precision=3},
+  columns/Sigma/.style={column name={\shortstack{\ensuremath{\sigma}\\(S/m)}},column type={c},sci,precision=3},
+  columns/TanD/.style={column name={\shortstack{\ensuremath{\tan\delta}\\(無次元)}},column type={c},sci,precision=3},
+  columns/Epsilon_r/.style={column name={\shortstack{\ensuremath{\varepsilon_r^{\prime}}\\(無次元)}},column type={c},sci,precision=3}
 ]{data/calculated_attenuation_result.csv}
 \endgroup
+\end{center}
 
 %-----------------------------------------------------------------------
 
