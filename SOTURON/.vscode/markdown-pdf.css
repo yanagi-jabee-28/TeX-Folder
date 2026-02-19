@@ -1,0 +1,33 @@
+/* Workspace stylesheet used by the "Markdown PDF" extension
+   - Makes body text large for PDF output while keeping headings visually balanced
+   - Adjust values below if you want even larger/smaller text
+*/
+
+/* Target common render wrappers used by markdown renderers */
+.markdown-body, .markdown-preview, body {
+  font-size: 22px !important;    /* 本文サイズ（PDF出力に効く） */
+  line-height: 1.7 !important;
+  font-weight: 400 !important;
+}
+
+/* Paragraphs / list items explicitly */
+.markdown-body p,
+.markdown-body li,
+.markdown-preview p,
+.markdown-preview li {
+  font-size: 22px !important;
+}
+
+/* Keep headings from becoming excessively large (preserve hierarchy) */
+.markdown-body h1, .markdown-preview h1 { font-size: 36px !important; }
+.markdown-body h2, .markdown-preview h2 { font-size: 30px !important; }
+.markdown-body h3, .markdown-preview h3 { font-size: 24px !important; }
+
+/* Ensure code / monospaced text remains readable */
+pre, code, kbd, samp { font-size: 0.95em !important; }
+
+/* Tighten page-break behavior for printed slides */
+.break-after { page-break-after: always; }
+
+/* Optional: increase link contrast on print */
+a { color: #00008B !important; text-decoration: underline !important; }
